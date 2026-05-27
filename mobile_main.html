@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BidBuy Korea — 리뉴얼 앱</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --rose:#E8385A; --rose-h:#C42F4C;
+  --amber:#F5A623; --navy:#1A3C6E;
+  --green:#3AAD4E;
+  --bg:#F0F5FA;
+  --white:#FFFFFF;
+  --border:#E0E4EB;
+  --tp:#1A1A2E;
+  --ts:#666680;
+  --tm:#999BAA;
+  --alert-bg:#FFF8E6;
+  --price-color:#E8385A;
+  --status-red:#E7305B;
+  --dot-green:#20EB1D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:#D8DCE6;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 0 48px;
+}
+.demo-bar{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:#1A1A2E;color:#fff;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:9px 16px;font-size:12px;
+}
+.demo-bar strong{color:var(--amber)}
+.demo-btn{
+  background:var(--rose);color:#fff;border:none;
+  padding:5px 14px;border-radius:14px;font-size:11px;
+  font-weight:700;cursor:pointer;font-family:inherit;
+}
+.phone-wrap{margin-top:52px}
+.phone{
+  width:390px;
+  background:#fff;
+  border:0.5px solid rgba(0,0,0,0.3);
+  border-radius:44px;
+  box-shadow:0 24px 60px rgba(0,0,0,.22),0 4px 16px rgba(0,0,0,.1);
+  overflow:hidden;
+  position:relative;
+}
+.phone-notch{
+  background:#1A1A2E;height:44px;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.notch-island{
+  background:#000;width:120px;height:28px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.notch-cam{width:10px;height:10px;background:#1a1a1a;border-radius:50%;border:1.5px solid #333}
+.notch-speaker{width:52px;height:5px;background:#1a1a1a;border-radius:3px}
+.app-body{
+  background:var(--bg);
+  overflow-y:auto;scrollbar-width:none;
+  max-height:800px;
+}
+.app-body::-webkit-scrollbar{display:none}
+.app-header{
+  background:#fff;
+  border-bottom:1px solid #D9E0E9;
+  position:sticky;top:0;z-index:80;
+  box-shadow:0 1px 0 rgba(32,36,43,.04);
+}
+.app-header-top{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;gap:8px;
+  padding:10px 14px 12px;
+}
+.app-brand-area{
+  display:flex;align-items:center;gap:10px;min-width:0;
+}
+.hb{
+  width:34px;height:34px;border-radius:9px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  padding:0;background:none;border:none;cursor:pointer;
+}
+.hb span{display:block;width:18px;height:2px;background:#242836;border-radius:999px}
+.app-logo{
+  display:flex;align-items:center;
+  width:76px;max-width:24vw;
+}
+.app-logo img{
+  display:block;width:100%;height:auto;
+}
+.app-header-right{margin-left:0;display:flex;gap:4px;align-items:center;justify-self:end}
+.icon-btn{
+  width:34px;height:34px;border-radius:9px;background:none;border:none;
+  cursor:pointer;color:#333;font-size:16px;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.i-badge{
+  position:absolute;top:3px;right:2px;
+  background:var(--rose);color:#fff;font-size:7px;font-weight:700;
+  min-width:13px;height:13px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;padding:0 2px;
+}
+.user-avatar-sm{
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),var(--amber));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:0;font-family:inherit;
+}
+.login-btn-sm{
+  min-width:66px;height:32px;
+  background:var(--rose);color:#fff;border:none;
+  padding:0 14px;border-radius:999px;font-size:11px;
+  font-weight:900;cursor:pointer;font-family:inherit;
+}
+.app-search{
+  grid-column:1 / -1;
+  height:40px;
+  display:flex;align-items:center;gap:0;
+  background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;
+  overflow:hidden;margin:0;color:var(--tm);
+}
+.app-search::before{
+  content:"";
+  width:15px;height:15px;margin-left:12px;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.app-search input{
+  flex:1;min-width:0;height:100%;
+  border:0;outline:0;background:transparent;
+  padding:0 10px 0 8px;color:#333;font-size:13px;
+  font-family:inherit;
+}
+.app-search input::placeholder{color:#99A2B0}
+.app-search button{
+  width:42px;height:100%;
+  border:0;background:var(--rose);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0;cursor:pointer;
+}
+.app-search button i{font-size:14px;color:#fff}
+.channel-tabs{
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  border-top:1px solid #E6DDDA;margin:0;padding:0 14px;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.channel-tabs::-webkit-scrollbar{display:none}
+.ch-tab{
+  padding:9px 12px 10px;font-size:11px;font-weight:700;color:#707070;
+  white-space:nowrap;cursor:pointer;border:0;border-bottom:2px solid transparent;background:transparent;
+  flex-shrink:0;font-family:inherit;
+  scroll-snap-align:start;
+}
+.ch-tab.active{color:var(--rose);border-bottom-color:var(--rose);font-weight:700}
+.app-notice-bar{
+  background:#FFFAF8;border-bottom:1px solid #E6DDDA;overflow:hidden;
+  height:32px;display:flex;align-items:center;
+}
+.app-notice-track{
+  display:flex;align-items:center;
+  white-space:nowrap;
+  animation:noticeScroll 18s linear infinite;
+}
+.app-notice-text{
+  font-size:11px;color:#000000;font-weight:500;
+  padding:0 40px;
+  flex-shrink:0;
+}
+.app-notice-text b{color:var(--amber)}
+@keyframes noticeScroll{
+  0%  {transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.alert-bar{
+  background:var(--alert-bg);border-bottom:1px solid #FFE0A0;
+  padding:9px 14px;display:none;
+}
+.alert-bar-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.al-item{display:flex;align-items:center;gap:4px;font-size:11px}
+.al-dot{width:7px;height:7px;border-radius:50%}
+.al-dot.g{background:var(--dot-green)}
+.al-dot.a{background:var(--amber)}
+.al-dot.gr{background:#ccc}
+.al-count{font-weight:700;font-size:12px;color:var(--tp)}
+.al-label{color:var(--ts);font-size:11px}
+.al-link{margin-left:auto;font-size:10px;color:var(--navy);font-weight:700}
+.main-banner-wrap{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FFF5EE,#FFF0E6);
+}
+.mb-slides{
+  display:flex;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.mb-slide{
+  min-width:100%;display:flex;align-items:center;
+  padding:22px 16px 32px;justify-content:space-between;
+  position:relative;
+}
+.mb-sl-1{background:linear-gradient(135deg,#FFF5EE,#FDEEE4)}
+.mb-sl-2{background:linear-gradient(135deg,#EEF2FF,#DFE8FF)}
+.mb-sl-3{background:linear-gradient(135deg,#EDFAF1,#D8EFE0)}
+.mb-slide-text{flex:1;z-index:2}
+.mb-slide-tag{
+  display:inline-block;background:var(--rose);color:#fff;
+  font-size:9px;font-weight:700;padding:2px 9px;border-radius:4px;margin-bottom:10px;
+}
+.mb-slide-title{
+  font-size:20px;font-weight:700;color:var(--tp);line-height:1.25;margin-bottom:14px;
+}
+.mb-slide-cta{
+  background:var(--rose);color:#fff;border:none;
+  padding:9px 18px;border-radius:20px;font-size:12px;font-weight:700;
+  cursor:pointer;font-family:inherit;
+}
+.mb-slide-circle{
+  width:100px;height:100px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:46px;
+  margin-left:10px;
+}
+.mb-circle-1{background:radial-gradient(circle,#C8E6C9,#81C784 60%,#4CAF50)}
+.mb-circle-2{background:radial-gradient(circle,#BBDEFB,#64B5F6 60%,#2196F3)}
+.mb-circle-3{background:radial-gradient(circle,#F8BBD0,#F06292 60%,#E91E63)}
+.mb-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:5px;z-index:3;
+}
+.mb-dot{
+  width:6px;height:6px;border-radius:3px;background:rgba(0,0,0,.18);
+  cursor:pointer;transition:all .3s;
+}
+.mb-dot.active{width:18px;background:var(--rose)}
+.shortcut-wrap{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:16px 14px;
+}
+.shortcut-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px 4px;
+}
+.sc-item{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;transition:opacity .15s;
+  color:inherit;text-decoration:none;
+}
+.sc-item:hover{opacity:.75}
+.sc-circle{
+  width:54px;height:54px;border-radius:50%;
+  background:#fff;border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1px;overflow:hidden;
+  box-shadow:0 2px 6px rgba(0,0,0,.07);
+  font-size:20px;
+}
+.sc-circle i {
+  font-size:22px;
+  color:#e93b5f;
+}
+.si-1{background:#FFF9F9}.si-2{background:#F5FFF6}.si-3{background:#F5F8FF}
+.si-4{background:#F8F5FF}.si-5{background:#FFF5F5}.si-6{background:#FFFDF0}
+.si-7{background:#F0FDFF}.si-8{background:#F5FFF7}.si-9{background:#FFFAF0}.si-10{background:#FFF5F8}
+.sc-label{font-size:10px;color:var(--ts);font-weight:500;white-space:nowrap;text-align:center}
+.section{padding:14px}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec-title{font-size:15px;font-weight:700;color:var(--tp)}
+.sec-more{font-size:12px;color:var(--tm)}
+.sec-meta{font-size:10px;color:var(--tm)}
+.slide-fade-wrap{position:relative}
+.slide-fade-wrap::after{
+  content:"";
+  position:absolute;top:0;right:0;bottom:0;
+  width:34px;
+  background:linear-gradient(90deg,rgba(240,245,250,0),rgba(240,245,250,.92) 55%,rgba(240,245,250,1));
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  pointer-events:none;
+}
+.slide-fade-wrap.light::after{
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.9) 55%,rgba(255,255,255,1));
+}
+.brand-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 22px 2px 0;scroll-snap-type:x proximity}
+.brand-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
+.brand-scroll::-webkit-scrollbar{display:none}
+.brand-chip{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:58px;cursor:pointer;flex-shrink:0;scroll-snap-align:start}
+.brand-img{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--bg);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--ts);overflow:hidden;
+}
+.brand-img img{width:100%;height:100%;object-fit:contain;padding:6px}
+.brand-name{font-size:9px;color:var(--ts);font-weight:500}
+.best-wrap{
+  background:#fff;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:14px 0 16px;
+}
+.best-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px 8px;
+  padding:0 14px;
+}
+.best-card{
+  background:#fff;border:1px solid #E8ECF2;border-radius:0;
+  overflow:hidden;cursor:pointer;box-shadow:0 1px 4px rgba(17,24,39,.04);
+}
+.best-thumb{
+  position:relative;
+  aspect-ratio:1;
+  background:var(--bg);
+}
+.best-thumb img{width:100%;height:100%;object-fit:cover}
+.best-badge{
+  position:absolute;top:0;left:0;
+  background:#E60026;color:#fff;
+  font-size:9px;font-weight:700;line-height:1;
+  padding:4px 5px;
+}
+.best-fav{
+  position:absolute;right:6px;bottom:6px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.92);color:#B7BCCA;font-size:11px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 4px rgba(0,0,0,.12);
+}
+.best-card-body{padding:7px 6px 8px}
+.best-name{
+  font-size:10px;color:#0B57D0;line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-bottom:4px;
+}
+.best-meta{font-size:9px;color:var(--ts);margin-bottom:1px}
+.best-price{
+  font-size:12px;font-weight:700;color:var(--tp);
+  font-family:'Inter','Noto Sans KR',sans-serif;
+}
+.best-price strong{font-size:12px}
+.review-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 26px 2px 0;scroll-snap-type:x proximity}
+.review-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
+.review-scroll::-webkit-scrollbar{display:none}
+.rv-card{
+  min-width:160px;background:#fff;border-radius:12px;
+  border:1px solid var(--border);padding:12px;flex-shrink:0;scroll-snap-align:start;
+}
+.rv-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;background:#FFF5F7;color:var(--rose);display:inline-block;margin-bottom:8px}
+.rv-badge.mc{background:#E8F5E9;color:var(--green)}
+.rv-img{width:100%;aspect-ratio:1;border-radius:8px;background:var(--bg);margin-bottom:8px;overflow:hidden}
+.rv-img img{width:100%;height:100%;object-fit:cover}
+.rv-stars{color:var(--amber);font-size:10px;margin-bottom:4px}
+.rv-title{font-size:11px;font-weight:700;color:var(--tp);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-text{font-size:10px;color:var(--ts);line-height:1.5}
+.rv-item{font-size:9px;color:var(--tm);margin-top:5px}
+.notice-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden}
+.notice-row{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;border-bottom:1px solid #F5F7FA;cursor:pointer;
+}
+.notice-row:last-child{border-bottom:none}
+.notice-flag{font-size:12px}
+.notice-txt{flex:1;font-size:11px;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notice-date{font-size:10px;color:var(--tm);white-space:nowrap}
+.cs-mini{background:#fff;border-radius:12px;border:1px solid var(--border);padding:14px;margin-top:10px}
+.cs-mini-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.cs-mini-num{font-size:20px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif;margin-bottom:4px}
+.cs-mini-hours{font-size:10px;color:var(--ts);line-height:1.6;margin-bottom:10px}
+.cs-mini-btns{display:flex;gap:6px}
+.cs-mini-btn{flex:1;padding:7px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;text-align:center}
+.cs-mini-btn.primary{background:var(--rose);color:#fff;border-color:var(--rose)}
+.home-indicator{
+  background:#fff;height:28px;
+  display:flex;align-items:center;justify-content:center;
+}
+.home-bar{width:120px;height:4px;background:var(--tp);border-radius:2px;opacity:.15}
+.drawer-ov{position:absolute;inset:0;background:rgba(0,0,0,0);z-index:100;pointer-events:none;transition:background .3s}
+.drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
+.drawer{
+  position:absolute;top:0;left:-100%;bottom:0;
+  width:88%;max-width:340px;
+  background:#fff;z-index:101;overflow-y:auto;scrollbar-width:none;
+  transition:left .3s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+  box-shadow:4px 0 20px rgba(0,0,0,.12);
+  border-top-right-radius:16px;border-bottom-right-radius:16px;
+}
+.drawer::-webkit-scrollbar{display:none}
+.drawer.open{left:0}
+.dr-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 16px 16px;
+  border-bottom:1px solid #D8D8DE;
+}
+.dr-login-link{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:0;border:none;background:none;
+  color:var(--tp);font-size:17px;font-weight:800;
+  font-family:inherit;cursor:pointer;
+}
+.dr-login-link i{font-size:16px;color:var(--rose)}
+.dr-close{
+  width:32px;height:32px;border:none;background:none;
+  color:var(--tp);font-size:22px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.dr-user-mini{display:flex;align-items:center;gap:10px}
+.u-av{
+  border-radius:50%;background:#FFE7EF;color:var(--rose);
+  display:grid;place-items:center;font-size:18px;font-weight:800;
+}
+.dr-user-mini .u-av{width:38px;height:38px}
+.dr-user-mini-name{font-size:15px;font-weight:700;color:var(--tp)}
+.dr-user-mini-grade{font-size:11px;color:var(--ts);margin-top:2px}
+.dr-guest-card{
+  padding:14px 16px 16px;
+  background:#FFF8F5;border-bottom:1px solid #E5E7EB;
+}
+.dr-guest-title{font-size:16px;font-weight:800;color:#111827;margin-bottom:4px}
+.dr-guest-copy{font-size:12px;color:#6B7280;line-height:1.45;margin-bottom:12px}
+.dr-login-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dr-action-btn{
+  height:36px;border-radius:10px;border:1px solid var(--rose);
+  background:var(--rose);color:#fff;font-size:12px;font-weight:800;
+  font-family:inherit;cursor:pointer;
+}
+.dr-action-btn.secondary{background:#fff;color:#4B5563;border-color:#D9E0E9}
+.dr-user-assets{
+  display:grid;grid-template-columns:1fr 1px 1fr;
+  margin:12px 16px 0;border:1px solid #E5E7EB;border-radius:10px;
+  overflow:hidden;background:#fff;
+}
+.dr-user-asset{text-align:center;padding:9px 6px}
+.dr-user-asset span{display:block;font-size:10px;color:#8B95A5;margin-bottom:2px}
+.dr-user-asset strong{display:block;font-size:13px;color:#1F2530;font-family:'Roboto',sans-serif}
+.dr-user-asset-div{background:#E5E7EB}
+.dr-member-panel{display:none}
+.dr-mypage-list{display:grid;gap:6px;padding:0 16px 6px}
+.dr-mypage-item{
+  min-height:40px;display:flex;align-items:center;gap:12px;
+  color:#202633;font-size:14px;font-weight:700;text-decoration:none;
+}
+.dr-mypage-item i{width:20px;color:#111827;text-align:center;font-size:15px}
+.dr-mypage-item .dr-cat-arrow{margin-left:auto}
+.dr-mypage-sub{
+  display:grid;gap:2px;margin:-2px 0 8px 32px;
+  padding:4px 0 6px 12px;border-left:1px solid #EEF0F3;
+}
+.dr-mypage-sub a{
+  min-height:30px;display:flex;align-items:center;
+  color:#4B5563;font-size:12px;font-weight:500;text-decoration:none;
+}
+.dr-mypage-sub a.active{color:var(--rose);font-weight:800}
+.dr-sec{padding:14px 0 10px;border-bottom:1px solid #D8D8DE}
+.dr-sec:last-child{border-bottom:none}
+.dr-sec-title{
+  padding:0 16px 14px;
+  color:var(--tp);font-size:13px;font-weight:800;
+}
+.dr-quick{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:4px;padding:0 8px;
+}
+.dr-quick-item{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:10px 4px 14px;cursor:pointer;
+}
+.dr-quick-icon{
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;flex-shrink:0;color:var(--rose);
+}
+.dr-quick-label{font-size:13px;color:var(--ts);word-break:keep-all;text-align:center}
+.dr-cat-list{padding:0 0 2px}
+.dr-cat-item{
+  display:flex;align-items:center;gap:12px;
+  padding:15px 16px;border-top:1px solid #D8D8DE;
+  font-size:15px;color:var(--tp);cursor:pointer;
+}
+.dr-cat-item:first-child{border-top:none}
+.dr-cat-flag{
+  width:30px;flex-shrink:0;
+  color:var(--tp);font-size:14px;font-weight:700;
+}
+.dr-cat-label{flex:1}
+.dr-cat-arrow{font-size:12px;color:var(--tm)}
+.dr-link-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  row-gap:14px;column-gap:24px;
+  padding:0 16px 14px;
+}
+.dr-link-grid a{font-size:14px;color:var(--ts);text-decoration:none}
+.drawer-cs-card {
+  margin: 22px 26px 34px;
+  padding: 18px 14px;
+  background: #fcfcfd;
+  text-align: center;
+}
+.drawer-cs-tel {
+  color: var(--navy);
+  font-family: Roboto, sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+}
+.drawer-cs-time {
+  margin: 8px 0 16px;
+  color: #7b8494;
+  font-size: 11px;
+}
+.drawer-cs-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.drawer-cs-actions button {
+  height: 34px;
+  border: 1px solid #d9e0e9;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2530;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: inherit;
+}
+.drawer-cs-actions button:first-child {
+  border-color: var(--rose);
+  background: var(--rose);
+  color: #fff;
+}
+.user-drawer-ov{
+  position:absolute;inset:0;background:rgba(0,0,0,0);
+  z-index:102;pointer-events:none;transition:background .3s;
+}
+.user-drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
+.user-drawer{
+  position:absolute;
+  top:0;right:-105%;bottom:0;
+  width:84%;max-width:300px;
+  background:#fff;z-index:103;
+  overflow-y:auto;scrollbar-width:none;
+  transition:right .28s cubic-bezier(.4,0,.2,1);
+}
+.user-drawer::-webkit-scrollbar{display:none}
+.user-drawer.open{right:0}
+.user-drawer-head{padding:18px 14px 12px;background:#fff8f5;border-bottom:1px solid #efe6e2;}
+.user-member-row{display:flex;align-items:center;gap:12px;}
+.user-crown{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  border-radius:50%;background:#ffe6ef;
+  font-size:26px;flex:0 0 auto;
+}
+.user-name-strong{display:block;color:#111827;font-size:18px;font-weight:900;}
+.user-vip-chip{
+  display:inline-flex;margin-top:5px;
+  padding:2px 12px;border-radius:999px;
+  background:var(--rose);color:#fff;font-size:11px;font-weight:900;
+}
+.user-vip-copy{margin:13px 0 4px;color:var(--rose);font-size:11px;font-weight:900;}
+.user-vip-bar{height:5px;border-radius:999px;background:#eee2de;overflow:hidden;}
+.user-vip-bar span{display:block;width:100%;height:100%;background:var(--rose);}
+.user-asset-box{
+  display:grid;grid-template-columns:1fr 1fr;
+  margin-top:12px;border:1px solid #d9e0e9;
+  border-radius:8px;background:#fff;overflow:hidden;
+}
+.user-asset-box div{padding:8px 12px;}
+.user-asset-box div+div{border-left:1px solid #d9e0e9;}
+.user-asset-box span{display:block;color:#a4acb8;font-size:10px;font-weight:700;}
+.user-asset-box strong{display:block;color:#151b29;font-size:16px;font-weight:900;}
+.user-status-grid{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #e5e7eb;background:#fff;}
+.user-status-grid div{min-height:70px;display:grid;place-items:center;align-content:center;gap:4px;text-align:center;}
+.user-status-grid div+div{border-left:1px solid #e5e7eb;}
+.user-status-grid strong{color:#151b29;font-family:Roboto,sans-serif;font-size:26px;line-height:1;font-weight:900;}
+.user-status-grid div:nth-child(2) strong{color:var(--rose);}
+.user-status-grid span{color:#9aa3b2;font-size:10px;font-weight:700;}
+.user-menu-list{padding:0 0 12px;}
+.user-menu-item{
+  min-height:45px;padding:0 18px 0 14px;
+  display:flex;align-items:center;gap:12px;
+  color:#111827;font-size:14px;font-weight:900;border-bottom:0;
+}
+button.user-menu-item{
+  width:100%;border-top:0;border-right:0;border-left:0;
+  background:#fff;text-align:left;font-family:inherit;cursor:pointer;
+}
+.user-menu-item .emoji,
+.user-menu-item .user-menu-icon{width:22px;text-align:center;font-size:17px;flex:0 0 auto;}
+.user-menu-item .chev{margin-left:auto;color:#a8b0bd;font-weight:700;font-size:17px;line-height:1;}
+.user-menu-section{border-bottom:0;}
+.user-menu-panel{display:none;padding:0 0 8px 56px;}
+.user-menu-section.is-open .user-menu-panel{display:grid;gap:0;}
+.user-menu-link{min-height:33px;display:flex;align-items:center;color:#666b75;font-size:14px;font-weight:500;}
+.user-menu-link.danger{color:#8f949f;}
+.user-menu-item.logout{margin-top:6px;border-top:1px solid #e5e7eb;color:#9aa3b2;font-weight:700;}
+.user-menu-item.logout .emoji{font-size:15px;}
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <div class="phone-notch">
+    <div class="notch-island">
+      <div class="notch-cam"></div>
+      <div class="notch-speaker"></div>
+      <div class="notch-cam"></div>
+    </div>
+  </div>
+
+  <div class="app-body">
+
+    <div class="app-header">
+      <div class="app-header-top">
+        <div class="app-brand-area">
+          <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
+          <a class="app-logo" href="mobile_main.html" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency"></a>
+        </div>
+
+        <div class="app-header-right" id="guestArea">
+          <button class="login-btn-sm" type="button" onclick="toggleLogin()">로그인</button>
+        </div>
+
+        <div class="app-header-right" id="userArea" style="display:none">
+          <button class="icon-btn" type="button" aria-label="알림">
+            <i class="far fa-bell"></i><span class="i-badge">3</span>
+          </button>
+          <button class="icon-btn" type="button" aria-label="장바구니"><i class="fas fa-shopping-cart"></i></button>
+          <button class="user-avatar-sm" type="button" aria-label="회원 메뉴" onclick="openUserDrawer()">한</button>
+        </div>
+
+        <form class="app-search" role="search" action="mobile_sub totalsearch.html" method="get">
+          <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
+          <button type="submit" aria-label="검색"><i class="fas fa-search"></i>검색</button>
+        </form>
+      </div>
+
+      <div class="slide-fade-wrap light">
+        <nav class="channel-tabs" aria-label="경매 채널">
+          <button class="ch-tab active" type="button" onclick="location.href='mobile_sub main.html'">야후옥션</button>
+          <button class="ch-tab" type="button">메루카리</button>
+          <button class="ch-tab" type="button">라쿠텐</button>
+          <button class="ch-tab" type="button">라쿠마</button>
+          <button class="ch-tab" type="button">미국이베이</button>
+          <button class="ch-tab" type="button">영국이베이</button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="app-notice-bar">
+      <div class="app-notice-track">
+        <span class="app-notice-text">🎉 리뉴얼 오픈! 마일리지 최대 15% 적립 + 무료보관 30~45일, 등급별 혜택까지 모두 누리세요!</span>
+      </div>
+    </div>
+
+    <div class="alert-bar" id="alertBar">
+      <div class="alert-bar-inner">
+        <div class="al-item"><span class="al-dot g"></span><span class="al-label">진행 중</span><span class="al-count">3건</span></div>
+        <div class="al-item"><span class="al-dot a"></span><span class="al-label">결제 대기</span><span class="al-count" style="color:var(--rose)">1건</span></div>
+        <div class="al-item"><span class="al-dot gr"></span><span class="al-label">2차</span><span class="al-count">0건</span></div>
+        <a class="al-link" href="mobile_mypage.html" style="text-decoration:none">마이페이지 →</a>
+      </div>
+    </div>
+
+    <div class="main-banner-wrap" id="mainBanner">
+      <div class="mb-slides" id="mbSlides">
+        <div class="mb-slide mb-sl-1">
+          <div class="mb-slide-text">
+            <span class="mb-slide-tag">🇯🇵 야후옥션 특집</span>
+            <div class="mb-slide-title">야후일본 경매<br>초가성비 Top10!</div>
+            <button class="mb-slide-cta">지금 바로가기 →</button>
+          </div>
+          <div class="mb-slide-circle mb-circle-1">🎯</div>
+        </div>
+        <div class="mb-slide mb-sl-2">
+          <div class="mb-slide-text">
+            <span class="mb-slide-tag">🎉 리뉴얼 오픈</span>
+            <div class="mb-slide-title">새로운 비드바이몰!<br>탁월한 혜택</div>
+            <button class="mb-slide-cta">혜택 확인하기 →</button>
+          </div>
+          <div class="mb-slide-circle mb-circle-2"><i class="fas fa-bag-shopping" aria-hidden="true"></i></div>
+        </div>
+        <div class="mb-slide mb-sl-3">
+          <div class="mb-slide-text">
+            <span class="mb-slide-tag">✈️ 술술케어</span>
+            <div class="mb-slide-title">최대 50,000엔<br>보상 서비스!</div>
+            <button class="mb-slide-cta">자세히 보기 →</button>
+          </div>
+          <div class="mb-slide-circle mb-circle-3"><i class="fas fa-gift" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="mb-dots">
+        <div class="mb-dot active" onclick="goMbSlide(0)"></div>
+        <div class="mb-dot" onclick="goMbSlide(1)"></div>
+        <div class="mb-dot" onclick="goMbSlide(2)"></div>
+      </div>
+    </div>
+
+    <div class="shortcut-wrap">
+      <div class="shortcut-grid">
+ <div class="sc-item"><div class="sc-circle si-1"><i class="fas fa-calculator"></i></div><span class="sc-label">편의기능</span></div>
+        <div class="sc-item"><div class="sc-circle si-2"><i class="fas fa-heart"></i></div><span class="sc-label">관심상품</span></div>
+        <a class="sc-item" href="mobile_mypage.html"><div class="sc-circle si-3"><i class="fas fa-gavel"></i></div><span class="sc-label">나의 경매</span></a>
+        <div class="sc-item"><div class="sc-circle si-4"><i class="fas fa-boxes-stacked"></i></div><span class="sc-label">묶음배송관리</span></div>
+        <div class="sc-item"><div class="sc-circle si-5"><i class="fas fa-thumbs-up"></i></div><span class="sc-label">추천 카테고리</span></div>
+        <a class="sc-item" href="mobile_grade.html"><div class="sc-circle si-6"><i class="fas fa-gift"></i></div><span class="sc-label">등급 혜택</span></a>
+        <a class="sc-item" href="mobile_mileage.html"><div class="sc-circle si-7"><i class="fas fa-ticket"></i></div><span class="sc-label">마일리지/쿠폰</span></a>
+        <div class="sc-item"><div class="sc-circle si-8"><i class="fas fa-clipboard-list"></i></div><span class="sc-label">이용가이드</span></div>
+        <div class="sc-item"><div class="sc-circle si-9"><i class="fas fa-truck-fast"></i></div><span class="sc-label">배송조회</span></div>
+        <div class="sc-item"><div class="sc-circle si-10"><i class="fas fa-comments"></i></div><span class="sc-label">커뮤니티</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-hd">
+        <span class="sec-title">인기 브랜드</span>
+        <span class="sec-more">더보기 ›</span>
+      </div>
+      <div class="slide-fade-wrap">
+        <div class="brand-scroll">
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/louisvuitton.com" alt="LV" onerror="this.parentElement.textContent='LV'"></div><span class="brand-name">L.VUITTON</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/nike.com" alt="Nike" onerror="this.parentElement.textContent='NIKE'"></div><span class="brand-name">NIKE</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/chanel.com" alt="Chanel" onerror="this.parentElement.textContent='CHANEL'"></div><span class="brand-name">CHANEL</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/gucci.com" alt="Gucci" onerror="this.parentElement.textContent='GUCCI'"></div><span class="brand-name">GUCCI</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/adidas.com" alt="Adidas" onerror="this.parentElement.textContent='ADIDAS'"></div><span class="brand-name">ADIDAS</span></div>
+          <div class="brand-chip"><div class="brand-img" style="font-size:8px;font-weight:700">SUPREME</div><span class="brand-name">SUPREME</span></div>
+          <div class="brand-chip"><div class="brand-img" style="font-size:10px;font-weight:700">GU</div><span class="brand-name">GU</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/prada.com" alt="Prada" onerror="this.parentElement.textContent='PRADA'"></div><span class="brand-name">PRADA</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/hermes.com" alt="Hermes" onerror="this.parentElement.textContent='HERMES'"></div><span class="brand-name">HERMES</span></div>
+          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/burberry.com" alt="Burberry" onerror="this.parentElement.textContent='BURBERRY'"></div><span class="brand-name">BURBERRY</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-wrap">
+      <div style="padding:0 14px">
+        <div class="sec-hd">
+          <span class="sec-title">실시간 베스트</span>
+          <span class="sec-meta">4/17 15시 기준</span>
+        </div>
+      </div>
+      <div class="best-grid">
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest1/160/160" alt="무료배송 상품">
+            <span class="best-badge">무료배송</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">[무료배송] 빈티지 우드 트레이 세트</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>810엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest2/160/160" alt="Nikon 카메라">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">1엔~ Nikon FM2 필름카메라</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>1,650엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest3/160/160" alt="미러리스 카메라">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">「みかんカメ」 M10 클래식 바디</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>31엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest4/160/160" alt="픽업트럭">
+            <span class="best-badge" style="background:#555B6E">NEW</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">[쇼와53년식] 토요 경트럭 복원차</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>17,500엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest5/160/160" alt="실버 주방용기">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">5종 세트 [보제타] 알루미늄 몰드</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>5,980엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest6/160/160" alt="미니밴">
+            <span class="best-badge" style="background:#555B6E">NEW</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">★ 극상급 세레나 하이웨이스타</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>151,000엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest7/160/160" alt="증기 기관차">
+            <span class="best-badge" style="background:#555B6E">NEW</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">카츠미 C12 증기기관차 황동 모형</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>31엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest8/160/160" alt="Fujifilm 카메라">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">Fujifilm Fuji GS645 중형카메라</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>31엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest9/160/160" alt="빈티지 바이크">
+            <span class="best-badge">무료배송</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">Z750F D1 빈티지 바이크 실매물</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>1,201,000엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest10/160/160" alt="가죽 토트백">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">빈티지 레더 토트백 브라운</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>4,200엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest11/160/160" alt="LP 플레이어">
+            <span class="best-badge" style="background:#555B6E">NEW</span>
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">소니 포터블 LP 플레이어 블랙</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>9,800엔</strong></div>
+          </div>
+        </div>
+
+        <div class="best-card">
+          <div class="best-thumb">
+            <img src="https://picsum.photos/seed/livebest12/160/160" alt="세라믹 찻잔">
+            <span class="best-fav"><i class="fas fa-star"></i></span>
+          </div>
+          <div class="best-card-body">
+            <div class="best-name">핸드메이드 세라믹 찻잔 2인 세트</div>
+            <div class="best-meta">현재</div>
+            <div class="best-price"><strong>2,480엔</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-hd">
+        <span class="sec-title">비바 고객후기</span>
+        <span class="sec-more">더보기 ›</span>
+      </div>
+      <div class="slide-fade-wrap">
+        <div class="review-scroll">
+          <div class="rv-card"><span class="rv-badge">🇺🇸 미국이베이</span><div class="rv-img"><img src="https://picsum.photos/seed/rv1/160" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">일본 H&M 구매 빠르게...</div><div class="rv-text">처음이지만 빠르고 친절해요.</div><div class="rv-item">USD 23.70 · Nike Air Max</div></div>
+          <div class="rv-card"><span class="rv-badge">🇯🇵 야후옥션</span><div class="rv-img"><img src="https://picsum.photos/seed/rv2/160" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">간단하게 좋은 제품...</div><div class="rv-text">담당자님이 꼼꼼하게 처리해 주셨습니다.</div><div class="rv-item">¥45,000 · LV 18패브릭</div></div>
+          <div class="rv-card"><span class="rv-badge mc"><i class="fas fa-bag-shopping" aria-hidden="true"></i> 메루카리</span><div class="rv-img"><img src="https://picsum.photos/seed/rv3/160" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">안전하게 잘 도착했어요</div><div class="rv-text">배송비 계산 딱 맞게 나와서 좋아요.</div><div class="rv-item">¥3,200 · Supreme 티셔츠</div></div>
+          <div class="rv-card"><span class="rv-badge">🇬🇧 영국이베이</span><div class="rv-img"><img src="https://picsum.photos/seed/rv4/160" alt=""></div><div class="rv-stars">★★★★☆</div><div class="rv-title">배송매니저 만족합니다</div><div class="rv-text">영국이베이 처음인데 CS 빠르고 친절해요.</div><div class="rv-item">£185 · Seiko Prospex</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0">
+      <div class="sec-hd">
+        <span class="sec-title">공지사항</span>
+        <span class="sec-more">더보기 ›</span>
+      </div>
+      <div class="notice-card">
+        <div class="notice-row"><span class="notice-flag">🇯🇵</span><span class="notice-txt">일본(JP)센터 5월 골드위크 배송 스케줄 변경</span><span class="notice-date">26.04.14</span></div>
+        <div class="notice-row"><span class="notice-flag">🇯🇵</span><span class="notice-txt">일본(JP)센터 4월 공휴일 마감시간 및 출고</span><span class="notice-date">26.03.27</span></div>
+        <div class="notice-row"><span class="notice-flag">🇰🇷</span><span class="notice-txt">4월 카드사별 무이자 안내</span><span class="notice-date">26.03.20</span></div>
+      </div>
+
+      <div class="cs-mini">
+        <div class="cs-mini-title">고객센터</div>
+        <div class="cs-mini-num">1544-5224</div>
+        <div class="cs-mini-hours">평일 AM 10:00 – PM 17:00<br>(점심 PM 12:30 – 13:30)</div>
+        <div class="cs-mini-btns">
+          <button class="cs-mini-btn primary">1:1 문의</button>
+          <button class="cs-mini-btn">FAQ</button>
+          <button class="cs-mini-btn">공지사항</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:12px 14px;background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end;gap:8px">
+      <span style="font-size:12px;font-weight:700;color:var(--ts)">앱 다운로드</span>
+      <button style="display:flex;align-items:center;gap:6px;background:var(--tp);color:#fff;border:none;padding:8px 14px;border-radius:9px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit"><i class="fab fa-google-play"></i> 구글플레이</button>
+      <button style="display:flex;align-items:center;gap:6px;background:var(--tp);color:#fff;border:none;padding:8px 14px;border-radius:9px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit"><i class="fab fa-apple"></i> 앱스토어</button>
+    </div>
+
+    <div class="home-indicator"><div class="home-bar"></div></div>
+
+    <div class="drawer-ov" id="drawerOv" onclick="closeDrawer()"></div>
+
+    <div class="drawer" id="drawer">
+      <div id="drGuestHd" class="dr-head">
+      </div>
+
+      <div id="drUserHd" class="dr-head" style="display:none">
+        <div class="dr-user-mini">
+          <div class="u-av"><i class="fas fa-crown" aria-hidden="true"></i></div>
+          <div>
+            <div class="dr-user-mini-name">이한나님</div>
+            <div class="dr-user-mini-grade">PREMIUM 회원</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="drGuestPanel" class="dr-guest-card">
+        <div class="dr-guest-title">비드바이 로그인</div>
+        <div class="dr-guest-copy">로그인하고 입찰 현황, 마일리지, 관심 상품을 빠르게 확인하세요.</div>
+        <div class="dr-login-actions">
+          <button class="dr-action-btn" type="button" onclick="toggleLogin();closeDrawer()">로그인</button>
+          <button class="dr-action-btn secondary" type="button">회원가입</button>
+        </div>
+      </div>
+      <div class="dr-sec">
+        <div class="dr-quick">
+          <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-truck-fast"></i></div><div class="dr-quick-label">배송관리</div></div>
+          <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-won-sign"></i></div><div class="dr-quick-label">MY혜택</div></div>
+          <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-file-invoice"></i></div><div class="dr-quick-label">관심항목</div></div>
+          <div class="dr-quick-item" onclick="location.href='mobile_mypage.html'" style="cursor:pointer"><div class="dr-quick-icon"><i class="fas fa-calendar-check"></i></div><div class="dr-quick-label">마이페이지</div></div>
+        </div>
+      </div>
+
+      <div class="dr-sec">
+        <div class="dr-sec-title">카테고리</div>
+        <div class="dr-cat-list">
+          <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본야후경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+          <div class="dr-cat-item"><span class="dr-cat-flag">US</span><span class="dr-cat-label">미국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+          <div class="dr-cat-item"><span class="dr-cat-flag">GB</span><span class="dr-cat-label">영국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+          <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본메루카리</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+          <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본구매대행</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+        </div>
+      </div>
+
+
+      <div class="dr-sec">
+        <div class="dr-sec-title">이용가이드</div>
+        <div class="dr-link-grid">
+          <a href="#">초보자가이드</a>
+          <a href="#">수수료안내</a>
+          <a href="#">배송비안내</a>
+          <a href="#">관부가세안내</a>
+        </div>
+      </div>
+
+      <div class="dr-sec" style="border-bottom:none">
+        <div class="dr-sec-title">고객센터</div>
+        <div class="dr-link-grid">
+          <a href="#">공지사항</a>
+          <a href="#">자주하는질문</a>
+          <a href="#">1:1문의</a>
+          <a href="#">커뮤니티</a>
+        </div>
+      </div>
+
+      <div class="drawer-cs-card">
+        <div class="drawer-cs-tel">1544-5224</div>
+        <p class="drawer-cs-time">평일 AM 10:00 - PM 17:00 (점심 PM 12:30 - 13:30)</p>
+        <div class="drawer-cs-actions">
+          <button type="button">1:1 문의</button>
+          <button type="button">FAQ</button>
+          <button type="button">공지사항</button>
+        </div>
+      </div>
+      <div style="height:24px"></div>
+    </div>
+
+    <div class="user-drawer-ov" id="userDrawerOv" onclick="closeUserDrawer()"></div>
+
+    <div class="user-drawer" id="userDrawer">
+      <div class="user-drawer-head">
+        <div class="user-member-row">
+          <div class="user-crown"><i class="fas fa-crown" aria-hidden="true"></i></div>
+          <div>
+            <strong class="user-name-strong">이한나 회원님</strong>
+            <span class="user-vip-chip">VIP</span>
+          </div>
+        </div>
+        <p class="user-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 🎉</p>
+        <div class="user-vip-bar"><span></span></div>
+        <div class="user-asset-box">
+          <div><span>마일리지</span><strong>4,500원</strong></div>
+          <div><span>예치금</span><strong>29,870원</strong></div>
+        </div>
+      </div>
+
+      <div class="user-status-grid">
+        <div><strong>3</strong><span>입찰 진행 중</span></div>
+        <div><strong>1</strong><span>1차 결제 대기</span></div>
+        <div><strong>0</strong><span>2차 결제 대기</span></div>
+      </div>
+
+      <nav class="user-menu-list">
+        <div class="user-menu-section">
+          <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="mm-menu-trade">
+            <span class="user-menu-icon"><i class="fas fa-gavel" aria-hidden="true"></i></span><span>나의 거래 현황</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+          </button>
+          <div class="user-menu-panel" id="mm-menu-trade">
+            <a class="user-menu-link" href="mobile_mypage.html">거래 전체 목록</a>
+            <a class="user-menu-link" href="mobile_mypage.html">경매 입찰/유찰</a>
+            <a class="user-menu-link" href="mobile_mypage.html">구매 신청 목록</a>
+          </div>
+        </div>
+        <div class="user-menu-section">
+          <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="mm-menu-delivery">
+            <span class="user-menu-icon"><i class="fas fa-truck-fast" aria-hidden="true"></i></span><span>배송관리</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+          </button>
+          <div class="user-menu-panel" id="mm-menu-delivery">
+            <a class="user-menu-link" href="#">묶음 배송 신청/변경</a>
+            <a class="user-menu-link" href="#">배송지 관리</a>
+          </div>
+        </div>
+        <div class="user-menu-section">
+          <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="mm-menu-favorites">
+            <span class="user-menu-icon"><i class="fas fa-heart" aria-hidden="true"></i></span><span>관심 항목 관리</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+          </button>
+          <div class="user-menu-panel" id="mm-menu-favorites">
+            <a class="user-menu-link" href="#">관심 출품자</a>
+            <a class="user-menu-link" href="#">관심 물품</a>
+            <a class="user-menu-link" href="#">관심 키워드</a>
+          </div>
+        </div>
+        <div class="user-menu-section">
+          <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="mm-menu-benefit">
+            <span class="user-menu-icon"><i class="fas fa-gift" aria-hidden="true"></i></span><span>MY 혜택</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+          </button>
+          <div class="user-menu-panel" id="mm-menu-benefit">
+            <a class="user-menu-link" href="mobile_mileage.html">마일리지 / 쿠폰</a>
+            <a class="user-menu-link" href="#">MY 등급</a>
+          </div>
+        </div>
+        <div class="user-menu-section">
+          <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="mm-menu-info">
+            <span class="user-menu-icon"><i class="fas fa-user" aria-hidden="true"></i></span><span>나의 정보관리</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+          </button>
+          <div class="user-menu-panel" id="mm-menu-info">
+            <a class="user-menu-link" href="#">예치금 관리</a>
+            <a class="user-menu-link" href="#">보증금 관리</a>
+            <a class="user-menu-link" href="#">회원정보 수정</a>
+            <a class="user-menu-link" href="#">비밀번호 변경</a>
+            <a class="user-menu-link danger" href="#">회원 탈퇴</a>
+          </div>
+        </div>
+        <button class="user-menu-item logout" type="button" onclick="toggleLogin();closeUserDrawer()">
+          <span class="emoji">🔒</span><span>로그아웃</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="home-indicator"><div class="home-bar"></div></div>
+
+</div>
+</div>
+
+<script>
+let loggedIn = false;
+let mbCur = 0;
+const mbTotal = 3;
+
+function renderLoginState() {
+  const displayMap = {
+    guestArea: loggedIn ? 'none' : 'flex',
+    userArea: loggedIn ? 'flex' : 'none',
+    alertBar: loggedIn ? 'block' : 'none',
+    drGuestHd: loggedIn ? 'none' : 'flex',
+    drUserHd: loggedIn ? 'flex' : 'none',
+    drGuestPanel: loggedIn ? 'none' : 'block',
+    drUserAssets: loggedIn ? 'grid' : 'none',
+    drMemberPanel: loggedIn ? 'block' : 'none'
+  };
+
+  Object.entries(displayMap).forEach(([id, display]) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = display;
+  });
+
+  const loginLabel = document.getElementById('loginLabel');
+  if (loginLabel) {
+    loginLabel.textContent = loggedIn ? '비로그인으로 보기' : '로그인 상태로 보기';
+  }
+}
+
+function toggleLogin() {
+  loggedIn = !loggedIn;
+  closeDrawer();
+  closeUserDrawer();
+  renderLoginState();
+}
+
+function openDrawer() {
+  closeUserDrawer();
+  document.getElementById('drawer')?.classList.add('open');
+  document.getElementById('drawerOv')?.classList.add('open');
+  document.querySelector('.hb')?.setAttribute('aria-expanded', 'true');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer')?.classList.remove('open');
+  document.getElementById('drawerOv')?.classList.remove('open');
+  document.querySelector('.hb')?.setAttribute('aria-expanded', 'false');
+}
+
+function openUserDrawer() {
+  if (!loggedIn) return;
+  closeDrawer();
+  document.getElementById('userDrawer')?.classList.add('open');
+  document.getElementById('userDrawerOv')?.classList.add('open');
+}
+
+function closeUserDrawer() {
+  document.getElementById('userDrawer')?.classList.remove('open');
+  document.getElementById('userDrawerOv')?.classList.remove('open');
+}
+
+function bindChannelTabs() {
+  document.querySelectorAll('.ch-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.ch-tab').forEach(item => item.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+}
+
+function bindBestCards() {
+  document.querySelectorAll('.best-card').forEach(card => {
+    card.addEventListener('click', () => {
+      location.href = 'mobile_bill_1st.html';
+    });
+  });
+}
+
+function bindUserMenu() {
+  document.querySelectorAll('.user-menu-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.closest('.user-menu-section');
+      const isOpen = section?.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    });
+  });
+}
+
+function hintHorizontalScroll(selector, distance = 26, startDelay = 500) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  if (el.scrollWidth <= el.clientWidth + 8) return;
+
+  let interacted = false;
+  const markInteracted = () => { interacted = true; };
+  el.addEventListener('touchstart', markInteracted, { once: true, passive: true });
+  el.addEventListener('pointerdown', markInteracted, { once: true, passive: true });
+  el.addEventListener('wheel', markInteracted, { once: true, passive: true });
+
+  setTimeout(() => {
+    if (interacted) return;
+    el.scrollTo({ left: distance, behavior: 'smooth' });
+    setTimeout(() => {
+      if (interacted) return;
+      el.scrollTo({ left: 0, behavior: 'smooth' });
+    }, 650);
+  }, startDelay);
+}
+
+function goMbSlide(n) {
+  mbCur = (n + mbTotal) % mbTotal;
+  document.getElementById('mbSlides')?.style.setProperty('transform', `translateX(-${mbCur * 100}%)`);
+  document.querySelectorAll('.mb-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === mbCur);
+  });
+}
+
+function bindMainBanner() {
+  const banner = document.getElementById('mainBanner');
+  if (!banner) return;
+
+  let startX = 0;
+
+  banner.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  banner.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) {
+      goMbSlide(mbCur + (dx < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+}
+
+function init() {
+  renderLoginState();
+  bindChannelTabs();
+  bindBestCards();
+  bindUserMenu();
+  bindMainBanner();
+  setInterval(() => goMbSlide(mbCur + 1), 3800);
+  hintHorizontalScroll('.channel-tabs', 22, 450);
+  hintHorizontalScroll('.brand-scroll', 32, 1000);
+  hintHorizontalScroll('.review-scroll', 32, 1450);
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

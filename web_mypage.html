@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bidbuy 마이페이지</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --brand: #f03b63;
+      --brand-hot: #ff4969;
+      --rose: #e8385a;
+      --tp: #1a1a2e;
+      --ts: #666680;
+      --tm: #999baa;
+      --border: #e0e4eb;
+      --navy: #163a69;
+      --ink: #20242b;
+      --text: #33363d;
+      --muted: #777985;
+      --faint: #a1a5b3;
+      --line: #e5dbd7;
+      --line-soft: #eee6e2;
+      --paper: #fff;
+      --warm: #fbf7f5;
+      --warm-2: #f7f3f0;
+      --yellow: #f4b400;
+      --stage-left: max(16px, calc((100vw - 1036px) / 2));
+      --sidebar-w: 221px;
+      --main-w: 812px;
+      --gap: 24px;
+      --asset-w: 861px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #fff;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background: #fff;
+      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .top-notice-spacer {
+      height: 34px;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: #fff;
+    }
+
+    .topbar {
+      height: 67px;
+      width: min(calc(100vw - 32px), 1057px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 221px minmax(0, 714px) 221px;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      background: #fff;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .menu-button {
+      width: 25px;
+      height: 25px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .menu-lines {
+      width: 23px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .menu-lines span {
+      height: 2.5px;
+      border-radius: 999px;
+      background: #1f2530;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      width: 122px;
+      line-height: 0;
+    }
+
+    .logo-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .search {
+      height: 43px;
+      display: flex;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      overflow: hidden;
+      background: var(--warm-2);
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 18px;
+      background: transparent;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .search input::placeholder {
+      color: #8c8985;
+    }
+
+    .search button {
+      width: 111px;
+      border: 0;
+      background: var(--brand-hot);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .search button i {
+      font-size: 15px;
+    }
+
+    .user-tools {
+      justify-self: end;
+      display: grid;
+      grid-template-columns: 28px 28px auto;
+      align-items: center;
+      gap: 10px;
+      color: #1d2430;
+    }
+
+    .icon-btn {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: transparent;
+      color: #687385;
+      padding: 0;
+    }
+
+    .icon-btn i {
+      font-size: 23px;
+    }
+
+    .user-name {
+      display: grid;
+      justify-items: center;
+      gap: 3px;
+      color: #111827;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .premium-chip {
+      min-width: 70px;
+      min-height: 18px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #fff0c9;
+      color: #f4a200;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) var(--main-w);
+      gap: var(--gap);
+      width: calc(var(--sidebar-w) + var(--gap) + var(--main-w));
+      margin-left: var(--stage-left);
+      overflow: visible;
+    }
+
+    .asset-strip {
+      position: absolute;
+      top: 0;
+      left: var(--sidebar-w);
+      width: var(--asset-w);
+      height: 36px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      background: var(--warm);
+      border-bottom: 1px solid #f2e9e5;
+      z-index: 1;
+    }
+
+    .asset-item {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      color: #111;
+      white-space: nowrap;
+    }
+
+    .asset-item span {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .asset-item strong {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .sidebar {
+      min-width: 0;
+    }
+
+    .profile-card {
+      height: 172px;
+      padding: 19px 22px 12px;
+      background: var(--warm);
+    }
+
+    .profile-main {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: #ffe7ef;
+      color: var(--brand);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .profile-name {
+      display: block;
+      margin-bottom: 3px;
+      color: #262a31;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .profile-tier {
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .vip-copy {
+      margin: 18px 0 6px;
+      color: #5c6270;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .vip-copy b {
+      color: #454b58;
+      font-weight: 800;
+    }
+
+    .vip-row {
+      display: grid;
+      grid-template-columns: 1fr 16px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vip-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: #eee2de;
+      overflow: hidden;
+    }
+
+    .vip-progress span {
+      display: block;
+      width: 84%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff8499 0%, var(--brand) 100%);
+    }
+
+    .help-dot {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #9ea1aa;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: #838793;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .profile-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 11px;
+    }
+
+    .soft-btn {
+      height: 26px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #5c606b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .side-nav {
+      padding-top: 33px;
+    }
+
+    .side-title {
+      margin: 0 0 18px;
+      padding: 0 15px 17px;
+      border-bottom: 1px solid #dcd9d6;
+      color: #111;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .nav-section {
+      padding: 0 20px;
+      margin-bottom: 14px;
+    }
+
+    .nav-section strong {
+      display: block;
+      margin-bottom: 11px;
+      color: #292d35;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .nav-list a {
+      color: #666b75;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    .drawer-section {
+      padding: 18px 20px 24px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
+    .drawer-section-title {
+      margin: 0 0 18px;
+      color: #111827;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .user-menu-list {
+      padding: 0;
+      display: grid;
+      gap: 0;
+    }
+
+    .user-menu-item {
+      min-height: 45px;
+      padding: 0 18px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 900;
+      text-decoration: none;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .user-menu-item:hover,
+    .user-menu-link:hover {
+      color: var(--brand);
+    }
+
+    .user-menu-item .user-menu-icon,
+    .user-menu-item .emoji {
+      width: 22px;
+      text-align: center;
+      font-size: 17px;
+      flex: 0 0 auto;
+    }
+
+    .user-menu-item .chev {
+      margin-left: auto;
+      color: #a8b0bd;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .user-menu-section {
+      border-bottom: 1px solid #f0f0f3;
+    }
+
+    .user-menu-panel {
+      display: none;
+      padding: 0 0 8px 56px;
+    }
+
+    .user-menu-section.is-open .user-menu-panel {
+      display: grid;
+      gap: 0;
+    }
+
+    .user-menu-link {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      color: #666b75;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .user-menu-link.danger {
+      color: #8f949f;
+    }
+
+    .user-menu-item.logout {
+      margin-top: 6px;
+      border-top: 1px solid #e5e7eb;
+      color: #9aa3b2;
+      font-weight: 700;
+    }
+
+    .user-name {
+      cursor: pointer;
+    }
+
+    .drawer-ov{
+      position:fixed;inset:0;background:rgba(0,0,0,0);z-index:1000;pointer-events:none;transition:background .3s
+    }
+    .drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
+    .drawer{
+      position:fixed;top:0;left:-100%;bottom:0;
+      width:88%;max-width:340px;
+      background:#fff;z-index:1001;overflow-y:auto;scrollbar-width:none;
+      transition:left .3s cubic-bezier(.4,0,.2,1);
+      display:flex;flex-direction:column;
+      box-shadow:4px 0 20px rgba(0,0,0,.12);
+      border-top-right-radius:16px;border-bottom-right-radius:16px;
+    }
+    .drawer::-webkit-scrollbar{display:none}
+    .drawer.open{left:0}
+    .dr-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 16px 16px;
+      border-bottom:1px solid #D8D8DE;
+    }
+    .dr-login-link{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:0;border:none;background:none;
+      color:var(--tp);font-size:17px;font-weight:800;
+      font-family:inherit;cursor:pointer;
+    }
+    .dr-login-link i{font-size:16px;color:var(--rose)}
+    .dr-close{
+      width:32px;height:32px;border:none;background:none;
+      color:var(--tp);font-size:22px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .dr-user-mini{display:flex;align-items:center;gap:10px}
+    .u-av{
+      border-radius:50%;background:#FFE7EF;color:var(--rose);
+      display:grid;place-items:center;font-size:18px;font-weight:800;
+    }
+    .dr-user-mini .u-av{width:38px;height:38px}
+    .dr-user-mini-name{font-size:15px;font-weight:700;color:var(--tp)}
+    .dr-user-mini-grade{font-size:11px;color:var(--ts);margin-top:2px}
+    .dr-guest-card{
+      padding:14px 16px 16px;
+      background:#FFF8F5;border-bottom:1px solid #E5E7EB;
+    }
+    .dr-guest-title{font-size:16px;font-weight:800;color:#111827;margin-bottom:4px}
+    .dr-guest-copy{font-size:12px;color:#6B7280;line-height:1.45;margin-bottom:12px}
+    .dr-login-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .dr-action-btn{
+      height:36px;border-radius:10px;border:1px solid var(--rose);
+      background:var(--rose);color:#fff;font-size:12px;font-weight:800;
+      font-family:inherit;cursor:pointer;
+    }
+    .dr-action-btn.secondary{background:#fff;color:#4B5563;border-color:#D9E0E9}
+    .dr-user-assets{
+      display:grid;grid-template-columns:1fr 1px 1fr;
+      margin:12px 16px 0;border:1px solid #E5E7EB;border-radius:10px;
+      overflow:hidden;background:#fff;
+    }
+    .dr-user-asset{text-align:center;padding:9px 6px}
+    .dr-user-asset span{display:block;font-size:10px;color:#8B95A5;margin-bottom:2px}
+    .dr-user-asset strong{display:block;font-size:13px;color:#1F2530;font-family:'Roboto',sans-serif}
+    .dr-user-asset-div{background:#E5E7EB}
+    .dr-mypage-list{display:grid;gap:6px;padding:0 16px 6px}
+    .dr-mypage-item{
+      min-height:40px;display:flex;align-items:center;gap:12px;
+      color:#202633;font-size:14px;font-weight:700;text-decoration:none;
+    }
+    .dr-mypage-item i{width:20px;color:#111827;text-align:center;font-size:15px}
+    .dr-mypage-item .dr-cat-arrow{margin-left:auto}
+    .dr-mypage-sub{
+      display:grid;gap:2px;margin:-2px 0 8px 32px;
+      padding:4px 0 6px 12px;border-left:1px solid #EEF0F3;
+    }
+    .dr-mypage-sub a{
+      min-height:30px;display:flex;align-items:center;
+      color:#4B5563;font-size:12px;font-weight:500;text-decoration:none;
+    }
+    .dr-mypage-sub a.active{color:var(--rose);font-weight:800}
+    .dr-sec{padding:14px 0 10px;border-bottom:1px solid #D8D8DE}
+    .dr-sec:last-child{border-bottom:none}
+    .dr-sec-title{
+      padding:0 16px 14px;
+      color:var(--tp);font-size:13px;font-weight:800;
+    }
+    .dr-quick{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:4px;padding:0 8px;
+    }
+    .dr-quick-item{
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+      padding:10px 4px 14px;cursor:pointer;
+    }
+    .dr-quick-icon{
+      width:44px;height:44px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:28px;flex-shrink:0;color:var(--rose);
+    }
+    .dr-quick-label{font-size:13px;color:var(--ts);word-break:keep-all;text-align:center}
+    .dr-cat-list{padding:0 0 2px}
+    .dr-cat-item{
+      display:flex;align-items:center;gap:12px;
+      padding:15px 16px;border-top:1px solid #D8D8DE;
+      font-size:15px;color:var(--tp);cursor:pointer;
+    }
+    .dr-cat-item:first-child{border-top:none}
+    .dr-cat-flag{
+      width:30px;flex-shrink:0;
+      color:var(--tp);font-size:14px;font-weight:700;
+    }
+    .dr-cat-label{flex:1}
+    .dr-cat-arrow{font-size:12px;color:var(--tm)}
+    .dr-link-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);
+      row-gap:14px;column-gap:24px;
+      padding:0 16px 14px;
+    }
+    .dr-link-grid a{font-size:14px;color:var(--ts);text-decoration:none}
+
+    .main {
+      min-width: 0;
+      padding-top: 58px;
+      padding-bottom: 40px;
+    }
+
+    .shopping-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 27px 11px 6px;
+    }
+
+    .shopping-head h2,
+    .list-title {
+      margin: 0;
+      color: #2b2f37;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .status-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .outline-pill {
+      height: 31px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #8a7f7a;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-board {
+      display: grid;
+      grid-template-columns: 127px repeat(6, 87px);
+      gap: 20px;
+      align-items: stretch;
+      margin-left: 6px;
+    }
+
+    .status-stack {
+      display: grid;
+      gap: 19px;
+    }
+
+    .status-card {
+      min-height: 151px;
+      border: 1px solid #ded8d5;
+      border-radius: 7px;
+      background: #fff;
+      color: #383b40;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 10px 8px;
+    }
+
+    .status-card[data-status],
+    .status-card .sub[data-status] {
+      cursor: pointer;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .status-card[data-status]:hover,
+    .status-card[data-status]:focus-visible {
+      border-color: rgba(240, 59, 99, 0.55);
+      box-shadow: 0 0 0 2px rgba(240, 59, 99, 0.08);
+      outline: 0;
+    }
+
+    .status-card.status-active {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(240, 59, 99, 0.12);
+    }
+
+    .status-stack .status-card {
+      min-height: 66px;
+    }
+
+    .status-card em {
+      display: block;
+      margin-bottom: 5px;
+      color: #3c3f45;
+      font-style: normal;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .status-card em.hot {
+      color: var(--brand);
+    }
+
+    .status-card strong {
+      display: block;
+      color: #3e4249;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .status-card .sub {
+      display: block;
+      margin-top: 17px;
+      padding-top: 13px;
+      border-top: 1px solid #e4dedb;
+    }
+
+    .status-card .sub[data-status]:hover,
+    .status-card .sub[data-status]:focus-visible,
+    .status-card .sub.status-active {
+      border-top-color: rgba(240, 59, 99, 0.45);
+      color: var(--brand);
+      outline: 0;
+    }
+
+    .status-card .sub em {
+      margin-bottom: 4px;
+      color: var(--yellow);
+      font-size: 15px;
+    }
+
+    .status-card .muted {
+      display: block;
+      margin-bottom: 4px;
+      color: #8d929d;
+      font-size: 13px;
+    }
+
+    .trade-area {
+      margin-top: 56px;
+    }
+
+    .filter-row {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 9px;
+    }
+
+    .filter-group,
+    .country-group,
+    .utility-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .filter-group {
+      gap: 18px;
+    }
+
+    .country-group {
+      gap: 18px;
+    }
+
+    .utility-group {
+      margin-left: auto;
+      gap: 6px;
+    }
+
+    .tab,
+    .country-tab {
+      position: relative;
+      min-width: 0;
+      height: 34px;
+      padding: 0 0 7px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #9da2af;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .tab::after,
+    .country-tab::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .tab.active,
+    .country-tab.active {
+      color: var(--brand);
+    }
+
+    .tab.active::after,
+    .country-tab.active::after {
+      background: var(--brand);
+    }
+
+    .tab:focus-visible,
+    .country-tab:focus-visible {
+      outline: 2px solid rgba(240, 59, 99, 0.28);
+      outline-offset: 3px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 19px;
+      background: #e1d8d5;
+      margin: 0 4px;
+    }
+
+    .filter-dropdown {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .dropdown-toggle {
+      height: 28px;
+      min-width: 96px;
+      padding: 0 10px 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .dropdown-toggle:focus-visible {
+      outline: 2px solid rgba(240, 59, 99, 0.25);
+      outline-offset: 2px;
+    }
+
+    .chevron {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #5d6470;
+      transition: transform 0.16s ease;
+    }
+
+    .filter-dropdown.is-open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 20;
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(30, 34, 42, 0.12);
+    }
+
+    .filter-dropdown.is-open .dropdown-panel {
+      display: block;
+    }
+
+    .country-panel {
+      width: 112px;
+      padding: 8px;
+    }
+
+    .dropdown-item {
+      width: 100%;
+      height: 32px;
+      border: 0;
+      border-radius: 7px;
+      background: #fff;
+      color: #4f5662;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item.active {
+      background: #fff3f6;
+      color: var(--brand);
+    }
+
+    .status-panel {
+      width: 98px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .status-filter-option {
+      width: 100%;
+      height: 28px;
+      margin-bottom: 8px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .status-filter-option:hover,
+    .status-filter-option.status-active {
+      border-color: rgba(240, 59, 99, 0.65);
+      background: #fff3f6;
+      color: var(--brand);
+    }
+
+    .status-filter-option:last-child {
+      margin-bottom: 0;
+    }
+
+    .calendar-panel {
+      width: 300px;
+      padding: 14px;
+    }
+
+    .range-shortcuts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 13px;
+    }
+
+    .range-shortcuts button {
+      height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: #6b717d;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .range-shortcuts button.active,
+    .range-shortcuts button:hover {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: #252a32;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .calendar-head button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: #59606d;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .calendar-week,
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+    }
+
+    .calendar-week {
+      margin-bottom: 6px;
+      color: #9ca1ad;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .calendar-days {
+      gap: 4px;
+    }
+
+    .calendar-days button {
+      height: 30px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: #505762;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .calendar-days button:hover,
+    .calendar-days button.selected {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .calendar-days button.is-muted {
+      color: #c1c5cf;
+    }
+
+    .calendar-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 13px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .calendar-actions button {
+      height: 29px;
+      min-width: 58px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: #606672;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .calendar-actions button.primary {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .trade-table {
+      --trade-thumb-size: 80px;
+      --trade-thumb-gap: 22px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .table-head,
+    .trade-row {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr) 132px 180px;
+      align-items: center;
+      column-gap: 12px;
+    }
+
+    .table-head {
+      min-height: 37px;
+      padding: 0 16px;
+      background: var(--warm);
+      color: #5a5e66;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .table-head div {
+      min-width: 0;
+    }
+
+    .table-head div:nth-child(2) {
+      padding-left: calc(var(--trade-thumb-size) + var(--trade-thumb-gap));
+    }
+
+    .table-head div:nth-child(4) {
+      text-align: right;
+    }
+
+    .trade-row {
+      min-height: 120px;
+      padding: 0 16px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .trade-row > [role="cell"] {
+      min-width: 0;
+    }
+
+    .trade-row.status-extra {
+      display: none;
+    }
+
+    .trade-table.status-filtered .trade-row.status-extra {
+      display: grid;
+    }
+
+    .trade-row.is-hidden {
+      display: none !important;
+    }
+
+    .trade-empty {
+      display: none;
+      min-height: 84px;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid var(--line-soft);
+      color: #9da2af;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .trade-empty.is-visible {
+      display: flex;
+    }
+
+    .trade-date {
+      color: #969baa;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .product {
+      display: grid;
+      grid-template-columns: var(--trade-thumb-size) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--trade-thumb-gap);
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .thumb {
+      width: var(--trade-thumb-size);
+      height: var(--trade-thumb-size);
+      border-radius: 6px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.75), rgba(246,246,246,0.2)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' rx='10' fill='%23f3f4f6'/%3E%3Cpath d='M28 23 43 14h24l15 9 13 23-15 8-6-10v44H36V44l-6 10-15-8Z' fill='%23ffffff' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M43 14c2 9 6 14 12 14s10-5 12-14' fill='none' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M46 39c5-4 15-4 20 0' fill='none' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M42 49h27' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='55' y='61' text-anchor='middle' font-family='Arial' font-size='8' font-weight='700' fill='%23e23346'%3EDUCATI%3C/text%3E%3Cpath d='M28 23 15 46l15 8 6-10M82 23l13 23-15 8-6-10' fill='%23f9fafb' stroke='%23d8dce3' stroke-width='2'/%3E%3C/svg%3E") center / cover no-repeat;
+    }
+
+    .product-info {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .seller {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+      color: #59606d;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .seller::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #d70022;
+      flex: 0 0 auto;
+    }
+
+    .product-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: #151922;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .price-main {
+      margin-bottom: 5px;
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .price-sub {
+      color: #a0a3ad;
+      font-size: 10px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .progress-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      min-width: 0;
+      color: #9ca1ad;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .progress-cell > span {
+      display: block;
+      width: 100%;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .progress-time {
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .row-actions {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+
+    .mini-btn {
+      height: 29px;
+      min-width: 76px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #626672;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .mini-btn.primary {
+      min-width: 66px;
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .pager {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 16px;
+    }
+
+    .pager button {
+      width: 31px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #777b85;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .pager button.current {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    @media (max-width: 1180px) {
+      :root {
+        --stage-left: 16px;
+        --main-w: minmax(0, 1fr);
+      }
+
+      .topbar {
+        width: calc(100vw - 32px);
+        grid-template-columns: 221px minmax(280px, 1fr) 190px;
+        gap: 16px;
+      }
+
+      .stage {
+        width: calc(100vw - 32px);
+        grid-template-columns: 221px minmax(0, 1fr);
+      }
+
+      .asset-strip {
+        width: calc(100vw - 32px - 221px);
+      }
+
+      .asset-item {
+        gap: 18px;
+      }
+
+      .status-board {
+        grid-template-columns: 127px repeat(6, minmax(72px, 1fr));
+        gap: 10px;
+      }
+
+      .filter-row {
+        height: auto;
+        flex-wrap: wrap;
+      }
+
+      .utility-group {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        width: auto;
+        height: auto;
+        grid-template-columns: 1fr;
+        margin: 0;
+        padding: 13px 16px;
+      }
+
+      .brand-area {
+        justify-content: space-between;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .user-tools {
+        justify-self: start;
+      }
+
+      .stage {
+        display: block;
+      }
+
+      .asset-strip {
+        position: static;
+        width: 100%;
+        height: auto;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 16px;
+        border: 1px solid var(--line-soft);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .asset-item {
+        min-height: 42px;
+        justify-content: space-between;
+        padding: 0 14px;
+      }
+
+      .profile-card {
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .side-nav {
+        padding-top: 16px;
+      }
+
+      .main {
+        padding-top: 22px;
+      }
+
+      .status-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .status-card,
+      .status-stack .status-card {
+        min-height: 78px;
+      }
+
+      .trade-area {
+        margin-top: 32px;
+      }
+
+      .table-head {
+        display: none;
+      }
+
+      .trade-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px;
+      }
+
+      .progress-cell {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .progress-cell > span {
+        text-align: left;
+      }
+
+      .row-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .trade-table {
+        --trade-thumb-size: 48px;
+        --trade-thumb-gap: 14px;
+      }
+
+      .asset-strip,
+      .status-board {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-group,
+      .country-group {
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .filter-row {
+        gap: 12px;
+      }
+
+      .product {
+        grid-template-columns: var(--trade-thumb-size) minmax(0, 1fr);
+      }
+
+      .thumb {
+        width: var(--trade-thumb-size);
+        height: var(--trade-thumb-size);
+      }
+    }
+
+    /* 사업자 전환 배너 */
+    .biz-convert-section {
+      margin-top: 6px;
+      padding: 0 12px 20px;
+    }
+    .biz-convert-link {
+      display: block;
+      text-decoration: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #eef3fb 0%, #e6edf8 100%);
+      border: 1px solid #c8d8ef;
+      overflow: hidden;
+      transition: box-shadow 0.16s;
+    }
+    .biz-convert-link:hover {
+      box-shadow: 0 2px 10px rgba(26,60,110,0.12);
+    }
+    .biz-convert-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 12px 12px 14px;
+    }
+    .biz-convert-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #1a3c6e;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: #fff;
+      font-size: 14px;
+    }
+    .biz-convert-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .biz-convert-text strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: #1a3c6e;
+      margin-bottom: 2px;
+    }
+    .biz-convert-text span {
+      display: block;
+      font-size: 11px;
+      color: #4f6b9a;
+      line-height: 1.35;
+    }
+    .biz-chev {
+      font-size: 11px;
+      color: #4f6b9a;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-notice-spacer" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand-area">
+        <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()">
+          <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <a class="logo-link" href="web_main.html" aria-label="Bidbuy 홈">
+          <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
+        </a>
+      </div>
+
+      <form class="search">
+        <input type="text" placeholder="키워드 또는 URL을 입력하세요.">
+        <button type="submit">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          검색
+        </button>
+      </form>
+
+      <div class="user-tools" aria-label="회원 메뉴">
+        <button class="icon-btn" type="button" aria-label="알림">
+          <i class="far fa-bell" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" type="button" aria-label="장바구니">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+        </button>
+        <div class="user-name">
+          이한나님
+          <span class="premium-chip">PREMIUM</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="stage">
+     <aside class="sidebar">
+        <section class="profile-card" aria-label="회원 정보">
+          <div class="profile-main">
+            <div class="avatar">홍</div>
+            <div>
+              <strong class="profile-name">홍길동님</strong>
+              <span class="profile-tier">Premium</span>
+            </div>
+          </div>
+          <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
+          <div class="vip-row">
+            <div class="vip-progress"><span></span></div>
+            <span class="help-dot">?</span>
+          </div>
+          <div class="profile-actions">
+            <button class="soft-btn" type="button">1:1 문의내역</button>
+            <button class="soft-btn" type="button">로그아웃</button>
+          </div>
+        </section>
+
+        <section class="side-nav" aria-label="마이페이지 메뉴">
+          <h2 class="side-title">마이페이지</h2>
+
+          <div class="nav-section">
+            <strong>나의 거래 현황</strong>
+            <div class="nav-list">
+              <a class="active" href="mypage.html">거래 전체 목록</a>
+              <a href="#">경매 입찰/유찰</a>
+              <a href="#">구매 신청 목록</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>배송관리</strong>
+            <div class="nav-list">
+              <a href="#">묶음 배송 신청/변경</a>
+              <a href="#">배송지 관리</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>관심 항목 관리</strong>
+            <div class="nav-list">
+              <a href="#">관심 출품자</a>
+              <a href="#">관심 물품</a>
+              <a href="#">관심 키워드</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>MY 혜택</strong>
+            <div class="nav-list">
+              <a href="web_mileage.html">마일리지 / 쿠폰</a>
+              <a href="web_grade page.html">MY 등급</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>나의 정보관리</strong>
+            <div class="nav-list">
+              <a href="#">예치금 관리</a>
+              <a href="#">보증금 관리</a>
+              <a href="#">회원정보 수정</a>
+              <a href="#">비밀번호 변경</a>
+              <a href="#">회원 탈퇴</a>
+            </div>
+          </div>
+                    <div class="nav-section biz-convert-section">
+            <a href="web_biz.html" class="biz-convert-link">
+              <span class="biz-convert-inner">
+                <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
+                <span class="biz-convert-text">
+                  <strong>사업자 회원 전환</strong>
+                  <span>사업자 전용 혜택을<br>확인해보세요</span>
+                </span>
+                <i class="fas fa-chevron-right biz-chev"></i>
+              </span>
+            </a>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section aria-labelledby="shopping-status-title">
+          <div class="shopping-head">
+            <h2 id="shopping-status-title">나의 거래 현황</h2>
+            <div class="status-links">
+              <button class="outline-pill" type="button">거래완료</button>
+              <button class="outline-pill" type="button">취소/반품</button>
+            </div>
+          </div>
+
+          <div class="status-board">
+            <div class="status-stack">
+              <div class="status-card" role="button" tabindex="0" data-status="auction-bid" data-label="경매입찰">
+                <div><em>5</em><strong>경매입찰</strong></div>
+              </div>
+              <div class="status-card" role="button" tabindex="0" data-status="purchase-request" data-label="구매 신청">
+                <div><em>5</em><strong>구매 신청</strong></div>
+              </div>
+            </div>
+            <div class="status-card" role="button" tabindex="0" data-status="first-payment-wait" data-label="1차 결제대기"><div><em class="hot">5</em><strong>1차<br>결제대기</strong></div></div>
+            <div class="status-card" role="button" tabindex="0" data-status="first-payment-complete" data-label="1차 결제완료"><div><em>5</em><strong>1차<br>결제완료</strong></div></div>
+            <div class="status-card" role="button" tabindex="0" data-status="local-arrived" data-label="현지도착">
+              <div>
+                <em>5</em>
+                <strong>현지도착</strong>
+                <span class="sub" role="button" tabindex="0" data-status="shipping-wait" data-label="배송대기"><em>3</em><strong>배송대기</strong></span>
+              </div>
+            </div>
+            <div class="status-card" role="button" tabindex="0" data-status="second-payment-wait" data-label="2차 결제대기"><div><em class="hot">5</em><strong>2차<br>결제대기</strong></div></div>
+            <div class="status-card" role="button" tabindex="0" data-status="second-payment-complete" data-label="2차 결제 완료"><div><em>5</em><strong>2차<br>결제 완료</strong></div></div>
+            <div class="status-card" role="button" tabindex="0" data-status="international-shipping" data-label="국제배송"><div><em class="hot">5</em><strong>국제배송</strong></div></div>
+          </div>
+        </section>
+
+        <section class="trade-area" aria-labelledby="trade-list-title">
+          <div class="filter-row">
+            <h2 class="list-title" id="trade-list-title">거래 전체 목록</h2>
+            <div class="filter-group" aria-label="거래 유형">
+              <button class="tab active" type="button">전체</button>
+              <button class="tab" type="button">경매</button>
+              <button class="tab" type="button">구매</button>
+            </div>
+            <div class="utility-group">
+              <div class="filter-dropdown" data-dropdown>
+                <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                  <span data-dropdown-label="country">거래 국가</span>
+                  <span class="chevron" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-panel country-panel" role="menu" aria-label="거래 국가 선택">
+                  <button class="dropdown-item active" type="button" role="menuitem" data-country="jp">일본</button>
+                  <button class="dropdown-item" type="button" role="menuitem" data-country="us">미국</button>
+                  <button class="dropdown-item" type="button" role="menuitem" data-country="uk">영국</button>
+                </div>
+              </div>
+              <div class="filter-dropdown" data-dropdown>
+                <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                  <span data-dropdown-label="period">최근 1개월</span>
+                  <span class="chevron" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-panel calendar-panel" role="dialog" aria-label="조회 기간 선택">
+                  <div class="range-shortcuts" aria-label="빠른 기간 선택">
+                    <button type="button" data-period-label="1주일">1주일</button>
+                    <button class="active" type="button" data-period-label="최근 1개월">1개월</button>
+                    <button type="button" data-period-label="1년">1년</button>
+                  </div>
+                  <div class="calendar-head">
+                    <button type="button" aria-label="이전 달">‹</button>
+                    <strong>2024.04</strong>
+                    <button type="button" aria-label="다음 달">›</button>
+                  </div>
+                  <div class="calendar-week" aria-hidden="true">
+                    <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+                  </div>
+                  <div class="calendar-days" aria-label="날짜 선택">
+                    <button class="is-muted" type="button">31</button>
+                    <button type="button">1</button>
+                    <button type="button">2</button>
+                    <button type="button">3</button>
+                    <button type="button">4</button>
+                    <button type="button">5</button>
+                    <button type="button">6</button>
+                    <button type="button">7</button>
+                    <button type="button">8</button>
+                    <button type="button">9</button>
+                    <button type="button">10</button>
+                    <button type="button">11</button>
+                    <button type="button">12</button>
+                    <button type="button">13</button>
+                    <button type="button">14</button>
+                    <button type="button">15</button>
+                    <button type="button">16</button>
+                    <button class="selected" type="button">17</button>
+                    <button type="button">18</button>
+                    <button type="button">19</button>
+                    <button type="button">20</button>
+                    <button type="button">21</button>
+                    <button type="button">22</button>
+                    <button type="button">23</button>
+                    <button type="button">24</button>
+                    <button type="button">25</button>
+                    <button type="button">26</button>
+                    <button type="button">27</button>
+                    <button type="button">28</button>
+                    <button type="button">29</button>
+                    <button type="button">30</button>
+                    <button class="is-muted" type="button">1</button>
+                    <button class="is-muted" type="button">2</button>
+                    <button class="is-muted" type="button">3</button>
+                    <button class="is-muted" type="button">4</button>
+                  </div>
+                  <div class="calendar-actions">
+                    <button type="button" data-calendar-reset>초기화</button>
+                    <button class="primary" type="button" data-calendar-apply>적용</button> 
+                  </div>
+                </div>
+              </div>
+              <div class="filter-dropdown" data-dropdown>
+                <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+                  <span data-dropdown-label="status">진행 단계</span>
+                  <span class="chevron" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-panel status-panel" role="menu" aria-label="진행 단계 선택">
+                  <button class="status-filter-option status-active" type="button" role="menuitem" data-status="" data-label="전체">전체</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="auction-bid" data-label="입찰중">입찰중</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="failed-bid" data-label="유찰">유찰</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="trade-cancel" data-label="거래취소">거래취소</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="successful-bid" data-label="낙찰">낙찰</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-wait" data-label="1차 결제대기">1차 결제대기</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-complete" data-label="1차 결제완료">1차 결제완료</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-wait" data-label="2차 결제대기">2차 결제대기</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-complete" data-label="2차 결제완료">2차 결제완료</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="international-shipping" data-label="국제배송">국제배송</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trade-table" role="table" aria-label="거래 목록">
+            <div class="table-head" role="row">
+              <div role="columnheader">낙찰일/구매일</div>
+              <div role="columnheader">상품정보</div>
+              <div role="columnheader">상품가</div>
+              <div role="columnheader">진행 단계</div>
+            </div>
+
+            <div class="trade-row" role="row" data-status="auction-bid">
+              <div class="trade-date" role="cell">2024-04-17 00:00</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후경매</div>
+                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 23,900 / 1개</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>입찰중</span>
+                <span class="progress-time">종료 2시간 14분 전</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                  <button class="mini-btn primary" type="button">재입찰</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row" role="row" data-status="first-payment-wait">
+              <div class="trade-date" role="cell">2024-04-17 00:00</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후경매</div>
+                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 28,500 / 2개</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>1차결제대기</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row" role="row" data-status="local-arrived">
+              <div class="trade-date" role="cell">2024-04-17 00:00</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후경매</div>
+                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 28,500 / 2개</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>현지도착</span>
+                <span class="progress-time">보관 D+3</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row" role="row" data-status="second-payment-wait">
+              <div class="trade-date" role="cell">2024-04-17 00:00</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후구매</div>
+                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 28,500 / 2개</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>2차결제대기</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row" role="row" data-status="auction-bid">
+              <div class="trade-date" role="cell">2024-04-17 00:00</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">미국이베이</div>
+                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">23,900¥ / 1개</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>국제배송</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세 보기</button>
+                  <button class="mini-btn primary" type="button">배송 조회</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row status-extra" role="row" data-status="purchase-request">
+              <div class="trade-date" role="cell">2024-04-16 14:20</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">구매대행 - bidbuy</div>
+                  <div class="product-title">일본 한정 굿즈 구매 신청 상품 패키지</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 12,400 / 1개</div>
+                <div class="price-sub">일만이천사백엔</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>구매 신청</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row status-extra" role="row" data-status="first-payment-complete">
+              <div class="trade-date" role="cell">2024-04-16 09:10</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후경매 - shop_mall</div>
+                  <div class="product-title">프리미엄 한정판 컬렉션 세트 2024</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 18,900 / 1개</div>
+                <div class="price-sub">일만팔천구백엔</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>1차 결제완료</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row status-extra" role="row" data-status="shipping-wait">
+              <div class="trade-date" role="cell">2024-04-15 18:40</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">메루카리 - seller_24</div>
+                  <div class="product-title">현지 물류센터 도착 후 배송 대기 중인 상품</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 8,700 / 1개</div>
+                <div class="price-sub">팔천칠백엔</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>배송대기</span>
+                <span class="progress-time">보관 30일 경과</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row status-extra" role="row" data-status="second-payment-complete">
+              <div class="trade-date" role="cell">2024-04-14 11:35</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">야후경매 - vintage77</div>
+                  <div class="product-title">2차 배송비 결제 완료 후 출고 준비 상품</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 31,000 / 2개</div>
+                <div class="price-sub">삼만천엔</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>2차 결제 완료</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-row status-extra" role="row" data-status="international-shipping">
+              <div class="trade-date" role="cell">2024-04-13 16:05</div>
+              <div class="product" role="cell">
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="product-info">
+                  <div class="seller">배송센터 - tokyo</div>
+                  <div class="product-title">국제배송 진행 중인 묶음 배송 상품</div>
+                </div>
+              </div>
+              <div role="cell">
+                <div class="price-main">￥ 44,200 / 3개</div>
+                <div class="price-sub">사만사천이백엔</div>
+              </div>
+              <div class="progress-cell" role="cell">
+                <span>국제배송</span>
+                <div class="row-actions">
+                  <button class="mini-btn" type="button">상세보기</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="trade-empty" role="row">선택한 쇼핑 현황에 해당하는 거래가 없습니다.</div>
+          </div>
+
+          <div class="pager" aria-label="페이지 이동">
+            <button type="button">«</button>
+            <button type="button">‹</button>
+            <button type="button">1</button>
+            <button class="current" type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">›</button>
+            <button type="button">»</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="drawer-ov" id="drawerOv" onclick="closeDrawer()"></div>
+
+  <div class="drawer" id="drawer">
+    <div id="drGuestHd" class="dr-head" style="display:none">
+      <button class="dr-login-link" onclick="toggleLogin();closeDrawer()"><span>로그인하기</span><i class="fas fa-chevron-right"></i></button>
+      <button class="dr-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div id="drUserHd" class="dr-head">
+      <div class="dr-user-mini">
+        <div class="u-av"><i class="fas fa-crown" aria-hidden="true"></i></div>
+        <div>
+          <div class="dr-user-mini-name">이한나님</div>
+          <div class="dr-user-mini-grade">PREMIUM 회원</div>
+        </div>
+      </div>
+      <button class="dr-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div id="drGuestPanel" class="dr-guest-card" style="display:none">
+      <div class="dr-guest-title">비드바이 로그인</div>
+      <div class="dr-guest-copy">로그인하고 입찰 현황, 마일리지, 관심 상품을 빠르게 확인하세요.</div>
+      <div class="dr-login-actions">
+        <button class="dr-action-btn" type="button" onclick="toggleLogin();closeDrawer()">로그인</button>
+        <button class="dr-action-btn secondary" type="button">회원가입</button>
+      </div>
+    </div>
+
+    <div id="drUserAssets" class="dr-user-assets">
+      <div class="dr-user-asset"><span>마일리지</span><strong>4,500원</strong></div>
+      <div class="dr-user-asset-div"></div>
+      <div class="dr-user-asset"><span>예치금</span><strong>29,870원</strong></div>
+    </div>
+
+    <div class="dr-sec">
+      <div class="dr-sec-title">바로가기</div>
+      <div class="dr-quick">
+        <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-truck-fast"></i></div><div class="dr-quick-label">배송현황</div></div>
+        <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-won-sign"></i></div><div class="dr-quick-label">비용계산기</div></div>
+        <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-file-invoice"></i></div><div class="dr-quick-label">관세안내</div></div>
+        <div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-calendar-check"></i></div><div class="dr-quick-label">출석부</div></div>
+      </div>
+    </div>
+
+    <div class="dr-sec">
+      <div class="dr-sec-title">카테고리</div>
+      <div class="dr-cat-list">
+        <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본야후경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+        <div class="dr-cat-item"><span class="dr-cat-flag">US</span><span class="dr-cat-label">미국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+        <div class="dr-cat-item"><span class="dr-cat-flag">GB</span><span class="dr-cat-label">영국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+        <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본메루카리</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+        <div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본구매대행</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>
+      </div>
+    </div>
+
+     <div class="dr-sec">
+      <div class="dr-sec-title">이용가이드</div>
+      <div class="dr-link-grid">
+        <a href="#">초보자가이드</a>
+        <a href="#">수수료안내</a>
+        <a href="#">배송비안내</a>
+        <a href="#">관부가세안내</a>
+      </div>
+    </div>
+
+    <div class="dr-sec" style="border-bottom:none">
+      <div class="dr-sec-title">고객센터</div>
+      <div class="dr-link-grid">
+        <a href="#">공지사항</a>
+        <a href="#">자주하는질문</a>
+        <a href="#">1:1문의</a>
+        <a href="#">커뮤니티</a>
+      </div>
+    </div>
+    <div style="height:24px"></div>
+  </div>
+  <script>
+    document.querySelectorAll(".filter-group").forEach((group) => {
+      const tabs = group.querySelectorAll("button");
+
+      tabs.forEach((tab) => {
+        tab.setAttribute("aria-pressed", String(tab.classList.contains("active")));
+
+        tab.addEventListener("click", () => {
+          tabs.forEach((item) => {
+            const isActive = item === tab;
+            item.classList.toggle("active", isActive);
+            item.setAttribute("aria-pressed", String(isActive));
+          });
+        });
+      });
+    });
+
+    const dropdowns = document.querySelectorAll("[data-dropdown]");
+
+    function closeDropdowns(exceptDropdown) {
+      dropdowns.forEach((dropdown) => {
+        if (dropdown === exceptDropdown) {
+          return;
+        }
+
+        dropdown.classList.remove("is-open");
+        const toggle = dropdown.querySelector(".dropdown-toggle");
+        if (toggle) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    dropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector(".dropdown-toggle");
+      if (!toggle) {
+        return;
+      }
+
+      toggle.addEventListener("click", () => {
+        const willOpen = !dropdown.classList.contains("is-open");
+        closeDropdowns(dropdown);
+        dropdown.classList.toggle("is-open", willOpen);
+        toggle.setAttribute("aria-expanded", String(willOpen));
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest("[data-dropdown]")) {
+        closeDropdowns();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeDropdowns();
+      }
+    });
+
+    const countryLabel = document.querySelector('[data-dropdown-label="country"]');
+    document.querySelectorAll(".country-panel .dropdown-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        document.querySelectorAll(".country-panel .dropdown-item").forEach((option) => {
+          option.classList.toggle("active", option === item);
+        });
+
+        if (countryLabel) {
+          countryLabel.textContent = item.textContent.trim();
+        }
+
+        closeDropdowns();
+      });
+    });
+
+    const periodLabel = document.querySelector('[data-dropdown-label="period"]');
+    const rangeButtons = document.querySelectorAll(".range-shortcuts button");
+    const calendarDays = document.querySelectorAll(".calendar-days button:not(.is-muted)");
+
+    rangeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        rangeButtons.forEach((item) => item.classList.toggle("active", item === button));
+
+        if (periodLabel) {
+          periodLabel.textContent = button.dataset.periodLabel || button.textContent.trim();
+        }
+      });
+    });
+
+    calendarDays.forEach((day) => {
+      day.addEventListener("click", () => {
+        calendarDays.forEach((item) => item.classList.toggle("selected", item === day));
+      });
+    });
+
+    document.querySelector("[data-calendar-reset]")?.addEventListener("click", () => {
+      rangeButtons.forEach((item) => item.classList.toggle("active", item.dataset.periodLabel === "최근 1개월"));
+      calendarDays.forEach((item) => item.classList.toggle("selected", item.textContent.trim() === "17"));
+
+      if (periodLabel) {
+        periodLabel.textContent = "최근 1개월";
+      }
+    });
+
+    document.querySelector("[data-calendar-apply]")?.addEventListener("click", () => {
+      closeDropdowns();
+    });
+
+    const statusTriggers = document.querySelectorAll(".status-card[data-status], .status-card .sub[data-status], .status-filter-option[data-status]");
+    const statusOptions = document.querySelectorAll(".status-filter-option[data-status]");
+    const tradeTable = document.querySelector(".trade-table");
+    const tradeRows = document.querySelectorAll(".trade-row[data-status]");
+    const tradeEmpty = document.querySelector(".trade-empty");
+    const tradeTitle = document.querySelector("#trade-list-title");
+    const statusDropdownLabel = document.querySelector('[data-dropdown-label="status"]');
+    let activeStatus = "";
+
+    function updateStatusDropdown(status, label) {
+      let selectedLabel = label || "진행 단계";
+
+      statusOptions.forEach((option) => {
+        const isActive = (option.dataset.status || "") === status;
+        option.classList.toggle("status-active", isActive);
+        option.setAttribute("aria-pressed", String(isActive));
+
+        if (isActive && status) {
+          selectedLabel = option.dataset.label || option.textContent.trim();
+        }
+      });
+
+      if (statusDropdownLabel) {
+        statusDropdownLabel.textContent = status ? selectedLabel : "진행 단계";
+      }
+    }
+
+    function setStatusFilter(status, label, forceSelection = false) {
+      const nextStatus = status || "";
+      const isSameStatus = activeStatus === nextStatus;
+      activeStatus = !forceSelection && isSameStatus ? "" : nextStatus;
+
+      statusTriggers.forEach((item) => {
+        item.classList.remove("status-active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      if (activeStatus) {
+        statusTriggers.forEach((item) => {
+          if ((item.dataset.status || "") !== activeStatus) {
+            return;
+          }
+
+          item.classList.add("status-active");
+          item.setAttribute("aria-pressed", "true");
+
+          const parentCard = item.closest(".status-card");
+          if (item.classList.contains("sub") && parentCard) {
+            parentCard.classList.add("status-active");
+            parentCard.setAttribute("aria-pressed", "true");
+          }
+        });
+      } else {
+        statusOptions.forEach((option) => {
+          const isAll = (option.dataset.status || "") === "";
+          option.classList.toggle("status-active", isAll);
+          option.setAttribute("aria-pressed", String(isAll));
+        });
+      }
+
+      updateStatusDropdown(activeStatus, label);
+
+      if (!activeStatus) {
+        const allOption = document.querySelector('.status-filter-option[data-status=""]');
+        if (allOption) {
+          allOption.classList.add("status-active");
+          allOption.setAttribute("aria-pressed", "true");
+        }
+      }
+
+      if (tradeTable) {
+        tradeTable.classList.toggle("status-filtered", Boolean(activeStatus));
+      }
+
+      let visibleCount = 0;
+      tradeRows.forEach((row) => {
+        const shouldShow = !activeStatus || row.dataset.status === activeStatus;
+        row.classList.toggle("is-hidden", !shouldShow);
+
+        if (activeStatus && shouldShow) {
+          visibleCount += 1;
+        }
+      });
+
+      if (tradeEmpty) {
+        tradeEmpty.classList.toggle("is-visible", Boolean(activeStatus) && visibleCount === 0);
+      }
+
+      if (tradeTitle) {
+        tradeTitle.textContent = activeStatus ? `${label} 거래 목록` : "거래 전체 목록";
+      }
+    }
+
+    statusTriggers.forEach((trigger) => {
+      trigger.setAttribute("aria-pressed", "false");
+
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isDropdownOption = trigger.classList.contains("status-filter-option");
+        setStatusFilter(trigger.dataset.status, trigger.dataset.label, isDropdownOption);
+
+        if (isDropdownOption) {
+          closeDropdowns();
+        }
+      });
+
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          event.stopPropagation();
+          const isDropdownOption = trigger.classList.contains("status-filter-option");
+          setStatusFilter(trigger.dataset.status, trigger.dataset.label, isDropdownOption);
+
+          if (isDropdownOption) {
+            closeDropdowns();
+          }
+        }
+      });
+    });
+
+    updateStatusDropdown(activeStatus);
+
+    let drawerLoggedIn = true;
+
+    function renderDrawerState() {
+      document.getElementById("drGuestHd").style.display = drawerLoggedIn ? "none" : "flex";
+      document.getElementById("drUserHd").style.display = drawerLoggedIn ? "flex" : "none";
+      document.getElementById("drGuestPanel").style.display = drawerLoggedIn ? "none" : "block";
+      document.getElementById("drUserAssets").style.display = drawerLoggedIn ? "grid" : "none";
+      document.getElementById("drMemberPanel").style.display = drawerLoggedIn ? "block" : "none";
+    }
+
+    function toggleLogin() {
+      drawerLoggedIn = !drawerLoggedIn;
+      closeDrawer();
+      renderDrawerState();
+    }
+
+    function openDrawer() {
+      const drawer = document.getElementById("drawer");
+      const overlay = document.getElementById("drawerOv");
+      renderDrawerState();
+      drawer?.classList.add("open");
+      overlay?.classList.add("open");
+      document.querySelectorAll(".menu-button").forEach((button) => {
+        button.setAttribute("aria-expanded", "true");
+      });
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+      const drawer = document.getElementById("drawer");
+      const overlay = document.getElementById("drawerOv");
+      drawer?.classList.remove("open");
+      overlay?.classList.remove("open");
+      document.querySelectorAll(".menu-button").forEach((button) => {
+        button.setAttribute("aria-expanded", "false");
+      });
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".user-menu-trigger").forEach((triggerButton) => {
+      triggerButton.addEventListener("click", () => {
+        const section = triggerButton.closest(".user-menu-section");
+        const isOpen = section?.classList.toggle("is-open");
+        triggerButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
+      });
+    });
+
+    document.querySelectorAll(".user-name").forEach((userName) => {
+      userName.addEventListener("click", openDrawer);
+    });
+
+    renderDrawerState();
+  </script>
+</body>
+</html>

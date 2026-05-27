@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>주문/결제 - BidBuy</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#1A3C6E; --red:#E8385A; --amber:#F5A623; --green:#3AAD4E;
+    --bg:#F5F6F8; --card:#FFFFFF; --border:#EEEEEE;
+    --text-main:#111; --text-sub:#666; --text-hint:#999;
+  }
+  html, body { width:390px; margin:0 auto; background:var(--bg); }
+  body { font-family:'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
+
+  /* 앱바 */
+  .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
+  .app-header-top { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px; padding:10px 14px 12px; min-height:56px; }
+  .app-brand-area { display:flex; align-items:center; gap:10px; min-width:0; }
+  .hb { width:34px; height:34px; border-radius:9px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:0; background:none; border:none; cursor:pointer; }
+  .hb span { display:block; width:18px; height:2px; background:#242836; border-radius:999px; }
+  .app-logo { display:flex; align-items:center; width:76px; max-width:24vw; }
+  .app-logo img { display:block; width:100%; height:auto; }
+  .app-header-right { margin-left:0; display:flex; gap:4px; align-items:center; justify-self:end; }
+  .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:999px; font-size:11px; font-weight:900; cursor:pointer; font-family:inherit; }
+  .icon-btn { width:34px; height:34px; border-radius:9px; background:none; border:none; cursor:pointer; color:#333; display:flex; align-items:center; justify-content:center; position:relative; padding:0; }
+  .icon-btn i { font-size:19px; line-height:19px; }
+  .i-badge { position:absolute; top:3px; right:2px; background:var(--red); color:#fff; font-size:7px; font-weight:700; min-width:13px; height:13px; border-radius:7px; display:flex; align-items:center; justify-content:center; padding:0 2px; }
+  .user-avatar-sm { width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--amber)); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700; cursor:pointer; border:0; font-family:inherit; }
+
+  /* 페이지 헤더 */
+  .page-header { background:#fff; padding:16px 16px 12px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+  .page-header h1 { font-size:17px; font-weight:700; }
+  .page-header p  { font-size:12px; color:var(--text-sub); margin-top:2px; }
+
+  /* 카드 */
+  .card { background:var(--card); margin-bottom:8px; padding:16px; }
+  .card-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
+  .card-title .req { color:var(--red); font-size:12px; }
+
+  /* 배너 */
+  .banner-tax { background:#FFF8EC; border-left:3px solid var(--amber); padding:12px 14px; margin-bottom:8px; font-size:12px; line-height:1.7; color:#664400; }
+  .banner-tax strong { color:#7A5500; }
+  .banner-tax a { color:#C47D00; text-decoration:underline; font-size:11px; }
+
+  /* 주문상품 */
+  .order-item { display:flex; gap:12px; align-items:flex-start; }
+  .order-thumb { width:64px; height:64px; flex-shrink:0; background:#3a4a6b; border-radius:6px; }
+  .order-info { flex:1; min-width:0; }
+  .order-badge { display:inline-block; font-size:10px; font-weight:600; color:var(--navy); background:#E8EFFF; border-radius:3px; padding:2px 7px; margin-bottom:5px; }
+  .order-id   { font-size:11px; color:var(--text-sub); margin-bottom:3px; }
+  .order-name { font-size:12px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .order-price { font-family:'Roboto',sans-serif; font-size:15px; font-weight:700; color:var(--navy); white-space:nowrap; flex-shrink:0; text-align:right; }
+  .order-date { font-size:11px; color:var(--text-hint); margin-top:4px; }
+
+  /* 배송 선택 */
+  .field-label { font-size:12px; color:var(--text-sub); font-weight:500; margin-bottom:6px; }
+  .select-full {
+    width:100%; padding:11px 14px; border:1px solid #dde1e7; border-radius:8px;
+    font-size:14px; font-family:'Noto Sans KR',sans-serif; color:#333;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance:none; cursor:pointer;
+  }
+  .select-full:focus { outline:none; border-color:var(--navy); }
+  .ship-info-box { background:#F8F9FF; border:1px solid #dde1e7; border-radius:8px; padding:12px 14px; margin-top:10px; font-size:12px; line-height:1.8; color:#444; }
+  .ship-days { font-weight:700; color:var(--navy); font-family:'Roboto',sans-serif; font-size:13px; margin-bottom:6px; }
+  .note { color:#999; font-size:11px; }
+
+  /* 배송형태 카드 */
+  .ship-type-cards { display:flex; gap:8px; margin-top:14px; }
+  .ship-type-card { flex:1; border:2px solid var(--border); border-radius:8px; padding:12px 10px; cursor:pointer; transition:border-color .15s,background .15s; }
+  .ship-type-card input { display:none; }
+  .ship-type-card.active { border-color:var(--navy); background:#F0F4FB; }
+  .ship-type-name { font-size:13px; font-weight:700; color:#333; margin-bottom:4px; }
+  .ship-type-card.active .ship-type-name { color:var(--navy); }
+  .ship-type-desc { font-size:11px; color:var(--text-sub); line-height:1.5; }
+  .warning-note { margin-top:12px; font-size:11px; color:#885500; background:#FFF8EC; border-radius:6px; padding:10px 12px; line-height:1.7; }
+
+  /* 사진 카드 */
+  .photo-cards { display:flex; gap:8px; margin-top:10px; }
+  .photo-card-opt { flex:1; border:2px solid var(--border); border-radius:8px; padding:10px 8px; text-align:center; cursor:pointer; transition:border-color .15s,background .15s; }
+  .photo-card-opt.active { border-color:var(--navy); background:#F0F4FB; }
+  .p-badge { display:inline-block; font-size:9px; font-weight:700; background:var(--navy); color:#fff; border-radius:3px; padding:1px 5px; margin-bottom:5px; }
+  .p-badge.premium { background:var(--amber); }
+  .p-title { font-size:12px; font-weight:500; color:#333; margin-bottom:4px; }
+  .p-price { font-family:'Roboto',sans-serif; font-size:13px; font-weight:700; color:var(--navy); }
+  .p-price small { font-size:10px; font-weight:400; color:#888; }
+
+  /* 폼 */
+  .form-group { margin-bottom:16px; }
+  .form-group:last-child { margin-bottom:0; }
+  .form-label { font-size:12px; font-weight:500; color:var(--text-sub); margin-bottom:6px; display:block; }
+  .form-input { width:100%; padding:11px 14px; border:1px solid #dde1e7; border-radius:8px; font-size:14px; font-family:'Noto Sans KR',sans-serif; color:#333; background:#fff; transition:border-color .15s; }
+  .form-input:focus { outline:none; border-color:var(--navy); }
+  .form-input::placeholder { color:#bbb; }
+  .form-row { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
+  .form-row .form-input { flex:1; margin-bottom:0; }
+  .btn-sm { padding:10px 12px; font-size:12px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #bbb; border-radius:8px; background:#f5f5f5; color:#444; cursor:pointer; white-space:nowrap; }
+  .btn-sm-navy { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .form-hint { font-size:11px; color:var(--text-hint); margin-top:5px; line-height:1.6; }
+  .form-hint.red { color:var(--red); }
+
+  /* 수취인 */
+  .recvr-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
+  .check-label input { accent-color:var(--navy); width:16px; height:16px; }
+  .btn-saved-addr { padding:8px 12px; font-size:12px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; }
+
+  /* 핸드폰 */
+  .phone-row { display:flex; gap:6px; align-items:center; }
+  .phone-select { padding:11px 8px; border:1px solid #dde1e7; border-radius:8px; font-size:13px; font-family:'Noto Sans KR',sans-serif; color:#333; background:#fff; width:72px; }
+  .phone-dash { color:#aaa; font-size:14px; }
+  .phone-input { flex:1; }
+
+  /* 개인통관 */
+  .customs-actions { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+  .customs-auth-row { display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  .customs-auth-input { flex:1; min-width:120px; text-align:center; letter-spacing:1px; }
+  .customs-auth-btn {
+    padding:10px 12px;
+    border:1px solid var(--navy);
+    border-radius:8px;
+    background:var(--navy);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    font-family:'Noto Sans KR',sans-serif;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .customs-auth-btn:disabled {
+    border-color:#c5cdd9;
+    background:#eef1f5;
+    color:#98a1b2;
+    cursor:not-allowed;
+  }
+  .customs-auth-btn.is-verified {
+    border-color:var(--green);
+    background:var(--green);
+  }
+  .customs-auth-label { width:100%; font-size:11px; color:var(--text-hint); }
+  .customs-auth-status { display:none; width:100%; font-size:11px; color:var(--green); font-weight:700; }
+  .customs-auth-status.is-visible { display:block; }
+  .customs-notice { background:#FFF0F0; border-radius:6px; margin-top:8px; font-size:11px; line-height:1.7; color:#A00; overflow:hidden; }
+  .customs-notice summary {
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:10px 12px; cursor:pointer; list-style:none;
+  }
+  .customs-notice summary::-webkit-details-marker { display:none; }
+  .customs-notice summary::after { content:'펼쳐보기'; flex-shrink:0; color:var(--navy); font-size:11px; font-weight:700; }
+  .customs-notice[open] summary { border-bottom:1px solid rgba(170,0,0,.12); }
+  .customs-notice[open] summary::after { content:'접기'; }
+  .customs-notice-body { padding:10px 12px 12px; }
+  .customs-notice-actions { display:flex; margin-top:10px; }
+  .strong-navy { font-weight:700; color:var(--navy); }
+
+  /* 정액권 */
+  .pass-row { display:flex; align-items:center; justify-content:space-between; }
+  .pass-check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
+  .pass-check-label input { accent-color:var(--navy); width:16px; height:16px; }
+  .btn-pass-more { padding:7px 12px; font-size:12px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; color:#555; cursor:pointer; font-family:'Noto Sans KR',sans-serif; }
+
+  /* 목록통관 */
+  .customs-info-card { padding:0; overflow:hidden; background:#FFF0F0; color:#A00; }
+  .customs-info-card summary {
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:16px; cursor:pointer; list-style:none;
+  }
+  .customs-info-card summary::-webkit-details-marker { display:none; }
+  .customs-info-card summary::after { content:'펼쳐보기'; flex-shrink:0; color:var(--navy); font-size:12px; font-weight:700; }
+  .customs-info-card[open] summary { border-bottom:1px solid rgba(170,0,0,.12); }
+  .customs-info-card[open] summary::after { content:'접기'; }
+  .customs-info-card .card-title { margin-bottom:0; }
+  .customs-info-body { padding:12px 16px 16px; }
+  .customs-info { background:#FFF0F0; border-radius:8px; padding:12px 14px; font-size:12px; line-height:1.8; color:#A00; }
+  .customs-info strong { color:var(--navy); }
+
+  /* 하단 CTA */
+  .bottom-cta { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:390px; display:flex; gap:8px; padding:10px 16px 16px; background:#fff; border-top:1px solid var(--border); box-shadow:0 -2px 10px rgba(0,0,0,.08); z-index:100; }
+  .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:'Noto Sans KR',sans-serif; border:none; border-radius:10px; cursor:pointer; }
+  .cta-cancel  { background:#eee; color:#666; }
+  .cta-approve { background:var(--navy); color:#fff; }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="app-header-top">
+    <div class="app-brand-area">
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="app-logo" href="mobile_main.html" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency"></a>
+    </div>
+    <div class="app-header-right" id="guestArea">
+      <button class="login-btn-sm" type="button">로그인</button>
+    </div>
+    <div class="app-header-right" id="userArea" style="display:none">
+      <button class="icon-btn" type="button" aria-label="알림"><i class="fa-regular fa-bell" aria-hidden="true"></i><span class="i-badge">3</span></button>
+      <button class="icon-btn" type="button" aria-label="장바구니"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
+      <button class="user-avatar-sm" type="button" aria-label="회원 메뉴">한</button>
+    </div>
+  </div>
+</div>
+
+<!-- 페이지 헤더 -->
+<div class="page-header">
+  <h1>주문/결제</h1>
+  <p>상품 결제를 위한 페이지입니다.</p>
+</div>
+
+<!-- 관부가세 배너 -->
+<div class="banner-tax">
+  <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>관·부가세 안내</strong><br>
+  과세기준액이 <strong>$150 초과 시</strong> 관세 및 부가세가 부과됩니다.<br>
+  <span style="font-size:11px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용됩니다.</span><br>
+  <a href="#">이용가이드 자세히 보기 ›</a>
+</div>
+
+<!-- 주문 상품 -->
+<div class="card">
+  <div class="order-item">
+    <div class="order-thumb"></div>
+    <div class="order-info">
+      <span class="order-badge">1차 결제대기</span>
+      <div class="order-id">[YAHOO] r1229610711</div>
+      <div class="order-name">5-96 ARMANI COLLEZIONI アルマーニ コレツィオーニ ムートン ジャケット 上着 ブランド アウター ネイビー 紺色 メンズ 男性</div>
+      <div class="order-date">2026.05.18 · 00:14:38</div>
+    </div>
+    <div class="order-price">35,502<br><span style="font-size:11px;font-weight:400;">엔</span></div>
+  </div>
+</div>
+
+<!-- 국제배송 -->
+<div class="card">
+  <div class="card-title">국제배송 및 배송형태 <span class="req">*필수</span></div>
+  <div class="field-label">배송방법</div>
+  <select class="select-full" id="shippingMethodSelect">
+    <option value="비바항공특송">비바항공특송</option>
+    <option value="EMS">EMS</option>
+    <option value="선편특송">선편특송</option>
+    <option value="일본내배송">일본내배송</option>
+    <option value="최저가배송">최저가배송</option>
+  </select>
+  <div class="ship-info-box">
+    <div class="ship-days" id="shipDays">배송기간 : 3 ~ 5일</div>
+    <div id="shipFeature">- 현재 화물 위치 추적 가능<br>- 전담관세사가 통관대행처리<br><span class="note">※ 멀티박스 1박스당 250엔 추가</span><br><span class="note">※ 부피무게 30KG 이상 부피무게 적용</span></div>
+  </div>
+  <div class="field-label" style="margin-top:16px;">배송형태</div>
+  <div class="ship-type-cards">
+    <label class="ship-type-card active" id="card-individual">
+      <input type="radio" name="shippingType" value="개별배송" checked>
+      <div class="ship-type-name">개별배송</div>
+      <div class="ship-type-desc">건별 즉시 국제배송<br>빠르고 간단!</div>
+    </label>
+    <label class="ship-type-card" id="card-wait">
+      <input type="radio" name="shippingType" value="배송대기">
+      <div class="ship-type-name">배송대기</div>
+      <div class="ship-type-desc">창고 보관 후<br>묶음배송 지정 가능</div>
+    </label>
+  </div>
+  <div class="warning-note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 파손 위험 물품은 포장비용 발생 가능 (최대 2,000엔)<br><span style="color:#664400;">대표품목: LP, 도자기, 주류, 자동차 범퍼 등</span></div>
+</div>
+
+
+<!-- 주문자 정보 -->
+<div class="card">
+  <div class="card-title">주문자 정보</div>
+  <div class="form-group">
+    <div class="form-label">주문자</div>
+    <div id="ordererName" style="font-size:14px;color:#333;padding:4px 0;">홍길동</div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">주문자 주소</div>
+    <div class="form-row"><input type="text" class="form-input" id="ordererZip" value="25125" style="max-width:120px;"></div>
+    <input type="text" class="form-input" id="ordererAddr1" value="서울특별시 강남구 행복로111길 11" style="margin-bottom:6px;display:block;">
+    <input type="text" class="form-input" id="ordererAddr2" value="2504호" style="display:block;">
+  </div>
+  <div class="form-group">
+    <div class="form-label">핸드폰</div>
+    <input type="text" class="form-input" id="ordererPhone" value="010-1111-1111">
+  </div>
+  <div class="form-group">
+    <div class="form-label">개인통관고유부호</div>
+    <input type="text" class="form-input" id="ordererCustomsCode" value="p123456789000">
+  </div>
+</div>
+
+<!-- 수취인 정보 -->
+<div class="card">
+  <div class="card-title">수취인 정보</div>
+  <div class="recvr-top">
+    <label class="check-label"><input type="checkbox" id="sameAsOrderer"> 주문자와 동일</label>
+    <button class="btn-saved-addr">저장된 배송지 선택</button>
+  </div>
+  <div class="form-group">
+    <div class="form-label">수취인명 (회사명)</div>
+    <input type="text" class="form-input" id="receiverName" placeholder="수취인명 입력">
+    <div class="form-hint">+5자리 이내만 가능합니다.</div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">수령주소</div>
+    <div class="form-row">
+      <input type="text" class="form-input" id="receiverZip" placeholder="우편번호">
+      <button class="btn-sm">우편번호검색</button>
+    </div>
+    <input type="text" class="form-input" id="receiverAddr1" placeholder="기본주소" style="display:block;margin-bottom:6px;">
+    <input type="text" class="form-input" id="receiverAddr2" placeholder="상세주소" style="display:block;">
+    <div class="form-hint red">※ 개인통관고유부호 발급시 등록한 배송주소(우편번호)를 입력바랍니다.</div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">핸드폰</div>
+    <div class="phone-row">
+      <select class="phone-select" id="receiverPhone1"><option>010</option><option>011</option><option>016</option><option>017</option><option>019</option></select>
+      <span class="phone-dash">-</span>
+      <input type="text" class="form-input phone-input" id="receiverPhone2" placeholder="0000">
+      <span class="phone-dash">-</span>
+      <input type="text" class="form-input phone-input" id="receiverPhone3" placeholder="0000">
+    </div>
+    <div class="form-hint red">※ 개인통관고유부호 발급시 기재한 전화번호를 입력바랍니다.</div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">개인통관고유부호 (사업자등록번호)</div>
+    <input type="text" class="form-input" id="receiverCustomsCode" placeholder="P123456789000">
+    <div class="customs-actions">
+      <button class="btn-sm">개인통관고유부호 발급방법</button>
+    </div>
+    <div class="customs-auth-row">
+      <input type="text" class="form-input customs-auth-input" id="customsAuthCode" inputmode="numeric" maxlength="6" placeholder="숫자 6자리">
+      <button class="customs-auth-btn" type="button" id="customsAuthBtn">인증하기</button>
+      <span class="customs-auth-label">인증번호 (일회용 인증번호)</span>
+      <span class="customs-auth-status" id="customsAuthStatus">인증이 완료되었습니다.</span>
+    </div>
+    <details class="customs-notice">
+      <summary><span class="strong-navy">※ 2026년 2월 2일부터 검증이 강화됩니다.</span></summary>
+      <div class="customs-notice-body">
+        ※ 판매 목적일 경우 반드시 <strong>사업자등록번호</strong> 를 입력 바랍니다.<br> 입력 예) 120-06-0000
+        <br>※ 개인의 자가사용목적일 경우엔 <strong>개인통관고유부호</strong>를 입력 바랍니다.<br> 입력 예) P1234567890000
+        <br>※통관 정보 불일치 시 <strong>과태료가 청구됩니다.</strong>
+        <div class="customs-notice-actions">
+          <button class="btn-sm btn-sm-navy">개인통관고유부호 배송지 추가방법</button>
+        </div>
+      </div>
+    </details>
+
+
+  </div>
+</div>
+
+
+
+<!-- 정액권 -->
+<div class="card">
+  <div class="card-title">대행수수료 1개월 정액권</div>
+  <div class="pass-row">
+    <label class="pass-check-label"><input type="checkbox"> 정액권 사용</label>
+    <button class="btn-pass-more">+ 더보기</button>
+  </div>
+</div>
+
+<!-- 목록통관 -->
+<details class="card customs-info-card">
+  <summary><span class="card-title">목록통관 면세안내(삭제or유지 선택)</span></summary>
+  <div class="customs-info-body">
+    <div class="customs-info">
+      목록통관 면세조건 충족을 위해서는 과세기준액 합계가
+      <strong> 미화 $150 (단, 미국발은 $200) </strong></u>이하여야 하고,
+      목록통관 배제대상 물품이 아니어야 합니다.
+      <br>※ 과세기준 : 상품가 + 현지세금/배송비 + 국제운송료 + 포장비
+      <br>※ 자가사용 목적 물품 및 회사 샘플에 한해 적용됩니다.
+    </div>
+  </div>
+</details>
+
+<!-- 하단 CTA -->
+<div class="bottom-cta">
+  <button class="cta-btn cta-cancel">결제취소</button>
+  <button class="cta-btn cta-approve" id="btnApprove" onclick="location.href='mobile_bill_1st_2.html'">결제승인</button>
+</div>
+
+
+
+<script>
+function activateMobileHeaderUser() {
+  const guestArea = document.getElementById('guestArea');
+  const userArea = document.getElementById('userArea');
+  if (guestArea) guestArea.style.display = 'none';
+  if (userArea) userArea.style.display = 'flex';
+}
+
+document.querySelectorAll('.login-btn-sm').forEach(button => {
+  button.addEventListener('click', activateMobileHeaderUser);
+});
+
+  /* 배송방법 */
+  const shipDesc = {
+    '비바항공특송':{ days:'3 ~ 5일', f:'- 현재 화물 위치 추적 가능<br>- 전담관세사가 통관대행처리<br><span class="note">※ 멀티박스 1박스당 250엔 추가</span>' },
+    'EMS':         { days:'3 ~ 5일', f:'- 화물 위치 추적 가능<br>- 파손·분실 보상<br><span class="note">※ 20만엔 초과 통관수수료 2,800엔</span>' },
+    '선편특송':    { days:'7 ~ 12일', f:'- 대량 화물에 적합한 경제적 특송<br>- 배송기간이 항공보다 길어짐' },
+    '일본내배송':  { days:'5일 이후(영업일)', f:'- 일본내배송 수수료 ¥1,000 별도<br><span class="note">※ 파손 클레임 직접 접수 필요</span>' },
+    '최저가배송':  { days:'운송방법에 따라 다름', f:'- 가장 저렴한 운송방법으로 자동 배정<br><span class="note">※ 배송기간·통관절차 미고려</span>' }
+  };
+  document.getElementById('shippingMethodSelect').addEventListener('change', function(){
+    const d = shipDesc[this.value] || shipDesc['비바항공특송'];
+    document.getElementById('shipDays').textContent = '배송기간 : ' + d.days;
+    document.getElementById('shipFeature').innerHTML = d.f;
+  });
+
+  /* 배송형태 카드 */
+  document.querySelectorAll('.ship-type-card').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('.ship-type-card').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      c.querySelector('input').checked = true;
+    });
+  });
+
+  /* 사진 카드 */
+  function selectPhoto(el){
+    document.querySelectorAll('.photo-card-opt').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  (() => {
+    const sameCheckbox = document.getElementById('sameAsOrderer');
+    if (!sameCheckbox) return;
+
+    const setValue = (id, value) => {
+      const field = document.getElementById(id);
+      if (field) field.value = value || '';
+    };
+
+    const splitPhone = value => {
+      const parts = String(value || '').replace(/[^\d-]/g, '').split('-');
+      const digits = String(value || '').replace(/\D/g, '');
+      if (parts.length >= 3) return [parts[0], parts[1], parts[2]];
+      if (digits.length >= 10) return [digits.slice(0, 3), digits.slice(3, -4), digits.slice(-4)];
+      return ['', '', ''];
+    };
+
+    sameCheckbox.addEventListener('change', () => {
+      if (!sameCheckbox.checked) return;
+
+      setValue('receiverName', document.getElementById('ordererName')?.textContent.trim());
+      setValue('receiverZip', document.getElementById('ordererZip')?.value);
+      setValue('receiverAddr1', document.getElementById('ordererAddr1')?.value);
+      setValue('receiverAddr2', document.getElementById('ordererAddr2')?.value);
+      setValue('receiverCustomsCode', document.getElementById('ordererCustomsCode')?.value);
+
+      const [phone1, phone2, phone3] = splitPhone(document.getElementById('ordererPhone')?.value);
+      setValue('receiverPhone2', phone2);
+      setValue('receiverPhone3', phone3);
+
+      const phoneSelect = document.getElementById('receiverPhone1');
+      if (phoneSelect && phone1) {
+        const hasOption = Array.from(phoneSelect.options).some(option => option.value === phone1 || option.textContent === phone1);
+        if (hasOption) phoneSelect.value = phone1;
+      }
+    });
+  })();
+
+  (() => {
+    const input = document.getElementById('customsAuthCode');
+    const button = document.getElementById('customsAuthBtn');
+    const status = document.getElementById('customsAuthStatus');
+    if (!input || !button) return;
+
+    let authStep = 'request';
+
+    const syncAuthState = () => {
+      input.value = input.value.replace(/\D/g, '').slice(0, 6);
+      if (authStep === 'request') {
+        button.disabled = false;
+        button.classList.remove('is-verified');
+        button.textContent = '인증하기';
+        status?.classList.remove('is-visible');
+        return;
+      }
+      if (authStep === 'verified') {
+        authStep = 'verify';
+        button.classList.remove('is-verified');
+        status?.classList.remove('is-visible');
+      }
+      button.disabled = input.value.length !== 6;
+      button.textContent = '인증번호 확인';
+    };
+
+    input.addEventListener('input', syncAuthState);
+    button.addEventListener('click', () => {
+      if (authStep === 'request') {
+        authStep = 'verify';
+        input.value = '';
+        button.disabled = true;
+        button.classList.remove('is-verified');
+        button.textContent = '인증번호 확인';
+        status?.classList.remove('is-visible');
+        input.focus();
+        return;
+      }
+      if (button.disabled || authStep !== 'verify') return;
+      authStep = 'verified';
+      button.classList.add('is-verified');
+      button.textContent = '인증완료';
+      button.disabled = true;
+      status?.classList.add('is-visible');
+    });
+    syncAuthState();
+  })();
+
+ 
+  /* 결제승인 */
+  document.getElementById('btnApprove').addEventListener('click', function(){
+    const mileageWon = Number(String(document.getElementById('mileageInput').value).replace(/[^\d]/g,'')) || 0;
+    const rate = 9.6;
+    const agencyBase = 800;
+    const mileageYen = Math.floor(mileageWon / rate);
+    const couponWon = Number(document.getElementById('couponUseCheck').dataset.discountWon || 0);
+    const couponDiscount = Math.min(Math.floor(couponWon / rate), agencyBase);
+    const mileageDiscount = Math.min(mileageYen, Math.max(agencyBase - couponDiscount, 0));
+    sessionStorage.setItem('bb_coupon_discount', couponDiscount);
+    sessionStorage.setItem('bb_mileage_discount', mileageDiscount);
+    sessionStorage.setItem('bb_mileage_won', mileageWon);
+    sessionStorage.setItem('bb_rate', rate);
+    sessionStorage.setItem('bb_agency_base', agencyBase);
+    sessionStorage.setItem('bb_coupon_won', couponWon);
+    window.location.href = 'mobile_bill_1st_2.html';
+  });
+</script>
+</body>
+</html>
