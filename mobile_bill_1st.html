@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -41,10 +41,6 @@
   .card-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
   .card-title .req { color:var(--red); font-size:12px; }
 
-  /* 배너 */
-  .banner-tax { background:#FFF8EC; border-left:3px solid var(--amber); padding:12px 14px; margin-bottom:8px; font-size:12px; line-height:1.7; color:#664400; }
-  .banner-tax strong { color:#7A5500; }
-  .banner-tax a { color:#C47D00; text-decoration:underline; font-size:11px; }
 
   /* 주문상품 */
   .order-item { display:flex; gap:12px; align-items:flex-start; }
@@ -117,33 +113,6 @@
 
   /* 개인통관 */
   .customs-actions { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
-  .customs-auth-row { display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap; }
-  .customs-auth-input { flex:1; min-width:120px; text-align:center; letter-spacing:1px; }
-  .customs-auth-btn {
-    padding:10px 12px;
-    border:1px solid var(--navy);
-    border-radius:8px;
-    background:var(--navy);
-    color:#fff;
-    font-size:12px;
-    font-weight:700;
-    font-family:'Noto Sans KR',sans-serif;
-    cursor:pointer;
-    white-space:nowrap;
-  }
-  .customs-auth-btn:disabled {
-    border-color:#c5cdd9;
-    background:#eef1f5;
-    color:#98a1b2;
-    cursor:not-allowed;
-  }
-  .customs-auth-btn.is-verified {
-    border-color:var(--green);
-    background:var(--green);
-  }
-  .customs-auth-label { width:100%; font-size:11px; color:var(--text-hint); }
-  .customs-auth-status { display:none; width:100%; font-size:11px; color:var(--green); font-weight:700; }
-  .customs-auth-status.is-visible { display:block; }
   .customs-notice { background:#FFF0F0; border-radius:6px; margin-top:8px; font-size:11px; line-height:1.7; color:#A00; overflow:hidden; }
   .customs-notice summary {
     display:flex; align-items:center; justify-content:space-between; gap:8px;
@@ -156,27 +125,6 @@
   .customs-notice-body { padding:10px 12px 12px; }
   .customs-notice-actions { display:flex; margin-top:10px; }
   .strong-navy { font-weight:700; color:var(--navy); }
-
-  /* 정액권 */
-  .pass-row { display:flex; align-items:center; justify-content:space-between; }
-  .pass-check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
-  .pass-check-label input { accent-color:var(--navy); width:16px; height:16px; }
-  .btn-pass-more { padding:7px 12px; font-size:12px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; color:#555; cursor:pointer; font-family:'Noto Sans KR',sans-serif; }
-
-  /* 목록통관 */
-  .customs-info-card { padding:0; overflow:hidden; background:#FFF0F0; color:#A00; }
-  .customs-info-card summary {
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-    padding:16px; cursor:pointer; list-style:none;
-  }
-  .customs-info-card summary::-webkit-details-marker { display:none; }
-  .customs-info-card summary::after { content:'펼쳐보기'; flex-shrink:0; color:var(--navy); font-size:12px; font-weight:700; }
-  .customs-info-card[open] summary { border-bottom:1px solid rgba(170,0,0,.12); }
-  .customs-info-card[open] summary::after { content:'접기'; }
-  .customs-info-card .card-title { margin-bottom:0; }
-  .customs-info-body { padding:12px 16px 16px; }
-  .customs-info { background:#FFF0F0; border-radius:8px; padding:12px 14px; font-size:12px; line-height:1.8; color:#A00; }
-  .customs-info strong { color:var(--navy); }
 
   /* 하단 CTA */
   .bottom-cta { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:390px; display:flex; gap:8px; padding:10px 16px 16px; background:#fff; border-top:1px solid var(--border); box-shadow:0 -2px 10px rgba(0,0,0,.08); z-index:100; }
@@ -208,14 +156,6 @@
 <div class="page-header">
   <h1>주문/결제</h1>
   <p>상품 결제를 위한 페이지입니다.</p>
-</div>
-
-<!-- 관부가세 배너 -->
-<div class="banner-tax">
-  <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>관·부가세 안내</strong><br>
-  과세기준액이 <strong>$150 초과 시</strong> 관세 및 부가세가 부과됩니다.<br>
-  <span style="font-size:11px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용됩니다.</span><br>
-  <a href="#">이용가이드 자세히 보기 ›</a>
 </div>
 
 <!-- 주문 상품 -->
@@ -326,12 +266,6 @@
     <div class="customs-actions">
       <button class="btn-sm">개인통관고유부호 발급방법</button>
     </div>
-    <div class="customs-auth-row">
-      <input type="text" class="form-input customs-auth-input" id="customsAuthCode" inputmode="numeric" maxlength="6" placeholder="숫자 6자리">
-      <button class="customs-auth-btn" type="button" id="customsAuthBtn">인증하기</button>
-      <span class="customs-auth-label">인증번호 (일회용 인증번호)</span>
-      <span class="customs-auth-status" id="customsAuthStatus">인증이 완료되었습니다.</span>
-    </div>
     <details class="customs-notice">
       <summary><span class="strong-navy">※ 2026년 2월 2일부터 검증이 강화됩니다.</span></summary>
       <div class="customs-notice-body">
@@ -349,29 +283,6 @@
 </div>
 
 
-
-<!-- 정액권 -->
-<div class="card">
-  <div class="card-title">대행수수료 1개월 정액권</div>
-  <div class="pass-row">
-    <label class="pass-check-label"><input type="checkbox"> 정액권 사용</label>
-    <button class="btn-pass-more">+ 더보기</button>
-  </div>
-</div>
-
-<!-- 목록통관 -->
-<details class="card customs-info-card">
-  <summary><span class="card-title">목록통관 면세안내(삭제or유지 선택)</span></summary>
-  <div class="customs-info-body">
-    <div class="customs-info">
-      목록통관 면세조건 충족을 위해서는 과세기준액 합계가
-      <strong> 미화 $150 (단, 미국발은 $200) </strong></u>이하여야 하고,
-      목록통관 배제대상 물품이 아니어야 합니다.
-      <br>※ 과세기준 : 상품가 + 현지세금/배송비 + 국제운송료 + 포장비
-      <br>※ 자가사용 목적 물품 및 회사 샘플에 한해 적용됩니다.
-    </div>
-  </div>
-</details>
 
 <!-- 하단 CTA -->
 <div class="bottom-cta">
@@ -459,55 +370,6 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
       }
     });
   })();
-
-  (() => {
-    const input = document.getElementById('customsAuthCode');
-    const button = document.getElementById('customsAuthBtn');
-    const status = document.getElementById('customsAuthStatus');
-    if (!input || !button) return;
-
-    let authStep = 'request';
-
-    const syncAuthState = () => {
-      input.value = input.value.replace(/\D/g, '').slice(0, 6);
-      if (authStep === 'request') {
-        button.disabled = false;
-        button.classList.remove('is-verified');
-        button.textContent = '인증하기';
-        status?.classList.remove('is-visible');
-        return;
-      }
-      if (authStep === 'verified') {
-        authStep = 'verify';
-        button.classList.remove('is-verified');
-        status?.classList.remove('is-visible');
-      }
-      button.disabled = input.value.length !== 6;
-      button.textContent = '인증번호 확인';
-    };
-
-    input.addEventListener('input', syncAuthState);
-    button.addEventListener('click', () => {
-      if (authStep === 'request') {
-        authStep = 'verify';
-        input.value = '';
-        button.disabled = true;
-        button.classList.remove('is-verified');
-        button.textContent = '인증번호 확인';
-        status?.classList.remove('is-visible');
-        input.focus();
-        return;
-      }
-      if (button.disabled || authStep !== 'verify') return;
-      authStep = 'verified';
-      button.classList.add('is-verified');
-      button.textContent = '인증완료';
-      button.disabled = true;
-      status?.classList.add('is-visible');
-    });
-    syncAuthState();
-  })();
-
  
   /* 결제승인 */
   document.getElementById('btnApprove').addEventListener('click', function(){

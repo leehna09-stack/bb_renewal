@@ -166,6 +166,28 @@
   .pay-section-title { font-size:14px; font-weight:700; color:var(--navy); padding:16px 16px 0; display:flex; align-items:center; gap:4px; }
   .pay-section-title .req { color:var(--red); font-size:13px; }
 
+    /* 카드 */
+  .card { background:var(--card); margin-bottom:8px; padding:16px; }
+  .card-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
+  .card-title .req { color:var(--red); font-size:12px; }
+
+    /* 정액권 */
+  .pass-row { display:flex; align-items:center; justify-content:space-between; }
+  .pass-check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
+  .pass-check-label input { accent-color:var(--navy); width:16px; height:16px; }
+  .btn-pass-more { padding:7px 12px; font-size:12px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; color:#555; cursor:pointer; font-family:'Noto Sans KR',sans-serif; }
+
+  /* 배너 */
+  .banner-tax { background:#FFF8EC; border-left:3px solid var(--amber); padding:12px 14px; margin-bottom:8px; font-size:12px; line-height:1.7; color:#664400; }
+  .banner-tax strong { color:#7A5500; }
+  .banner-tax a { color:#C47D00; text-decoration:underline; font-size:11px; }
+  .banner-tax-title { display:block; font-size:12px; font-weight:700; margin-bottom:2px; }
+  .banner-tax-divider { border:0; border-top:1px dashed rgba(122,85,0,.28); margin:10px 0; }
+  .banner-receipt-title { font-size:12px; font-weight:700; color:#7A5500; margin-bottom:4px; }
+  .banner-receipt-notice { font-size:11px; line-height:1.6; color:#664400; margin-bottom:6px; }
+  .banner-receipt-radio-group { display:flex; gap:18px; }
+  .banner-receipt-radio { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#664400; cursor:pointer; }
+  .banner-receipt-radio input { accent-color:var(--navy); width:14px; height:14px; }
   /* ? 치 ?*/
   .deposit-wrap { padding:14px 16px; border-bottom:1px solid var(--border); }
   .deposit-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
@@ -195,13 +217,6 @@
   .pay-method-btn-group { display:flex; gap:8px; }
   .pay-method-btn { flex:1; padding:12px 0; font-size:13px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
   .pay-method-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:700; }
-
-  /* ? 금? 수 ?*/
-  .receipt-wrap { padding:14px 16px; }
-  .receipt-notice { font-size:12px; color:var(--navy); line-height:1.6; margin-bottom:10px; }
-  .receipt-radio-group { display:flex; gap:20px; }
-  .receipt-radio { display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; }
-  .receipt-radio input { accent-color:var(--navy); width:15px; height:15px; }
 
   /* ? 인 ??*/
   .disc-pay-row { background:#FFF8F0; border-top:1px solid #f5c88a; border-bottom:1px solid #f5c88a; padding:12px 16px; }
@@ -384,14 +399,27 @@
     <div style="font-size:11px;color:#888;margin-top:4px;">※ 적립 마일리지는 물품이 현지에 도착한 날을 기준으로 익월 1일에 자동 지급됩니다.</div>
   </div>
 
-  <!-- 현금영수증 -->
-  <div class="receipt-wrap">
-    <div class="pay-method-label" style="margin-bottom:6px;">현금 영수증 발급</div>
-    <div class="receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
-    <div class="receipt-radio-group">
-      <label class="receipt-radio"><input type="radio" name="receipt" value="yes"> 예</label>
-      <label class="receipt-radio"><input type="radio" name="receipt" value="no" checked> 아니오</label>
-    </div>
+  <!-- 관부가세 배너 -->
+<div class="banner-tax">
+  <span class="banner-tax-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>[관·부가세 안내]</strong></span>
+  과세기준액이 <strong>$150 초과 시</strong> 관세 및 부가세가 부과됩니다.<br>
+  <span style="font-size:11px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용됩니다.</span><br>
+  <a href="#">이용가이드 자세히 보기 ›</a>
+  <hr class="banner-tax-divider">
+  <div class="banner-receipt-title">[현금영수증 발급]</div>
+  <div class="banner-receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
+  <div class="banner-receipt-radio-group">
+    <label class="banner-receipt-radio"><input type="radio" name="receipt" value="yes"> 예</label>
+    <label class="banner-receipt-radio"><input type="radio" name="receipt" value="no" checked> 아니오</label>
+  </div>
+</div>
+
+<!-- 정액권 --숨김상태>
+<div class="card" style="display:none;">
+  <div class="card-title">대행수수료 1개월 정액권</div>
+  <div class="pass-row">
+    <label class="pass-check-label"><input type="checkbox"> 정액권 사용</label>
+    <button class="btn-pass-more">+ 더보기</button>
   </div>
 </div>
 
