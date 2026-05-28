@@ -412,48 +412,23 @@
     font-size: 18px;
     cursor: pointer;
   }
-  .coupon-modal-body { padding: 20px 22px 22px; }
-  .coupon-select-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .coupon-select-table th,
-  .coupon-select-table td {
-    border: 1px solid #dde1e7;
-    padding: 11px 12px;
-    text-align: left;
-  }
-  .coupon-select-table th {
-    background: #f5f7fa;
-    color: #444;
-    font-weight: 700;
-  }
-  .coupon-select-table tbody tr {
-    cursor: pointer;
-    transition: background 0.15s, box-shadow 0.15s;
-  }
-  .coupon-select-table tbody tr:hover { background: #f7fbff; }
-  .coupon-select-table tbody tr.is-selected {
-    background: #eef5ff;
-    box-shadow: inset 0 0 0 2px #5b8fff;
-  }
-  .coupon-code {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    color: #1A3C6E;
-  }
-  .coupon-discount {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    color: #E8385A;
-    white-space: nowrap;
-  }
+  .coupon-modal-body { padding: 0 0 20px; }
+  /* 쿠폰 리스트 */
+  .coupon-list { list-style: none; margin: 0; padding: 0; }
+  .coupon-item { border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.15s; }
+  .coupon-item:hover { background: #f7fbff; }
+  .coupon-item.is-selected { background: #eef5ff; }
+  .coupon-item-label { display: flex; align-items: center; gap: 14px; padding: 15px 22px; cursor: pointer; }
+  .coupon-radio { width: 18px; height: 18px; accent-color: #1A3C6E; flex-shrink: 0; cursor: pointer; }
+  .coupon-item-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .coupon-item-name { font-size: 14px; font-weight: 500; color: #222; }
+  .coupon-item-period { font-size: 12px; color: #999; }
+  .coupon-item-discount { font-size: 14px; font-weight: 700; color: #E8385A; white-space: nowrap; }
   .coupon-modal-actions {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-top: 16px;
+    margin: 16px 22px 0;
   }
   .coupon-modal-btn {
     min-width: 92px;
@@ -1151,57 +1126,88 @@
       <button class="coupon-modal-close" type="button" id="couponModalClose" aria-label="닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="coupon-modal-body">
-      <table class="coupon-select-table">
-        <thead>
-          <tr>
-            <th>쿠폰 코드</th>
-            <th>쿠폰명</th>
-            <th>할인 금액</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-coupon-group="intl" data-coupon-code="2012" data-coupon-name="국제운송료 5월 감사쿠폰" data-coupon-won="1000">
-            <td class="coupon-code">2012</td>
-            <td>국제운송료 5월 감사쿠폰</td>
-            <td class="coupon-discount">1,000원</td>
-          </tr>
-          <tr data-coupon-group="intl" data-coupon-code="2013" data-coupon-name="국제운송료 베스트 후기 쿠폰" data-coupon-won="3000">
-            <td class="coupon-code">2013</td>
-            <td>국제운송료 베스트 후기 쿠폰</td>
-            <td class="coupon-discount">3,000원</td>
-          </tr>
-          <tr data-coupon-group="intl" data-coupon-code="2014" data-coupon-name="국제운송료 재구매 쿠폰" data-coupon-won="5000">
-            <td class="coupon-code">2014</td>
-            <td>국제운송료 재구매 쿠폰</td>
-            <td class="coupon-discount">5,000원</td>
-          </tr>
-          <tr data-coupon-group="intl" data-coupon-code="2015" data-coupon-name="국제운송료 프리미엄 쿠폰" data-coupon-won="10000">
-            <td class="coupon-code">2015</td>
-            <td>국제운송료 프리미엄 쿠폰</td>
-            <td class="coupon-discount">10,000원</td>
-          </tr>
-          <tr data-coupon-group="storage" data-coupon-code="3012" data-coupon-name="보관료 5월 감사쿠폰" data-coupon-won="1000">
-            <td class="coupon-code">3012</td>
-            <td>보관료 5월 감사쿠폰</td>
-            <td class="coupon-discount">1,000원</td>
-          </tr>
-          <tr data-coupon-group="storage" data-coupon-code="3013" data-coupon-name="보관료 베스트 후기 쿠폰" data-coupon-won="3000">
-            <td class="coupon-code">3013</td>
-            <td>보관료 베스트 후기 쿠폰</td>
-            <td class="coupon-discount">3,000원</td>
-          </tr>
-          <tr data-coupon-group="storage" data-coupon-code="3014" data-coupon-name="보관료 장기보관 쿠폰" data-coupon-won="5000">
-            <td class="coupon-code">3014</td>
-            <td>보관료 장기보관 쿠폰</td>
-            <td class="coupon-discount">5,000원</td>
-          </tr>
-          <tr data-coupon-group="storage" data-coupon-code="3015" data-coupon-name="보관료 프리미엄 쿠폰" data-coupon-won="10000">
-            <td class="coupon-code">3015</td>
-            <td>보관료 프리미엄 쿠폰</td>
-            <td class="coupon-discount">10,000원</td>
-          </tr>
-        </tbody>
-      </table>
+      <ul class="coupon-list">
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-code="2012" data-coupon-name="국제운송료 5월 감사쿠폰" data-coupon-won="1000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="2012">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">국제운송료 5월 감사쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-1,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-code="2013" data-coupon-name="국제운송료 베스트 후기 쿠폰" data-coupon-won="3000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="2013">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">국제운송료 베스트 후기 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-3,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-code="2014" data-coupon-name="국제운송료 재구매 쿠폰" data-coupon-won="5000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="2014">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">국제운송료 재구매 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-5,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-code="2015" data-coupon-name="국제운송료 프리미엄 쿠폰" data-coupon-won="10000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="2015">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">국제운송료 프리미엄 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-10,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-code="3012" data-coupon-name="보관료 5월 감사쿠폰" data-coupon-won="1000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="3012">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 5월 감사쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-1,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-code="3013" data-coupon-name="보관료 베스트 후기 쿠폰" data-coupon-won="3000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="3013">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 베스트 후기 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-3,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-code="3014" data-coupon-name="보관료 장기보관 쿠폰" data-coupon-won="5000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="3014">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 장기보관 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-5,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-code="3015" data-coupon-name="보관료 프리미엄 쿠폰" data-coupon-won="10000">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="3015">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 프리미엄 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-10,000원</span>
+          </label>
+        </li>
+      </ul>
       <div class="coupon-modal-actions">
         <button class="coupon-modal-btn cancel" type="button" id="couponClear">선택 해제</button>
         <button class="coupon-modal-btn apply" type="button" id="couponApply">선택 완료</button>
@@ -1283,7 +1289,7 @@
     const closeBtn = document.getElementById('couponModalClose');
     const applyBtn = document.getElementById('couponApply');
     const clearBtn = document.getElementById('couponClear');
-    const rows = Array.from(document.querySelectorAll('.coupon-select-table tbody tr'));
+    const rows = Array.from(document.querySelectorAll('.coupon-list .coupon-item'));
     const controls = {
       intl: {
         checkbox: document.getElementById('intlCouponUseCheck'),
@@ -1304,6 +1310,13 @@
     const formatWon = (value) => `${Number(value).toLocaleString('ko-KR')}원`;
     const getControl = () => activeGroup ? controls[activeGroup] : null;
 
+    const syncRadios = () => {
+      rows.forEach(r => {
+        const radio = r.querySelector('.coupon-radio');
+        if (radio) radio.checked = r.classList.contains('is-selected');
+      });
+    };
+
     const openModal = (group) => {
       activeGroup = group;
       title.textContent = controls[group].title;
@@ -1312,6 +1325,7 @@
         row.style.display = visible ? '' : 'none';
         row.classList.toggle('is-selected', visible && controls[group].checkbox.dataset.couponCode === row.dataset.couponCode);
       });
+      syncRadios();
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
     };
@@ -1328,6 +1342,7 @@
       const control = getControl();
       if (!control) return;
       rows.forEach((row) => row.classList.remove('is-selected'));
+      syncRadios();
       delete control.checkbox.dataset.discountWon;
       delete control.checkbox.dataset.couponCode;
       delete control.checkbox.dataset.couponName;
@@ -1340,6 +1355,7 @@
       const control = getControl();
       if (!control) return;
       rows.forEach((item) => item.classList.toggle('is-selected', item === row));
+      syncRadios();
       control.checkbox.dataset.discountWon = row.dataset.couponWon || '0';
       control.checkbox.dataset.couponCode = row.dataset.couponCode || '';
       control.checkbox.dataset.couponName = row.dataset.couponName || '';
