@@ -651,12 +651,6 @@
     background: #1A3C6E;
     color: #fff;
   }
-  .receipt-notice {
-    font-size: 12px;
-    color: #E8385A;
-    line-height: 1.6;
-    margin-bottom: 6px;
-  }
   .radio-group {
     display: flex;
     gap: 16px;
@@ -833,6 +827,39 @@
     text-align: center;
     line-height: 1.3;
   }
+
+  /* ── 2:1 그리드 레이아웃 ── */
+  .bill-layout { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+  .bill-main { min-width: 0; }
+
+  /* ── 우측 결제 비용 패널 ── */
+  .bill-panel { position: sticky; top: 80px; background: #fff; border: 1px solid #dde1e7; border-radius: 8px; overflow: hidden; }
+  .bill-panel-head { background: #fff; padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #eee; }
+  .bill-panel-title { color: #1A3C6E; font-size: 14px; font-weight: 700; }
+  .bill-panel-sub { color: #666; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .fee-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 18px; border-bottom: 1px solid #f0f2f5; gap: 8px; }
+  .fee-row:last-child { border-bottom: none; }
+  .fee-row-label { font-size: 13px; color: #555; white-space: nowrap; }
+  .fee-row-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; color: #222; text-align: right; }
+  .fee-row.is-discount .fee-row-label { color: #E8385A; }
+  .fee-disc-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+  .fee-disc-line { display: flex; align-items: center; gap: 5px; }
+  .fee-disc-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; }
+  .fee-disc-badge { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: #FCEBEB; color: #A32D2D; }
+  .fee-row-subtotal { background: #fafbfc; border-top: 1px solid #dde1e7 !important; }
+  .fee-row-subtotal .fee-row-label { color: #333; font-weight: 600; }
+  .fee-row-subtotal .fee-row-val { color: #333; font-weight: 700; font-size: 14px; }
+  .fee-row-rate { background: #f8f9fb; }
+  .fee-row-rate .fee-row-label { color: #888; font-size: 12px; }
+  .fee-row-rate .fee-row-val { color: #888; font-size: 12px; }
+  .fee-row-total { background: #f0f4fb; border-top: 2px solid #1A3C6E !important; padding: 16px 18px; }
+  .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
+  .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
+  .panel-coupon-btn { height: 28px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 4px; background: #fff; color: #1A3C6E; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .panel-coupon-btn:hover { background: #1A3C6E; color: #fff; }
+  .panel-coupon-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
+  .panel-coupon-btn.is-applied:hover { background: #ddd; color: #555; }
+  .fee-disc-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; }
 </style>
 </head>
 <body>
@@ -865,6 +892,9 @@
     <p>상품 결제를 위한 페이지입니다.</p>
   </div>
 
+  <div class="bill-layout">
+  <div class="bill-main">
+
   <!-- ── 주문 상품 ── -->
   <div class="section">
     <table class="order-table">
@@ -896,53 +926,6 @@
     </table>
   </div>
 
-  <!-- ── 2차 결제 비용 ── -->
-  <div class="section">
-    <div class="section-title">2차 결제 비용</div>
-    <table class="fee-table">
-      <thead>
-        <tr>
-          <th>소비세</th>
-          <th>현지배송료</th>
-          <th>
-            창고보관료
-            <span class="tooltip-wrap">
-              <button class="tooltip-icon" type="button" aria-label="창고보관료 안내">!</button>
-              <span class="tooltip-box">보관기간<br>D-40 소형 / 중형</span>
-            </span>
-          </th>
-          <th>배송추가비용</th>
-          <th>
-            국제운송료
-            <span class="tooltip-wrap">
-              <button class="tooltip-icon" type="button" aria-label="국제운송료 안내">!</button>
-              <span class="tooltip-box">비드바이선편특송(팬스타)<br>청구무게(5.2 kg) · 예상무게(0 kg)</span>
-            </span>
-          </th>
-          <th>총액</th>
-          <th>환율</th>
-          <th>총 결제금액</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>725 엔 <span class="op-icon op-plus">+</span></td>
-          <td>770 엔 <span class="op-icon op-plus">+</span></td>
-          <td>0 엔 <span class="op-icon op-plus">+</span></td>
-          <td><span id="txtExtraShippingYen">0 엔</span> <span class="op-icon op-plus">+</span></td>
-          <td class="intl-breakdown">
-            <div>2,350 − 0</div>
-            <div class="intl-main">= 2,350 엔</div>
-            <span class="op-icon op-equal">=</span>
-          </td>
-          <td><span id="txtTotalYen">3,845 엔</span> <span class="op-icon op-times"><i class="fa-solid fa-xmark" aria-hidden="true"></i></span></td>
-          <td>9.6 원 <span class="op-icon op-result">=</span></td>
-          <td class="total-cell" id="feeTotalWon">36,912원</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
   <!-- ── 수취인 정보 ── -->
   <div class="section">
     <table class="info-table">
@@ -968,29 +951,11 @@
     </table>
   </div>
 
-    <div class="section">
-    <div class="section-title">쿠폰 사용</div>
-    <table class="coupon-table">
-      <tbody>
-        <tr>
-          <th>국제운송료 할인쿠폰</th>
-          <td>
-            <label class="coupon-label">
-              <input type="checkbox" id="intlCouponUseCheck" data-coupon-group="intl">할인쿠폰사용
-            
-          </label>
-            <div class="coupon-count">(사용가능쿠폰 : 4매)</div>
-            <div class="selected-coupon-summary" id="intlCouponSummary" aria-live="polite">
-              선택 쿠폰 : <strong id="intlCouponText"></strong>
-            </div>
-          </td>
-        </tr>
+  <!-- hidden coupon state holders (패널 쿠폰 버튼에서 사용) -->
+  <input type="checkbox" id="intlCouponUseCheck" data-coupon-group="intl" style="display:none">
+  <span id="intlCouponSummary" style="display:none"><strong id="intlCouponText"></strong></span>
 
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ── 쿠폰 사용 선택 ── -->
+  <!-- ── 유료 옵션 ── -->
   <div class="section paid-option-static">
     <div class="section-title">유료 옵션 서비스(선택)</div>
     <table class="care-table paid-option-table">
@@ -1079,26 +1044,103 @@
             </div>
           </td>
         </tr>
-        <tr>
-          <th>현금 영수증 발급</th>
-          <td>
-            <div class="receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
-            <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="receipt" value="yes"> 예</label>
-              <label class="radio-label"><input type="radio" name="receipt" value="no" checked> 아니오</label>
-            </div>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
 
+  <!-- ── 관·부가세 안내 + 현금영수증 발급 통합 배너 ── -->
+  <div style="background:#FFF8EC; border-left:3px solid #F5A623; border-radius:0 4px 4px 0; padding:14px 16px; margin-bottom:24px; font-size:13px; line-height:1.75; color:#664400;">
+    <div style="display:flex; align-items:flex-start; gap:8px;">
+      <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
+      <div>
+        <strong style="color:#7A5500; display:block; margin-bottom:3px;">관·부가세 안내</strong>
+        목록통관 대상 물품의 경우, 물품가액이 $150(미국발은 $200) 이하인 경우 면세이며,
+        물품가액이 <strong>$150 초과 시 과세기준액(물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비)을 기준</strong>으로 관세 및 부가세가 부과됩니다.
+        <span style="color:#885500; font-size:12px; display:block; margin-top:2px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용되어 관세 및 부가세가 부과됩니다.</span>
+        <a href="#" style="font-size:12px; color:#C47D00; text-decoration:underline; margin-top:2px; display:inline-block;">이용가이드 자세히 보기 ›</a>
+      </div>
+    </div>
+    <hr style="border:none; border-top:1px dashed rgba(122,85,0,.28); margin:12px 0;">
+    <div style="display:flex; align-items:flex-start; gap:8px;">
+      <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
+      <div>
+        <strong style="color:#7A5500; display:block; margin-bottom:4px;">현금영수증 발급</strong>
+        <div style="font-size:12px; color:#664400; margin-bottom:8px; line-height:1.6;">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
+        <div style="display:flex; gap:18px;">
+          <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="yes" style="accent-color:#1A3C6E;"> 예</label>
+          <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="no" checked style="accent-color:#1A3C6E;"> 아니오</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── 버튼 영역 ── -->
   <div class="btn-area">
-        <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제취소</button>
-
+    <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제취소</button>
     <button class="btn btn-primary">신청하기</button>
   </div>
+
+  </div><!-- /bill-main -->
+
+  <!-- 우측 2차 결제 비용 패널 (sticky) -->
+  <div class="bill-panel">
+    <div class="bill-panel-head">
+      <span class="bill-panel-title">2차 결제 비용</span>
+      <span class="bill-panel-sub">적용 환율 <span id="panelRate">9.6</span>원</span>
+    </div>
+    <div class="bill-panel-body">
+      <div class="fee-row">
+        <span class="fee-row-label">소비세</span>
+        <span class="fee-row-val">725 엔</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-row-label">현지배송료</span>
+        <span class="fee-row-val">770 엔</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-row-label">
+          창고보관료
+          <span class="tooltip-wrap" tabindex="0">
+            <span class="tooltip-icon" aria-label="창고보관료 안내">!</span>
+            <span class="tooltip-box">D-3 / 소형</span>
+          </span>
+        </span>
+        <span class="fee-row-val">0 엔</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-row-label">배송추가비용</span>
+        <span class="fee-row-val" id="panelExtraYen">0 엔</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-row-label">
+          국제운송료
+          <span class="tooltip-wrap" tabindex="0">
+            <span class="tooltip-icon" aria-label="국제운송료 안내">!</span>
+            <span class="tooltip-box">비바항공 특송 / 2kg</span>
+          </span>
+        </span>
+        <span class="fee-row-val">2,350 엔</span>
+      </div>
+      <div class="fee-row fee-row-coupon" style="border-top:1px solid #dde1e7;">
+        <span class="fee-row-label">쿠폰</span>
+        <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
+      </div>
+      <div class="fee-row" id="panelDiscRow" style="display:none;">
+        <span class="fee-row-label" style="color:#E8385A;">할인 금액</span>
+        <span class="fee-disc-val" id="panelDiscWrap"></span>
+      </div>
+      <div class="fee-row fee-row-subtotal">
+        <span class="fee-row-label">총액</span>
+        <span class="fee-row-val" id="panelSubtotal">3,845 엔</span>
+      </div>
+      <div class="fee-row fee-row-total">
+        <span class="fee-row-label">총 결제금액</span>
+        <span class="fee-row-val" id="panelTotal">36,912원</span>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /bill-layout -->
 
 </div><!-- /page-wrap -->
 
@@ -1302,8 +1344,8 @@
       control.checkbox.dataset.couponCode = row.dataset.couponCode || '';
       control.checkbox.dataset.couponName = row.dataset.couponName || '';
       control.checkbox.checked = true;
-      control.text.textContent = `${row.dataset.couponCode} · ${row.dataset.couponName} · ${formatWon(row.dataset.couponWon)}`;
-      control.summary.style.display = 'block';
+      control.text.textContent = '';
+      control.summary.style.display = 'none';
     };
 
     Object.entries(controls).forEach(([group, control]) => {
@@ -1312,6 +1354,35 @@
         openModal(group);
       });
     });
+
+    // 우측 패널 쿠폰 버튼 → 국제운송료 쿠폰 모달 열기
+    const panelCouponBtn = document.getElementById('panelCouponBtn');
+    panelCouponBtn?.addEventListener('click', () => openModal('intl'));
+
+    // 쿠폰 적용/해제 시 패널 버튼 텍스트 업데이트
+    const syncPanelCouponBtn = () => {
+      const intlCb = controls.intl.checkbox;
+      const discWon = Number(intlCb?.dataset?.discountWon || 0);
+      const panelDiscRow = document.getElementById('panelDiscRow');
+      const panelDiscWrap = document.getElementById('panelDiscWrap');
+      if (panelCouponBtn) {
+        if (discWon > 0) {
+          panelCouponBtn.textContent = '적용';
+          panelCouponBtn.classList.add('is-applied');
+          if (panelDiscWrap) panelDiscWrap.textContent = `-${Number(discWon).toLocaleString('ko-KR')}원`;
+          if (panelDiscRow) panelDiscRow.style.display = 'flex';
+        } else {
+          panelCouponBtn.textContent = '쿠폰 선택';
+          panelCouponBtn.classList.remove('is-applied');
+          if (panelDiscWrap) panelDiscWrap.textContent = '';
+          if (panelDiscRow) panelDiscRow.style.display = 'none';
+        }
+      }
+      window.renderPaymentSummary?.();
+    };
+    // 모달 닫힐 때 패널 버튼도 동기화
+    applyBtn.addEventListener('click', syncPanelCouponBtn);
+    clearBtn.addEventListener('click', syncPanelCouponBtn);
     rows.forEach((row) => {
       row.addEventListener('click', () => selectCoupon(row));
     });
@@ -1319,6 +1390,7 @@
     applyBtn.addEventListener('click', closeModal);
     clearBtn.addEventListener('click', () => {
       clearCoupon();
+      syncPanelCouponBtn();
       closeModal();
     });
     modal.addEventListener('click', (event) => {
@@ -1362,6 +1434,18 @@
         ? `${fmt(totalWon)} 원 - 예치금 ${fmt(depositWon)} 원 =`
         : `${fmt(totalYen)} 엔 × ${rate} 원 =`;
       if (elPayWon) elPayWon.textContent = `${fmt(payWon)} 원`;
+
+      // 우측 패널 업데이트
+      const panelExtra = document.getElementById('panelExtraYen');
+      if (panelExtra) {
+        panelExtra.textContent = `${fmt(paidOptionYen)} 엔`;
+        panelExtra.style.color = paidOptionYen > 0 ? '#E8385A' : '';
+        panelExtra.style.fontWeight = paidOptionYen > 0 ? '700' : '';
+      }
+      const panelSubtotal = document.getElementById('panelSubtotal');
+      if (panelSubtotal) panelSubtotal.textContent = `${fmt(totalYen)} 엔`;
+      const panelTotal = document.getElementById('panelTotal');
+      if (panelTotal) panelTotal.textContent = `${fmt(totalWon)}원`;
     };
 
     renderPaymentSummary();

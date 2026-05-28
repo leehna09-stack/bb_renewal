@@ -508,46 +508,7 @@
   .info-table .w120 { width: 120px; }
   .info-table .w200 { width: 200px; }
   .info-table .w320 { width: 100%; max-width: 480px; }
-  .customs-auth-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .customs-auth-input {
-    width: 160px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-  .customs-auth-btn {
-    height: 32px;
-    padding: 0 14px;
-    border: 1px solid #1A3C6E;
-    border-radius: 4px;
-    background: #1A3C6E;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-  }
-  .customs-auth-btn:disabled {
-    border-color: #c5cdd9;
-    background: #eef1f5;
-    color: #98a1b2;
-    cursor: not-allowed;
-  }
-  .customs-auth-btn.is-verified {
-    border-color: #3AAD4E;
-    background: #3AAD4E;
-    color: #fff;
-  }
-  .customs-auth-status {
-    display: none;
-    font-size: 12px;
-    color: #3AAD4E;
-    font-weight: 700;
-  }
-  .customs-auth-status.is-visible { display: inline; }
+  
 
   .hint { font-size: 12px; color: #1A3C6E; margin-left: 8px; }
   .hint-red { font-size: 12px; color: #E8385A; }
@@ -811,30 +772,6 @@
     cursor: pointer;
     font-family: 'Noto Sans KR', sans-serif;
     margin-left: 8px;
-  }
-
-  /* ── 목록통관 면세 ── */
-  .customs-notice-box {
-    border: 1px solid #dde1e7;
-    border-radius: 4px;
-  }
-  .customs-notice-box th {
-    background: #f5f7fa;
-    border: 1px solid #dde1e7;
-    padding: 10px 14px;
-    text-align: left;
-    font-weight: 500;
-    color: #444;
-    width: 160px;
-    white-space: nowrap;
-    vertical-align: top;
-  }
-  .customs-notice-box td {
-    border: 1px solid #dde1e7;
-    padding: 10px 14px;
-    font-size: 12px;
-    line-height: 1.8;
-    color: #444;
   }
 
   /* ── 유료 옵션 공통 ── */
@@ -1110,17 +1047,6 @@
     <p>상품 결제를 위한 페이지입니다.</p>
   </div>
 
-  <!-- ── 관·부가세 안내 배너 ── -->
-  <div style="background:#FFF8EC; border:1px solid #F5A623; border-radius:5px; padding:12px 16px; display:flex; align-items:flex-start; gap:10px; margin-bottom:20px;">
-    <span style="font-size:16px; color:#D4891A; margin-top:1px; flex-shrink:0;">&#9888;</span>
-    <div style="flex:1; font-size:13px; line-height:1.7; color:#664400;">
-      <strong style="color:#7A5500;">관·부가세 안내</strong><br>
-      목록통관 대상 물품의 경우, 물품가액이 $150(미국발은 $200) 이하인 경우 면세이며,
-      <br>물품가액이 <strong>$150 초과 시 과세기준액(물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비)을 기준</strong>으로 관세 및 부가세가 부과됩니다.
-      <span style="color:#885500; font-size:12px;"><br>※ 사업자 통관의 경우 $150 이하도 일반통관이 적용되어 관세 및 부가세가 부과됩니다.</span>
-      <br><a href="#" style="font-size:12px; color:#C47D00; text-decoration:underline;">이용가이드 자세히 보기 ›</a>
-    </div>
-  </div>
 
   <!-- ─────────────────────────────────────
        주문 상품 테이블
@@ -1296,7 +1222,7 @@
           <td>
             <input type="text" class="w120" placeholder="" id="receiverZip">
             <button class="btn-zip">우편번호검색</button>
-            <span class="hint-red" style="margin-left:10px;">※ 개인통관고유부호 발급시 등록한 배송주소(우편번호)를 입력바랍니다. <strong class="bold-red">불일치시 통관이 지연됩니다.</strong></span>
+            <br><span class="hint-red" style="margin-left:0px;">※ 개인통관고유부호 발급시 등록한 배송주소(우편번호)를 입력바랍니다. <strong class="bold-red">불일치시 통관이 지연됩니다.</strong></span>
           </td>
         </tr>
         <tr>
@@ -1333,14 +1259,7 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <div class="customs-auth-row">
-              <input type="text" class="customs-auth-input" id="customsAuthCode" inputmode="numeric" maxlength="6" placeholder="숫자 6자리">
-              <button class="customs-auth-btn" type="button" id="customsAuthBtn">인증하기</button>
-              <span class="hint-gray">인증번호 (일회용 인증번호)</span>
-              <span class="customs-auth-status" id="customsAuthStatus">인증이 완료되었습니다.</span>
-            </div>
-          </td>
+  
         </tr>
         <tr>
           <td>
@@ -1373,9 +1292,9 @@
 
 
   <!-- ─────────────────────────────────────
-       구매수수료 1개월 정액권
+       구매수수료 1개월 정액권 _비활성
   ───────────────────────────────────── -->
-  <div class="section">
+  <div class="section"style="display:none;">
     <div class="section-title">구매수수료 1개월 정액권</div>
     <table class="pass-table">
       <tbody>
@@ -1473,54 +1392,6 @@
   });
 
   (() => {
-    const input = document.getElementById('customsAuthCode');
-    const button = document.getElementById('customsAuthBtn');
-    const status = document.getElementById('customsAuthStatus');
-    if (!input || !button) return;
-
-    let authStep = 'request';
-
-    const syncAuthState = () => {
-      input.value = input.value.replace(/\D/g, '').slice(0, 6);
-      if (authStep === 'request') {
-        button.disabled = false;
-        button.classList.remove('is-verified');
-        button.textContent = '인증하기';
-        status?.classList.remove('is-visible');
-        return;
-      }
-      if (authStep === 'verified') {
-        authStep = 'verify';
-        button.classList.remove('is-verified');
-        status?.classList.remove('is-visible');
-      }
-      button.disabled = input.value.length !== 6;
-      button.textContent = '인증번호 확인';
-    };
-
-    input.addEventListener('input', syncAuthState);
-    button.addEventListener('click', () => {
-      if (authStep === 'request') {
-        authStep = 'verify';
-        input.value = '';
-        button.disabled = true;
-        button.classList.remove('is-verified');
-        button.textContent = '인증번호 확인';
-        status?.classList.remove('is-visible');
-        input.focus();
-        return;
-      }
-      if (button.disabled || authStep !== 'verify') return;
-      authStep = 'verified';
-      button.classList.add('is-verified');
-      button.textContent = '인증완료';
-      button.disabled = true;
-      status?.classList.add('is-visible');
-    });
-    syncAuthState();
-  })();
-
-  (() => {
     const sameCheckbox = document.getElementById('sameAsOrderer');
     if (!sameCheckbox) return;
 
@@ -1537,9 +1408,7 @@
       return ['', '', ''];
     };
 
-    sameCheckbox.addEventListener('change', () => {
-      if (!sameCheckbox.checked) return;
-
+    const syncReceiverWithOrderer = () => {
       setValue('receiverName', document.getElementById('ordererName')?.textContent.trim());
       setValue('receiverZip', document.getElementById('ordererZip')?.value);
       setValue('receiverAddr1', document.getElementById('ordererAddr1')?.value);
@@ -1555,6 +1424,10 @@
         const hasOption = Array.from(phoneSelect.options).some(option => option.value === phone1 || option.textContent === phone1);
         if (hasOption) phoneSelect.value = phone1;
       }
+    };
+
+    sameCheckbox.addEventListener('change', () => {
+      if (sameCheckbox.checked) syncReceiverWithOrderer();
     });
   })();
 

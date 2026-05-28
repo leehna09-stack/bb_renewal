@@ -217,6 +217,17 @@
   .pay-method-btn-group { display:flex; gap:8px; }
   .pay-method-btn { flex:1; padding:12px 0; font-size:13px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
   .pay-method-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:700; }
+  .pay-method-wrap.is-required {
+    background:#FFF8F0;
+    box-shadow: inset 0 0 0 2px rgba(232,56,90,.18);
+  }
+  .pay-method-wrap.is-required .pay-method-label {
+    color:var(--red);
+  }
+  .pay-method-wrap.is-required .pay-method-btn {
+    border-color:#E8385A;
+    box-shadow:0 0 0 2px rgba(232,56,90,.12);
+  }
 
   /* ? 인 ??*/
   .disc-pay-row { background:#FFF8F0; border-top:1px solid #f5c88a; border-bottom:1px solid #f5c88a; padding:12px 16px; }
@@ -234,7 +245,7 @@
   .discount-mileage-value strong { font-weight:700; }
   .mileage-max-radio { display:inline-flex; align-items:center; gap:6px; color:#2F8CFF; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; white-space:nowrap; cursor:pointer; }
   .mileage-max-radio input { width:14px; height:14px; margin:0; accent-color:var(--navy); }
-  .mileage-max-value { margin-left:auto; text-align:right; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; color:#111; white-space:nowrap; }
+  .mileage-max-value { margin-left:auto; text-align:right; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; color:#2F8CFF; white-space:nowrap; }
   .mileage-clear-btn { display:none; align-items:center; justify-content:center; width:20px; height:20px; border:0; border-radius:50%; background:#E5E7EB; color:#666; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; line-height:1; cursor:pointer; }
   .mileage-clear-btn.show { display:inline-flex; }
   .discount-mileage-applied { margin-top:8px; font-size:12px; color:#333; }
@@ -392,7 +403,7 @@
   <div style="padding:14px 16px;border-bottom:1px solid var(--border);">
     <div style="font-size:12px;color:var(--navy);font-weight:500;margin-bottom:4px;">마일리지 적립 예정</div>
     <div style="font-size:12px;color:#444;line-height:1.7;">
-      구매수수료 <strong>(<span id="mileageRewardBaseYen">800</span>엔)</strong>의 <span style="color:var(--red);font-weight:700;">10%</span> 적립
+      <strong>구매수수료 (<span id="mileageRewardBaseYen">800</span>엔)</strong>의 <span style="color:var(--red);font-weight:700;">10%</span> 적립
       <span style="display:inline-block;background:#E8EFFF;color:var(--navy);font-size:11px;font-weight:600;border-radius:3px;padding:1px 7px;margin-left:4px;">약 <span id="mileageRewardWon">768</span> 원 적립 예정</span>
       <span style="display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;border-radius:3px;padding:1px 6px;margin-left:4px;">VIP</span>
     </div>
@@ -688,6 +699,7 @@ function clearDepFull() {
 /* ? ?  결제방법 ? ?  */
 function selectPayMethod(method) {
   selectedPayMethod = method;
+  document.querySelector('.pay-method-wrap')?.classList.remove('is-required');
   document.getElementById('btnCard').classList.toggle('active', method === 'card');
   document.getElementById('btnBank').classList.toggle('active', method === 'bank');
 }
@@ -726,11 +738,14 @@ function selectPayMethod(method) {
 })();
 
 document.getElementById('btnApprove')?.addEventListener('click', () => {
+  const payMethodWrap = document.querySelector('.pay-method-wrap');
   if (!selectedPayMethod) {
-    alert('결제 방법을 선택해주세요.');
+    payMethodWrap?.classList.add('is-required');
+    payMethodWrap?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
-  alert('결제를 진행합니다.');
+  payMethodWrap?.classList.remove('is-required');
+  window.location.href = 'mobile_bill_2nd.html';
 });
 </script>
 </body>
