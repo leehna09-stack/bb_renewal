@@ -103,6 +103,11 @@
   .mob-mile-max-val { margin-left: auto; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #2F8CFF; white-space: nowrap; }
   .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
   .mob-mile-clear-btn.show { display: inline-flex; }
+  .mob-mile-input-row { display:flex; align-items:center; gap:6px; border-bottom:1px solid #eee; padding:7px 0; }
+  .mob-mile-input-lbl { font-size:12px; color:#888; flex-shrink:0; }
+  .mob-mile-inp { flex:1; min-width:0; border:none; outline:none; font-family:'Roboto',sans-serif; font-size:14px; font-weight:500; color:#222; text-align:right; background:transparent; }
+  .mob-mile-inp.over { color:#E8385A; }
+  .mob-mile-inp-unit { font-size:13px; color:#555; flex-shrink:0; }
   .deposit-ui.is-applied .dep-input-row { background: #f3f4f6; }
   .method-label { display: inline-flex; align-items: center; justify-content: center; min-width: 150px; min-height: 38px; padding: 0 18px; border: 1px solid #d3d8df; border-radius: 4px; background: #fff; color: #333; font-size: 13px; font-weight: 700; cursor: pointer; margin-right: 8px; transition: background 0.15s, border-color 0.15s, color 0.15s; }
   .method-label:hover { border-color: #1A3C6E; color: #1A3C6E; }
@@ -234,6 +239,15 @@
         </table>
       </div>
 
+      <div style="margin-bottom:20px; padding:14px 16px; border:1px solid #dde1e7; border-radius:8px; background:#F8FAFD;">
+        <div style="font-size:14px; color:#1A3C6E; font-weight:700; margin-bottom:6px;">마일리지 적립 예정</div>
+        <div class="mileage-earn-line">
+          <span>구매수수료 <strong>(800엔)</strong> 의 <span class="mileage-earn-rate">10%</span> 적립</span>
+          <span class="mileage-earn-badge">약 1,056 원 적립 예정</span>
+          <span class="vip-badge">VIP</span>
+        </div>
+        <div class="coupon-note">※ 적립 마일리지는 물품이 현지에 도착한 날을 기준으로 익월 1일에 자동 지급됩니다.</div>
+      </div>
 
       <!-- 결제정보 확인 -->
       <div class="section">
@@ -279,17 +293,6 @@
               <td>
                 <label class="method-label is-selected"><input type="radio" name="paymentMethod" value="card" checked> 카드결제</label>
                 <label class="method-label"><input type="radio" name="paymentMethod" value="bank"> 무통장입금(가상계좌)</label>
-              </td>
-            </tr>
-                        <tr>
-              <th><strong><font color="#1A3C6E">마일리지 적립 예정</font></strong></th>
-              <td>
-                <div class="mileage-earn-line">
-                  <span>구매수수료 <strong>(800엔)</strong> 의 <span class="mileage-earn-rate">10%</span> 적립</span>
-                  <span class="mileage-earn-badge">약 1,056 원 적립 예정</span>
-                  <span class="vip-badge">VIP</span>
-                </div>
-                <div class="coupon-note">※ 적립 마일리지는 물품이 현지에 도착한 날을 기준으로 익월 1일에 자동 지급됩니다.</div>
               </td>
             </tr>
           </tbody>
@@ -356,20 +359,27 @@
         <div style="padding:10px 18px; border-top:1px solid #dde1e7; border-bottom:1px solid #f0f2f5;">
           <div class="mob-mile-wrap" style="max-width:100%;">
             <div class="mob-mile-top">
-              <span class="mob-mile-label">마일리지 <span class="mob-mile-help" title="마일리지는 구매수수료의 50%까지만 차감됩니다.">?</span></span>
+              <span class="mob-mile-label">마일리지 <span class="mob-mile-help" title="마일리지는 구매수수료의 50%까지 사용 가능합니다.">?</span></span>
               <span class="mob-mile-used" id="mileageUsedDisp">0원</span>
             </div>
             <div class="mob-mile-hold">
               <span>보유 마일리지</span>
               <span class="mob-mile-hold-val"><strong id="availableMileage">58,961</strong> 원</span>
             </div>
+            <!-- Row 3: 직접 입력 -->
+            <div class="mob-mile-input-row">
+              <span class="mob-mile-input-lbl">사용</span>
+              <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
+              <span class="mob-mile-inp-unit">원</span>
+              <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
+            </div>
+            <!-- Row 4: 최대 사용 라디오 -->
             <div class="mob-mile-row3">
               <label class="mob-mile-radio-lbl">
                 <input type="radio" id="mileageMaxRadio" name="mileageApply">
                 <span>최대 사용 마일리지</span>
               </label>
               <span class="mob-mile-max-val" id="mileageMaxAmount">0 원</span>
-              <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 사용 취소">×</button>
             </div>
           </div>
           <!-- 숨김 헬퍼: 원래 보유량 기준값 -->
@@ -480,32 +490,30 @@
   })();
 
   (() => {
-    const availEl  = document.getElementById('availableMileage');  // <strong> — 잔액 표시
-    const origEl   = document.getElementById('mileageAvailOrig');   // 원래 보유량
-    const usedDisp = document.getElementById('mileageUsedDisp');
-    const maxAmtEl = document.getElementById('mileageMaxAmount');
-    const maxRadio = document.getElementById('mileageMaxRadio');
-    const clearBtn = document.getElementById('mileageClearBtn');
+    const availEl    = document.getElementById('availableMileage');  // <strong> — 잔액 표시
+    const origEl     = document.getElementById('mileageAvailOrig');   // 원래 보유량
+    const usedDisp   = document.getElementById('mileageUsedDisp');
+    const maxAmtEl   = document.getElementById('mileageMaxAmount');
+    const maxRadio   = document.getElementById('mileageMaxRadio');
+    const clearBtn   = document.getElementById('mileageClearBtn');
+    const directInp  = document.getElementById('mileageDirectInput');
     if(!availEl) return;
     const MILE_AVAIL = parseWon(origEl?.textContent || availEl.textContent);
-    const getLimit   = () => Math.min(MILE_AVAIL, Math.floor(agencyBase() * rate()));
+    const getLimit   = () => Math.min(MILE_AVAIL, Math.floor(agencyBase() * 0.5 * rate()));
 
     const updateUI = (usedWon) => {
       const limit = getLimit();
-      // 최대 사용 마일리지 금액 갱신
       if(maxAmtEl) maxAmtEl.textContent = formatWon(limit) + ' 원';
-      // 사용 금액 표시 (상단 우측)
       if(usedDisp){
         usedDisp.textContent = usedWon > 0 ? `-${formatWon(usedWon)}원` : '0원';
         usedDisp.classList.toggle('is-active', usedWon > 0);
       }
-      // 보유 마일리지 잔액 갱신
       if(availEl) availEl.textContent = formatWon(Math.max(MILE_AVAIL - usedWon, 0));
-      // 라디오 상태
       if(maxRadio) maxRadio.checked = usedWon > 0 && usedWon >= limit;
-      // × 버튼 표시
       if(clearBtn) clearBtn.classList.toggle('show', usedWon > 0);
-      // 숨김 input 동기화 (패널 버튼 위임에 필요)
+      // 직접 입력 필드 동기화 (포커스 중일 때는 건드리지 않음)
+      if(directInp && document.activeElement !== directInp)
+        directInp.value = usedWon > 0 ? formatWon(usedWon) : '0';
       const inp = document.getElementById('mileageInput');
       if(inp) inp.value = formatWon(usedWon);
     };
@@ -519,15 +527,28 @@
       window.renderPaymentSummary?.();
     };
 
-    const applyMax  = () => persist(getLimit());
-    const clearMile = () => persist(0);
+    const applyMax  = () => { if(directInp) directInp.value = formatWon(getLimit()); persist(getLimit()); };
+    const clearMile = () => { if(directInp) directInp.value = '0'; persist(0); };
+
+    // 직접 입력 이벤트
+    directInp?.addEventListener('input', () => {
+      const raw = parseWon(directInp.value);
+      const limit = getLimit();
+      directInp.classList.toggle('over', raw > limit);
+      if(maxRadio) maxRadio.checked = false;
+      if(clearBtn) clearBtn.classList.toggle('show', raw > 0);
+    });
+    directInp?.addEventListener('blur', () => {
+      directInp.classList.remove('over');
+      persist(parseWon(directInp.value)); // persist가 clamp 처리
+    });
 
     maxRadio?.addEventListener('click', applyMax);
     clearBtn?.addEventListener('click', clearMile);
     document.getElementById('useAllMileage')?.addEventListener('click', applyMax);
     document.getElementById('mileageReset')?.addEventListener('click', clearMile);
 
-    // 초기화 (limit 표시) + 세션 복원
+    // 초기화 + 세션 복원
     updateUI(0);
     const stored = Number(sessionStorage.getItem('bb_mileage_won') || 0);
     if(stored > 0) persist(stored);
