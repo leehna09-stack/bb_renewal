@@ -23,7 +23,7 @@
   .page-title { font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid #1A3C6E; }
 
   /* 2단 그리드 */
-  .bill-layout { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+  .bill-layout { display: grid; grid-template-columns: 7fr 3fr; gap: 28px; align-items: start; }
   .bill-main { min-width: 0; }
 
   /* ── 우측 비용 패널 ── */
@@ -63,11 +63,25 @@
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .payment-table th, .care-table th, .coupon-table th { background: #f5f7fa; border: 1px solid #dde1e7; padding: 10px 14px; text-align: left; font-weight: 500; color: #444; width: 160px; white-space: nowrap; vertical-align: middle; font-size: 13px; }
   .payment-table td, .care-table td, .coupon-table td { border: 1px solid #dde1e7; padding: 10px 14px; vertical-align: middle; font-size: 13px; }
-  .mileage-earn-line { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: #1A3C6E; font-size: 13px; font-weight: 500; }
-  .mileage-earn-line strong { color: #003b85; font-weight: 700; }
-  .mileage-earn-rate { color: #E8385A; font-weight: 700; }
-  .mileage-earn-badge { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border: 1px solid #ff9aaa; border-radius: 4px; background: #fff6f8; color: #E8385A; font-weight: 700; white-space: nowrap; }
-  .vip-badge { display: inline-flex; align-items: center; justify-content: center; height: 24px; min-width: 34px; padding: 0 8px; border-radius: 4px; background: #0b3b82; color: #fff; font-size: 12px; font-weight: 700; }
+  .member-badge { display: inline-flex; width:30px; align-items: center; justify-content: center; height: 18px; min-width: 32px; padding: 0 6px; border-radius: 3px; background: #0b3b82; color: #fff; font-size: 10px; font-weight: 700; vertical-align: middle; }
+  
+  /* 구매 혜택 패널 */
+  .benefit-panel { border: 1px solid #dde1e7; border-radius: 8px; overflow: hidden; margin-top: 6px; }
+  .benefit-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f8fafd; }
+  .benefit-panel-label { font-size: 13px; font-weight: 700; color: #333; }
+  .benefit-panel-max { font-size: 13px; font-weight: 700; color: #1A3C6E; }
+  .benefit-panel-max em { font-style: normal; color: #E8385A; }
+  .benefit-body { padding: 12px 16px 14px; }
+  .benefit-row { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; font-size: 13px; }
+  .benefit-row-lbl { color: #333; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+  .benefit-row-val { color: #333; font-weight: 600; white-space: nowrap; }
+  .benefit-sub { display: flex; align-items: center; justify-content: space-between; padding: 3px 0 3px 14px; font-size: 12px; }
+  .benefit-sub-lbl { color: #666; display: flex; align-items: center; gap: 5px; }
+  .benefit-sub-val { color: #444; }
+  .benefit-event-badge { display: inline-flex; width:30px; align-items: center; height: 17px; padding: 0 5px; border-radius: 3px; background: #E8385A; color: #fff; font-size: 10px; font-weight: 700; }
+  .benefit-help { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid #bbb; color: #888; font-size: 10px; font-weight: 700; cursor: help; line-height: 1; flex-shrink: 0; }
+  .benefit-divider { border: none; border-top: 1px solid #f0f0f0; margin: 8px 0; }
+  .benefit-note { font-size: 11px; color: #888; margin-top: 6px; line-height: 1.65; }
   .deposit-ui { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 8px; max-width: 362px; align-items: end; }
   .deposit-panel { background: transparent; }
   .dep-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 7px; }
@@ -90,21 +104,18 @@
   .dep-apply-btn.is-active { border: none; color: #fff; background: #cfd3d8; }
   /* ── 마일리지 모바일형 UI ── */
   .mob-mile-wrap { display: flex; flex-direction: column; gap: 10px; max-width: 362px; }
-  .mob-mile-top { display: flex; align-items: center; justify-content: space-between; }
-  .mob-mile-label { font-size: 13px; color: #444; display: inline-flex; align-items: center; gap: 5px; }
-  .mob-mile-help { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border: 1px solid #aaa; border-radius: 50%; font-size: 10px; color: #666; cursor: help; line-height: 1; }
-  .mob-mile-used { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #999; }
-  .mob-mile-used.is-active { color: #006BFF; }
-  .mob-mile-hold { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #666; }
+  .mob-mile-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .mob-mile-top-left { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+  .mob-mile-label { font-size: 13px; color: #222; display: inline-flex; align-items: center; white-space: nowrap; }
+  .mob-mile-max-btn { width: 70px; height: 30px; padding: 0 5px; border: 1px solid #bfc6d4; border-radius: 8px; background: #eef2ff; color: #43506a; font-family: 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
+  .mob-mile-max-btn.is-active { background: #d6d9df; border-color: #b6bac2; color: #666; }
+  .mob-mile-hold { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #666; padding-top: 2px; }
   .mob-mile-hold-val { font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #111; }
-  .mob-mile-row3 { display: flex; align-items: center; gap: 8px; }
-  .mob-mile-radio-lbl { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: #2F8CFF; cursor: pointer; white-space: nowrap; }
-  .mob-mile-radio-lbl input[type="radio"] { width: 14px; height: 14px; margin: 0; accent-color: #1A3C6E; cursor: pointer; }
-  .mob-mile-max-val { margin-left: auto; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #2F8CFF; white-space: nowrap; }
+  .mob-mile-note { font-size: 11px; color: #888; line-height: 1.6; }
   .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
   .mob-mile-clear-btn.show { display: inline-flex; }
-  .mob-mile-input-row { display:flex; align-items:center; gap:6px; border-bottom:1px solid #eee; padding:7px 0; }
-  .mob-mile-input-lbl { font-size:12px; color:#888; flex-shrink:0; }
+  .mob-mile-input-row { display:flex; align-items:center; gap:6px; width: 86px; height: 30px; padding: 0 10px; border:1px solid #d8dce2; border-radius:8px; background:#fff; }
+  .mob-mile-input-lbl { display:none; }
   .mob-mile-inp { flex:1; min-width:0; border:none; outline:none; font-family:'Roboto',sans-serif; font-size:14px; font-weight:500; color:#222; text-align:right; background:transparent; }
   .mob-mile-inp.over { color:#E8385A; }
   .mob-mile-inp-unit { font-size:13px; color:#555; flex-shrink:0; }
@@ -169,6 +180,21 @@
   .modal-body { max-height: 70vh; overflow-y: auto; padding: 20px; font-size: 13px; line-height: 1.8; color: #333; }
   .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
   .modal-body li { margin-bottom: 10px; }
+
+  /* ── 우측 패널 하단 적립 예정 블록 ── */
+  .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
+  .panel-earn-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px 8px; border-bottom: 1px solid #eef0f4; }
+  .panel-earn-label { font-size: 12px; font-weight: 700; color: #555; }
+  .panel-earn-max { font-size: 12px; font-weight: 700; color: #1A3C6E; }
+  .panel-earn-max em { font-style: normal; color: #E8385A; }
+  .panel-earn-body { padding: 8px 18px 12px; }
+  .panel-earn-body .benefit-row { padding: 3px 0; }
+  .panel-earn-body .benefit-sub { padding: 2px 0 2px 12px; }
+  /* 적립률 뱃지 */
+  .earn-rate-total { font-size: 10px; font-weight: 700; color: #1A3C6E; background: #e8eef8; padding: 1px 6px; border-radius: 3px; margin-left: 4px; }
+  .earn-badge { display: inline-flex; align-items: center; height: 16px; padding: 0 5px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .earn-badge-base { background: #e8eef8; color: #1A3C6E; }
+  .earn-badge-vip  { background: #fff0f3; color: #E8385A; }
 </style>
 </head>
 <body>
@@ -239,23 +265,13 @@
         </table>
       </div>
 
-      <div style="margin-bottom:20px; padding:14px 16px; border:1px solid #dde1e7; border-radius:8px; background:#F8FAFD;">
-        <div style="font-size:14px; color:#1A3C6E; font-weight:700; margin-bottom:6px;">마일리지 적립 예정</div>
-        <div class="mileage-earn-line">
-          <span>구매수수료 <strong>(800엔)</strong> 의 <span class="mileage-earn-rate">10%</span> 적립</span>
-          <span class="mileage-earn-badge">약 1,056 원 적립 예정</span>
-          <span class="vip-badge">VIP</span>
-        </div>
-        <div class="coupon-note">※ 적립 마일리지는 물품이 현지에 도착한 날을 기준으로 익월 1일에 자동 지급됩니다.</div>
-      </div>
-
       <!-- 결제정보 확인 -->
       <div class="section">
         <div class="section-title">결제정보 확인 <font color="red">*</font></div>
         <table class="payment-table">
           <tbody>
             <tr>
-              <th>전체 금액</th>
+              <th>청구 금액</th>
               <td><span class="amount-total" id="txtTotalWon">14,400 원</span></td>
             </tr>
             <tr>
@@ -305,9 +321,11 @@
           <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
           <div>
             <strong style="color:#7A5500; display:block; margin-bottom:3px;">관·부가세 안내</strong>
-            목록통관 대상 물품의 경우, 물품가액이 $150(미국발은 $200) 이하인 경우 면세이며,
-            물품가액이 <strong>$150 초과 시 과세기준액(물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비)을 기준</strong>으로 관세 및 부가세가 부과됩니다.
-            <span style="color:#885500; font-size:12px; display:block; margin-top:2px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용되어 관세 및 부가세가 부과됩니다.</span>
+            [과세 기준] 물품가액이 $150 초과 시, 과세가격을 기준으로 관세 및 부가세가 부과됩니다.
+            <br>※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)
+<br>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
+<br>※ 사업자 통관 = 사업자 판매 목적 수입은 물품가와 무관하게 일반통관이 적용
+            <br>
             <a href="#" style="font-size:12px; color:#C47D00; text-decoration:underline; margin-top:2px; display:inline-block;">이용가이드 자세히 보기 ›</a>
           </div>
         </div>
@@ -355,32 +373,32 @@
           <span class="fee-row-val">0 엔</span>
         </div>
 
+        <!-- 예치금 차감 (사용 시에만 노출) -->
+        <div class="fee-row fee-row-deposit" id="panelDepositRow" style="display:none;">
+          <span class="fee-row-label" style="color:#E8385A;">예치금 사용</span>
+          <span class="fee-row-val" style="color:#E8385A; font-weight:700;">− <span id="panelDepositWon">0</span>원</span>
+        </div>
+
         <!-- 마일리지 (패널 내 모바일형 UI) -->
         <div style="padding:10px 18px; border-top:1px solid #dde1e7; border-bottom:1px solid #f0f2f5;">
           <div class="mob-mile-wrap" style="max-width:100%;">
             <div class="mob-mile-top">
-              <span class="mob-mile-label">마일리지 <span class="mob-mile-help" title="마일리지는 구매수수료의 50%까지 사용 가능합니다.">?</span></span>
-              <span class="mob-mile-used" id="mileageUsedDisp">0원</span>
+              <div class="mob-mile-top-left">
+                <span class="mob-mile-label">마일리지</span>
+                <button class="mob-mile-max-btn" id="mileageMaxBtn" type="button">최대 사용</button>
+              </div>
+              <div class="mob-mile-input-row">
+                <span class="mob-mile-input-lbl">사용</span>
+                <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
+                <span class="mob-mile-inp-unit">원</span>
+                <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
+              </div>
             </div>
             <div class="mob-mile-hold">
               <span>보유 마일리지</span>
               <span class="mob-mile-hold-val"><strong id="availableMileage">58,961</strong> 원</span>
             </div>
-            <!-- Row 3: 직접 입력 -->
-            <div class="mob-mile-input-row">
-              <span class="mob-mile-input-lbl">사용</span>
-              <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
-              <span class="mob-mile-inp-unit">원</span>
-              <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
-            </div>
-            <!-- Row 4: 최대 사용 라디오 -->
-            <div class="mob-mile-row3">
-              <label class="mob-mile-radio-lbl">
-                <input type="radio" id="mileageMaxRadio" name="mileageApply">
-                <span>최대 사용 마일리지</span>
-              </label>
-              <span class="mob-mile-max-val" id="mileageMaxAmount">0 원</span>
-            </div>
+            <p class="mob-mile-note">마일리지는 구매수수료의 50%까지 사용 가능합니다.</p>
           </div>
           <!-- 숨김 헬퍼: 원래 보유량 기준값 -->
           <span id="mileageAvailOrig" style="display:none">58,961</span>
@@ -396,6 +414,29 @@
         <div class="fee-row fee-row-total">
           <span class="fee-row-label">총 결제금액</span>
           <span class="fee-row-val" id="panelTotal">19,200원</span>
+        </div>
+
+        <!-- 구매 혜택: 마일리지 적립 예정 -->
+        <div class="panel-earn">
+          <div class="panel-earn-head">
+            <span class="panel-earn-label">마일리지 적립 예정</span>
+            <span class="panel-earn-max">최대 <em><span id="earnGrandTotal">1,056</span>원</em></span>
+          </div>
+          <div class="panel-earn-body">
+            <div class="benefit-row">
+              <span class="benefit-row-lbl" style="font-size:12px;">구매수수료 적립 <span class="earn-rate-total">10%</span></span>
+              <span class="benefit-row-val" style="font-size:12px;">총 <span id="earnFeeTotal">768</span>원</span>
+            </div>
+            <div class="benefit-sub">
+              <span class="benefit-sub-lbl">기본 적립 <span class="earn-badge earn-badge-base">2%</span></span>
+              <span class="benefit-sub-val"><span id="earnFeeWon">154</span>원</span>
+            </div>
+            <div class="benefit-sub">
+              <span class="benefit-sub-lbl">VIP 추가 적립 <span class="earn-badge earn-badge-vip">+8%</span></span>
+              <span class="benefit-sub-val"><span id="earnEventWon">614</span>원</span>
+            </div>
+            <p class="benefit-note" style="margin-top:8px;">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -449,15 +490,35 @@
 
     document.getElementById('panelSubtotal').textContent=formatWon(subtotalYen)+' 엔';
     document.getElementById('panelRate').textContent=r;
-    document.getElementById('panelTotal').textContent=formatWon(totalWon)+'원';
-
 
     const baseWon=Math.floor(baseYen*r);
     const depWon=parseWon(document.getElementById('depositInput')?.value||0);
     const payWon=Math.max(totalWon-depWon,0);
+
+    // 우측 패널 예치금 행 표시/숨김
+    const depRow=document.getElementById('panelDepositRow');
+    const depValEl=document.getElementById('panelDepositWon');
+    if(depRow){depRow.style.display=depWon>0?'flex':'none';}
+    if(depValEl)depValEl.textContent=formatWon(depWon);
+
+    // 총 결제금액 = 환산금액 - 예치금
+    document.getElementById('panelTotal').textContent=formatWon(payWon)+'원';
+
     const tw=document.getElementById('txtTotalWon');if(tw)tw.textContent=formatWon(baseWon)+' 원';
     const tp=document.getElementById('txtPayWon');if(tp)tp.textContent=formatWon(payWon)+' 원';
     const tf=document.getElementById('txtFormula');if(tf)tf.textContent=`${formatWon(subtotalYen)} 엔 × ${r} 원 =`;
+
+    // 구매 혜택 — 마일리지 적립 예정 업데이트
+    // 총 적립률 10%(VIP), 기본 2%, VIP 추가 = 10% - 2% = 8%
+    const ab       = agencyBase();
+    const feeTotal = Math.floor(ab * 0.10 * r);          // 총 적립 (10%)
+    const baseEarn = Math.floor(ab * 0.02 * r);          // 기본 적립 (2%)
+    const vipEarn  = feeTotal - baseEarn;                // VIP 추가 적립 (8%)
+    const el=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+    el('earnFeeWon',    formatWon(baseEarn));   // 기본 2%
+    el('earnEventWon',  formatWon(vipEarn));    // VIP +8%
+    el('earnFeeTotal',  formatWon(feeTotal));   // 합계 10%
+    el('earnGrandTotal',formatWon(feeTotal));
 
   };
 
@@ -492,9 +553,7 @@
   (() => {
     const availEl    = document.getElementById('availableMileage');  // <strong> — 잔액 표시
     const origEl     = document.getElementById('mileageAvailOrig');   // 원래 보유량
-    const usedDisp   = document.getElementById('mileageUsedDisp');
-    const maxAmtEl   = document.getElementById('mileageMaxAmount');
-    const maxRadio   = document.getElementById('mileageMaxRadio');
+    const maxBtn     = document.getElementById('mileageMaxBtn');
     const clearBtn   = document.getElementById('mileageClearBtn');
     const directInp  = document.getElementById('mileageDirectInput');
     if(!availEl) return;
@@ -503,13 +562,8 @@
 
     const updateUI = (usedWon) => {
       const limit = getLimit();
-      if(maxAmtEl) maxAmtEl.textContent = formatWon(limit) + ' 원';
-      if(usedDisp){
-        usedDisp.textContent = usedWon > 0 ? `-${formatWon(usedWon)}원` : '0원';
-        usedDisp.classList.toggle('is-active', usedWon > 0);
-      }
       if(availEl) availEl.textContent = formatWon(Math.max(MILE_AVAIL - usedWon, 0));
-      if(maxRadio) maxRadio.checked = usedWon > 0 && usedWon >= limit;
+      if(maxBtn) maxBtn.classList.toggle('is-active', usedWon > 0 && usedWon >= limit);
       if(clearBtn) clearBtn.classList.toggle('show', usedWon > 0);
       // 직접 입력 필드 동기화 (포커스 중일 때는 건드리지 않음)
       if(directInp && document.activeElement !== directInp)
@@ -535,7 +589,7 @@
       const raw = parseWon(directInp.value);
       const limit = getLimit();
       directInp.classList.toggle('over', raw > limit);
-      if(maxRadio) maxRadio.checked = false;
+      if(maxBtn) maxBtn.classList.remove('is-active');
       if(clearBtn) clearBtn.classList.toggle('show', raw > 0);
     });
     directInp?.addEventListener('blur', () => {
@@ -543,7 +597,7 @@
       persist(parseWon(directInp.value)); // persist가 clamp 처리
     });
 
-    maxRadio?.addEventListener('click', applyMax);
+    maxBtn?.addEventListener('click', applyMax);
     clearBtn?.addEventListener('click', clearMile);
     document.getElementById('useAllMileage')?.addEventListener('click', applyMax);
     document.getElementById('mileageReset')?.addEventListener('click', clearMile);

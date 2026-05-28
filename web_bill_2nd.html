@@ -804,7 +804,7 @@
   }
 
   /* ── 2:1 그리드 레이아웃 ── */
-  .bill-layout { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+  .bill-layout { display: grid; grid-template-columns: 7fr 3fr; gap: 28px; align-items: start; }
   .bill-main { min-width: 0; }
 
   /* ── 우측 결제 비용 패널 ── */
@@ -830,6 +830,16 @@
   .fee-row-total { background: #f0f4fb; border-top: 2px solid #1A3C6E !important; padding: 16px 18px; }
   .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
   .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
+  .fee-row-toggle { cursor: pointer; }
+  .fee-row-toggle .fee-row-label { display: inline-flex; align-items: center; gap: 6px; }
+  .fee-toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 0; background: transparent; color: #7b8490; cursor: pointer; padding: 0; }
+  .fee-toggle-btn i { font-size: 12px; transition: transform .18s ease; }
+  .fee-toggle-btn[aria-expanded="true"] i { transform: rotate(180deg); }
+  .fee-extra-detail { display: none; padding: 10px 18px 12px 34px; border-bottom: 1px solid #f0f2f5; background: #fbfcfe; }
+  .fee-extra-detail.is-open { display: block; }
+  .fee-extra-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: #666; }
+  .fee-extra-item strong { font-family: 'Roboto', sans-serif; font-size: 12px; color: #222; }
+  .fee-extra-item strong.is-active { color: #E8385A; }
   .panel-coupon-btn { height: 28px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 4px; background: #fff; color: #1A3C6E; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-coupon-btn:hover { background: #1A3C6E; color: #fff; }
   .panel-coupon-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
@@ -943,7 +953,7 @@
             </span>
           </th>
           <td class="paid-option-choice">
-            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="200">
+            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="200" data-panel-detail="panelDetailCare">
               <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
               <span class="option-toggle-text">신청</span>
             </button>
@@ -951,19 +961,17 @@
               <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
               <ul>
                 <li>안심 케어 가입 송장건에 한해 최대 20만원 까지 보상이 적용됩니다.</li>
-                <li>선택한 송장 건의 물품 총액을 기준으로 보상됩니다.
-</li>
+                <li>선택한 송장 건의 물품 총액을 기준으로 보상됩니다.</li>
               </ul>
               <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
               <ul>
                 <li><strong class="bold-red">파손보상 불가 품목</strong>은 안심 케어 가입이 불가합니다.</li>
                 <li>전체 물품중 파손보상 불가 품목이 포함된 경우, <strong class="bold-red">해당 품목을 제외하고 보상이 적용됩니다.</strong></li>
                 <li>미가입시 파손 물품에 대해 보상이 불가 합니다.</li>
-
               </ul>
               <button class="paid-option-detail" type="button">파손보상 불가 품목 보기</button>
             </div>
-          </td>          
+          </td>
         </tr>
 
       </tbody>
@@ -1029,10 +1037,11 @@
       <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
       <div>
         <strong style="color:#7A5500; display:block; margin-bottom:3px;">관·부가세 안내</strong>
-        목록통관 대상 물품의 경우, 물품가액이 $150(미국발은 $200) 이하인 경우 면세이며,
-        물품가액이 <strong>$150 초과 시 과세기준액(물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비)을 기준</strong>으로 관세 및 부가세가 부과됩니다.
-        <span style="color:#885500; font-size:12px; display:block; margin-top:2px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용되어 관세 및 부가세가 부과됩니다.</span>
-        <a href="#" style="font-size:12px; color:#C47D00; text-decoration:underline; margin-top:2px; display:inline-block;">이용가이드 자세히 보기 ›</a>
+        [과세 기준] 물품가액이 $150 초과 시, 과세가격을 기준으로 관세 및 부가세가 부과됩니다.
+<br>※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)
+<br>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
+<br>※ 사업자 통관 = 사업자 판매 목적 수입은 물품가와 무관하게 일반통관이 적용
+        <br><a href="#" style="font-size:12px; color:#C47D00; text-decoration:underline; margin-top:2px; display:inline-block;">이용가이드 자세히 보기 ›</a>
       </div>
     </div>
     <hr style="border:none; border-top:1px dashed rgba(122,85,0,.28); margin:12px 0;">
@@ -1082,10 +1091,7 @@
         </span>
         <span class="fee-row-val">0 엔</span>
       </div>
-      <div class="fee-row">
-        <span class="fee-row-label">배송추가비용</span>
-        <span class="fee-row-val" id="panelExtraYen">0 엔</span>
-      </div>
+
       <div class="fee-row">
         <span class="fee-row-label">
           국제운송료
@@ -1096,6 +1102,42 @@
         </span>
         <span class="fee-row-val">2,350 엔</span>
       </div>
+      <div class="fee-row fee-row-toggle" id="panelExtraToggleRow">
+        <span class="fee-row-label">추가비용</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;">
+          <span class="fee-row-val" id="panelExtraYen">0 엔</span>
+          <button class="fee-toggle-btn" type="button" id="panelExtraToggleBtn" aria-expanded="false" aria-controls="panelExtraDetail">
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </span>
+      </div>
+      <div class="fee-extra-detail" id="panelExtraDetail">
+        <div class="fee-extra-item" id="panelDetailCare" style="display:none;">
+          <span>안심 케어</span>
+          <strong id="panelExtraCareYen" class="is-active">200 엔</strong>
+        </div>
+        <div class="fee-extra-item" id="panelDetailCarePlus" style="display:none;">
+          <span>안심 케어 플러스</span>
+          <strong id="panelExtraCarePlusYen" class="is-active">400 엔</strong>
+        </div>
+        <div class="fee-extra-item" id="panelDetailStorage" style="display:none;">
+          <span>창고 보관료</span>
+          <strong id="panelExtraStorageYen" class="is-active">100 엔</strong>
+        </div>
+        <div class="fee-extra-item" id="panelDetailPacking" style="display:none;">
+          <span>포장비</span>
+          <strong id="panelExtraPackingYen" class="is-active">150 엔</strong>
+        </div>
+        <div class="fee-extra-item" id="panelDetailPallet" style="display:none;">
+          <span>팔렛트</span>
+          <strong id="panelExtraPalletYen" class="is-active">500 엔</strong>
+        </div>
+        <div class="fee-extra-item" id="panelDetailJpShip" >
+          <span>일본내 배송수수료</span>
+          <strong id="panelExtraJpShipYen" class="is-active">1,000 엔</strong>
+        </div>
+      </div>
+      
       <div class="fee-row fee-row-coupon" style="border-top:1px solid #dde1e7;">
         <span class="fee-row-label">쿠폰</span>
         <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
@@ -1284,6 +1326,30 @@
   })();
 
   (() => {
+    const toggleRow = document.getElementById('panelExtraToggleRow');
+    const toggleBtn = document.getElementById('panelExtraToggleBtn');
+    const detail = document.getElementById('panelExtraDetail');
+    if (!toggleRow || !toggleBtn || !detail) return;
+
+    const syncOpen = (isOpen) => {
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      detail.classList.toggle('is-open', isOpen);
+    };
+
+    const onToggle = () => {
+      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+      syncOpen(!isOpen);
+    };
+
+    toggleBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      onToggle();
+    });
+    toggleRow.addEventListener('click', onToggle);
+    syncOpen(false);
+  })();
+
+  (() => {
     const modal = document.getElementById('couponModal');
     const title = document.getElementById('couponModalTitle');
     const closeBtn = document.getElementById('couponModalClose');
@@ -1422,7 +1488,8 @@
       const rate = 9.6;
       const baseTotalYen = 3845;
       const fmt = (n) => n.toLocaleString('ko-KR');
-      const paidOptionYen = Array.from(document.querySelectorAll('.option-toggle[aria-pressed="true"]'))
+      const fixedExtraYen = 1000; /* 일본내 배송수수료 고정 청구 */
+      const paidOptionYen = fixedExtraYen + Array.from(document.querySelectorAll('.option-toggle[aria-pressed="true"]'))
         .reduce((sum, toggle) => sum + (Number(toggle.dataset.paidOptionYen) || 0), 0);
       const totalYen = baseTotalYen + paidOptionYen;
       const totalWon = Math.round(totalYen * rate);
@@ -1454,10 +1521,16 @@
       // 우측 패널 업데이트
       const panelExtra = document.getElementById('panelExtraYen');
       if (panelExtra) {
-        panelExtra.textContent = `${fmt(paidOptionYen)} 엔`;
+        panelExtra.textContent = paidOptionYen > 0 ? `${fmt(paidOptionYen)} 엔` : '0 엔';
         panelExtra.style.color = paidOptionYen > 0 ? '#E8385A' : '';
         panelExtra.style.fontWeight = paidOptionYen > 0 ? '700' : '';
       }
+      /* 안심케어 패널 행 표시/숨김 (토글 연동) */
+      document.querySelectorAll('.option-toggle[data-panel-detail]').forEach((toggle) => {
+        const detailId = toggle.dataset.panelDetail;
+        const detailRow = document.getElementById(detailId);
+        if (detailRow) detailRow.style.display = toggle.getAttribute('aria-pressed') === 'true' ? 'flex' : 'none';
+      });
       const panelSubtotal = document.getElementById('panelSubtotal');
       if (panelSubtotal) panelSubtotal.textContent = `${fmt(totalYen)} 엔`;
       const panelTotal = document.getElementById('panelTotal');

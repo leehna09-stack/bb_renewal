@@ -801,6 +801,50 @@ select:focus-visible {
 }
 .card-timer:empty::before { content: '\00a0'; }
 .card-bids  { font-size: 10px; color: var(--muted); }
+.card-store {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+  min-height: 18px;
+}
+.store-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.store-badge.rakuten {
+  background: #fff1f1;
+  color: #bf1e2d;
+  border: 1px solid rgba(191, 30, 45, .18);
+}
+.store-badge.mercari {
+  background: #fff4e8;
+  color: #f06a00;
+  border: 1px solid rgba(240, 106, 0, .18);
+}
+.store-badge.yahoo {
+  background: #eef4ff;
+  color: #1a4fa3;
+  border: 1px solid rgba(26, 79, 163, .16);
+}
+.store-name {
+  min-width: 0;
+  color: #6a6f7b;
+  font-size: 10px;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* ══════════════════════════════
    ★ 필터 바텀시트
@@ -1165,16 +1209,7 @@ select:focus-visible {
         검색
       </button>
     </form>
-    <div class="platform-tabs">
-      <button class="ptab active">야후 옥션</button>
-      <button class="ptab">메루카리</button>
-      <button class="ptab">라쿠텐</button>
-      <button class="ptab">라쿠마</button>
-      <button class="ptab">야후 쇼핑</button>
-      <button class="ptab">일본 아마존</button>
-      <button class="ptab">영국 이베이</button>
-      <button class="ptab">미국 이베이</button>
-    </div>
+
   </header>
 
   <div class="search-popup-root" data-search-popup aria-hidden="true">
@@ -1198,7 +1233,7 @@ select:focus-visible {
   <!-- 필터 탭 슬라이드 버튼 -->
   <div class="cat-section">
     <div class="cat-controls" aria-label="필터 탭 선택">
-      <button class="cat-chip has-dot" id="marketFilterButton" type="button" onclick="openFilterSheetFromCat('store')">전체 검색</button>
+      <button class="cat-chip has-dot" id="marketFilterButton" type="button" onclick="openFilterSheetFromCat('store')">스토어 선택</button>
       <button class="cat-chip has-arrow" id="categoryChip" data-filter-chip="category" type="button" onclick="openFilterSheetFromCat('category')">카테고리</button>
       <button class="cat-chip has-arrow" data-filter-chip="price" type="button" onclick="openFilterSheetFromCat('price')">가격</button>
       <button class="cat-chip has-arrow" data-filter-chip="brand" type="button" onclick="openFilterSheetFromCat('brand')">브랜드</button>
@@ -1247,6 +1282,10 @@ select:focus-visible {
             <span class="card-timer">2시간 34분</span>
             <span class="card-bids">입찰 3</span>
           </div>
+          <div class="card-store">
+            <span class="store-badge yahoo">Y</span>
+            <span class="store-name">야후 옥션</span>
+          </div>
         </div>
       </div>
       <div class="product-card">
@@ -1260,6 +1299,10 @@ select:focus-visible {
           <div class="card-meta">
             <span class="card-timer">5시간 12분</span>
             <span class="card-bids">입찰 7</span>
+          </div>
+          <div class="card-store">
+            <span class="store-badge mercari">M</span>
+            <span class="store-name">메루카리</span>
           </div>
         </div>
       </div>
@@ -1276,6 +1319,10 @@ select:focus-visible {
             <span class="card-timer"></span>
             <span class="card-bids">무료배송</span>
           </div>
+          <div class="card-store">
+            <span class="store-badge rakuten">R</span>
+            <span class="store-name">일본 라쿠텐</span>
+          </div>
         </div>
       </div>
       <div class="product-card">
@@ -1289,6 +1336,10 @@ select:focus-visible {
           <div class="card-meta">
             <span class="card-timer">1시간 5분 22초</span>
             <span class="card-bids">입찰 24</span>
+          </div>
+          <div class="card-store">
+            <span class="store-badge yahoo">Y</span>
+            <span class="store-name">야후 옥션</span>
           </div>
         </div>
       </div>
@@ -1304,6 +1355,10 @@ select:focus-visible {
             <span class="card-timer">22시간 11분 5초</span>
             <span class="card-bids">입찰 2</span>
           </div>
+          <div class="card-store">
+            <span class="store-badge rakuten">R</span>
+            <span class="store-name">일본 라쿠텐</span>
+          </div>
         </div>
       </div>
       <div class="product-card">
@@ -1318,6 +1373,10 @@ select:focus-visible {
           <div class="card-meta">
             <span class="card-timer"></span>
             <span class="card-bids">무료배송</span>
+          </div>
+          <div class="card-store">
+            <span class="store-badge mercari">M</span>
+            <span class="store-name">메루카리</span>
           </div>
         </div>
       </div>
@@ -1337,6 +1396,7 @@ select:focus-visible {
   </div>
 
   <div class="filter-tabs" role="tablist" aria-label="필터 탭">
+    <button class="filter-tab active" type="button" role="tab" data-filter-tab="store" onclick="switchFilterTab('store')">스토어</button>
     <button class="filter-tab active" type="button" role="tab" data-filter-tab="category" onclick="switchFilterTab('category')">카테고리</button>
     <button class="filter-tab" type="button" role="tab" data-filter-tab="price" onclick="switchFilterTab('price')">가격</button>
     <button class="filter-tab" type="button" role="tab" data-filter-tab="brand" onclick="switchFilterTab('brand')">브랜드</button>
@@ -1696,7 +1756,7 @@ function syncMarketButtonLabel() {
   if (!button) return;
   syncAllMarketState();
   if (selected.length === 0) {
-    button.textContent = '전체 검색';
+    button.textContent = '스토어 검색';
     button.classList.remove('active');
     button.classList.remove('has-filter');
     return;

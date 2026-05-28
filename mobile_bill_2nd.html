@@ -176,6 +176,16 @@
   .deposit-warn { display:none; font-size:11px; color:var(--red); margin-top:5px; }
   .deposit-warn.show { display:block; }
 
+  /* 배송추가비용 펼침 */
+  .extra-toggle-row { cursor:pointer; user-select:none; }
+  .extra-cost-right { display:inline-flex; align-items:center; gap:6px; }
+  .extra-arrow { font-size:11px; color:#aaa; transition:transform .18s ease; }
+  .extra-arrow.open { transform:rotate(180deg); }
+  .extra-detail-panel { display:none; background:#fbfcfe; border-bottom:1px solid var(--border); padding:8px 16px 10px 20px; }
+  .extra-detail-panel.open { display:block; }
+  .extra-detail-item { display:flex; justify-content:space-between; font-size:12px; color:#666; padding:3px 0; }
+  .extra-detail-item .extra-detail-val { font-family:'Roboto',sans-serif; color:var(--red); font-weight:600; }
+
   /* 결제하실 금액 */
   .pay-amount-row { padding:14px 16px; border-bottom:1px solid var(--border); }
   .pay-amount-formula { font-size:12px; color:var(--text-hint); }
@@ -277,11 +287,11 @@
         <div class="option-price">+ 200엔</div>
       </div>
       <div class="toggle-wrap">
-        <div class="toggle-track on" id="careTrack" onclick="toggleCare()"><div class="toggle-thumb"></div></div>
-        <span class="toggle-text on" id="careText">신청</span>
+        <div class="toggle-track on" id="opt_care_track" onclick="toggleOption('care')"><div class="toggle-thumb"></div></div>
+        <span class="toggle-text on" id="opt_care_text">신청</span>
       </div>
     </div>
-    <div class="option-body" id="careOptionBody">
+    <div class="option-body" id="opt_care_body">
       🛡 <strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong>
       <ul style="padding-left:16px;margin-top:6px;font-size:12px;line-height:1.8;">
         <li>가입 송장건에 한해 <strong>최대 20만원까지</strong> 보상이 적용됩니다.</li>
@@ -323,9 +333,20 @@
     </span>
     <span class="fee-row-val">0 엔</span>
   </div>
-  <div class="fee-row">
+  <div class="fee-row extra-toggle-row" onclick="toggleExtraDetail()">
     <span class="fee-row-label">배송추가비용</span>
-    <span class="fee-row-val" id="extraCostVal">—</span>
+    <span class="extra-cost-right">
+      <span class="fee-row-val" id="extraCostVal">—</span>
+      <i class="fa-solid fa-chevron-down extra-arrow" id="extraArrow"></i>
+    </span>
+  </div>
+  <div class="extra-detail-panel" id="extraDetailPanel">
+    <div class="extra-detail-item" id="detailCare" style="display:none"><span>안심 케어</span><span class="extra-detail-val">200 엔</span></div>
+    <div class="extra-detail-item" id="detailCarePlus" style="display:none"><span>안심 케어 플러스</span><span class="extra-detail-val">400 엔</span></div>
+    <div class="extra-detail-item" id="detailStorage" style="display:none"><span>창고 보관료</span><span class="extra-detail-val">100 엔</span></div>
+    <div class="extra-detail-item" id="detailPacking" style="display:none"><span>포장비</span><span class="extra-detail-val">150 엔</span></div>
+    <div class="extra-detail-item" id="detailPallet" style="display:none"><span>팔렛트</span><span class="extra-detail-val">500 엔</span></div>
+    <div class="extra-detail-item" id="detailJpShip"><span>일본내 배송수수료</span><span class="extra-detail-val">1,000 엔</span></div>
   </div>
   <div class="fee-row">
     <span class="fee-row-label">
@@ -521,13 +542,25 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
 });
 
 const fmt = n => Number(n).toLocaleString('ko-KR');
-const BASE_YEN  = 3845;   /* 안심케어 미신청 기준 총액 */
-const CARE_YEN  = 200;    /* 안심케어 추가 금액 */
+const BASE_YEN  = 3845;
 const RATE      = 9.6;
 const DEP_AVAIL = 25840;
 let couponDiscWon   = 0;
 let selectedPayMethod = '';
-let careActive      = true;
+
+/* 유료 옵션 (안심케어만 토글, 나머지는 고정 금액) */
+const OPTIONS = [
+  { id:'care',    yen:200, trackId:'opt_care_track', textId:'opt_care_text', bodyId:'opt_care_body', detailId:'detailCare',    active:true  },
+  { id:'carePlus',yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailCarePlus', active:false },
+  { id:'storage', yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailStorage',  active:false },
+  { id:'packing', yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailPacking',  active:false },
+  { id:'pallet',  yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailPallet',   active:false },
+  { id:'jpShip',  yen:1000, trackId:null, textId:null, bodyId:null,            detailId:'detailJpShip',   active:true  },
+];
+
+function getTotalOptionYen() {
+  return OPTIONS.reduce((s, o) => s + (o.active ? o.yen : 0), 0);
+}
 
 /* ── 쿠폰 버튼 상태 동기화 ── */
 function syncCouponBtn() {
@@ -548,52 +581,79 @@ function syncCouponBtn() {
   }
 }
 
+/* ── 옵션 UI 동기화 ── */
+function syncOptionUI(opt) {
+  const track = document.getElementById(opt.trackId);
+  const text  = document.getElementById(opt.textId);
+  const body  = opt.bodyId ? document.getElementById(opt.bodyId) : null;
+  if (track) track.classList.toggle('on', opt.active);
+  if (text) {
+    text.textContent = opt.active ? '신청' : '미신청';
+    text.classList.toggle('on', opt.active);
+  }
+  if (body) body.classList.toggle('is-collapsed', !opt.active);
+}
+
+function syncAllOptions() {
+  OPTIONS.forEach(syncOptionUI);
+}
+
+function toggleOption(id) {
+  const opt = OPTIONS.find(o => o.id === id);
+  if (!opt) return;
+  opt.active = !opt.active;
+  syncOptionUI(opt);
+  render();
+}
+
+/* ── 배송추가비용 패널 펼침 ── */
+function toggleExtraDetail() {
+  const panel  = document.getElementById('extraDetailPanel');
+  const arrow  = document.getElementById('extraArrow');
+  if (!panel) return;
+  const isOpen = panel.classList.toggle('open');
+  if (arrow) arrow.classList.toggle('open', isOpen);
+}
+
 /* ── 금액 렌더 ── */
 function render() {
-  const totalYen  = BASE_YEN + (careActive ? CARE_YEN : 0);
+  const optYen    = getTotalOptionYen();
+  const totalYen  = BASE_YEN + optYen;
   const totalWon  = Math.round(totalYen * RATE);
   const finalWon  = Math.max(totalWon - couponDiscWon, 0);
   const depWon    = Number(String(document.getElementById('depInp').value).replace(/[^\d]/g,'')) || 0;
   const netWon    = Math.max(finalWon - depWon, 0);
 
-  /* 배송추가비용 */
+  /* 배송추가비용 행 */
   const extraCostVal = document.getElementById('extraCostVal');
-  extraCostVal.textContent = careActive ? `${fmt(CARE_YEN)} 엔` : '—';
-  extraCostVal.classList.toggle('is-care-added', careActive);
+  if (extraCostVal) {
+    extraCostVal.textContent = optYen > 0 ? `${fmt(optYen)} 엔` : '—';
+    extraCostVal.classList.toggle('is-care-added', optYen > 0);
+  }
+  /* 배송추가비용 펼침 패널 개별 항목 */
+  OPTIONS.forEach(opt => {
+    const row = document.getElementById(opt.detailId);
+    if (row) row.style.display = opt.active ? 'flex' : 'none';
+  });
+
   /* 총액 */
   document.getElementById('totalYenVal').textContent  = `${fmt(totalYen)} 엔`;
-  /* 총 결제금액 (쿠폰 할인 반영) */
+  /* 총 결제금액 */
   document.getElementById('mobCellTotal').textContent = `${fmt(finalWon)}원`;
   /* 결제정보 */
   document.getElementById('mobTotalWon').textContent  = `${fmt(totalWon)} 원`;
   const formula = document.getElementById('mobFormula');
-  if (depWon > 0) {
-    formula.innerHTML = `${fmt(finalWon)} 원 - 예치금 ${fmt(depWon)} 원 = <strong>${fmt(netWon)} 원</strong>`;
-  } else {
-    formula.innerHTML = `${fmt(totalYen)} 엔 × ${RATE} 원 = <strong>${fmt(finalWon)} 원</strong>`;
+  if (formula) {
+    if (depWon > 0) {
+      formula.innerHTML = `${fmt(finalWon)} 원 - 예치금 ${fmt(depWon)} 원 = <strong>${fmt(netWon)} 원</strong>`;
+    } else {
+      formula.innerHTML = `${fmt(totalYen)} 엔 × ${RATE} 원 = <strong>${fmt(finalWon)} 원</strong>`;
+    }
   }
 }
-syncCareUI();
+
+syncAllOptions();
 render();
-
-/* ── 안심케어 토글 ── */
-function syncCareUI() {
-  const track = document.getElementById('careTrack');
-  const text = document.getElementById('careText');
-  const body = document.getElementById('careOptionBody');
-  track?.classList.toggle('on', careActive);
-  if (text) {
-    text.textContent = careActive ? '신청' : '미신청';
-    text.classList.toggle('on', careActive);
-  }
-  body?.classList.toggle('is-collapsed', !careActive);
-}
-
-function toggleCare() {
-  careActive = !careActive;
-  syncCareUI();
-  render();
-}
 
 /* ── 예치금 ── */
 let depFull = false;

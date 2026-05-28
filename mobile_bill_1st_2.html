@@ -165,6 +165,29 @@
   .pay-section { background:var(--card); margin-bottom:8px; }
   .pay-section-title { font-size:14px; font-weight:700; color:var(--navy); padding:16px 16px 0; display:flex; align-items:center; gap:4px; }
   .pay-section-title .req { color:var(--red); font-size:13px; }
+  /* 구매 혜택 패널 */
+  .benefit-panel { border:none; border-radius:0; overflow:hidden; margin-top:4px; }
+  .benefit-panel-head { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; background:#f8fafd; }
+  .benefit-panel-label { font-size:13px; font-weight:700; color:#333; }
+  .benefit-panel-max { font-size:13px; font-weight:700; color:var(--navy); }
+  .benefit-panel-max em { font-style:normal; color:var(--red); }
+  .benefit-body { padding:10px 14px 13px; }
+  .benefit-row { display:flex; align-items:center; justify-content:space-between; padding:5px 0; font-size:13px; }
+  .benefit-row-lbl { color:#333; font-weight:600; display:flex; align-items:center; gap:5px; }
+  .benefit-row-val { color:#333; font-weight:600; white-space:nowrap; }
+  .benefit-sub { display:flex; align-items:center; justify-content:space-between; padding:3px 0 3px 12px; font-size:12px; }
+  .benefit-sub-lbl { color:#666; display:flex; align-items:center; gap:5px; }
+  .benefit-sub-val { color:#444; }
+  .member-badge { display:inline-flex; width:30px; align-items:center; height:17px; padding:0 5px; border-radius:3px; background:var(--navy); color:#fff; font-size:10px; font-weight:700; }
+  .benefit-event-badge { display:inline-flex; width:30px; align-items:center; height:17px; padding:0 5px; border-radius:3px; background:var(--red); color:#fff; font-size:10px; font-weight:700; }
+  .benefit-help { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; border:1px solid #bbb; color:#888; font-size:10px; font-weight:700; cursor:help; flex-shrink:0; }
+  .benefit-divider { border:none; border-top:1px solid #f0f0f0; margin:7px 0; }
+  .benefit-note { font-size:11px; color:#888; margin-top:5px; line-height:1.65; }
+  /* 적립률 뱃지 */
+  .earn-rate-total { font-size:10px; font-weight:700; color:var(--navy); background:#e8eef8; padding:1px 6px; border-radius:3px; margin-left:3px; }
+  .earn-badge { display:inline-flex; align-items:center; height:16px; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
+  .earn-badge-base { background:#e8eef8; color:var(--navy); }
+  .earn-badge-vip  { background:#fff0f3; color:var(--red); }
 
     /* 카드 */
   .card { background:var(--card); margin-bottom:8px; padding:16px; }
@@ -205,10 +228,11 @@
   .deposit-warn { display:none; font-size:11px; color:var(--red); margin-top:5px; }
   .deposit-warn.show { display:block; }
 
-  /* 결제? 실 금액 */
-  .pay-amount-row { padding:14px 16px; border-bottom:1px solid var(--border); }
-  .pay-amount-formula { font-size:12px; color:var(--text-hint); }
-  .pay-amount-formula strong { font-family:'Roboto',sans-serif; font-size:15px; font-weight:700; color:var(--red); }
+  /* 결제하실 금액 한 줄 */
+  .pay-due-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; border-bottom:1px solid var(--border); }
+  .pay-due-label { font-size:13px; font-weight:600; color:#333; white-space:nowrap; }
+  .pay-due-formula { font-size:12px; color:var(--text-hint); text-align:right; }
+  .pay-due-formula strong { font-family:'Roboto',sans-serif; font-size:15px; font-weight:700; color:var(--red); display:inline; }
 
   /* 결제방법 버튼??*/
   .pay-method-wrap { padding:14px 16px; border-bottom:1px solid var(--border); }
@@ -238,18 +262,13 @@
 
   .fee-mileage-row { display:block; }
   .fee-mileage-main { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .fee-mileage-detail { display:flex; justify-content:flex-start; margin-top:18px; }
-  .discount-mileage-box { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; padding:0; border:0; background:transparent; }
-  .discount-mileage-label { font-size:12px; color:var(--text-sub); margin-bottom:3px; }
-  .discount-mileage-value { display:flex; flex-direction:column; align-items:flex-end; gap:5px; margin-left:auto; text-align:right; font-family:'Roboto',sans-serif; font-size:13px; color:#222; }
-  .discount-mileage-value strong { font-weight:700; }
-  .mileage-max-radio { display:inline-flex; align-items:center; gap:6px; color:#2F8CFF; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; white-space:nowrap; cursor:pointer; }
-  .mileage-max-radio input { width:14px; height:14px; margin:0; accent-color:var(--navy); }
-  .mileage-max-value { margin-left:auto; text-align:right; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; color:#2F8CFF; white-space:nowrap; }
+  .mileage-top-left { display:inline-flex; align-items:center; gap:10px; min-width:0; }
+  .mileage-max-btn { height:30px; padding:0 12px; border:1px solid #bfc6d4; border-radius:8px; background:#eef2ff; color:#43506a; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s,border-color .15s,color .15s; }
+  .mileage-max-btn.is-active { background:#d6d9df; border-color:#b6bac2; color:#666; }
   .mileage-clear-btn { display:none; align-items:center; justify-content:center; width:20px; height:20px; border:0; border-radius:50%; background:#E5E7EB; color:#666; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; line-height:1; cursor:pointer; }
   .mileage-clear-btn.show { display:inline-flex; }
-  .discount-mileage-applied { margin-top:8px; font-size:12px; color:#333; }
-  .discount-mileage-applied strong { font-family:'Roboto',sans-serif; color:var(--red); }
+  .mileage-inline-input { display:flex; align-items:center; gap:6px; width:110px; height:30px; padding:0 8px; border:1px solid #d8dce2; border-radius:8px; background:#fff; }
+  .mileage-inline-input .mileage-inp { width:100%; min-width:0; }
 
   /* ? 단 CTA */
   .modal-overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:20px 14px; background:rgba(0,0,0,.45); opacity:0; visibility:hidden; transition:opacity .2s ease,visibility .2s ease; z-index:1000; }
@@ -332,31 +351,61 @@
   <div class="fee-row"><span class="fee-row-label"> 일본배송비</span><span class="fee-row-val">0 엔</span></div>
   <div class="fee-row fee-mileage-row">
     <div class="fee-mileage-main">
-      <span class="fee-row-label fee-row-label-control"> 마일리지 <span class="fee-help" tabindex="0" data-tooltip="마일리지는 구매수수료의 50%까지만 차감됩니다.">?</span></span>
-      <span class="fee-row-val fee-discount-result">
-        <span class="mileage-amount-line">
-          <span id="discountTotalWon">0원</span>
-        </span>
-      </span>
+      <div class="mileage-top-left">
+        <span class="fee-row-label fee-row-label-control"> 마일리지 <span class="fee-help" tabindex="0" data-tooltip="마일리지는 구매수수료의 50%까지 사용 가능합니다.">?</span></span>
+        <button class="mileage-max-btn" id="mileageMaxBtn" type="button" onclick="applyMaxMileage()">최대 사용</button>
+      </div>
+      <div class="mileage-inline-input">
+        <input type="text" class="mileage-inp" id="mileageInput" value="0" inputmode="numeric" autocomplete="off">
+        <span class="mileage-unit">원</span>
+        <button class="mileage-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화" onclick="clearAllMileage()">×</button>
+      </div>
     </div>
     <div class="mileage-hold-row">
       <span class="mileage-hold-label">보유 마일리지</span>
       <span class="mileage-hold-value"><strong id="mileageAvailAmount">58,961</strong> 원</span>
     </div>
-    <div class="fee-mileage-detail">
-      <div class="discount-mileage-box">
-        <label class="mileage-max-radio">
-          <input type="radio" id="mileageMaxRadio" name="mileageApply" onclick="applyMaxMileage()">
-          <span>최대 사용 마일리지</span>
-        </label>
-        <span class="mileage-max-value" id="mileageMaxAmount">0 원</span>
-        <button class="mileage-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 사용 취소" onclick="clearAllMileage()">×</button>
-      </div>
-    </div>
+  </div>
+  <div class="fee-row" id="feeDepositRow" style="display:none;">
+    <span class="fee-row-label" style="color:var(--red);">예치금 사용</span>
+    <span class="fee-row-val" style="color:var(--red); font-weight:700;">− <span id="feeDepositWon">0</span>원</span>
   </div>
   <div class="fee-row total-row">
     <span class="fee-row-label">총 결제금액</span>
     <span class="fee-row-val" id="mobCellTotal">16,608원</span>
+  </div>
+</div>
+
+<!-- 구매 혜택 -->
+<div class="pay-section" style="padding:14px 16px 16px;">
+  <div class="benefit-panel">
+    <!-- 헤더: 마일리지 적립 예정 + 최대 합계 -->
+    <div class="benefit-panel-head">
+      <span class="benefit-panel-label">마일리지 적립 예정</span>
+      <span class="benefit-panel-max">최대 <em><span id="mobEarnGrandTotal">1,636</span>원</em></span>
+    </div>
+    <div class="benefit-body">
+      <!-- 구매수수료 적립 -->
+      <div class="benefit-row">
+        <span class="benefit-row-lbl">
+          구매수수료 적립 <span class="earn-rate-total">10%</span>
+        </span>
+        <span class="benefit-row-val">총 <span id="mobEarnFeeTotal">768</span>원</span>
+      </div>
+      <div class="benefit-sub">
+        <span class="benefit-sub-lbl">
+          기본 적립 <span class="earn-badge earn-badge-base">2%</span>
+        </span>
+        <span class="benefit-sub-val"><span id="mobEarnFeeWon">154</span>원</span>
+      </div>
+      <div class="benefit-sub">
+        <span class="benefit-sub-lbl">
+          VIP 추가 적립 <span class="earn-badge earn-badge-vip">+8%</span>
+        </span>
+        <span class="benefit-sub-val"><span id="mobEarnEventWon">614</span>원</span>
+      </div>
+      <p class="benefit-note" style="margin-top:8px;">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
+    </div>
   </div>
 </div>
 <!-- 결제정보 확인 -->
@@ -386,8 +435,9 @@
   </div>
 
   <!-- 결제하실 금액 -->
-  <div class="pay-amount-row">
-    <div class="pay-amount-formula" id="mobFormula">2,300 엔 × 9.6 원 = <strong id="mobPayWon">22,080 원</strong></div>
+  <div class="pay-due-row">
+    <span class="pay-due-label">결제하실 금액</span>
+    <span class="pay-due-formula" id="mobFormula">2,300 엔 × 9.6 원 = <strong id="mobPayWon">22,080원</strong></span>
   </div>
 
   <!-- 결제방법 버튼 -->
@@ -398,24 +448,14 @@
       <button type="button" class="pay-method-btn" id="btnBank" onclick="selectPayMethod('bank')">무통장입금(가상계좌)</button>
     </div>
   </div>
-
-  <!-- 마일리지 적립 예정 -->
-  <div style="padding:14px 16px;border-bottom:1px solid var(--border);">
-    <div style="font-size:12px;color:var(--navy);font-weight:500;margin-bottom:4px;">마일리지 적립 예정</div>
-    <div style="font-size:12px;color:#444;line-height:1.7;">
-      <strong>구매수수료 (<span id="mileageRewardBaseYen">800</span>엔)</strong>의 <span style="color:var(--red);font-weight:700;">10%</span> 적립
-      <span style="display:inline-block;background:#E8EFFF;color:var(--navy);font-size:11px;font-weight:600;border-radius:3px;padding:1px 7px;margin-left:4px;">약 <span id="mileageRewardWon">768</span> 원 적립 예정</span>
-      <span style="display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;border-radius:3px;padding:1px 6px;margin-left:4px;">VIP</span>
-    </div>
-    <div style="font-size:11px;color:#888;margin-top:4px;">※ 적립 마일리지는 물품이 현지에 도착한 날을 기준으로 익월 1일에 자동 지급됩니다.</div>
-  </div>
-
   <!-- 관부가세 배너 -->
 <div class="banner-tax">
-  <span class="banner-tax-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>[관·부가세 안내]</strong></span>
-  과세기준액이 <strong>$150 초과 시</strong> 관세 및 부가세가 부과됩니다.<br>
-  <span style="font-size:11px;">※ 사업자 통관의 경우 $150 이하도 일반통관이 적용됩니다.</span><br>
-  <a href="#">이용가이드 자세히 보기 ›</a>
+  <span class="banner-tax-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>관·부가세 안내</strong></span>
+            [과세 기준] 물품가액이 $150 초과 시, 과세가격을 기준으로 관세 및 부가세가 부과됩니다.
+            <br>※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)
+<br>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
+<br>※ 사업자 통관 = 사업자 판매 목적 수입은 물품가와 무관하게 일반통관이 적용
+  <br><a href="#">이용가이드 자세히 보기 ›</a>
   <hr class="banner-tax-divider">
   <div class="banner-receipt-title">[현금영수증 발급]</div>
   <div class="banner-receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
@@ -509,15 +549,10 @@ function render() {
   const mobTotalYen = document.getElementById('mobTotalYen');
   if (mobTotalYen) mobTotalYen.textContent = fmt(totalYen) + ' 엔';
   document.getElementById('mobCellTotal').textContent = fmt(totalWon) + '원';
-  const discountTotalWon = Math.round(totalDisc * RATE);
-  document.getElementById('discountTotalWon').textContent = totalDisc > 0 ? '-' + fmt(discountTotalWon) + '원' : '0원';
   const mileageLimitWon = getMileageLimit();
   const currentMileageWon = Math.round(mileageDiscYen * RATE);
   const isMaxMileage = currentMileageWon === mileageLimitWon && mileageLimitWon > 0;
-  const mileageMaxAmount = document.getElementById('mileageMaxAmount');
-  if (mileageMaxAmount) mileageMaxAmount.textContent = fmt(mileageLimitWon) + ' 원';
-  const mileageMaxRadio = document.getElementById('mileageMaxRadio');
-  if (mileageMaxRadio) mileageMaxRadio.checked = mileageMaxSelected && isMaxMileage;
+  document.getElementById('mileageMaxBtn')?.classList.toggle('is-active', mileageMaxSelected && isMaxMileage);
   document.getElementById('mileageClearBtn')?.classList.toggle('show', currentMileageWon > 0);
 
   const feeDiscRow = document.getElementById('feeDiscRow');
@@ -535,10 +570,24 @@ function render() {
   /* 2) 결제? 보 ? 인 */
   const mobTotalWon = document.getElementById('mobTotalWon');
   if (mobTotalWon) mobTotalWon.textContent = fmt(totalWon) + ' 원';
-  document.getElementById('mileageRewardBaseYen').textContent = fmt(discountedAgencyYen);
-  document.getElementById('mileageRewardWon').textContent = fmt(mileageRewardWon);
+  // 구매 혜택 — 마일리지 적립 예정 업데이트
+  // 총 적립률 10%(VIP), 기본 2%, VIP 추가 = 10% - 2% = 8%
+  const feeTotal  = Math.round(AGENCY_BASE * 0.10 * RATE); // 총 적립 (10%)
+  const baseEarn  = Math.round(AGENCY_BASE * 0.02 * RATE); // 기본 적립 (2%)
+  const vipEarn   = feeTotal - baseEarn;                   // VIP 추가 적립 (8%)
+  const elM = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  elM('mobEarnFeeWon',    fmt(baseEarn));   // 기본 2%
+  elM('mobEarnEventWon',  fmt(vipEarn));    // VIP +8%
+  elM('mobEarnFeeTotal',  fmt(feeTotal));   // 합계 10%
+  elM('mobEarnGrandTotal',fmt(feeTotal));
   const mileageAvailAmount = document.getElementById('mileageAvailAmount');
   if (mileageAvailAmount) mileageAvailAmount.textContent = fmt(Math.max(MILE_AVAIL - Math.round(mileageDiscYen * RATE), 0));
+
+  // 1차 결제 비용 패널 예치금 행
+  const feeDepositRow = document.getElementById('feeDepositRow');
+  const feeDepositWon = document.getElementById('feeDepositWon');
+  if (feeDepositRow) feeDepositRow.style.display = depWon > 0 ? 'flex' : 'none';
+  if (feeDepositWon) feeDepositWon.textContent = fmt(depWon);
 
   const formula = document.getElementById('mobFormula');
   const payWonEl = document.getElementById('mobPayWon');
@@ -561,17 +610,10 @@ function render() {
   const appliedWon = Math.min(storedMileageWon, limitWon, MILE_AVAIL);
   mileageDiscYen = Math.floor(appliedWon / RATE);
   const mileageInput = document.getElementById('mileageInput');
-  const mileageUsedAmount = document.getElementById('mileageUsedAmount');
-  const mileageUsedSummary = document.getElementById('mileageUsedSummary');
-  if (mileageUsedAmount) mileageUsedAmount.textContent = fmt(appliedWon) + '원';
   if (mileageInput && appliedWon > 0) {
     mileageInput.value = fmt(appliedWon);
-    if (mileageUsedAmount) mileageUsedAmount.textContent = fmt(appliedWon) + '원';
-    if (mileageUsedSummary) mileageUsedSummary.style.display = 'block';
     const isFull = appliedWon === limitWon && limitWon > 0;
-    const mileageMaxRadio = document.getElementById('mileageMaxRadio');
-    if (mileageMaxRadio) mileageMaxRadio.checked = mileageMaxSelected && isFull;
-    document.getElementById('mileageClear')?.classList.toggle('show', isFull);
+    document.getElementById('mileageMaxBtn')?.classList.toggle('is-active', mileageMaxSelected && isFull);
   }
 
   render();
@@ -582,6 +624,7 @@ const mileageInputEl = document.getElementById('mileageInput');
 if (mileageInputEl) {
   mileageInputEl.addEventListener('input', function() {
     mileageMaxSelected = false;
+    document.getElementById('mileageMaxBtn')?.classList.remove('is-active');
     const raw = Number(this.value.replace(/[^\d]/g,'')) || 0;
     const limit = getMileageLimit();
     const warn = document.getElementById('mileageWarn');
@@ -610,18 +653,16 @@ function getCurrentMileageWon() {
 function applyMileage(won) {
   const appliedWon = Math.min(Math.max(Number(won) || 0, 0), getMileageLimit(), MILE_AVAIL);
   mileageDiscYen = Math.floor(appliedWon / RATE);
-  const mileageUsedAmount = document.getElementById('mileageUsedAmount');
-  const mileageUsedSummary = document.getElementById('mileageUsedSummary');
+  const mileageInput    = document.getElementById('mileageInput');
   const mileageAvailAmount = document.getElementById('mileageAvailAmount');
-  if (mileageUsedAmount) mileageUsedAmount.textContent = fmt(appliedWon) + '원';
+  // 입력 필드 동기화 (포커스 중 제외)
+  if (mileageInput && document.activeElement !== mileageInput)
+    mileageInput.value = appliedWon > 0 ? fmt(appliedWon) : '0';
   if (mileageAvailAmount) mileageAvailAmount.textContent = fmt(Math.max(MILE_AVAIL - appliedWon, 0));
-  if (mileageUsedSummary) mileageUsedSummary.style.display = appliedWon > 0 ? 'block' : 'none';
   const limit = getMileageLimit();
   const isFull = appliedWon === limit && limit > 0;
-  const mileageMaxRadio = document.getElementById('mileageMaxRadio');
-  if (mileageMaxRadio) mileageMaxRadio.checked = mileageMaxSelected && isFull;
+  document.getElementById('mileageMaxBtn')?.classList.toggle('is-active', mileageMaxSelected && isFull);
   document.getElementById('mileageClearBtn')?.classList.toggle('show', appliedWon > 0);
-  document.getElementById('mileageClear')?.classList.toggle('show', isFull);
   sessionStorage.setItem('bb_mileage_won', appliedWon);
   sessionStorage.setItem('bb_mileage_discount', mileageDiscYen);
   render();
