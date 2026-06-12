@@ -171,7 +171,8 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .pu-btn{padding:11px 6px;font-size:11px;font-weight:600;color:var(--ts);background:#fff;border:none;cursor:pointer;font-family:inherit;text-align:center;transition:background .1s;position:relative}
 .pu-btn:hover{background:var(--bg);color:var(--tp)}
 .pu-btn+.pu-btn{border-left:1px solid var(--border)}
-.pu-btn .pu-dot{position:absolute;top:8px;right:calc(50% - 18px);width:6px;height:6px;border-radius:50%;background:var(--rose)}
+/* 신규 소식 표시: 오른쪽 위 N (1:1 문의내역과 동일) */
+.new-n{color:var(--rose);font-family:Roboto,sans-serif;font-size:9px;font-weight:900;line-height:1;vertical-align:super;margin-left:2px}
 
 /* ?�═ ?�림�??�═ */
 .alert-bar{background:var(--alert);border-bottom:1px solid #FFE0A0;padding:10px 0;display:none}
@@ -731,7 +732,7 @@ button.user-menu-item{
         <div class="pu-btns">
           <button class="pu-btn">고객센터</button>
           <button class="pu-btn">나의 계좌관리</button>
-          <button class="pu-btn">공지사항<span class="pu-dot"></span></button>
+          <button class="pu-btn">공지사항<sup class="new-n" aria-label="새 소식">N</sup></button>
         </div>
       </div>
     </div>
@@ -811,7 +812,7 @@ button.user-menu-item{
   <div class="info-grid">
     <div class="info-card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h3 class="info-title" style="margin-bottom:0">공지사항</h3><a href="#" style="font-size:12px;color:var(--tm)">더보기</a></div>
-      <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 5월 골든위크 기간 항공 배송 일정 변경</span><span class="notice-date">26.04.14</span></div>
+      <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 5월 골든위크 기간 항공 배송 일정 변경<sup class="new-n" aria-label="새 공지">N</sup></span><span class="notice-date">26.04.14</span></div>
       <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 2026년 4월 공휴일로 인한 마감 시간 및 출고 안내</span><span class="notice-date">26.03.27</span></div>
       <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 쇼와의 날(4/29) 휴무에 따른 배송 스케줄 안내</span><span class="notice-date">26.03.25</span></div>
     </div>
@@ -1018,8 +1019,8 @@ function goSlide(n){slides[cur].classList.remove('active');dots[cur].classList.r
 function changeSlide(d){goSlide(cur+d);}
 setInterval(()=>changeSlide(1),4000);
 
-// ?�?� 로그??(기본: 비로그인)
-let loggedIn=false;
+// 로그인 상태: bb-common.js(localStorage)가 단일 소스. bb:login 이벤트로 동기화
+let loggedIn = localStorage.getItem('bb_logged_in') === '1';
 function applyState(){
   const setDisplay = (id, display) => {
     const el = document.getElementById(id);
@@ -1037,9 +1038,8 @@ function applyState(){
   setDisplay('drMemberPanel', loggedIn ? 'block' : 'none');
 }
 function closeDD(){ const dd=document.getElementById('userDD'); const trig=document.getElementById('userTrig'); if(dd)dd.classList.remove('open'); if(trig)trig.classList.remove('open'); }
-function doLogin(){ loggedIn=true; applyState(); closeDD(); closeDrawer(); closeUserDrawer(); }
-function doLogout(){ loggedIn=false; applyState(); closeDD(); closeDrawer(); closeUserDrawer(); }
-function toggleLogin(){ loggedIn=!loggedIn; applyState(); closeDD(); closeDrawer(); closeUserDrawer(); }
+// doLogin/doLogout/toggleLogin은 bb-common.js가 제공. 상태 변경 시 페이지 UI만 갱신
+document.addEventListener('bb:login', e => { loggedIn = e.detail.loggedIn; applyState(); closeDD(); });
 applyState();
 
 // ?? ?쒕∼?ㅼ슫

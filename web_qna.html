@@ -76,7 +76,7 @@
     .outline-pill {
       display: inline-flex; align-items: center; gap: 6px;
       height: 34px; padding: 0 14px;
-      border: 1px solid var(--brand); border-radius: 999px;
+      border: 1px solid var(--brand); border-radius: 4px;
       background: var(--brand); color: #fff;
       font-size: 12px; font-weight: 700;
     }
@@ -86,16 +86,16 @@
     .status-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
     .status-tab {
       height: 34px; padding: 0 16px;
-      border: 1px solid var(--line); border-radius: 999px;
+      border: 1px solid var(--line); border-radius: 4px;
       background: #fff; color: #5c606b;
       font-size: 12px; font-weight: 700;
     }
     .status-tab small { font-weight: 700; color: var(--faint); margin-left: 2px; }
-    .status-tab.active { border-color: var(--brand); background: #fff0f3; color: var(--brand); font-weight: 800; }
+    .status-tab.active { border-color: var(--brand); background: #fff; color: var(--brand); font-weight: 800; }
     .status-tab.active small { color: var(--brand); }
 
     /* ── 문의 테이블 ── */
-    .qna-table { border: 1px solid var(--line); border-radius: 11px; overflow: hidden; background: #fff; }
+    .qna-table { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); background: #fff; }
     .qna-head, .qna-row {
       display: grid;
       grid-template-columns: 104px 88px 104px minmax(0, 1fr) 96px;
@@ -103,7 +103,6 @@
     }
     .qna-head {
       min-height: 40px;
-      background: var(--warm);
       border-bottom: 1px solid var(--line);
       color: #5a5e66;
       font-size: 12px;
@@ -120,7 +119,18 @@
       transition: background .15s ease;
     }
     .qna-row:last-child { border-bottom: 0; }
-    .qna-row:hover { background: #fffafb; }
+    .qna-row:hover { background: var(--warm); }
+
+    /* 신규 답변 표시: 오른쪽 위 N */
+    .new-n {
+      color: var(--brand);
+      font-family: Roboto, sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1;
+      vertical-align: super;
+      margin-left: 2px;
+    }
     .qna-row > div { padding: 12px 8px; }
     .qna-date { color: #59606d; font-size: 12px; }
     .qna-cat { color: #59606d; font-size: 12px; font-weight: 600; }
@@ -146,7 +156,7 @@
     .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 22px 0 80px; }
     .page-btn {
       width: 32px; height: 32px;
-      border: 1px solid var(--line); border-radius: 8px;
+      border: 1px solid var(--line); border-radius: 4px;
       background: #fff; color: #5c606b;
       font-size: 12px; font-weight: 700;
       display: grid; place-items: center;
@@ -223,7 +233,7 @@
             <span class="reply-count">[3]</span>
             <i class="fas fa-paperclip clip" aria-hidden="true"></i>
           </div>
-          <div><span class="status-text done">답변완료</span></div>
+          <div><span class="status-text done">답변완료<sup class="new-n" aria-label="신규 답변">N</sup></span></div>
         </a>
 
         <a class="qna-row" data-status="waiting" href="web_qna_details.html">

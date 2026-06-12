@@ -962,11 +962,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 </footer>
 
 <script>
-// 로그인 → 유저 아이콘 전환
-function doLogin(){
-  document.getElementById('guestArea').style.display='none';
-  document.getElementById('userArea').style.display='flex';
-}
+// 로그인은 bb-common.js의 doLogin/doLogout 사용 (공용 헤더가 상태 표시 담당)
 
 function toggleWishReg(el){
   el.classList.toggle('active');
