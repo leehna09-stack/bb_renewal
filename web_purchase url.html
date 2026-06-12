@@ -361,7 +361,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     <i class="fa-solid fa-chevron-right"></i>
     <a href="#">구매대행</a>
     <i class="fa-solid fa-chevron-right"></i>
-    <a href="#">카메라 &gt; 렌즈 &gt; 줌렌즈</a>
+    <a href="#">URL 직접입력</a>
   </div>
 </div>
 
@@ -383,32 +383,19 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   <!-- 좌(4): 이미지 갤러리 -->
   <div class="gallery-area">
     <div class="gallery-main" onclick="openLightbox()">
-      <img class="gallery-main-img" id="galleryMainImg" src="https://picsum.photos/seed/sonylens1/600/600" alt="상품 이미지">
+      <img class="gallery-main-img" id="galleryMainImg" src="https://picsum.photos/seed/urlitem1/600/600" alt="상품 이미지">
       <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
     <div class="gallery-thumbs-wrap">
       <button class="gallery-nav" type="button" onclick="moveGallery(-1)" aria-label="이전 이미지"><i class="fa-solid fa-chevron-left"></i></button>
       <div class="gallery-thumbs">
-        <div class="thumb-item active" onclick="setMainImg(this,'https://picsum.photos/seed/sonylens1/600/600')"><img src="https://picsum.photos/seed/sonylens1/120/120" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/sonylens2/600/600')"><img src="https://picsum.photos/seed/sonylens2/120/120" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/sonylens3/600/600')"><img src="https://picsum.photos/seed/sonylens3/120/120" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/sonylens4/600/600')"><img src="https://picsum.photos/seed/sonylens4/120/120" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/sonylens5/600/600')"><img src="https://picsum.photos/seed/sonylens5/120/120" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="thumb-item active" onclick="setMainImg(this,'https://picsum.photos/seed/urlitem1/600/600')"><img src="https://picsum.photos/seed/urlitem1/120/120" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/urlitem2/600/600')"><img src="https://picsum.photos/seed/urlitem2/120/120" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/urlitem3/600/600')"><img src="https://picsum.photos/seed/urlitem3/120/120" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/urlitem4/600/600')"><img src="https://picsum.photos/seed/urlitem4/120/120" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="thumb-item" onclick="setMainImg(this,'https://picsum.photos/seed/urlitem5/600/600')"><img src="https://picsum.photos/seed/urlitem5/120/120" style="width:100%;height:100%;object-fit:cover"></div>
       </div>
       <button class="gallery-nav" type="button" onclick="moveGallery(1)" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="seller-card">
-      <div class="seller-card-top">
-        <div class="seller-avatar">J</div>
-        <span class="seller-name">Jon0653</span>
-        <button class="btn-seller" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-heart"></i> 관심 판매자</button>
-      </div>
-      <table class="seller-info-table">
-        <tr><th>판매자위치</th><td>효고현</td></tr>
-        <tr><th>판매자평가</th><td><span class="roboto">648</span> <span style="color:var(--ts);font-size:11px">positive</span></td></tr>
-        <tr><th>BB 평점</th><td><span style="color:var(--amber);font-weight:700">★ 4.0</span> / 5.0</td></tr>
-      </table>
     </div>
   </div>
 
@@ -416,63 +403,16 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   <div class="item-info-area">
     <div class="purchase-order-panel">
 
-      <!-- 좌: 상품 정보 + 주문 폼 -->
+      <!-- 좌: 직접 입력 주문 폼 -->
       <div class="order-form-area">
-        <div class="bp-header">
-          <div class="bp-id-wrap">
-            <span class="bp-id-label">구매상품 ID</span>
-            <span class="bp-id-val roboto">1135509199</span>
-          </div>
-          <button class="btn-wish-reg" type="button" onclick="this.classList.toggle('active')">
-            <i class="fa-regular fa-heart"></i> 관심 상품
-          </button>
-        </div>
-
-        <div class="bp-info-grid">
-          <div class="bp-info-cell">
-            <span class="bp-info-label">브랜드</span>
-            <span class="bp-info-val">SONY (소니)</span>
-          </div>
-          <div class="bp-info-cell bp-info-cell--right">
-            <span class="bp-info-label">상품유형</span>
-            <span class="bp-info-val" style="color:var(--green)">신상품</span>
-          </div>
-          <div class="bp-info-cell" style="border-bottom:none">
-            <span class="bp-info-label">기간 및 수량</span>
-            <span class="bp-info-val" style="font-size:13px;font-weight:400;color:var(--ts)">상시판매, 2개</span>
-          </div>
-          <div class="bp-info-cell bp-info-cell--right" style="border-bottom:none">
-            <span class="bp-info-label">배송안내</span>
-            <span class="bp-info-val" style="font-size:13px;font-weight:400;color:var(--ts)">무료운송 · 발송까지 1~2일 · 효고현</span>
-          </div>
-        </div>
-
-        <div class="bp-price-section">
-          <div class="bp-price-row bp-price-row--main">
-            <span class="bp-price-label">판매가격</span>
-            <div class="bp-price-main-wrap">
-              <span class="bp-current-price roboto">92,000<span class="bp-current-unit">엔</span></span>
-              <div class="bp-price-sub">
-                <span class="bp-tax-label">(약</span>
-                <span class="bp-tax-val roboto">￦837,200)</span>
-              </div>
-            </div>
-          </div>
-          <div class="bp-price-row">
-            <span class="bp-price-label">현지운송료</span>
-            <span class="bp-price-val roboto" style="font-weight:700;color:var(--tp)">무료</span>
-          </div>
-        </div>
-
-        <!-- 주문 폼 -->
         <div class="purchase-form-section">
           <div class="form-row">
             <div class="form-label">물품금액</div>
-            <input class="form-input" type="text" placeholder="예: 92,000엔">
+            <input class="form-input" id="purchaseItemAmount" type="text" placeholder="예: 92,000엔">
           </div>
           <div class="form-row">
             <div class="form-label">수량</div>
-            <input class="form-input" type="text" placeholder="예: 1개">
+            <input class="form-input" id="purchaseItemQty" type="text" value="1" placeholder="예: 1개">
           </div>
           <div class="form-row">
             <div class="form-label">옵션1</div>
@@ -505,13 +445,13 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div style="flex:1;display:flex;flex-direction:column">
           <div class="info-panel-body" style="padding:20px 20px 24px;flex:1;display:flex;flex-direction:column">
             <div class="cost-select-row" style="margin-bottom:20px">
-              <select class="form-select">
+              <select class="form-select" id="purchaseShippingMethod">
                 <option value="">국제운송 선택</option>
                 <option>EMS</option>
                 <option>선편특송</option>
                 <option>비바항공특송</option>
               </select>
-              <select class="form-select">
+              <select class="form-select" id="purchaseShippingWeight">
                 <option value="0.5">0.5kg</option>
                 <option value="1" selected>1kg</option>
                 <option value="2">2kg</option>
@@ -519,19 +459,18 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             </div>
             <div class="cost-rows" style="flex:1">
               <div class="cost-subtitle">1차 결제 비용</div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 상품가격</span><span class="cost-val roboto">(92,000엔) ₩837,200</span></div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 대행 수수료</span><span class="cost-val roboto">(6,000엔) ₩54,600</span></div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 송금 수수료</span><span class="cost-val roboto">(300엔) ₩2,730</span></div>
+              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 상품가격</span><span class="cost-val roboto" id="purchasePrimaryValue">-   원</span></div>
+              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 대행 수수료</span><span class="cost-val roboto" id="purchaseServiceFeeValue">-   원</span></div>
+              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 송금 수수료</span><span class="cost-val roboto" id="purchaseRemittanceValue">-   원</span></div>
               <div class="cost-subtitle">2차 결제 비용</div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 국제 운송료</span><span class="cost-val roboto">(2,400엔) ₩21,840</span></div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지 운송료</span><span class="cost-val"><span class="defer">2차 결제 시 청구</span></span></div>
-              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지 세금</span><span class="cost-val"><span class="defer">2차 결제 시 청구</span></span></div>
+              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 국제 운송료</span><span class="cost-val roboto" id="purchaseIntlShippingValue">선택 후 계산</span></div>
+              <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지 세금</span><span class="cost-val roboto" id="purchaseLocalTaxValue">(¥0) ₩0</span></div>
             </div>
             <div style="margin-top:auto">
               <p style="font-size:11px;color:var(--tm);line-height:1.5;margin:0 0 8px;border-top:1px dashed var(--border);padding-top:8px;width:100%"><i class="fa-solid fa-circle-info" style="color:var(--ts);margin-right:3px"></i>예상 비용이며 실제 무게·운임에 따라 변동될 수 있습니다.</p>
               <div class="cost-total-row" style="margin-top:0">
                 <span class="cost-total-label">예상 구매대행 구입가</span>
-                <span class="cost-total-val roboto">₩910,919</span>
+                <span class="cost-total-val roboto" id="purchaseTotalValue">-   원</span>
               </div>
             </div>
           </div>
@@ -541,150 +480,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     </div>
   </div>
 
-</div>
-
-<!-- 이미지 하단 정보 패널 -->
-<div class="info-panels">
-
-  <div class="info-panel-card seller-other-panel">
-    <div class="info-panel-header">
-      <span><i class="fa-solid fa-box-open"></i> 판매자의 다른 상품</span>
-      <span class="seller-other-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></span>
-    </div>
-    <div class="info-panel-body" style="padding:16px 20px">
-      <div class="related-grid">
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">닌텐도 욧시 탱크 물총 슈퍼 마리오</div><div class="related-price roboto">¥10,000</div><div class="related-price-krw">약 91,000원</div></div></div>
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">소니 미러리스 카메라 바디 캡</div><div class="related-price roboto">¥3,200</div><div class="related-price-krw">약 29,120원</div></div></div>
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">FE 24-70mm F2.8 GM II 신품</div><div class="related-price roboto">¥248,000</div><div class="related-price-krw">약 2,256,800원</div></div></div>
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">카메라 가방 방수 스트랩 세트</div><div class="related-price roboto">¥5,500</div><div class="related-price-krw">약 50,050원</div></div></div>
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">렌즈 보호필터 82mm 신품</div><div class="related-price roboto">¥4,800</div><div class="related-price-krw">약 43,680원</div></div></div>
-        <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">삼각대 카본 경량 여행용</div><div class="related-price roboto">¥18,900</div><div class="related-price-krw">약 171,990원</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="info-panel-card">
-    <div class="info-panel-header"><i class="fa-solid fa-list-ul"></i> 구매 상세정보</div>
-    <div class="info-panel-body" style="padding:16px 20px">
-      <div class="acc-info-split">
-        <div class="acc-info-col">
-          <table class="acc-info-table">
-            <tr><th>구매상품 ID</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
-            <tr><th>카테고리</th><td>카메라 &gt; 렌즈 &gt; 줌렌즈</td></tr>
-            <tr><th>브랜드</th><td>SONY (소니)</td></tr>
-            <tr><th>상품유형</th><td><span style="color:var(--green);font-weight:700">신상품</span></td></tr>
-            <tr><th>기간 및 수량</th><td>상시판매, <span class="roboto">2</span>개</td></tr>
-          </table>
-        </div>
-        <div class="acc-info-col">
-          <table class="acc-info-table">
-            <tr><th>배송안내</th><td>무료운송, 발송까지 1~2일 소요</td></tr>
-            <tr><th>발송지역</th><td>효고현 (兵庫県)</td></tr>
-            <tr><th>현지배송료 부담</th><td>판매자 부담 (무료)</td></tr>
-            <tr><th>반품가능여부</th><td>반품불가</td></tr>
-            <tr><th>통관 안내</th><td>통관 가능여부는 관세청에 사전 확인 바랍니다.</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- 하단: 상세 탭 -->
-<div class="bottom-area">
-  <div class="detail-section">
-    <div class="tab-header">
-      <button class="tab-btn active" onclick="switchTab(this,'desc')">구매상세정보</button>
-      <button class="tab-btn" onclick="switchTab(this,'related')">연관아이템</button>
-    </div>
-
-    <!-- 구매상세정보 -->
-    <div class="tab-content active" id="tab-desc">
-      <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:12px;line-height:2;color:var(--ts);margin-bottom:12px">
-        <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
-        <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
-        <div>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 구매신청을 부탁드립니다.</div>
-        <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.<br>번역 오류로 인한 피해는 비드바이가 보장하지 않습니다. 항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.</div>
-      </div>
-      <div class="desc-block">
-        <h4>상품 설명 (번역)</h4>
-        <p>소니 FE PZ 16-35mm F4 G (SELP1635G) 신품 미사용 제품입니다.
-          <br>국내 정식 발매 동일 사양의 일본 내수용 제품으로, 박스 미개봉 상태입니다.
-          <br>
-          <br>■ 구성품: 본체, 앞/뒤 캡, 후드, 보증서, 박스 일체
-          <br>■ 무료 배송 (일본 국내)
-          <br>■ 결제 확인 후 1~2일 내 발송</p>
-        <div style="margin-top:10px">
-          <span class="desc-tag">#SONY</span>
-          <span class="desc-tag">#SELP1635G</span>
-          <span class="desc-tag">#FE16-35mm</span>
-          <span class="desc-tag">#줌렌즈</span>
-          <span class="desc-tag">#신품미사용</span>
-        </div>
-        <img class="desc-image" src="https://picsum.photos/seed/sonylensdetail/1000/1400" alt="제품 상세 이미지">
-      </div>
-    </div>
-
-    <!-- 연관아이템 -->
-    <div class="tab-content" id="tab-related">
-      <div class="section-header">
-        <div class="section-title">연관 아이템</div>
-        <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
-      </div>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 FE 20-70mm F4 G 신품</div>
-            <div class="product-price roboto">¥158,000</div>
-            <span class="product-price-krw">약 1,437,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 FE 16-25mm F2.8 G</div>
-            <div class="product-price roboto">¥168,000</div>
-            <span class="product-price-krw">약 1,528,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">탐론 17-28mm F2.8 소니 E마운트</div>
-            <div class="product-price roboto">¥89,800</div>
-            <span class="product-price-krw">약 817,180원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">시그마 16-28mm F2.8 DG DN</div>
-            <div class="product-price roboto">¥94,500</div>
-            <span class="product-price-krw">약 859,950원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 a7IV 바디 신품</div>
-            <div class="product-price roboto">¥298,000</div>
-            <span class="product-price-krw">약 2,711,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">렌즈 보호필터 72mm PRO1D</div>
-            <div class="product-price roboto">¥3,980</div>
-            <span class="product-price-krw">약 36,218원</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <!-- MODAL :: 장바구니 담기 -->
@@ -758,11 +553,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 <script>
 // 갤러리
 var galleryImgs = [
-  'https://picsum.photos/seed/sonylens1/600/600',
-  'https://picsum.photos/seed/sonylens2/600/600',
-  'https://picsum.photos/seed/sonylens3/600/600',
-  'https://picsum.photos/seed/sonylens4/600/600',
-  'https://picsum.photos/seed/sonylens5/600/600'
+  'https://picsum.photos/seed/urlitem1/600/600',
+  'https://picsum.photos/seed/urlitem2/600/600',
+  'https://picsum.photos/seed/urlitem3/600/600',
+  'https://picsum.photos/seed/urlitem4/600/600',
+  'https://picsum.photos/seed/urlitem5/600/600'
 ];
 var galleryIdx = 0;
 
@@ -814,6 +609,56 @@ function closeModal(id, event) {
 var orderRequestGuide = '주문에 필요한 요청사항을 입력해주세요.';
 var orderRequest = document.getElementById('orderRequest');
 var orderRequestCount = document.getElementById('orderRequestCount');
+var purchaseItemAmount = document.getElementById('purchaseItemAmount');
+var purchaseItemQty = document.getElementById('purchaseItemQty');
+
+var PURCHASE_RATE = 9.1;
+var PURCHASE_SERVICE_RATE = 0.1;
+var PURCHASE_REMITTANCE_FEE = 300;
+var PURCHASE_LOCAL_TAX = 0;
+var PURCHASE_SHIPPING_TABLE = {
+  EMS: { '0.5': 2400, '1': 3200, '2': 4800 },
+  '선편특송': { '0.5': 1200, '1': 1700, '2': 2500 },
+  '비바항공특송': { '0.5': 1800, '1': 2600, '2': 3900 }
+};
+
+function parsePurchaseNumber(value) {
+  var digits = String(value || '').replace(/[^\d]/g, '');
+  return digits ? parseInt(digits, 10) : 0;
+}
+
+function formatPurchaseWon(amount) {
+  return '₩' + Math.round(amount).toLocaleString('ko-KR');
+}
+
+function formatPurchasePair(yen) {
+  return '(¥' + yen.toLocaleString('ko-KR') + ') ' + formatPurchaseWon(yen * PURCHASE_RATE);
+}
+
+function updatePurchaseUrlCosts() {
+  var amount = parsePurchaseNumber(purchaseItemAmount && purchaseItemAmount.value);
+  var qty = Math.max(1, parsePurchaseNumber(purchaseItemQty && purchaseItemQty.value) || 1);
+  var method = document.getElementById('purchaseShippingMethod')?.value || '';
+  var weight = document.getElementById('purchaseShippingWeight')?.value || '0.5';
+  var primary = amount * qty;
+  var serviceFee = Math.round(primary * PURCHASE_SERVICE_RATE);
+  var intlShipping = method && PURCHASE_SHIPPING_TABLE[method] ? (PURCHASE_SHIPPING_TABLE[method][weight] || 0) : 0;
+  var totalYen = primary + serviceFee + PURCHASE_REMITTANCE_FEE + PURCHASE_LOCAL_TAX + intlShipping;
+
+  var primaryValue = document.getElementById('purchasePrimaryValue');
+  var serviceFeeValue = document.getElementById('purchaseServiceFeeValue');
+  var remittanceValue = document.getElementById('purchaseRemittanceValue');
+  var intlShippingValue = document.getElementById('purchaseIntlShippingValue');
+  var localTaxValue = document.getElementById('purchaseLocalTaxValue');
+  var totalValue = document.getElementById('purchaseTotalValue');
+
+  if (primaryValue) primaryValue.textContent = amount ? formatPurchasePair(primary) : '-   원';
+  if (serviceFeeValue) serviceFeeValue.textContent = amount ? formatPurchasePair(serviceFee) : '-   원';
+  if (remittanceValue) remittanceValue.textContent = amount ? formatPurchasePair(PURCHASE_REMITTANCE_FEE) : '-   원';
+  if (intlShippingValue) intlShippingValue.textContent = intlShipping ? formatPurchasePair(intlShipping) : '선택 후 계산';
+  if (localTaxValue) localTaxValue.textContent = formatPurchasePair(PURCHASE_LOCAL_TAX);
+  if (totalValue) totalValue.textContent = amount ? formatPurchaseWon(totalYen * PURCHASE_RATE) : '-   원';
+}
 
 function getOrderRequestLength() {
   if (!orderRequest || orderRequest.classList.contains('is-guide')) return 0;
@@ -842,6 +687,21 @@ if (orderRequest) {
   orderRequest.addEventListener('input', updateOrderRequestCount);
   updateOrderRequestCount();
 }
+
+if (purchaseItemAmount) {
+  purchaseItemAmount.addEventListener('input', updatePurchaseUrlCosts);
+}
+
+if (purchaseItemQty) {
+  purchaseItemQty.addEventListener('input', updatePurchaseUrlCosts);
+}
+
+var purchaseShippingMethod = document.getElementById('purchaseShippingMethod');
+var purchaseShippingWeight = document.getElementById('purchaseShippingWeight');
+if (purchaseShippingMethod) purchaseShippingMethod.addEventListener('change', updatePurchaseUrlCosts);
+if (purchaseShippingWeight) purchaseShippingWeight.addEventListener('change', updatePurchaseUrlCosts);
+
+updatePurchaseUrlCosts();
 </script>
 <script src="bb-common.js"></script>
 </body>
