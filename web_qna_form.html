@@ -386,6 +386,14 @@
 
     .char-count { margin: 6px 0 0; text-align: right; color: #9da2af; font-size: 11px; }
     .char-count b { color: var(--text); }
+    .refund-form-hint {
+      display: none;
+      margin: 8px 0 0;
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .refund-form-hint.show { display: block; }
 
     /* 첨부파일 */
     .file-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -518,8 +526,8 @@
               <label class="radio-chip"><input type="radio" name="qnaType" value="입찰해제" checked onchange="onTypeChange()"><span>입찰해제</span></label>
               <label class="radio-chip"><input type="radio" name="qnaType" value="경매문의" onchange="onTypeChange()"><span>경매문의</span></label>
               <label class="radio-chip"><input type="radio" name="qnaType" value="구매문의" onchange="onTypeChange()"><span>구매문의</span></label>
-              <label class="radio-chip"><input type="radio" name="qnaType" value="배송문의" onchange="onTypeChange()"><span>배송문의</span></label>
-              <label class="radio-chip"><input type="radio" name="qnaType" value="반품환불문의" onchange="onTypeChange()"><span>반품환불문의</span></label>
+              <label class="radio-chip"><input type="radio" name="qnaType" value="국제배송문의" onchange="onTypeChange()"><span>국제배송문의</span></label>
+              <label class="radio-chip"><input type="radio" name="qnaType" value="반품문의" onchange="onTypeChange()"><span>반품문의</span></label>
               <label class="radio-chip"><input type="radio" name="qnaType" value="기타문의" onchange="onTypeChange()"><span>기타문의</span></label>
               <span class="chip-break" aria-hidden="true"></span>
               <label class="radio-chip"><input type="radio" name="qnaType" value="회원문의" onchange="onTypeChange()"><span>회원문의</span></label>
@@ -571,6 +579,9 @@
           <div class="form-label">내용 <span class="req">*</span></div>
           <div class="form-content">
             <textarea class="textarea" id="qnaContent" placeholder="문의하실 내용을 입력하세요.&#10;상품·주문 정보와 함께 구체적으로 작성해 주시면 더 정확한 답변을 받으실 수 있습니다." oninput="updateCount(this)"></textarea>
+            <p class="refund-form-hint" id="refundFormHint">제품 파손으로 접수를 위해서는 하기 목록의 자료들이 필요하니
+꼭 확인하시고 최대한 상세하게 촬영하셔서 첨부 부탁드립니다.
+<br> 운송장번호, 국제배송방법, 파손 부위 또는 환불 신청 사유를 작성해 주시면 접수 후 영업일 기준 2~3일 이내 답변드리겠습니다.</p>
             <p class="char-count"><b id="charCur">0</b> / 2,000자</p>
           </div>
         </div>
@@ -581,14 +592,14 @@
           <div class="form-content">
             <div class="file-row">
               <label class="file-btn" for="qnaFile"><i class="fas fa-camera"></i> 사진 첨부</label>
-              <input type="file" id="qnaFile" accept="image/*" multiple style="display:none">
+              <input type="file" id="qnaFile" accept="image/*" multiple style="display:none" onchange="updateFileHint()">
               <div class="file-thumbs">
                 <div class="file-thumb"><i class="fas fa-plus"></i></div>
                 <div class="file-thumb"><i class="fas fa-plus"></i></div>
                 <div class="file-thumb"><i class="fas fa-plus"></i></div>
               </div>
             </div>
-            <p class="form-hint">이미지 파일(JPG, PNG) 최대 3장 / 장당 10MB 이하</p>
+            <p class="form-hint" id="fileHint">이미지 파일(JPG, PNG) 최대 3장 / 장당 10MB 이하</p>
           </div>
         </div>
 
@@ -707,10 +718,25 @@ const TYPE_COUNTRY_MAP = {
   '경매문의':     ['일본', '미국', '영국'],
   '구매문의':     ['일본', '미국'],
   '결제문의':     ['한국'],
-  '배송문의':     ['한국'],
-  '반품환불문의': ['한국', '일본', '미국', '영국'],
+  '국제배송문의':     ['한국'],
+  '반품문의': ['한국', '일본', '미국', '영국'],
   '기타문의':     ['한국', '일본', '미국', '영국'],
 };
+
+const DEFAULT_QNA_PLACEHOLDER = '문의하실 내용을 입력하세요.\n상품·주문 정보와 함께 구체적으로 작성해 주시면 더 정확한 답변을 받으실 수 있습니다.';
+const REFUND_QNA_TEMPLATE = `[반품 접수 양식]
+
+운송장번호:
+
+선택한 국제배송방법:
+
+파손 부위 상세 설명 또는 반품 신청 사유:
+
+첨부사진:
+- 상품 전체 사진
+- 파손 부위 근접 사진
+- 외부 포장 박스/송장 사진`;
+let lastAutoContent = '';
 
 function onTypeChange() {
   const type = document.querySelector('input[name="qnaType"]:checked').value;
@@ -733,11 +759,46 @@ function onTypeChange() {
 
   const hint = document.getElementById('countryHint');
   hint.innerHTML = `<b>${type}</b>는 ${allowed.join(' / ')} 만 선택 가능합니다.`;
+
+  updateRefundForm(type);
 }
 
 function updateCount(el) {
   if (el.value.length > 2000) el.value = el.value.slice(0, 2000);
   document.getElementById('charCur').textContent = el.value.length.toLocaleString('ko-KR');
+}
+
+function updateRefundForm(type) {
+  const isRefund = type === '반품문의';
+  const content = document.getElementById('qnaContent');
+  const refundHint = document.getElementById('refundFormHint');
+  const fileHint = document.getElementById('fileHint');
+  const shouldReplace = !content.value.trim() || content.value === lastAutoContent;
+
+  refundHint.classList.toggle('show', isRefund);
+  content.placeholder = isRefund ? REFUND_QNA_TEMPLATE : DEFAULT_QNA_PLACEHOLDER;
+  fileHint.textContent = isRefund
+    ? '반품 접수는 사진 3장 이상 첨부해 주세요. 이미지 파일(JPG, PNG) / 장당 10MB 이하'
+    : '이미지 파일(JPG, PNG) 최대 3장 / 장당 10MB 이하';
+
+  if (shouldReplace) {
+    content.value = isRefund ? REFUND_QNA_TEMPLATE : '';
+    lastAutoContent = content.value;
+    updateCount(content);
+  }
+}
+
+function updateFileHint() {
+  const type = document.querySelector('input[name="qnaType"]:checked').value;
+  const input = document.getElementById('qnaFile');
+  const fileHint = document.getElementById('fileHint');
+
+  if (type !== '반품문의') return;
+
+  const count = input.files ? input.files.length : 0;
+  fileHint.textContent = count >= 3
+    ? `사진 ${count}장이 첨부되었습니다.`
+    : `반품 접수는 사진 3장 이상 첨부해 주세요. 현재 ${count}장 선택됨`;
 }
 
 /* ── 문의물품 모달 ── */

@@ -149,11 +149,10 @@
   .formula { font-family: 'Roboto', sans-serif; font-size: 13px; color: #555; margin-right: 6px; }
   .amount-red { font-family: 'Roboto', sans-serif; font-weight: 700; color: #E8385A; font-size: 15px; }
   .paid-option-table th { vertical-align: top; }
+  .paid-option-common-note { margin: -4px 0 12px; padding: 10px 12px; border: 1px solid rgba(232,56,90,0.18); border-radius: 6px; background: #fff8fa; color: #E8385A; font-size: 12px; font-weight: 700; line-height: 1.5; }
   .paid-option-name { display: block; margin-bottom: 5px; color: #555; font-weight: 700; }
   .paid-option-meta { display: grid; gap: 2px; color: #777; font-size: 12px; font-weight: 400; line-height: 1.45; }
   .paid-option-price { color: #E8385A; font-family: 'Roboto', sans-serif; font-weight: 700; }
-  .paid-option-billing { display: inline-flex; align-items: center; width: fit-content; padding: 2px 7px; font-weight: 800; white-space: nowrap; visibility: hidden; opacity: 0; color: #777; box-shadow: 0 0 0 1px rgba(232,56,90,0); }
-  .paid-option-billing.is-highlight { visibility: visible; opacity: 1; color: #E8385A; box-shadow: 0 0 0 1px rgba(232,56,90,0.18); }
   .paid-option-choice { color: #333; }
   .option-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; border: 0; background: transparent; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; }
   .option-toggle-track { position: relative; display: inline-block; width: 46px; height: 24px; border-radius: 999px; background: #cfd5dd; transition: background 0.2s; }
@@ -246,6 +245,7 @@
       <!-- 유료 옵션 -->
       <div class="section">
         <div class="section-title">유료 옵션 서비스 (선택)</div>
+        <div class="paid-option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
         <table class="care-table paid-option-table">
           <tbody>
             <tr>
@@ -253,7 +253,6 @@
                 <span class="paid-option-name">안심 케어 플러스</span>
                 <span class="paid-option-meta">
                   <span class="paid-option-price">+ 1,000엔</span>
-                  <br><span class="paid-option-billing">해당 금액은 즉시 결제되지 않으며,<br>2차 결제 시 청구됩니다.</span>
                 </span>
               </th>
               <td class="paid-option-choice">
@@ -280,10 +279,6 @@
             <tr>
               <th>
                 <span class="paid-option-name">튼튼 포장</span>
-                <span class="paid-option-meta">
-
-                  <br><span class="paid-option-billing">해당 금액은 즉시 결제되지 않으며,<br>2차 결제 시 청구됩니다.</span>
-                </span>
               </th>
               <td class="paid-option-choice">
                 <button class="option-toggle" type="button" aria-pressed="false" data-paid-option-yen="500">
@@ -307,8 +302,8 @@
               <th>
                 <span class="paid-option-name">사진 촬영서비스</span>
                 <span class="paid-option-meta">
-                  <span class="paid-option-price">+ 300엔 / 5장</span>
-                  <br><span class="paid-option-billing">해당 서비스는 즉시 결제되지 않으며,<br>2차 결제 시 청구됩니다.</span>
+                  <span class="paid-option-price">+ 300엔 / 3장 (소형)</span>
+                  <span class="paid-option-price">+ 500엔 / 3장 (대형)</span>
                 </span>
               </th>
               <td class="paid-option-choice">
@@ -631,8 +626,7 @@
   (() => {
     document.querySelectorAll('.option-toggle').forEach(t=>{
       const lbl=t.querySelector('.option-toggle-text');
-      const billing=t.closest('tr')?.querySelector('.paid-option-billing');
-      t.addEventListener('click',()=>{const n=t.getAttribute('aria-pressed')!=='true';t.setAttribute('aria-pressed',String(n));if(lbl)lbl.textContent=n?'신청':'미신청';billing?.classList.toggle('is-highlight',n);window.renderPaymentSummary?.();});
+      t.addEventListener('click',()=>{const n=t.getAttribute('aria-pressed')!=='true';t.setAttribute('aria-pressed',String(n));if(lbl)lbl.textContent=n?'신청':'미신청';window.renderPaymentSummary?.();});
     });
   })();
 

@@ -14,7 +14,7 @@
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overflow-x:hidden}
 body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;color:var(--tp);font-size:14px;line-height:1.5;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── 상단 바 ── */
@@ -48,8 +48,8 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
 .nav-file{display:block;font-size:11px;font-weight:400;color:var(--tm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.5}
 
 /* 우측: 모바일 프레임 뷰어 */
-.viewer{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#E9ECF1;padding:24px;overflow:auto}
-.device{width:393px;height:min(852px, 100%);flex-shrink:0;background:#fff;border-radius:28px;border:10px solid #20242B;box-shadow:0 18px 48px rgba(20,24,32,.28);overflow:hidden;display:flex}
+.viewer{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#E9ECF1;padding:24px;overflow-y:auto;overflow-x:hidden}
+.device{width:min(413px, 100%);height:min(852px, 100%);flex-shrink:1;background:#fff;border-radius:28px;border:10px solid #20242B;box-shadow:0 18px 48px rgba(20,24,32,.28);overflow:hidden;display:flex}
 .device iframe{flex:1;width:100%;border:none;background:#fff}
 </style>
 </head>
@@ -79,6 +79,7 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
       <button class="nav-item" data-page="mobile_auction.html"><i class="fa-solid fa-gavel"></i><span class="nav-item-label">경매 대행<span class="nav-file">mobile_auction.html</span></span></button>
       <button class="nav-item" data-page="mobile_purchase store.html"><i class="fa-solid fa-bag-shopping"></i><span class="nav-item-label">구매대행(스토어)<span class="nav-file">mobile_purchase store.html</span></span></button>
       <button class="nav-item" data-page="mobile_purchase merukari.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">구매대행(메루카리)<span class="nav-file">mobile_purchase merukari.html</span></span></button>
+      <button class="nav-item" data-page="../web/web_purchase url.html"><i class="fa-solid fa-link"></i><span class="nav-item-label">구매대행(URL)<span class="nav-file">web_purchase url.html</span></span></button>
     </div>
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-credit-card"></i> 결제</div>
