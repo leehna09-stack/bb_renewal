@@ -135,14 +135,12 @@
     }
     .clip { color: var(--faint); font-size: 12px; flex-shrink: 0; }
 
-    .status-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-width: 70px; height: 26px; padding: 0 10px;
-      border-radius: 999px;
-      font-size: 11px; font-weight: 800;
+    .status-text {
+      font-size: 12px;
+      font-weight: 800;
     }
-    .status-badge.waiting { background: #fff6e5; color: #e09a00; }
-    .status-badge.done { background: #edf7f0; color: #2e9e4f; }
+    .status-text.waiting { color: #e09a00; }
+    .status-text.done { color: #2e9e4f; }
 
     /* 페이지네이션 */
     .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 22px 0 80px; }
@@ -203,7 +201,7 @@
 
       <div class="status-tabs" role="tablist" aria-label="상태 필터">
         <button class="status-tab active" type="button" data-filter="all" onclick="filterStatus(this)">전체<small>(6)</small></button>
-        <button class="status-tab" type="button" data-filter="waiting" onclick="filterStatus(this)">답변준비<small>(2)</small></button>
+        <button class="status-tab" type="button" data-filter="waiting" onclick="filterStatus(this)">답변 대기<small>(2)</small></button>
         <button class="status-tab" type="button" data-filter="done" onclick="filterStatus(this)">답변완료<small>(4)</small></button>
       </div>
 
@@ -222,10 +220,10 @@
           <div class="qna-cat">배송문의</div>
           <div class="qna-title-cell">
             <span class="qna-title-text">묶음배송 신청건 국제배송 일정 문의드립니다</span>
-            <span class="reply-count">[답변 3]</span>
+            <span class="reply-count">[3]</span>
             <i class="fas fa-paperclip clip" aria-hidden="true"></i>
           </div>
-          <div><span class="status-badge done">답변완료</span></div>
+          <div><span class="status-text done">답변완료</span></div>
         </a>
 
         <a class="qna-row" data-status="waiting" href="web_qna_details.html">
@@ -235,7 +233,7 @@
           <div class="qna-title-cell">
             <span class="qna-title-text">야후옥션 입찰 취소 요청합니다 (경매번호 A20260601-0182)</span>
           </div>
-          <div><span class="status-badge waiting">답변준비</span></div>
+          <div><span class="status-text waiting">답변 대기</span></div>
         </a>
 
         <a class="qna-row" data-status="done" href="web_qna_details.html">
@@ -244,9 +242,9 @@
           <div class="qna-cat">구매문의</div>
           <div class="qna-title-cell">
             <span class="qna-title-text">이베이 상품 재고 확인 가능할까요?</span>
-            <span class="reply-count">[답변 1]</span>
+            <span class="reply-count">[1]</span>
           </div>
-          <div><span class="status-badge done">답변완료</span></div>
+          <div><span class="status-text done">답변완료</span></div>
         </a>
 
         <a class="qna-row" data-status="waiting" href="web_qna_details.html">
@@ -256,7 +254,7 @@
           <div class="qna-title-cell">
             <span class="qna-title-text">1차 결제 영수증 발급 문의</span>
           </div>
-          <div><span class="status-badge waiting">답변준비</span></div>
+          <div><span class="status-text waiting">답변 대기</span></div>
         </a>
 
         <a class="qna-row" data-status="done" href="web_qna_details.html">
@@ -265,9 +263,9 @@
           <div class="qna-cat">경매문의</div>
           <div class="qna-title-cell">
             <span class="qna-title-text">영국이베이 경매 자동입찰 설정 방법 문의</span>
-            <span class="reply-count">[답변 2]</span>
+            <span class="reply-count">[2]</span>
           </div>
-          <div><span class="status-badge done">답변완료</span></div>
+          <div><span class="status-text done">답변완료</span></div>
         </a>
 
         <a class="qna-row" data-status="done" href="web_qna_details.html">
@@ -276,10 +274,10 @@
           <div class="qna-cat">반품환불문의</div>
           <div class="qna-title-cell">
             <span class="qna-title-text">파손 상품 환불 처리 진행 상황 문의</span>
-            <span class="reply-count">[답변 4]</span>
+            <span class="reply-count">[4]</span>
             <i class="fas fa-paperclip clip" aria-hidden="true"></i>
           </div>
-          <div><span class="status-badge done">답변완료</span></div>
+          <div><span class="status-text done">답변완료</span></div>
         </a>
       </div>
 
