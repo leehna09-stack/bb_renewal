@@ -328,15 +328,16 @@
 
     /* ── 국가 탭 ── */
     .country-tabs {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      gap: 22px;
       margin-bottom: 14px;
       border-bottom: 1px solid var(--line-soft);
     }
 
     .country-tab {
       position: relative;
+      width: 100%;
       height: 38px;
       padding: 0 2px 9px;
       border: 0;
@@ -344,6 +345,7 @@
       color: #9da2af;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
       font-size: 13px;
       font-weight: 900;
@@ -351,7 +353,14 @@
       white-space: nowrap;
     }
 
-    .country-tab .flag { font-size: 16px; line-height: 1; }
+    .country-tab .flag {
+      display: inline-block;
+      width: 20px;
+      height: 14px;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+      background: #fff center / cover no-repeat;
+    }
     .country-tab small { font-size: 12px; font-weight: 700; color: inherit; }
 
     .country-tab::after {
@@ -436,7 +445,7 @@
 
     .bundle-head, .bundle-row {
       display: grid;
-      grid-template-columns: 76px 84px minmax(0, 1fr) 72px 110px 98px;
+      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 110px 98px;
       align-items: center;
     }
 
@@ -466,7 +475,7 @@
 
     .bundle-row > div { padding: 12px 6px; }
 
-    .row-status { font-weight: 800; color: #2b2f37; }
+    .row-status { font-weight: 800; color: #2b2f37; white-space: nowrap; }
     .row-status.hot { color: var(--brand); }
     .row-date { color: #59606d; }
 
@@ -501,7 +510,28 @@
       white-space: nowrap;
     }
 
-    .product-market .flag { font-size: 12px; margin-right: 4px; }
+    .product-market .flag {
+      display: inline-block;
+      width: 16px;
+      height: 11px;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+      vertical-align: -1px;
+      margin-right: 5px;
+      background: #fff center / cover no-repeat;
+    }
+
+    .flag.jp {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23ffffff'/%3E%3Ccircle cx='15' cy='10' r='6' fill='%23bc002d'/%3E%3C/svg%3E");
+    }
+
+    .flag.us {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23ffffff'/%3E%3Cg fill='%23b22234'%3E%3Crect width='30' height='1.54'/%3E%3Crect y='3.08' width='30' height='1.54'/%3E%3Crect y='6.15' width='30' height='1.54'/%3E%3Crect y='9.23' width='30' height='1.54'/%3E%3Crect y='12.31' width='30' height='1.54'/%3E%3Crect y='15.38' width='30' height='1.54'/%3E%3Crect y='18.46' width='30' height='1.54'/%3E%3C/g%3E%3Crect width='12' height='10.77' fill='%233c3b6e'/%3E%3C/svg%3E");
+    }
+
+    .flag.uk {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23012169'/%3E%3Cpath d='M0 0 30 20M30 0 0 20' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M0 0 30 20M30 0 0 20' stroke='%23C8102E' stroke-width='2'/%3E%3Cpath d='M15 0v20M0 10h30' stroke='%23ffffff' stroke-width='6'/%3E%3Cpath d='M15 0v20M0 10h30' stroke='%23C8102E' stroke-width='3.6'/%3E%3C/svg%3E");
+    }
 
     .product-name {
       display: -webkit-box;
@@ -808,19 +838,19 @@
       <main class="main">
         <section aria-labelledby="bundle-title">
           <div class="page-head">
-            <h2 id="bundle-title">묶음배송관리 <span style="color:#9da2af; font-weight:700; font-size:12px;">묶음배송 신청목록</span></h2>
-            <a class="outline-pill" href="web_bundle_shipping_management.html">묶음배송 가능주문 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
+            <h2 id="bundle-title">묶음배송관리 <span style="color:#9da2af; font-weight:700; font-size:12px;">묶음배송 신청 완료 목록</span></h2>
+            <a class="outline-pill" href="web_bundle_shipping_management.html">묶음배송 신청 가능 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
           </div>
 
           <div class="country-tabs" role="tablist" aria-label="국가별 신청목록">
             <button class="country-tab active" type="button" role="tab" data-panel="jp">
-              <span class="flag" aria-hidden="true">🇯🇵</span>신청목록<small>(2건)</small>
+              <span class="flag jp" role="img" aria-label="일본"></span>일본 묶음 신청 목록<small>(2건)</small>
             </button>
             <button class="country-tab" type="button" role="tab" data-panel="us">
-              <span class="flag" aria-hidden="true">🇺🇸</span>신청목록<small>(1건)</small>
+              <span class="flag us" role="img" aria-label="미국"></span>미국 묶음 신청 목록<small>(1건)</small>
             </button>
             <button class="country-tab" type="button" role="tab" data-panel="uk">
-              <span class="flag" aria-hidden="true">🇬🇧</span>신청목록<small>(0건)</small>
+              <span class="flag uk" role="img" aria-label="영국"></span>영국 묶음 신청 목록<small>(0건)</small>
             </button>
           </div>
 
@@ -855,7 +885,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -870,7 +900,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -887,7 +917,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -904,7 +934,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -945,7 +975,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -960,7 +990,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -977,7 +1007,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -994,7 +1024,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
                       <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
@@ -1045,7 +1075,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇺🇸</span>이베이 - vintage_usa</div>
+                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                       <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
                       <div class="product-price">$ 920.00</div>
                     </div>
@@ -1060,7 +1090,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag">🇺🇸</span>이베이 - vintage_usa</div>
+                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                       <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
                       <div class="product-price">$ 920.00</div>
                     </div>
