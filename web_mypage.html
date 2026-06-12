@@ -45,9 +45,9 @@
       min-width: 320px;
       color: var(--text);
       background: #fff;
-      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 13px;
-      line-height: 1.45;
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px;
+      line-height:1.5;
     }
 
     button,
@@ -665,10 +665,31 @@
 
     .status-board {
       display: grid;
-      grid-template-columns: 127px repeat(6, 87px);
-      gap: 20px;
+      grid-template-columns: 1.45fr repeat(6, minmax(0, 1fr));
+      column-gap: 20px;
+      row-gap: 12px;
       align-items: stretch;
-      margin-left: 6px;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .status-step {
+      position: relative;
+      min-width: 0;
+      display: grid;
+    }
+
+    .status-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid #b5bac2;
+      border-right: 1.5px solid #b5bac2;
+      transform: translateY(-50%) rotate(45deg);
+      pointer-events: none;
     }
 
     .status-stack {
@@ -710,6 +731,10 @@
       min-height: 66px;
     }
 
+    .status-split {
+      gap: 19px;
+    }
+
     .status-card em {
       display: block;
       margin-bottom: 5px;
@@ -722,6 +747,14 @@
 
     .status-card em.hot {
       color: var(--brand);
+    }
+
+    .status-card em.status-payment-wait {
+      color: var(--brand);
+    }
+
+    .status-card em.status-shipping-wait {
+      color: #f59e0b;
     }
 
     .status-card strong {
@@ -1080,195 +1113,263 @@
       color: #fff;
     }
 
+    /* ── 거래 목록 ── */
     .trade-table {
-      --trade-thumb-size: 80px;
-      --trade-thumb-gap: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .order-card {
       border: 1px solid var(--line);
       border-radius: 11px;
       overflow: hidden;
       background: #fff;
     }
 
-    .table-head,
-    .trade-row {
-      display: grid;
-      grid-template-columns: 120px minmax(0, 1fr) 132px 180px;
-      align-items: center;
-      column-gap: 12px;
+    .order-card.bundle-group-start {
+      position: relative;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-color: var(--line-soft);
     }
 
-    .table-head {
-      min-height: 37px;
-      padding: 0 16px;
+    .trade-table.status-filtered .order-card.bundle-group-start {
+      margin-bottom: -10px;
+    }
+
+    .order-card.bundle-group-end {
+      border-top: 0;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    .bundle-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 11px 14px;
       background: var(--warm);
-      color: #5a5e66;
-      font-size: 11px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bundle-summary-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #4b5260;
+      font-size: 12px;
+    }
+
+    .bundle-summary-list b {
+      margin-right: 5px;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
+    .bundle-summary-list span {
+      color: #151922;
       font-weight: 800;
     }
 
-    .table-head div {
-      min-width: 0;
+    .bundle-summary-list .hot {
+      color: var(--brand);
     }
 
-    .table-head div:nth-child(2) {
-      padding-left: calc(var(--trade-thumb-size) + var(--trade-thumb-gap));
+    .bundle-chip {
+      flex: 0 0 auto;
+      height: 24px;
+      padding: 0 9px;
+      border: 1px solid rgba(209, 47, 69, 0.22);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
-    .table-head div:nth-child(4) {
-      text-align: right;
-    }
-
-    .trade-row {
-      min-height: 120px;
-      padding: 0 16px;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .trade-row > [role="cell"] {
-      min-width: 0;
-    }
-
-    .trade-row.status-extra {
-      display: none;
-    }
-
-    .trade-table.status-filtered .trade-row.status-extra {
-      display: grid;
-    }
-
-    .trade-row.is-hidden {
-      display: none !important;
-    }
+    .order-card.status-extra { display: none; }
+    .trade-table.status-filtered .order-card.status-extra { display: block; }
+    .order-card.is-hidden { display: none !important; }
 
     .trade-empty {
       display: none;
       min-height: 84px;
       align-items: center;
       justify-content: center;
-      border-top: 1px solid var(--line-soft);
+      border: 1px solid var(--line);
+      border-radius: 11px;
       color: #9da2af;
       font-size: 13px;
       font-weight: 800;
+      background: #fff;
     }
 
-    .trade-empty.is-visible {
-      display: flex;
+    .trade-empty.is-visible { display: flex; }
+
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
     }
 
-    .trade-date {
-      color: #969baa;
+    .order-table .col-product-head,
+    .order-table .col-order-head,
+    .order-table .col-ship-head {
+      background: var(--warm);
+      color: #5a5e66;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .order-table .col-product-head { border-right: 1px solid var(--line); text-align: left; }
+    .order-table .col-order-head   { text-align: left; }
+    .order-table .col-ship-head    { width: 88px; text-align: right; }
+
+    .order-table td.col-thumb {
+      width: 84px;
+      min-width: 84px;
+      padding: 14px 10px 14px 14px;
+      vertical-align: top;
+    }
+
+    .order-table td.col-info {
+      padding: 12px 14px 12px 0;
+      vertical-align: top;
+      border-right: 1px solid var(--line);
+      width: 210px;
+    }
+
+    .order-table td.col-label {
+      background: #f8f9fb;
+      color: #6b7280;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
+      padding: 9px 12px;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--line-soft);
+      border-right: 1px solid var(--line-soft);
+      width: 76px;
+    }
+
+    .order-table td.col-val {
+      color: #222;
+      font-size: 12px;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      border-right: 1px solid var(--line-soft);
+    }
+
+    .order-table td.col-ship {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 12px;
+      font-weight: 700;
+      color: #555;
+      padding: 12px 10px;
+      border-left: 1px solid var(--line);
+      width: 88px;
+      line-height: 1.7;
+    }
+
+    .ship-btn {
+      display: block;
+      margin: 6px auto 0;
+      height: 24px;
+      padding: 0 8px;
+      border: 1px solid var(--navy);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
       white-space: nowrap;
     }
 
-    .product {
-      display: grid;
-      grid-template-columns: var(--trade-thumb-size) minmax(0, 1fr);
-      align-items: center;
-      gap: var(--trade-thumb-gap);
+    .ship-btn:hover { background: var(--navy); color: #fff; }
+
+    .order-table td.col-actions {
+      text-align: right;
+      padding: 9px 14px;
+      background: #fafafa;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .order-table tr.is-actions-moved {
+      display: none;
+    }
+
+    .action-stack {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      width: 100%;
+      max-width: 88px;
+      margin-top: 8px;
+    }
+
+    .action-stack .mini-btn {
+      width: 100%;
       min-width: 0;
-      overflow: hidden;
     }
 
     .thumb {
-      width: var(--trade-thumb-size);
-      height: var(--trade-thumb-size);
+      width: 80px;
+      height: 80px;
       border-radius: 6px;
       overflow: hidden;
+      flex-shrink: 0;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.75), rgba(246,246,246,0.2)),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' rx='10' fill='%23f3f4f6'/%3E%3Cpath d='M28 23 43 14h24l15 9 13 23-15 8-6-10v44H36V44l-6 10-15-8Z' fill='%23ffffff' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M43 14c2 9 6 14 12 14s10-5 12-14' fill='none' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M46 39c5-4 15-4 20 0' fill='none' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M42 49h27' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='55' y='61' text-anchor='middle' font-family='Arial' font-size='8' font-weight='700' fill='%23e23346'%3EDUCATI%3C/text%3E%3Cpath d='M28 23 15 46l15 8 6-10M82 23l13 23-15 8-6-10' fill='%23f9fafb' stroke='%23d8dce3' stroke-width='2'/%3E%3C/svg%3E") center / cover no-repeat;
     }
 
-    .product-info {
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .seller {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 5px;
+    .order-id {
       color: #59606d;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
-    }
-
-    .seller::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #d70022;
-      flex: 0 0 auto;
-    }
-
-    .product-title {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      margin-bottom: 4px;
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .order-title {
       color: #151922;
       font-size: 13px;
       font-weight: 500;
       line-height: 1.55;
-    }
-
-    .price-main {
-      margin-bottom: 5px;
-      color: var(--brand);
-      font-size: 14px;
-      font-weight: 500;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      margin-bottom: 8px;
     }
 
-    .price-sub {
-      color: #a0a3ad;
-      font-size: 10px;
-      font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .progress-cell {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 10px;
-      min-width: 0;
-      color: #9ca1ad;
-      font-size: 12px;
-      font-weight: 500;
-      text-align: right;
-    }
-
-    .progress-cell > span {
-      display: block;
-      width: 100%;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .progress-time {
-      color: var(--brand);
-      font-size: 12px;
+    .order-status-link {
+      display: inline-block;
+      color: var(--navy);
+      font-size: 11px;
       font-weight: 700;
-      text-align: right;
-      white-space: nowrap;
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     .row-actions {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
+      display: inline-flex;
       gap: 6px;
-      flex-wrap: nowrap;
     }
 
     .mini-btn {
@@ -1287,6 +1388,7 @@
       font-weight: 800;
       line-height: 1;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .mini-btn.primary {
@@ -1294,6 +1396,30 @@
       border-color: var(--brand);
       background: var(--brand);
       color: #fff;
+    }
+
+    .order-table .col-ship-head .detail-top-btn {
+      display: inline;
+      flex: initial;
+      min-width: 0;
+      width: auto;
+      height: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .order-table .col-ship-head .detail-top-btn:hover {
+      color: var(--brand);
+      background: transparent;
     }
 
     .pager {
@@ -1324,170 +1450,6 @@
       background: var(--brand);
       color: #fff;
     }
-
-    @media (max-width: 1180px) {
-      :root {
-        --stage-left: 16px;
-        --main-w: minmax(0, 1fr);
-      }
-
-      .topbar {
-        width: calc(100vw - 32px);
-        grid-template-columns: 221px minmax(280px, 1fr) 190px;
-        gap: 16px;
-      }
-
-      .stage {
-        width: calc(100vw - 32px);
-        grid-template-columns: 221px minmax(0, 1fr);
-      }
-
-      .asset-strip {
-        width: calc(100vw - 32px - 221px);
-      }
-
-      .asset-item {
-        gap: 18px;
-      }
-
-      .status-board {
-        grid-template-columns: 127px repeat(6, minmax(72px, 1fr));
-        gap: 10px;
-      }
-
-      .filter-row {
-        height: auto;
-        flex-wrap: wrap;
-      }
-
-      .utility-group {
-        margin-left: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .topbar {
-        width: auto;
-        height: auto;
-        grid-template-columns: 1fr;
-        margin: 0;
-        padding: 13px 16px;
-      }
-
-      .brand-area {
-        justify-content: space-between;
-      }
-
-      .search {
-        width: 100%;
-      }
-
-      .user-tools {
-        justify-self: start;
-      }
-
-      .stage {
-        display: block;
-      }
-
-      .asset-strip {
-        position: static;
-        width: 100%;
-        height: auto;
-        grid-template-columns: repeat(2, 1fr);
-        margin-bottom: 16px;
-        border: 1px solid var(--line-soft);
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      .asset-item {
-        min-height: 42px;
-        justify-content: space-between;
-        padding: 0 14px;
-      }
-
-      .profile-card {
-        height: auto;
-        border-radius: 10px;
-      }
-
-      .side-nav {
-        padding-top: 16px;
-      }
-
-      .main {
-        padding-top: 22px;
-      }
-
-      .status-board {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .status-card,
-      .status-stack .status-card {
-        min-height: 78px;
-      }
-
-      .trade-area {
-        margin-top: 32px;
-      }
-
-      .table-head {
-        display: none;
-      }
-
-      .trade-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 16px;
-      }
-
-      .progress-cell {
-        align-items: flex-start;
-        text-align: left;
-      }
-
-      .progress-cell > span {
-        text-align: left;
-      }
-
-      .row-actions {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .trade-table {
-        --trade-thumb-size: 48px;
-        --trade-thumb-gap: 14px;
-      }
-
-      .asset-strip,
-      .status-board {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-group,
-      .country-group {
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .filter-row {
-        gap: 12px;
-      }
-
-      .product {
-        grid-template-columns: var(--trade-thumb-size) minmax(0, 1fr);
-      }
-
-      .thumb {
-        width: var(--trade-thumb-size);
-        height: var(--trade-thumb-size);
-      }
-    }
-
     /* 사업자 전환 배너 */
     .biz-convert-section {
       margin-top: 6px;
@@ -1676,26 +1638,33 @@
           </div>
 
           <div class="status-board">
-            <div class="status-stack">
+            <div class="status-step status-stack">
               <div class="status-card" role="button" tabindex="0" data-status="auction-bid" data-label="경매입찰">
-                <div><em>5</em><strong>경매입찰</strong></div>
+                <div><em>5</em><strong>경매 입찰 상품</strong></div>
               </div>
               <div class="status-card" role="button" tabindex="0" data-status="purchase-request" data-label="구매 신청">
-                <div><em>5</em><strong>구매 신청</strong></div>
+                <div><em>5</em><strong>구매 신청 상품</strong></div>
               </div>
             </div>
-            <div class="status-card" role="button" tabindex="0" data-status="first-payment-wait" data-label="1차 결제대기"><div><em class="hot">5</em><strong>1차<br>결제대기</strong></div></div>
-            <div class="status-card" role="button" tabindex="0" data-status="first-payment-complete" data-label="1차 결제완료"><div><em>5</em><strong>1차<br>결제완료</strong></div></div>
-            <div class="status-card" role="button" tabindex="0" data-status="local-arrived" data-label="현지도착">
-              <div>
-                <em>5</em>
-                <strong>현지도착</strong>
-                <span class="sub" role="button" tabindex="0" data-status="shipping-wait" data-label="배송대기"><em>3</em><strong>배송대기</strong></span>
-              </div>
+            <div class="status-step">
+              <div class="status-card" role="button" tabindex="0" data-status="first-payment-wait" data-label="결제대기"><div><em class="hot">5</em><strong>결제대기</strong></div></div>
             </div>
-            <div class="status-card" role="button" tabindex="0" data-status="second-payment-wait" data-label="2차 결제대기"><div><em class="hot">5</em><strong>2차<br>결제대기</strong></div></div>
-            <div class="status-card" role="button" tabindex="0" data-status="second-payment-complete" data-label="2차 결제 완료"><div><em>5</em><strong>2차<br>결제 완료</strong></div></div>
-            <div class="status-card" role="button" tabindex="0" data-status="international-shipping" data-label="국제배송"><div><em class="hot">5</em><strong>국제배송</strong></div></div>
+            <div class="status-step">
+              <div class="status-card" role="button" tabindex="0" data-status="first-payment-complete" data-label="1차 결제완료"><div><em>5</em><strong>1차<br>결제완료</strong></div></div>
+            </div>
+            <div class="status-step status-stack status-split">
+              <div class="status-card" role="button" tabindex="0" data-status="local-arrived" data-label="현지도착"><div><em>5</em><strong>현지도착</strong></div></div>
+              <div class="status-card" role="button" tabindex="0" data-status="shipping-wait" data-label="배송대기"><div><em>3</em><strong>배송대기</strong></div></div>
+            </div>
+            <div class="status-step">
+              <div class="status-card" role="button" tabindex="0" data-status="second-payment-wait" data-label="결제대기"><div><em class="hot">5</em><strong>결제대기</strong></div></div>
+            </div>
+            <div class="status-step">
+              <div class="status-card" role="button" tabindex="0" data-status="second-payment-complete" data-label="2차 결제 완료"><div><em>5</em><strong>2차<br>결제 완료</strong></div></div>
+            </div>
+            <div class="status-step">
+              <div class="status-card" role="button" tabindex="0" data-status="international-shipping" data-label="국제배송"><div><em class="hot">5</em><strong>국제배송</strong></div></div>
+            </div>
           </div>
         </section>
 
@@ -1703,9 +1672,9 @@
           <div class="filter-row">
             <h2 class="list-title" id="trade-list-title">거래 전체 목록</h2>
             <div class="filter-group" aria-label="거래 유형">
-              <button class="tab active" type="button">전체</button>
-              <button class="tab" type="button">경매</button>
-              <button class="tab" type="button">구매</button>
+              <button class="tab active" type="button" data-trade-type="">전체</button>
+              <button class="tab" type="button" data-trade-type="auction">경매</button>
+              <button class="tab" type="button" data-trade-type="purchase">구매</button>
             </div>
             <div class="utility-group">
               <div class="filter-dropdown" data-dropdown>
@@ -1714,9 +1683,10 @@
                   <span class="chevron" aria-hidden="true"></span>
                 </button>
                 <div class="dropdown-panel country-panel" role="menu" aria-label="거래 국가 선택">
-                  <button class="dropdown-item active" type="button" role="menuitem" data-country="jp">일본</button>
-                  <button class="dropdown-item" type="button" role="menuitem" data-country="us">미국</button>
-                  <button class="dropdown-item" type="button" role="menuitem" data-country="uk">영국</button>
+                  <button class="dropdown-item active" type="button" role="menuitem" data-country="" data-label="전체 국가">전체 국가</button>
+                  <button class="dropdown-item" type="button" role="menuitem" data-country="jp" data-label="일본">일본</button>
+                  <button class="dropdown-item" type="button" role="menuitem" data-country="us" data-label="미국">미국</button>
+                  <button class="dropdown-item" type="button" role="menuitem" data-country="uk" data-label="영국">영국</button>
                 </div>
               </div>
               <div class="filter-dropdown" data-dropdown>
@@ -1792,9 +1762,9 @@
                   <button class="status-filter-option" type="button" role="menuitem" data-status="failed-bid" data-label="유찰">유찰</button>
                   <button class="status-filter-option" type="button" role="menuitem" data-status="trade-cancel" data-label="거래취소">거래취소</button>
                   <button class="status-filter-option" type="button" role="menuitem" data-status="successful-bid" data-label="낙찰">낙찰</button>
-                  <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-wait" data-label="1차 결제대기">1차 결제대기</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-wait" data-label="결제대기">결제대기</button>
                   <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-complete" data-label="1차 결제완료">1차 결제완료</button>
-                  <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-wait" data-label="2차 결제대기">2차 결제대기</button>
+                  <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-wait" data-label="결제대기">결제대기</button>
                   <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-complete" data-label="2차 결제완료">2차 결제완료</button>
                   <button class="status-filter-option" type="button" role="menuitem" data-status="international-shipping" data-label="국제배송">국제배송</button>
                 </div>
@@ -1802,225 +1772,764 @@
             </div>
           </div>
 
-          <div class="trade-table" role="table" aria-label="거래 목록">
-            <div class="table-head" role="row">
-              <div role="columnheader">낙찰일/구매일</div>
-              <div role="columnheader">상품정보</div>
-              <div role="columnheader">상품가</div>
-              <div role="columnheader">진행 단계</div>
+          <div class="trade-table" aria-label="거래 목록">
+
+            <!-- 입찰중 -->
+            <div class="order-card" data-trade-type="auction" data-country="jp" data-status="auction-bid">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후경매] AUC-2024041701</div>
+                      <div class="order-title">닌텐도 스위치 OLED 화이트 본체 풀박스 중고</div>
+                      <span class="order-status-link">입찰중 · 종료 2시간 14분 전</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥23,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥23,900</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">재입찰</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row" role="row" data-status="auction-bid">
-              <div class="trade-date" role="cell">2024-04-17 00:00</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후경매</div>
-                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 23,900 / 1개</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>입찰중</span>
-                <span class="progress-time">종료 2시간 14분 전</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                  <button class="mini-btn primary" type="button">재입찰</button>
-                </div>
-              </div>
+            <!-- 결제대기 -->
+            <div class="order-card" data-trade-type="auction" data-country="jp" data-status="first-payment-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후경매] AUC-2024041702</div>
+                      <div class="order-title">소니 워크맨 빈티지 카세트 플레이어 한정 컬러</div>
+                      <span class="order-status-link">결제대기</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">결제하기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row" role="row" data-status="first-payment-wait">
-              <div class="trade-date" role="cell">2024-04-17 00:00</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후경매</div>
-                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                </div>
+            <!-- 현지도착 -->
+            <div class="order-card bundle-group-start" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
+              <div class="bundle-summary">
+                <ul class="bundle-summary-list">
+                  <li><b>대표 주문번호</b><span>BJP-2024041703</span></li>
+                </ul>
+                <span class="bundle-chip">묶음배송</span>
               </div>
-              <div role="cell">
-                <div class="price-main">￥ 28,500 / 2개</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>1차결제대기</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후구매] BJP-2024041703</div>
+                      <div class="order-title">스타벅스 재팬 사쿠라 머그컵 텀블러 세트</div>
+                      <span class="order-status-link">현지도착 · 보관 D+3</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
+                    <td rowspan="3" class="col-ship">묶음배송<br>13,821원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.20</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row" role="row" data-status="local-arrived">
-              <div class="trade-date" role="cell">2024-04-17 00:00</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후경매</div>
-                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 28,500 / 2개</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>현지도착</span>
-                <span class="progress-time">보관 D+3</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 현지도착 - 묶음배송 -->
+            <div class="order-card status-extra bundle-group-end" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후구매] BJP-2024041703-B</div>
+                      <div class="order-title">스타벅스 재팬 사쿠라 플레이트 한정 컬렉션</div>
+                      <span class="order-status-link">현지도착 · 보관 D+3</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥9,800</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥9,800</td>
+                    <td rowspan="3" class="col-ship">묶음배송<br>13,821원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.20</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row" role="row" data-status="second-payment-wait">
-              <div class="trade-date" role="cell">2024-04-17 00:00</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후구매</div>
-                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 28,500 / 2개</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>2차결제대기</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 현지도착 - 개별배송 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[메루카리] BJP-2024041706</div>
+                      <div class="order-title">스투시 재팬 로고 반팔 티셔츠 블랙</div>
+                      <span class="order-status-link">현지도착 · 보관 D+1</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥7,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥7,900</td>
+                    <td rowspan="3" class="col-ship">개별배송<br>5,900원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.18</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.21</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row" role="row" data-status="auction-bid">
-              <div class="trade-date" role="cell">2024-04-17 00:00</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">미국이베이</div>
-                  <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">23,900¥ / 1개</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>국제배송</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세 보기</button>
-                  <button class="mini-btn primary" type="button">배송 조회</button>
-                </div>
-              </div>
+            <!-- 결제대기 -->
+            <div class="order-card" data-trade-type="purchase" data-country="jp" data-status="second-payment-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후구매] BJP-2024041704</div>
+                      <div class="order-title">무인양품 원목 수납박스 데스크 정리함 묶음</div>
+                      <span class="order-status-link">결제대기</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
+                    <td rowspan="3" class="col-ship">묶음배송<br>19,500원<button class="ship-btn" type="button">배송신청</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.22</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row status-extra" role="row" data-status="purchase-request">
-              <div class="trade-date" role="cell">2024-04-16 14:20</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">구매대행 - bidbuy</div>
-                  <div class="product-title">일본 한정 굿즈 구매 신청 상품 패키지</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 12,400 / 1개</div>
-                <div class="price-sub">일만이천사백엔</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>구매 신청</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 국제배송 -->
+            <div class="order-card" data-trade-type="auction" data-country="us" data-status="international-shipping">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[미국이베이] AUC-2024041705</div>
+                      <div class="order-title">애플 매직키보드 일본어 배열 실버 모델</div>
+                      <span class="order-status-link">국제배송중</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥23,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥23,900</td>
+                    <td rowspan="3" class="col-ship">개별배송<br>4,500원<button class="ship-btn" type="button">배송조회</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">286,740원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.20</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">2024.04.24</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송조회</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row status-extra" role="row" data-status="first-payment-complete">
-              <div class="trade-date" role="cell">2024-04-16 09:10</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후경매 - shop_mall</div>
-                  <div class="product-title">프리미엄 한정판 컬렉션 세트 2024</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 18,900 / 1개</div>
-                <div class="price-sub">일만팔천구백엔</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>1차 결제완료</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 구매신청 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="purchase-request">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[구매대행 - bidbuy] BJP-2024041606</div>
+                      <div class="order-title">산리오 쿠로미 한정 아크릴 키링 랜덤 박스</div>
+                      <span class="order-status-link">구매신청</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥12,400</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥12,400</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row status-extra" role="row" data-status="shipping-wait">
-              <div class="trade-date" role="cell">2024-04-15 18:40</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">메루카리 - seller_24</div>
-                  <div class="product-title">현지 물류센터 도착 후 배송 대기 중인 상품</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 8,700 / 1개</div>
-                <div class="price-sub">팔천칠백엔</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>배송대기</span>
-                <span class="progress-time">보관 30일 경과</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 1차 결제완료 - 송금준비중 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="first-payment-complete">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후경매 - shop_mall] BJP-2024041607</div>
+                      <div class="order-title">요코하마 기념 한정 우표 앨범 컬렉션</div>
+                      <span class="order-status-link">1차 결제완료 (송금준비중)</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥18,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥18,900</td>
+                    <td rowspan="3" class="col-ship">배송대기<br>37,730원<button class="ship-btn" type="button">배송신청</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">결제금액</td><td class="col-val">226,800원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row status-extra" role="row" data-status="second-payment-complete">
-              <div class="trade-date" role="cell">2024-04-14 11:35</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">야후경매 - vintage77</div>
-                  <div class="product-title">2차 배송비 결제 완료 후 출고 준비 상품</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 31,000 / 2개</div>
-                <div class="price-sub">삼만천엔</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>2차 결제 완료</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 1차 결제완료 - 송금완료 -->
+            <div class="order-card status-extra" data-trade-type="auction" data-country="jp" data-status="first-payment-complete">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[일본경매 - hobby_store] AUC-2024041608</div>
+                      <div class="order-title">원피스 월드콜렉터블 피규어 루피 스페셜</div>
+                      <span class="order-status-link">1차 결제완료 (송금완료)</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥12,500</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥12,500</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">결제금액</td><td class="col-val">150,000원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-row status-extra" role="row" data-status="international-shipping">
-              <div class="trade-date" role="cell">2024-04-13 16:05</div>
-              <div class="product" role="cell">
-                <div class="thumb" aria-hidden="true"></div>
-                <div class="product-info">
-                  <div class="seller">배송센터 - tokyo</div>
-                  <div class="product-title">국제배송 진행 중인 묶음 배송 상품</div>
-                </div>
-              </div>
-              <div role="cell">
-                <div class="price-main">￥ 44,200 / 3개</div>
-                <div class="price-sub">사만사천이백엔</div>
-              </div>
-              <div class="progress-cell" role="cell">
-                <span>국제배송</span>
-                <div class="row-actions">
-                  <button class="mini-btn" type="button">상세보기</button>
-                </div>
-              </div>
+            <!-- 1차 결제완료 - 현지배송중 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="first-payment-complete">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[구매대행 - market_plus] BJP-2024041609</div>
+                      <div class="order-title">파이오니어 빈티지 오디오 앰프 부품 세트</div>
+                      <span class="order-status-link">1차 결제완료 (현지배송중)</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥8,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥8,900</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">결제금액</td><td class="col-val">106,800원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="trade-empty" role="row">선택한 쇼핑 현황에 해당하는 거래가 없습니다.</div>
+            <!-- 배송대기 1 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="shipping-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[메루카리 - seller_24] BJP-2024041510</div>
+                      <div class="order-title">미개봉 포켓몬 카드 프로모 팩 10매 묶음</div>
+                      <span class="order-status-link">배송대기 · 보관 D+30</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥8,700</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥8,700</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.15</td>
+                    <td class="col-label">결제금액</td><td class="col-val">104,400원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송신청</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 배송대기 2 -->
+            <div class="order-card status-extra" data-trade-type="auction" data-country="jp" data-status="shipping-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후경매 - camera_shop] AUC-2024041511</div>
+                      <div class="order-title">캐논 필름카메라 AE-1 렌즈 포함 세트</div>
+                      <span class="order-status-link">배송대기 · 보관 D+12</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥18,900</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥18,900</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.15</td>
+                    <td class="col-label">결제금액</td><td class="col-val">226,800원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송신청</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 배송대기 3 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="shipping-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[구매대행 - toy_collect] BJP-2024041512</div>
+                      <div class="order-title">건담 메탈빌드 한정판 피규어 미개봉</div>
+                      <span class="order-status-link">배송대기 · 보관 D+7</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥12,400</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥12,400</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.15</td>
+                    <td class="col-label">결제금액</td><td class="col-val">148,800원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송신청</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 2차 결제완료 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="second-payment-complete">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후경매 - vintage77] BJP-2024041413</div>
+                      <div class="order-title">다이슨 슈퍼소닉 드라이어 니켈 코퍼</div>
+                      <span class="order-status-link">2차 결제완료</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥31,000</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥31,000</td>
+                    <td rowspan="3" class="col-ship">개별배송<br>6,200원<button class="ship-btn" type="button">배송조회</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.14</td>
+                    <td class="col-label">결제금액</td><td class="col-val">372,000원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">2024.04.22</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송조회</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 국제배송 2 -->
+            <div class="order-card status-extra" data-trade-type="auction" data-country="uk" data-status="international-shipping">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[일본 라쿠텐] AUC-2024041314</div>
+                      <div class="order-title">일본 한정 레고 미니피규어 시리즈 묶음</div>
+                      <span class="order-status-link">국제배송중</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">3개 / ￥44,200</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥44,200</td>
+                    <td rowspan="3" class="col-ship">묶음배송<br>21,000원<button class="ship-btn" type="button">배송조회</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.13</td>
+                    <td class="col-label">결제금액</td><td class="col-val">530,400원</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.16</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">2024.04.20</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                        <button class="mini-btn primary" type="button">배송조회</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 유찰 -->
+            <div class="order-card status-extra" data-trade-type="auction" data-country="jp" data-status="failed-bid">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[일본경매 - retro_shop] AUC-2024041315</div>
+                      <div class="order-title">슈퍼패미컴 본체 컨트롤러 게임팩 세트</div>
+                      <span class="order-status-link">유찰</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥15,000</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">—</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.13</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 낙찰 -->
+            <div class="order-card status-extra" data-trade-type="auction" data-country="jp" data-status="successful-bid">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[일본경매 - figure_lab] AUC-2024041316</div>
+                      <div class="order-title">마블 아이언맨 프리미엄 액션 피규어 미개봉</div>
+                      <span class="order-status-link">낙찰</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥21,400</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥21,400</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.13</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn primary" type="button">결제하기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 거래취소 -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="trade-cancel">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[구매대행 - cancel_shop] BJP-2024041217</div>
+                      <div class="order-title">아식스 젤카야노 한정 컬러 운동화</div>
+                      <span class="order-status-link">거래취소</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">1개 / ￥6,200</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">—</td>
+                    <td rowspan="3" class="col-ship">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.12</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">—</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="trade-empty">선택한 쇼핑 현황에 해당하는 거래가 없습니다.</div>
           </div>
 
           <div class="pager" aria-label="페이지 이동">
@@ -2127,6 +2636,8 @@
             item.classList.toggle("active", isActive);
             item.setAttribute("aria-pressed", String(isActive));
           });
+          activeType = tab.dataset.tradeType || "";
+          applyTradeFilters();
         });
       });
     });
@@ -2180,10 +2691,12 @@
           option.classList.toggle("active", option === item);
         });
 
+        activeCountry = item.dataset.country || "";
         if (countryLabel) {
-          countryLabel.textContent = item.textContent.trim();
+          countryLabel.textContent = item.dataset.label || item.textContent.trim();
         }
 
+        applyTradeFilters();
         closeDropdowns();
       });
     });
@@ -2200,6 +2713,7 @@
           periodLabel.textContent = button.dataset.periodLabel || button.textContent.trim();
         }
       });
+
     });
 
     calendarDays.forEach((day) => {
@@ -2224,11 +2738,96 @@
     const statusTriggers = document.querySelectorAll(".status-card[data-status], .status-card .sub[data-status], .status-filter-option[data-status]");
     const statusOptions = document.querySelectorAll(".status-filter-option[data-status]");
     const tradeTable = document.querySelector(".trade-table");
-    const tradeRows = document.querySelectorAll(".trade-row[data-status]");
+    const tradeRows = document.querySelectorAll(".order-card[data-status]");
     const tradeEmpty = document.querySelector(".trade-empty");
     const tradeTitle = document.querySelector("#trade-list-title");
     const statusDropdownLabel = document.querySelector('[data-dropdown-label="status"]');
     let activeStatus = "";
+    let activeType = "";
+    let activeCountry = "";
+
+    function placeOrderActionsAtTableEnd() {
+      document.querySelectorAll(".order-table").forEach((table) => {
+        if (table.dataset.actionsReflowed === "true") {
+          return;
+        }
+
+        const actionsCell = table.querySelector("td.col-actions");
+        const actionsRow = actionsCell?.closest("tr");
+        const actionWrap = actionsCell?.querySelector(".row-actions");
+        const shipHead = table.querySelector(".col-ship-head");
+        const shipCell = table.querySelector("td.col-ship");
+
+        if (!actionsCell || !actionsRow || !actionWrap || !shipHead || !shipCell) {
+          return;
+        }
+
+        const buttons = Array.from(actionWrap.querySelectorAll("button"));
+        const detailButton = buttons.find((button) => button.textContent.trim() === "상세보기");
+
+        if (detailButton) {
+          detailButton.classList.add("detail-top-btn");
+          detailButton.textContent = "상세보기 >";
+          shipHead.appendChild(detailButton);
+        }
+
+        const stack = document.createElement("div");
+        stack.className = "action-stack";
+        const existingShipButtonLabels = Array.from(shipCell.querySelectorAll("button")).map((button) => button.textContent.trim());
+
+        buttons.forEach((button) => {
+          const label = button.textContent.trim();
+          if (button !== detailButton && !existingShipButtonLabels.includes(label)) {
+            stack.appendChild(button);
+          }
+        });
+
+        if (stack.children.length) {
+          if (shipCell.textContent.trim() === "—") {
+            shipCell.textContent = "";
+          }
+          shipCell.appendChild(stack);
+        }
+
+        actionsRow.classList.add("is-actions-moved");
+        table.dataset.actionsReflowed = "true";
+      });
+    }
+
+    placeOrderActionsAtTableEnd();
+
+    function updateStatusCounts() {
+      const counts = {};
+      tradeRows.forEach((row) => {
+        const status = row.dataset.status || "";
+        if (!status) return;
+        counts[status] = (counts[status] || 0) + 1;
+      });
+
+      statusOptions.forEach((option) => {
+        const status = option.dataset.status || "";
+        const baseLabel = option.dataset.baseLabel || option.textContent.replace(/\s*\(\d+\)$/, "").trim();
+        option.dataset.baseLabel = baseLabel;
+        if (!status) {
+          const total = tradeRows.length;
+          option.textContent = `${baseLabel} (${total})`;
+          return;
+        }
+        option.textContent = `${baseLabel} (${counts[status] || 0})`;
+      });
+
+      document.querySelectorAll(".status-card[data-status], .status-card .sub[data-status]").forEach((item) => {
+        const status = item.dataset.status || "";
+        const count = counts[status] || 0;
+        const countEl = item.querySelector("em");
+        if (countEl) {
+          countEl.textContent = count;
+          countEl.classList.remove("hot", "status-payment-wait", "status-shipping-wait");
+          countEl.classList.toggle("status-payment-wait", status === "first-payment-wait" || status === "second-payment-wait");
+          countEl.classList.toggle("status-shipping-wait", status === "shipping-wait");
+        }
+      });
+    }
 
     function updateStatusDropdown(status, label) {
       let selectedLabel = label || "진행 단계";
@@ -2248,6 +2847,41 @@
       }
     }
 
+    function applyTradeFilters() {
+      if (tradeTable) {
+        tradeTable.classList.toggle("status-filtered", Boolean(activeStatus || activeType || activeCountry));
+      }
+
+      let visibleCount = 0;
+      tradeRows.forEach((row) => {
+        const matchesStatus = !activeStatus || row.dataset.status === activeStatus;
+        const matchesType = !activeType || row.dataset.tradeType === activeType;
+        const matchesCountry = !activeCountry || row.dataset.country === activeCountry;
+        const shouldShow = matchesStatus && matchesType && matchesCountry;
+        row.classList.toggle("is-hidden", !shouldShow);
+        if (shouldShow) {
+          visibleCount += 1;
+        }
+      });
+
+      if (tradeEmpty) {
+        tradeEmpty.classList.toggle("is-visible", visibleCount === 0);
+      }
+
+      if (tradeTitle) {
+        const parts = [];
+        if (activeCountry) {
+          parts.push(document.querySelector(`.country-panel .dropdown-item[data-country="${activeCountry}"]`)?.dataset.label || "거래 국가");
+        }
+        if (activeType) {
+          parts.push(activeType === "auction" ? "경매" : "구매");
+        }
+        if (activeStatus) {
+          parts.push(document.querySelector(`.status-filter-option[data-status="${activeStatus}"]`)?.dataset.baseLabel || "진행 단계");
+        }
+        tradeTitle.textContent = parts.length ? `${parts.join(" ")} 목록` : "전체 거래 목록";
+      }
+    }
     function setStatusFilter(status, label, forceSelection = false) {
       const nextStatus = status || "";
       const isSameStatus = activeStatus === nextStatus;
@@ -2291,28 +2925,11 @@
         }
       }
 
-      if (tradeTable) {
-        tradeTable.classList.toggle("status-filtered", Boolean(activeStatus));
-      }
-
-      let visibleCount = 0;
-      tradeRows.forEach((row) => {
-        const shouldShow = !activeStatus || row.dataset.status === activeStatus;
-        row.classList.toggle("is-hidden", !shouldShow);
-
-        if (activeStatus && shouldShow) {
-          visibleCount += 1;
-        }
-      });
-
-      if (tradeEmpty) {
-        tradeEmpty.classList.toggle("is-visible", Boolean(activeStatus) && visibleCount === 0);
-      }
-
-      if (tradeTitle) {
-        tradeTitle.textContent = activeStatus ? `${label} 거래 목록` : "거래 전체 목록";
-      }
+      applyTradeFilters();
     }
+
+    updateStatusCounts();
+    applyTradeFilters();
 
     statusTriggers.forEach((trigger) => {
       trigger.setAttribute("aria-pressed", "false");
@@ -2396,5 +3013,6 @@
 
     renderDrawerState();
   </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

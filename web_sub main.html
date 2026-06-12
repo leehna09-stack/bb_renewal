@@ -21,8 +21,8 @@
 
     html, body {
       margin: 0; min-width: 320px; background: #fff; color: var(--text);
-      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 14px; line-height: 1.45;
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px; line-height:1.5;
     }
 
     button, input, select { font: inherit; }
@@ -238,33 +238,9 @@
     .content-layout .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
 
     /* ── Responsive ── */
-    @media (max-width: 1080px) {
-      .header-main { grid-template-columns: 200px minmax(280px, 1fr) auto; }
-      .store-list, main, .header-main { width: calc(100vw - 32px); }
-      .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .content-layout { grid-template-columns: 210px minmax(0, 1fr); gap: 16px; }
-      .content-layout .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
+    
 
-    @media (max-width: 760px) {
-      .header-main { height: auto; padding: 14px 0; grid-template-columns: 1fr; }
-      .brand-area, .user-tools { justify-self: start; }
-      .store-list { grid-template-columns: repeat(4, 1fr); }
-      .result-copy { margin-top: 12px; font-size: 17px; }
-      .url-bar, .category-search-bar, .result-title-row { grid-template-columns: 1fr; height: auto; }
-      .url-label, .move-button, .category-store-label, .category-search-button { min-height: 44px; }
-      .url-input, .category-search-input { min-height: 44px; margin: 0; }
-      .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-      .content-layout { grid-template-columns: 1fr; }
-      .content-layout .filter-panel { border: 1px solid #e4e4e4; }
-      .content-layout .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .result-rescan { grid-template-columns: minmax(0, 1fr) 92px; }
-      .result-control-row { align-items: flex-start; flex-direction: column; }
-      .result-tabs { padding-left: 0; gap: 18px; }
-      .filter-actions { align-self: flex-end; }
-      .product-grid { grid-template-columns: 1fr; }
-    }
+    
   </style>
 </head>
 <body>
@@ -836,12 +812,15 @@
     });
 
     // ── Store chips ──
+    let activeStore = "야후 옥션";
+
     document.querySelectorAll(".store-chip").forEach(chip => {
       chip.addEventListener("click", e => {
         e.preventDefault();
         document.querySelectorAll(".store-chip").forEach(c => { c.classList.remove("active"); c.removeAttribute("aria-current"); });
         chip.classList.add("active"); chip.setAttribute("aria-current", "page");
         const sn = chip.dataset.storeName || chip.querySelector("strong")?.textContent.trim();
+        activeStore = sn || "야후 옥션";
         if (sn) {
           if (catStoreName) catStoreName.textContent = sn;
           if (bestTitleEl) bestTitleEl.textContent = chip.dataset.bestTitle || sn + " 베스트";
@@ -870,7 +849,18 @@
     });
 
     // ── Product card navigation ──
-    document.querySelectorAll(".product-card").forEach(card => {
+    document.querySelectorAll("[data-view-main] .product-card").forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.closest("button, a")) return;
+        if (activeStore === "메루카리") {
+          window.location.href = "web_purchase detail.html";
+        } else {
+          window.location.href = "web_auction.html";
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-view-search] .product-card").forEach(card => {
       card.addEventListener("click", e => {
         if (e.target.closest("button, a")) return;
         window.location.href = "web_bill_1st.html";
@@ -965,5 +955,6 @@
       switchToSearch();
     }
   </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

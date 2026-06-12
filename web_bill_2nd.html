@@ -10,22 +10,21 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:14px;
     color: #222;
     background: #fff;
-    padding-top: 64px;
-  }
+    padding-top: 64px;line-height:1.5;}
 
   .bb-header{position:fixed;top:0;left:0;right:0;z-index:300;background:#fff;border-bottom:1px solid #E0E4EB;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .bb-hdr{max-width:1280px;height:64px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px}
+  .bb-hdr{max-width:1440px;height:64px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px}
   .bb-hb{display:flex;flex-direction:column;gap:4.5px;padding:8px;margin-right:4px;border:0;border-radius:7px;background:none;cursor:pointer}.bb-hb:hover{background:#F5F7FA}.bb-hb span{display:block;width:17px;height:2px;border-radius:1px;background:#1A1A2E}
   .bb-logo{display:flex;align-items:center;flex:0 0 160px}.bb-logo img{display:block;width:100px;height:auto}
   .bb-search{flex:0 1 540px;max-width:540px;display:flex;border:1.5px solid #E0E4EB;border-radius:8px;overflow:hidden}.bb-search:focus-within{border-color:#E8385A}.bb-search input{flex:1;min-width:0;border:0;outline:0;background:#F5F7FA;padding:10px 14px;font-size:14px;font-family:inherit}.bb-search button{border:0;background:#E8385A;color:#fff;padding:0 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
   .bb-hdr-right{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:4px}.bb-hbtn{min-width:52px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 9px;border:0;border-radius:8px;background:none;color:#666680;font-size:10px;cursor:pointer;position:relative;font-family:inherit}.bb-hbtn:hover,.bb-user:hover{background:#F5F7FA}.bb-hbtn i{font-size:18px;line-height:18px}.bb-badge{position:absolute;top:4px;right:7px;min-width:14px;height:14px;padding:0 2px;border-radius:7px;background:#E8385A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
   .bb-user{display:flex;align-items:center;gap:8px;padding:6px 10px;border:0;border-radius:8px;background:none;cursor:pointer;font-family:inherit}.bb-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#E8385A,#F5A623);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}.bb-user-name{font-size:13px;font-weight:700;color:#1A1A2E;line-height:1.2;text-align:left}.bb-user-grade{display:inline-block;margin-top:2px;padding:1px 6px;border-radius:8px;background:#FFF8E6;color:#F5A623;font-size:9px;font-weight:700}
   .bb-drawer-ov{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s ease}.bb-drawer-ov.open{opacity:1;pointer-events:auto}.bb-drawer{position:fixed;top:0;bottom:0;left:-360px;z-index:501;width:340px;max-width:88vw;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.12);transition:left .24s cubic-bezier(.4,0,.2,1);overflow-y:auto}.bb-drawer.open{left:0}.bb-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 16px 16px;border-bottom:1px solid #E0E4EB}.bb-drawer-title{font-size:17px;font-weight:800;color:#1A1A2E}.bb-drawer-close{width:32px;height:32px;border:0;background:none;font-size:24px;cursor:pointer}.bb-drawer-section{padding:16px;border-bottom:1px solid #F0F2F5}.bb-drawer-section strong{display:block;margin-bottom:12px;color:#1A3C6E;font-size:13px}.bb-drawer-links{display:grid;gap:10px}.bb-drawer-links a{color:#333;text-decoration:none;font-size:13px}
-  @media(max-width:900px){.bb-logo{flex-basis:auto}.bb-search{flex:1}.bb-user-name-wrap{display:none}}
+  
 
   /* ── 공통 컨테이너 ── */
   .page-wrap {
@@ -328,6 +327,7 @@
   .paid-option-choice {
     color: #333;
   }
+  .vip-care-note { background:#FFF8E6; border-left:3px solid #F5A623; border-radius:4px; padding:8px 12px; margin-bottom:12px; font-size:12px; font-weight:600; color:#7A5000; }
   .paid-option-desc {
     margin-top: 12px;
     color: #555;
@@ -384,7 +384,7 @@
   }
   .coupon-modal-overlay.is-open { display: flex; }
   .coupon-modal {
-    width: min(680px, 100%);
+    width: min(400px, 100%);
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
@@ -626,6 +626,8 @@
     background: #1A3C6E;
     color: #fff;
   }
+  .method-wrap-required { background:#FFF8F0; box-shadow:inset 0 0 0 2px rgba(232,56,90,.18); border-radius:4px; padding:10px; }
+  .method-wrap-required .method-label { border-color:#E8385A; box-shadow:0 0 0 2px rgba(232,56,90,.12); }
   .radio-group {
     display: flex;
     gap: 16px;
@@ -953,12 +955,13 @@
             </span>
           </th>
           <td class="paid-option-choice">
-            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="200" data-panel-detail="panelDetailCare">
+            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="0" data-panel-detail="panelDetailCare">
               <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
               <span class="option-toggle-text">신청</span>
             </button>
             <div class="paid-option-desc">
-              <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
+              <div class="vip-care-note"><i class="fa-solid fa-gem"></i> [VIP 회원] 전용 혜택 | 안심 케어 무료 제공</div>
+              <p><strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
               <ul>
                 <li>안심 케어 가입 송장건에 한해 최대 20만원 까지 보상이 적용됩니다.</li>
                 <li>선택한 송장 건의 물품 총액을 기준으로 보상됩니다.</li>
@@ -1019,10 +1022,10 @@
         </tr>
         
         <tr>
-          <th>결제 방법 선택</th>
+          <th>결제 방법 선택 <span style="color:#E8385A;">*</span></th>
           <td>
-            <div class="method-group">
-              <label class="method-label is-selected"><input type="radio" name="paymentMethod" value="card" checked> 카드결제</label>
+            <div class="method-group" id="methodWrap2">
+              <label class="method-label"><input type="radio" name="paymentMethod" value="card"> 카드결제</label>
               <label class="method-label"><input type="radio" name="paymentMethod" value="bank"> 무통장입금(가상계좌)</label>
             </div>
           </td>
@@ -1114,7 +1117,7 @@
       <div class="fee-extra-detail" id="panelExtraDetail">
         <div class="fee-extra-item" id="panelDetailCare" style="display:none;">
           <span>안심 케어</span>
-          <strong id="panelExtraCareYen" class="is-active">200 엔</strong>
+          <strong id="panelExtraCareYen" class="is-active" style="color:#3AAD4E;">무료</strong>
         </div>
         <div class="fee-extra-item" id="panelDetailCarePlus" style="display:none;">
           <span>안심 케어 플러스</span>
@@ -1310,8 +1313,10 @@
   (() => {
     document.querySelectorAll('.option-toggle').forEach((toggle) => {
       const label = toggle.querySelector('.option-toggle-text');
+      const desc  = toggle.closest('td')?.querySelector('.paid-option-desc');
       const applyState = (isActive) => {
         if (label) label.textContent = isActive ? '신청' : '미신청';
+        if (desc)  desc.style.display = isActive ? '' : 'none';
       };
 
       toggle.addEventListener('click', () => {
@@ -1618,27 +1623,40 @@
 
   (() => {
     const methodLabels = Array.from(document.querySelectorAll('.method-label'));
-    const syncPaymentMethod = () => {
-      methodLabels.forEach((label) => {
-        const input = label.querySelector('input[name="paymentMethod"]');
-        label.classList.toggle('is-selected', Boolean(input?.checked));
+    const methodWrap = document.getElementById('methodWrap2');
+    let selectedMethod = '';
+
+    const selectMethod = (value) => {
+      selectedMethod = value;
+      methodLabels.forEach(l => {
+        l.classList.toggle('is-selected', l.querySelector('input[name="paymentMethod"]')?.value === value);
       });
+      methodWrap?.classList.remove('method-wrap-required');
     };
 
-    methodLabels.forEach((label) => {
-      label.addEventListener('click', () => {
-        requestAnimationFrame(syncPaymentMethod);
+    methodLabels.forEach(l => {
+      l.addEventListener('click', () => {
+        const val = l.querySelector('input[name="paymentMethod"]')?.value;
+        if (val) selectMethod(val);
       });
     });
 
-    syncPaymentMethod();
+    /* 신청하기 버튼 — 미선택 시 차단 + 하이라이트 */
+    document.querySelector('.btn-primary')?.addEventListener('click', (e) => {
+      if (!selectedMethod) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        methodWrap?.classList.add('method-wrap-required');
+        return;
+      }
+    });
   })();
 
   (() => {
-    const detailButton = document.querySelector('.paid-option-detail');
+    const detailButtons = document.querySelectorAll('.paid-option-detail');
     const modal = document.getElementById('damageModal');
     const modalClose = document.getElementById('damageModalClose');
-    if (!detailButton || !modal || !modalClose) return;
+    if (!detailButtons.length || !modal || !modalClose) return;
 
     const showModal = () => {
       modal.hidden = false;
@@ -1654,7 +1672,7 @@
       });
     };
 
-    detailButton.addEventListener('click', showModal);
+    detailButtons.forEach((detailButton) => detailButton.addEventListener('click', showModal));
     modalClose.addEventListener('click', hideModal);
     modal.addEventListener('click', (event) => {
       if (event.target === modal) hideModal();
@@ -1667,5 +1685,6 @@
   })();
 </script>
 
+<script src="bb-common.js"></script>
 </body>
 </html>

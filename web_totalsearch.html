@@ -43,9 +43,9 @@
       zoom: 1;
       background: #fff;
       color: var(--ink);
-      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 14px;
-      line-height: 1.45;
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px;
+      line-height:1.5;
       letter-spacing: 0;
     }
 
@@ -1217,160 +1217,9 @@
       border-top: 10px solid var(--muted);
     }
 
-    @media (max-width: 1023px) {
-      .header-main {
-        width: calc(100vw - 32px);
-        grid-template-columns: 180px minmax(0, 1fr) auto;
-      }
+    
 
-      .search-page,
-      .store-list {
-        width: calc(100vw - 32px);
-      }
-
-      .search-layout {
-        grid-template-columns: 255px minmax(0, 1fr);
-        gap: 18px;
-      }
-
-      .market-tabs {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .market-tab:nth-child(4n) {
-        border-right: 0;
-      }
-
-      .market-tab:nth-child(n + 5) {
-        border-top: 1px solid var(--divider);
-      }
-
-      .category-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .filter-body {
-        flex-wrap: nowrap;
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .search-layout .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 767px) {
-      .page-canvas {
-        min-height: 0;
-      }
-
-      .header-main {
-        height: auto;
-        padding: 16px 0;
-        grid-template-columns: 1fr;
-      }
-
-      .brand-area,
-      .user-tools {
-        justify-self: start;
-      }
-
-      .store-list {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .result-copy {
-        margin-left: 0;
-        font-size: 17px;
-      }
-
-      .market-tabs {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .market-tab:nth-child(4n) {
-        border-right: 1px solid var(--divider);
-      }
-
-      .market-tab:nth-child(2n) {
-        border-right: 0;
-      }
-
-      .market-tab:nth-child(n + 3) {
-        border-top: 1px solid var(--divider);
-      }
-
-      .search-layout {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .category-grid,
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .filter-row.has-keyword {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-label {
-        min-height: 44px;
-        border-right: 0;
-        border-bottom: 1px solid var(--divider);
-      }
-
-      .filter-label.amount-label {
-        border-left: 0;
-      }
-
-      .result-header {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .filter-group {
-        width: 100%;
-        flex-wrap: wrap;
-        border-right: 0;
-        border-bottom: 1px solid var(--divider);
-      }
-
-      .filter-body.option-groups {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-options {
-        justify-content: center;
-      }
-
-      .amount-filter {
-        width: calc(100% - 32px);
-        margin: 0 auto;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .filter-actions {
-        justify-content: flex-end;
-      }
-
-      .product-grid {
-        width: 100%;
-      }
-
-      .search-layout .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .more-footer {
-        padding: 24px 16px;
-      }
-    }
+    
   </style>
 </head>
 <body>
@@ -1800,5 +1649,6 @@
     renderWithinKeywords();
     renderKeywords();
   </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

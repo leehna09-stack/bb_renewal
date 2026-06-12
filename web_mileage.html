@@ -45,9 +45,9 @@
       min-width: 320px;
       color: var(--text);
       background: #fff;
-      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 13px;
-      line-height: 1.45;
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px;
+      line-height:1.5;
     }
 
     button,
@@ -1687,147 +1687,11 @@
       font-weight: 900;
     }
 
-    @media (max-width: 1180px) {
-      :root {
-        --stage-left: 16px;
-        --main-w: minmax(0, 1fr);
-      }
+    
 
-      .topbar {
-        width: calc(100vw - 32px);
-        grid-template-columns: 221px minmax(280px, 1fr) 190px;
-        gap: 16px;
-      }
+    
 
-      .stage {
-        width: calc(100vw - 32px);
-        grid-template-columns: 221px minmax(0, 1fr);
-      }
-
-      .asset-strip {
-        width: calc(100vw - 32px - 221px);
-      }
-
-      .asset-item {
-        gap: 18px;
-      }
-
-      .history-row {
-        margin: 0 32px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .topbar {
-        width: auto;
-        height: auto;
-        grid-template-columns: 1fr;
-        margin: 0;
-        padding: 13px 16px;
-      }
-
-      .brand-area {
-        justify-content: space-between;
-      }
-
-      .search {
-        width: 100%;
-      }
-
-      .user-tools {
-        justify-self: start;
-      }
-
-      .stage {
-        display: block;
-        width: calc(100vw - 32px);
-      }
-
-      .asset-strip {
-        position: static;
-        width: 100%;
-        height: auto;
-        grid-template-columns: repeat(2, 1fr);
-        margin-bottom: 16px;
-        border: 1px solid var(--line-soft);
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      .asset-item {
-        min-height: 42px;
-        justify-content: space-between;
-        padding: 0 14px;
-      }
-
-      .profile-card {
-        height: auto;
-        border-radius: 10px;
-      }
-
-      .side-nav {
-        padding-top: 16px;
-      }
-
-      .main {
-        padding-top: 0;
-      }
-
-      .mileage-balance-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .stamp-grid {
-        grid-template-columns: repeat(3, 1fr);
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .stamp-panel.expanded .stamp-scroll {
-        max-height: 552px;
-      }
-
-      .history-head {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 18px 20px 12px;
-      }
-
-      .history-table-head {
-        display: none;
-      }
-
-      .history-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        margin: 0 20px;
-        padding: 16px 0;
-      }
-
-      .history-date,
-      .history-amount {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .asset-strip,
-      .stamp-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .mileage-balance-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stamp-panel.expanded .stamp-scroll {
-        max-height: 780px;
-      }
-
-      .history-tabs {
-        gap: 18px;
-      }
-    }
+    
   </style>
 </head>
 <body>
@@ -2717,5 +2581,6 @@
       }
     });
   </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

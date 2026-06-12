@@ -10,12 +10,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
+    font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:14px;
     color: #222;
     background: #fff;
-    padding-top: 64px;
-  }
+    padding-top: 64px;line-height:1.5;}
 
   .bb-header {
     position: fixed;
@@ -177,11 +176,7 @@
   .bb-drawer-section strong { display: block; margin-bottom: 12px; color: #1A3C6E; font-size: 13px; }
   .bb-drawer-links { display: grid; gap: 10px; }
   .bb-drawer-links a { color: #333; text-decoration: none; font-size: 13px; }
-  @media (max-width: 900px) {
-    .bb-logo { flex-basis: auto; }
-    .bb-search { flex: 1; }
-    .bb-user-name-wrap { display: none; }
-  }
+  
 
   .page-wrap {
     max-width: 1220px;
@@ -1685,5 +1680,6 @@
     updateMileageSummary(mileageInput.value);
   })();
 </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

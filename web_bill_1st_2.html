@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR', sans-serif; font-size: 14px; color: #222; background: #fff; padding-top: 64px; }
+  body { font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif; font-size:14px; color: #222; background: #fff; padding-top: 64px;line-height:1.5;}
   .bb-header{position:fixed;top:0;left:0;right:0;z-index:300;background:#fff;border-bottom:1px solid #E0E4EB;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .bb-hdr{max-width:1280px;height:64px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px}
+  .bb-hdr{max-width:1440px;height:64px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px}
   .bb-hb{display:flex;flex-direction:column;gap:4.5px;padding:8px;margin-right:4px;border:0;border-radius:7px;background:none;cursor:pointer}.bb-hb:hover{background:#F5F7FA}.bb-hb span{display:block;width:17px;height:2px;border-radius:1px;background:#1A1A2E}
   .bb-logo{display:flex;align-items:center;flex:0 0 160px}.bb-logo img{display:block;width:100px;height:auto}
   .bb-search{flex:0 1 540px;max-width:540px;display:flex;border:1.5px solid #E0E4EB;border-radius:8px;overflow:hidden}.bb-search:focus-within{border-color:#E8385A}.bb-search input{flex:1;min-width:0;border:0;outline:0;background:#F5F7FA;padding:10px 14px;font-size:14px;font-family:inherit}.bb-search button{border:0;background:#E8385A;color:#fff;padding:0 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
@@ -114,16 +114,19 @@
   .mob-mile-note { font-size: 11px; color: #888; line-height: 1.6; }
   .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
   .mob-mile-clear-btn.show { display: inline-flex; }
-  .mob-mile-input-row { display:flex; align-items:center; gap:6px; width: 86px; height: 30px; padding: 0 10px; border:1px solid #d8dce2; border-radius:8px; background:#fff; }
+  .mob-mile-input-wrap { display:flex; align-items:center; gap:1px; }
+  .mob-mile-input-row { display:flex; align-items:center; width:100px; height: 30px; padding: 0 4px 0 10px; border:1px solid #d8dce2; border-radius:8px; background:#fff; }
   .mob-mile-input-lbl { display:none; }
-  .mob-mile-inp { flex:1; min-width:0; border:none; outline:none; font-family:'Roboto',sans-serif; font-size:14px; font-weight:500; color:#222; text-align:right; background:transparent; }
+  .mob-mile-inp { flex:1; min-width:0; border:none; outline:none; font-family:'Roboto',sans-serif; font-size:16px; font-weight:500; color:#222; text-align:right; background:transparent; }
   .mob-mile-inp.over { color:#E8385A; }
-  .mob-mile-inp-unit { font-size:13px; color:#555; flex-shrink:0; }
+  .mob-mile-inp-unit { font-size:13px; color:#555; flex-shrink:0; margin-left:-3px; }
   .deposit-ui.is-applied .dep-input-row { background: #f3f4f6; }
   .method-label { display: inline-flex; align-items: center; justify-content: center; min-width: 150px; min-height: 38px; padding: 0 18px; border: 1px solid #d3d8df; border-radius: 4px; background: #fff; color: #333; font-size: 13px; font-weight: 700; cursor: pointer; margin-right: 8px; transition: background 0.15s, border-color 0.15s, color 0.15s; }
   .method-label:hover { border-color: #1A3C6E; color: #1A3C6E; }
   .method-label input { position: absolute; opacity: 0; pointer-events: none; }
   .method-label.is-selected { border-color: #1A3C6E; background: #1A3C6E; color: #fff; }
+  .method-wrap-required { background:#FFF8F0; box-shadow:inset 0 0 0 2px rgba(232,56,90,.18); border-radius:4px; padding:10px; }
+  .method-wrap-required .method-label { border-color:#E8385A; box-shadow:0 0 0 2px rgba(232,56,90,.12); }
   .banner-tax { background:#FFF8EC; border-left:3px solid #F5A623; padding:12px 14px; margin-top:20px; margin-bottom:8px; font-size:12px; line-height:1.7; color:#664400; }
   .banner-tax strong { color:#7A5500; }
   .banner-tax a { color:#C47D00; text-decoration:underline; font-size:11px; }
@@ -180,6 +183,19 @@
   .modal-body { max-height: 70vh; overflow-y: auto; padding: 20px; font-size: 13px; line-height: 1.8; color: #333; }
   .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
   .modal-body li { margin-bottom: 10px; }
+  .packing-modal { width: min(1120px,100%); }
+  .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
+  .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
+  .packing-detail-link { color: #1A3C6E; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .packing-detail-link:hover { color: #E14B6A; }
+  .packing-table-wrap { overflow-x: auto; }
+  .packing-cost-table { width: 100%; min-width: 980px; border-collapse: collapse; border: 3px solid #9a9a9a; color: #5f6770; font-size: 13px; text-align: center; }
+  .packing-cost-table + .packing-cost-table { margin-top: 30px; }
+  .packing-cost-table th, .packing-cost-table td { border: 1px solid #e7e7e7; padding: 7px 8px; line-height: 1.35; vertical-align: middle; white-space: nowrap; }
+  .packing-cost-table thead th { background: #f4f4f4; font-weight: 700; }
+  .packing-cost-table .thick-right { border-right: 3px solid #9a9a9a; }
+  .packing-cost-table .thick-bottom { border-bottom: 3px solid #9a9a9a; }
+  .packing-cost-table .muted-cell { color: #777; font-weight: 700; line-height: 1.8; }
 
   /* ── 우측 패널 하단 적립 예정 블록 ── */
   .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
@@ -241,7 +257,7 @@
                 </span>
               </th>
               <td class="paid-option-choice">
-                <button class="option-toggle" type="button" aria-pressed="false">
+                <button class="option-toggle" type="button" aria-pressed="false" data-paid-option-yen="1000">
                   <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
                   <span class="option-toggle-text">미신청</span>
                 </button>
@@ -255,9 +271,57 @@
                   <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
                   <ul>
                     <li><strong class="bold-red">파손보상 불가 품목</strong>은 안심 케어 가입이 불가합니다.</li>
-                    <li>현지 입고 후 불가 품목 확인 시 자동 해제, <strong class="bold-red">별도 안내 후 서비스 신청이 취소될 수 있습니다.</strong></li>
+                    <li>현지 입고 후 불가 품목으로 확인될 경우, <strong class="bold-red">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
                   </ul>
                   <button class="paid-option-detail" type="button">파손보상 불가 품목 보기</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <span class="paid-option-name">튼튼 포장</span>
+                <span class="paid-option-meta">
+
+                  <br><span class="paid-option-billing">해당 금액은 즉시 결제되지 않으며,<br>2차 결제 시 청구됩니다.</span>
+                </span>
+              </th>
+              <td class="paid-option-choice">
+                <button class="option-toggle" type="button" aria-pressed="false" data-paid-option-yen="500">
+                  <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                  <span class="option-toggle-text">미신청</span>
+                </button>
+                <div class="paid-option-desc">
+                  <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 깨지기 쉬운 물품은 안전 포장 옵션을 선택해 주세요.</strong></p>
+                  <ul>
+                    <li>신청 시 파손 위험을 줄이기 위한 보강 포장이 진행됩니다.</li>
+                    <li>보강 포장비는 기본 500엔이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
+                    <li>품목별 포장 비용은 하단의 [보강 포장 비용 안내]를 참고해 주세요.</li>
+                    <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
+                  </ul>
+                  <button class="paid-option-detail packing-cost-detail" type="button">보강 포장 비용 안내</button>
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <span class="paid-option-name">사진 촬영서비스</span>
+                <span class="paid-option-meta">
+                  <span class="paid-option-price">+ 300엔 / 5장</span>
+                  <br><span class="paid-option-billing">해당 서비스는 즉시 결제되지 않으며,<br>2차 결제 시 청구됩니다.</span>
+                </span>
+              </th>
+              <td class="paid-option-choice">
+                <button class="option-toggle" type="button" aria-pressed="false">
+                  <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                  <span class="option-toggle-text">미신청</span>
+                </button>
+                <div class="paid-option-desc">
+                  <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 상품 입고 후 요청 상품의 사진을 촬영해 안내드리는 유료 서비스입니다.</strong></p>
+                  <ul>
+                    <li>사진 촬영서비스 신청 시 입고 확인 및 사진 안내까지 다른 서비스 대비 처리 시간이 소요될 수 있습니다.</li>
+                    <li>상품 상태, 수량, 촬영 범위에 따라 추가 확인 또는 안내가 필요할 수 있습니다.</li>
+                  </ul>
                 </div>
               </td>
             </tr>
@@ -305,10 +369,12 @@
               </td>
             </tr>
             <tr>
-              <th>결제 방법 선택</th>
+              <th>결제 방법 선택 <span style="color:#E8385A;">*</span></th>
               <td>
-                <label class="method-label is-selected"><input type="radio" name="paymentMethod" value="card" checked> 카드결제</label>
-                <label class="method-label"><input type="radio" name="paymentMethod" value="bank"> 무통장입금(가상계좌)</label>
+                <div id="methodWrap">
+                  <label class="method-label"><input type="radio" name="paymentMethod" value="card"> 카드결제</label>
+                  <label class="method-label"><input type="radio" name="paymentMethod" value="bank"> 무통장입금(가상계좌)</label>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -390,9 +456,9 @@
               <div class="mob-mile-input-row">
                 <span class="mob-mile-input-lbl">사용</span>
                 <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
-                <span class="mob-mile-inp-unit">원</span>
-                <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
               </div>
+              <span class="mob-mile-inp-unit">원</span>
+              <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
             </div>
             <div class="mob-mile-hold">
               <span>보유 마일리지</span>
@@ -470,6 +536,46 @@
   </div>
 </div>
 
+<!-- 보강 포장 비용 참고표 모달 -->
+<div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
+  <div class="modal packing-modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="packingCostModalTitle">보강 포장 비용 안내</h2>
+      <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="packing-modal-meta">
+        <p class="packing-unit">단위 : 엔(円)</p>
+        <a class="packing-detail-link" target="_blank" rel="noopener">자세히보기</a>
+      </div>
+      <div class="packing-table-wrap">
+        <table class="packing-cost-table">
+          <thead>
+            <tr><th rowspan="2" class="thick-right thick-bottom">구분</th><th colspan="3">자동차 부품</th><th rowspan="2" class="thick-bottom">엔진</th><th rowspan="2" class="thick-bottom">선외기</th><th rowspan="2" class="thick-bottom">자전거</th><th colspan="2">골동품,고미술품</th><th rowspan="2" class="thick-bottom">낚시대</th></tr>
+            <tr><th class="thick-bottom">범퍼</th><th class="thick-bottom">타이어</th><th class="thick-bottom">기타</th><th class="thick-bottom">액자,병풍 등</th><th class="thick-bottom">불상</th></tr>
+          </thead>
+          <tbody>
+            <tr><th class="thick-right">일반포장</th><td>2000-3000</td><td>500-2000</td><td>500-3000</td><td>2000-3000</td><td></td><td>2000-3000</td><td>1000-3000</td><td></td><td>500</td></tr>
+            <tr><th class="thick-right">특수포장</th><td colspan="3">5000-10000</td><td>6000-10000</td><td>6000-10000</td><td>5000-12000</td><td>5000-10000</td><td></td><td></td></tr>
+            <tr><th class="thick-right">나무포장</th><td></td><td></td><td></td><td>30000-40000</td><td>30000-50000</td><td></td><td>30000-50000</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <table class="packing-cost-table">
+          <thead>
+            <tr><th rowspan="2" class="thick-right thick-bottom">구분</th><th colspan="3">가구</th><th colspan="6">가전제품</th><th rowspan="2" class="thick-bottom">그 외 품목</th></tr>
+            <tr><th class="thick-bottom">小</th><th class="thick-bottom">中</th><th class="thick-bottom">大</th><th class="thick-bottom">TV</th><th class="thick-bottom">스피커</th><th class="thick-bottom">앰프</th><th class="thick-bottom">PC본체</th><th class="thick-bottom">PC모니터</th><th class="thick-bottom">기타</th></tr>
+          </thead>
+          <tbody>
+            <tr><th class="thick-right">일반포장</th><td>500</td><td>1000-2000</td><td>2000-3000</td><td></td><td>1000-3000</td><td></td><td>500-2000</td><td>500-2000</td><td>500-2000</td><td rowspan="3" class="muted-cell">고객센터 문의<br>(대형상품 상담)</td></tr>
+            <tr><th class="thick-right">특수포장</th><td colspan="3">5000-15000</td><td>6000-12000</td><td>8000-20000</td><td></td><td>6000-8000</td><td></td><td>6000-20000</td></tr>
+            <tr><th class="thick-right">특수포장</th><td colspan="3">30000-60000</td><td colspan="6">40000-60000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   function bbOpenDrawer(){document.getElementById('bbDrawer')?.classList.add('open');document.getElementById('bbDrawer')?.setAttribute('aria-hidden','false');document.getElementById('bbDrawerOv')?.classList.add('open');document.querySelector('.bb-hb')?.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
   function bbCloseDrawer(){document.getElementById('bbDrawer')?.classList.remove('open');document.getElementById('bbDrawer')?.setAttribute('aria-hidden','true');document.getElementById('bbDrawerOv')?.classList.remove('open');document.querySelector('.bb-hb')?.setAttribute('aria-expanded','false');document.body.style.overflow='';}
@@ -526,7 +632,7 @@
     document.querySelectorAll('.option-toggle').forEach(t=>{
       const lbl=t.querySelector('.option-toggle-text');
       const billing=t.closest('tr')?.querySelector('.paid-option-billing');
-      t.addEventListener('click',()=>{const n=t.getAttribute('aria-pressed')!=='true';t.setAttribute('aria-pressed',String(n));if(lbl)lbl.textContent=n?'신청':'미신청';billing?.classList.toggle('is-highlight',n);});
+      t.addEventListener('click',()=>{const n=t.getAttribute('aria-pressed')!=='true';t.setAttribute('aria-pressed',String(n));if(lbl)lbl.textContent=n?'신청':'미신청';billing?.classList.toggle('is-highlight',n);window.renderPaymentSummary?.();});
     });
   })();
 
@@ -609,42 +715,77 @@
   })();
 
   (() => {
-    const btn=document.getElementById('btnApproveFinal');
-    const mi=document.getElementById('mileageInput');
-    if(!btn||!mi)return;
-    btn.addEventListener('click',()=>{
-      const r=rate();const ab=agencyBase();
-      const am=parseWon(document.getElementById('mileageAvailOrig')?.textContent||0);
-      const lw=Math.min(am,Math.floor(ab*r));
-      const mw=Math.min(parseWon(mi.value),lw);
-      const md=Math.min(Math.floor(mw/r),ab);
-      sessionStorage.setItem('bb_mileage_won',mw);
-      sessionStorage.setItem('bb_mileage_discount',md);
-      window.location.href='web_bill_2nd.html';
+    const btn = document.getElementById('btnApproveFinal');
+    const mi = document.getElementById('mileageInput');
+    const labels = Array.from(document.querySelectorAll('.method-label'));
+    const methodWrap = document.getElementById('methodWrap');
+    if (!btn) return;
+
+    let selectedMethod = '';
+
+    /* 결제방법 선택 */
+    const selectMethod = (value) => {
+      selectedMethod = value;
+      labels.forEach(l => {
+        const checked = l.querySelector('input[name="paymentMethod"]')?.value === value;
+        l.classList.toggle('is-selected', checked);
+      });
+      methodWrap?.classList.remove('method-wrap-required');
+    };
+    labels.forEach(l => {
+      l.addEventListener('click', () => {
+        const val = l.querySelector('input[name="paymentMethod"]')?.value;
+        if (val) selectMethod(val);
+      });
+    });
+
+    /* 결제승인 — 결제방법 미선택 시 차단 */
+    btn.addEventListener('click', () => {
+      if (!selectedMethod) {
+        methodWrap?.classList.add('method-wrap-required');
+        return;  /* 이후 로직 실행 안 됨 */
+      }
+      /* 결제방법 선택된 경우만 진행 */
+      if (!mi) { window.location.href = 'web_bill_2nd.html'; return; }
+      const r = rate(); const ab = agencyBase();
+      const am = parseWon(document.getElementById('mileageAvailOrig')?.textContent || 0);
+      const lw = Math.min(am, Math.floor(ab * r));
+      const mw = Math.min(parseWon(mi.value), lw);
+      const md = Math.min(Math.floor(mw / r), ab);
+      sessionStorage.setItem('bb_mileage_won', mw);
+      sessionStorage.setItem('bb_mileage_discount', md);
+      window.location.href = 'web_bill_2nd.html';
     });
   })();
 
   (() => {
-    const labels=Array.from(document.querySelectorAll('.method-label'));
-    const sync=()=>labels.forEach(l=>l.classList.toggle('is-selected',Boolean(l.querySelector('input[name="paymentMethod"]')?.checked)));
-    labels.forEach(l=>l.addEventListener('click',()=>requestAnimationFrame(sync)));
-    sync();
-  })();
-
-  (() => {
-    const btn=document.querySelector('.paid-option-detail');
+    const btns=document.querySelectorAll('.paid-option-detail:not(.packing-cost-detail)');
     const modal=document.getElementById('damageModal');
     const close=document.getElementById('damageModalClose');
-    if(!btn||!modal||!close)return;
+    if(!btns.length||!modal||!close)return;
     const show=()=>{modal.hidden=false;modal.classList.add('is-open');document.body.style.overflow='hidden';};
     const hide=()=>{modal.classList.remove('is-open');document.body.style.overflow='';requestAnimationFrame(()=>{if(!modal.classList.contains('is-open'))modal.hidden=true;});};
-    btn.addEventListener('click',show);
+    btns.forEach(btn=>btn.addEventListener('click',show));
     close.addEventListener('click',hide);
     modal.addEventListener('click',e=>{if(e.target===modal)hide();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))hide();});
   })();
 
+  (() => {
+    const btn=document.querySelector(".packing-cost-detail");
+    const modal=document.getElementById("packingCostModal");
+    const close=document.getElementById("packingCostModalClose");
+    if(!btn||!modal||!close)return;
+    const show=()=>{modal.hidden=false;modal.classList.add("is-open");document.body.style.overflow="hidden";};
+    const hide=()=>{modal.classList.remove("is-open");document.body.style.overflow="";requestAnimationFrame(()=>{if(!modal.classList.contains("is-open"))modal.hidden=true;});};
+    btn.addEventListener("click",show);
+    close.addEventListener("click",hide);
+    modal.addEventListener("click",e=>{if(e.target===modal)hide();});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("is-open"))hide();});
+  })();
+
   window.renderPaymentSummary();
 </script>
+<script src="bb-common.js"></script>
 </body>
 </html>

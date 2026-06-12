@@ -1,0 +1,1160 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bidbuy 묶음배송 신청목록</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --brand: #f03b63;
+      --brand-hot: #ff4969;
+      --rose: #e8385a;
+      --tp: #1a1a2e;
+      --ts: #666680;
+      --tm: #999baa;
+      --border: #e0e4eb;
+      --navy: #163a69;
+      --ink: #20242b;
+      --text: #33363d;
+      --muted: #777985;
+      --faint: #a1a5b3;
+      --line: #e5dbd7;
+      --line-soft: #eee6e2;
+      --paper: #fff;
+      --warm: #fbf7f5;
+      --warm-2: #f7f3f0;
+      --yellow: #f4b400;
+      --stage-left: max(16px, calc((100vw - 1036px) / 2));
+      --sidebar-w: 221px;
+      --main-w: 812px;
+      --gap: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #fff; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background: #fff;
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .top-notice-spacer { height: 34px; }
+
+    .page { min-height: 100vh; background: #fff; }
+
+    .topbar {
+      height: 67px;
+      width: min(calc(100vw - 32px), 1057px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 221px minmax(0, 714px) 221px;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      background: #fff;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .menu-button {
+      width: 25px;
+      height: 25px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .menu-lines { width: 23px; display: grid; gap: 6px; }
+    .menu-lines span { height: 2.5px; border-radius: 999px; background: #1f2530; }
+
+    .logo-link { display: inline-flex; align-items: center; width: 122px; line-height: 0; }
+    .logo-link img { width: 100%; height: auto; display: block; }
+
+    .search {
+      height: 43px;
+      display: flex;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      overflow: hidden;
+      background: var(--warm-2);
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 18px;
+      background: transparent;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .search input::placeholder { color: #8c8985; }
+
+    .search button {
+      width: 111px;
+      border: 0;
+      background: var(--brand-hot);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .search button i { font-size: 15px; }
+
+    .user-tools {
+      justify-self: end;
+      display: grid;
+      grid-template-columns: 28px 28px auto;
+      align-items: center;
+      gap: 10px;
+      color: #1d2430;
+    }
+
+    .icon-btn {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: transparent;
+      color: #687385;
+      padding: 0;
+    }
+
+    .icon-btn i { font-size: 23px; }
+
+    .user-name {
+      display: grid;
+      justify-items: center;
+      gap: 3px;
+      color: #111827;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .premium-chip {
+      min-width: 70px;
+      min-height: 18px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #fff0c9;
+      color: #f4a200;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) var(--main-w);
+      gap: var(--gap);
+      width: calc(var(--sidebar-w) + var(--gap) + var(--main-w));
+      margin-left: var(--stage-left);
+      overflow: visible;
+    }
+
+    .sidebar { min-width: 0; }
+
+    .profile-card { height: 172px; padding: 19px 22px 12px; background: var(--warm); }
+    .profile-main { display: flex; align-items: center; gap: 13px; }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: #ffe7ef;
+      color: var(--brand);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .profile-name {
+      display: block;
+      margin-bottom: 3px;
+      color: #262a31;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .profile-tier { color: var(--brand); font-size: 12px; font-weight: 800; }
+
+    .vip-copy { margin: 18px 0 6px; color: #5c6270; font-size: 12px; font-weight: 600; }
+    .vip-copy b { color: #454b58; font-weight: 800; }
+
+    .vip-row { display: grid; grid-template-columns: 1fr 16px; align-items: center; gap: 8px; }
+    .vip-progress { height: 8px; border-radius: 999px; background: #eee2de; overflow: hidden; }
+    .vip-progress span {
+      display: block;
+      width: 84%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff8499 0%, var(--brand) 100%);
+    }
+
+    .help-dot {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #9ea1aa;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: #838793;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 11px; }
+
+    .soft-btn {
+      height: 26px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #5c606b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .side-nav { padding-top: 33px; }
+
+    .side-title {
+      margin: 0 0 18px;
+      padding: 0 15px 17px;
+      border-bottom: 1px solid #dcd9d6;
+      color: #111;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .nav-section { padding: 0 20px; margin-bottom: 14px; }
+    .nav-section strong { display: block; margin-bottom: 11px; color: #292d35; font-size: 12px; font-weight: 900; }
+    .nav-list { display: grid; gap: 13px; }
+    .nav-list a { color: #666b75; text-decoration: none; font-size: 12px; font-weight: 500; }
+    .nav-list a:hover, .nav-list a.active { color: var(--brand); font-weight: 800; }
+
+    /* 사업자 전환 배너 */
+    .biz-convert-section { margin-top: 6px; padding: 0 12px 20px; }
+    .biz-convert-link {
+      display: block;
+      text-decoration: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #eef3fb 0%, #e6edf8 100%);
+      border: 1px solid #c8d8ef;
+      overflow: hidden;
+      transition: box-shadow 0.16s;
+    }
+    .biz-convert-link:hover { box-shadow: 0 2px 10px rgba(26,60,110,0.12); }
+    .biz-convert-inner { display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 14px; }
+    .biz-convert-icon {
+      width: 32px; height: 32px; border-radius: 8px; background: #1a3c6e;
+      display: grid; place-items: center; flex-shrink: 0; color: #fff; font-size: 14px;
+    }
+    .biz-convert-text { flex: 1; min-width: 0; }
+    .biz-convert-text strong { display: block; font-size: 12px; font-weight: 800; color: #1a3c6e; margin-bottom: 2px; }
+    .biz-convert-text span { display: block; font-size: 11px; color: #4f6b9a; line-height: 1.35; }
+    .biz-chev { font-size: 11px; color: #4f6b9a; flex-shrink: 0; }
+
+    .main { min-width: 0; padding-top: 58px; padding-bottom: 40px; }
+
+    /* ── 페이지 타이틀 ── */
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .page-head h2 {
+      margin: 0;
+      color: #2b2f37;
+      font-size: 15px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .page-head h2 span {
+      white-space: nowrap;
+    }
+
+    .outline-pill {
+      height: 31px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #8a7f7a;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .outline-pill:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* ── 국가 탭 ── */
+    .country-tabs {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .country-tab {
+      position: relative;
+      height: 38px;
+      padding: 0 2px 9px;
+      border: 0;
+      background: transparent;
+      color: #9da2af;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .country-tab .flag { font-size: 16px; line-height: 1; }
+    .country-tab small { font-size: 12px; font-weight: 700; color: inherit; }
+
+    .country-tab::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .country-tab.active { color: var(--brand); }
+    .country-tab.active::after { background: var(--brand); }
+
+    .country-tab:focus-visible {
+      outline: 2px solid rgba(240, 59, 99, 0.28);
+      outline-offset: 3px;
+    }
+
+    /* ── 묶음 그룹 카드 ── */
+    .bundle-panel { display: none; }
+    .bundle-panel.active { display: block; }
+
+    .group-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .group-card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 16px;
+      background: var(--warm);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .group-info {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 18px;
+      row-gap: 4px;
+      font-size: 12px;
+      color: #4b5260;
+    }
+
+    .group-info b { color: #6b7280; font-weight: 700; margin-right: 5px; }
+    .group-info span { color: #151922; font-weight: 800; }
+    .group-info .hot { color: var(--brand); }
+    .group-info li,
+    .group-info b,
+    .group-info span { white-space: nowrap; }
+
+    .group-utils { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    .pay-btn {
+      height: 32px;
+      padding: 0 16px;
+      border: 1px solid var(--brand);
+      border-radius: 8px;
+      background: var(--brand);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pay-btn:hover { background: #d62f54; }
+
+    .bundle-head, .bundle-row {
+      display: grid;
+      grid-template-columns: 76px 84px minmax(0, 1fr) 72px 110px 98px;
+      align-items: center;
+    }
+
+    .bundle-head {
+      min-height: 36px;
+      background: #f8f9fb;
+      border-bottom: 1px solid var(--line-soft);
+      color: #5a5e66;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .bundle-head > div { padding: 8px 6px; line-height: 1.4; white-space: nowrap; }
+
+    .bundle-row {
+      min-height: 96px;
+      border-bottom: 1px solid var(--line-soft);
+      text-align: center;
+      font-size: 12px;
+      color: #383b40;
+      transition: background 0.16s ease;
+    }
+
+    .bundle-row:last-child { border-bottom: 0; }
+    .bundle-row:hover { background: #fffafb; }
+
+    .bundle-row > div { padding: 12px 6px; }
+
+    .row-status { font-weight: 800; color: #2b2f37; }
+    .row-status.hot { color: var(--brand); }
+    .row-date { color: #59606d; }
+
+    .row-product {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      min-width: 0;
+    }
+
+    .thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.75), rgba(246,246,246,0.2)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'%3E%3Crect width='110' height='110' rx='10' fill='%23f3f4f6'/%3E%3Cpath d='M28 23 43 14h24l15 9 13 23-15 8-6-10v44H36V44l-6 10-15-8Z' fill='%23ffffff' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M43 14c2 9 6 14 12 14s10-5 12-14' fill='none' stroke='%23d8dce3' stroke-width='2'/%3E%3Cpath d='M46 39c5-4 15-4 20 0' fill='none' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M42 49h27' stroke='%23d12f45' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='55' y='61' text-anchor='middle' font-family='Arial' font-size='8' font-weight='700' fill='%23e23346'%3EDUCATI%3C/text%3E%3Cpath d='M28 23 15 46l15 8 6-10M82 23l13 23-15 8-6-10' fill='%23f9fafb' stroke='%23d8dce3' stroke-width='2'/%3E%3C/svg%3E") center / cover no-repeat;
+    }
+
+    .product-info { min-width: 0; }
+
+    .product-market {
+      color: #59606d;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-market .flag { font-size: 12px; margin-right: 4px; }
+
+    .product-name {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: #151922;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+      text-decoration: none;
+      margin-bottom: 5px;
+    }
+
+    .product-name:hover { color: var(--brand); }
+
+    .product-price { color: #2b2f37; font-size: 12px; font-weight: 800; }
+
+    .row-price { display: grid; gap: 3px; }
+    .row-price b { color: #151922; font-size: 12px; font-weight: 800; }
+    .row-price span { color: #8d929d; font-size: 11px; }
+
+    /* 체크박스 */
+    .check {
+      position: relative;
+      display: inline-flex;
+      width: 18px;
+      height: 18px;
+    }
+
+    .check input {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .check .box {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #c6c0bc;
+      border-radius: 5px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      transition: border-color 0.16s ease, background 0.16s ease;
+      pointer-events: none;
+    }
+
+    .check .box::after {
+      content: "";
+      width: 9px;
+      height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translate(0.5px, -1px);
+      opacity: 0;
+    }
+
+    .check input:checked + .box { border-color: var(--brand); background: var(--brand); }
+    .check input:checked + .box::after { opacity: 1; }
+    .check input:focus-visible + .box {
+      outline: 2px solid rgba(240, 59, 99, 0.28);
+      outline-offset: 2px;
+    }
+
+    .table-empty {
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9da2af;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .empty-table {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* ── 하단 버튼 ── */
+    .bundle-utils { margin-top: 20px; }
+    .bundle-actions { display: flex; justify-content: center; gap: 10px; }
+
+    .big-btn {
+      height: 44px;
+      min-width: 190px;
+      padding: 0 24px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .big-btn.line {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #626672;
+    }
+
+    .big-btn.line:hover { border-color: #b9b2ad; color: #41454f; }
+
+    /* ── 모달 ── */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-dim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); }
+
+    .modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(30, 34, 42, 0.22);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .modal-title { color: #111; font-size: 15px; font-weight: 900; }
+
+    .modal-close {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      background: transparent;
+      color: #9aa0ab;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-body { padding: 26px 22px 22px; text-align: center; }
+
+    .modal-text { margin: 0 0 12px; color: #1f242d; font-size: 15px; font-weight: 800; line-height: 1.55; }
+
+    .modal-small { margin: 0; color: #8d929d; font-size: 12px; }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .modal-actions button {
+      height: 42px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .modal-actions .line { border: 1px solid var(--line); background: #fff; color: #626672; }
+    .modal-actions .primary { border: 1px solid var(--brand); background: var(--brand); color: #fff; }
+
+    
+
+    
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-notice-spacer" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand-area">
+        <button class="menu-button" type="button" aria-label="메뉴 열기">
+          <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <a class="logo-link" href="web_main.html" aria-label="Bidbuy 홈">
+          <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
+        </a>
+      </div>
+
+      <form class="search">
+        <input type="text" placeholder="키워드 또는 URL을 입력하세요.">
+        <button type="submit">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          검색
+        </button>
+      </form>
+
+      <div class="user-tools" aria-label="회원 메뉴">
+        <button class="icon-btn" type="button" aria-label="알림">
+          <i class="far fa-bell" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" type="button" aria-label="장바구니">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+        </button>
+        <div class="user-name">
+          이한나님
+          <span class="premium-chip">PREMIUM</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="stage">
+      <aside class="sidebar">
+        <section class="profile-card" aria-label="회원 정보">
+          <div class="profile-main">
+            <div class="avatar">홍</div>
+            <div>
+              <strong class="profile-name">홍길동님</strong>
+              <span class="profile-tier">Premium</span>
+            </div>
+          </div>
+          <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
+          <div class="vip-row">
+            <div class="vip-progress"><span></span></div>
+            <span class="help-dot">?</span>
+          </div>
+          <div class="profile-actions">
+            <button class="soft-btn" type="button">1:1 문의내역</button>
+            <button class="soft-btn" type="button">로그아웃</button>
+          </div>
+        </section>
+
+        <section class="side-nav" aria-label="마이페이지 메뉴">
+          <h2 class="side-title">마이페이지</h2>
+
+          <div class="nav-section">
+            <strong>나의 거래 현황</strong>
+            <div class="nav-list">
+              <a href="web_mypage.html">거래 전체 목록</a>
+              <a href="#">경매 입찰/유찰</a>
+              <a href="#">구매 신청 목록</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>배송관리</strong>
+            <div class="nav-list">
+              <a class="active" href="web_bundle_shipping_management.html">묶음 배송 신청/변경</a>
+              <a href="#">배송지 관리</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>관심 항목 관리</strong>
+            <div class="nav-list">
+              <a href="#">관심 출품자</a>
+              <a href="#">관심 물품</a>
+              <a href="#">관심 키워드</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>MY 혜택</strong>
+            <div class="nav-list">
+              <a href="web_mileage.html">마일리지 / 쿠폰</a>
+              <a href="web_grade page.html">MY 등급</a>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <strong>나의 정보관리</strong>
+            <div class="nav-list">
+              <a href="#">예치금 관리</a>
+              <a href="#">보증금 관리</a>
+              <a href="#">회원정보 수정</a>
+              <a href="#">비밀번호 변경</a>
+              <a href="#">회원 탈퇴</a>
+            </div>
+          </div>
+
+          <div class="nav-section biz-convert-section">
+            <a href="web_biz.html" class="biz-convert-link">
+              <span class="biz-convert-inner">
+                <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
+                <span class="biz-convert-text">
+                  <strong>사업자 회원 전환</strong>
+                  <span>사업자 전용 혜택을<br>확인해보세요</span>
+                </span>
+                <i class="fas fa-chevron-right biz-chev"></i>
+              </span>
+            </a>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section aria-labelledby="bundle-title">
+          <div class="page-head">
+            <h2 id="bundle-title">묶음배송관리 <span style="color:#9da2af; font-weight:700; font-size:12px;">묶음배송 신청목록</span></h2>
+            <a class="outline-pill" href="web_bundle_shipping_management.html">묶음배송 가능주문 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
+          </div>
+
+          <div class="country-tabs" role="tablist" aria-label="국가별 신청목록">
+            <button class="country-tab active" type="button" role="tab" data-panel="jp">
+              <span class="flag" aria-hidden="true">🇯🇵</span>신청목록<small>(2건)</small>
+            </button>
+            <button class="country-tab" type="button" role="tab" data-panel="us">
+              <span class="flag" aria-hidden="true">🇺🇸</span>신청목록<small>(1건)</small>
+            </button>
+            <button class="country-tab" type="button" role="tab" data-panel="uk">
+              <span class="flag" aria-hidden="true">🇬🇧</span>신청목록<small>(0건)</small>
+            </button>
+          </div>
+
+          <!-- 일본 -->
+          <div class="bundle-panel active" data-panel-id="jp">
+            <div class="group-list">
+              <!-- 묶음 1 -->
+              <article class="group-card">
+                <div class="group-header">
+                  <ul class="group-info">
+                    <li><b>신청일</b><span>2024-06-08</span></li>
+                    <li><b>대표주문번호</b><span>BJP0194791461</span></li>
+                    <li><b>묶음상품</b><span>4건</span></li>
+                    <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
+                  </ul>
+                  <div class="group-utils">
+                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-head">
+                  <div>주문상태</div>
+                  <div>주문일자</div>
+                  <div style="text-align:left;">상품정보</div>
+                  <div>수취인</div>
+                  <div>1차 결제금액</div>
+                  <div>물품가액</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status">현지도착</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div><b>￦34,000</b></div>
+                  <div>￦34,000</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status">현지도착</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 묶음 2 -->
+              <article class="group-card">
+                <div class="group-header">
+                  <ul class="group-info">
+                    <li><b>신청일</b><span>2024-06-08</span></li>
+                    <li><b>대표주문번호</b><span>BJP0194791462</span></li>
+                    <li><b>묶음상품</b><span>4건</span></li>
+                    <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
+                  </ul>
+                  <div class="group-utils">
+                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-head">
+                  <div>주문상태</div>
+                  <div>주문일자</div>
+                  <div style="text-align:left;">상품정보</div>
+                  <div>수취인</div>
+                  <div>1차 결제금액</div>
+                  <div>물품가액</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status">현지도착</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div><b>￦34,000</b></div>
+                  <div>￦34,000</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status">현지도착</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇯🇵</span>야후경매 - im111dancin</div>
+                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-price">¥ 92,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="bundle-utils">
+              <div class="bundle-actions">
+                <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 미국 -->
+          <div class="bundle-panel" data-panel-id="us">
+            <div class="group-list">
+              <article class="group-card">
+                <div class="group-header">
+                  <ul class="group-info">
+                    <li><b>신청일</b><span>2024-06-08</span></li>
+                    <li><b>대표주문번호</b><span>BUS0194791463</span></li>
+                    <li><b>묶음상품</b><span>2건</span></li>
+                    <li><b>2차 결제금액</b><span class="hot">￦220,000</span></li>
+                  </ul>
+                  <div class="group-utils">
+                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-head">
+                  <div>주문상태</div>
+                  <div>주문일자</div>
+                  <div style="text-align:left;">상품정보</div>
+                  <div>수취인</div>
+                  <div>1차 결제금액</div>
+                  <div>물품가액</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status">현지도착</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇺🇸</span>이베이 - vintage_usa</div>
+                      <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
+                      <div class="product-price">$ 920.00</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div><b>￦34,000</b></div>
+                  <div>￦34,000</div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-06</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag">🇺🇸</span>이베이 - vintage_usa</div>
+                      <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
+                      <div class="product-price">$ 920.00</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div>
+                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="bundle-utils">
+              <div class="bundle-actions">
+                <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 영국 (빈 상태) -->
+          <div class="bundle-panel" data-panel-id="uk">
+            <div class="empty-table">
+              <div class="bundle-head">
+                <div>주문상태</div>
+                <div>주문일자</div>
+                <div style="text-align:left;">상품정보</div>
+                <div>수취인</div>
+                <div>1차 결제금액</div>
+                <div>물품가액</div>
+              </div>
+              <div class="table-empty">묶음배송관리 상품이 없습니다</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL :: 묶음배송처리안내 (해지) -->
+  <div class="modal" id="modal-bundle-cancel" role="dialog" aria-modal="true" aria-labelledby="modal-cancel-title">
+    <div class="modal-dim" onclick="closeModal('modal-bundle-cancel')"></div>
+    <section class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-cancel-title">묶음배송처리안내</div>
+        <button class="modal-close" type="button" aria-label="모달 닫기" onclick="closeModal('modal-bundle-cancel')">
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">선택 묶음배송 신청건이<br>해지 완료 되었습니다.</p>
+        <p class="modal-small">마이페이지 주문 목록에서 확인 가능 합니다.</p>
+        <div class="modal-actions">
+          <button class="line" type="button">해지 신청 취소</button>
+          <button class="primary" type="button" onclick="closeModal('modal-bundle-cancel')">확인</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // 국가 탭 전환
+    document.querySelectorAll('.country-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.country-tab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var id = tab.getAttribute('data-panel');
+        document.querySelectorAll('.bundle-panel').forEach(function (p) {
+          p.classList.toggle('active', p.getAttribute('data-panel-id') === id);
+        });
+      });
+    });
+
+    // 그룹 체크박스 → 하위 행 전체선택
+    document.querySelectorAll('[data-group-check]').forEach(function (groupCheck) {
+      groupCheck.addEventListener('change', function () {
+        var card = groupCheck.closest('.group-card');
+        card.querySelectorAll('.bundle-row .check input').forEach(function (input) {
+          input.checked = groupCheck.checked;
+        });
+      });
+    });
+
+    function openModal(id) {
+      var modal = document.getElementById(id);
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeModal(id) {
+      var modal = document.getElementById(id);
+      if (modal) modal.classList.remove('open');
+    }
+  </script>
+<script src="bb-common.js"></script>
+</body>
+</html>
+

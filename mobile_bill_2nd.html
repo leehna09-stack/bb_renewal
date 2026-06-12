@@ -117,6 +117,21 @@
   .selected-coupon-summary strong { color:var(--red); }
   .fee-disc-val { font-family:'Roboto',sans-serif; font-size:13px; font-weight:700; color:var(--red); }
 
+  /* 주문 상품 */
+  .order-item { display:flex; gap:12px; align-items:flex-start; }
+  .order-thumb { width:64px; height:64px; flex-shrink:0; background:#3a4a6b; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; text-align:center; line-height:1.4; }
+  .order-info { flex:1; min-width:0; }
+  .order-badge { display:inline-block; font-size:10px; font-weight:600; color:var(--navy); background:#E8EFFF; border-radius:3px; padding:2px 7px; margin-bottom:5px; }
+  .order-id { font-size:11px; color:var(--text-sub); margin-bottom:3px; }
+  .order-name { font-size:12px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .order-price { font-family:'Roboto',sans-serif; font-size:15px; font-weight:700; color:var(--navy); white-space:nowrap; flex-shrink:0; text-align:right; }
+
+  /* 수취인 정보 */
+  .recipient-row { padding:9px 0; border-bottom:1px solid var(--border); }
+  .recipient-row:last-child { border-bottom:none; }
+  .recipient-label { font-size:11px; color:var(--text-hint); margin-bottom:3px; }
+  .recipient-value { font-size:13px; color:var(--text-main); line-height:1.5; }
+
   /* 유료 옵션 */
   .option-item { border:1px solid var(--border); border-radius:8px; overflow:hidden; }
   .option-header { display:flex; align-items:center; justify-content:space-between; padding:14px; background:#F8F9FA; border-bottom:1px solid var(--border); }
@@ -153,6 +168,7 @@
   .deposit-placeholder { font-size:13px; color:#bbb; }
   .deposit-right { display:flex; align-items:center; gap:4px; }
   .deposit-inp { border:none; outline:none; font-family:'Roboto',monospace; font-size:14px; font-weight:500; color:#222; width:80px; text-align:right; background:transparent; }
+  .deposit-inp.error { color:var(--red); }
   .deposit-unit { font-size:13px; color:#555; }
   .deposit-clear {
     display:none;
@@ -176,6 +192,9 @@
   .deposit-warn { display:none; font-size:11px; color:var(--red); margin-top:5px; }
   .deposit-warn.show { display:block; }
 
+  /* VIP 노트 */
+  .vip-care-note { background:#FFF8E6; border-left:3px solid var(--amber); border-radius:4px; padding:8px 12px; margin-bottom:10px; font-size:12px; font-weight:600; color:#7A5000; }
+
   /* 배송추가비용 펼침 */
   .extra-toggle-row { cursor:pointer; user-select:none; }
   .extra-cost-right { display:inline-flex; align-items:center; gap:6px; }
@@ -198,6 +217,9 @@
   .pay-method-btn-group { display:flex; gap:8px; }
   .pay-method-btn { flex:1; padding:12px 0; font-size:13px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
   .pay-method-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:700; }
+  .pay-method-wrap.is-required { background:#FFF8F0; box-shadow:inset 0 0 0 2px rgba(232,56,90,.18); }
+  .pay-method-wrap.is-required .pay-method-label { color:var(--red); }
+  .pay-method-wrap.is-required .pay-method-btn { border-color:#E8385A; box-shadow:0 0 0 2px rgba(232,56,90,.12); }
 
   /* 현금영수증 */
   .receipt-wrap { display:none; padding:14px 16px; }
@@ -277,6 +299,33 @@
   </div>
 </div>
 
+<!-- 주문 상품 -->
+<div class="card">
+  <div class="card-title">주문 상품</div>
+  <div class="order-item">
+    <div class="order-thumb">스티어링<br>휠</div>
+    <div class="order-info">
+      <span class="order-badge">YAHOO</span>
+      <div class="order-id">g1227816237</div>
+      <div class="order-name">D1SPEC DEEP70 35パイ レッドステッチ D1スペック ステアリング ディープ70</div>
+    </div>
+    <div class="order-price">7,255 엔</div>
+  </div>
+</div>
+
+<!-- 수취인 정보 -->
+<div class="card">
+  <div class="card-title">수취인 정보</div>
+  <div class="recipient-row">
+    <div class="recipient-label">수취인</div>
+    <div class="recipient-value">홍길동 (010-1111-1111)</div>
+  </div>
+  <div class="recipient-row">
+    <div class="recipient-label">주소</div>
+    <div class="recipient-value">서울특별시 강남구 행복로111길 11<br>1009동 2504호</div>
+  </div>
+</div>
+
 <!-- 유료 옵션 서비스 -->
 <div class="card">
   <div class="card-title">유료 옵션 서비스 <span style="font-size:11px;color:#888;font-weight:400;">(선택)</span></div>
@@ -292,7 +341,8 @@
       </div>
     </div>
     <div class="option-body" id="opt_care_body">
-      🛡 <strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong>
+      <div class="vip-care-note"><i class="fa-solid fa-gem"></i>[VIP 회원] 전용 혜택 | 안심 케어 무료 제공</div>
+       <strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong>
       <ul style="padding-left:16px;margin-top:6px;font-size:12px;line-height:1.8;">
         <li>가입 송장건에 한해 <strong>최대 20만원까지</strong> 보상이 적용됩니다.</li>
         <li>선택한 송장 건의 물품 총액을 기준으로 보상됩니다.</li>
@@ -341,7 +391,7 @@
     </span>
   </div>
   <div class="extra-detail-panel" id="extraDetailPanel">
-    <div class="extra-detail-item" id="detailCare" style="display:none"><span>안심 케어</span><span class="extra-detail-val">200 엔</span></div>
+    <div class="extra-detail-item" id="detailCare" style="display:none"><span>안심 케어</span><span class="extra-detail-val" style="color:var(--green);">무료</span></div>
     <div class="extra-detail-item" id="detailCarePlus" style="display:none"><span>안심 케어 플러스</span><span class="extra-detail-val">400 엔</span></div>
     <div class="extra-detail-item" id="detailStorage" style="display:none"><span>창고 보관료</span><span class="extra-detail-val">100 엔</span></div>
     <div class="extra-detail-item" id="detailPacking" style="display:none"><span>포장비</span><span class="extra-detail-val">150 엔</span></div>
@@ -425,15 +475,6 @@
     </div>
   </div>
 
-  <!-- 현금영수증 -->
-  <div class="receipt-wrap">
-    <div class="pay-method-label" style="margin-bottom:6px;">현금 영수증 발급</div>
-    <div class="receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
-    <div class="receipt-radio-group">
-      <label class="receipt-radio"><input type="radio" name="receipt" value="yes"> 예</label>
-      <label class="receipt-radio"><input type="radio" name="receipt" value="no" checked> 아니오</label>
-    </div>
-  </div>
 </div>
 
 <!-- 하단 CTA -->
@@ -550,7 +591,7 @@ let selectedPayMethod = '';
 
 /* 유료 옵션 (안심케어만 토글, 나머지는 고정 금액) */
 const OPTIONS = [
-  { id:'care',    yen:200, trackId:'opt_care_track', textId:'opt_care_text', bodyId:'opt_care_body', detailId:'detailCare',    active:true  },
+  { id:'care',    yen:0,   trackId:'opt_care_track', textId:'opt_care_text', bodyId:'opt_care_body', detailId:'detailCare',    active:true  },
   { id:'carePlus',yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailCarePlus', active:false },
   { id:'storage', yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailStorage',  active:false },
   { id:'packing', yen:0,   trackId:null, textId:null, bodyId:null,            detailId:'detailPacking',  active:false },
@@ -664,9 +705,10 @@ function onDepInput(el) {
   const raw = Number(el.value.replace(/[^\d]/g,'')) || 0;
   const warn = document.getElementById('depWarn');
   if (raw > DEP_AVAIL) {
+    el.classList.add('error');
     warn.classList.add('show');
-    setTimeout(() => { el.value = fmt(DEP_AVAIL); warn.classList.remove('show'); setDepFull(); }, 700);
   } else {
+    el.classList.remove('error');
     warn.classList.remove('show');
     if (raw === DEP_AVAIL) setDepFull();
     render();
@@ -674,8 +716,18 @@ function onDepInput(el) {
 }
 function onDepBlur(el) {
   const raw = Number(el.value.replace(/[^\d]/g,'')) || 0;
-  if (raw > 0) el.value = fmt(raw);
-  render();
+  const warn = document.getElementById('depWarn');
+  if (raw > DEP_AVAIL) {
+    /* 초과 시 즉시 최대값으로 보정 + 하이라이트 제거 */
+    el.classList.remove('error');
+    warn.classList.remove('show');
+    setDepFull();
+  } else {
+    el.classList.remove('error');
+    warn.classList.remove('show');
+    if (raw > 0) el.value = fmt(raw);
+    render();
+  }
 }
 function setDepFull() {
   depFull = true;
@@ -758,13 +810,14 @@ function selectPayMethod(method) {
 })();
 
 /* ── 결제승인 ── */
-document.getElementById('btnApprove').addEventListener('click', function() {
+document.getElementById('btnApprove').addEventListener('click', function(e) {
   if (!selectedPayMethod) {
-    document.querySelector('.pay-method-wrap').scrollIntoView({ behavior:'smooth' });
-    document.querySelector('.pay-method-btn-group').style.outline = '2px solid var(--red)';
-    setTimeout(() => document.querySelector('.pay-method-btn-group').style.outline = '', 2000);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    document.querySelector('.pay-method-wrap')?.classList.add('is-required');
     return;
   }
+  document.querySelector('.pay-method-wrap')?.classList.remove('is-required');
   alert('결제가 완료되었습니다.');
 });
 </script>
