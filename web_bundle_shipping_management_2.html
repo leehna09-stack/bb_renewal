@@ -389,6 +389,7 @@
     .group-list { display: flex; flex-direction: column; gap: 14px; }
 
     .group-card {
+      position: relative;
       border: 1px solid var(--line);
       border-radius: 11px;
       overflow: hidden;
@@ -400,6 +401,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
+      min-height: 59px;
       padding: 13px 16px;
       background: var(--warm);
       border-bottom: 1px solid var(--line);
@@ -445,12 +447,12 @@
 
     .bundle-head, .bundle-row {
       display: grid;
-      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 110px 98px;
+      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 126px 104px;
       align-items: center;
     }
 
     .bundle-head {
-      min-height: 36px;
+      min-height: 48px;
       background: #f8f9fb;
       border-bottom: 1px solid var(--line-soft);
       color: #5a5e66;
@@ -474,6 +476,7 @@
     .bundle-row:hover { background: #fffafb; }
 
     .bundle-row > div { padding: 12px 6px; }
+    .group-card .bundle-row > div:nth-child(6) { visibility: hidden; }
 
     .row-status { font-weight: 800; color: #2b2f37; white-space: nowrap; }
     .row-status.hot { color: var(--brand); }
@@ -554,6 +557,35 @@
     .row-price b { color: #151922; font-size: 12px; font-weight: 800; }
     .row-price span { color: #8d929d; font-size: 11px; }
 
+    .group-volume {
+      position: absolute;
+      top: 107px;
+      right: 0;
+      bottom: 0;
+      width: 104px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 12px 8px;
+      border-left: 1px solid var(--line-soft);
+      background: #fff;
+      color: #343942;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.35;
+      z-index: 1;
+    }
+
+    .group-volume span {
+      display: block;
+      color: #7a808a;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
     /* 체크박스 */
     .check {
       position: relative;
@@ -616,9 +648,20 @@
       background: #fff;
     }
 
-    /* ── 하단 버튼 ── */
+    /* ── 선택 액션 버튼 ── */
+    .bundle-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
     .bundle-utils { margin-top: 20px; }
-    .bundle-actions { display: flex; justify-content: center; gap: 10px; }
+    .bundle-utils .bundle-actions {
+      justify-content: center;
+      margin-bottom: 0;
+    }
 
     .big-btn {
       height: 44px;
@@ -787,7 +830,7 @@
           <div class="nav-section">
             <strong>배송관리</strong>
             <div class="nav-list">
-              <a class="active" href="web_bundle_shipping_management.html">묶음 배송 신청/변경</a>
+              <a class="active" href="web_bundle_shipping_management.html">배송신청/변경</a>
               <a href="#">배송지 관리</a>
             </div>
           </div>
@@ -838,24 +881,27 @@
       <main class="main">
         <section aria-labelledby="bundle-title">
           <div class="page-head">
-            <h2 id="bundle-title">묶음배송관리 <span style="color:#9da2af; font-weight:700; font-size:12px;">묶음배송 신청 완료 목록</span></h2>
-            <a class="outline-pill" href="web_bundle_shipping_management.html">묶음배송 신청 가능 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
+            <h2 id="bundle-title">배송 신청 관리 <span style="color:#9da2af; font-weight:700; font-size:12px;">배송 신청 완료 목록</span></h2>
+            <a class="outline-pill" href="web_bundle_shipping_management.html">배송 신청 가능 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
           </div>
 
           <div class="country-tabs" role="tablist" aria-label="국가별 신청목록">
             <button class="country-tab active" type="button" role="tab" data-panel="jp">
-              <span class="flag jp" role="img" aria-label="일본"></span>일본 묶음 신청 목록<small>(2건)</small>
+              <span class="flag jp" role="img" aria-label="일본"></span>일본 배송 신청 목록<small>(3건)</small>
             </button>
             <button class="country-tab" type="button" role="tab" data-panel="us">
-              <span class="flag us" role="img" aria-label="미국"></span>미국 묶음 신청 목록<small>(1건)</small>
+              <span class="flag us" role="img" aria-label="미국"></span>미국 배송 신청 목록<small>(1건)</small>
             </button>
             <button class="country-tab" type="button" role="tab" data-panel="uk">
-              <span class="flag uk" role="img" aria-label="영국"></span>영국 묶음 신청 목록<small>(0건)</small>
+              <span class="flag uk" role="img" aria-label="영국"></span>영국 배송 신청 목록<small>(1건)</small>
             </button>
           </div>
 
           <!-- 일본 -->
           <div class="bundle-panel active" data-panel-id="jp">
+            <div class="bundle-actions">
+              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+            </div>
             <div class="group-list">
               <!-- 묶음 1 -->
               <article class="group-card">
@@ -868,7 +914,6 @@
                   </ul>
                   <div class="group-utils">
                     <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
-                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -876,9 +921,10 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>1차 결제금액</div>
-                  <div>물품가액</div>
+                  <div>낙찰가(상품가)<br>수입신고금액</div>
+                  <div>부피/무게</div>
                 </div>
+                <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -891,11 +937,11 @@
                     </div>
                   </div>
                   <div>박비드</div>
-                  <div><b>￦34,000</b></div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                   <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
-                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
@@ -929,7 +975,7 @@
                   </div>
                 </div>
                 <div class="bundle-row">
-                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
@@ -958,7 +1004,6 @@
                   </ul>
                   <div class="group-utils">
                     <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
-                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -966,9 +1011,10 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>1차 결제금액</div>
-                  <div>물품가액</div>
+                  <div>낙찰가(상품가)<br>수입신고금액</div>
+                  <div>부피/무게</div>
                 </div>
+                <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -981,11 +1027,11 @@
                     </div>
                   </div>
                   <div>박비드</div>
-                  <div><b>￦34,000</b></div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                   <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
-                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
@@ -1019,7 +1065,7 @@
                   </div>
                 </div>
                 <div class="bundle-row">
-                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
@@ -1036,17 +1082,83 @@
                   </div>
                 </div>
               </article>
-            </div>
 
-            <div class="bundle-utils">
-              <div class="bundle-actions">
-                <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
-              </div>
+              <!-- 묶음 3 : 2차 결제 안내 전 -->
+              <article class="group-card">
+                <div class="group-header">
+                  <ul class="group-info">
+                    <li><b>신청일</b><span>2024-06-09</span></li>
+                    <li><b>대표주문번호</b><span>BJP0194791464</span></li>
+                    <li><b>묶음상품</b><span>3건</span></li>
+                    <li><b>2차 결제금액</b><span>산정 전</span></li>
+                  </ul>
+                  <div class="group-utils">
+                    <label class="check"><input type="checkbox" aria-label="묶음 해지 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-head">
+                  <div>주문상태</div>
+                  <div>주문일자</div>
+                  <div style="text-align:left;">상품정보</div>
+                  <div>수취인</div>
+                  <div>낙찰가(상품가)<br>수입신고금액</div>
+                  <div>부피/무게</div>
+                </div>
+                <div class="group-volume"><strong>[-]</strong></div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-07</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <a href="web_auction.html" class="product-name">일본 빈티지 세라믹 컵 세트 한정 컬러</a>
+                      <div class="product-price">¥ 32,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦18,000</b><span>￦18,000</span></div>
+                  <div></div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-07</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <a href="web_auction.html" class="product-name">한정판 캐릭터 피규어 미개봉 패키지</a>
+                      <div class="product-price">¥ 48,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦27,000</b><span>￦27,000</span></div>
+                  <div></div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-07</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <a href="web_auction.html" class="product-name">레트로 게임 소프트 컬렉션 3종</a>
+                      <div class="product-price">¥ 29,000</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦16,000</b><span>￦16,000</span></div>
+                  <div></div>
+                </div>
+              </article>
             </div>
           </div>
 
           <!-- 미국 -->
           <div class="bundle-panel" data-panel-id="us">
+            <div class="bundle-actions">
+              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+            </div>
             <div class="group-list">
               <article class="group-card">
                 <div class="group-header">
@@ -1058,7 +1170,6 @@
                   </ul>
                   <div class="group-utils">
                     <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
-                    <label class="check"><input type="checkbox" data-group-check aria-label="묶음 전체 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -1066,9 +1177,10 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>1차 결제금액</div>
-                  <div>물품가액</div>
+                  <div>낙찰가(상품가)<br>수입신고금액</div>
+                  <div>부피/무게</div>
                 </div>
+                <div class="group-volume"><strong>총 2kg</strong><span>0.12㎥</span></div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -1081,11 +1193,11 @@
                     </div>
                   </div>
                   <div>박비드</div>
-                  <div><b>￦34,000</b></div>
+                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                   <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
-                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
@@ -1103,26 +1215,66 @@
                 </div>
               </article>
             </div>
-
-            <div class="bundle-utils">
-              <div class="bundle-actions">
-                <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
-              </div>
-            </div>
           </div>
 
-          <!-- 영국 (빈 상태) -->
+          <!-- 영국 -->
           <div class="bundle-panel" data-panel-id="uk">
-            <div class="empty-table">
-              <div class="bundle-head">
-                <div>주문상태</div>
-                <div>주문일자</div>
-                <div style="text-align:left;">상품정보</div>
-                <div>수취인</div>
-                <div>1차 결제금액</div>
-                <div>물품가액</div>
-              </div>
-              <div class="table-empty">묶음배송관리 상품이 없습니다</div>
+            <div class="bundle-actions">
+              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+            </div>
+            <div class="group-list">
+              <article class="group-card">
+                <div class="group-header">
+                  <ul class="group-info">
+                    <li><b>신청일</b><span>2024-06-09</span></li>
+                    <li><b>대표주문번호</b><span>BUK0194791465</span></li>
+                    <li><b>묶음상품</b><span>2건</span></li>
+                    <li><b>2차 결제금액</b><span>산정 전</span></li>
+                  </ul>
+                  <div class="group-utils">
+                    <label class="check"><input type="checkbox" aria-label="묶음 해지 선택"><span class="box"></span></label>
+                  </div>
+                </div>
+                <div class="bundle-head">
+                  <div>주문상태</div>
+                  <div>주문일자</div>
+                  <div style="text-align:left;">상품정보</div>
+                  <div>수취인</div>
+                  <div>낙찰가(상품가)<br>수입신고금액</div>
+                  <div>부피/무게</div>
+                </div>
+                <div class="group-volume"><strong>[-]</strong></div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-07</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
+                      <a href="web_auction.html" class="product-name">Vintage Burberry Check Scarf Made in England</a>
+                      <div class="product-price">￡ 180.00</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦42,000</b><span>￦42,000</span></div>
+                  <div></div>
+                </div>
+                <div class="bundle-row">
+                  <div class="row-status hot">1차 결제완료</div>
+                  <div class="row-date">2023-06-07</div>
+                  <div class="row-product">
+                    <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
+                    <div class="product-info">
+                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
+                      <a href="web_auction.html" class="product-name">Royal Doulton Tea Cup and Saucer Pair</a>
+                      <div class="product-price">￡ 95.00</div>
+                    </div>
+                  </div>
+                  <div>박비드</div>
+                  <div class="row-price"><b>￦23,000</b><span>￦23,000</span></div>
+                  <div></div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -1160,16 +1312,6 @@
         var id = tab.getAttribute('data-panel');
         document.querySelectorAll('.bundle-panel').forEach(function (p) {
           p.classList.toggle('active', p.getAttribute('data-panel-id') === id);
-        });
-      });
-    });
-
-    // 그룹 체크박스 → 하위 행 전체선택
-    document.querySelectorAll('[data-group-check]').forEach(function (groupCheck) {
-      groupCheck.addEventListener('change', function () {
-        var card = groupCheck.closest('.group-card');
-        card.querySelectorAll('.bundle-row .check input').forEach(function (input) {
-          input.checked = groupCheck.checked;
         });
       });
     });

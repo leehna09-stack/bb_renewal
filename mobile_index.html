@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BidBuy Renewal | 통합 미리보기</title>
+<title>BidBuy Renewal | 모바일 통합 미리보기</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -15,7 +15,6 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
-/* 네이버 기본 타이포그래피 적용: 시스템 한글 폰트 스택 / 14px / line-height 1.5, 여백은 8px 그리드 */
 body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;color:var(--tp);font-size:14px;line-height:1.5;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── 상단 바 ── */
@@ -48,20 +47,21 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
 .nav-item-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nav-file{display:block;font-size:11px;font-weight:400;color:var(--tm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.5}
 
-/* 우측 프레임 */
-.viewer{flex:1;min-width:0;display:flex;flex-direction:column;background:#E9ECF1}
-.viewer iframe{flex:1;width:100%;border:none;background:#fff}
+/* 우측: 모바일 프레임 뷰어 */
+.viewer{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#E9ECF1;padding:24px;overflow:auto}
+.device{width:393px;height:min(852px, 100%);flex-shrink:0;background:#fff;border-radius:28px;border:10px solid #20242B;box-shadow:0 18px 48px rgba(20,24,32,.28);overflow:hidden;display:flex}
+.device iframe{flex:1;width:100%;border:none;background:#fff}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <img src="Bidbuy logo.png" alt="Bidbuy">
-  <div class="topbar-title">리뉴얼 통합 미리보기<small>bb Renewal html / web</small></div>
+  <div class="topbar-title">리뉴얼 모바일 미리보기<small>bb Renewal html / mobile</small></div>
   <div class="topbar-utils">
     <div class="now-viewing" id="nowViewing">현재 페이지: <b>메인</b></div>
     <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
-    <a class="top-btn" id="openNewTab" href="web_main.html" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> 새 탭에서 열기</a>
+    <a class="top-btn" id="openNewTab" href="mobile_main.html" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> 새 탭에서 열기</a>
   </div>
 </div>
 
@@ -69,41 +69,41 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
   <nav class="nav" id="pageNav">
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-house"></i> 메인 / 검색</div>
-      <button class="nav-item" data-page="web_main.html"><i class="fa-solid fa-house"></i><span class="nav-item-label">메인<span class="nav-file">web_main.html</span></span></button>
-      <button class="nav-item" data-page="web_sub main.html"><i class="fa-solid fa-table-columns"></i><span class="nav-item-label">서브 메인<span class="nav-file">web_sub main.html</span></span></button>
-      <button class="nav-item" data-page="web_totalsearch.html"><i class="fa-solid fa-magnifying-glass"></i><span class="nav-item-label">통합검색<span class="nav-file">web_totalsearch.html</span></span></button>
+      <button class="nav-item" data-page="mobile_main.html"><i class="fa-solid fa-house"></i><span class="nav-item-label">메인<span class="nav-file">mobile_main.html</span></span></button>
+      <button class="nav-item" data-page="mobile_sub main.html"><i class="fa-solid fa-table-columns"></i><span class="nav-item-label">서브 메인<span class="nav-file">mobile_sub main.html</span></span></button>
+      <button class="nav-item" data-page="mobile_storemain.html"><i class="fa-solid fa-store"></i><span class="nav-item-label">스토어 메인<span class="nav-file">mobile_storemain.html</span></span></button>
+      <button class="nav-item" data-page="mobile_totalsearch.html"><i class="fa-solid fa-magnifying-glass"></i><span class="nav-item-label">통합검색<span class="nav-file">mobile_totalsearch.html</span></span></button>
     </div>
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-tag"></i> 상품 상세</div>
-      <button class="nav-item" data-page="web_auction.html"><i class="fa-solid fa-gavel"></i><span class="nav-item-label">경매대행<span class="nav-file">web_auction.html</span></span></button>
-      <button class="nav-item" data-page="web_purchase store.html"><i class="fa-solid fa-bag-shopping"></i><span class="nav-item-label">구매대행(스토어)<span class="nav-file">web_purchase store.html</span></span></button>
-      <button class="nav-item" data-page="web_purchase merukari.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">구매대행(메루카리)<span class="nav-file">web_purchase merukari.html</span></span></button>
+      <button class="nav-item" data-page="mobile_auction.html"><i class="fa-solid fa-gavel"></i><span class="nav-item-label">경매 대행<span class="nav-file">mobile_auction.html</span></span></button>
+      <button class="nav-item" data-page="mobile_purchase store.html"><i class="fa-solid fa-bag-shopping"></i><span class="nav-item-label">구매대행(스토어)<span class="nav-file">mobile_purchase store.html</span></span></button>
+      <button class="nav-item" data-page="mobile_purchase merukari.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">구매대행(메루카리)<span class="nav-file">mobile_purchase merukari.html</span></span></button>
     </div>
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-credit-card"></i> 결제</div>
-      <button class="nav-item" data-page="web_bill_1st.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 1page<span class="nav-file">web_bill_1st.html</span></span></button>
-      <button class="nav-item" data-page="web_bill_1st_2.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 2page<span class="nav-file">web_bill_1st_2.html</span></span></button>
-      <button class="nav-item" data-page="web_bill_2nd.html"><i class="fa-solid fa-2"></i><span class="nav-item-label">2차 결제<span class="nav-file">web_bill_2nd.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bill_1st.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 1page<span class="nav-file">mobile_bill_1st.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bill_1st_2.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 2page<span class="nav-file">mobile_bill_1st_2.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bill_2nd.html"><i class="fa-solid fa-2"></i><span class="nav-item-label">2차 결제<span class="nav-file">mobile_bill_2nd.html</span></span></button>
     </div>
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-user"></i> 마이페이지</div>
-      <button class="nav-item" data-page="web_mypage.html"><i class="fa-solid fa-user-circle"></i><span class="nav-item-label">마이페이지<span class="nav-file">web_mypage.html</span></span></button>
-      <button class="nav-item" data-page="web_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송신청 가능목록<span class="nav-file">web_bundle_shipping_management.html</span></span></button>
-      <button class="nav-item" data-page="web_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송신청 완료목록<span class="nav-file">web_bundle_shipping_management_2.html</span></span></button>
-      <button class="nav-item" data-page="web_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">web_mileage.html</span></span></button>
-      <button class="nav-item" data-page="web_grade page.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">web_grade page.html</span></span></button>
+      <button class="nav-item" data-page="mobile_mypage.html"><i class="fa-solid fa-user-circle"></i><span class="nav-item-label">마이페이지<span class="nav-file">mobile_mypage.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송 신청 가능 목록<span class="nav-file">mobile_bundle_shipping_management.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송 신청 완료 목록<span class="nav-file">mobile_bundle_shipping_management_2.html</span></span></button>
+      <button class="nav-item" data-page="mobile_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">mobile_mileage.html</span></span></button>
+      <button class="nav-item" data-page="mobile_grade.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">mobile_grade.html</span></span></button>
     </div>
     <div class="nav-group">
       <div class="nav-group-title"><i class="fa-solid fa-building"></i> 기타</div>
-      <button class="nav-item" data-page="web_biz.html"><i class="fa-solid fa-building"></i><span class="nav-item-label">사업자 회원<span class="nav-file">web_biz.html</span></span></button>
-      <button class="nav-item" data-page="web_qna_form.html"><i class="fa-solid fa-headset"></i><span class="nav-item-label">1:1 문의하기<span class="nav-file">web_qna_form.html</span></span></button>
-      <button class="nav-item" data-page="web_qna.html"><i class="fa-solid fa-list-check"></i><span class="nav-item-label">1:1 문의내역<span class="nav-file">web_qna.html</span></span></button>
-      <button class="nav-item" data-page="web_qna_details.html"><i class="fa-solid fa-comments"></i><span class="nav-item-label">1:1 문의 상세<span class="nav-file">web_qna_details.html</span></span></button>
+      <button class="nav-item" data-page="mobile_biz.html"><i class="fa-solid fa-building"></i><span class="nav-item-label">사업자 회원<span class="nav-file">mobile_biz.html</span></span></button>
     </div>
   </nav>
 
   <div class="viewer">
-    <iframe id="pageFrame" src="web_main.html" title="페이지 미리보기"></iframe>
+    <div class="device">
+      <iframe id="pageFrame" src="mobile_main.html" title="페이지 미리보기"></iframe>
+    </div>
   </div>
 </div>
 
@@ -149,7 +149,7 @@ function reloadFrame() {
 }
 
 // 초기 active 표시
-setActive('web_main.html', '메인');
+setActive('mobile_main.html', '메인');
 </script>
 </body>
 </html>

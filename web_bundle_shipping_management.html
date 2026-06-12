@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bidbuy 묶음배송관리</title>
+  <title>Bidbuy 배송 신청 관리</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -610,7 +610,13 @@
       line-height: 1.5;
     }
 
-    .bundle-actions { display: flex; justify-content: center; gap: 10px; }
+    .bundle-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
 
     .big-btn {
       height: 44px;
@@ -802,7 +808,7 @@
           <div class="nav-section">
             <strong>배송관리</strong>
             <div class="nav-list">
-              <a class="active" href="web_bundle_shipping_management.html">묶음 배송 신청/변경</a>
+              <a class="active" href="web_bundle_shipping_management.html">배송신청/변경</a>
               <a href="#">배송지 관리</a>
             </div>
           </div>
@@ -853,8 +859,8 @@
       <main class="main">
         <section aria-labelledby="bundle-title">
           <div class="page-head">
-            <h2 id="bundle-title">묶음배송관리<span style="color:#9da2af; font-weight:700; font-size:12px;"> 묶음배송 신청 가능 목록</span></h2>
-            <a class="outline-pill" href="web_bundle_shipping_management_2.html">묶음배송 신청 완료 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
+            <h2 id="bundle-title">배송 신청 관리<span style="color:#9da2af; font-weight:700; font-size:12px;"> 배송 신청 가능 목록</span></h2>
+            <a class="outline-pill" href="web_bundle_shipping_management_2.html">배송 신청 완료 목록 <i class="fas fa-chevron-right" style="font-size:10px; margin-left:6px;"></i></a>
           </div>
 
           <div class="country-tabs" role="tablist" aria-label="국가별 묶음 가능 주문">
@@ -871,6 +877,10 @@
 
           <!-- 일본 -->
           <div class="bundle-panel active" data-panel-id="jp">
+            <div class="bundle-actions">
+              <button class="big-btn line" type="button" onclick="openModal('modal-div-delivery')">선택건 개별배송 신청</button>
+              <button class="big-btn primary" type="button" onclick="openModal('modal-bundle-delivery')">선택건 묶음 신청</button>
+            </div>
             <div class="bundle-table">
               <div class="bundle-head">
                 <div>주문상태</div>
@@ -976,15 +986,15 @@
                 <li>* 무게/부피값은 주문시 입력값 기준입니다.</li>
                 <li>* 수입신고금액 은 다음 항목 입니다. (상품가격 + TAX + 현지비용)</li>
               </ul>
-              <div class="bundle-actions">
-                <button class="big-btn line" type="button" onclick="openModal('modal-div-delivery')">선택건 개별배송 신청</button>
-                <button class="big-btn primary" type="button" onclick="openModal('modal-bundle-delivery')">선택건 묶음배송 신청</button>
-              </div>
             </div>
           </div>
 
           <!-- 미국 -->
           <div class="bundle-panel" data-panel-id="us">
+            <div class="bundle-actions">
+              <button class="big-btn line" type="button" onclick="openModal('modal-div-delivery')">선택건 개별배송 신청</button>
+              <button class="big-btn primary" type="button" onclick="openModal('modal-bundle-delivery')">선택건 묶음배송 신청</button>
+            </div>
             <div class="bundle-table">
               <div class="bundle-head">
                 <div>주문상태</div>
@@ -1090,10 +1100,6 @@
                 <li>* 무게/부피값은 주문시 입력값 기준입니다.</li>
                 <li>* 수입신고금액 은 다음 항목 입니다. (상품가격 + TAX + 현지비용)</li>
               </ul>
-              <div class="bundle-actions">
-                <button class="big-btn line" type="button" onclick="openModal('modal-div-delivery')">선택 개별배송 전환</button>
-                <button class="big-btn primary" type="button" onclick="openModal('modal-bundle-delivery')">선택 묶음배송 신청</button>
-              </div>
             </div>
           </div>
 
@@ -1109,7 +1115,7 @@
                 <div>1차 결제금액<br>수입신고금액</div>
                 <div>선택</div>
               </div>
-              <div class="table-empty">묶음배송관리 상품이 없습니다</div>
+              <div class="table-empty">배송 신청 관리 상품이 없습니다</div>
             </div>
           </div>
         </section>

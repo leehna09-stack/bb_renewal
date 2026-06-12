@@ -25,10 +25,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Noto Sans KR',sans-serif;
-  background:#D8DCE6;
+  background:var(--bg);
   min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;
-  padding:24px 0 48px;
 }
 .demo-bar{
   position:fixed;top:0;left:0;right:0;z-index:9999;
@@ -44,18 +42,13 @@ body{
 }
 .phone-wrap{margin-top:52px}
 .phone{
-  width:390px;
+  width:100%;
+  max-width:430px;
+  margin:0 auto;
   background:#fff;
-  border:0.5px solid rgba(0,0,0,0.3);
-  border-radius:44px;
-  box-shadow:0 24px 60px rgba(0,0,0,.22),0 4px 16px rgba(0,0,0,.1);
-  overflow:hidden;
   position:relative;
 }
-.phone-notch{
-  background:#1A1A2E;height:44px;
-  display:flex;align-items:center;justify-content:center;position:relative;
-}
+.phone-notch{ display:none; }
 .notch-island{
   background:#000;width:120px;height:28px;border-radius:14px;
   display:flex;align-items:center;justify-content:center;gap:8px;
@@ -64,8 +57,6 @@ body{
 .notch-speaker{width:52px;height:5px;background:#1a1a1a;border-radius:3px}
 .app-body{
   background:var(--bg);
-  overflow-y:auto;scrollbar-width:none;
-  max-height:800px;
 }
 .app-body::-webkit-scrollbar{display:none}
 .app-header{
@@ -379,10 +370,7 @@ body{
 .cs-mini-btns{display:flex;gap:6px}
 .cs-mini-btn{flex:1;padding:7px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;text-align:center}
 .cs-mini-btn.primary{background:var(--rose);color:#fff;border-color:var(--rose)}
-.home-indicator{
-  background:#fff;height:28px;
-  display:flex;align-items:center;justify-content:center;
-}
+.home-indicator{ display:none; }
 .home-bar{width:120px;height:4px;background:var(--tp);border-radius:2px;opacity:.15}
 .drawer-ov{position:absolute;inset:0;background:rgba(0,0,0,0);z-index:100;pointer-events:none;transition:background .3s}
 .drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
@@ -711,7 +699,7 @@ button.user-menu-item{
  <div class="sc-item"><div class="sc-circle si-1"><i class="fas fa-calculator"></i></div><span class="sc-label">편의기능</span></div>
         <div class="sc-item"><div class="sc-circle si-2"><i class="fas fa-heart"></i></div><span class="sc-label">관심상품</span></div>
         <a class="sc-item" href="mobile_mypage.html"><div class="sc-circle si-3"><i class="fas fa-gavel"></i></div><span class="sc-label">나의 경매</span></a>
-        <div class="sc-item"><div class="sc-circle si-4"><i class="fas fa-boxes-stacked"></i></div><span class="sc-label">묶음배송관리</span></div>
+        <div class="sc-item"><div class="sc-circle si-4"><i class="fas fa-boxes-stacked"></i></div><span class="sc-label">배송신청/변경</span></div>
         <div class="sc-item"><div class="sc-circle si-5"><i class="fas fa-thumbs-up"></i></div><span class="sc-label">추천 카테고리</span></div>
         <a class="sc-item" href="mobile_grade.html"><div class="sc-circle si-6"><i class="fas fa-gift"></i></div><span class="sc-label">등급 혜택</span></a>
         <a class="sc-item" href="mobile_mileage.html"><div class="sc-circle si-7"><i class="fas fa-ticket"></i></div><span class="sc-label">마일리지/쿠폰</span></a>
@@ -1066,7 +1054,7 @@ button.user-menu-item{
             <span class="user-menu-icon"><i class="fas fa-truck-fast" aria-hidden="true"></i></span><span>배송관리</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
           </button>
           <div class="user-menu-panel" id="mm-menu-delivery">
-            <a class="user-menu-link" href="#">묶음 배송 신청/변경</a>
+            <a class="user-menu-link" href="#">배송 신청/변경</a>
             <a class="user-menu-link" href="#">배송지 관리</a>
           </div>
         </div>

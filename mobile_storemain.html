@@ -964,6 +964,94 @@ const STORES = {
   },
 };
 
+/* ── 스토어별 베스트 상품 ── */
+const STORE_PRODUCTS = {
+  '야후옥션': [
+    { grad: 'linear-gradient(135deg,#d8e0ea,#c4cfdc)', label: '', name: '빈티지 필름 카메라 세트 니콘 FM2 바디', priceLabel: '현재가', price: '8,100엔', timer: '2시간 34분', bids: '입찰 3' },
+    { grad: 'linear-gradient(135deg,#e0d8e0,#d0c4d0)', label: 'buyout', name: '조던 1 레트로 하이 OG 시카고 박스포함', priceLabel: '즉시낙찰가', price: '62,000엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#dce8d8,#c8d8c4)', label: '', name: '닌텐도 스위치 OLED 화이트 풀구성', priceLabel: '현재가', price: '34,500엔', timer: '5시간 8분', bids: '입찰 12' },
+    { grad: 'linear-gradient(135deg,#e8e0d8,#d8ccbc)', label: '', name: '레어 미니카 토미카 에디션 한정판', priceLabel: '현재가', price: '15,100엔', timer: '1시간 5분', bids: '입찰 24' },
+    { grad: 'linear-gradient(135deg,#d8dce8,#c4c8d8)', label: 'auction', name: '애플워치 울트라2 티타늄 49mm GPS+LTE', priceLabel: '현재가', price: '72,800엔', timer: '8시간 11분', bids: '입찰 7' },
+    { grad: 'linear-gradient(135deg,#e8d8e4,#d8c4d0)', label: 'buyout', name: '헌터 웰링턴 부츠 UK7 블랙 미착용', priceLabel: '즉시낙찰가', price: '13,900엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#e0e8d8,#ccd8c0)', label: '', name: '가마쿠라 도자기 찻잔 세트 화도 빈티지', priceLabel: '현재가', price: '4,200엔', timer: '14시간 50분', bids: '입찰 2' },
+    { grad: 'linear-gradient(135deg,#e8dcd0,#d8ccc0)', label: 'auction', name: '팬더 그래블 키보드 리얼포스 R3 30g', priceLabel: '현재가', price: '38,000엔', timer: '19시간 3분', bids: '입찰 5' },
+  ],
+  '메루카리': [
+    { grad: 'linear-gradient(135deg,#f5dce4,#ecc4d2)', label: 'buyout', name: '포켓몬카드 151 박스 미개봉 슈링크 포함', priceLabel: '판매가', price: '18,500엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#dce4f5,#c4d2ec)', label: '', name: '꼼데가르송 셔츠 M 사이즈 화이트', priceLabel: '판매가', price: '9,800엔', timer: '', bids: '상태 A' },
+    { grad: 'linear-gradient(135deg,#e4f5dc,#d2ecc4)', label: 'buyout', name: '산리오 쿠로미 인형 세트 5종', priceLabel: '판매가', price: '4,300엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f5ecdc,#ecdcc4)', label: '', name: '무인양품 아로마 디퓨저 대형 신품급', priceLabel: '판매가', price: '5,900엔', timer: '', bids: '상태 S' },
+    { grad: 'linear-gradient(135deg,#dcf0f5,#c4e2ec)', label: '', name: '지브리 토토로 오르골 한정판', priceLabel: '판매가', price: '7,200엔', timer: '', bids: '상태 A' },
+    { grad: 'linear-gradient(135deg,#ece0f5,#dcccee)', label: 'buyout', name: '아이폰 14 프로 256GB 딥퍼플 잔상無', priceLabel: '판매가', price: '98,000엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f5e4dc,#ecd0c4)', label: '', name: '유니클로 x JW앤더슨 다운 자켓 L', priceLabel: '판매가', price: '6,500엔', timer: '', bids: '상태 B' },
+    { grad: 'linear-gradient(135deg,#e0ecdc,#ccdec4)', label: '', name: '원피스 피규어 POP 루피 기어5', priceLabel: '판매가', price: '21,000엔', timer: '', bids: '상태 S' },
+  ],
+  '라쿠텐': [
+    { grad: 'linear-gradient(135deg,#f5dcdc,#ecc4c4)', label: 'buyout', name: '시세이도 안티에이징 세럼 50ml 정품', priceLabel: '판매가', price: '12,800엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#dce8f5,#c4d6ec)', label: '', name: '조지루시 보온 도시락통 스테인리스', priceLabel: '판매가', price: '4,980엔', timer: '', bids: '리뷰 2,341' },
+    { grad: 'linear-gradient(135deg,#e8f5dc,#d6ecc4)', label: 'buyout', name: '카오 메리즈 기저귀 L 54매 x 4팩', priceLabel: '판매가', price: '6,400엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f5f0dc,#ece2c4)', label: '', name: '타이거 전기밥솥 5.5합 IH 압력', priceLabel: '판매가', price: '32,800엔', timer: '', bids: '리뷰 891' },
+    { grad: 'linear-gradient(135deg,#dcf5ec,#c4ecdc)', label: '', name: '닌텐도 스위치2 프로콘 신형', priceLabel: '판매가', price: '8,200엔', timer: '', bids: '리뷰 1,205' },
+    { grad: 'linear-gradient(135deg,#ecdcf5,#dac4ec)', label: 'buyout', name: '하다라보 고쿠쥰 로션 대용량 3개입', priceLabel: '판매가', price: '2,980엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f5e6dc,#ecd2c4)', label: '', name: '르크루제 무쇠냄비 22cm 오렌지', priceLabel: '판매가', price: '24,500엔', timer: '', bids: '리뷰 456' },
+    { grad: 'linear-gradient(135deg,#e2f0dc,#d0e2c8)', label: '', name: '야마자키 수납 선반 타워 시리즈', priceLabel: '판매가', price: '3,850엔', timer: '', bids: '리뷰 3,012' },
+  ],
+  '라쿠마': [
+    { grad: 'linear-gradient(135deg,#dce6f5,#c8d4ec)', label: '', name: '코치 숄더백 시그니처 캔버스 정품', priceLabel: '판매가', price: '14,800엔', timer: '', bids: '상태 A' },
+    { grad: 'linear-gradient(135deg,#f5dce8,#ecc4d6)', label: 'buyout', name: '디즈니랜드 한정 덕키 파우치 신품', priceLabel: '판매가', price: '3,200엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#e6f5dc,#d4ecc8)', label: '', name: '캠핑 버너 SOTO 레귤레이터 스토브', priceLabel: '판매가', price: '5,600엔', timer: '', bids: '상태 A' },
+    { grad: 'linear-gradient(135deg,#f5eedc,#ecdec4)', label: '', name: '세이코 5 스포츠 오토매틱 SBSA', priceLabel: '판매가', price: '19,800엔', timer: '', bids: '상태 S' },
+    { grad: 'linear-gradient(135deg,#dcf2f5,#c4e6ec)', label: 'buyout', name: '레고 테크닉 포르쉐 911 미개봉', priceLabel: '판매가', price: '16,500엔', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#eedcf5,#dec4ec)', label: '', name: '플레이스테이션5 슬림 디스크 에디션', priceLabel: '판매가', price: '52,000엔', timer: '', bids: '상태 A' },
+    { grad: 'linear-gradient(135deg,#f5e0dc,#ecccc4)', label: '', name: '버버리 트렌치코트 빈티지 38', priceLabel: '판매가', price: '28,000엔', timer: '', bids: '상태 B' },
+    { grad: 'linear-gradient(135deg,#e4eedc,#d2dfc8)', label: '', name: '스타벅스 일본 한정 텀블러 세트', priceLabel: '판매가', price: '4,900엔', timer: '', bids: '상태 S' },
+  ],
+  '미국이베이': [
+    { grad: 'linear-gradient(135deg,#dce0f5,#c4caec)', label: 'auction', name: 'Rolex Datejust 36mm Steel Jubilee 1995', priceLabel: '현재가', price: '$4,250', timer: '1일 4시간', bids: '입찰 18' },
+    { grad: 'linear-gradient(135deg,#f5dcdc,#ecc8c4)', label: 'buyout', name: 'Air Jordan 4 Bred Reimagined US10 DS', priceLabel: '즉시구매가', price: '$285', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#e0f5dc,#ccecc4)', label: '', name: 'Vintage Gibson Les Paul Standard 1989', priceLabel: '현재가', price: '$2,899', timer: '6시간 22분', bids: '입찰 9' },
+    { grad: 'linear-gradient(135deg,#f5f0dc,#ece0c4)', label: 'auction', name: 'Pokemon Base Set Charizard PSA 8', priceLabel: '현재가', price: '$1,150', timer: '3시간 40분', bids: '입찰 31' },
+    { grad: 'linear-gradient(135deg,#dcf0f5,#c4e0ec)', label: 'buyout', name: 'Apple MacBook Pro 16 M3 Max 1TB', priceLabel: '즉시구매가', price: '$2,450', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f0dcf5,#e0c4ec)', label: '', name: 'Levi\'s 501 Big E Selvedge 1960s W32', priceLabel: '현재가', price: '$640', timer: '12시간 5분', bids: '입찰 14' },
+    { grad: 'linear-gradient(135deg,#f5e4dc,#ecd2c4)', label: '', name: 'Omega Speedmaster Professional 3570', priceLabel: '현재가', price: '$3,380', timer: '22시간 18분', bids: '입찰 11' },
+    { grad: 'linear-gradient(135deg,#e2f0e0,#cee0cc)', label: 'buyout', name: 'Lego Star Wars UCS Millennium Falcon', priceLabel: '즉시구매가', price: '$720', timer: '', bids: '무료배송' },
+  ],
+  '영국이베이': [
+    { grad: 'linear-gradient(135deg,#dce4f5,#c4d0ec)', label: 'auction', name: 'Barbour Bedale Wax Jacket C42 Olive', priceLabel: '현재가', price: '£95', timer: '4시간 12분', bids: '입찰 7' },
+    { grad: 'linear-gradient(135deg,#f5dce4,#ecc4d2)', label: 'buyout', name: 'Burberry Vintage Check Scarf Cashmere', priceLabel: '즉시구매가', price: '£210', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#e4f5dc,#d0ecc4)', label: '', name: 'Wedgwood Jasperware Tea Set 1970s', priceLabel: '현재가', price: '£68', timer: '9시간 30분', bids: '입찰 4' },
+    { grad: 'linear-gradient(135deg,#f5eedc,#ecdcc4)', label: 'auction', name: 'Dr. Martens 1460 Made in England UK8', priceLabel: '현재가', price: '£82', timer: '2시간 55분', bids: '입찰 12' },
+    { grad: 'linear-gradient(135deg,#dcf2f5,#c4e4ec)', label: '', name: 'Royal Doulton Bunnykins Figurine Rare', priceLabel: '현재가', price: '£145', timer: '1일 2시간', bids: '입찰 9' },
+    { grad: 'linear-gradient(135deg,#ecdcf5,#dcc4ec)', label: 'buyout', name: 'Mulberry Bayswater Bag Oak Leather', priceLabel: '즉시구매가', price: '£380', timer: '', bids: '무료배송' },
+    { grad: 'linear-gradient(135deg,#f5e2dc,#ecd0c4)', label: '', name: 'Vintage Land Rover Series Parts Lot', priceLabel: '현재가', price: '£260', timer: '15시간 44분', bids: '입찰 6' },
+    { grad: 'linear-gradient(135deg,#e0eedc,#cee0c8)', label: '', name: 'The Beatles Abbey Road LP 1st Press', priceLabel: '현재가', price: '£520', timer: '7시간 19분', bids: '입찰 22' },
+  ],
+};
+
+const LABEL_TEXT = { buyout: '즉시낙찰', auction: '경매' };
+
+function renderProducts(name) {
+  const grid = document.getElementById('productGrid');
+  const items = STORE_PRODUCTS[name];
+  if (!grid || !items) return;
+  grid.innerHTML = items.map(p => `
+    <div class="product-card" onclick="goItem()">
+      <div class="card-thumb" style="background:${p.grad}">
+        ${p.label ? `<span class="thumb-label ${p.label}">${LABEL_TEXT[p.label]}</span>` : ''}
+        <button class="btn-wish" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button>
+      </div>
+      <div class="card-info">
+        <p class="card-name">${p.name}</p>
+        <div class="card-price-label">${p.priceLabel}</div>
+        <div class="card-price">${p.price}</div>
+        <div class="card-meta">
+          <span class="card-timer">${p.timer}</span>
+          <span class="card-bids">${p.bids}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
 /* ── 탭 선택 ── */
 function selectTab(btn) {
   document.querySelectorAll('.ch-tab').forEach(t => t.classList.remove('active'));
@@ -973,16 +1061,22 @@ function selectTab(btn) {
   const s = STORES[name];
   if (!s) return;
 
-  // 히어로 업데이트
-  document.getElementById('storeNameEl').innerHTML =
+  // 히어로 업데이트 (히어로가 없는 레이아웃에서도 동작하도록 null 허용)
+  const storeNameEl = document.getElementById('storeNameEl');
+  if (storeNameEl) storeNameEl.innerHTML =
     `${name} <span class="store-badge" style="background:${s.badgeColor}">${s.badge}</span>`;
-  document.getElementById('storeDescEl').textContent = s.desc;
-  document.getElementById('storeItemCount').textContent = s.itemCount;
+  const storeDescEl = document.getElementById('storeDescEl');
+  if (storeDescEl) storeDescEl.textContent = s.desc;
+  const storeItemCount = document.getElementById('storeItemCount');
+  if (storeItemCount) storeItemCount.textContent = s.itemCount;
   document.getElementById('storeBestTitle').textContent = name;
 
   const logo = document.querySelector('.store-logo');
-  logo.style.background = s.logoGrad;
-  logo.querySelector('.store-logo-text').textContent = s.logo;
+  if (logo) {
+    logo.style.background = s.logoGrad;
+    const logoText = logo.querySelector('.store-logo-text');
+    if (logoText) logoText.textContent = s.logo;
+  }
 
   // 팔로우 버튼 초기화
   const followBtn = document.getElementById('followBtn');
@@ -994,6 +1088,9 @@ function selectTab(btn) {
   // 검색 placeholder
   const input = document.querySelector('.search-bar input');
   if (input) input.placeholder = `${name}에서 검색`;
+
+  // 스토어별 베스트 상품 재정렬
+  renderProducts(name);
 
   // URL 파라미터 업데이트 (뒤로가기 유지)
   const url = new URL(window.location);
@@ -1461,6 +1558,7 @@ function goItem() {
   if (storeDescEl) storeDescEl.textContent = s.desc;
   if (storeItemCount) storeItemCount.textContent = s.itemCount;
   document.getElementById('storeBestTitle').textContent = storeName;
+  renderProducts(storeName);
 
   const logo = document.querySelector('.store-logo');
   if (logo) {

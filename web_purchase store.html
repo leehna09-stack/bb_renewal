@@ -158,8 +158,11 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .order-note-opts{display:flex;flex-direction:column;gap:6px}
 .order-note-opt{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ts);cursor:pointer}
 .order-note-opt input[type=radio]{accent-color:var(--rose);width:14px;height:14px;flex-shrink:0}
-.order-request{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:inherit;resize:vertical;min-height:64px;outline:none;transition:border-color .2s;color:var(--tp);background:#fff}
+.order-request-wrap{position:relative}
+.order-request{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px 22px;font-size:12px;font-family:inherit;resize:vertical;min-height:64px;outline:none;transition:border-color .2s;color:var(--tp);background:#fff}
 .order-request:focus{border-color:var(--navy)}
+.order-request.is-guide{color:var(--tm)}
+.order-request-count{position:absolute;right:10px;bottom:7px;font-size:10px;color:var(--tm);line-height:1;pointer-events:none;background:#fff;padding-left:4px}
 
 /* CTA 버튼 */
 .bp-action-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:auto;padding-top:14px}
@@ -252,7 +255,6 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .confirm-amount-box{background:#FAFBFC;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:14px;text-align:center}
 .confirm-amount-main{font-size:15px;font-weight:700;color:var(--tp);line-height:1.6}
 .confirm-amount-sub{margin-top:4px;font-size:12px;color:var(--ts)}
-.confirm-modal-note{font-size:12px;color:var(--tm);line-height:1.7;margin-bottom:18px;text-align:center}
 .confirm-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .confirm-btn-line{background:#fff;color:var(--ts);border:1.5px solid var(--border);border-radius:10px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .confirm-btn-line:hover{border-color:var(--navy);color:var(--navy)}
@@ -484,16 +486,13 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
               </select>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-label">주문 참고사항</div>
-            <div class="order-note-opts">
-              <label class="order-note-opt"><input type="radio" name="order-note" checked> 재고없는 상품제외 후 구매요청</label>
-              <label class="order-note-opt"><input type="radio" name="order-note"> 연락요청</label>
-            </div>
-          </div>
+
           <div class="form-row" style="margin-bottom:0">
             <div class="form-label">주문 요청사항</div>
-            <textarea class="order-request" placeholder="판매자에게 전달할 요청사항을 입력해 주세요."></textarea>
+            <div class="order-request-wrap">
+              <textarea class="order-request is-guide" id="orderRequest" maxlength="20">주문에 필요한 요청사항을 입력해주세요.</textarea>
+              <span class="order-request-count" id="orderRequestCount">0/20</span>
+            </div>
           </div>
 
           <!-- CTA -->
@@ -728,7 +727,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="confirm-amount-main">구매대행 신청이 완료 되었습니다.</div>
         <div class="confirm-amount-sub">마이페이지 주문내역에서 확인 가능합니다.</div>
       </div>
-      <div class="confirm-modal-note">제조사나 판매자에 따라서 배송이 늦어질 수 있으니 사전 확인 부탁 드립니다.</div>
       <div class="confirm-modal-actions">
         <button class="confirm-btn-line" type="button" onclick="closeModal('buyModal')">계속쇼핑</button>
         <button class="confirm-btn-main" type="button" onclick="location.href='web_mypage.html'">주문내역 확인</button>
@@ -819,6 +817,38 @@ function openModal(id) {
 function closeModal(id, event) {
   if (event && event.target !== event.currentTarget) return;
   document.getElementById(id).classList.remove('open');
+}
+
+var orderRequestGuide = '주문에 필요한 요청사항을 입력해주세요.';
+var orderRequest = document.getElementById('orderRequest');
+var orderRequestCount = document.getElementById('orderRequestCount');
+
+function getOrderRequestLength() {
+  if (!orderRequest || orderRequest.classList.contains('is-guide')) return 0;
+  return orderRequest.value.length;
+}
+
+function updateOrderRequestCount() {
+  if (orderRequestCount) orderRequestCount.textContent = getOrderRequestLength() + '/20';
+}
+
+if (orderRequest) {
+  orderRequest.addEventListener('focus', function () {
+    if (orderRequest.classList.contains('is-guide')) {
+      orderRequest.value = '';
+      orderRequest.classList.remove('is-guide');
+    }
+    updateOrderRequestCount();
+  });
+  orderRequest.addEventListener('blur', function () {
+    if (!orderRequest.value.trim()) {
+      orderRequest.value = orderRequestGuide;
+      orderRequest.classList.add('is-guide');
+    }
+    updateOrderRequestCount();
+  });
+  orderRequest.addEventListener('input', updateOrderRequestCount);
+  updateOrderRequestCount();
 }
 </script>
 <script src="bb-common.js"></script>
