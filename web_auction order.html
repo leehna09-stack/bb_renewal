@@ -217,24 +217,34 @@
 
   <!-- 단계 표시 -->
   <div class="steps" aria-label="입찰 진행 단계">
-    <div class="step active" id="step1"><span class="step-num">1</span><span class="step-label">입찰 체크사항</span></div>
+    <div class="step" id="step1"><span class="step-num">1</span><span class="step-label">입찰내용 확인</span></div>
     <i class="fas fa-chevron-right step-arrow"></i>
-    <div class="step" id="step2"><span class="step-num">2</span><span class="step-label">입찰하기</span></div>
-    <i class="fas fa-chevron-right step-arrow"></i>
-    <div class="step" id="step3"><span class="step-num">3</span><span class="step-label">입찰확인</span></div>
+    <div class="step" id="step2"><span class="step-num">2</span><span class="step-label">입찰 완료</span></div>
   </div>
 
   <!-- 물품 요약 -->
   <div class="item-summary">
     <div class="item-summary-row"><b>아이템No (옵션)</b><span class="val">v1135509199 (옵션명)</span></div>
     <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>¥1,200</strong> <span class="krw">(₩10,920)</span></span></div>
-    <div class="item-summary-row"><b>입찰가 입력하기</b><span class="val"><strong>¥1,300</strong> 이상으로 입찰 가능합니다.</span></div>
     <div class="item-summary-row"><b>종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
   </div>
 
-  <!-- 1. 입찰 체크사항 -->
+  <!-- 1. 입찰내용 확인 -->
+  <section class="sec" aria-labelledby="sec2-title">
+    <h3 class="sec-title" id="sec2-title"><span class="sec-no">01</span> 입찰내용 확인</h3>
+    <div class="confirm-box">
+      <div class="confirm-row"><b>입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩11,830)</span></span></div>
+      <div class="confirm-row"><b>입찰 수량</b><span class="val" id="cfQty">1개</span></div>
+    </div>
+    <p class="confirm-warn">
+      최고 입찰자로 낙찰된 후에는 <b>낙찰 취소가 불가능</b>합니다.<br>
+      <span class="small">(취소 시 보증금이 환수됩니다.)</span>
+    </p>
+  </section>
+
+  <!-- 2. 입찰 승인 안내 및 규정 -->
   <section class="sec" aria-labelledby="sec1-title">
-    <h3 class="sec-title" id="sec1-title"><span class="sec-no">01</span> 입찰 승인 안내 및 규정</h3>
+    <h3 class="sec-title" id="sec1-title"><span class="sec-no">02</span> 입찰 승인 안내 및 규정</h3>
     <div class="rules">
       <p>1. 경매 입찰 반영 이후의 입찰취소에 대해서는 출품자에게 입찰 취소 요청을 해 드리오나,
       입찰 취소 요청이 받아들여지지 않을 경우엔 입찰 취소 처리가 불가합니다.
@@ -250,126 +260,28 @@
     </label>
   </section>
 
-  <!-- 2. 입찰하기 -->
-  <section class="sec" aria-labelledby="sec2-title">
-    <h3 class="sec-title" id="sec2-title"><span class="sec-no">02</span> 입찰하기</h3>
-    <div class="form-row">
-      <b>수량 <span class="req">*</span></b>
-      <select class="select-box" id="qtySelect" onchange="updateState()">
-        <option value="1">1개</option>
-        <option value="2">2개</option>
-        <option value="3">3개</option>
-      </select>
-    </div>
-    <div class="form-row">
-      <b>입찰가 <span class="req">*</span></b>
-      <div>
-        <div class="bid-input-wrap">
-          <input type="text" inputmode="numeric" class="text-input" id="bidInput" placeholder="입찰가를 ¥ 단위로 입력해 주세요." oninput="updateState()">
-          <span class="bid-korean" id="bidKorean"></span>
-        </div>
-        <p class="bid-error" id="bidError">현재 입찰가보다 높은 ¥1,300 이상으로 입력해 주세요.</p>
-      </div>
-    </div>
-    <div class="form-row">
-      <b>경매낙찰정보</b>
-      <div class="radio-chips">
-        <label class="radio-chip"><input type="radio" name="bidOpen" value="공개" checked onchange="updateState()"><span>공개</span></label>
-        <label class="radio-chip"><input type="radio" name="bidOpen" value="비공개" onchange="updateState()"><span>비공개</span></label>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. 입찰확인 -->
-  <section class="sec" aria-labelledby="sec3-title">
-    <h3 class="sec-title" id="sec3-title"><span class="sec-no">03</span> 입찰확인</h3>
-    <div class="confirm-box">
-      <div class="confirm-row"><b>입찰금액</b><span class="val amount" id="cfAmount">-</span></div>
-      <div class="confirm-row"><b>입찰 수량</b><span class="val" id="cfQty">1개</span></div>
-      <div class="confirm-row"><b>경매낙찰정보</b><span class="val" id="cfOpen">공개</span></div>
-    </div>
-    <p class="confirm-warn">
-      최고 입찰자로 낙찰된 후에는 <b>낙찰 취소가 불가능</b>합니다.<br>
-      <span class="small">(취소 시 보증금이 환수됩니다.)</span>
-    </p>
-  </section>
-
   <div class="actions">
     <button class="big-btn line" type="button" onclick="history.back()">취소</button>
-    <button class="big-btn primary" type="button" id="submitBtn" disabled onclick="submitBid()"><i class="fas fa-gavel"></i> 입찰완료</button>
+    <button class="big-btn primary" type="button" id="submitBtn" disabled onclick="submitBid()"><i class="fas fa-gavel"></i> 입찰하기</button>
   </div>
 </div>
 
 <script>
-const MIN_BID = 1300;
-const KRW_RATE = 9.1;
-
-/* 숫자 → 한글 금액 (예: 92000 → 구만이천) */
-function toKorean(num) {
-  if (!num || num <= 0) return '';
-  const d = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-  const small = ['', '십', '백', '천'];
-  const big = ['', '만', '억', '조'];
-  let result = '';
-  let group = 0;
-  while (num > 0) {
-    let chunk = num % 10000;
-    let part = '';
-    for (let i = 0; chunk > 0; i++) {
-      const digit = chunk % 10;
-      if (digit) part = (digit === 1 && i > 0 ? '' : d[digit]) + small[i] + part;
-      chunk = Math.floor(chunk / 10);
-    }
-    if (part) result = part + big[group] + result;
-    num = Math.floor(num / 10000);
-    group++;
-  }
-  return result;
-}
-
-function getBid() {
-  const raw = document.getElementById('bidInput').value.replace(/[^\d]/g, '');
-  return raw ? parseInt(raw, 10) : 0;
-}
+const CONFIRMED_BID = 1300;
+const CONFIRMED_QTY = 1;
 
 function updateState() {
   const agreed = document.getElementById('agreeChk').checked;
-  const bid = getBid();
-  const validBid = bid >= MIN_BID;
-  const qty = document.getElementById('qtySelect').value;
-  const open = document.querySelector('input[name="bidOpen"]:checked').value;
-
-  // 입찰가 입력 필드 콤마 표시
-  const input = document.getElementById('bidInput');
-  if (bid > 0) {
-    const formatted = bid.toLocaleString('ko-KR');
-    if (input.value !== formatted) input.value = formatted;
-  }
-
-  // 한글 금액 표기
-  document.getElementById('bidKorean').innerHTML = bid > 0 ? '(<b>' + toKorean(bid) + '</b> 엔)' : '';
-  document.getElementById('bidError').classList.toggle('show', bid > 0 && !validBid);
 
   // 단계 표시
-  document.getElementById('step1').className = 'step ' + (agreed ? 'done' : 'active');
-  document.getElementById('step2').className = 'step ' + (agreed ? (validBid ? 'done' : 'active') : '');
-  document.getElementById('step3').className = 'step ' + (agreed && validBid ? 'active' : '');
+  document.getElementById('step1').className = 'step ' + (agreed ? 'active' : '');
+  document.getElementById('step2').className = 'step';
 
-  // 확인 요약
-  document.getElementById('cfAmount').innerHTML = validBid
-    ? '¥ ' + bid.toLocaleString('ko-KR') + ' <span class="sub">(' + toKorean(bid) + ' 엔 · 약 ₩' + Math.round(bid * KRW_RATE).toLocaleString('ko-KR') + ')</span>'
-    : '-';
-  document.getElementById('cfQty').textContent = qty + '개';
-  document.getElementById('cfOpen').textContent = open;
-
-  document.getElementById('submitBtn').disabled = !(agreed && validBid);
+  document.getElementById('submitBtn').disabled = !agreed;
 }
 
 function submitBid() {
-  const bid = getBid();
-  const qty = document.getElementById('qtySelect').value;
-  const open = document.querySelector('input[name="bidOpen"]:checked').value;
-  location.href = 'web_auction complete.html?bid=' + bid + '&qty=' + qty + '&open=' + encodeURIComponent(open);
+  location.href = 'web_auction complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY;
 }
 
 updateState();
