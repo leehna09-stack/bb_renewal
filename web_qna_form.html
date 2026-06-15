@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --brand: #f03b63;
-      --brand-hot: #ff4969;
-      --navy: #163a69;
+      --rose: #E8385A;
+      --rose-h: #C42F4C;
+      --navy: #1A3C6E;
       --ink: #20242b;
       --text: #33363d;
       --muted: #777985;
@@ -115,7 +115,7 @@
     .nav-section strong { display: block; margin-bottom: 11px; color: #292d35; font-size: 12px; font-weight: 900; }
     .nav-list { display: grid; gap: 13px; }
     .nav-list a { color: #666b75; font-size: 12px; font-weight: 500; }
-    .nav-list a:hover, .nav-list a.active { color: var(--brand); font-weight: 800; }
+    .nav-list a:hover, .nav-list a.active { color: var(--rose); font-weight: 800; }
 
     /* 고객센터 카드 (드로어와 동일) */
     .cs-call {
@@ -145,8 +145,8 @@
       padding: 0;
     }
     .cs-call-actions button:first-child {
-      border-color: var(--brand);
-      background: var(--brand);
+      border-color: var(--rose);
+      background: var(--rose);
       color: #fff;
     }
 
@@ -165,7 +165,7 @@
       background: #fff; color: #5c606b;
       font-size: 12px; font-weight: 700;
     }
-    .outline-pill:hover { border-color: var(--brand); color: var(--brand); }
+    .outline-pill:hover { border-color: var(--rose); color: var(--rose); }
 
     /* ── 폼 카드 ── */
     .qna-card {
@@ -193,7 +193,7 @@
       align-items: flex-start;
       gap: 3px;
     }
-    .form-label .req { color: var(--brand); }
+    .form-label .req { color: var(--rose); }
 
     .form-content { padding: 14px 18px; min-width: 0; }
 
@@ -218,9 +218,9 @@
       pointer-events: none;
     }
     .radio-chip input:checked + span {
-      border-color: var(--brand);
+      border-color: var(--rose);
       background: #fff0f3;
-      color: var(--brand);
+      color: var(--rose);
       font-weight: 800;
     }
     .radio-chip input:focus-visible + span { outline: 2px solid rgba(240,59,99,.28); outline-offset: 2px; }
@@ -236,7 +236,7 @@
       color: #9da2af;
       font-size: 11px;
     }
-    .country-hint b { color: var(--brand); font-weight: 800; }
+    .country-hint b { color: var(--rose); font-weight: 800; }
 
     /* 문의물품 */
     .item-reg-btns { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -256,9 +256,9 @@
     }
     .item-reg-btn:hover { border-color: #b9c2cf; }
     .item-reg-btn.active {
-      border-color: var(--brand);
+      border-color: var(--rose);
       background: #fff0f3;
-      color: var(--brand);
+      color: var(--rose);
       font-weight: 800;
     }
     .item-reg-btn i { font-size: 12px; }
@@ -269,10 +269,10 @@
       align-items: center;
       gap: 7px;
       padding: 7px 14px;
-      border: 1px solid var(--brand);
+      border: 1px solid var(--rose);
       border-radius: 999px;
       background: #fff0f3;
-      color: var(--brand);
+      color: var(--rose);
       font-size: 12px;
       font-weight: 800;
     }
@@ -286,7 +286,7 @@
       place-items: center;
       font-size: 12px;
     }
-    .item-selected-remove:hover { border-color: var(--brand); color: var(--brand); }
+    .item-selected-remove:hover { border-color: var(--rose); color: var(--rose); }
 
     /* ── 문의물품 모달 ── */
     .qna-modal { position: fixed; inset: 0; z-index: 1100; display: none; align-items: center; justify-content: center; padding: 16px; }
@@ -329,14 +329,14 @@
     .item-table-price { color: #2b2f37; font-weight: 800; text-align: right; }
     .item-table-pick {
       height: 30px;
-      border: 1px solid var(--brand);
+      border: 1px solid var(--rose);
       border-radius: 7px;
       background: #fff;
-      color: var(--brand);
+      color: var(--rose);
       font-size: 12px;
       font-weight: 800;
     }
-    .item-table-pick:hover { background: var(--brand); color: #fff; }
+    .item-table-pick:hover { background: var(--rose); color: #fff; }
 
     .order-search-row { display: flex; gap: 8px; margin-bottom: 12px; }
     .order-search-row .select-box { width: 110px; }
@@ -389,7 +389,7 @@
     .refund-form-hint {
       display: none;
       margin: 8px 0 0;
-      color: var(--brand);
+      color: var(--rose);
       font-size: 11px;
       font-weight: 700;
     }
@@ -404,7 +404,7 @@
       background: #fff; color: #5c606b;
       font-size: 13px; font-weight: 700;
     }
-    .file-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .file-btn:hover { border-color: var(--rose); color: var(--rose); }
     .file-thumbs { display: flex; gap: 8px; }
     .file-thumb {
       width: 64px; height: 64px;
@@ -427,7 +427,7 @@
       line-height: 1.6;
     }
     .qna-notes li { display: flex; gap: 6px; }
-    .qna-notes li::before { content: '·'; color: var(--brand); font-weight: 900; }
+    .qna-notes li::before { content: '·'; color: var(--rose); font-weight: 900; }
 
     /* 액션 버튼 */
     .qna-actions { display: flex; justify-content: center; gap: 10px; padding-bottom: 80px; }
@@ -446,7 +446,7 @@
     }
     .big-btn.line { border: 1px solid var(--line); background: #fff; color: #626672; }
     .big-btn.line:hover { border-color: #b9b2ad; color: #41454f; }
-    .big-btn.primary { border: 1px solid var(--brand); background: var(--brand); color: #fff; }
+    .big-btn.primary { border: 1px solid var(--rose); background: var(--rose); color: #fff; }
     .big-btn.primary:hover { background: #d62f54; }
   </style>
 </head>

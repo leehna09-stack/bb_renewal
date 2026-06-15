@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bidbuy 야후옥션</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --rose: #E8385A;
+  --rose-h: #C42F4C;
+  --navy: #1A3C6E;
+  --bg: #F5F7FA;
+  --border: #E0E4EB;
+  --tp: #1A1A2E;
+  --ts: #666680;
+  --tm: #999BAA;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  max-width: 480px; margin: 0 auto; overflow-x: hidden;
+  font-family: 'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+  font-size: 14px; line-height: 1.5; color: var(--tp); background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { text-decoration: none; color: inherit; }
+
+/* ── 헤더 ── */
+.m-header {
+  position: sticky; top: 0; z-index: 100;
+  background: #fff; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 12px; height: 52px;
+}
+.back-btn {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  color: var(--tp); font-size: 18px; flex-shrink: 0;
+}
+.m-header-search {
+  flex: 1; height: 36px; display: flex; align-items: center;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  background: var(--bg); overflow: hidden;
+}
+.m-header-search input {
+  flex: 1; min-width: 0; padding: 0 10px; border: 0; outline: 0;
+  background: transparent; font-size: 14px; color: var(--tp);
+}
+.m-header-search input::placeholder { color: var(--tm); }
+.m-header-search button {
+  width: 40px; height: 100%; background: var(--rose);
+  color: #fff; font-size: 14px; flex-shrink: 0;
+}
+.header-icons { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.icon-btn {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  font-size: 17px; color: var(--ts);
+}
+
+/* ── 스토어 탭 ── */
+.store-tabs {
+  background: #fff; border-bottom: 1px solid var(--border);
+  overflow-x: auto; display: flex; gap: 0;
+  scrollbar-width: none;
+}
+.store-tabs::-webkit-scrollbar { display: none; }
+.store-tab {
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 10px 12px 8px; font-size: 11px; font-weight: 700;
+  color: var(--ts); border-bottom: 2.5px solid transparent; transition: color .15s, border-color .15s;
+}
+.store-tab.active { color: var(--rose); border-color: var(--rose); }
+.store-icon {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+  background: #fff; display: grid; place-items: center;
+  font-size: 11px; font-weight: 900; color: var(--tp);
+  transition: border-color .15s, box-shadow .15s;
+}
+.store-tab.active .store-icon { border-color: var(--rose); box-shadow: 0 0 0 2px rgba(232,56,90,.15); }
+.store-yahoo { color: #e43e2e; }
+.store-mercari-icon { background: #ff1f2f; color: #fff; font-size: 18px; }
+.store-rakuten-icon { color: #c9272d; font-size: 22px; }
+.flag-us { background: linear-gradient(#c9263b 0 12%,#fff 12% 24%,#c9263b 24% 36%,#fff 36% 48%,#c9263b 48% 60%,#fff 60% 72%,#c9263b 72% 84%,#fff 84%); color: #223f87; font-size: 10px; }
+.flag-uk { background: linear-gradient(45deg,#153f8f 0 38%,#fff 38% 44%,#d6223b 44% 56%,#fff 56% 62%,#153f8f 62%); color: #fff; font-size: 10px; }
+
+/* ── 섹션 카드 ── */
+.section-card {
+  background: #fff; border-radius: 12px;
+  margin: 12px 12px 0; overflow: hidden;
+}
+.section-head {
+  padding: 14px 16px 10px;
+  font-size: 15px; font-weight: 800; color: var(--tp);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.section-more { font-size: 12px; font-weight: 600; color: var(--ts); }
+
+/* ── 카테고리 ── */
+.category-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  padding: 0 8px 4px;
+}
+.category-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 4px; text-align: center;
+  font-size: 11px; font-weight: 700; color: var(--ts);
+  cursor: pointer;
+}
+.category-item.active { color: var(--rose); }
+.cat-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--bg); display: grid; place-items: center;
+  font-size: 20px; color: var(--ts);
+  transition: background .15s, color .15s;
+}
+.category-item.active .cat-icon { background: #fff0f3; color: var(--rose); }
+.sub-cat-scroll {
+  display: flex; gap: 6px; padding: 0 16px 14px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.sub-cat-scroll::-webkit-scrollbar { display: none; }
+.sub-cat-chip {
+  flex-shrink: 0; height: 30px; padding: 0 12px;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: #fff; color: var(--ts); font-size: 12px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: all .12s;
+}
+.sub-cat-chip.active { border-color: var(--rose); background: #fff0f3; color: var(--rose); }
+
+/* ── 필터 바 ── */
+.filter-bar {
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto;
+  scrollbar-width: none; margin-top: 12px;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-chip {
+  flex-shrink: 0; height: 30px; padding: 0 12px;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: #fff; color: var(--ts); font-size: 12px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 4px;
+  cursor: pointer; transition: all .12s;
+}
+.filter-chip.active { border-color: var(--rose); background: #fff0f3; color: var(--rose); }
+.filter-chip i { font-size: 11px; }
+.sort-btn {
+  flex-shrink: 0; height: 30px; padding: 0 12px;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: #fff; color: var(--ts); font-size: 12px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 4px; margin-left: auto;
+}
+
+/* ── 상품 그리드 ── */
+.product-scroll { padding: 12px; }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.product-card {
+  background: #fff; border-radius: 10px;
+  overflow: hidden; cursor: pointer;
+}
+.product-thumb {
+  position: relative; padding-top: 100%; background: #e8edf3; overflow: hidden;
+}
+.product-thumb img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.heart-btn {
+  position: absolute; right: 8px; bottom: 8px;
+  color: var(--rose); font-size: 18px; line-height: 1;
+}
+.product-info { padding: 8px 10px 10px; }
+.product-name {
+  font-size: 12px; font-weight: 600; color: var(--tp);
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  margin-bottom: 4px; line-height: 1.4;
+}
+.product-seller { font-size: 11px; color: var(--tm); margin-bottom: 4px; }
+.product-price { font-size: 16px; font-weight: 900; color: var(--tp); }
+.product-price small { font-size: 11px; font-weight: 600; color: var(--tm); }
+.store-badge-tag {
+  display: inline-block; padding: 1px 6px; border-radius: 4px;
+  background: #fff0f3; color: var(--rose); font-size: 10px; font-weight: 800;
+  margin-bottom: 4px;
+}
+
+/* ── 더 보기 ── */
+.load-more {
+  margin: 4px 12px 16px; height: 44px;
+  border: 1.5px dashed var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  color: var(--tm); font-size: 13px; font-weight: 700;
+  background: transparent; width: calc(100% - 24px);
+}
+
+/* ── URL 입력 바 ── */
+.url-bar {
+  margin: 0 12px 0; display: flex; height: 44px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  background: #fff; overflow: hidden;
+}
+.url-label {
+  flex-shrink: 0; padding: 0 12px;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 800; color: var(--ts);
+  border-right: 1px solid var(--border); background: var(--bg);
+}
+.url-input {
+  flex: 1; min-width: 0; padding: 0 10px; border: 0; outline: 0;
+  font-size: 12px; color: var(--tp); background: transparent;
+}
+.url-input::placeholder { color: var(--tm); }
+.url-go {
+  flex-shrink: 0; width: 52px;
+  background: var(--rose); color: #fff; font-size: 12px; font-weight: 800;
+  border-left: 1px solid var(--rose);
+}
+
+/* ── 바텀 네비 ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: #fff; border-top: 1px solid var(--border);
+  display: flex; height: 56px; z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bn-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 3px; font-size: 10px; font-weight: 700;
+  color: var(--tm); cursor: pointer;
+}
+.bn-item.active { color: var(--rose); }
+.bn-item i { font-size: 19px; }
+.page-bottom-pad { height: 72px; }
+</style>
+</head>
+<body>
+
+<!-- ── 헤더 ── -->
+<header class="m-header">
+  <button class="back-btn" onclick="history.back()" aria-label="뒤로가기">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <div class="m-header-search">
+    <input type="search" placeholder="키워드 또는 URL 입력" id="searchInput">
+    <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+  <div class="header-icons">
+    <button class="icon-btn" aria-label="알림"><i class="fa-regular fa-bell"></i></button>
+    <button class="icon-btn" aria-label="장바구니"><i class="fa-solid fa-cart-shopping"></i></button>
+  </div>
+</header>
+
+<!-- ── 스토어 탭 ── -->
+<nav class="store-tabs" id="storeTabs">
+  <button class="store-tab active" data-store="야후 옥션">
+    <div class="store-icon store-yahoo"><span>YAHOO!</span></div>야후 옥션
+  </button>
+  <button class="store-tab" data-store="메루카리">
+    <div class="store-icon store-mercari-icon">m</div>메루카리
+  </button>
+  <button class="store-tab" data-store="라쿠텐">
+    <div class="store-icon store-rakuten-icon">R</div>라쿠텐
+  </button>
+  <button class="store-tab" data-store="야후 쇼핑">
+    <div class="store-icon"><i class="fa-solid fa-cart-shopping" style="color:var(--ts);font-size:16px"></i></div>야후 쇼핑
+  </button>
+  <button class="store-tab" data-store="일본 아마존">
+    <div class="store-icon" style="font-size:10px">amazon</div>일본 아마존
+  </button>
+  <button class="store-tab" data-store="미국 이베이">
+    <div class="store-icon flag-us">USA</div>미국 이베이
+  </button>
+  <button class="store-tab" data-store="영국 이베이">
+    <div class="store-icon flag-uk">UK</div>영국 이베이
+  </button>
+</nav>
+
+<!-- ── URL 입력 ── -->
+<div style="padding:12px 0 0">
+  <div class="url-bar">
+    <div class="url-label">URL</div>
+    <input class="url-input" type="text" placeholder="야후옥션 상품 URL을 입력하세요.">
+    <button class="url-go" type="button">이동</button>
+  </div>
+</div>
+
+<!-- ── 카테고리 ── -->
+<div class="section-card">
+  <div class="section-head">
+    카테고리
+    <button class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></button>
+  </div>
+  <div class="category-grid" id="categoryGrid">
+    <div class="category-item active" data-cat="패션">
+      <div class="cat-icon"><i class="fa-solid fa-shirt"></i></div>패션
+    </div>
+    <div class="category-item" data-cat="가전">
+      <div class="cat-icon"><i class="fa-solid fa-tv"></i></div>가전·AV
+    </div>
+    <div class="category-item" data-cat="취미">
+      <div class="cat-icon"><i class="fa-solid fa-puzzle-piece"></i></div>취미·컬렉션
+    </div>
+    <div class="category-item" data-cat="스포츠">
+      <div class="cat-icon"><i class="fa-solid fa-dumbbell"></i></div>스포츠
+    </div>
+    <div class="category-item" data-cat="뷰티">
+      <div class="cat-icon"><i class="fa-solid fa-spa"></i></div>뷰티·건강
+    </div>
+    <div class="category-item" data-cat="장난감">
+      <div class="cat-icon"><i class="fa-solid fa-gamepad"></i></div>장난감·게임
+    </div>
+    <div class="category-item" data-cat="책">
+      <div class="cat-icon"><i class="fa-solid fa-book"></i></div>책·잡지
+    </div>
+    <div class="category-item" data-cat="자동차">
+      <div class="cat-icon"><i class="fa-solid fa-car"></i></div>자동차
+    </div>
+  </div>
+  <div class="sub-cat-scroll" id="subCatScroll">
+    <button class="sub-cat-chip active">전체</button>
+    <button class="sub-cat-chip">여성의류</button>
+    <button class="sub-cat-chip">남성의류</button>
+    <button class="sub-cat-chip">신발</button>
+    <button class="sub-cat-chip">가방·지갑</button>
+    <button class="sub-cat-chip">액세서리</button>
+    <button class="sub-cat-chip">시계</button>
+  </div>
+</div>
+
+<!-- ── 필터 바 ── -->
+<div class="filter-bar">
+  <button class="filter-chip active"><i class="fa-solid fa-sliders"></i> 필터</button>
+  <button class="filter-chip">구매형태</button>
+  <button class="filter-chip">상태</button>
+  <button class="filter-chip">금액</button>
+  <button class="filter-chip">출품자</button>
+  <button class="sort-btn"><i class="fa-solid fa-arrow-up-wide-short"></i> 정렬</button>
+</div>
+
+<!-- ── 상품 목록 ── -->
+<div class="product-scroll">
+  <div class="product-grid" id="productGrid">
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub1/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">빈티지 레더 재킷 양가죽 90s 레트로 블랙 M사이즈</p>
+        <p class="product-seller">seller_jp_shop</p>
+        <p class="product-price">¥8,500 <small>≈ 80,000원</small></p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub2/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">나이키 에어포스 1 07 화이트 US9 새상품</p>
+        <p class="product-seller">sneaker_japan</p>
+        <p class="product-price">¥12,000 <small>≈ 112,000원</small></p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub3/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">샤넬 클래식 플랩백 미니 블랙 실버 금속 버클</p>
+        <p class="product-seller">luxury_resale</p>
+        <p class="product-price">¥185,000 <small>≈ 1,735,000원</small></p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub4/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">롤렉스 서브마리너 데이트 블랙 다이얼 2020</p>
+        <p class="product-seller">watch_collector</p>
+        <p class="product-price">¥980,000 <small>≈ 9,200,000원</small></p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub5/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">구찌 GG 마몬트 숄더백 핑크 베이지 새상품</p>
+        <p class="product-seller">brand_direct</p>
+        <p class="product-price">¥65,000 <small>≈ 610,000원</small></p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb">
+        <img src="https://picsum.photos/seed/sub6/300/300" alt="">
+        <button class="heart-btn"><i class="fa-regular fa-heart"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="store-badge-tag">야후 옥션</div>
+        <p class="product-name">유니클로 울 블렌드 코트 카멜 L 미착용</p>
+        <p class="product-seller">uniqlo_resale</p>
+        <p class="product-price">¥4,200 <small>≈ 40,000원</small></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<button class="load-more" type="button">
+  <i class="fa-solid fa-chevron-down"></i> 더보기
+</button>
+
+<div class="page-bottom-pad"></div>
+
+<!-- ── 바텀 네비 ── -->
+<nav class="bottom-nav">
+  <button class="bn-item" onclick="location.href='mobile_main.html'">
+    <i class="fa-solid fa-house"></i>홈
+  </button>
+  <button class="bn-item active">
+    <i class="fa-solid fa-magnifying-glass"></i>검색
+  </button>
+  <button class="bn-item">
+    <i class="fa-regular fa-heart"></i>찜
+  </button>
+  <button class="bn-item" onclick="location.href='mobile_mypage.html'">
+    <i class="fa-regular fa-user"></i>마이
+  </button>
+</nav>
+
+<script>
+// 스토어 탭
+var storeTabs = document.querySelectorAll('.store-tab');
+storeTabs.forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    storeTabs.forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+  });
+});
+
+// 카테고리
+var SUB_CATS = {
+  '패션': ['전체','여성의류','남성의류','신발','가방·지갑','액세서리','시계'],
+  '가전': ['전체','TV·영상','오디오','카메라','PC·주변기기','스마트폰'],
+  '취미': ['전체','피규어','카드·트레카','모형·프라모델','만화','애니'],
+  '스포츠': ['전체','골프','낚시','야구','자전거','캠핑·아웃도어'],
+  '뷰티': ['전체','스킨케어','향수','메이크업','바디케어','헤어케어'],
+  '장난감': ['전체','레고','RC카','인형·봉제','카드게임','보드게임'],
+  '책': ['전체','만화책','잡지','소설','실용서','아동서'],
+  '자동차': ['전체','차량용품','바이크','타이어·휠','카오디오'],
+};
+var catItems = document.querySelectorAll('.category-item');
+var subCatScroll = document.getElementById('subCatScroll');
+
+function setSubCats(cat) {
+  var chips = (SUB_CATS[cat] || ['전체']);
+  subCatScroll.innerHTML = chips.map(function(c, i) {
+    return '<button class="sub-cat-chip' + (i === 0 ? ' active' : '') + '">' + c + '</button>';
+  }).join('');
+  subCatScroll.querySelectorAll('.sub-cat-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      subCatScroll.querySelectorAll('.sub-cat-chip').forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+    });
+  });
+}
+
+catItems.forEach(function(item) {
+  item.addEventListener('click', function() {
+    catItems.forEach(function(i) { i.classList.remove('active'); });
+    item.classList.add('active');
+    setSubCats(item.getAttribute('data-cat'));
+  });
+});
+
+// 필터 칩
+document.querySelectorAll('.filter-chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    chip.classList.toggle('active');
+  });
+});
+
+// 찜 버튼
+document.querySelectorAll('.heart-btn').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var icon = btn.querySelector('i');
+    icon.classList.toggle('fa-regular');
+    icon.classList.toggle('fa-solid');
+  });
+});
+</script>
+</body>
+</html>

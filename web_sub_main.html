@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bidbuy 야후옥션</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --rose: #E8385A;
+      --rose-h: #C42F4C;
+      --text: #263447;
+      --muted: #6f7785;
+      --line: #d8dde6;
+      --warm: #f3f1ed;
+      --thumb: #d3e0ec;
+      --page-w: 1380px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; min-width: 320px; background: #fff; color: var(--text);
+      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-size:14px; line-height:1.5;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    /* ── Header ── */
+    .top-notice-spacer { height: 34px; }
+    .site-header { background: #fff; }
+
+    .header-main {
+      width: min(calc(100vw - 60px), var(--page-w));
+      height: 104px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 234px minmax(360px, 714px) 234px;
+      align-items: center; gap: 24px;
+    }
+
+    .brand-area { display: flex; align-items: center; gap: 24px; min-width: 0; }
+
+    .menu-button { width: 28px; height: 28px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; }
+
+    .menu-lines,
+    .menu-lines::before,
+    .menu-lines::after { content: ""; display: block; width: 23px; height: 2px; border-radius: 999px; background: #151b2a; }
+    .menu-lines { position: relative; }
+    .menu-lines::before, .menu-lines::after { position: absolute; left: 0; }
+    .menu-lines::before { top: -8px; }
+    .menu-lines::after { top: 8px; }
+
+    .logo-link { width: 118px; display: block; line-height: 0; }
+    .logo-link img { width: 100%; height: auto; display: block; }
+
+    .header-search-area { position: relative; min-width: 0; display: grid; gap: 8px; align-content: center; }
+
+    .global-search {
+      height: 43px; display: grid;
+      grid-template-columns: minmax(0, 1fr) 112px;
+      overflow: hidden; border: 1px solid #dedbd5; border-radius: 10px; background: var(--warm);
+    }
+    .global-search input { min-width: 0; padding: 0 14px; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 13px; }
+    .global-search input::placeholder { color: #8d8d8d; }
+    .global-search button { border: 0; background: var(--rose); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-weight: 900; }
+    .global-search button:active { background: var(--rose-h); }
+    .global-search i, .icon-btn i { font-size: 18px; }
+
+    .chip-list { min-height: 26px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-left: 8px; }
+    .search-chip { height: 24px; padding: 0 10px; border: 0; border-radius: 3px; background: #f2f0ec; color: #111; display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 900; white-space: nowrap; }
+    .search-chip button { width: 14px; height: 14px; padding: 0; border: 0; background: transparent; color: #111; font-size: 13px; line-height: 1; }
+
+    .user-tools { justify-self: end; display: flex; align-items: center; gap: 18px; }
+    .icon-btn { width: 22px; height: 22px; padding: 0; border: 0; background: transparent; color: #6d7483; display: grid; place-items: center; }
+    .user-name { display: grid; gap: 2px; color: #1d2430; font-size: 13px; font-weight: 900; text-align: center; white-space: nowrap; }
+    .premium-chip { padding: 2px 9px; border-radius: 999px; background: #fff1cf; color: #f2a300; font-size: 10px; font-weight: 900; }
+
+    /* ── Store strip ── */
+    .store-strip { padding-bottom: 28px; background: #fff; }
+    .store-list { width: min(calc(100vw - 60px), 900px); margin: 0 auto; display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; }
+    .store-chip { position: relative; color: #4b5564; text-align: center; text-decoration: none; font-size: 12px; font-weight: 800; transition: color .16s; }
+    .store-chip.active { color: var(--rose); }
+    .store-badge { position: relative; width: 58px; height: 58px; margin: 0 auto 8px; border: 1px solid #d8dde6; border-radius: 50%; background: #fff; display: grid; place-items: center; color: #1f2735; font-size: 12px; font-weight: 900; line-height: 1.1; overflow: hidden; transition: border-color .16s, box-shadow .16s, transform .16s; }
+    .store-chip.active .store-badge { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(255,70,104,.14); transform: translateY(-2px); }
+    .store-chip.active .store-badge::after { content: ""; position: absolute; top: 8px; right: 6px; width: 18px; height: 18px; border-radius: 50%; background: #43c6ff; }
+    .store-yahoo { color: #e43e2e; transform: rotate(-42deg); font-size: 11px; }
+    .store-mercari { background: #ff1f2f; color: #fff; font-size: 28px; }
+    .store-rakuten { color: #c9272d; font-size: 34px; }
+    .store-cart { color: #ff8a38; }
+    .store-cart svg { width: 27px; height: 27px; stroke-width: 1.8; }
+    .flag-us, .flag-uk { border-radius: 50%; color: #fff; font-size: 12px; text-shadow: 0 1px 1px rgba(0,0,0,.2); }
+    .flag-us { background: linear-gradient(#c9263b 0 12%, #fff 12% 24%, #c9263b 24% 36%, #fff 36% 48%, #c9263b 48% 60%, #fff 60% 72%, #c9263b 72% 84%, #fff 84%); color: #223f87; }
+    .flag-uk { background: linear-gradient(45deg, #153f8f 0 38%, #fff 38% 44%, #d6223b 44% 56%, #fff 56% 62%, #153f8f 62%); }
+
+    /* ── Main ── */
+    main { width: min(calc(100vw - 60px), var(--page-w)); margin: 0 auto; padding-bottom: 56px; }
+
+    /* URL bar */
+    .url-bar { display: grid; grid-template-columns: 120px minmax(0, 1fr) 160px; height: 54px; margin-bottom: 22px; border: 1px solid var(--line); background: #fff; }
+    .url-label { display: grid; place-items: center; border-right: 1px solid var(--line); background: #f3f1ed; color: #111; font-size: 15px; font-weight: 900; }
+    .url-input { min-width: 0; padding: 0 18px; border: 0; outline: 0; color: var(--text); font-size: 14px; }
+    .url-input::placeholder { color: #7c7c7c; }
+    .move-button { border: 0; border-left: 1px solid var(--line); background: #f3f1ed; color: #111; font-size: 15px; font-weight: 900; }
+
+    /* Result copy */
+    .result-copy { margin: 0 0 18px; color: #111; font-size: 20px; font-weight: 900; text-align: center; }
+    .result-copy .red, .result-title .red { color: red; font-weight: 900; }
+
+    /* ── Category panel ── */
+    .category-panel { margin-bottom: 0; border: 1px solid var(--line); border-bottom: 0; background: #fff; }
+    .category-grid { padding: 24px 28px 18px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 32px; }
+    .category-group { display: grid; gap: 11px; align-content: start; }
+    .category-group a { color: #2d3747; font-size: 15px; font-weight: 900; text-decoration: none; white-space: nowrap; }
+    .category-group a.active { color: var(--rose); }
+
+    .sub-category-row { padding: 10px 28px 14px; border-top: 1px solid var(--line); background: #fafaf8; }
+    .sub-category-row + .sub-category-row { background: #f4f3f0; border-top: 1px dashed #d0d5de; }
+    .sub-cat-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .sub-cat-item { padding: 4px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: #2d3747; font-size: 13px; font-weight: 700; cursor: pointer; transition: border-color .12s, color .12s, background .12s; }
+    .sub-cat-item:hover { border-color: #b0b8c4; color: #111; }
+    .sub-cat-item.active { border-color: var(--rose); background: #fff5f7; color: var(--rose); }
+
+    .category-more-wrap { padding: 0 28px 16px; display: flex; justify-content: flex-end; }
+    .all-category-button { min-width: 116px; height: 30px; border: 0; border-radius: 4px; background: #f7f6f4; color: #111; font-size: 12px; font-weight: 900; }
+
+    /* Category search bar */
+    .category-search-bar { display: grid; grid-template-columns: 108px minmax(72px, .65fr) minmax(320px, 420px) 140px minmax(40px, 1fr); height: 50px; margin-bottom: 0; border: 1px solid var(--line); background: #f7f6f4; }
+    .category-store-label { display: flex; align-items: center; justify-content: flex-start; gap: 8px; padding: 0 14px; color: #2d3747; font-size: 15px; font-weight: 900; white-space: nowrap; }
+    .category-store-label svg { width: 18px; height: 18px; color: #6f7785; flex: 0 0 auto; }
+    .category-breadcrumb { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .category-search-input { grid-column: 3; min-width: 0; margin: 8px 0; padding: 0 14px; border: 1px solid #d8dde6; background: #fff; color: var(--text); font-size: 14px; outline: 0; }
+    .category-search-input::placeholder { color: #8b919d; }
+    .category-search-button { grid-column: 4; margin: 8px 0; border: 0; background: var(--rose); color: #fff; font-size: 15px; font-weight: 900; }
+
+    /* ── Filter panel ── */
+    .filter-panel { --filter-font-size: 15px; margin-bottom: 32px; border: 1px solid #ddd; border-top: 0; background: #fff; overflow-x: hidden; }
+    .filter-row { min-height: 46px; width: 100%; display: grid; grid-template-columns: 8% minmax(0, 52%) 8% minmax(0, 32%); }
+    .filter-label { display: flex; align-items: center; justify-content: center; border-right: 1px solid #ddd; background: #f2f0ec; color: #111; font-size: var(--filter-font-size); font-weight: 800; }
+    .filter-label.amount-label { border-left: 1px solid #ddd; }
+    .filter-body { min-width: 0; display: flex; align-items: center; overflow: visible; }
+    .filter-body.option-groups { display: grid; grid-template-columns: minmax(130px, 1.1fr) minmax(120px, .85fr) minmax(120px, .85fr) minmax(120px, .9fr); align-items: stretch; }
+    .filter-body.amount-cell { min-height: 46px; }
+    .filter-group { min-height: 46px; padding: 3px 8px 4px; border-right: 1px solid #e4e4e4; display: grid; align-content: center; gap: 2px; white-space: nowrap; }
+    .filter-group.seller { border-right: 0; }
+    .filter-group-title { color: #555; font-size: var(--filter-font-size); font-weight: 800; line-height: 1.1; text-align: center; }
+    .filter-group-title::after { content: ""; display: block; width: min(132px, 100%); height: 1px; margin: 3px auto 0; background: #d8d8d8; }
+    .filter-options, .amount-mode { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .amount-mode { gap: 10px; margin-right: 8px; }
+    .choice { display: inline-flex; align-items: center; justify-content: center; gap: 4px; color: #4d5968; font-size: var(--filter-font-size); font-weight: 800; white-space: nowrap; }
+    .choice input { appearance: none; width: 8px; height: 8px; margin: 0; border: 1px solid #cfd5dd; border-radius: 50%; background: #fff; }
+    .choice input:checked { border-color: var(--rose); background: var(--rose); }
+    .amount-filter { width: 100%; min-height: 46px; padding: 3px 8px 5px; display: grid; align-content: center; gap: 3px; }
+    .amount-input { width: 82px; height: 24px; padding: 0 8px; border: 1px solid #ddd; border-radius: 2px; outline: 0; background: #fff; color: var(--text); font-size: var(--filter-font-size); font-weight: 500; text-align: center; }
+    .amount-separator { color: #777; font-size: var(--filter-font-size); font-weight: 700; }
+    .amount-range { display: block; width: 100%; accent-color: rgba(91, 166, 247, .6); }
+    .amount-fields { display: flex; align-items: center; gap: 6px; }
+    .amount-fields .amount-input { flex: 1; min-width: 0; width: auto; }
+    .amount-apply { width: 100%; height: 22px; border: 1px solid #d9d9d9; border-radius: 2px; background: #fff; color: var(--text); font-size: 12px; font-weight: 700; }
+    .within-keyword-list { min-height: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 3px; }
+    .within-chip { height: 18px; padding: 0 5px; border-radius: 2px; background: #f2f0ec; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .within-chip button { width: 12px; height: 12px; padding: 0; border: 0; background: transparent; color: #999; font-size: 13px; line-height: 1; }
+    .within-search-form { position: relative; min-width: 0; margin-top: 2px; }
+    .within-search-form input { min-width: 0; width: 100%; height: 24px; padding: 0 28px 0 7px; border: 1px solid #d8dde6; border-radius: 3px; background: #fff; outline: 0; font-size: 13px; }
+    .within-search-form button { width: 24px; height: 22px; position: absolute; top: 1px; right: 1px; border: 0; border-radius: 0 2px 2px 0; background: transparent; display: grid; place-items: center; }
+    .within-search-form svg { width: 14px; height: 14px; stroke-width: 2; }
+    .filter-submit { width: 100%; height: 30px; border: 0; background: var(--rose); color: #fff; font-size: 13px; font-weight: 900; cursor: pointer; }
+
+    /* ── Best section (메인 모드) ── */
+    .section-title { margin: 0 0 12px; color: #1d2636; font-size: 21px; font-weight: 900; }
+
+    /* ── Result section (검색 모드) ── */
+    .result-title-row { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(360px, 595px); align-items: center; gap: 24px; padding: 0 0 12px; border-bottom: 1px solid #111; }
+    .result-title-wrap { min-width: 0; display: flex; align-items: center; gap: 10px; }
+    .result-title { margin: 0; color: #111827; font-size: 17px; font-weight: 900; line-height: 1.25; word-break: keep-all; }
+    .favorite-search { width: 22px; height: 22px; padding: 0; border: 0; background: transparent; color: #111; display: grid; place-items: center; }
+    .favorite-search svg { width: 17px; height: 17px; stroke-width: 1.8; }
+    .result-rescan { height: 34px; display: grid; grid-template-columns: minmax(0, 1fr) 124px; }
+    .result-rescan input { min-width: 0; padding: 0 14px; border: 1px solid var(--line); border-right: 0; outline: 0; background: #fff; color: var(--text); font-size: 13px; }
+    .result-rescan button { border: 0; background: var(--rose); color: #fff; font-size: 13px; font-weight: 900; }
+    .result-control-row { min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .result-tabs { display: flex; align-items: center; gap: 32px; padding-left: 14px; }
+    .result-tab { padding: 0; border: 0; background: transparent; color: #111; font-size: 12px; font-weight: 900; }
+    .result-tab.active { color: var(--rose); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
+    .filter-actions { display: flex; align-items: center; gap: 12px; }
+    .sort-select { width: 112px; height: 30px; padding: 0 28px 0 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: #1f497a; font-size: 12px; font-weight: 900; }
+    .view-buttons { display: inline-flex; align-items: center; gap: 5px; }
+    .view-button { width: 28px; height: 28px; padding: 0; border: 1px solid var(--line); background: #fff; color: #a7adb7; display: grid; place-items: center; }
+    .view-button.active { color: #1675cf; }
+    .view-list, .view-grid { width: 14px; height: 14px; display: grid; gap: 2px; }
+    .view-list { grid-template-rows: repeat(3, 1fr); }
+    .view-grid { grid-template-columns: repeat(2, 1fr); }
+    .view-list span, .view-grid span { display: block; background: currentColor; }
+
+    /* ── Product grid ── */
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 34px; }
+    .product-card { position: relative; min-width: 0; cursor: pointer; }
+    .product-card:hover .product-name { text-decoration: underline; text-underline-offset: 2px; }
+    .product-thumb { position: relative; height: 130px; margin-bottom: 8px; background: var(--thumb); overflow: hidden; }
+    .heart { position: absolute; right: 12px; bottom: 8px; border: 0; background: transparent; color: var(--rose); font-size: 22px; line-height: 1; }
+    .product-name { margin: 0 0 1px; overflow: hidden; color: #2460a5; font-size: 12px; font-weight: 700; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+    .seller { display: block; margin-bottom: 1px; color: #657083; font-size: 12px; line-height: 1.35; }
+    .price { color: #172033; font-size: 18px; font-weight: 900; line-height: 1.15; }
+
+    /* More / footer */
+    .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
+    .more-row::before { content: ""; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 10px solid currentColor; }
+    .more-footer { padding: 30px 0; background: #fff; }
+    .more-footer button { width: min(calc(100vw - 60px), var(--page-w)); height: 36px; margin: 0 auto; display: flex; border: 1px dashed #d7d1cc; border-radius: 7px; background: #111; color: #fff; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 900; }
+    .more-footer button::before { content: ""; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #fff; }
+
+    /* ── Content layout (sidebar + main area) ── */
+    .content-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 24px; margin-top: 16px; }
+    .content-area { min-width: 0; }
+
+    /* Sidebar filter panel overrides */
+    .content-layout .filter-panel { --filter-font-size: 14px; margin-bottom: 0; border: 1px solid #e4e4e4; overflow: visible; }
+    .content-layout .filter-row { display: block; }
+    .content-layout .filter-label { min-height: 46px; border-right: 0; border-bottom: 1px solid #e4e4e4; font-size: 13px; font-weight: 900; background: #f6f5f4; }
+    .content-layout .filter-label.amount-label { border-left: 0; border-top: 1px solid #e4e4e4; background: #fff; color: #555; font-weight: 700; }
+    .content-layout .filter-body.option-groups { display: block; }
+    .content-layout .filter-body.amount-cell { display: block; min-height: 0; padding: 12px; overflow: hidden; }
+    .content-layout .filter-group { min-height: 0; padding: 10px 12px 12px; border-right: 0; border-bottom: 1px solid #eee; gap: 8px; white-space: normal; }
+    .content-layout .filter-group.seller { border-bottom: 0; border-right: 0; }
+    .content-layout .filter-group-title { font-size: 13px; text-align: left; }
+    .content-layout .filter-group-title::after { width: 100%; margin-top: 5px; }
+    .content-layout .filter-options { gap: 10px; justify-content: flex-start; flex-wrap: wrap; }
+    .content-layout .amount-filter { width: 100%; min-width: 0; padding: 0; display: grid; gap: 12px; min-height: 0; overflow: hidden; }
+    .content-layout .amount-range { width: calc(100% - 18px); margin: 8px 9px; }
+    .content-layout .amount-fields { width: 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 8px; }
+    .content-layout .amount-fields .amount-input { width: 100%; min-width: 0; height: 34px; }
+    .content-layout .amount-apply { height: 36px; font-size: 13px; }
+    .content-layout .within-search-form input { height: 34px; padding: 0 34px 0 10px; border-radius: 6px; font-size: 13px; }
+    .content-layout .within-search-form button { width: 32px; height: 32px; }
+    .content-layout .within-search-form svg { width: 16px; height: 16px; }
+    .content-layout .filter-submit { height: 40px; font-size: 14px; }
+    .content-layout .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
+
+    /* ── Responsive ── */
+    
+
+    
+  </style>
+</head>
+<body>
+  <div class="top-notice-spacer" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-main">
+      <div class="brand-area">
+        <button class="menu-button" type="button" aria-label="메뉴 열기"><span class="menu-lines"></span></button>
+        <a class="logo-link" href="web_main.html" aria-label="Bidbuy 홈">
+          <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
+        </a>
+      </div>
+
+      <div class="header-search-area">
+        <form class="global-search" data-global-search>
+          <input type="search" placeholder="키워드 또는 URL을 입력하세요.">
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            검색
+          </button>
+        </form>
+        <div class="chip-list" data-keyword-list aria-label="검색 키워드"></div>
+      </div>
+
+      <div class="user-tools" aria-label="회원 메뉴">
+        <button class="icon-btn" type="button" aria-label="알림">
+          <i class="fa-regular fa-bell" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" type="button" aria-label="장바구니">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+        </button>
+        <div class="user-name">이한나님<span class="premium-chip">PREMIUM</span></div>
+      </div>
+    </div>
+
+    <div class="store-strip">
+      <nav class="store-list" aria-label="스토어 바로가기">
+        <a class="store-chip active" href="#" data-store-name="야후 옥션" data-best-title="야후옥션 베스트" aria-current="page">
+          <div class="store-badge"><span class="store-yahoo">YAHOO!</span></div><strong>야후 옥션</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="메루카리" data-best-title="메루카리 베스트">
+          <div class="store-badge store-mercari">m</div><strong>메루카리</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="라쿠텐" data-best-title="라쿠텐 베스트">
+          <div class="store-badge store-rakuten">R</div><strong>라쿠텐</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="라쿠마" data-best-title="라쿠마 베스트">
+          <div class="store-badge">amazon</div><strong>라쿠마</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="야후 쇼핑" data-best-title="야후 쇼핑 베스트">
+          <div class="store-badge store-cart">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          </div><strong>야후 쇼핑</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="일본 아마존" data-best-title="일본 아마존 베스트">
+          <div class="store-badge">amazon</div><strong>일본 아마존</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="미국 이베이" data-best-title="미국 이베이 베스트">
+          <div class="store-badge flag-us">USA</div><strong>미국 이베이</strong>
+        </a>
+        <a class="store-chip" href="#" data-store-name="영국 이베이" data-best-title="영국 이베이 베스트">
+          <div class="store-badge flag-uk">UK</div><strong>영국 이베이</strong>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- URL 입력바 (항상 표시) -->
+    <div class="url-bar">
+      <div class="url-label">URL 입력</div>
+      <input class="url-input" type="text" placeholder="야후옥션 상품 URL을 입력하세요.">
+      <button class="move-button" type="button">이동</button>
+    </div>
+
+    <!-- 검색결과 안내 (검색 모드에서만 표시) -->
+    <p class="result-copy" data-result-copy hidden></p>
+
+    <!-- 카테고리 패널 -->
+    <section class="category-panel" aria-label="카테고리 바로가기">
+      <div class="category-grid">
+        <div class="category-group">
+          <a href="#">가전, AV, 카메라</a>
+          <a href="#">뷰티, 건강 관리</a>
+          <a href="#">영화, 동영상</a>
+          <a href="#">취미, 문화</a>
+        </div>
+        <div class="category-group">
+          <a href="#">거주지, 인테리어</a>
+          <a href="#">사무, 점포 용품</a>
+          <a href="#">음식, 음료</a>
+          <a href="#">컴퓨터</a>
+        </div>
+        <div class="category-group">
+          <a href="#">골동품, 컬렉션</a>
+          <a href="#">스포츠, 레저</a>
+          <a href="#">음악</a>
+          <a href="#">탤런트 상품</a>
+        </div>
+        <div class="category-group">
+          <a href="#">기타</a>
+          <a href="#">아기 용품</a>
+          <a href="#">자동차, 오토바이</a>
+          <a href="#">티켓, 금권, 숙박예약</a>
+        </div>
+        <div class="category-group">
+          <a href="#">꽃, 원예</a>
+          <a href="#">애완 동물, 생물</a>
+          <a href="#">장난감, 게임</a>
+          <a href="#">패션</a>
+        </div>
+        <div class="category-group">
+          <a href="#">만화, 애니메이션 상품</a>
+          <a href="#">액세서리, 시계</a>
+          <a href="#">책, 잡지</a>
+          <a href="#">브랜드 소품</a>
+        </div>
+      </div>
+      <div class="sub-category-row" id="subCatRow1" hidden>
+        <div class="sub-cat-list" id="subCatList1"></div>
+      </div>
+      <div class="sub-category-row" id="subCatRow2" hidden>
+        <div class="sub-cat-list" id="subCatList2"></div>
+      </div>
+      <div class="category-more-wrap">
+        <button class="all-category-button" type="button">전체 카테고리</button>
+      </div>
+    </section>
+
+    <!-- 카테고리 검색바 (항상 표시) -->
+    <form class="category-search-bar" data-category-search-form aria-label="카테고리 검색">
+      <div class="category-store-label">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span data-category-store-name>야후 옥션</span><span class="category-breadcrumb" data-category-breadcrumb></span>
+      </div>
+      <input class="category-search-input" type="search" name="q" placeholder="전체 카테고리에서 검색" data-category-search-input>
+      <button class="category-search-button" type="submit">검색</button>
+    </form>
+
+    <div class="content-layout">
+    <!-- 왼쪽: 검색 필터 사이드바 -->
+    <section class="filter-panel" aria-label="상세 검색">
+      <div class="filter-row">
+        <div class="filter-label"><span>검색조건</span></div>
+        <div class="filter-body option-groups">
+          <div class="filter-group within-search">
+            <div class="filter-group-title">목록내 검색</div>
+            <div class="within-keyword-list" data-within-list></div>
+            <div class="within-search-form">
+              <input type="search" aria-label="목록내 검색어" data-within-input>
+              <button type="button" aria-label="목록내 검색" data-within-submit>
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="filter-group purchase-type">
+            <div class="filter-group-title">구매형태</div>
+            <div class="filter-options">
+              <label class="choice"><input type="checkbox" name="purchaseType" value="auction"><span>경매</span></label>
+              <label class="choice"><input type="checkbox" name="purchaseType" value="buy"><span>구매</span></label>
+              <label class="choice"><input type="checkbox" name="purchaseType" value="freeDelivery"><span>무료배송</span></label>
+            </div>
+          </div>
+          <div class="filter-group condition">
+            <div class="filter-group-title">상태</div>
+            <div class="filter-options">
+              <label class="choice"><input type="radio" name="condition" checked><span>전체</span></label>
+              <label class="choice"><input type="radio" name="condition"><span>신품</span></label>
+              <label class="choice"><input type="radio" name="condition"><span>중고</span></label>
+            </div>
+          </div>
+          <div class="filter-group seller">
+            <div class="filter-group-title">출품자 유형</div>
+            <div class="filter-options">
+              <label class="choice"><input type="radio" name="seller" checked><span>전체</span></label>
+              <label class="choice"><input type="radio" name="seller"><span>스토어</span></label>
+              <label class="choice"><input type="radio" name="seller"><span>개인</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-label amount-label"><span>금액</span></div>
+        <div class="filter-body amount-cell">
+          <div class="amount-filter">
+            <input class="amount-range" type="range" min="0" max="1000000" value="1000000" aria-label="금액 범위" data-amount-range>
+            <div class="amount-fields">
+              <input class="amount-input" type="text" value="0" aria-label="최소 금액" data-amount-min>
+              <span class="amount-separator">~</span>
+              <input class="amount-input" type="text" value="1,000,000" aria-label="최대 금액" data-amount-max>
+            </div>
+            <button class="amount-apply" type="button">적용</button>
+          </div>
+        </div>
+      </div>
+      <button class="filter-submit" type="button">검색</button>
+    </section>
+
+    <!-- 오른쪽: 컨텐츠 영역 -->
+    <div class="content-area">
+    <!-- 베스트 섹션 (메인 모드) -->
+    <section data-view-main aria-labelledby="best-title">
+      <h2 class="section-title" id="best-title">야후옥션 베스트</h2>
+      <div class="product-grid">
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+      </div>
+      <div class="more-row">펼쳐보기</div>
+    </section>
+
+    <!-- 검색결과 섹션 (검색 모드, 기본 hidden) -->
+    <section data-view-search hidden aria-label="검색 결과">
+      <div class="result-title-row">
+        <div class="result-title-wrap">
+          <h1 class="result-title" data-result-title>검색 결과</h1>
+          <button class="favorite-search" type="button" aria-label="검색조건 저장">
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+          </button>
+        </div>
+        <form class="result-rescan" data-result-rescan>
+          <input type="search" placeholder="결과 내 재검색" aria-label="결과 내 재검색">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+
+      <div class="result-control-row">
+        <div class="result-tabs" role="tablist" aria-label="거래 방식">
+          <button class="result-tab active" type="button" role="tab" aria-selected="true">전체</button>
+          <button class="result-tab" type="button" role="tab" aria-selected="false">경매</button>
+          <button class="result-tab" type="button" role="tab" aria-selected="false">즉시낙찰</button>
+        </div>
+        <div class="filter-actions">
+          <select class="sort-select" aria-label="정렬">
+            <option>인기 상품순</option>
+            <option>마감임박순</option>
+            <option>낮은가격순</option>
+            <option>높은가격순</option>
+            <option>입찰수많은순</option>
+            <option>신상품순</option>
+          </select>
+          <div class="view-buttons">
+            <button class="view-button" type="button" aria-label="목록 보기">
+              <span class="view-list" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <button class="view-button active" type="button" aria-label="그리드 보기">
+              <span class="view-grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+      </div>
+    </section>
+    </div><!-- /.content-area -->
+    </div><!-- /.content-layout -->
+  </main>
+
+  <footer class="more-footer" data-more-footer hidden>
+    <button type="button">펼쳐보기</button>
+  </footer>
+
+  <script>
+    // ── DOM refs ──
+    const keywordList       = document.querySelector("[data-keyword-list]");
+    const globalSearch      = document.querySelector("[data-global-search]");
+    const catSearchForm     = document.querySelector("[data-category-search-form]");
+    const catSearchInput    = document.querySelector("[data-category-search-input]");
+    const catStoreName      = document.querySelector("[data-category-store-name]");
+    const catBreadcrumb     = document.querySelector("[data-category-breadcrumb]");
+    const resultCopy        = document.querySelector("[data-result-copy]");
+    const resultTitleEl     = document.querySelector("[data-result-title]");
+    const resultRescan      = document.querySelector("[data-result-rescan]");
+    const bestTitleEl       = document.getElementById("best-title");
+    const viewMain          = document.querySelector("[data-view-main]");
+    const viewSearch        = document.querySelector("[data-view-search]");
+    const moreFooter        = document.querySelector("[data-more-footer]");
+    const amountMinInput    = document.querySelector("[data-amount-min]");
+    const amountMaxInput    = document.querySelector("[data-amount-max]");
+    const amountRangeInput  = document.querySelector("[data-amount-range]");
+    const withinInput       = document.querySelector("[data-within-input]");
+    const withinSubmit      = document.querySelector("[data-within-submit]");
+    const withinList        = document.querySelector("[data-within-list]");
+
+    // ── State ──
+    const amountLimit = 1000000;
+    let keywords = [];
+    let withinKeywords = [];
+    let mode = "main";
+
+    // ── Mode switching ──
+    function switchToSearch() {
+      mode = "search";
+      viewMain.hidden = true;
+      viewSearch.hidden = false;
+      moreFooter.hidden = false;
+      resultCopy.hidden = false;
+      updateResultText();
+    }
+
+    function switchToMain() {
+      mode = "main";
+      viewMain.hidden = false;
+      viewSearch.hidden = true;
+      moreFooter.hidden = true;
+      resultCopy.hidden = true;
+      keywords = [];
+      syncUrl();
+      renderKeywords();
+    }
+
+    // ── Keywords ──
+    function joined() { return keywords.join(" "); }
+
+    function syncUrl() {
+      const q = joined();
+      window.history.replaceState(null, "", q ? `?q=${encodeURIComponent(q)}` : window.location.pathname);
+    }
+
+    function countNode() {
+      const s = document.createElement("span");
+      s.className = "red";
+      s.textContent = "2,859";
+      return s;
+    }
+
+    function updateResultText() {
+      if (!keywords.length) {
+        resultCopy.textContent = "검색어를 입력해 주세요.";
+        resultTitleEl.replaceChildren("검색 결과 (전체 ", countNode(), "건)");
+        catSearchInput.value = "";
+        return;
+      }
+      const hl = document.createElement("span");
+      hl.className = "red";
+      hl.textContent = `'${joined()}'`;
+      resultCopy.replaceChildren(hl, "에 대한 검색결과 입니다.");
+      resultTitleEl.replaceChildren(`'${joined()}' 검색 결과 (전체 `, countNode(), "건)");
+      catSearchInput.value = joined();
+    }
+
+    function renderKeywords() {
+      keywordList.replaceChildren();
+      keywords.forEach((kw, i) => {
+        const chip = document.createElement("span");
+        chip.className = "search-chip";
+        chip.append(document.createTextNode(kw + " "));
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("aria-label", kw + " 삭제");
+        btn.dataset.keywordIndex = String(i);
+        btn.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+        chip.append(btn);
+        keywordList.append(chip);
+      });
+      if (mode === "search") updateResultText();
+    }
+
+    function addKeywords(value) {
+      const next = value.trim().split(/\s+/).filter(Boolean);
+      if (!next.length) return;
+      keywords = next;
+      syncUrl();
+      renderKeywords();
+      switchToSearch();
+    }
+
+    // ── Amount filter ──
+    function clamp(v) { return Math.min(amountLimit, Math.max(0, v)); }
+    function parseAmt(v) { const n = Number(String(v).replace(/[^\d]/g, "")); return Number.isFinite(n) ? clamp(n) : 0; }
+    function fmtAmt(v) { return String(clamp(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+    function updateAmountFilter(src) {
+      let mn = parseAmt(amountMinInput.value), mx = parseAmt(amountMaxInput.value);
+      if (mn > mx) { src === amountMinInput ? (mx = mn) : (mn = mx); }
+      amountMinInput.value = fmtAmt(mn);
+      amountMaxInput.value = fmtAmt(mx);
+      if (amountRangeInput) amountRangeInput.value = mx;
+    }
+
+    // ── Category data ──
+    const categoryData = {
+      '가전, AV, 카메라': {
+        subs: ['TV, 영상기기', '카메라', '오디오기기', '생활가전', '스마트기기', '계절가전', '조명기기'],
+        children: {
+          'TV, 영상기기': ['TV', 'DVD/블루레이', '프로젝터', '모니터', '셋톱박스'],
+          '카메라': ['DSLR', '미러리스', '콤팩트', '필름카메라', '액션캠', '렌즈', '액세서리'],
+          '오디오기기': ['스피커', '헤드폰/이어폰', 'AV리시버', 'CD플레이어', '레코드플레이어'],
+          '생활가전': ['냉장고', '세탁기', '청소기', '전자레인지', '식기세척기'],
+        }
+      },
+      '뷰티, 건강 관리': {
+        subs: ['스킨케어', '메이크업', '헤어케어', '바디케어', '향수', '건강보조식품', '의료기기'],
+        children: {
+          '스킨케어': ['클렌징', '토너/로션', '에센스/세럼', '크림', '마스크팩', '선케어'],
+          '메이크업': ['파운데이션', '립메이크업', '아이메이크업', '블러셔', '네일아트'],
+        }
+      },
+      '영화, 동영상': {
+        subs: ['DVD/블루레이', 'VHS', '영화', 'TV방송', '애니메이션', '다큐멘터리'],
+        children: { 'DVD/블루레이': ['국내영화', '외국영화', '드라마', '애니메이션', '다큐', '음악DVD'] }
+      },
+      '취미, 문화': { subs: ['독서', '영화감상', '음악감상', '여행', '요리', '미술/공예', '사진'], children: {} },
+      '거주지, 인테리어': {
+        subs: ['가구', '조명', '커튼/블라인드', '침구류', '수납/정리', '인테리어소품', '주방용품'],
+        children: {
+          '가구': ['소파', '침대', '책상/책장', '식탁', '수납장', 'TV장'],
+          '조명': ['실링라이트', '스탠드', '벽조명', '야외조명', 'LED조명'],
+        }
+      },
+      '사무, 점포 용품': {
+        subs: ['문구류', '사무기기', '점포용품', '사무가구', 'POS/결제시스템', '진열/쇼케이스', '포장재'],
+        children: {
+          '문구류': ['볼펜/만년필', '연필/샤프', '노트/다이어리', '파일/바인더', '테이프/접착제', '수정용품'],
+          '사무기기': ['프린터', '복사기', '스캐너', '팩스', '문서세단기', '제본기'],
+          '점포용품': ['쇼핑백', '영수증용지', '가격태그', '쇼케이스', '행거'],
+        }
+      },
+      '음식, 음료': {
+        subs: ['과자/스낵', '음료수', '주류', '인스턴트식품', '건강식품', '조미료/소스', '냉동식품'],
+        children: { '주류': ['맥주', '와인', '소주/위스키', '사케', '막걸리', '양주'] }
+      },
+      '컴퓨터': {
+        subs: ['데스크탑', '노트북', '모니터', '주변기기', 'CPU/메모리', 'HDD/SSD', '네트워크'],
+        children: {
+          '노트북': ['게이밍노트북', '울트라북', '비즈니스노트북', '크롬북', '2in1노트북'],
+          '주변기기': ['키보드', '마우스', '웹캠', 'USB허브', '프린터', '스캐너'],
+        }
+      },
+      '골동품, 컬렉션': { subs: ['도자기', '그림/서예', '동전/화폐', '우표', '장난감/피규어', '포카드', '고서적'], children: {} },
+      '스포츠, 레저': {
+        subs: ['구기종목', '수상스포츠', '겨울스포츠', '캠핑/아웃도어', '자전거', '요가/피트니스', '낚시'],
+        children: {
+          '캠핑/아웃도어': ['텐트', '침낭', '코펠/버너', '랜턴', '배낭', '등산화'],
+          '자전거': ['로드바이크', '산악자전거', '폴딩바이크', '자전거 액세서리'],
+        }
+      },
+      '음악': {
+        subs: ['기타', '피아노/건반', '드럼/퍼커션', '관악기', '현악기', '악보/교재', '음향장비'],
+        children: { '기타': ['어쿠스틱기타', '일렉기타', '베이스기타', '클래식기타', '기타 액세서리'] }
+      },
+      '탤런트 상품': { subs: ['K-POP', 'J-POP', '연예인 굿즈', '포토카드', '응원용품', '공식 MD', '한정판'], children: {} },
+      '기타': { subs: ['기타 물품', '미분류'], children: {} },
+      '아기 용품': { subs: ['유모차/카시트', '수유용품', '이유식', '기저귀', '아기옷', '장난감', '침구/가구'], children: {} },
+      '자동차, 오토바이': { subs: ['자동차 부품', '오토바이 부품', '카오디오', '네비게이션', '차량용품', '타이어/휠'], children: {} },
+      '티켓, 금권, 숙박예약': { subs: ['공연티켓', '스포츠티켓', '상품권', '숙박쿠폰', '여행패키지', '항공권'], children: {} },
+      '꽃, 원예': { subs: ['생화', '조화', '화분/화분받침', '비료/흙', '원예도구', '씨앗/구근'], children: {} },
+      '애완 동물, 생물': {
+        subs: ['강아지 용품', '고양이 용품', '조류 용품', '어류/수족관', '소동물', '사료'],
+        children: {
+          '강아지 용품': ['사료', '간식', '장난감', '의류', '이동장', '목욕용품'],
+          '고양이 용품': ['사료', '간식', '장난감', '캣타워', '이동장', '화장실'],
+        }
+      },
+      '장난감, 게임': {
+        subs: ['피규어', '프라모델', 'RC카/드론', '보드게임', '비디오게임', '트레이딩카드', '퍼즐'],
+        children: {
+          '피규어': ['애니메이션 피규어', '히어로/캐릭터', '군사 피규어', '스태츄', '가샤폰'],
+          '비디오게임': ['플레이스테이션', '닌텐도', 'Xbox', 'PC게임', '레트로게임'],
+        }
+      },
+      '패션': {
+        subs: ['남성의류', '여성의류', '아동의류', '신발', '가방', '모자/소품', '언더웨어/양말'],
+        children: {
+          '남성의류': ['티셔츠/폴로', '셔츠', '바지', '아우터', '정장', '스포츠웨어'],
+          '여성의류': ['블라우스/셔츠', '원피스', '바지', '아우터', '정장', '스포츠웨어'],
+          '신발': ['스니커즈', '구두', '샌들/슬리퍼', '부츠', '운동화'],
+        }
+      },
+      '만화, 애니메이션 상품': { subs: ['만화책', '애니메이션 DVD', '피규어/굿즈', '코스튬/코스프레', '포스터/아트', '원화'], children: {} },
+      '액세서리, 시계': {
+        subs: ['반지', '목걸이', '귀걸이', '팔찌', '시계', '브로치', '헤어액세서리'],
+        children: { '시계': ['남성시계', '여성시계', '스마트워치', '빈티지시계', '시계부품'] }
+      },
+      '책, 잡지': { subs: ['소설', '실용서', '만화', '잡지', '교재/참고서', '외국서적', '사전'], children: {} },
+      '브랜드 소품': {
+        subs: ['명품가방', '명품지갑', '명품시계', '명품의류', '명품신발', '명품액세서리'],
+        children: {
+          '명품가방': ['루이비통', '구찌', '샤넬', '에르메스', '프라다', '버버리'],
+          '명품시계': ['롤렉스', '오메가', '태그호이어', '까르띠에', 'IWC'],
+        }
+      },
+    };
+
+    // ── Category DOM ──
+    const subCatRow1  = document.getElementById("subCatRow1");
+    const subCatList1 = document.getElementById("subCatList1");
+    const subCatRow2  = document.getElementById("subCatRow2");
+    const subCatList2 = document.getElementById("subCatList2");
+
+    let selCat  = null;
+    let selSub1 = null;
+
+    function updateBreadcrumb() {
+      const parts = [];
+      if (selCat)  parts.push(selCat);
+      if (selSub1) parts.push(selSub1);
+      catBreadcrumb.textContent = parts.length ? " > " + parts.join(" > ") : "";
+    }
+
+    function resetCategories() {
+      selCat = null; selSub1 = null;
+      document.querySelectorAll(".category-group a").forEach(a => a.classList.remove("active"));
+      subCatRow1.hidden = true;
+      subCatRow2.hidden = true;
+      updateBreadcrumb();
+    }
+
+    function renderSubCats(container, row, items) {
+      container.replaceChildren();
+      items.forEach(name => {
+        const btn = document.createElement("button");
+        btn.type = "button"; btn.className = "sub-cat-item";
+        btn.textContent = name; btn.dataset.subCatName = name;
+        container.append(btn);
+      });
+      row.hidden = false;
+    }
+
+    document.querySelectorAll(".category-group a").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const name = link.textContent.trim();
+        if (selCat === name) { resetCategories(); return; }
+        document.querySelectorAll(".category-group a").forEach(a => a.classList.remove("active"));
+        link.classList.add("active");
+        selCat = name; selSub1 = null;
+        const data = categoryData[name];
+        if (data?.subs?.length) renderSubCats(subCatList1, subCatRow1, data.subs);
+        else subCatRow1.hidden = true;
+        subCatRow2.hidden = true;
+        updateBreadcrumb();
+      });
+    });
+
+    subCatList1.addEventListener("click", e => {
+      const btn = e.target.closest(".sub-cat-item");
+      if (!btn) return;
+      const name = btn.dataset.subCatName;
+      if (selSub1 === name) {
+        selSub1 = null; btn.classList.remove("active");
+        subCatRow2.hidden = true; updateBreadcrumb(); return;
+      }
+      subCatList1.querySelectorAll(".sub-cat-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active"); selSub1 = name;
+      const children = categoryData[selCat]?.children?.[name];
+      if (children?.length) renderSubCats(subCatList2, subCatRow2, children);
+      else subCatRow2.hidden = true;
+      updateBreadcrumb();
+    });
+
+    subCatList2.addEventListener("click", e => {
+      const btn = e.target.closest(".sub-cat-item");
+      if (!btn) return;
+      subCatList2.querySelectorAll(".sub-cat-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+
+    // ── Store chips ──
+    let activeStore = "야후 옥션";
+
+    document.querySelectorAll(".store-chip").forEach(chip => {
+      chip.addEventListener("click", e => {
+        e.preventDefault();
+        document.querySelectorAll(".store-chip").forEach(c => { c.classList.remove("active"); c.removeAttribute("aria-current"); });
+        chip.classList.add("active"); chip.setAttribute("aria-current", "page");
+        const sn = chip.dataset.storeName || chip.querySelector("strong")?.textContent.trim();
+        activeStore = sn || "야후 옥션";
+        if (sn) {
+          if (catStoreName) catStoreName.textContent = sn;
+          if (bestTitleEl) bestTitleEl.textContent = chip.dataset.bestTitle || sn + " 베스트";
+        }
+        resetCategories();
+      });
+    });
+
+    // ── Result tabs ──
+    document.querySelectorAll(".result-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".result-tab").forEach(t => {
+          const on = t === tab;
+          t.classList.toggle("active", on);
+          t.setAttribute("aria-selected", String(on));
+        });
+      });
+    });
+
+    // ── View buttons ──
+    document.querySelectorAll(".view-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".view-button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    // ── Product card navigation ──
+    document.querySelectorAll("[data-view-main] .product-card").forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.closest("button, a")) return;
+        if (activeStore === "메루카리") {
+          window.location.href = "web_purchase merukari.html";
+        } else {
+          window.location.href = "web_auction.html";
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-view-search] .product-card").forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.closest("button, a")) return;
+        window.location.href = "web_bill_1st.html";
+      });
+    });
+
+    // ── Keyword chip removal ──
+    keywordList.addEventListener("click", e => {
+      const btn = e.target.closest("[data-keyword-index]");
+      if (!btn) return;
+      keywords.splice(Number(btn.dataset.keywordIndex), 1);
+      syncUrl(); renderKeywords();
+      if (!keywords.length) switchToMain();
+    });
+
+    // ── Form submissions ──
+    globalSearch.addEventListener("submit", e => {
+      e.preventDefault();
+      const inp = globalSearch.querySelector("input");
+      addKeywords(inp.value); inp.value = "";
+    });
+
+    catSearchForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const q = catSearchInput.value.trim();
+      if (q) addKeywords(q);
+    });
+
+    resultRescan.addEventListener("submit", e => {
+      e.preventDefault();
+      const inp = resultRescan.querySelector("input");
+      addKeywords(joined() + " " + inp.value); inp.value = "";
+    });
+
+    // ── Amount filter ──
+    [amountMinInput, amountMaxInput].forEach(inp => {
+      inp.addEventListener("change", () => updateAmountFilter(inp));
+      inp.addEventListener("blur",   () => updateAmountFilter(inp));
+    });
+    if (amountRangeInput) {
+      amountRangeInput.addEventListener("input", () => {
+        amountMaxInput.value = fmtAmt(Number(amountRangeInput.value));
+        updateAmountFilter(amountMaxInput);
+      });
+    }
+
+    // ── Within-search ──
+    function saveWithinKeyword() {
+      const kw = withinInput.value.trim();
+      if (!kw) return;
+      if (!withinKeywords.includes(kw)) withinKeywords.push(kw);
+      withinInput.value = "";
+      renderWithinKeywords();
+    }
+
+    function renderWithinKeywords() {
+      withinList.replaceChildren();
+      withinKeywords.forEach((kw, i) => {
+        const chip = document.createElement("span");
+        chip.className = "within-chip";
+        chip.append(document.createTextNode(kw + " "));
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("aria-label", kw + " 삭제");
+        btn.dataset.withinRemove = String(i);
+        btn.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+        chip.append(btn);
+        withinList.append(chip);
+      });
+    }
+
+    withinSubmit.addEventListener("click", saveWithinKeyword);
+    withinInput.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      saveWithinKeyword();
+    });
+    withinList.addEventListener("click", e => {
+      const btn = e.target.closest("[data-within-remove]");
+      if (!btn) return;
+      withinKeywords.splice(Number(btn.dataset.withinRemove), 1);
+      renderWithinKeywords();
+    });
+
+    // ── Init ──
+    updateAmountFilter(amountMaxInput);
+    renderWithinKeywords();
+    const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
+    if (initialQuery.trim()) {
+      keywords = initialQuery.trim().split(/\s+/).filter(Boolean);
+      renderKeywords();
+      switchToSearch();
+    }
+  </script>
+<script src="bb-common.js"></script>
+</body>
+</html>

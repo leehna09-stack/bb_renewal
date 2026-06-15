@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --brand: #f03b63;
-      --brand-hot: #ff4969;
-      --navy: #163a69;
+      --rose: #E8385A;
+      --rose-h: #C42F4C;
+      --navy: #1A3C6E;
       --ink: #20242b;
       --text: #33363d;
       --muted: #777985;
@@ -44,6 +44,23 @@
 
     .top-notice-spacer { height: 34px; }
 
+    /* ── 상단바 ── */
+    .topbar { height: 67px; width: min(calc(100vw - 32px), 1057px); margin: 0 auto; display: grid; grid-template-columns: 221px minmax(0, 714px) 221px; align-items: center; gap: 16px; background: #fff; }
+    .brand-area { display: flex; align-items: center; gap: 22px; min-width: 0; }
+    .menu-button { width: 25px; height: 25px; border: 0; background: transparent; padding: 0; display: grid; place-items: center; }
+    .menu-lines { width: 23px; display: grid; gap: 6px; }
+    .menu-lines span { height: 2.5px; border-radius: 999px; background: #1f2530; }
+    .logo-link { display: inline-flex; align-items: center; width: 122px; line-height: 0; }
+    .logo-link img { width: 100%; height: auto; display: block; }
+    .search { height: 43px; display: flex; min-width: 0; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: var(--warm-2); }
+    .search input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 0 18px; background: transparent; color: var(--text); font-size: 13px; }
+    .search input::placeholder { color: #8c8985; }
+    .search button { width: 111px; border: 0; background: var(--rose); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 700; }
+    .user-tools { justify-self: end; display: grid; grid-template-columns: 28px 28px auto; align-items: center; gap: 10px; }
+    .icon-btn { width: 28px; height: 28px; border: 0; background: transparent; font-size: 15px; color: var(--text); display: grid; place-items: center; }
+    .user-name { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .premium-chip { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--rose); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .04em; vertical-align: middle; }
+
     /* ── 스테이지 ── */
     .stage {
       display: grid;
@@ -61,14 +78,14 @@
     .nav-section strong { display: block; margin-bottom: 11px; color: #292d35; font-size: 12px; font-weight: 900; }
     .nav-list { display: grid; gap: 13px; }
     .nav-list a { color: #666b75; font-size: 12px; font-weight: 500; }
-    .nav-list a:hover, .nav-list a.active { color: var(--brand); font-weight: 800; }
+    .nav-list a:hover, .nav-list a.active { color: var(--rose); font-weight: 800; }
 
     .cs-call { margin: 22px 12px 0; padding: 18px 14px; background: #fcfcfd; text-align: center; }
     .cs-call .tel { display: block; color: var(--navy); font-family: Roboto, sans-serif; font-size: 26px; font-weight: 900; }
     .cs-call p { margin: 8px 0 16px; color: #7b8494; font-size: 11px; }
     .cs-call-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .cs-call-actions button { height: 34px; border: 1px solid #d9e0e9; border-radius: 8px; background: #fff; color: #1f2530; font-size: 12px; font-weight: 900; font-family: inherit; padding: 0; }
-    .cs-call-actions button:first-child { border-color: var(--brand); background: var(--brand); color: #fff; }
+    .cs-call-actions button:first-child { border-color: var(--rose); background: var(--rose); color: #fff; }
 
     /* ── 메인 ── */
     .page-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 18px; }
@@ -80,7 +97,7 @@
       background: #fff; color: #5c606b;
       font-size: 12px; font-weight: 700;
     }
-    .outline-pill:hover { border-color: var(--brand); color: var(--brand); }
+    .outline-pill:hover { border-color: var(--rose); color: var(--rose); }
 
     /* ── 문의 헤더 ── */
     .detail-head-card {
@@ -108,7 +125,7 @@
       font-size: 12px;
     }
     .detail-meta b { color: #41454f; font-weight: 800; margin-right: 5px; }
-    .detail-meta .item-tag { color: var(--brand); font-weight: 800; }
+    .detail-meta .item-tag { color: var(--rose); font-weight: 800; }
 
     /* ── 문의/답변 목록 ── */
     .thread { margin-bottom: 22px; }
@@ -125,7 +142,7 @@
 
     /* 신규 답변 표시: 오른쪽 위 N */
     .new-n {
-      color: var(--brand);
+      color: var(--rose);
       font-family: Roboto, sans-serif;
       font-size: 9px;
       font-weight: 900;
@@ -134,7 +151,7 @@
       margin-left: 2px;
     }
     .msg.agent.is-new { background: #fff5f7; }
-    .msg.is-new .msg-who { color: var(--brand); }
+    .msg.is-new .msg-who { color: var(--rose); }
 
     .msg-bubble {
       font-size: 13px;
@@ -159,7 +176,7 @@
       font-weight: 600;
     }
     .msg-attach i { color: var(--faint); font-size: 12px; }
-    .msg-attach:hover { border-color: var(--brand); color: var(--brand); }
+    .msg-attach:hover { border-color: var(--rose); color: var(--rose); }
 
     /* ── 재문의 작성 ── */
     .reinquiry-card {
@@ -170,7 +187,7 @@
       margin-bottom: 22px;
     }
     .reinquiry-title { display: flex; align-items: center; gap: 7px; color: #151922; font-size: 14px; font-weight: 800; margin-bottom: 10px; }
-    .reinquiry-title i { color: var(--brand); font-size: 13px; }
+    .reinquiry-title i { color: var(--rose); font-size: 13px; }
     .textarea {
       width: 100%;
       min-height: 110px;
@@ -192,13 +209,13 @@
       background: #fff; color: #5c606b;
       font-size: 12px; font-weight: 700;
     }
-    .file-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .file-btn:hover { border-color: var(--rose); color: var(--rose); }
     .btn-reinquiry {
       height: 36px;
       padding: 0 22px;
-      border: 1px solid var(--brand);
+      border: 1px solid var(--rose);
       border-radius: 4px;
-      background: var(--brand);
+      background: var(--rose);
       color: #fff;
       font-size: 13px;
       font-weight: 800;
@@ -227,6 +244,27 @@
 <body>
 
 <div class="top-notice-spacer"></div>
+
+<!-- ── 상단바 ── -->
+<header class="topbar">
+  <div class="brand-area">
+    <button class="menu-button" type="button" aria-label="전체 메뉴">
+      <span class="menu-lines"><span></span><span></span><span></span></span>
+    </button>
+    <a class="logo-link" href="web_main.html" aria-label="Bidbuy 홈">
+      <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
+    </a>
+  </div>
+  <form class="search" role="search" onsubmit="return false">
+    <input type="search" placeholder="키워드 또는 URL을 입력하세요." aria-label="통합검색">
+    <button type="submit"><i class="fas fa-magnifying-glass"></i> 검색</button>
+  </form>
+  <div class="user-tools">
+    <button class="icon-btn" type="button" aria-label="알림"><i class="far fa-bell"></i></button>
+    <button class="icon-btn" type="button" aria-label="장바구니"><i class="fas fa-cart-shopping"></i></button>
+    <div class="user-name">이한나 님 <span class="premium-chip">PREMIUM</span></div>
+  </div>
+</header>
 
 <!-- ── 본문 ── -->
 <div class="stage">
