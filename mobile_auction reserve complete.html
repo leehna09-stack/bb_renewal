@@ -18,17 +18,17 @@
       --line-soft: #eee6e2;
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
-      --main-w: 720px;
+      --main-w: 480px;
     }
 
     * { box-sizing: border-box; }
-    html { background: #fff; }
+    html { background: #f5f7fa; }
 
     body {
       margin: 0;
       min-width: 320px;
       color: var(--text);
-      background: #fff;
+      background: #f5f7fa;
       font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
       font-size:14px;
       line-height:1.5;
@@ -39,15 +39,18 @@
     a { text-decoration: none; color: inherit; }
 
     .stage {
-      width: min(calc(100vw - 32px), var(--main-w));
+      width: min(100vw, var(--main-w));
       margin: 0 auto;
-      padding: 28px 0 80px;
+      padding: 18px 16px 72px;
+      background: #fff;
+      min-height: 100vh;
     }
 
     .page-head { margin: 0 0 18px; }
     .page-head h2 { margin: 0; color: #111; font-size: 20px; font-weight: 900; }
 
-    .steps { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+    .steps { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; overflow-x: auto; scrollbar-width: none; }
+    .steps::-webkit-scrollbar { display: none; }
     .step { display: flex; align-items: center; gap: 8px; }
     .step-num {
       width: 24px; height: 24px;
@@ -94,7 +97,7 @@
     }
     .result-row {
       display: grid;
-      grid-template-columns: 120px minmax(0,1fr);
+      grid-template-columns: 104px minmax(0,1fr);
       gap: 14px;
       padding: 12px 4px;
       border-bottom: 1px solid var(--line-soft);
@@ -128,15 +131,15 @@
     }
     .item-card {
       display: grid;
-      grid-template-columns: 92px minmax(0,1fr) auto;
+      grid-template-columns: 76px minmax(0,1fr);
       align-items: start;
-      gap: 16px;
-      padding: 16px 4px;
+      gap: 12px;
+      padding: 14px 0;
       border-bottom: 1px solid var(--line);
       margin-bottom: 28px;
     }
     .item-thumb {
-      width: 92px; height: 92px;
+      width: 76px; height: 76px;
       background: var(--warm-2);
       display: grid; place-items: center;
       color: #cfc8c2;
@@ -149,7 +152,7 @@
     .item-meta .seller-good { color: var(--navy); font-weight: 700; }
 
     /* ── 액션 ── */
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 34px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 30px; }
     .big-btn {
       height: 46px;
       border-radius: 4px;
@@ -168,6 +171,7 @@
     .big-btn.line { border: 1px solid var(--line); background: #fff; color: #626672; }
     .big-btn.line:hover { border-color: #b9b2ad; color: #41454f; }
     .item-actions {
+      grid-column: 2;
       display: grid;
       gap: 8px;
       align-self: center;
@@ -198,15 +202,6 @@
     }
     .item-action-btn.primary:hover { background: #102c50; color: #fff; }
     .item-action-btn.primary i { color: #fff; }
-
-    @media (max-width: 520px) {
-      .item-card { grid-template-columns: 92px minmax(0,1fr); }
-      .item-actions {
-        grid-column: 2;
-        justify-self: stretch;
-        margin-top: 4px;
-      }
-    }
 
     /* ── 안내 ── */
     .notes {
@@ -272,16 +267,16 @@
       </div>
     </div>
     <div class="item-actions" aria-label="입찰 물품 작업">
-      <button class="item-action-btn primary" type="button" onclick="location.href='web_auction reserve order.html'">예약 재입찰하기 <i class="fas fa-rotate-right"></i></button>
-      <button class="item-action-btn" type="button" onclick="location.href='web_auction.html'">상세보기 <i class="fas fa-magnifying-glass"></i></button>
+      <button class="item-action-btn primary" type="button" onclick="location.href='mobile_auction reserve order.html'">예약 재입찰하기 <i class="fas fa-rotate-right"></i></button>
+      <button class="item-action-btn" type="button" onclick="location.href='mobile_auction.html'">상세보기 <i class="fas fa-magnifying-glass"></i></button>
       <button class="item-action-btn" type="button" onclick="shareBidItem()">공유하기 <i class="fas fa-share-nodes"></i></button>
     </div>
   </div>
 
   <!-- 액션 -->
   <div class="actions">
-    <button class="big-btn primary" type="button" onclick="location.href='web_mypage.html'"><i class="fas fa-list-check"></i> 나의 입찰목록</button>
-    <button class="big-btn line" type="button" onclick="location.href='web_main.html'"><i class="fas fa-house"></i> 메인으로</button>
+    <button class="big-btn primary" type="button" onclick="location.href='mobile_mypage.html'"><i class="fas fa-list-check"></i> 나의 입찰목록</button>
+    <button class="big-btn line" type="button" onclick="location.href='mobile_main.html'"><i class="fas fa-house"></i> 메인으로</button>
   </div>
 
   <!-- 안내 -->
