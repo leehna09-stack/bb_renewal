@@ -44,7 +44,7 @@
       padding: 28px 0 80px;
     }
 
-    .steps { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 22px; }
+    .steps { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
     .step { display: flex; align-items: center; gap: 8px; }
     .step-num {
       width: 24px; height: 24px;
@@ -62,6 +62,11 @@
     .step.done .step-num { border-color: var(--navy); background: var(--navy); color: #fff; }
     .step.done .step-label { color: var(--navy); }
     .step-arrow { color: #d4cdc8; font-size: 11px; }
+    .progress-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0 0 28px;
+    }
 
     /* ── 완료 헤드 ── */
     .done-head { text-align: center; margin-bottom: 26px; }
@@ -226,6 +231,7 @@
     <i class="fas fa-chevron-right step-arrow"></i>
     <div class="step active"><span class="step-num">2</span><span class="step-label">입찰 완료</span></div>
   </div>
+  <div class="progress-divider" aria-hidden="true"></div>
 
   <!-- 완료 메시지 -->
   <div class="done-head">
