@@ -3,31 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BidBuy Renewal | 모바일 통합 미리보기</title>
+<title>BidBuy Renewal | 모바일 미리보기</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
   --rose:#E8385A;--rose-h:#C42F4C;--amber:#F5A623;
   --navy:#1A3C6E;--green:#3AAD4E;
-  --bg:#F5F7FA;--border:#E0E4EB;
+  --bg:#F0F5FA;--border:#E0E4EB;
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow-x:hidden}
 body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;color:var(--tp);font-size:14px;line-height:1.5;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
 
-/* ── 상단 바 ── */
-.topbar{height:56px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 16px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.05);z-index:10}
-.topbar img{width:96px;height:auto;display:block}
-.topbar-title{font-size:15px;font-weight:800;color:var(--tp)}
-.topbar-title small{font-size:12px;font-weight:500;color:var(--tm);margin-left:8px}
-.topbar-utils{margin-left:auto;display:flex;align-items:center;gap:8px}
-.now-viewing{font-size:13px;color:var(--ts);background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:8px 16px;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* ── 공지 바 (mobile_main 동일) ── */
+.app-notice-bar{background:#FFFAF8;border-bottom:1px solid #E6DDDA;overflow:hidden;height:32px;display:flex;align-items:center;flex-shrink:0}
+.app-notice-track{display:flex;align-items:center;white-space:nowrap;animation:noticeScroll 18s linear infinite}
+.app-notice-text{font-size:11px;color:#000;font-weight:500;padding:0 40px;flex-shrink:0}
+.app-notice-text b{color:var(--amber)}
+@keyframes noticeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── 앱 헤더 (mobile_main 동일) ── */
+.app-header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-shadow:0 1px 0 rgba(32,36,43,.04)}
+.app-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:10px 14px 8px}
+.app-brand-area{display:flex;align-items:center;gap:10px;min-width:0}
+.hb{width:34px;height:34px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer}
+.hb span{display:block;width:18px;height:2px;background:#242836;border-radius:999px}
+.app-logo{display:flex;align-items:center;width:76px}
+.app-logo img{display:block;width:100%;height:auto}
+.app-header-right{display:flex;gap:4px;align-items:center}
+.icon-btn{width:34px;height:34px;border-radius:9px;background:none;border:none;cursor:pointer;color:#333;font-size:16px;display:flex;align-items:center;justify-content:center;position:relative}
+/* 프리뷰 유틸 */
+.preview-utils{display:flex;align-items:center;gap:6px}
+.now-viewing{font-size:11px;color:var(--ts);background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 12px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .now-viewing b{color:var(--rose)}
-.top-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border:1.5px solid var(--border);border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;text-decoration:none}
+.top-btn{display:flex;align-items:center;gap:5px;padding:5px 10px;border:1.5px solid var(--border);border-radius:8px;background:#fff;font-size:11px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;text-decoration:none}
 .top-btn:hover{border-color:var(--navy);color:var(--navy)}
-.top-btn i{font-size:12px}
+.top-btn i{font-size:10px}
+/* 검색창 */
+.app-search{grid-column:1 / -1;height:40px;display:flex;align-items:center;gap:0;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;color:var(--tm)}
+.app-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
+.app-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 10px 0 8px;color:#333;font-size:13px;font-family:inherit}
+.app-search input::placeholder{color:#99A2B0}
+.app-search button{width:42px;height:100%;border:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.app-search button i{font-size:14px}
+/* 채널 탭 (mobile_main 동일) */
+.channel-tabs{display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid #E6DDDA;padding:0 14px;-webkit-overflow-scrolling:touch}
+.channel-tabs::-webkit-scrollbar{display:none}
+.ch-tab{padding:9px 12px 10px;font-size:11px;font-weight:700;color:#707070;white-space:nowrap;cursor:pointer;border:0;border-bottom:2px solid transparent;background:transparent;flex-shrink:0;font-family:inherit}
+.ch-tab.active{color:var(--rose);border-bottom-color:var(--rose)}
 
 /* ── 레이아웃 ── */
 .layout{flex:1;display:flex;min-height:0}
@@ -37,32 +62,63 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
 .nav::-webkit-scrollbar{width:6px}
 .nav::-webkit-scrollbar-thumb{background:#D8DEE8;border-radius:3px}
 .nav-group{padding:8px 16px 8px}
-.nav-group-title{font-size:12px;font-weight:800;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;padding:0 8px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.nav-group-title{font-size:11px;font-weight:800;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;padding:0 8px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
 .nav-group-title i{font-size:11px;color:var(--rose)}
-.nav-item{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;color:var(--ts);cursor:pointer;text-align:left;transition:all .12s;line-height:1.5}
+.nav-item{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;color:var(--ts);cursor:pointer;text-align:left;transition:all .12s;line-height:1.5}
 .nav-item:hover{background:#FFF5F7;color:var(--rose)}
 .nav-item.active{background:var(--rose);color:#fff;font-weight:700}
 .nav-item.active .nav-file{color:rgba(255,255,255,.7)}
 .nav-item i{width:16px;text-align:center;font-size:13px;flex-shrink:0}
 .nav-item-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.nav-file{display:block;font-size:11px;font-weight:400;color:var(--tm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.5}
+.nav-file{display:block;font-size:11px;font-weight:400;color:var(--tm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.4}
 
 /* 우측: 모바일 프레임 뷰어 */
-.viewer{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#E9ECF1;padding:24px;overflow-y:auto;overflow-x:hidden}
-.device{width:min(413px, 100%);height:min(852px, 100%);flex-shrink:1;background:#fff;border-radius:28px;border:10px solid #20242B;box-shadow:0 18px 48px rgba(20,24,32,.28);overflow:hidden;display:flex}
+.viewer{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#CDD1D9;padding:20px;overflow-y:auto;overflow-x:hidden}
+.device{width:min(393px,100%);height:min(852px,100%);flex-shrink:1;background:#fff;border-radius:28px;border:8px solid #1C2028;box-shadow:0 18px 48px rgba(20,24,32,.28);overflow:hidden;display:flex}
 .device iframe{flex:1;width:100%;border:none;background:#fff}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <img src="Bidbuy logo.png" alt="Bidbuy">
-  <div class="topbar-title">리뉴얼 모바일 미리보기<small>bb Renewal html / mobile</small></div>
-  <div class="topbar-utils">
-    <div class="now-viewing" id="nowViewing">현재 페이지: <b>메인</b></div>
-    <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
-    <a class="top-btn" id="openNewTab" href="mobile_main.html" target="_blank"><i class="fa-solid fa-up-right-from-square"></i> 새 탭에서 열기</a>
+<!-- 공지 바 -->
+<div class="app-notice-bar">
+  <div class="app-notice-track">
+    <span class="app-notice-text">🎉 리뉴얼 오픈! 마일리지 최대 15% 적립 + 무료보관 30~45일, 등급별 혜택까지 모두 누리세요!</span>
+    <span class="app-notice-text">🎉 리뉴얼 오픈! 마일리지 최대 15% 적립 + 무료보관 30~45일, 등급별 혜택까지 모두 누리세요!</span>
   </div>
+</div>
+
+<!-- 앱 헤더 -->
+<div class="app-header">
+  <div class="app-header-top">
+    <div class="app-brand-area">
+      <button class="hb" type="button" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <a class="app-logo" href="#" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy"></a>
+    </div>
+    <div class="app-header-right">
+      <div class="preview-utils">
+        <div class="now-viewing" id="nowViewing"><b>메인</b></div>
+        <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i></button>
+        <a class="top-btn" id="openNewTab" href="mobile_main.html" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
+      </div>
+      <div style="width:1px;height:20px;background:var(--border);margin:0 2px"></div>
+      <button class="icon-btn" aria-label="알림"><i class="far fa-bell"></i></button>
+      <button class="icon-btn" aria-label="장바구니"><i class="fas fa-shopping-cart"></i></button>
+      <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700">한</div>
+    </div>
+    <form class="app-search" role="search" onsubmit="return false">
+      <input type="text" placeholder="키워드 또는 URL을 입력하세요.">
+      <button type="submit" aria-label="검색"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  <nav class="channel-tabs">
+    <button class="ch-tab active" type="button">야후옥션</button>
+    <button class="ch-tab" type="button">메루카리</button>
+    <button class="ch-tab" type="button">라쿠텐</button>
+    <button class="ch-tab" type="button">라쿠마</button>
+    <button class="ch-tab" type="button">미국이베이</button>
+    <button class="ch-tab" type="button">영국이베이</button>
+  </nav>
 </div>
 
 <div class="layout">
@@ -124,41 +180,37 @@ var openNewTab = document.getElementById('openNewTab');
 var items = document.querySelectorAll('.nav-item');
 
 function setActive(page, label) {
-  items.forEach(function (it) {
+  items.forEach(function(it) {
     it.classList.toggle('active', it.getAttribute('data-page') === page);
   });
-  nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
+  nowViewing.innerHTML = '<b>' + label + '</b>';
   openNewTab.href = page;
 }
 
-items.forEach(function (it) {
-  it.addEventListener('click', function () {
+items.forEach(function(it) {
+  it.addEventListener('click', function() {
     var page = it.getAttribute('data-page');
     frame.src = encodeURI(page);
     setActive(page, it.querySelector('.nav-item-label').childNodes[0].textContent);
   });
 });
 
-// iframe 내부 링크 이동 시 목록 active 동기화
-frame.addEventListener('load', function () {
+frame.addEventListener('load', function() {
   try {
     var file = decodeURIComponent(frame.contentWindow.location.pathname.split('/').pop());
     var match = null;
-    items.forEach(function (it) { if (it.getAttribute('data-page') === file) match = it; });
+    items.forEach(function(it) { if (it.getAttribute('data-page') === file) match = it; });
     if (match) {
       setActive(file, match.querySelector('.nav-item-label').childNodes[0].textContent);
     } else if (file) {
-      nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
+      nowViewing.innerHTML = '<b>' + file + '</b>';
       openNewTab.href = file;
     }
-  } catch (e) { /* 다른 출처(file://)에서는 동기화 생략 */ }
+  } catch(e) {}
 });
 
-function reloadFrame() {
-  frame.src = frame.src;
-}
+function reloadFrame() { frame.src = frame.src; }
 
-// 초기 active 표시
 setActive('mobile_main.html', '메인');
 </script>
 </body>
