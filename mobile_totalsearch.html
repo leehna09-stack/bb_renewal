@@ -247,7 +247,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>야후옥션</span>
       <span class="thumb-label auction">경매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">버즈 라이트이어 토이스토리 피규어 한정판 미개봉</p>
@@ -262,7 +262,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>메루카리</span>
       <span class="thumb-label buyout">즉시구매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">버즈 라이트이어 인터랙티브 로봇 토킹 피규어</p>
@@ -277,7 +277,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag us"></span>이베이US</span>
       <span class="thumb-label auction">경매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">Buzz Lightyear Signature Collection Talking Figure</p>
@@ -292,7 +292,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>라쿠텐</span>
       <span class="thumb-label buyout">즉시구매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">디즈니 픽사 버즈 라이트이어 LED 룸라이트</p>
@@ -307,7 +307,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>야후옥션</span>
       <span class="thumb-label auction">경매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">토이스토리 버즈 우디 제시 풀세트 빈티지 1995</p>
@@ -322,7 +322,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag uk"></span>이베이UK</span>
       <span class="thumb-label buyout">즉시구매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">Buzz Lightyear Vintage Thinkway Toys 1996 Boxed</p>
@@ -337,7 +337,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>라쿠마</span>
       <span class="thumb-label buyout">즉시구매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">버즈 라이트이어 짐니 키링 가챠 컴플리트</p>
@@ -352,7 +352,7 @@ button,select{cursor:pointer}
       <div class="card-thumb-inner"><i class="fa-regular fa-image"></i></div>
       <span class="card-platform"><span class="flag jp"></span>메루카리</span>
       <span class="thumb-label buyout">즉시구매</span>
-      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn-wish" type="button" aria-label="관심상품" onclick="event.stopPropagation();toggleWish(this)"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="card-info">
       <p class="card-name">버즈 라이트이어 디즈니스토어 한정 봉제인형</p>
@@ -489,6 +489,13 @@ button,select{cursor:pointer}
 </div>
 
 <script>
+/* ── 좋아요 토글 ── */
+function toggleWish(btn) {
+  const on = btn.classList.toggle('wished');
+  btn.querySelector('i').className = on ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+  btn.style.color = on ? 'var(--rose)' : '';
+}
+
 /* ── 검색 채널 탭 ── */
 function selectChannel(btn){
   document.querySelectorAll('.ch-tab').forEach(t=>t.classList.remove('active'));

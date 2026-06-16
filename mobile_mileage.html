@@ -1468,8 +1468,7 @@
       }
     }
     .drawer-scrim,
-    .drawer-head,
-    .mobile-bottom-nav {
+    .drawer-head {
       display: none;
     }
 
@@ -2166,47 +2165,6 @@
       border-top: 1px solid var(--line-soft);
       text-align: right;
       font-size: 16px;
-    }
-
-    .mobile-bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 0;
-      z-index: 80;
-      width: min(100%, 430px);
-      min-height: 68px;
-      padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 2px;
-      transform: translateX(-50%);
-      border-top: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .mobile-bottom-nav a {
-      min-width: 0;
-      min-height: 54px;
-      border-radius: 10px;
-      color: var(--faint);
-      text-decoration: none;
-      display: grid;
-      place-items: center;
-      align-content: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .mobile-bottom-nav svg {
-      width: 20px;
-      height: 20px;
-      stroke-width: 2;
-    }
-
-    .mobile-bottom-nav a.active {
-      color: var(--brand);
-      background: var(--brand-light);
     }
 
     .topbar {
