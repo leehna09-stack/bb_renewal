@@ -124,6 +124,8 @@
     }
     .store-tab.active { border-color: var(--navy); color: var(--navy); background: #f0f4fa; }
     .store-tab:hover:not(.active) { border-color: #bbb; }
+    .claim-content { display: none; }
+    .claim-content.active { display: block; }
 
     /* ── 콘텐츠 탭 패널 ── */
     .cs-panel { display: none; }
@@ -309,33 +311,103 @@
     ────────────────────────────────── -->
     <div class="cs-panel active" id="panel-claim">
       <div class="store-tabs" role="tablist">
-        <button class="store-tab active" type="button" onclick="switchStore(this,'claim')">야후/이베이 경매</button>
-        <button class="store-tab" type="button" onclick="switchStore(this,'claim')">구매대행</button>
+        <button class="store-tab active" type="button" onclick="switchClaim(this,'yahoo')">일본 야후 옥션</button>
+        <button class="store-tab" type="button" onclick="switchClaim(this,'mercari')">일본 메루카리</button>
+        <button class="store-tab" type="button" onclick="switchClaim(this,'ebay')">미국/영국 이베이</button>
+        <button class="store-tab" type="button" onclick="switchClaim(this,'purchase')">구매대행</button>
       </div>
 
-      <p class="cs-section-title">클레임 기한</p>
-      <div class="policy-box">
-        <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
-        <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
-
-        <p>※ 기본적으로 클레임 가능 여부는 <span class="em">야후/이베이 클레임가능기간내</span>입니다.<br>
-        <span class="note">( 출품자에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
-
-        <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
-        야후/이베이 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
-
-        <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
-        주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+      <!-- 일본 야후 옥션 -->
+      <div class="claim-content active" id="claim-yahoo">
+        <p class="cs-section-title">클레임 기한</p>
+        <div class="policy-box">
+          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
+          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
+          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">야후 옥션 클레임가능기간내</span>입니다.<br>
+          <span class="note">( 출품자에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
+          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
+          야후 옥션 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
+          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
+          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+        </div>
+        <table class="policy-table">
+          <tbody>
+            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
+            <tr><th>야후 옥션 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (출품자에 따라 상이)</td></tr>
+            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
+            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
+          </tbody>
+        </table>
       </div>
 
-      <table class="policy-table">
-        <tbody>
-          <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
-          <tr><th>야후/이베이 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (출품자에 따라 상이)</td></tr>
-          <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
-          <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
-        </tbody>
-      </table>
+      <!-- 일본 메루카리 -->
+      <div class="claim-content" id="claim-mercari">
+        <p class="cs-section-title">클레임 기한</p>
+        <div class="policy-box">
+          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
+          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
+          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">메루카리 클레임가능기간내</span>입니다.<br>
+          <span class="note">( 수취 확인 전까지 또는 현지 창고 도착 후 3일 이내입니다. )</span></p>
+          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
+          메루카리 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
+          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
+          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+        </div>
+        <table class="policy-table">
+          <tbody>
+            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
+            <tr><th>메루카리 기준</th><td>수취 확인 전 또는 도착 후 <span class="em">3일 이내</span></td></tr>
+            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
+            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 미국/영국 이베이 -->
+      <div class="claim-content" id="claim-ebay">
+        <p class="cs-section-title">클레임 기한</p>
+        <div class="policy-box">
+          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
+          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
+          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">이베이 클레임가능기간내</span>입니다.<br>
+          <span class="note">( 출품자에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
+          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
+          이베이 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
+          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
+          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+        </div>
+        <table class="policy-table">
+          <tbody>
+            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
+            <tr><th>이베이 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (출품자에 따라 상이)</td></tr>
+            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
+            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 구매대행 -->
+      <div class="claim-content" id="claim-purchase">
+        <p class="cs-section-title">클레임 기한</p>
+        <div class="policy-box">
+          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
+          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
+          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">판매처 클레임가능기간내</span>입니다.<br>
+          <span class="note">( 판매처에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
+          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
+          판매처 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
+          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
+          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+        </div>
+        <table class="policy-table">
+          <tbody>
+            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
+            <tr><th>판매처 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (판매처에 따라 상이)</td></tr>
+            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
+            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </main>
@@ -353,6 +425,14 @@ function switchStore(btn, scope) {
   const parent = btn.closest('.store-tabs');
   parent.querySelectorAll('.store-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
+}
+
+function switchClaim(btn, id) {
+  const parent = btn.closest('.store-tabs');
+  parent.querySelectorAll('.store-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.claim-content').forEach(p => p.classList.remove('active'));
+  document.getElementById('claim-' + id).classList.add('active');
 }
 </script>
 </body>

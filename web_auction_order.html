@@ -207,6 +207,26 @@
     .big-btn.primary { border: 1px solid var(--rose); background: var(--rose); color: #fff; }
     .big-btn.primary:hover { background: #d62f54; }
     .big-btn.primary:disabled { border-color: #e8c9d1; background: #e8c9d1; cursor: not-allowed; }
+
+    .confirm-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; background: rgba(17, 24, 39, .45); padding: 20px; }
+    .confirm-modal.open { display: flex; }
+    .confirm-modal-card { width: min(420px, 100%); background: #fff; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.18); overflow: hidden; }
+    .confirm-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+    .confirm-modal-head strong { color: #111; font-size: 15px; font-weight: 900; }
+    .confirm-modal-close { border: 0; background: none; color: var(--faint); font-size: 20px; line-height: 1; }
+    .confirm-modal-body { padding: 20px; }
+    .confirm-amount-box { background: var(--warm); border: 1px solid var(--line-soft); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .confirm-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
+    .confirm-row:first-child { padding-top: 0; }
+    .confirm-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .confirm-row span { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .confirm-row strong { color: #151922; font-family: Roboto, sans-serif; font-size: 16px; font-weight: 900; }
+    .confirm-row strong.amount { color: var(--rose); font-size: 20px; }
+    .confirm-note { margin: 0 0 18px; color: var(--rose); font-size: 12px; font-weight: 800; line-height: 1.7; }
+    .confirm-actions { display: flex; justify-content: flex-end; gap: 8px; }
+    .confirm-btn { height: 40px; padding: 0 18px; border-radius: 4px; font-size: 13px; font-weight: 800; }
+    .confirm-btn.line { border: 1px solid var(--line); background: #fff; color: #626672; }
+    .confirm-btn.primary { border: 1px solid var(--rose); background: var(--rose); color: #fff; }
   </style>
 </head>
 <body>
@@ -251,10 +271,13 @@
       <p>1. <span class="danger">경매 입찰이 반영되면 입찰취소가 불가능합니다.</span>
       입찰 전 금액과 수량을 반드시 확인해 주세요.</p>
       <p>2. 경매 낙찰 이후에는 경매대행계약의 청약철회 등을 할 수 없습니다.
-      그럼에도 불구하고, 미결제 사유로 인한 낙찰취소를 할 경우 경매 보증금이 환수됩니다.
-      <span class="danger">(세번의 낙찰취소를 하시면 비드바이 사이트 이용이 영구적으로 정지됩니다.)</span>
-      물품을 결제하신 이후에 청약철회를 원하실 경우에도 원칙적으로 청약철회 등을 할 수 없습니다.</p>
-    </div>
+      <br>그럼에도 불구하고, 부득이한 사유로 낙찰취소를 할 경우 경매 보증금이 환수됩니다.
+      <span class="danger"><br>(세번의 낙찰취소를 하시면 비드바이 사이트 이용이 영구적으로 정지됩니다.)</span>
+      <br>물품을 결제하신 이후에 청약철회를 원하실 경우에도 원칙적으로 청약철회 등을 할 수 없습니다.</p>
+      
+      3.상품제목 및 설명 란에 <span class="danger">정크(JUNK)</span>로 표기되어 있는 경우 <span class="danger">파손보상에서 제외됩니다.</span>
+      <br><span class="danger">제품 상태 및 진가품 여부</span>에 대해 비드바이는 절대 책임지지 않습니다.<p></p>
+      <p>4. 음향기기(턴테이블, 앰프, 스피커, 카세트테이프 등) 및 계측기 등 기계류의 작동 불량은 클레임 대상에서 제외됩니다.</p>
     <label class="agree-row">
       <input type="checkbox" id="agreeChk" onchange="updateState()">
       위 규정에 동의하며 입찰을 신청합니다.
@@ -264,6 +287,32 @@
   <div class="actions">
     <button class="big-btn line" type="button" onclick="history.back()">취소</button>
     <button class="big-btn primary" type="button" id="submitBtn" disabled onclick="submitBid()"><i class="fas fa-gavel"></i> 입찰하기</button>
+  </div>
+</div>
+
+<div class="confirm-modal" id="finalBidModal" onclick="closeFinalBidModal(event)">
+  <div class="confirm-modal-card" onclick="event.stopPropagation()">
+    <div class="confirm-modal-head">
+      <strong>입찰 내용 최종 확인</strong>
+      <button class="confirm-modal-close" type="button" onclick="closeFinalBidModal()">&times;</button>
+    </div>
+    <div class="confirm-modal-body">
+      <div class="confirm-amount-box">
+        <div class="confirm-row">
+          <span>입찰 금액</span>
+          <strong class="amount" id="modalBidAmount">¥ 1,300</strong>
+        </div>
+        <div class="confirm-row">
+          <span>수량</span>
+          <strong id="modalBidQty">1개</strong>
+        </div>
+      </div>
+      <p class="confirm-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다. 금액과 수량을 다시 확인하신 후 진행해 주세요.</p>
+      <div class="confirm-actions">
+        <button class="confirm-btn line" type="button" onclick="closeFinalBidModal()">취소</button>
+        <button class="confirm-btn primary" type="button" onclick="confirmFinalBid()">확인</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -282,7 +331,18 @@ function updateState() {
 }
 
 function submitBid() {
-  location.href = 'web_auction complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY;
+  document.getElementById('modalBidAmount').textContent = '¥ ' + CONFIRMED_BID.toLocaleString('ko-KR');
+  document.getElementById('modalBidQty').textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  document.getElementById('finalBidModal').classList.add('open');
+}
+
+function closeFinalBidModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('finalBidModal').classList.remove('open');
+}
+
+function confirmFinalBid() {
+  location.href = 'web_auction_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY;
 }
 
 updateState();
