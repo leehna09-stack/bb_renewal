@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -13,17 +13,18 @@
   --bg:#F5F7FA;--white:#fff;--border:#E0E4EB;
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
   --alert:#FFF8E6;
+  --notice-h:38px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;}
+body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;padding-top:calc(var(--notice-h) + 64px)}
 a{text-decoration:none;color:inherit}
 
 /* ?�═ 공�?�??�═ */
-.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500}
+.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;right:0;z-index:310}
 .notice-bar b{color:#E8385A}
 
 /* ?먥븧 ?ㅻ뜑 ?먥븧 */
-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+header{background:#fff;border-bottom:1px solid var(--border);position:fixed;top:var(--notice-h);left:0;right:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .hdr{max-width:1440px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:16px}
 .logo{display:flex;align-items:center;flex-shrink:0;flex:1}
 .logo img{display:block;width:100px;height:auto}
