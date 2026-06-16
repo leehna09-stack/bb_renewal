@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -114,7 +114,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .title-action-btn i{font-size:12px}
 
 /* ── 메인 상품 레이아웃 (좌4 : 우6) ── */
-.item-wrapper{max-width:1440px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:4fr 6fr;gap:12px 32px;align-items:stretch}
+.item-wrapper{max-width:1440px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:4fr 6fr;gap:12px 16px;align-items:stretch}
 .item-wrapper>#bidStatusCard{grid-column:1/-1;margin-bottom:0}
 
 /* 좌측: 이미지 갤러리 */
@@ -426,8 +426,14 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bp-info-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
 .bp-info-cell{padding:8px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
 .bp-info-cell--right{border-left:1px solid var(--border)}
-.bp-info-label{font-size:11px;color:var(--tm);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.bp-info-label{font-size:13px;color:var(--tm);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
 .bp-info-val{font-size:15px;font-weight:700;color:var(--tp)}
+.bp-info-cell--price{flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+.bp-info-price-main{display:flex;flex-direction:column;gap:3px;min-width:0}
+.bp-info-price-line{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.bp-info-subtext{font-size:15px;font-weight:400;color:var(--tp)}
+.bp-info-time-row{display:grid;grid-template-columns:6fr 4fr;gap:16px;align-items:center}
+.bp-info-time-block{display:flex;flex-direction:column;gap:3px;min-width:0}
 
 /* ③ 가격 섹션 */
 .bp-price-section{padding:8px 20px;border-bottom:1px solid var(--border)}
@@ -532,17 +538,17 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 /* ── 상단/하단 구분 ── */
 
 /* ── 이미지 하단 좌우 정보 패널 ── */
-.info-panels{max-width:1440px;margin:0 auto;padding:20px 24px 0;display:grid;grid-template-columns:1fr;gap:16px;align-items:stretch}
+.info-panels{max-width:1440px;margin:0 auto;padding:10px 14px 0;display:grid;grid-template-columns:1fr;gap:10px;align-items:stretch}
 .info-panel-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .info-panel-card .info-panel-body{flex:1;display:flex;flex-direction:column}
 .info-panel-card .cost-rows{flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .info-panel-card .cost-row{padding:10px 0}
 .info-panel-card .cost-total-row{margin-top:auto}
-.info-panel-header{padding:13px 20px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:8px}
+.info-panel-header{padding:13px 10px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:8px}
 .seller-other-panel .info-panel-header{justify-content:space-between}
 .seller-other-panel .info-panel-header>span:first-child{display:flex;align-items:center;gap:8px}
 .info-panel-header i{color:var(--ts);font-size:12px}
-.info-panel-body{padding:4px 20px 16px}
+.info-panel-body{padding:4px 10px 10px}
 
 /* ── 출품자 다른 상품 (상단 우측 패널) ── */
 .seller-other{margin-top:16px}
@@ -848,55 +854,54 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
       <!-- 좌: 경매 정보 + 입찰 폼 -->
       <div class="order-form-area">
-          <div class="bp-header">
-            <div class="bp-id-wrap">
-              <span class="bp-id-label">경매상품 ID</span>
-              <span class="bp-id-val roboto">j1232333613</span>
+          <div class="bp-info-grid">
+            <div class="bp-info-cell" style="grid-column:1/-1">
+              <div class="bp-info-time-row">
+                <div class="bp-info-time-block">
+                  <span class="bp-info-label">남은시간</span>
+                  <span class="bp-info-val roboto" style="color:var(--rose);font-size:20px;font-weight:700">11시간 57분 45초</span>
+                </div>
+                <div class="bp-info-time-block">
+                  <span class="bp-info-label">종료시간</span>
+                  <span class="bp-info-val roboto" style="font-size:13px;font-weight:400;color:var(--ts)">2026-06-10 22:34</span>
+                </div>
+              </div>
             </div>
-            <div class="bp-utils">
+            <div class="bp-info-cell bp-info-cell--price" style="grid-column:1/-1">
+              
+              <div class="bp-info-price-main">
+                <span class="bp-info-label">현재가격</span>
+                <div class="bp-info-price-line">
+                  <span class="bp-info-val roboto" style="font-size:20px;font-weight:700">13,800엔</span>
+                  <span class="bp-info-subtext" style="font-size:13px;line-height:1.2">(소비세 포함 15,180엔)</span>
+                </div>
+              </div>
               <button class="btn-wish-reg" id="wishRegBtn" onclick="toggleWishReg(this)">
                 <i class="fa-regular fa-heart"></i> 관심 상품
               </button>
             </div>
-          </div>
-
-          <div class="bp-info-grid">
-            <div class="bp-info-cell">
-              <span class="bp-info-label">입찰건수</span>
-              <button class="bp-info-val roboto bid-count-link" type="button" onclick="openBidHistoryModal()">1 bid</button>
-            </div>
-            <div class="bp-info-cell bp-info-cell--right">
-              <span class="bp-info-label">남은시간</span>
-              <span class="bp-info-val roboto" style="color:var(--rose);font-size:18px;font-weight:700">13:00:00</span>
-            </div>
-            <div class="bp-info-cell" style="border-bottom:none">
-              <span class="bp-info-label">시작시간</span>
-              <span class="bp-info-val roboto" style="font-size:13px;font-weight:400;color:var(--ts)">2026-06-07 22:34</span>
-            </div>
-            <div class="bp-info-cell bp-info-cell--right" style="border-bottom:none">
-              <span class="bp-info-label">종료시간</span>
-              <span class="bp-info-val roboto" style="font-size:13px;font-weight:400;color:var(--ts)">2026-06-10 22:34</span>
+            <div class="bp-info-cell" style="grid-column:1/-1">
+              <span class="bp-info-label">즉결가격</span>
+              <div class="bp-info-price-line">
+                <span class="bp-info-val roboto" style="font-size:20px;font-weight:700">19,800엔</span>
+                <span class="bp-info-subtext" style="font-size:13px;line-height:1.2">(소비세 포함 21,780엔)</span>
+              </div>
             </div>
           </div>
 
           <div class="bp-price-section">
-            <div class="bp-price-row bp-price-row--main">
-              <span class="bp-price-label">현재가격</span>
-              <div class="bp-price-main-wrap">
-                <span class="bp-current-price roboto">13,800<span class="bp-current-unit">엔</span></span>
-                <div class="bp-price-sub">
-                  <span class="bp-tax-label">(소비세 포함가격</span>
-                  <span class="bp-tax-val roboto">15,180엔)</span>
-                </div>
-                <div class="bp-price-badges">
-                  <span class="bp-badge fee-tooltip" data-tooltip="종료시간보다 앞당겨 경매를 끝내고, 현재 최고 입찰자를 낙찰자로 즉시 확정하는 기능" aria-label="종료시간보다 앞당겨 경매를 끝내고, 현재 최고 입찰자를 낙찰자로 즉시 확정하는 기능">조기종료</span>
-                </div>
+            <div class="bp-price-row" style="align-items:center">
+              <span class="bp-price-label">경매상품 ID</span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="roboto" style="font-size:13px;font-weight:700;color:var(--navy)">j1232333613</span>
+                <span class="bp-badge fee-tooltip" data-tooltip="출품자가 종료시간보다 앞당겨 경매를 끝내고 낙찰자를 즉시 확정할수 있는 경매건입니다.">조기종료</span>
               </div>
             </div>
-            <div class="bp-price-row">
-              <span class="bp-price-label">즉결가격</span>
-              <span class="bp-price-val roboto" style="font-weight:700;color:var(--tp)">19,800엔</span>
-            </div>
+            <!-- 즉결가격 행 다음에 추가 -->
+<div class="bp-price-row">
+  <span class="bp-price-label">입찰건수</span>
+  <button class="bp-price-val roboto bid-count-link" type="button" onclick="openBidHistoryModal()">1 bid</button>
+</div>
             <div class="bp-price-row bp-price-row--shipping">
               <span class="bp-price-label">현지운송료</span>
               <div class="bp-shipping-content">
