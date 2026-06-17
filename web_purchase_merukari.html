@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -644,9 +644,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     <div class="order-panel">
       <div class="order-form-area">
         <div class="order-topbar">
-          <div style="display:flex;align-items:center;gap:14px">
-            <span class="product-id-pill">상품 ID</span>
-            <span class="product-id-text">sanrio-n-2605-019488</span>
+          <div class="bp-info-price-main">
+            <span class="bp-info-label">판매가격</span>
+            <div class="bp-info-price-line">
+              <span class="bp-info-val roboto" style="font-size:20px;font-weight:700">5,500엔</span>
+              <span class="bp-info-subtext" style="font-size:13px;line-height:1.2">≈ ₩51,150 (환율 9.3원/엔)</span>
+            </div>
           </div>
           <button class="btn-wish-reg" id="wishRegBtn" onclick="toggleWishReg(this)">
             <i class="fa-regular fa-heart"></i> 관심 상품
@@ -657,7 +660,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           <div class="order-info-col">
             <div class="local-delivery-box">
               <table class="local-delivery-table">
-                <tr><th>판매가격</th><td><span class="roboto" style="font-size:24px;font-weight:700;color:var(--navy);line-height:1.2">1,496<span style="font-size:14px;margin-left:2px">円</span></span></td></tr>
                 <tr><th>현지운송료</th><td><span class="roboto">660円</span></td></tr>
                 <tr><th>카테고리</th><td>핸드메이드·수예 &gt; 가방 &gt; 토트 백</td></tr>
                 <tr><th>상품 상태</th><td>신품, 미사용</td></tr>
@@ -711,13 +713,13 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           </div>
           <div class="cost-rows" style="flex:1">
             <div class="cost-subtitle">1차 결제 비용</div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 판매가격</span><span class="cost-val roboto" id="pPrimaryVal">(¥5,000) ₩46,500</span></div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 대행수수료</span><span class="cost-val roboto" id="pServiceFeeVal">(¥500) ₩4,650</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 판매가격</span><span class="cost-val roboto" id="pPrimaryVal">(5,000엔) ₩46,500</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 대행수수료</span><span class="cost-val roboto" id="pServiceFeeVal">(500엔) ₩4,650</span></div>
             <div class="cost-subtitle">2차 결제 비용</div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지운송료</span><span class="cost-val roboto" id="pLocalShippingVal">(¥660) ₩6,138</span></div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지세금</span><span class="cost-val roboto" id="pLocalTaxVal">(¥0) ₩0</span></div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 국제운송료</span><span class="cost-val roboto" id="pIntlShippingVal">(¥2,400) ₩22,320</span></div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 기타비용</span><span class="cost-val roboto" id="pOtherFeeVal">(¥300) ₩2,790</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지운송료</span><span class="cost-val roboto" id="pLocalShippingVal">(660엔) ₩6,138</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지세금</span><span class="cost-val roboto" id="pLocalTaxVal">(0엔) ₩0</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 국제운송료</span><span class="cost-val roboto" id="pIntlShippingVal">(2,400엔) ₩22,320</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 기타비용</span><span class="cost-val roboto" id="pOtherFeeVal">(300엔) ₩2,790</span></div>
           </div>
           <div style="margin-top:auto">
             <p style="font-size:11px;color:var(--tm);line-height:1.5;margin:0 0 8px;border-top:1px dashed var(--border);padding-top:8px;width:100%"><i class="fa-solid fa-circle-info" style="color:var(--ts);margin-right:3px"></i>예상 비용이며 실제 무게·운임에 따라 변동될 수 있습니다.</p>
@@ -743,12 +745,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     </div>
     <div class="seller-other-panel-body">
       <div class="seller-other-grid" style="grid-template-columns:repeat(6,1fr);gap:12px">
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">ENHYPEN 정규 앨범 미개봉</div><div class="so-price roboto">¥3,000</div><div class="so-price-krw">약 27,900원</div></div></div>
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">세븐틴 FML 앨범 세트</div><div class="so-price roboto">¥4,200</div><div class="so-price-krw">약 39,060원</div></div></div>
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">stray kids 앨범 한정판</div><div class="so-price roboto">¥6,000</div><div class="so-price-krw">약 55,800원</div></div></div>
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">IVE 포토북 신품</div><div class="so-price roboto">¥2,500</div><div class="so-price-krw">약 23,250원</div></div></div>
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">TXT weverse album</div><div class="so-price roboto">¥4,500</div><div class="so-price-krw">약 41,850원</div></div></div>
-        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">NewJeans 앨범 미개봉</div><div class="so-price roboto">¥3,800</div><div class="so-price-krw">약 35,340원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">ENHYPEN 정규 앨범 미개봉</div><div class="so-price roboto">3,000엔</div><div class="so-price-krw">약 27,900원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">세븐틴 FML 앨범 세트</div><div class="so-price roboto">4,200엔</div><div class="so-price-krw">약 39,060원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">stray kids 앨범 한정판</div><div class="so-price roboto">6,000엔</div><div class="so-price-krw">약 55,800원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">IVE 포토북 신품</div><div class="so-price roboto">2,500엔</div><div class="so-price-krw">약 23,250원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">TXT weverse album</div><div class="so-price roboto">4,500엔</div><div class="so-price-krw">약 41,850원</div></div></div>
+        <div class="so-card"><div class="so-thumb"><div class="so-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="so-info"><div class="so-name">NewJeans 앨범 미개봉</div><div class="so-price roboto">3,800엔</div><div class="so-price-krw">약 35,340원</div></div></div>
       </div>
     </div>
   </div>
@@ -868,12 +870,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <!-- 관련 상품 탭 -->
       <div class="tab-content" id="tab-review">
         <div class="related-grid" style="grid-template-columns:repeat(6,1fr);gap:12px">
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 포토카드 세트</div><div class="related-price roboto">¥1,500</div><div class="related-price-krw">약 13,950원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 7주년 공식 굿즈</div><div class="related-price roboto">¥3,200</div><div class="related-price-krw">약 29,760원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">TXT weverse album</div><div class="related-price roboto">¥4,500</div><div class="related-price-krw">약 41,850원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">IVE 포토북 신품</div><div class="related-price roboto">¥2,500</div><div class="related-price-krw">약 23,250원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">stray kids 한정판</div><div class="related-price roboto">¥6,000</div><div class="related-price-krw">약 55,800원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">세븐틴 FML 앨범</div><div class="related-price roboto">¥4,200</div><div class="related-price-krw">약 39,060원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 포토카드 세트</div><div class="related-price roboto">1,500엔</div><div class="related-price-krw">약 13,950원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 7주년 공식 굿즈</div><div class="related-price roboto">3,200엔</div><div class="related-price-krw">약 29,760원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">TXT weverse album</div><div class="related-price roboto">4,500엔</div><div class="related-price-krw">약 41,850원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">IVE 포토북 신품</div><div class="related-price roboto">2,500엔</div><div class="related-price-krw">약 23,250원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">stray kids 한정판</div><div class="related-price roboto">6,000엔</div><div class="related-price-krw">약 55,800원</div></div></div>
+          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">세븐틴 FML 앨범</div><div class="related-price roboto">4,200엔</div><div class="related-price-krw">약 39,060원</div></div></div>
         </div>
       </div>
     </div>
@@ -890,7 +892,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">BTS 공식 앨범 Proof Standard edition</div>
-          <div class="product-price roboto">¥2,800</div>
+          <div class="product-price roboto">2,800엔</div>
           <span class="product-price-krw">약 26,040원</span>
           <div><span class="product-sold">판매완료</span></div>
         </div>
@@ -899,7 +901,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">BTS RM 솔로 앨범 Indigo</div>
-          <div class="product-price roboto">¥1,699</div>
+          <div class="product-price roboto">1,699엔</div>
           <span class="product-price-krw">약 15,800원</span>
         </div>
       </div>
@@ -907,7 +909,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">BTS JUNGKOOK 솔로앨범 Golden</div>
-          <div class="product-price roboto">¥5,844</div>
+          <div class="product-price roboto">5,844엔</div>
           <span class="product-price-krw">약 54,349원</span>
         </div>
       </div>
@@ -915,7 +917,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">BTS 포토카드 전체 세트 39종</div>
-          <div class="product-price roboto">¥1,500</div>
+          <div class="product-price roboto">1,500엔</div>
           <span class="product-price-krw">약 13,950원</span>
         </div>
       </div>
@@ -923,7 +925,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">TXT 7th YEAR 앨범 weverse 버전</div>
-          <div class="product-price roboto">¥3,099</div>
+          <div class="product-price roboto">3,099엔</div>
           <span class="product-price-krw">약 28,820원</span>
         </div>
       </div>
@@ -931,7 +933,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
         <div class="product-info">
           <div class="product-name">뉴진스 BLACKPINK 앨범 랜덤 포카</div>
-          <div class="product-price roboto">¥4,100</div>
+          <div class="product-price roboto">4,100엔</div>
           <span class="product-price-krw">약 38,130원</span>
         </div>
       </div>
@@ -992,7 +994,7 @@ const P_SHIPPING_TABLE = {
   air: { '0.5': 1800, '1': 2600, '2': 3900 }
 };
 
-function pFormatPair(yen){ return `(¥${yen.toLocaleString('ko-KR')}) ₩${Math.round(yen*P_RATE).toLocaleString('ko-KR')}`; }
+function pFormatPair(yen){ return `(${yen.toLocaleString('ko-KR')}엔) ₩${Math.round(yen*P_RATE).toLocaleString('ko-KR')}`; }
 
 function updatePurchaseCosts(){
   const method = document.getElementById('purchaseShippingMethod')?.value || '';

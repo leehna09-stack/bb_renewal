@@ -94,36 +94,59 @@
     /* ── 대분류 탭 ── */
     .cs-tabs {
       display: flex;
-      gap: 0;
+      gap: 34px;
       border-bottom: 1px solid var(--line);
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
     .cs-tab {
-      padding: 10px 22px;
-      font-size: 15px; font-weight: 700;
-      color: var(--muted);
+      position: relative;
+      min-height: 56px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      font-size: 17px; font-weight: 900;
+      color: #111;
       border: none; background: none;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -1px;
       white-space: nowrap;
     }
-    .cs-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
-    .cs-tab:hover:not(.active) { color: var(--text); }
+    .cs-tab::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 10px;
+      height: 3px;
+      background: transparent;
+    }
+    .cs-tab.active { color: #111; }
+    .cs-tab.active::after { background: var(--rose); }
+    .cs-tab:hover:not(.active) { color: var(--rose); }
 
     /* ── 소분류 탭 (스토어) ── */
     .store-tabs {
       display: flex;
-      gap: 6px;
-      margin-bottom: 24px;
+      align-items: center;
+      gap: 64px;
+      min-height: 64px;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 34px;
     }
     .store-tab {
-      height: 32px; padding: 0 16px;
-      border: 1px solid var(--line); border-radius: 4px;
-      background: #fff; color: var(--muted);
-      font-size: 12px; font-weight: 700;
+      position: relative;
+      height: auto; padding: 0 0 8px;
+      border: 0; border-radius: 0;
+      background: none; color: #111;
+      font-size: 15px; font-weight: 500;
     }
-    .store-tab.active { border-color: var(--navy); color: var(--navy); background: #f0f4fa; }
-    .store-tab:hover:not(.active) { border-color: #bbb; }
+    .store-tab::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 2px;
+      background: transparent;
+    }
+    .store-tab.active { color: #111; background: none; }
+    .store-tab.active::after { background:var(--rose); }
+    .store-tab:hover:not(.active) { color:var(--rose); }
     .claim-content { display: none; }
     .claim-content.active { display: block; }
 
@@ -170,6 +193,21 @@
       color: #2b2f37; width: 160px;
     }
     .policy-table td { color: var(--text); }
+    .content-section { margin-bottom: 44px; scroll-margin-top: 18px; }
+    .content-section:last-child { margin-bottom: 0; }
+    .policy-table.center th,
+    .policy-table.center td { text-align: center; vertical-align: middle; }
+    .policy-table.center td.text-left { text-align: left; }
+    .policy-table .col-narrow { width: 150px; }
+    .policy-table .col-wide { width: auto; }
+    .info-note {
+      display: flex; align-items: flex-start; gap: 8px;
+      margin: 14px 0 0; padding: 12px 14px;
+      border: 1px solid var(--line); background: #fafafa;
+      color: var(--text); font-size: 13px; line-height: 1.65;
+    }
+    .info-note i { color: #111; margin-top: 3px; }
+    .plain-list { margin: 0; padding-left: 0; list-style: none; line-height: 1.85; }
     .tag {
       display: inline-block; padding: 1px 7px;
       border-radius: 3px; font-size: 11px; font-weight: 800;
@@ -240,37 +278,74 @@
 
     <!-- 대분류 탭 -->
     <div class="cs-tabs" role="tablist">
-      <button class="cs-tab" type="button" onclick="switchTab(this,'cancel')">취 소</button>
+      <button class="cs-tab active" type="button" onclick="switchTab(this,'cancel')">취 소</button>
       <button class="cs-tab" type="button" onclick="switchTab(this,'return')">반품 · 환불 · 교환</button>
-      <button class="cs-tab active" type="button" onclick="switchTab(this,'claim')">클레임 기한</button>
+      <button class="cs-tab" type="button" onclick="switchTab(this,'claim')">클레임 기한</button>
     </div>
 
     <!-- ──────────────────────────────────
          취소 패널
     ────────────────────────────────── -->
-    <div class="cs-panel" id="panel-cancel">
+    <div class="cs-panel active" id="panel-cancel">
       <!-- 소분류 탭 -->
       <div class="store-tabs" role="tablist">
-        <button class="store-tab active" type="button" onclick="switchStore(this,'cancel')">야후/이베이 경매</button>
-        <button class="store-tab" type="button" onclick="switchStore(this,'cancel')">구매대행</button>
+        <button class="store-tab active" type="button" onclick="switchStore(this,'cancel','cancel-auction')">해외 경매 취소</button>
+        <button class="store-tab" type="button" onclick="switchStore(this,'cancel','cancel-purchase')">해외 구매 취소</button>
       </div>
 
-      <p class="cs-section-title">취소 안내</p>
-      <div class="policy-box">
-        <p>경매 입찰 후 낙찰이 확정된 건은 <span class="em">원칙적으로 취소가 불가</span>합니다.<br>
-        낙찰 확정 전 단순 입찰 취소는 야후 옥션 기준에 따라 처리됩니다.</p>
-        <p>※ 결제 완료 후 취소를 원하실 경우 반드시 <span class="em">1:1 문의</span>를 통해 접수해 주세요.<br>
-        <span class="note">취소 접수 후 처리 기간은 영업일 기준 2~5일 소요됩니다.</span></p>
-      </div>
+      <section class="content-section" id="cancel-auction">
+        <p class="cs-section-title">해외 경매 취소</p>
+        <div class="policy-box">
+          <p>경매 낙찰은 반드시 물품을 구매하겠다는 출품자와의 약속이며 계약입니다.<br>
+          비드바이는 모든 회원님들이 공유하고 있는 입찰 아이디 보호를 위하여 낙찰 취소를 하실 경우 보증금 환수 등의 제도를 시행하고 있습니다.</p>
+          <p><strong>01. 입찰취소</strong><br>
+          입찰이 반영된 건은 취소가 불가능<br>
+          예약입찰일 경우 입찰 설정시간 5분 전까지 해당 경매 상세내역에서 예약입찰 취소로 직접 취소가 가능.</p>
+          <p><strong>02. 낙찰취소</strong></p>
+          <table class="policy-table center">
+            <thead>
+              <tr><th class="col-narrow">취소회수</th><th class="col-wide">낙찰 취소 패널티</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1회차</td><td class="text-left">등급 포인트 100점 차감<br>낙찰 금액에 따른 보증금 환수<br>보증금 결제 제한 10일<br>"이달의 쿠폰" 다운로드 제한 (익월 한 달간)</td></tr>
+              <tr><td>2회차</td><td class="text-left">등급포인트 200점 차감<br>낙찰 금액에 따른 보증금 환수<br>보증금 결제 제한 90일<br>"이달의 쿠폰" 다운로드 제한 (익월부터 3개월간)</td></tr>
+              <tr><td>3회차</td><td class="text-left">등급 포인트 200점 차감<br>낙찰 금액에 따른 보증금 환수<br>보증금 결제 영구 제한<br>"이달의 쿠폰" 다운로드 영구 제한</td></tr>
+            </tbody>
+          </table>
+          <p><strong>03. 낙찰금액에 따른 보증금 환수금액</strong></p>
+          <table class="policy-table center">
+            <thead>
+              <tr><th>환수보증금</th><th colspan="3">낙찰가 기준</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>30,000원</td><td>일본 ￥30,000 이하</td><td>미국 $300 이하</td><td>영국 £300 이하</td></tr>
+              <tr><td>50,000원</td><td>일본 ￥50,000 이하</td><td>미국 $500 이하</td><td>영국 £500 이하</td></tr>
+              <tr><td>100,000원</td><td>일본 ￥50,000 초과</td><td>미국 $500 초과</td><td>영국 £500 초과</td></tr>
+            </tbody>
+          </table>
+          <div class="info-note"><i class="fas fa-exclamation-square" aria-hidden="true"></i><span>보증금 미납부 회원의 낙찰취소시 상기표와 동일한 금액을 차감후 환불됩니다.</span></div>
+        </div>
+      </section>
 
-      <table class="policy-table">
-        <tbody>
-          <tr><th>입찰 전</th><td><span class="tag tag-ok">가능</span> 입찰 취소 자유롭게 가능</td></tr>
-          <tr><th>입찰 후 낙찰 전</th><td><span class="tag tag-warn">조건부</span> 야후 옥션 정책에 따라 취소 가능 여부 상이</td></tr>
-          <tr><th>낙찰 확정 후</th><td><span class="tag tag-no">불가</span> 원칙적으로 취소 불가. 단, 출품자 동의 시 협의 가능</td></tr>
-          <tr><th>결제 완료 후</th><td><span class="tag tag-no">불가</span> 상품 수취 전 취소 요청 시 1:1 문의 접수 필요</td></tr>
-        </tbody>
-      </table>
+      <section class="content-section" id="cancel-purchase">
+        <p class="cs-section-title">해외 구매 취소</p>
+        <div class="policy-box">
+          <p>결제 안내 후 1주일이 경과하여도 미결제인 물품은 자동삭제 처리 되실 수 있습니다.</p>
+          <table class="policy-table center">
+            <thead>
+              <tr><th class="col-narrow">주문상태</th><th class="col-wide">구매취소 패널티</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>신청<br>결제대기 / 결제완료</td><td class="text-left">패널티없이 취소 가능<br>
+                마이페이지에서 직접 취소가능 / 해당 구매건의 사용자 메모를 통해 취소요청</td></tr>
+              <tr><td>결제완료/ 주문완료<br>  현지도착</td><td class="text-left">결제완료 상태라도 실제 주문이 완료된 경우에는 취소 불가
+                <br>주문한 샵에서 반품을 허가할 경우 취소가능(대행수수료와 반품실제비용 청구)</td></tr>
+              <tr><td>2차결제/ 국제배송</td><td class="text-left"><strong>취소불가</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="info-note"><i class="fas fa-exclamation-square" aria-hidden="true"></i><span>결제완료 상태라도 실제 주문이 완료된 경우에는 취소 불가합니다.</span></div>
+        </div>
+      </section>
     </div>
 
     <!-- ──────────────────────────────────
@@ -278,89 +353,87 @@
     ────────────────────────────────── -->
     <div class="cs-panel" id="panel-return">
       <div class="store-tabs" role="tablist">
-        <button class="store-tab active" type="button" onclick="switchStore(this,'return')">야후/이베이 경매</button>
-        <button class="store-tab" type="button" onclick="switchStore(this,'return')">구매대행</button>
+        <button class="store-tab active" type="button" onclick="switchStore(this,'return')">해외경매</button>
+        <button class="store-tab" type="button" onclick="switchStore(this,'return')">해외구매</button>
+        <button class="store-tab" type="button" onclick="switchStore(this,'return')">주의사항</button>
       </div>
 
-      <p class="cs-section-title">반품 · 환불 · 교환 안내</p>
-      <div class="policy-box">
-        <p>해외 경매 특성상 <span class="em">단순 변심에 의한 반품·교환은 불가</span>합니다.<br>
-        아래 사유에 해당하는 경우에만 클레임 접수를 통해 처리가 가능합니다.</p>
-        <p>
-          - 상품 미도착 (분실)<br>
-          - 출품 상품과 현저히 다른 상품 수령<br>
-          - 배송 중 파손 (사진 증빙 필수)<br>
-          - 작동 불량 (사진 또는 영상 증빙 필수)
-        </p>
-        <p>※ 반품 시 현지 반송 비용은 회원님 부담이며, 환불은 반송 확인 후 처리됩니다.<br>
-        <span class="note">교환은 동일 출품자가 재출품한 경우에 한해 협의 가능합니다.</span></p>
-      </div>
+      <section class="content-section">
+        <p class="cs-section-title">해외경매(반품/환불/교환)</p>
+        <div class="policy-box">
+          <table class="policy-table center">
+            <thead>
+              <tr><th class="col-narrow">과실의 주체</th><th class="col-wide">해외경매에서 반품, 환불, 교환에 대한 처리</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>고객의 단순변심</td><td class="text-left">단순 변심에 의한 반품, 환불, 교환은 비용 발생시 고객 부담 (단, 해당 출품자가 응해줄 경우) / 대행수수료는 환불대상에서 제외</td></tr>
+              <tr><td>출품자 과실</td><td class="text-left">대행수수료(반품시) 혹은 한번의 국제운임(교환시)을 비드바이가 부담합니다. / 가품의 경우에는 제외</td></tr>
+              <tr><td>비드바이 과실</td><td class="text-left">1544-5224 고객센터로 접수요망</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-      <table class="policy-table">
-        <tbody>
-          <tr><th>단순 변심</th><td><span class="tag tag-no">불가</span> 해외 경매 특성상 반품·교환 불가</td></tr>
-          <tr><th>상품 하자·불량</th><td><span class="tag tag-ok">가능</span> 수취 후 10일 이내 1:1 문의 접수 필요</td></tr>
-          <tr><th>오배송</th><td><span class="tag tag-ok">가능</span> 수취 즉시 사진 촬영 후 접수</td></tr>
-          <tr><th>파손</th><td><span class="tag tag-ok">가능</span> 개봉 영상·사진 증빙 필수 / 수취 후 10일 이내</td></tr>
-        </tbody>
-      </table>
+      <section class="content-section">
+        <p class="cs-section-title">해외구매(반품/환불/교환)</p>
+        <div class="policy-box">
+          <table class="policy-table center">
+            <thead>
+              <tr><th class="col-narrow">과실의 주체</th><th class="col-wide">해외구매에서 반품, 환불, 교환에 대한 처리</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>고객의 단순변심</td><td class="text-left">단순 변심에 의한 반품, 환불, 교환은 비용 발생시 고객 부담 (단, 해당 판매자가 응해줄 경우)<br>대행수수료는 환불대상에서 제외</td></tr>
+              <tr><td>판매자 과실</td><td class="text-left">대행수수료(반품시) 혹은 한번의 국제운임(교환시)을 비드바이가 부담합니다. / 가품의 경우에는 제외</td></tr>
+              <tr><td>비드바이 과실</td><td class="text-left">1544-5224 고객센터로 접수요망</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="cs-section-title">주의사항</p>
+        <div class="policy-box">
+          <p>아래사항은 미국 이베이 경매대행 혹은 구매대행시 반품에 대하여 새로이 적용되는 내용입니다. (2011년 01월 01일 이후, 1년단위로 갱신됨)</p>
+          <p>전제)비드바이 과실이 아닌 경우,</p>
+          <ul class="plain-list">
+            <li><strong>1. 물품의 작동이상</strong></li>
+            <li>2. 고객의 단순변심</li>
+          </ul>
+          <p>경매대행의 경우,<br>
+          <strong>1. 세건이상 반품하면 반품 처리불가.</strong><br>
+          <strong>2. 보름이 세건이상 반품한 경우, 건당 20달러의 반품대행 수수료를 부과합니다.</strong><br>
+          (2011년 1월 1일 ~ 2011년 12월 31일까지 총 3건초과하면 20달러가 청구됩니다.)<br>
+          (예시, 2011년에 5건을 반품요청한 고객이 새로이 2012년에 반품 요청시에는 3건까지는 무료로 처리가 됩니다.)</p>
+          <p>구매대행의 경우,<br>
+          미국사무실 도착 기준으로 7-15일(업체별로 다름)이 지난 물품의 반품시 <strong>20% restocking fee를 납부하셔야합니다.</strong></p>
+          <div class="info-note"><i class="fas fa-exclamation-square" aria-hidden="true"></i><span>restocking fee란? 반품 기간이 지나서 반품처리시 판매처에 지불해야 하는 비용입니다.</span></div>
+        </div>
+      </section>
     </div>
 
     <!-- ──────────────────────────────────
          클레임 기한 패널
     ────────────────────────────────── -->
-    <div class="cs-panel active" id="panel-claim">
+    <div class="cs-panel" id="panel-claim">
       <div class="store-tabs" role="tablist">
-        <button class="store-tab active" type="button" onclick="switchClaim(this,'yahoo')">일본 야후 옥션</button>
-        <button class="store-tab" type="button" onclick="switchClaim(this,'mercari')">일본 메루카리</button>
+        <button class="store-tab active" type="button" onclick="switchClaim(this,'yahoo')">야후 클레임</button>
         <button class="store-tab" type="button" onclick="switchClaim(this,'ebay')">미국/영국 이베이</button>
-        <button class="store-tab" type="button" onclick="switchClaim(this,'purchase')">구매대행</button>
       </div>
 
       <!-- 일본 야후 옥션 -->
       <div class="claim-content active" id="claim-yahoo">
         <p class="cs-section-title">클레임 기한</p>
         <div class="policy-box">
-          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
-          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
-          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">야후 옥션 클레임가능기간내</span>입니다.<br>
-          <span class="note">( 출품자에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
-          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
-          야후 옥션 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
-          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
-          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
+      ※ 물품 누락, 배송 중 파손 등 <span class="em">모든 클레임은 수령 후 10일 이내</span>에 접수해야 합니다.
+ <br>수령 물품 사진 및 박스 사진 제출이 필요합니다.<br>
+ 접수에 필요한 사진이 누락되는경우 클레임 접수가 불가할수 있습니다<div class=""></div> <br>
+※ 클레임 가능 여부는 출품자 대응에 따라 달라질 수 있으니 옥션 페이지 확인을 부탁드립니다.
+ <br> <br>
+<span style="font-size: 15px;"><strong>주의사항 </strong></span>
+ <br>수령 후 10일 이내라도 현지 창고 도착 후 20일이 지나면 클레임 접수가 불가합니다.
+ <br>주말·공휴일로 처리 기간이 지연될 수 있으므로 현지 창고 도착 후 15일 이내 접수를 권장합니다.
+       <br><br> ※ <span class="em">음향기기(턴테이블, 앰프, 스피커, 카세트테이프 등) 및 계측기 등 기계류</span>의 작동 불량은 클레임 대상에서 제외됩니다.
         </div>
-        <table class="policy-table">
-          <tbody>
-            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
-            <tr><th>야후 옥션 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (출품자에 따라 상이)</td></tr>
-            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
-            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- 일본 메루카리 -->
-      <div class="claim-content" id="claim-mercari">
-        <p class="cs-section-title">클레임 기한</p>
-        <div class="policy-box">
-          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
-          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
-          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">메루카리 클레임가능기간내</span>입니다.<br>
-          <span class="note">( 수취 확인 전까지 또는 현지 창고 도착 후 3일 이내입니다. )</span></p>
-          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
-          메루카리 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
-          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
-          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
-        </div>
-        <table class="policy-table">
-          <tbody>
-            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
-            <tr><th>메루카리 기준</th><td>수취 확인 전 또는 도착 후 <span class="em">3일 이내</span></td></tr>
-            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
-            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
-          </tbody>
-        </table>
       </div>
 
       <!-- 미국/영국 이베이 -->
@@ -376,37 +449,6 @@
           <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
           주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
         </div>
-        <table class="policy-table">
-          <tbody>
-            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
-            <tr><th>이베이 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (출품자에 따라 상이)</td></tr>
-            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
-            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- 구매대행 -->
-      <div class="claim-content" id="claim-purchase">
-        <p class="cs-section-title">클레임 기한</p>
-        <div class="policy-box">
-          <p>※ 클레임접수건 일체 : 예) 물품누락, 작동불량, 배송 중 파손 등<br>
-          <span class="em">모두 수취 후 10일 이내로 접수</span>해 주셔야 클레임 접수가 가능합니다.</p>
-          <p>※ 기본적으로 클레임 가능 여부는 <span class="em">판매처 클레임가능기간내</span>입니다.<br>
-          <span class="note">( 판매처에 따라 현지 창고 도착후 15일 ~ 30일 이내입니다. )</span></p>
-          <p>※ 주의사항1) 수취 후 10일 이내라고 하더라도 장기간 현지 창고 보관 후 인수하실 경우,<br>
-          판매처 클레임기간인 <span class="em">현지창고 도착 후 30일이 지나면 클레임을 진행할 수 없습니다.</span></p>
-          <p>※ 주의사항2) 회원님이 클레임 글을 작성한 시점이 현지 창고 도착 후 30일 이내라고해도<br>
-          주말/공휴일/시차로 인해 30일이 넘어갈 수 있습니다. 따라서 <span class="em">25일 이내로 하는것이 안전합니다.</span></p>
-        </div>
-        <table class="policy-table">
-          <tbody>
-            <tr><th>기본 클레임 기한</th><td>수취 후 <span class="em">10일 이내</span> 접수</td></tr>
-            <tr><th>판매처 기준</th><td>현지 창고 도착 후 <span class="em">15일 ~ 30일</span> 이내 (판매처에 따라 상이)</td></tr>
-            <tr><th>장기 보관 후 인수</th><td>현지 창고 도착 후 30일 경과 시 <span class="tag tag-no">클레임 불가</span></td></tr>
-            <tr><th>권장 접수 기한</th><td>현지 창고 도착 후 <span class="em">25일 이내</span> (주말·공휴일 감안)</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
 
@@ -421,10 +463,13 @@ function switchTab(btn, panelId) {
   document.getElementById('panel-' + panelId).classList.add('active');
 }
 
-function switchStore(btn, scope) {
+function switchStore(btn, scope, targetId) {
   const parent = btn.closest('.store-tabs');
   parent.querySelectorAll('.store-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
+  if(targetId){
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function switchClaim(btn, id) {

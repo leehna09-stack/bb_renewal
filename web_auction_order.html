@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bidbuy 바로 입찰하기</title>
+  <title>Bidbuy 실시간 입찰하기</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -163,6 +163,7 @@
     /* 3. 입찰 확인 */
     .confirm-box {
       border-bottom: 1px solid var(--line);
+      margin-bottom: 26px;
     }
     .confirm-row {
       display: grid;
@@ -179,7 +180,7 @@
     .confirm-row .val .sub { color: var(--muted); font-size: 12px; font-weight: 500; }
 
     .confirm-warn {
-      margin: 14px 0 0;
+      margin: 0;
       text-align: center;
       color: #41454f;
       font-size: 12px;
@@ -233,7 +234,7 @@
 
 <div class="stage">
   <div class="page-head">
-    <h2>바로 입찰하기</h2>
+    <h2>실시간 입찰하기</h2>
   </div>
 
   <!-- 단계 표시 -->
@@ -300,7 +301,7 @@
       <div class="confirm-amount-box">
         <div class="confirm-row">
           <span>입찰 금액</span>
-          <strong class="amount" id="modalBidAmount">¥ 1,300</strong>
+          <strong class="amount" id="modalBidAmount">1,300엔 (약 ₩11,830)</strong>
         </div>
         <div class="confirm-row">
           <span>수량</span>
@@ -319,6 +320,11 @@
 <script>
 const CONFIRMED_BID = 1300;
 const CONFIRMED_QTY = 1;
+const KRW_RATE = 9.1;
+
+function formatBidAmount(yen) {
+  return yen.toLocaleString('ko-KR') + '엔 (약 ₩' + Math.round(yen * KRW_RATE).toLocaleString('ko-KR') + ')';
+}
 
 function updateState() {
   const agreed = document.getElementById('agreeChk').checked;
@@ -331,7 +337,7 @@ function updateState() {
 }
 
 function submitBid() {
-  document.getElementById('modalBidAmount').textContent = '¥ ' + CONFIRMED_BID.toLocaleString('ko-KR');
+  document.getElementById('modalBidAmount').textContent = formatBidAmount(CONFIRMED_BID);
   document.getElementById('modalBidQty').textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
   document.getElementById('finalBidModal').classList.add('open');
 }

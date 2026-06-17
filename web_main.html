@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -14,18 +14,20 @@
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
   --alert:#FFF8E6;
   --notice-h:38px;
+  --header-h:1px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;padding-top:calc(var(--notice-h) + 64px)}
+body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;padding-top:calc(var(--notice-h) + var(--header-h))}
 a{text-decoration:none;color:inherit}
 
 /* ?�═ 공�?�??�═ */
-.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;right:0;z-index:310}
+.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;}
 .notice-bar b{color:#E8385A}
 
 /* ?먥븧 ?ㅻ뜑 ?먥븧 */
-header{background:#fff;border-bottom:1px solid var(--border);position:fixed;top:var(--notice-h);left:0;right:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.hdr{max-width:1440px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:16px}
+.sticky-top{position:fixed;top:0;left:0;right:0;z-index:300}
+header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.hdr{max-width:1440px;margin:0 auto;padding:0 24px;height:var(--header-h);display:flex;align-items:center;gap:16px}
 .logo{display:flex;align-items:center;flex-shrink:0;flex:1}
 .logo img{display:block;width:100px;height:auto}
 .search{flex:0 0 540px;max-width:540px;display:flex;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s}
@@ -121,7 +123,6 @@ header{background:#fff;border-bottom:1px solid var(--border);position:fixed;top:
 .banner-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
 .dot{width:6px;height:6px;border-radius:3px;background:rgba(0,0,0,.2);cursor:pointer;transition:all .3s}
 .dot.active{width:18px;background:var(--rose)}
-.slide-counter{position:absolute;bottom:14px;right:16px;font-size:11px;color:var(--ts);background:rgba(255,255,255,.7);padding:2px 8px;border-radius:10px;z-index:3}
 
 /* ?????�안: ?�측 ?�원 ?�널 - 27% (grid�?비율 결정) */
 .hero-panel{
@@ -498,7 +499,8 @@ button.user-menu-item{
   .mb-tiers{flex-wrap:wrap}
 }
 @media(max-width:767px){
-  .hdr{padding:0 14px;height:54px;gap:10px}
+  :root{--header-h:52px}
+  .hdr{padding:0 14px;gap:10px}
   .logo{font-size:18px}
   .logo sub{display:none}
   .search{max-width:none}
@@ -527,10 +529,11 @@ button.user-menu-item{
 </head>
 <body>
 
-<!-- 공�?�?-->
+<!-- 공지+헤더 고정 래퍼 -->
+<div class="sticky-top">
 <div class="notice-bar">누적 거래 2백만건 거래금액 2200억 <b>비드바이의 25년 기록</b>으로 증명합니다</div>
 
-<!-- ?ㅻ뜑 -->
+<!-- 헤더 -->
 <header>
   <div class="hdr">
     <button class="hb-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
@@ -589,6 +592,7 @@ button.user-menu-item{
     </div>
   </div>
 </header>
+</div><!-- /sticky-top -->
 
 <!-- ?????�안: ?�형 채널 ?�이�?�?-->
 <div class="channel-bar">
@@ -688,7 +692,6 @@ button.user-menu-item{
         </div>
         <div class="banner-nav">
           <button class="bnav-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-          <span class="slide-counter" id="slideCounter">1 / 3</span>
           <button class="bnav-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="banner-dots">
@@ -1010,13 +1013,12 @@ button.user-menu-item{
 let cur=0;
 const slides=document.querySelectorAll('.slide');
 const dots=document.querySelectorAll('.dot');
-const counter=document.getElementById('slideCounter');
 const bannerData=[
   {tag:'야후 옥션 특집',title:'야후 일본 경매<br>초보 추천 Top10 공개!',sub:'지금 바로 확인하고 원하는 상품을 합리적인 가격에 낙찰받아보세요.',cta:'지금 바로가기',obj:'gavel'},
   {tag:'리뉴얼 오픈',title:'새로워진 비드바이<br>해외쇼핑 핵심 혜택',sub:'Renewal Open EVENT와 함께 달라진 주요 혜택을 한눈에 확인해보세요.',cta:'혜택 확인하기',obj:'gift'},
   {tag:'안심 케어 패키지',title:'최대 50,000원<br>보상 서비스',sub:'업계 최고 수준의 케어 서비스로 최대 5만엔 상당 보상을 지원합니다.',cta:'상세 더보기',obj:'shield-heart'},
 ];
-function goSlide(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');if(counter)counter.textContent=(cur+1)+' / '+slides.length;}
+function goSlide(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');}
 function changeSlide(d){goSlide(cur+d);}
 setInterval(()=>changeSlide(1),4000);
 

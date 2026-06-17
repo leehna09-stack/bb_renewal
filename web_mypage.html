@@ -1358,11 +1358,19 @@
     }
 
     .order-status-link {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      margin-bottom: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef3fb;
       color: var(--navy);
       font-size: 11px;
       font-weight: 700;
-      text-decoration: underline;
+      line-height: 1.3;
+      text-decoration: none;
       cursor: pointer;
     }
 
@@ -1570,7 +1578,7 @@
           <div class="nav-section">
             <strong>나의 거래 현황</strong>
             <div class="nav-list">
-              <a class="active" href="mypage.html">거래 전체 목록</a>
+              <a class="active" href="web_mypage.html">거래 전체 목록</a>
               <a href="#">경매 입찰/유찰</a>
               <a href="#">구매 신청 목록</a>
             </div>
@@ -2802,6 +2810,17 @@
       });
     }
 
+    function placeOrderStatusInProductInfo() {
+      document.querySelectorAll(".order-table td.col-info").forEach((info) => {
+        const status = info.querySelector(".order-status-link");
+        if (!status || info.firstElementChild === status) {
+          return;
+        }
+        info.insertBefore(status, info.firstElementChild);
+      });
+    }
+
+    placeOrderStatusInProductInfo();
     placeOrderActionsAtTableEnd();
 
     function updateStatusCounts() {

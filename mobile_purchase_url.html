@@ -44,25 +44,25 @@
     button { cursor: pointer; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── 헤더 ── */
-    .app-header { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-    .app-header-top { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 8px; padding: 10px 14px 12px; }
-    .app-brand-area { display: flex; align-items: center; gap: 10px; min-width: 0; }
-    .hb { width: 34px; height: 34px; border-radius: 9px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; background: none; border: none; cursor: pointer; }
-    .hb span { display: block; width: 18px; height: 2px; background: #242836; border-radius: 999px; }
-    .app-logo { display: flex; align-items: center; width: 76px; }
-    .app-logo img { display: block; width: 100%; height: auto; }
-    .app-header-right { display: flex; gap: 4px; align-items: center; justify-self: end; }
-    .icon-btn { width: 34px; height: 34px; border-radius: 9px; background: none; border: none; cursor: pointer; color: #333; font-size: 16px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .i-badge { position: absolute; top: 3px; right: 2px; background: var(--rose); color: #fff; font-size: 7px; font-weight: 700; min-width: 13px; height: 13px; border-radius: 7px; display: flex; align-items: center; justify-content: center; padding: 0 2px; }
-    .user-avatar-sm { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--amber)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; border: 0; font-family: inherit; }
-    .login-btn-sm { min-width: 66px; height: 32px; background: var(--rose); color: #fff; border: none; padding: 0 14px; border-radius: 999px; font-size: 11px; font-weight: 900; cursor: pointer; font-family: inherit; }
-    .app-search { grid-column: 1 / -1; height: 40px; display: flex; align-items: center; background: #F4EEEA; border: 1px solid #E6DDDA; border-radius: 10px; overflow: hidden; color: var(--tm); }
-    .app-search::before { content: ""; width: 15px; height: 15px; margin-left: 12px; flex: 0 0 auto; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
-    .app-search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; padding: 0 10px 0 8px; color: #333; font-size: 13px; font-family: inherit; }
-    .app-search input::placeholder { color: #99A2B0; }
-    .app-search button { width: 42px; height: 100%; border: 0; background: var(--rose); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .app-search button i { font-size: 14px; }
+    /* ── 헤더 (메인 동일 구조) ── */
+    .m-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+    .m-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:10px 14px 8px}
+    .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
+    .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:9px}
+    .m-back-btn:hover{background:var(--bg)}
+    .m-logo{display:flex;align-items:center}
+    .m-logo-text{font-size:17px;font-weight:900;color:var(--rose);letter-spacing:-0.5px}
+    .m-logo-text span{color:var(--tp)}
+    .m-header-right{display:flex;gap:4px;align-items:center;justify-self:end}
+    .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:9px;cursor:pointer;position:relative}
+    .m-icon-btn:hover{background:var(--bg)}
+    .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
+    .m-header-search{grid-column:1/-1;display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;color:var(--tm)}
+    .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+    .m-header-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 8px 0 8px;color:#333;font-size:13px;font-family:inherit}
+    .m-header-search input::placeholder{color:#99A2B0}
+    .m-header-search button{width:40px;height:100%;border:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .m-header-search button i{font-size:13px;}
     .channel-tabs { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid #E6DDDA; padding: 0 14px; }
     .channel-tabs::-webkit-scrollbar { display: none; }
     .ch-tab { padding: 9px 12px 10px; font-size: 11px; font-weight: 700; color: #707070; white-space: nowrap; cursor: pointer; border: 0; border-bottom: 2px solid transparent; background: transparent; flex-shrink: 0; font-family: inherit; }
@@ -252,29 +252,26 @@
 <body>
 
 <!-- 헤더 -->
-<div class="app-header">
-  <div class="app-header-top">
-    <div class="app-brand-area">
-      <button class="hb" type="button" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
-      <a href="mobile_main.html" class="app-logo"><img src="Bidbuy logo.png" alt="BidBuy Korea"></a>
+<header class="m-header">
+  <div class="m-header-top">
+    <div class="m-brand-area">
+      <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+      <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
+        <span class="m-logo-text">Bid<span>Buy</span></span>
+      </a>
     </div>
-
-    <div class="app-header-right" id="guestArea">
-      <button class="login-btn-sm" type="button" onclick="toggleLogin()">로그인</button>
+    <div class="m-header-right">
+      <button class="m-icon-btn" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="m-icon-btn" aria-label="장바구니"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></button>
     </div>
-    <div class="app-header-right" id="userArea" style="display:none">
-      <button class="icon-btn" type="button" aria-label="알림"><i class="far fa-bell"></i><span class="i-badge">3</span></button>
-      <button class="icon-btn" type="button" aria-label="장바구니"><i class="fas fa-shopping-cart"></i></button>
-      <button class="user-avatar-sm" type="button" aria-label="회원 메뉴">한</button>
-    </div>
-
-    <form class="app-search" role="search">
-      <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
-      <button type="submit"><i class="fas fa-search"></i></button>
-    </form>
   </div>
+  <div class="m-header-search">
+    <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
+    <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+</header>
 
-  <nav class="channel-tabs" aria-label="쇼핑 채널">
+<nav class="channel-tabs" aria-label="쇼핑 채널">
     <button class="ch-tab" type="button">야후옥션</button>
     <button class="ch-tab" type="button">메루카리</button>
     <button class="ch-tab" type="button">일본 라쿠텐</button>
@@ -336,28 +333,6 @@
 
 <!-- 메인 콘텐츠 -->
 <div class="main-content">
-
-  <!-- 상품 정보 -->
-  <div class="info-card">
-    <div class="card-header"><i class="fa-solid fa-tag"></i> 상품 정보</div>
-    <div class="bp-info-grid">
-      <div class="bp-info-cell"><span class="bp-info-label">아이템 No</span><span class="bp-info-val">s1234567890</span></div>
-      <div class="bp-info-cell"><span class="bp-info-label">배송 방식</span><span class="bp-info-val">야후쇼핑 직배</span></div>
-    </div>
-    <div class="price-section">
-      <div class="price-row">
-        <span class="price-label">상품가격</span>
-        <div style="display:flex;align-items:baseline;gap:8px">
-          <span class="price-main roboto" id="displayPrice">¥ 0</span>
-          <span class="price-badge">대행 수수료 10%</span>
-        </div>
-      </div>
-      <div class="price-row">
-        <span class="price-label">원화 환산</span>
-        <span class="price-val roboto" id="displayKrw" style="color:var(--ts)">₩ 0</span>
-      </div>
-    </div>
-  </div>
 
   <!-- 직접입력 주문 폼 -->
   <div class="info-card">

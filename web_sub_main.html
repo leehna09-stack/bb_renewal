@@ -14,7 +14,7 @@
       --line: #d8dde6;
       --warm: #f3f1ed;
       --thumb: #d3e0ec;
-      --page-w: 1380px;
+      --page-w: 1280px;
     }
 
     * { box-sizing: border-box; }
@@ -95,7 +95,7 @@
     .flag-uk { background: linear-gradient(45deg, #153f8f 0 38%, #fff 38% 44%, #d6223b 44% 56%, #fff 56% 62%, #153f8f 62%); }
 
     /* ── Main ── */
-    main { width: min(calc(100vw - 60px), var(--page-w)); margin: 0 auto; padding-bottom: 56px; }
+    main { width: min(calc(100vw - 40px), var(--page-w)); margin: 0 auto; padding-bottom: 56px; }
 
     /* URL bar */
     .url-bar { display: grid; grid-template-columns: 120px minmax(0, 1fr) 160px; height: 54px; margin-bottom: 22px; border: 1px solid var(--line); background: #fff; }
@@ -136,19 +136,19 @@
 
     /* ── Filter panel ── */
     .filter-panel { --filter-font-size: 15px; margin-bottom: 32px; border: 1px solid #ddd; border-top: 0; background: #fff; overflow-x: hidden; }
-    .filter-row { min-height: 46px; width: 100%; display: grid; grid-template-columns: 8% minmax(0, 52%) 8% minmax(0, 32%); }
+    .filter-row { min-height: 46px; width: 100%; display: grid; grid-template-columns: minmax(72px, 8%) minmax(0, 52%) minmax(72px, 8%) minmax(0, 32%); }
     .filter-label { display: flex; align-items: center; justify-content: center; border-right: 1px solid #ddd; background: #f2f0ec; color: #111; font-size: var(--filter-font-size); font-weight: 800; }
     .filter-label.amount-label { border-left: 1px solid #ddd; }
     .filter-body { min-width: 0; display: flex; align-items: center; overflow: visible; }
     .filter-body.option-groups { display: grid; grid-template-columns: minmax(130px, 1.1fr) minmax(120px, .85fr) minmax(120px, .85fr) minmax(120px, .9fr); align-items: stretch; }
     .filter-body.amount-cell { min-height: 46px; }
-    .filter-group { min-height: 46px; padding: 3px 8px 4px; border-right: 1px solid #e4e4e4; display: grid; align-content: center; gap: 2px; white-space: nowrap; }
+    .filter-group { min-height: 46px; padding: 6px 8px 7px; border-right: 1px solid #e4e4e4; display: grid; align-content: center; gap: 4px; white-space: normal; min-width: 0; }
     .filter-group.seller { border-right: 0; }
     .filter-group-title { color: #555; font-size: var(--filter-font-size); font-weight: 800; line-height: 1.1; text-align: center; }
     .filter-group-title::after { content: ""; display: block; width: min(132px, 100%); height: 1px; margin: 3px auto 0; background: #d8d8d8; }
-    .filter-options, .amount-mode { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .filter-options, .amount-mode { display: flex; align-items: center; justify-content: center; gap: 8px 12px; flex-wrap: wrap; min-width: 0; }
     .amount-mode { gap: 10px; margin-right: 8px; }
-    .choice { display: inline-flex; align-items: center; justify-content: center; gap: 4px; color: #4d5968; font-size: var(--filter-font-size); font-weight: 800; white-space: nowrap; }
+    .choice { display: inline-flex; align-items: center; justify-content: center; gap: 4px; color: #4d5968; font-size: var(--filter-font-size); font-weight: 800; white-space: nowrap; min-width: 0; }
     .choice input { appearance: none; width: 8px; height: 8px; margin: 0; border: 1px solid #cfd5dd; border-radius: 50%; background: #fff; }
     .choice input:checked { border-color: var(--rose); background: var(--rose); }
     .amount-filter { width: 100%; min-height: 46px; padding: 3px 8px 5px; display: grid; align-content: center; gap: 3px; }
@@ -195,13 +195,36 @@
 
     /* ── Product grid ── */
     .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 34px; }
-    .product-card { position: relative; min-width: 0; cursor: pointer; }
+    .product-card { position: relative; min-width: 0; min-height: 380px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fff; cursor: pointer; display: flex; flex-direction: column; }
     .product-card:hover .product-name { text-decoration: underline; text-underline-offset: 2px; }
-    .product-thumb { position: relative; height: 130px; margin-bottom: 8px; background: var(--thumb); overflow: hidden; }
-    .heart { position: absolute; right: 12px; bottom: 8px; border: 0; background: transparent; color: var(--rose); font-size: 22px; line-height: 1; }
-    .product-name { margin: 0 0 1px; overflow: hidden; color: #2460a5; font-size: 12px; font-weight: 700; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
-    .seller { display: block; margin-bottom: 1px; color: #657083; font-size: 12px; line-height: 1.35; }
-    .price { color: #172033; font-size: 18px; font-weight: 900; line-height: 1.15; }
+    .product-thumb { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #e8e8e8; overflow: hidden; order: 0; }
+    .product-thumb::before { content: "🇯🇵 야후옥션"; position: absolute; top: 11px; left: 11px; z-index: 1; height: 24px; padding: 0 10px; border-radius: 6px; background: rgba(255,255,255,.94); color: #143c76; font-size: 12px; font-weight: 800; line-height: 24px; box-shadow: 0 1px 2px rgba(30,42,60,.06); }
+    .product-thumb::after { content: "\f03e"; position: absolute; inset: 0; display: grid; place-items: center; color: #969baa; font-family: "Font Awesome 6 Free"; font-size: 34px; font-weight: 400; }
+    .product-card:nth-child(4n+2) .product-thumb::before { content: "🇯🇵 메루카리"; }
+    .product-card:nth-child(4n+3) .product-thumb::before { content: "🇯🇵 라쿠텐"; }
+    .product-card:nth-child(4n+4) .product-thumb::before { content: "🇯🇵 야후옥션"; }
+    .heart { position: absolute; top: 11px; right: 11px; z-index: 2; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.96); color: #657083; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+    .product-name { order: 2; margin: 0; padding: 12px 15px 0; overflow: hidden; color: #071836; font-size: 16px; font-weight: 500; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 61px; }
+    .product-card > .seller { order: 1; align-self: flex-start; min-width: 51px; height: 27px; margin: -38px 0 0 12px; padding: 0 9px; border-radius: 6px; background: #153f77; color: #fff; font-size: 0; font-weight: 900; line-height: 27px; position: relative; z-index: 2; }
+    .product-card > .seller::before { content: "경매"; font-size: 14px; }
+    .product-card:nth-child(4n+2) > .seller,
+    .product-card:nth-child(4n+3) > .seller { background: #2fba57; }
+    .product-card:nth-child(4n+2) > .seller::before,
+    .product-card:nth-child(4n+3) > .seller::before { content: "즉시구매"; }
+    .product-card > .price { order: 3; display: block; margin: 6px 15px 0; color: #071836; font-size: 0; font-weight: 900; line-height: 1.2; font-family: 'Roboto', sans-serif; }
+    .product-card > .price::before { content: "¥1,650"; display: block; font-size: 20px; }
+    .product-card > .price::after { content: "≈ ₩15,350"; display: block; margin-top: 3px; color: #607089; font-size: 12px; font-weight: 500; line-height: 1.3; }
+    .product-card:nth-child(4n+1) > .price::before { content: "¥810"; }
+    .product-card:nth-child(4n+1) > .price::after { content: "≈ ₩7,530"; }
+    .product-card:nth-child(4n+2) > .price::before { content: "¥1,650"; }
+    .product-card:nth-child(4n+2) > .price::after { content: "≈ ₩15,350"; }
+    .product-card:nth-child(4n+3) > .price::before { content: "¥31,000"; }
+    .product-card:nth-child(4n+3) > .price::after { content: "≈ ₩288,300"; }
+    .product-card:nth-child(4n+4) > .price::before { content: "¥151,000"; }
+    .product-card:nth-child(4n+4) > .price::after { content: "≈ ₩1,404,300"; }
+    .product-card::after { content: "2시간 34분        입찰 3"; order: 4; margin: auto 15px 17px; color: #e8385a; font-size: 13px; line-height: 1.3; white-space: pre; }
+    .product-card:nth-child(4n+2)::after,
+    .product-card:nth-child(4n+3)::after { content: "무료배송"; align-self: flex-end; color: #9ba0ae; }
 
     /* More / footer */
     .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
@@ -211,23 +234,24 @@
     .more-footer button::before { content: ""; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #fff; }
 
     /* ── Content layout (sidebar + main area) ── */
-    .content-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 24px; margin-top: 16px; }
+    .content-layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); align-items: start; gap: 28px; margin-top: 28px; }
     .content-area { min-width: 0; }
 
     /* Sidebar filter panel overrides */
-    .content-layout .filter-panel { --filter-font-size: 14px; margin-bottom: 0; border: 1px solid #e4e4e4; overflow: visible; }
-    .content-layout .filter-row { display: block; }
-    .content-layout .filter-label { min-height: 46px; border-right: 0; border-bottom: 1px solid #e4e4e4; font-size: 13px; font-weight: 900; background: #f6f5f4; }
-    .content-layout .filter-label.amount-label { border-left: 0; border-top: 1px solid #e4e4e4; background: #fff; color: #555; font-weight: 700; }
-    .content-layout .filter-body.option-groups { display: block; }
-    .content-layout .filter-body.amount-cell { display: block; min-height: 0; padding: 12px; overflow: hidden; }
-    .content-layout .filter-group { min-height: 0; padding: 10px 12px 12px; border-right: 0; border-bottom: 1px solid #eee; gap: 8px; white-space: normal; }
+    .content-layout .filter-panel { --filter-font-size: 12px; margin-bottom: 0; border: 0; background: #fff; overflow: visible; }
+    .content-layout .filter-row { min-height: 0; display: grid; grid-template-columns: 1fr; border: 1px solid #e4e4e4; }
+    .content-layout .filter-label { min-height: 61px; border-right: 0; border-bottom: 1px solid #ddd; font-size: 13px; font-weight: 900; background: #f6f5f4; }
+    .content-layout .filter-label.amount-label { min-height: 42px; border-left: 0; border-top: 0; background: #fff; justify-content: center; padding: 0 8px; color: #555; font-size: 14px; font-weight: 700; }
+    .content-layout .filter-body.option-groups { display: grid; grid-template-columns: 1fr; align-items: stretch; }
+    .content-layout .filter-body.amount-cell { display: block; min-height: 0; padding: 12px; overflow: visible; }
+    .content-layout .filter-group { min-height: 0; padding: 8px 8px 10px; border-right: 0; border-bottom: 1px solid #e4e4e4; gap: 6px; white-space: normal; min-width: 0; }
     .content-layout .filter-group.seller { border-bottom: 0; border-right: 0; }
-    .content-layout .filter-group-title { font-size: 13px; text-align: left; }
-    .content-layout .filter-group-title::after { width: 100%; margin-top: 5px; }
-    .content-layout .filter-options { gap: 10px; justify-content: flex-start; flex-wrap: wrap; }
-    .content-layout .amount-filter { width: 100%; min-width: 0; padding: 0; display: grid; gap: 12px; min-height: 0; overflow: hidden; }
-    .content-layout .amount-range { width: calc(100% - 18px); margin: 8px 9px; }
+    .content-layout .filter-group-title { font-size: 14px; text-align: left; }
+    .content-layout .filter-group-title::after { width: 74px; margin: 4px 0 0; }
+    .content-layout .filter-options { gap: 8px 10px; justify-content: flex-start; flex-wrap: wrap; }
+    .content-layout .choice { justify-content: flex-start; white-space: normal; line-height: 1.25; }
+    .content-layout .amount-filter { width: 100%; min-width: 0; padding: 8px 14px 14px; display: grid; grid-template-columns: 1fr; gap: 16px; min-height: 0; overflow: visible; }
+    .content-layout .amount-range { width: 100%; margin: 6px 0; box-sizing: border-box; }
     .content-layout .amount-fields { width: 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 8px; }
     .content-layout .amount-fields .amount-input { width: 100%; min-width: 0; height: 34px; }
     .content-layout .amount-apply { height: 36px; font-size: 13px; }
@@ -235,10 +259,127 @@
     .content-layout .within-search-form button { width: 32px; height: 32px; }
     .content-layout .within-search-form svg { width: 16px; height: 16px; }
     .content-layout .filter-submit { height: 40px; font-size: 14px; }
-    .content-layout .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
+    .content-layout .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 16px; }
+
+    .search-layout .filter-panel { --filter-font-size: 12px; margin-top: 0; border: 0; background: #fff; overflow: visible; }
+    .search-layout .filter-row { min-height: 0; display: grid; grid-template-columns: 1fr; border: 1px solid #e4e4e4; }
+    .search-layout .filter-label { min-height: 61px; border-right: 0; border-bottom: 1px solid #ddd; background: #f6f5f4; font-size: 13px; font-weight: 900; }
+    .search-layout .filter-label.amount-label { min-height: 42px; border-left: 0; border-top: 0; background: #fff; justify-content: center; padding: 0 8px; color: #555; font-size: 14px; font-weight: 700; }
+    .search-layout .filter-label-text { width: auto; display: inline-block; text-align: center; }
+    .search-layout .filter-body.option-groups { display: grid; grid-template-columns: 1fr; align-items: stretch; }
+    .search-layout .filter-body.amount-cell { min-height: 0; }
+    .search-layout .filter-group { min-height: 0; padding: 8px 8px 10px; border-right: 0; border-bottom: 1px solid #e4e4e4; gap: 6px; min-width: 0; white-space: normal; }
+    .search-layout .filter-group.delivery { border-bottom: 0; }
+    .search-layout .filter-group-title { font-size: 14px; }
+    .search-layout .filter-group-title::after { width: 74px; margin-top: 4px; }
+    .search-layout .within-search .filter-group-title::after { display: none; }
+    .search-layout .filter-options,
+    .search-layout .amount-mode { gap: 8px 9px; flex-wrap: wrap; justify-content: flex-start; min-width: 0; }
+    .search-layout .choice { gap: 4px; font-size: 14px; justify-content: flex-start; white-space: normal; line-height: 1.25; }
+    .search-layout .choice-text { width: auto; display: inline-block; text-align: center; }
+    .search-layout .amount-filter { min-height: 0; min-width: 0; padding: 8px 14px 14px; display: grid; grid-template-columns: 1fr; gap: 16px; overflow: visible; }
+    .search-layout .amount-range { display: block; width: 100%; margin: 6px 0; box-sizing: border-box; accent-color: rgba(91, 166, 247, .6); background: transparent; }
+    .search-layout .amount-fields { display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); align-items: center; gap: 12px; }
+    .search-layout .amount-input { width: 100%; height: 44px; border: 0; border-radius: 4px; background: #f7f7f9; font-size: 13px; }
+    .search-layout .amount-separator { align-self: center; text-align: center; font-size: 11px; }
+    .search-layout .amount-apply { width: 100%; height: 46px; border: 1px solid #d9d9d9; border-radius: 4px; background: #fff; color: #111; font-size: 14px; font-weight: 900; }
+    .search-layout .within-search { display: grid; gap: 12px; }
+    .search-layout .within-search-head { display: block; text-align: center; order: 1; }
+    .search-layout .within-keyword-list { min-height: 35px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; order: 3; }
+    .search-layout .within-chip { height: 35px; padding: 0 11px; border-radius: 4px; background: #f6f6f7; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 900; white-space: nowrap; }
+    .search-layout .within-chip button { width: 16px; height: 16px; padding: 0; border: 0; background: transparent; color: #b4b4b4; font-size: 18px; line-height: 1; }
+    .search-layout .within-search-form { position: relative; min-width: 0; order: 2; }
+    .search-layout .within-search-form input { min-width: 0; width: 100%; height: 44px; border: 1px solid #dedede; border-radius: 8px; background: #fff; padding: 0 52px 0 12px; outline: 0; }
+    .search-layout .within-search-form button { width: 44px; height: 42px; position: absolute; top: 1px; right: 1px; border: 0; border-radius: 0 7px 7px 0; background: transparent; display: grid; place-items: center; color: #111; }
+    .search-layout .within-search-form svg,
+    .search-layout .within-search-form i { width: 24px; height: 24px; font-size: 24px; line-height: 24px; }
 
     /* ── Responsive ── */
-    
+    @media (max-width: 1024px) {
+      main { width: 100%; padding-left: 0; padding-right: 0; }
+      .content-layout { display: block; margin-top: 0; }
+      .content-layout .filter-panel { display: none; }
+      .content-area { width: 100%; }
+      .section-title,
+      .result-title-row,
+      .result-control-row { padding-left: 16px; padding-right: 16px; }
+      .product-grid,
+      .content-layout .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 12px 16px 8px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main { width: 100%; padding: 0 0 40px; }
+      .content-layout { display: block; margin-top: 0; }
+      .content-layout .filter-panel { display: none; }
+      .content-area { width: 100%; }
+      .section-title,
+      .result-title-row,
+      .result-control-row { padding-left: 16px; padding-right: 16px; }
+      .product-grid,
+      .content-layout .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 12px 16px 8px;
+      }
+      .product-card {
+        min-height: auto;
+        border-radius: 12px;
+      }
+      .product-thumb::before {
+        top: 8px;
+        left: 8px;
+        height: 20px;
+        padding: 0 7px;
+        border-radius: 5px;
+        font-size: 9px;
+        line-height: 20px;
+      }
+      .product-thumb::after {
+        font-size: 26px;
+      }
+      .heart {
+        top: 8px;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+      }
+      .product-card > .seller {
+        min-width: auto;
+        height: 24px;
+        margin: -36px 0 0 8px;
+        padding: 0 8px;
+        border-radius: 5px;
+        line-height: 24px;
+      }
+      .product-card > .seller::before {
+        font-size: 12px;
+      }
+      .product-name {
+        padding: 9px 11px 0;
+        font-size: 12px;
+        line-height: 1.45;
+        min-height: 44px;
+      }
+      .product-card > .price {
+        margin: 5px 11px 0;
+      }
+      .product-card > .price::before {
+        font-size: 14px;
+      }
+      .product-card > .price::after {
+        margin-top: 2px;
+        font-size: 10px;
+      }
+      .product-card::after {
+        margin: 4px 11px 12px;
+        font-size: 10px;
+      }
+    }
 
     
   </style>
@@ -381,14 +522,16 @@
       <button class="category-search-button" type="submit">검색</button>
     </form>
 
-    <div class="content-layout">
+    <div class="content-layout search-layout">
     <!-- 왼쪽: 검색 필터 사이드바 -->
     <section class="filter-panel" aria-label="상세 검색">
-      <div class="filter-row">
-        <div class="filter-label"><span>검색조건</span></div>
+      <div class="filter-row has-keyword">
+        <div class="filter-label"><span class="filter-label-text">검색조건</span></div>
         <div class="filter-body option-groups">
           <div class="filter-group within-search">
-            <div class="filter-group-title">목록내 검색</div>
+            <div class="within-search-head">
+              <div class="filter-group-title">목록내 검색</div>
+            </div>
             <div class="within-keyword-list" data-within-list></div>
             <div class="within-search-form">
               <input type="search" aria-label="목록내 검색어" data-within-input>
@@ -400,36 +543,36 @@
           <div class="filter-group purchase-type">
             <div class="filter-group-title">구매형태</div>
             <div class="filter-options">
-              <label class="choice"><input type="checkbox" name="purchaseType" value="auction"><span>경매</span></label>
-              <label class="choice"><input type="checkbox" name="purchaseType" value="buy"><span>구매</span></label>
-              <label class="choice"><input type="checkbox" name="purchaseType" value="freeDelivery"><span>무료배송</span></label>
+              <label class="choice"><input type="checkbox" name="purchaseType" value="auction"><span class="choice-text">경매</span></label>
+              <label class="choice"><input type="checkbox" name="purchaseType" value="buy"><span class="choice-text">구매</span></label>
+              <label class="choice"><input type="checkbox" name="purchaseType" value="freeDelivery"><span class="choice-text">무료배송</span></label>
             </div>
           </div>
           <div class="filter-group condition">
             <div class="filter-group-title">상태</div>
             <div class="filter-options">
-              <label class="choice"><input type="radio" name="condition" checked><span>전체</span></label>
-              <label class="choice"><input type="radio" name="condition"><span>신품</span></label>
-              <label class="choice"><input type="radio" name="condition"><span>중고</span></label>
+              <label class="choice"><input type="radio" name="condition" checked><span class="choice-text">전체</span></label>
+              <label class="choice"><input type="radio" name="condition"><span class="choice-text">신품</span></label>
+              <label class="choice"><input type="radio" name="condition"><span class="choice-text">중고</span></label>
             </div>
           </div>
           <div class="filter-group seller">
             <div class="filter-group-title">출품자 유형</div>
             <div class="filter-options">
-              <label class="choice"><input type="radio" name="seller" checked><span>전체</span></label>
-              <label class="choice"><input type="radio" name="seller"><span>스토어</span></label>
-              <label class="choice"><input type="radio" name="seller"><span>개인</span></label>
+              <label class="choice"><input type="radio" name="seller" checked><span class="choice-text">전체</span></label>
+              <label class="choice"><input type="radio" name="seller"><span class="choice-text">스토어</span></label>
+              <label class="choice"><input type="radio" name="seller"><span class="choice-text">개인</span></label>
             </div>
           </div>
         </div>
-        <div class="filter-label amount-label"><span>금액</span></div>
+        <div class="filter-label amount-label"><span class="filter-label-text">금액</span></div>
         <div class="filter-body amount-cell">
           <div class="amount-filter">
             <input class="amount-range" type="range" min="0" max="1000000" value="1000000" aria-label="금액 범위" data-amount-range>
             <div class="amount-fields">
               <input class="amount-input" type="text" value="0" aria-label="최소 금액" data-amount-min>
-              <span class="amount-separator">~</span>
-              <input class="amount-input" type="text" value="1,000,000" aria-label="최대 금액" data-amount-max>
+              <span class="amount-separator" aria-hidden="true">~</span>
+              <input class="amount-input" type="text" value="1000000" aria-label="최대 금액" data-amount-max>
             </div>
             <button class="amount-apply" type="button">적용</button>
           </div>
