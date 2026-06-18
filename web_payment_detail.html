@@ -26,9 +26,9 @@
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
       --yellow: #f4b400;
-      --stage-left: max(16px, calc((100vw - 1036px) / 2));
+      --stage-left: max(16px, calc((100vw - 1425px) / 2));
       --sidebar-w: 221px;
-      --main-w: 812px;
+      --main-w: 1180px;
       --gap: 24px;
     }
 
@@ -36,7 +36,7 @@
     html { background: #fff; }
     body {
       margin: 0; min-width: 320px; color: var(--text); background: #fff;
-      font-family: Pretendard, 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif;
+      font-family: Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px; line-height: 1.5;
     }
     button, input, select, textarea { font: inherit; }
@@ -148,82 +148,178 @@
     ══════════════════════════════════════ */
     .main {
       min-width: 0;
-      padding-top: 40px;
+      padding-top: 0;
       padding-bottom: 60px;
     }
 
-    /* 페이지 타이틀 */
-    .page-heading {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 20px;
+    /* 페이지 헤더 */
+    .order-page-head {
+      display: grid;
+      gap: 28px;
+      margin-bottom: 14px;
     }
-    .page-heading h2 {
-      margin: 0; font-size: 22px; font-weight: 700; color: #000;
+    .order-page-head__sub {
+      margin: 0;
+      font-size: 22px; font-weight: 900; color: #000;
     }
-    .back-btn {
-      height: 32px; padding: 0 16px;
-      border: 1px solid var(--line); border-radius: 6px;
-      background: #fff; color: #666; font-size: 13px; font-weight: 600;
-      display: inline-flex; align-items: center; gap: 6px;
+    .order-page-head__title {
+      margin: 0;
+      font-size: 22px; font-weight: 700; color: #000;
+      text-align: center;
     }
-    .back-btn:hover { border-color: #aaa; color: #333; }
+    .order-page-head__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .order-page-head__link {
+      text-align: right;
+      font-size: 13px; color: #666;
+      text-decoration: underline; text-underline-offset: 2px;
+      background: none; border: 0; cursor: pointer; padding: 0;
+    }
+    .order-page-head__link:hover { color: var(--navy); }
+
+    /* 플랫폼 도트 */
+    .platform-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
 
     /* 상품 카드 (레퍼런스: .order-item) */
     .order-item {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 30px;
-      border: 1px solid var(--line); border-radius: 12px;
+      display: grid;
+      grid-template-columns: 304px minmax(0, 1fr) 470px;
+      grid-template-areas:
+        "platform platform platform"
+        "name name name"
+        "media details status";
+      gap: 24px;
+      align-items: start;
+      padding: 46px;
+      border: 1px solid var(--line); border-radius: 10px;
       background: #fff;
-      margin-bottom: 30px;
+      margin-bottom: 42px;
+    }
+    .order-item__media {
+      grid-area: media;
+      width: 304px;
+      align-self: start;
     }
     .order-item__image {
-      width: 100px; height: 100px; flex-shrink: 0;
-      border-radius: 8px; overflow: hidden;
+      width: 304px; height: 304px; flex-shrink: 0;
+      border-radius: 6px; overflow: hidden;
       border: 1px solid #eee; background: #f5f5f5;
-      display: grid; place-items: center; color: #ccc; font-size: 28px;
+      display: grid; place-items: center; color: #ccc; font-size: 42px;
     }
+    .order-item__image i { opacity: .45; }
     .order-item__image img { width: 100%; height: 100%; object-fit: cover; }
-    .order-item__details { flex: 1; min-width: 0; }
-    .order-item__platform {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 10px; border: 1px solid #e8e8e8; border-radius: 6px;
-      background: #fff; font-size: 13px; margin-bottom: 10px;
+    .order-item__details { grid-area: details; min-width: 0; padding-top: 12px; }
+    .order-item__content {
+      display: contents;
     }
-    .order-item__platform b { font-weight: 700; color: #000; }
-    .order-item__platform span { color: #666; }
+    .order-item__platform {
+      grid-area: platform;
+      display: inline-flex; align-items: center; gap: 8px;
+      justify-self: start;
+      min-height: 41px;
+      width: auto;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+    .order-item__platform b {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 41px;
+      padding: 0 16px;
+      border: 1px solid #ff4d5f;
+      border-radius: 999px;
+      color: #ff334c;
+      font-size: 21px;
+      font-weight: 800;
+    }
+    .order-item__platform span:last-child {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #a1a8b5;
+      font-size: 21px;
+      font-weight: 700;
+    }
     .platform__flag { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; margin: 0; }
     .platform__flag img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; }
     .order-item__name {
-      display: block; font-size: 15px; font-weight: 500; color: #000;
-      line-height: 1.5; margin-bottom: 10px;
+      grid-area: name;
+      display: grid;
+      gap: 6px;
+      color: #000;
+      line-height: 1.55;
+      margin-bottom: 0;
     }
-    .order-item__meta { display: flex; flex-wrap: wrap; gap: 4px 16px; }
-    .order-item__meta span { font-size: 13px; color: #666; }
-    .order-item__meta b { color: #444; font-weight: 700; margin-right: 3px; }
+    .order-item__name-ko { font-size: 30px; font-weight: 900; color: #101827; letter-spacing: 0; }
+    .order-item__name-origin { font-size: 24px; font-weight: 500; color: #9ca3af; }
+    .order-item__meta-list { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 28px 30px; margin: 0; }
+    .order-item__meta-list dt { position: relative; font-size: 25px; font-weight: 700; color: #6d7481; }
+    .order-item__meta-list dt::before { content: ""; margin: 0; }
+    .order-item__meta-list dd { margin: 0; font-size: 25px; color: #263142; }
+    .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 22px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin: 2px 0 0; }
+    .order-status-card {
+      grid-area: status;
+      position: relative;
+      min-height: 0;
+      padding: 12px 0 0;
+      border: 0;
+      border-radius: 0;
+      overflow: hidden;
+      background: transparent;
+    }
+    .order-status-card::after { content: none; }
+    .order-status-card__head {
+      display: none;
+    }
+    .order-status-card__list {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 28px 30px;
+      margin: 0;
+      font-size: 25px;
+      color: #263142;
+    }
+    .order-status-card__list dt { font-weight: 700; color: #6d7481; }
+    .order-status-card__list dt::before { content: ""; margin: 0; }
+    .order-status-card__list dd { margin: 0; font-family: 'Roboto', sans-serif; font-weight: 500; color: #263142; }
+    .order-status-card__list dd strong { font-weight: 900; }
     .order-item__badge {
-      display: inline-flex; align-items: center; height: 24px; padding: 0 10px;
-      border: 1px solid var(--line); border-radius: 4px;
-      font-size: 13px; font-weight: 700; color: #666;
+      display: none;
     }
     .order-item__badge.done { border-color: #b2dfce; background: #eaf8f0; color: #278a46; }
 
     /* 2컬럼 컨테이너 */
     .order__container {
-      display: flex; gap: 20px; align-items: flex-start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 42px 56px; align-items: flex-start;
     }
     .order__left-container {
       flex: 1; min-width: 0;
       display: flex; flex-direction: column; gap: 30px;
     }
     .order__right-container {
-      width: 340px; flex-shrink: 0;
+      width: auto; flex-shrink: 0;
       display: flex; flex-direction: column; gap: 30px;
     }
 
     /* 섹션 타이틀 (레퍼런스: .order-title) */
     .order-title {
       display: flex; align-items: center; justify-content: space-between;
-      margin: 0 0 20px; font-size: 20px; font-weight: 700; color: #000;
+      margin: 0 0 20px; font-size: 20px; font-weight: 900; color: #000;
     }
     .order-title b { font-weight: 900; }
     .order-title__sub {
@@ -235,16 +331,17 @@
 
     /* 섹션 카드 (레퍼런스: .order-list-box) */
     .order-list-box {
-      padding: 30px;
-      border: 1px solid var(--line); border-radius: 12px;
+      padding: 10px;
+      border: 1px solid var(--line); border-radius: 10px;
       background: #fff;
     }
 
     /* 정보 행 (레퍼런스: .order-list__line) */
     .order-list__details { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-    .order-list__line { display: flex; align-items: flex-start; gap: 16px; }
-    .order-list__label { flex-shrink: 0; width: 100px; font-size: 14px; font-weight: 700; color: #000; }
-    .order-list__value { flex: 1; font-size: 14px; color: #000; }
+    .order-list__line { display: flex; align-items: flex-start; gap: 10px; }
+    .order-list__label { flex-shrink: 0; width: 200px; font-size: 17px; font-weight: 700; color: #000; }
+    .order-list__details .order-list__label::before { content: "· "; }
+    .order-list__value { flex: 1; font-size: 17px; color: #000; }
     .order-list__value.mono { font-family: 'Roboto', monospace; }
 
     /* 결제 테이블 (레퍼런스: .payment__summary) */
@@ -280,16 +377,140 @@
     .payment-list__line.is-total .order-list__label { color: var(--navy); font-size: 14px; }
     .payment-list__line.is-total .order-list__value { color: var(--rose); font-size: 15px; font-weight: 800; }
 
+    /* ── 결제정보 1차/2차 좌우 2열 (합계 바닥선 정렬) ── */
+    .order__stack { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 42px 56px; }
+    .order__stack > section:nth-of-type(1) { order: 3; grid-column: 1 / -1; }
+    .order__stack > section:nth-of-type(2) { order: 1; }
+    .order__stack > section:nth-of-type(3) { order: 2; }
+    .order__stack > section:nth-of-type(4) { order: 4; grid-column: 1 / -1; }
+    .order__stack > .inquiry-wrap { order: 5; grid-column: 1 / -1; }
+
+    .pay-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+    .pay-card {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: #fff; padding: 20px;
+    }
+    .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .pay-badge { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 6px; }
+    .pay-badge.first  { background: #e8eef7; color: var(--navy); }
+    .pay-badge.second { background: #fdf1dd; color: #9a6207; }
+    .pay-card__date { font-size: 12px; color: #999; font-family: 'Roboto', sans-serif; }
+
+    .pay-rows { list-style: none; margin: 0; padding: 0; }
+    .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
+    .pay-row .lbl { font-size: 13px; color: #555; }
+    .pay-row .val { font-size: 13px; color: #000; font-family: 'Roboto', monospace; }
+    .pay-row .val.muted { color: #c4c4c4; }
+    .pay-row .val.discount { color: var(--rose); }
+
+    /* 기타 펼치기 */
+    .pay-row.is-toggle { padding: 0; border-bottom: 1px solid #f6f6f6; }
+    .pay-etc { width: 100%; }
+    .pay-etc > summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 0; font-size: 13px; color: #555;
+    }
+    .pay-etc > summary::-webkit-details-marker { display: none; }
+    .pay-etc > summary .chev { font-size: 11px; color: #aaa; transition: transform .2s; }
+    .pay-etc[open] > summary .chev { transform: rotate(180deg); }
+    .pay-etc__inner { padding: 2px 0 8px; }
+    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fafafa; border-radius: 6px; margin-top: 4px; }
+    .pay-etc__inner .pay-row .lbl { font-size: 12.5px; color: #777; }
+
+    /* 합계 영역: margin-top:auto 로 카드 바닥에 고정 → 좌우 같은 평행선 */
+    .pay-foot { margin-top: auto; padding-top: 14px; }
+    .pay-meta { font-size: 11.5px; color: #999; line-height: 1.6; margin-bottom: 10px; }
+    .pay-meta b { color: #666; font-weight: 700; }
+    .pay-total {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px; border-radius: 8px; background: #f0f4fb; border-top: 2px solid var(--navy);
+    }
+    .pay-total .lbl { font-size: 14px; font-weight: 800; color: var(--navy); }
+    .pay-total .val { font-size: 16px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
+
+    .pay-grandtotal {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: var(--navy);
+    }
+    .pay-grandtotal .lbl { font-size: 15px; font-weight: 800; color: #fff; }
+    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: #fff; font-family: 'Roboto', monospace; }
+
+    /* 본문 풀폭 스택에서 우측 메모/묶음 카드 기본 패딩 보정 */
+    .order__stack .order-list-box { padding: 24px; }
+    @media (max-width: 600px) {
+      .order-page-head { gap: 18px; }
+      .order-page-head__row { align-items: flex-start; }
+      .order-page-head__sub { font-size: 19px; }
+      .order-item {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "platform"
+          "name"
+          "media"
+          "details"
+          "status";
+        gap: 20px;
+        padding: 20px;
+      }
+      .order-item__media { width: 100%; }
+      .order-item__image { width: 100%; height: 220px; }
+      .order-item__name-ko { font-size: 22px; }
+      .order-item__name-origin { font-size: 17px; }
+      .order-item__meta-list,
+      .order-status-card__list { grid-template-columns: 104px 1fr; gap: 14px 14px; }
+      .order-item__meta-list dt,
+      .order-item__meta-list dd,
+      .order-status-card__list dt,
+      .order-status-card__list dd { font-size: 16px; }
+      .order-status-card { min-height: 0; padding: 24px; }
+      .order__stack { grid-template-columns: 1fr; }
+      .order__stack > section { grid-column: 1 / -1; }
+      .pay-2col { grid-template-columns: 1fr; }
+      .pay-foot { margin-top: 14px; }
+    }
+
     /* 묶음배송 리스트 */
-    .bundle-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-    .bundle-item__box { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #f2f2f2; }
+    .bundle-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 26px;
+      counter-reset: bundle;
+      max-height: 372px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .bundle-item__box {
+      display: grid;
+      grid-template-columns: 34px 84px minmax(0, 1fr) 96px;
+      gap: 20px;
+      align-items: center;
+      padding-bottom: 26px;
+      border-bottom: 1px solid #f2f2f2;
+      counter-increment: bundle;
+    }
+    .bundle-item__box::before {
+      content: counter(bundle);
+      justify-self: center;
+      color: #000;
+      font-size: 14px;
+      font-weight: 700;
+    }
     .bundle-item__box:last-child { border-bottom: 0; padding-bottom: 0; }
-    .bundle-item__box .img-wrap { width: 56px; height: 56px; flex-shrink: 0; border-radius: 6px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 20px; }
+    .bundle-item__box .img-wrap { width: 84px; height: 84px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 24px; }
     .bundle-item__box .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
     .bundle-item__details { flex: 1; min-width: 0; }
-    .bundle-item__name { font-size: 13px; color: #000; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 6px; }
-    .bundle-item__delivery-status { margin-top: 4px; }
-    .basic-button__light-gray-line { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #666; font-size: 12px; font-weight: 700; }
+    .bundle-item__market { display: flex; align-items: center; gap: 7px; color: #59606d; font-size: 15px; margin-bottom: 8px; }
+    .bundle-item__market .platform__flag { width: 14px; height: 14px; }
+    .bundle-item__market .platform__flag img { width: 14px; height: 14px; }
+    .bundle-item__name { font-size: 0; margin: 0; }
+    .bundle-item__meta { display: grid; gap: 5px; color: #000; font-size: 13px; line-height: 1.35; }
+    .bundle-item__meta b { font-weight: 900; margin-right: 22px; }
+    .bundle-item__delivery-status { justify-self: end; margin-top: 0; }
+    .basic-button__light-gray-line { display: inline-flex; align-items: center; justify-content: center; min-width: 96px; height: 32px; padding: 0 14px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #666; font-size: 12px; font-weight: 700; }
 
     /* 메모 */
     .order-memo-box { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
@@ -325,19 +546,6 @@
     }
     .inquiry-btn:hover { background: #152f58; }
 
-    /* 주문번호 배너 */
-    .order-no-banner {
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-      padding: 16px 20px; border: 1px solid #f0f0f0; border-radius: 8px;
-      background: #fafafa; margin-bottom: 24px;
-    }
-    .order-no-banner__left { display: flex; align-items: center; gap: 14px; }
-    .order-no-label { font-size: 12px; color: #888; font-weight: 600; margin-bottom: 2px; }
-    .order-no-val { font-size: 16px; font-weight: 800; color: var(--navy); letter-spacing: .3px; }
-    .s-badge { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
-    .s-badge.done { background: #eaf8f0; color: #278a46; border: 1px solid #b2dfce; }
-    .s-badge.wait { background: #fff8e6; color: #c57400; border: 1px solid #f5e0a0; }
-    .order-no-banner__right { font-size: 12px; color: #888; }
   </style>
 </head>
 <body>
@@ -383,7 +591,7 @@
         <div class="profile-main">
           <div class="avatar">정</div>
           <div>
-            <strong class="profile-name">정일문님</strong>
+            <strong class="profile-name">홍길동님</strong>
             <span class="profile-tier">Premium</span>
           </div>
         </div>
@@ -466,244 +674,261 @@
     <!-- ── 메인 콘텐츠 ── -->
     <main class="main">
 
-      <!-- 페이지 타이틀 -->
-      <div class="page-heading">
-        <h2>주문상세정보</h2>
-        <button class="back-btn" type="button" onclick="history.back()">
-          <i class="fas fa-arrow-left"></i> 목록으로
-        </button>
-      </div>
-
-      <!-- 주문번호 배너 -->
-      <div class="order-no-banner">
-        <div class="order-no-banner__left">
-          <div>
-            <div class="order-no-label">주문번호</div>
-            <div class="order-no-val">JP3219649306</div>
-          </div>
-          <span class="s-badge done">배송완료</span>
+      <!-- 페이지 헤더 -->
+      <div class="order-page-head">
+        <h2 class="order-page-head__title">주문상세정보</h2>
+        <div class="order-page-head__row">
+          <h3 class="order-page-head__sub">경매주문상품 정보</h3>
+          <button type="button" class="order-page-head__link">본 입찰내역 조회</button>
         </div>
-        <div class="order-no-banner__right">주문일 2025-12-08</div>
       </div>
 
-      <!-- 경매주문상품정보 -->
-      <h3 class="order-title">
-        <b>경매주문상품정보</b>
-        <button type="button" class="order-title__sub">본 입찰내역 조회</button>
-      </h3>
+      <!-- 경매주문상품정보 카드 -->
       <article class="order-item">
-        <div class="order-item__image"><i class="far fa-image"></i></div>
-        <div class="order-item__details">
-          <div class="order-item__platform">
-            <figure class="platform__flag">
-              <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
-            </figure>
-            <b>야후경매</b>
-            <span>(물품아이디 : v1135890245)</span>
-          </div>
-          <a href="#" class="order-item__name">
-            42) ホンダ XR 100 モタード 純正 フロントウインカーセット HD13-1001 エイプB1
-          </a>
-          <div class="order-item__meta">
-            <span><b>출품자</b>motogarage_yamato</span>
-            <span><b>낙찰가</b>4,300엔</span>
-            <span><b>수량</b>1개</span>
+        <div class="order-item__platform">
+          <b><span class="platform-dot"></span>야후경매</b>
+          <span>물품아이디 : k12345678901</span>
+        </div>
+        <a href="#" class="order-item__name">
+          <span class="order-item__name-ko">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</span>
+          <span class="order-item__name-origin">父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ ピスタチオサンド 10 アソート ラングドシャ チョコレート</span>
+        </a>
+        <div class="order-item__media">
+          <div class="order-item__image">
+            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=270&h=214&q=80" alt="과자 상품 이미지" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'far fa-image\'></i>'">
           </div>
         </div>
-        <span class="order-item__badge done">배송완료</span>
+        <div class="order-item__content">
+          <div class="order-item__details">
+            <dl class="order-item__meta-list">
+              <dt>주문번호</dt>
+              <dd><strong>BJP0194792054</strong></dd>
+              <dt>주문옵션</dt>
+              <dd>OOOOOOO</dd>
+              <dt>주문수량</dt>
+              <dd>1개</dd>
+              <dt>낙찰가</dt>
+              <dd>￥ 46,000</dd>
+              <dt>낙찰상품</dt>
+              <dd>비공개 <a href="#">공개로 변경</a></dd>
+            </dl>
+          </div>
+          <aside class="order-status-card">
+            <div class="order-status-card__head">
+              <p>현재상태: 배송완료</p>
+              <p>주문번호: BJP0194792054</p>
+            </div>
+            <dl class="order-status-card__list">
+              <dt>현재상태</dt>
+              <dd><strong>배송완료</strong></dd>
+              <dt>낙찰가</dt>
+              <dd>￥ 46,000</dd>
+              <dt>입찰일자</dt>
+              <dd>2024-04-04 12:12:32</dd>
+              <dt>낙찰일자</dt>
+              <dd>2024-04-05 12:00:00</dd>
+              <dt>총 결제금액</dt>
+              <dd>₩42,000</dd>
+            </dl>
+          </aside>
+        </div>
       </article>
 
-      <!-- 2컬럼 컨테이너 -->
-      <div class="order__container">
+      <!-- 세로 풀폭 스택 -->
+      <div class="order__stack">
 
-        <!-- 좌측: 배송정보 + 결제정보 -->
-        <div class="order__left-container">
+        <!-- 주문결제정보 (1차/2차 좌우 2열) -->
+        <section>
+          <h3 class="order-title"><b>주문결제정보</b></h3>
+          <div class="pay-2col">
+            <!-- 1차 결제 -->
+            <div class="pay-card">
+              <div class="pay-card__head">
+                <span class="pay-badge first">1차 결제비용</span>
+                <span class="pay-card__date">2025-12-08 결제완료</span>
+              </div>
+              <ul class="pay-rows">
+                <li class="pay-row"><span class="lbl">물품가</span><span class="val">4,300엔</span></li>
+                <li class="pay-row"><span class="lbl">대행수수료</span><span class="val">860엔 (20%)</span></li>
+              </ul>
+              <div class="pay-foot">
+                <p class="pay-meta">적용환율 <b>9.3원/엔</b> · 카드결제 · 승인 98704321</p>
+                <div class="pay-total"><span class="lbl">1차 합계</span><span class="val">47,988원</span></div>
+              </div>
+            </div>
 
-          <!-- 주문배송정보 -->
-          <div>
-            <h3 class="order-title">
-              <b>주문배송정보</b>
-              <button type="button" class="order-title__sub">인보이스 출력</button>
-            </h3>
-            <article class="order-list-box">
-              <ul class="order-list__details">
-                <li class="order-list__line">
-                  <p class="order-list__label">수취인명</p>
-                  <p class="order-list__value">정일문</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">배송지</p>
-                  <p class="order-list__value">서울특별시 강남구 테헤란로 123, 비드바이빌딩 401호 (06234)</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">연락처</p>
-                  <p class="order-list__value mono">010-1234-5678</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">발송방법</p>
-                  <p class="order-list__value">EMS (국제특급우편)</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">품질상태</p>
-                  <p class="order-list__value">이상없음</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">공송장번호</p>
-                  <p class="order-list__value mono">EJ123456789JP</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">현지 출발일</p>
-                  <p class="order-list__value mono">2025-12-14</p>
-                </li>
-                <li class="order-list__line">
-                  <p class="order-list__label">국내 도착일</p>
-                  <p class="order-list__value mono">2025-12-17</p>
+            <!-- 2차 결제 -->
+            <div class="pay-card">
+              <div class="pay-card__head">
+                <span class="pay-badge second">2차 결제비용</span>
+                <span class="pay-card__date">2025-12-14 결제완료</span>
+              </div>
+              <ul class="pay-rows">
+                <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted">—</span></li>
+                <li class="pay-row"><span class="lbl">현지운송료</span><span class="val">무료</span></li>
+                <li class="pay-row"><span class="lbl">국제운송료</span><span class="val">6,500원</span></li>
+                <li class="pay-row is-toggle">
+                  <details class="pay-etc">
+                    <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <div class="pay-etc__inner">
+                      <div class="pay-row"><span class="lbl">관부가세</span><span class="val muted">—</span></div>
+                      <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount">—</span></div>
+                      <div class="pay-row"><span class="lbl">마일리지</span><span class="val discount">—</span></div>
+                    </div>
+                  </details>
                 </li>
               </ul>
-            </article>
-          </div>
-
-          <!-- 주문결제정보 -->
-          <div>
-            <h3 class="order-title"><b>주문결제정보</b></h3>
-            <article class="order-list-box" style="padding:0;overflow:hidden;">
-              <!-- 헤더 -->
-              <div class="payment__summary__header">
-                <p>비용산출항목</p>
-                <p>1차 결제비용 내역</p>
-                <p>2차 결제비용 내역</p>
+              <div class="pay-foot">
+                <p class="pay-meta">적용환율 <b>9.3원/엔</b> · 카드결제 · 승인 98704321</p>
+                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val">6,500원</span></div>
               </div>
-              <!-- 항목 -->
-              <div class="payment__summary__details">
-                <ul style="list-style:none;margin:0;padding:0;">
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>낙찰상품가</b></span>
-                    <span class="order-list__value">4,300엔</span>
-                    <span class="order-list__value">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>대행수수료</b></span>
-                    <span class="order-list__value">860엔 (20%)</span>
-                    <span class="order-list__value">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>현지세금</b></span>
-                    <span class="order-list__value">—</span>
-                    <span class="order-list__value">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>현지운송료</b></span>
-                    <span class="order-list__value">무료</span>
-                    <span class="order-list__value">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>국제운송료</b></span>
-                    <span class="order-list__value">—</span>
-                    <span class="order-list__value">6,500원</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>관부가세</b></span>
-                    <span class="order-list__value">—</span>
-                    <span class="order-list__value">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>쿠폰 할인</b></span>
-                    <span class="order-list__value" style="color:var(--rose);">—</span>
-                    <span class="order-list__value" style="color:var(--rose);">—</span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>마일리지</b></span>
-                    <span class="order-list__value" style="color:var(--rose);">—</span>
-                    <span class="order-list__value" style="color:var(--rose);">—</span>
-                  </li>
-                  <li class="payment-list__line is-subtotal">
-                    <span class="order-list__label"><b>소계</b></span>
-                    <span class="order-list__value"><b>5,160엔 (47,988원)</b></span>
-                    <span class="order-list__value"><b>6,500원</b></span>
-                  </li>
-                  <li class="payment-list__line">
-                    <span class="order-list__label"><b>결제수단</b></span>
-                    <span class="order-list__value"><b>47,988원 / 카드결제</b></span>
-                    <span class="order-list__value"><b>6,500원 / 카드결제</b></span>
-                  </li>
-                  <li class="payment-list__line is-total">
-                    <span class="order-list__label"><b>총 결제금액</b></span>
-                    <span class="order-list__value" style="border-left:0;" colspan="2"><b>54,488원</b></span>
-                    <span class="order-list__value"></span>
-                  </li>
-                </ul>
-              </div>
-            </article>
+            </div>
           </div>
 
-        </div><!-- /order__left-container -->
-
-        <!-- 우측: 상품유형 + 메모 -->
-        <div class="order__right-container">
-
-          <!-- 상품유형 정보 -->
-          <div>
-            <h3 class="order-title" style="font-size:17px;">
-              <b>관련 상품유형 정보</b>
-              <a href="#" class="order-title__sub">묶음배송관리</a>
-            </h3>
-            <article class="order-list-box" style="padding:20px;">
-              <ol class="bundle-list">
-                <li class="bundle-item__box">
-                  <div class="img-wrap"><i class="far fa-image"></i></div>
-                  <div class="bundle-item__details">
-                    <p class="bundle-item__name">ホンダ XR 100 モタード 純正 フロントウインカーセット HD13-1001 エイプB1</p>
-                    <div style="font-size:12px;color:#888;">낙찰가 3,100엔 · 수수료 620엔</div>
-                    <div class="bundle-item__delivery-status">
-                      <span class="basic-button__light-gray-line">낙찰완료</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="bundle-item__box">
-                  <div class="img-wrap"><i class="far fa-image"></i></div>
-                  <div class="bundle-item__details">
-                    <p class="bundle-item__name">ホンダ エイプ XR100 フロントウインカー 左右セット 純正品</p>
-                    <div style="font-size:12px;color:#888;">낙찰가 1,200엔 · 수수료 240엔</div>
-                    <div class="bundle-item__delivery-status">
-                      <span class="basic-button__light-gray-line" style="background:#eaf8f0;color:#278a46;border-color:#b2dfce;">배송완료</span>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-            </article>
+          <!-- 풀폭 총 결제금액 -->
+          <div class="pay-grandtotal">
+            <span class="lbl">총 결제금액 (1차 + 2차)</span>
+            <span class="val">54,488원</span>
           </div>
+        </section>
 
-          <!-- 주문 메모 내역 -->
-          <div>
-            <h3 class="order-title" style="font-size:17px;"><b>주문 메모 내역</b></h3>
-            <article class="order-list-box" style="padding:20px;">
-              <div class="order-memo-box">
-                <div class="basic-textarea">
-                  <textarea placeholder="메모 또는 문의 내용 입력 (최대 500자)" maxlength="500"></textarea>
+        <!-- 주문배송정보 -->
+        <section>
+          <h3 class="order-title">
+            <b>주문배송정보</b>
+            <button type="button" class="order-title__sub">인보이스 출력</button>
+          </h3>
+          <article class="order-list-box">
+            <ul class="order-list__details">
+              <li class="order-list__line">
+                <p class="order-list__label">수취인명</p>
+                <p class="order-list__value">홍길동</p>
+              </li>
+                            <li class="order-list__line">
+                <p class="order-list__label">연락처</p>
+                <p class="order-list__value mono">010-1234-5678</p>
+              </li>
+                            <li class="order-list__line">
+                <p class="order-list__label">개인통관고유부호</p>
+                <p class="order-list__value mono">P932150008388</p>
+              </li>
+              <li class="order-list__line">
+                <p class="order-list__label">배송지</p>
+                <p class="order-list__value">서울특별시 강남구 테헤란로 123, 비드바이빌딩 401호 (06234)</p>
+              </li>
+
+              <li class="order-list__line">
+                <p class="order-list__label">발송방법</p>
+                <p class="order-list__value">EMS (국제특급우편)</p>
+              </li>
+              <li class="order-list__line">
+                <p class="order-list__label">운송장번호</p>
+                <p class="order-list__value mono">EJ123456789JP</p>
+              </li>
+              <li class="order-list__line">
+                <p class="order-list__label">국제 배송일</p>
+                <p class="order-list__value mono">2025-12-14</p>
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- 관련 상품유형 정보 (묶음배송) -->
+        <section>
+          <h3 class="order-title">
+            <b>관련 묶음배송 정보</b>
+            <a href="#" class="order-title__sub">묶음배송관리</a>
+          </h3>
+          <article class="order-list-box">
+            <ol class="bundle-list">
+              <li class="bundle-item__box">
+                <div class="img-wrap"><i class="far fa-image"></i></div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__market">
+                    <span class="platform__flag">
+                      <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
+                    </span>
+                    야후경매 - ホンダ XR 100 モタード 純正
+                  </p>
+                  <div class="bundle-item__meta">
+                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가</b>결제비용 : ￥3,100 / 28,830원</span>
+                  </div>
                 </div>
-                <button type="button" class="basic-button__gray">등록</button>
-              </div>
-              <ul class="order-memo-list">
-                <li>
-                  <div class="order-memo__header">
-                    <span><span class="memo-type-admin">관리자</span><b>비드바이 고객센터</b></span>
-                    <span>2025-12-15 14:32</span>
+                <div class="bundle-item__delivery-status">
+                  <span class="basic-button__light-gray-line">배송완료</span>
+                </div>
+              </li>
+              <li class="bundle-item__box">
+                <div class="img-wrap"><i class="far fa-image"></i></div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__market">
+                    <span class="platform__flag">
+                      <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
+                    </span>
+                    야후경매 - ホンダ エイプ XR100 フロント
+                  </p>
+                  <div class="bundle-item__meta">
+                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가</b>결제비용 : ￥1,200 / 11,160원</span>
                   </div>
-                  <p class="order-memo__body">상품이 정상적으로 국내 도착하였습니다. 배송 완료 확인 부탁드립니다.</p>
-                </li>
-              </ul>
-            </article>
-          </div>
+                </div>
+                <div class="bundle-item__delivery-status">
+                    <span class="basic-button__light-gray-line">배송완료</span>
+                </div>
+              </li>
+              <li class="bundle-item__box">
+                <div class="img-wrap"><i class="far fa-image"></i></div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__market">
+                    <span class="platform__flag">
+                      <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
+                    </span>
+                    야후경매 - ホンダ 純正 ウインカー 部品
+                  </p>
+                  <div class="bundle-item__meta">
+                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가</b>결제비용 : ￥900 / 8,370원</span>
+                  </div>
+                </div>
+                <div class="bundle-item__delivery-status">
+                  <span class="basic-button__light-gray-line">배송완료</span>
+                </div>
+              </li>
+            </ol>
+          </article>
+        </section>
 
-          <!-- 문의하기 -->
-          <div class="inquiry-wrap">
-            <button class="inquiry-btn" type="button">
-              <i class="fas fa-headset"></i> 이 주문 문의하기
-            </button>
-          </div>
+        <!-- 주문 메모 내역 -->
+        <section>
+          <h3 class="order-title"><b>주문 메모 내역</b></h3>
+          <article class="order-list-box">
+            <div class="order-memo-box">
+              <div class="basic-textarea">
+                <textarea placeholder="메모 또는 문의 내용 입력 (최대 500자)" maxlength="500"></textarea>
+              </div>
+              <button type="button" class="basic-button__gray">등록</button>
+            </div>
+            <ul class="order-memo-list">
+              <li>
+                <div class="order-memo__header">
+                  <span><span class="memo-type-admin">관리자</span><b>비드바이 고객센터</b></span>
+                  <span>2025-12-15 14:32</span>
+                </div>
+                <p class="order-memo__body">상품이 정상적으로 국내 도착하였습니다. 배송 완료 확인 부탁드립니다.</p>
+              </li>
+            </ul>
+          </article>
+        </section>
 
-        </div><!-- /order__right-container -->
-      </div><!-- /order__container -->
+        <!-- 문의하기 -->
+        <div class="inquiry-wrap">
+          <button class="inquiry-btn" type="button">
+            <i class="fas fa-headset"></i> 이 주문 문의하기
+          </button>
+        </div>
+
+      </div><!-- /order__stack -->
 
     </main>
   </div><!-- /stage -->
@@ -716,7 +941,7 @@
     <div class="dr-user-mini">
       <div class="u-av">정</div>
       <div>
-        <div class="dr-user-mini-name">정일문님</div>
+        <div class="dr-user-mini-name">홍길동님</div>
         <div class="dr-user-mini-grade">Premium 회원</div>
       </div>
     </div>

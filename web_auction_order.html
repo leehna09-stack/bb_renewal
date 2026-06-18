@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -247,7 +247,7 @@
 
   <!-- 물품 요약 -->
   <div class="item-summary">
-    <div class="item-summary-row"><b>아이템No (옵션)</b><span class="val">v1135509199 (옵션명)</span></div>
+    <div class="item-summary-row"><b>물품아이디 (옵션)</b><span class="val">v1135509199 (옵션명)</span></div>
     <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>¥1,200</strong> <span class="krw">(₩10,920)</span></span></div>
     <div class="item-summary-row"><b>종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
   </div>
@@ -278,7 +278,7 @@
       
       3.상품제목 및 설명 란에 <span class="danger">정크(JUNK)</span>로 표기되어 있는 경우 <span class="danger">파손보상에서 제외됩니다.</span>
       <br><span class="danger">제품 상태 및 진가품 여부</span>에 대해 비드바이는 절대 책임지지 않습니다.<p></p>
-      <p>4. 음향기기(턴테이블, 앰프, 스피커, 카세트테이프 등) 및 계측기 등 기계류의 작동 불량은 클레임 대상에서 제외됩니다.</p>
+      <p>4. 음향기기(턴테이블, 앰프, 스피커, 카세트테이프 등) 및 계측기 등 기계류의 작동 불량은 <span class="danger">클레임 대상에서 제외됩니다.</span></p>
     <label class="agree-row">
       <input type="checkbox" id="agreeChk" onchange="updateState()">
       위 규정에 동의하며 입찰을 신청합니다.
@@ -308,7 +308,8 @@
           <strong id="modalBidQty">1개</strong>
         </div>
       </div>
-      <p class="confirm-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다. 금액과 수량을 다시 확인하신 후 진행해 주세요.</p>
+      <p class="confirm-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다.
+        <br>금액과 수량을 다시 확인하신 후 진행해 주세요.</p>
       <div class="confirm-actions">
         <button class="confirm-btn line" type="button" onclick="closeFinalBidModal()">취소</button>
         <button class="confirm-btn primary" type="button" onclick="confirmFinalBid()">확인</button>

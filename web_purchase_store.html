@@ -415,14 +415,21 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
       <!-- 좌: 상품 정보 + 주문 폼 -->
       <div class="order-form-area">
-        <div class="bp-header">
-          <div class="bp-id-wrap">
-            <span class="bp-id-label">구매상품 ID</span>
-            <span class="bp-id-val roboto">1135509199</span>
+        <div class="bp-price-section bp-price-section--top">
+          <div class="bp-price-row bp-price-row--main">
+            <span class="bp-price-label">판매가격</span>
+            <div class="bp-price-main-wrap">
+              <span class="bp-current-price roboto">92,000<span class="bp-current-unit">엔</span></span>
+              <div class="bp-price-sub">
+                <span class="bp-tax-label">(약</span>
+                <span class="bp-tax-val roboto">￦837,200)</span>
+              </div>
+            </div>
           </div>
-          <button class="btn-wish-reg" type="button" onclick="this.classList.toggle('active')">
-            <i class="fa-regular fa-heart"></i> 관심 상품
-          </button>
+          <div class="bp-price-row">
+            <span class="bp-price-label">현지운송료</span>
+            <span class="bp-price-val roboto" style="font-weight:700;color:var(--tp)">무료</span>
+          </div>
         </div>
 
         <div class="bp-info-grid">
@@ -441,23 +448,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           <div class="bp-info-cell bp-info-cell--right" style="border-bottom:none">
             <span class="bp-info-label">배송안내</span>
             <span class="bp-info-val" style="font-size:13px;font-weight:400;color:var(--ts)">무료운송 · 발송까지 1~2일 · 효고현</span>
-          </div>
-        </div>
-
-        <div class="bp-price-section">
-          <div class="bp-price-row bp-price-row--main">
-            <span class="bp-price-label">판매가격</span>
-            <div class="bp-price-main-wrap">
-              <span class="bp-current-price roboto">92,000<span class="bp-current-unit">엔</span></span>
-              <div class="bp-price-sub">
-                <span class="bp-tax-label">(약</span>
-                <span class="bp-tax-val roboto">￦837,200)</span>
-              </div>
-            </div>
-          </div>
-          <div class="bp-price-row">
-            <span class="bp-price-label">현지운송료</span>
-            <span class="bp-price-val roboto" style="font-weight:700;color:var(--tp)">무료</span>
           </div>
         </div>
 
@@ -576,7 +566,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <div class="acc-info-split">
         <div class="acc-info-col">
           <table class="acc-info-table">
-            <tr><th>구매상품 ID</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
+            <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
             <tr><th>카테고리</th><td>카메라 &gt; 렌즈 &gt; 줌렌즈</td></tr>
             <tr><th>브랜드</th><td>SONY (소니)</td></tr>
             <tr><th>상품유형</th><td><span style="color:var(--green);font-weight:700">신상품</span></td></tr>

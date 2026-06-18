@@ -537,6 +537,23 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .acc-info-col{min-width:0}
 .acc-info-col+.acc-info-col{border-left:1px solid var(--border);padding-left:24px;margin-left:24px}
 
+.item-specifics-card{margin-top:10px}
+.item-specifics-panel{position:relative;border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden}
+.item-specifics-head{height:48px;padding:0 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--tp);font-size:14px;font-weight:800}
+.item-specifics-head i{color:var(--ts);font-size:13px}
+.item-specifics-body{max-height:118px;overflow:hidden;transition:max-height .25s ease}
+.item-specifics-card.expanded .item-specifics-body{max-height:760px}
+.item-specifics-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:6px 20px 0}
+.item-specifics-col{min-width:0;padding-right:24px}
+.item-specifics-col+.item-specifics-col{border-left:1px solid var(--border);padding-right:0;padding-left:24px}
+.item-specific-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:16px;padding:11px 0;border-bottom:1px solid #eef0f4;font-size:13px;line-height:1.55}
+.item-specific-row b{color:#6b7280;font-weight:800}
+.item-specific-row span{color:var(--tp);font-weight:500}
+.item-specific-toggle{position:relative;z-index:1;width:100%;height:44px;border:0;border-top:1px solid var(--border);background:#FAFBFC;color:var(--navy);font-family:inherit;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer}
+.item-specific-toggle:hover{background:#FAFBFC}
+.item-specific-toggle i{font-size:11px;transition:transform .2s}
+.item-specifics-card.expanded .item-specific-toggle i{transform:rotate(180deg)}
+
 /* ── 상단/하단 구분 ── */
 
 /* ── 이미지 하단 좌우 정보 패널 ── */
@@ -893,7 +910,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
           <div class="bp-price-section">
             <div class="bp-price-row" style="align-items:center">
-              <span class="bp-price-label">경매상품 ID</span>
+              <span class="bp-price-label">물품아이디</span>
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="roboto" style="font-size:13px;font-weight:700;color:var(--navy)">j1232333613</span>
                 <span class="bp-badge fee-tooltip" data-tooltip="출품자가 종료시간보다 앞당겨 경매를 끝내고 낙찰자를 즉시 확정할수 있는 경매건입니다.">조기종료</span>
@@ -1067,7 +1084,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <div class="acc-info-split">
         <div class="acc-info-col">
           <table class="acc-info-table">
-            <tr><th>경매상품 ID</th><td class="roboto" style="color:var(--navy)">j1232333613</td></tr>
+            <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">j1232333613</td></tr>
             <tr><th>카테고리</th><td>장난감·게임 &gt; 피규어 &gt; 창작·오리지널 &gt; 일반</td></tr>
             <tr><th>상품 상태</th><td><span style="color:var(--green);font-weight:700">눈에 띄는 흠집·오염 없음</span></td></tr>
             <tr><th>수량</th><td class="roboto">1개</td></tr>
@@ -1089,6 +1106,41 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           </table>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="info-panel-card item-specifics-card" id="itemSpecifics">
+    <div class="item-specifics-panel">
+      <div class="item-specifics-head"><i class="fa-solid fa-circle-info"></i> Item specifics</div>
+      <div class="item-specifics-body">
+        <div class="item-specifics-grid">
+          <div class="item-specifics-col">
+            <div class="item-specific-row"><b>Video Format</b><span>NTSC</span></div>
+            <div class="item-specific-row"><b>Former Rental</b><span>No</span></div>
+            <div class="item-specific-row"><b>Subtitle Language</b><span>English</span></div>
+            <div class="item-specific-row"><b>Rating</b><span>NR</span></div>
+            <div class="item-specific-row"><b>Modified Item</b><span>No</span></div>
+            <div class="item-specific-row"><b>Edition</b><span>Box Set</span></div>
+            <div class="item-specific-row"><b>Aspect Ratio</b><span>16:9</span></div>
+            <div class="item-specific-row"><b>Type</b><span>TV Series</span></div>
+            <div class="item-specific-row"><b>Region Code</b><span>DVD: 1 (US, Canada...)</span></div>
+            <div class="item-specific-row"><b>Language</b><span>English</span></div>
+          </div>
+          <div class="item-specifics-col">
+            <div class="item-specific-row"><b>Release Year</b><span>2021</span></div>
+            <div class="item-specific-row"><b>Actor</b><span>Jared Padalecki, Jensen Ackles, Misha Collins, Jim Beaver, Mark Sheppard</span></div>
+            <div class="item-specific-row"><b>Run Time</b><span>228 hours and 26 minutes</span></div>
+            <div class="item-specific-row"><b>Season</b><span>1, 10, 11, 12, 13, 14, 15, 2, 3, 4, 5, 6, 7, 8, 9, Complete Series Box Set</span></div>
+            <div class="item-specific-row"><b>Country of Origin</b><span>United States</span></div>
+            <div class="item-specific-row"><b>Movie/TV Title</b><span>Supernatural: the Complete Series</span></div>
+            <div class="item-specific-row"><b>Format</b><span>DVD</span></div>
+            <div class="item-specific-row"><b>Genre</b><span>TV Horror</span></div>
+            <div class="item-specific-row"><b>Studio</b><span>Warner Home Video</span></div>
+            <div class="item-specific-row"><b>Sub-Genre</b><span>Television</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="item-specific-toggle" type="button" onclick="toggleItemSpecifics(this)" aria-expanded="false">펼쳐보기 <i class="fa-solid fa-chevron-down"></i></button>
     </div>
   </div>
 
@@ -1543,6 +1595,13 @@ function switchTab(btn, id){
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
+}
+
+function toggleItemSpecifics(btn){
+  const card = btn.closest('.item-specifics-card');
+  const expanded = card?.classList.toggle('expanded');
+  btn.setAttribute('aria-expanded', String(Boolean(expanded)));
+  btn.firstChild.nodeValue = expanded ? '접어보기 ' : '펼쳐보기 ';
 }
 
 // 입찰 방식 탭 전환

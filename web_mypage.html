@@ -706,6 +706,11 @@
       place-items: center;
       text-align: center;
       padding: 10px 8px;
+      overflow: hidden;
+    }
+
+    .status-card > div {
+      width: 100%;
     }
 
     .status-card[data-status],
@@ -759,9 +764,11 @@
     .status-card strong {
       display: block;
       color: #3e4249;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       line-height: 1.45;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .status-card .sub {
@@ -1121,7 +1128,7 @@
 
     .order-card {
       border: 1px solid var(--line);
-      border-radius: 11px;
+      border-radius: 7px;
       overflow: hidden;
       background: #fff;
     }
@@ -1138,6 +1145,7 @@
     }
 
     .order-card.bundle-group-end {
+      margin-top: -10px;
       border-top: 0;
       border-top-right-radius: 0;
       border-top-left-radius: 0;
@@ -1148,8 +1156,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      padding: 11px 14px;
-      background: var(--warm);
+      padding: 11px 20px;
+      background: #f8f9fb;
       border-bottom: 1px solid var(--line);
     }
 
@@ -1166,7 +1174,7 @@
 
     .bundle-summary-list b {
       margin-right: 5px;
-      color: #6b7280;
+      color: #4b5260;
       font-weight: 700;
     }
 
@@ -1181,15 +1189,15 @@
 
     .bundle-chip {
       flex: 0 0 auto;
-      height: 24px;
-      padding: 0 9px;
-      border: 1px solid rgba(209, 47, 69, 0.22);
-      border-radius: 999px;
-      background: #fff;
-      color: var(--rose);
+      height: 32px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 7px;
+      background: #394554;
+      color: #fff;
       display: inline-flex;
       align-items: center;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 800;
       white-space: nowrap;
     }
@@ -1222,75 +1230,86 @@
     .order-table .col-product-head,
     .order-table .col-order-head,
     .order-table .col-ship-head {
-      background: var(--warm);
-      color: #5a5e66;
-      font-size: 11px;
+      height: 46px;
+      background: #fff;
+      color: transparent;
+      font-size: 0;
       font-weight: 800;
-      padding: 8px 14px;
+      padding: 0 20px;
       border-bottom: 1px solid var(--line);
     }
 
-    .order-table .col-product-head { border-right: 1px solid var(--line); text-align: left; }
+    .order-table .col-product-head { border-right: 0; text-align: left; }
     .order-table .col-order-head   { text-align: left; }
-    .order-table .col-ship-head    { width: 88px; text-align: right; }
+    .order-table .col-ship-head    { width: 112px; text-align: right; }
 
     .order-table td.col-thumb {
-      width: 84px;
-      min-width: 84px;
-      padding: 14px 10px 14px 14px;
-      vertical-align: top;
+      width: 112px;
+      min-width: 112px;
+      padding: 20px 10px 20px 20px;
+      vertical-align: middle;
     }
 
     .order-table td.col-info {
-      padding: 12px 14px 12px 0;
-      vertical-align: top;
+      padding: 18px 18px 18px 0;
+      vertical-align: middle;
       border-right: 1px solid var(--line);
-      width: 210px;
+      width: 220px;
     }
 
     .order-table td.col-label {
-      background: #f8f9fb;
       color: #6b7280;
       font-size: 12px;
-      font-weight: 600;
-      padding: 9px 12px;
+      font-weight: 800;
+      padding: 6px 8px 6px 14px;
       white-space: nowrap;
-      border-bottom: 1px solid var(--line-soft);
-      border-right: 1px solid var(--line-soft);
-      width: 76px;
+      border: 0;
+      width: 88px;
     }
 
     .order-table td.col-val {
-      color: #222;
-      font-size: 12px;
-      padding: 9px 12px;
-      border-bottom: 1px solid var(--line-soft);
-      border-right: 1px solid var(--line-soft);
+      color: #4d5666;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 8px 6px 0;
+      border: 0;
+      white-space: nowrap;
+      width: 96px;
+    }
+
+    .order-table tr:first-child td.col-label,
+    .order-table tr:first-child td.col-val {
+      padding-top: 20px;
+    }
+
+    .order-table tr:nth-child(3) td.col-label,
+    .order-table tr:nth-child(3) td.col-val {
+      padding-bottom: 20px;
     }
 
     .order-table td.col-ship {
       text-align: center;
       vertical-align: middle;
-      font-size: 12px;
-      font-weight: 700;
-      color: #555;
-      padding: 12px 10px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #4d5666;
+      padding: 18px 10px;
       border-left: 1px solid var(--line);
-      width: 88px;
+      width: 112px;
       line-height: 1.7;
     }
 
     .ship-btn {
       display: block;
-      margin: 6px auto 0;
-      height: 24px;
-      padding: 0 8px;
-      border: 1px solid var(--navy);
-      border-radius: 6px;
+      margin: 8px auto 0;
+      height: 36px;
+      padding: 0 16px;
+      border: 1px solid #aeb8c6;
+      border-radius: 5px;
       background: #fff;
-      color: var(--navy);
-      font-size: 11px;
-      font-weight: 700;
+      color: #4d5666;
+      font-size: 13px;
+      font-weight: 800;
       font-family: inherit;
       cursor: pointer;
       white-space: nowrap;
@@ -1301,8 +1320,8 @@
     .order-table td.col-actions {
       text-align: right;
       padding: 9px 14px;
-      background: #fafafa;
-      border-top: 1px solid var(--line-soft);
+      background: #fff;
+      border-top: 0;
     }
 
     .order-table tr.is-actions-moved {
@@ -1316,7 +1335,7 @@
       gap: 6px;
       width: 100%;
       max-width: 88px;
-      margin-top: 8px;
+      margin: 0 auto;
     }
 
     .action-stack .mini-btn {
@@ -1337,7 +1356,7 @@
 
     .order-id {
       color: #59606d;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       margin-bottom: 4px;
       overflow: hidden;
@@ -1347,8 +1366,8 @@
 
     .order-title {
       color: #151922;
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 700;
       line-height: 1.55;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -1373,6 +1392,29 @@
       text-decoration: none;
       cursor: pointer;
     }
+
+    .order-table .col-product-head .order-status-link {
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .order-card .col-product-head .order-status-link { color: #111; }
+    .order-card[data-status="auction-bid"] .col-product-head .order-status-link { color: #111; }
+    .order-card[data-status="first-payment-wait"] .col-product-head .order-status-link,
+    .order-card[data-status="second-payment-wait"] .col-product-head .order-status-link { color: var(--rose); }
+    .order-card[data-status="local-arrived"] .col-product-head .order-status-link { color: #111; }
+    .order-card[data-status="shipping-wait"] .col-product-head .order-status-link,
+    .order-card[data-status="international-shipping"] .col-product-head .order-status-link { color: #111; }
+    .order-card[data-status="failed-bid"] .col-product-head .order-status-link,
+    .order-card[data-status="trade-cancel"] .col-product-head .order-status-link { color: #111; }
+    .order-card[data-status="successful-bid"] .col-product-head .order-status-link,
+    .order-card[data-status="first-payment-complete"] .col-product-head .order-status-link,
+    .order-card[data-status="second-payment-complete"] .col-product-head .order-status-link { color: #111; }
 
     .row-actions {
       display: inline-flex;
@@ -1399,10 +1441,13 @@
     }
 
     .mini-btn.primary {
-      min-width: 66px;
+      min-width: 86px;
+      height: 45px;
       border-color: var(--rose);
       background: var(--rose);
       color: #fff;
+      border-radius: 5px;
+      font-size: 14px;
     }
 
     .order-table .col-ship-head .detail-top-btn {
@@ -1416,8 +1461,8 @@
       border-radius: 0;
       background: transparent;
       color: var(--navy);
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       line-height: 1;
       text-decoration: none;
       white-space: nowrap;
@@ -1427,6 +1472,20 @@
     .order-table .col-ship-head .detail-top-btn:hover {
       color: var(--rose);
       background: transparent;
+    }
+
+    .order-table td.col-ship .detail-top-btn {
+      display: inline-flex;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      margin: 0 0 9px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--rose);
+      font-size: 14px;
+      font-weight: 800;
     }
 
     .pager {
@@ -1870,13 +1929,13 @@
               </table>
             </div>
 
-            <!-- 현지도착 -->
+            <!-- 현지도착 + 결제대기 묶음배송 (BJP-2024041703 대표) -->
             <div class="order-card bundle-group-start" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
               <div class="bundle-summary">
                 <ul class="bundle-summary-list">
                   <li><b>대표 주문번호</b><span>BJP-2024041703</span></li>
                 </ul>
-                <span class="bundle-chip">묶음배송</span>
+                <span class="bundle-chip">묶음배송 2건</span>
               </div>
               <table class="order-table">
                 <thead><tr>
@@ -1915,8 +1974,47 @@
               </table>
             </div>
 
-            <!-- 현지도착 - 묶음배송 -->
-            <div class="order-card status-extra bundle-group-end" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
+            <!-- BJP-2024041704 묶음 (bundle-group-end) -->
+            <div class="order-card bundle-group-end" data-trade-type="purchase" data-country="jp" data-status="second-payment-wait">
+              <table class="order-table">
+                <thead><tr>
+                  <th colspan="2" class="col-product-head">상품정보</th>
+                  <th colspan="4" class="col-order-head">주문정보</th>
+                  <th class="col-ship-head"></th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-info">
+                      <div class="order-id">[야후구매] BJP-2024041704</div>
+                      <div class="order-title">무인양품 원목 수납박스 데스크 정리함 묶음</div>
+                      <span class="order-status-link">결제대기</span>
+                    </td>
+                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
+                    <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
+                    <td rowspan="3" class="col-ship">묶음배송<br>19,500원<button class="ship-btn" type="button">배송신청</button></td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
+                    <td class="col-label">결제금액</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.22</td>
+                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
+                  </tr>
+                  <tr>
+                    <td colspan="7" class="col-actions">
+                      <div class="row-actions">
+                        <button class="mini-btn" type="button">상세보기</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- 현지도착 - 703-B (단독) -->
+            <div class="order-card status-extra" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
               <table class="order-table">
                 <thead><tr>
                   <th colspan="2" class="col-product-head">상품정보</th>
@@ -1980,45 +2078,6 @@
                   </tr>
                   <tr>
                     <td class="col-label">현지도착일</td><td class="col-val">2024.04.21</td>
-                    <td class="col-label">국제배송일</td><td class="col-val">—</td>
-                  </tr>
-                  <tr>
-                    <td colspan="7" class="col-actions">
-                      <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- 결제대기 -->
-            <div class="order-card" data-trade-type="purchase" data-country="jp" data-status="second-payment-wait">
-              <table class="order-table">
-                <thead><tr>
-                  <th colspan="2" class="col-product-head">상품정보</th>
-                  <th colspan="4" class="col-order-head">주문정보</th>
-                  <th class="col-ship-head"></th>
-                </tr></thead>
-                <tbody>
-                  <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
-                    <td rowspan="3" class="col-info">
-                      <div class="order-id">[야후구매] BJP-2024041704</div>
-                      <div class="order-title">무인양품 원목 수납박스 데스크 정리함 묶음</div>
-                      <span class="order-status-link">결제대기</span>
-                    </td>
-                    <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
-                    <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
-                    <td rowspan="3" class="col-ship">묶음배송<br>19,500원<button class="ship-btn" type="button">배송신청</button></td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
-                    <td class="col-label">결제금액</td><td class="col-val">—</td>
-                  </tr>
-                  <tr>
-                    <td class="col-label">현지도착일</td><td class="col-val">2024.04.22</td>
                     <td class="col-label">국제배송일</td><td class="col-val">—</td>
                   </tr>
                   <tr>
@@ -2783,8 +2842,6 @@
 
         if (detailButton) {
           detailButton.classList.add("detail-top-btn");
-          detailButton.textContent = "상세보기 >";
-          shipHead.appendChild(detailButton);
         }
 
         const stack = document.createElement("div");
@@ -2798,6 +2855,12 @@
           }
         });
 
+        // 상세보기 → 헤더 행 오른쪽 (order-status와 동일선상)
+        if (detailButton) {
+          shipHead.appendChild(detailButton);
+        }
+
+        // 주요 액션 버튼 → 배송 셀
         if (stack.children.length) {
           if (shipCell.textContent.trim() === "—") {
             shipCell.textContent = "";
@@ -2810,17 +2873,20 @@
       });
     }
 
-    function placeOrderStatusInProductInfo() {
+    function placeOrderStatusInCardHeader() {
       document.querySelectorAll(".order-table td.col-info").forEach((info) => {
         const status = info.querySelector(".order-status-link");
-        if (!status || info.firstElementChild === status) {
+        const table = info.closest(".order-table");
+        const head = table?.querySelector(".col-product-head");
+        if (!status || !head || head.contains(status)) {
           return;
         }
-        info.insertBefore(status, info.firstElementChild);
+        head.textContent = "";
+        head.appendChild(status);
       });
     }
 
-    placeOrderStatusInProductInfo();
+    placeOrderStatusInCardHeader();
     placeOrderActionsAtTableEnd();
 
     function updateStatusCounts() {
