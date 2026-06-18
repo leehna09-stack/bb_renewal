@@ -181,6 +181,83 @@
     }
     .order-page-head__link:hover { color: var(--navy); }
 
+    .bid-history-modal-card { width: min(560px, calc(100vw - 32px)); }
+    .bid-history-modal-card .confirm-modal-body { max-height: 70vh; overflow: auto; }
+    .confirm-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, .45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+    }
+    .confirm-modal.open { display: flex; }
+    .confirm-modal-card {
+      width: min(420px, calc(100vw - 32px));
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+      overflow: hidden;
+    }
+    .confirm-modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .confirm-modal-head strong { font-size: 15px; color: var(--tp); }
+    .confirm-modal-close {
+      border: none;
+      background: none;
+      font-size: 18px;
+      color: var(--tm);
+      cursor: pointer;
+    }
+    .confirm-modal-body { padding: 20px; }
+    .bid-hist-table-wrap { position: relative; }
+    .bid-history-table-close {
+      position: absolute;
+      top: 7px;
+      right: 6px;
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      color: var(--tm);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .bid-history-table-close:hover { color: var(--navy); }
+    .bid-hist-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .bid-hist-table th {
+      padding: 8px 6px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ts);
+      border-bottom: 2px solid var(--border);
+      background: #FAFBFC;
+    }
+    .bid-hist-table th:last-child { padding-right: 34px; }
+    .bid-hist-table td {
+      padding: 10px 6px;
+      border-bottom: 1px solid #F0F2F5;
+      vertical-align: top;
+    }
+    .bid-hist-table tr:last-child td { border-bottom: none; }
+    .bid-status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .bid-status-reserve { background: transparent; color: #5B7AE0; padding: 0; border-radius: 0; }
+
     /* 플랫폼 도트 */
     .platform-dot {
       width: 14px; height: 14px; border-radius: 50%;
@@ -191,25 +268,25 @@
     /* 상품 카드 (레퍼런스: .order-item) */
     .order-item {
       display: grid;
-      grid-template-columns: 304px minmax(0, 1fr) 470px;
+      grid-template-columns: 220px minmax(0, 1fr) 360px;
       grid-template-areas:
         "platform platform platform"
         "name name name"
         "media details status";
-      gap: 24px;
+      gap: 18px 26px;
       align-items: start;
-      padding: 46px;
+      padding: 30px;
       border: 1px solid var(--line); border-radius: 10px;
       background: #fff;
       margin-bottom: 42px;
     }
     .order-item__media {
       grid-area: media;
-      width: 304px;
+      width: 220px;
       align-self: start;
     }
     .order-item__image {
-      width: 304px; height: 304px; flex-shrink: 0;
+      width: 220px; height: 220px; flex-shrink: 0;
       border-radius: 6px; overflow: hidden;
       border: 1px solid #eee; background: #f5f5f5;
       display: grid; place-items: center; color: #ccc; font-size: 42px;
@@ -230,7 +307,7 @@
       padding: 0;
       border: 0;
       background: transparent;
-      font-size: 22px;
+      font-size: 16px;
       margin-bottom: 0;
       overflow: hidden;
     }
@@ -238,12 +315,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      height: 41px;
-      padding: 0 16px;
+      height: 32px;
+      padding: 0 13px;
       border: 1px solid #ff4d5f;
-      border-radius: 999px;
+      border-radius: 4px;
       color: #ff334c;
-      font-size: 21px;
+      font-size: 16px;
       font-weight: 800;
     }
     .order-item__platform span:last-child {
@@ -252,7 +329,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       color: #a1a8b5;
-      font-size: 21px;
+      font-size: 16px;
       font-weight: 700;
     }
     .platform__flag { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; margin: 0; }
@@ -265,13 +342,13 @@
       line-height: 1.55;
       margin-bottom: 0;
     }
-    .order-item__name-ko { font-size: 30px; font-weight: 900; color: #101827; letter-spacing: 0; }
-    .order-item__name-origin { font-size: 24px; font-weight: 500; color: #9ca3af; }
-    .order-item__meta-list { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 28px 30px; margin: 0; }
-    .order-item__meta-list dt { position: relative; font-size: 25px; font-weight: 700; color: #6d7481; }
+    .order-item__name-ko { font-size: 20px; font-weight: 900; color: #101827; letter-spacing: 0; }
+    .order-item__name-origin { font-size: 15px; font-weight: 500; color: #9ca3af; }
+    .order-item__meta-list { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 16px 18px; margin: 0; }
+    .order-item__meta-list dt { position: relative; font-size: 15px; font-weight: 700; color: #6d7481; }
     .order-item__meta-list dt::before { content: ""; margin: 0; }
-    .order-item__meta-list dd { margin: 0; font-size: 25px; color: #263142; }
-    .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 22px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin: 2px 0 0; }
+    .order-item__meta-list dd { margin: 0; font-size: 15px; color: #263142; }
+    .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin: 2px 0 0; }
     .order-status-card {
       grid-area: status;
       position: relative;
@@ -288,10 +365,10 @@
     }
     .order-status-card__list {
       display: grid;
-      grid-template-columns: 150px minmax(0, 1fr);
-      gap: 28px 30px;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 16px 18px;
       margin: 0;
-      font-size: 25px;
+      font-size: 15px;
       color: #263142;
     }
     .order-status-card__list dt { font-weight: 700; color: #6d7481; }
@@ -319,7 +396,7 @@
     /* 섹션 타이틀 (레퍼런스: .order-title) */
     .order-title {
       display: flex; align-items: center; justify-content: space-between;
-      margin: 0 0 20px; font-size: 20px; font-weight: 900; color: #000;
+      margin: 0 0 20px; font-size: 21px; font-weight: 900; color: #000;
     }
     .order-title b { font-weight: 900; }
     .order-title__sub {
@@ -339,9 +416,9 @@
     /* 정보 행 (레퍼런스: .order-list__line) */
     .order-list__details { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
     .order-list__line { display: flex; align-items: flex-start; gap: 10px; }
-    .order-list__label { flex-shrink: 0; width: 200px; font-size: 17px; font-weight: 700; color: #000; }
+    .order-list__label { flex-shrink: 0; width: 200px; font-size: 18px; font-weight: 700; color: #000; }
     .order-list__details .order-list__label::before { content: "· "; }
-    .order-list__value { flex: 1; font-size: 17px; color: #000; }
+    .order-list__value { flex: 1; font-size: 18px; color: #000; }
     .order-list__value.mono { font-family: 'Roboto', monospace; }
 
     /* 결제 테이블 (레퍼런스: .payment__summary) */
@@ -384,6 +461,22 @@
     .order__stack > section:nth-of-type(3) { order: 2; }
     .order__stack > section:nth-of-type(4) { order: 4; grid-column: 1 / -1; }
     .order__stack > .inquiry-wrap { order: 5; grid-column: 1 / -1; }
+    .order__stack > section:nth-of-type(2),
+    .order__stack > section:nth-of-type(3) {
+      display: flex;
+      flex-direction: column;
+    }
+    .order__stack > section:nth-of-type(2) .order-list-box,
+    .order__stack > section:nth-of-type(3) .order-list-box {
+      height: 530px;
+      overflow: hidden;
+    }
+    .order__stack > section:nth-of-type(2) .order-list__details {
+      gap: 5px;
+    }
+    .order__stack > section:nth-of-type(2) .order-list__line {
+      gap: 6px;
+    }
 
     .pay-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
     .pay-card {
@@ -391,17 +484,17 @@
       border: 1px solid var(--line); border-radius: 12px;
       background: #fff; padding: 20px;
     }
-    .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .pay-badge { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 6px; }
-    .pay-badge.first  { background: #e8eef7; color: var(--navy); }
-    .pay-badge.second { background: #fdf1dd; color: #9a6207; }
+    .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+    .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
+    .pay-badge.first  { color: var(--navy); }
+    .pay-badge.second { color: #9a6207; }
     .pay-card__date { font-size: 12px; color: #999; font-family: 'Roboto', sans-serif; }
 
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
-    .pay-row .lbl { font-size: 13px; color: #555; }
-    .pay-row .val { font-size: 13px; color: #000; font-family: 'Roboto', monospace; }
-    .pay-row .val.muted { color: #c4c4c4; }
+    .pay-row .lbl { font-size: 18px; color: #555; }
+    .pay-row .val { font-size: 18px; color: #000; font-family: 'Roboto', monospace; }
+    .pay-row .val.muted { color: #000000; }
     .pay-row .val.discount { color: var(--rose); }
 
     /* 기타 펼치기 */
@@ -410,7 +503,7 @@
     .pay-etc > summary {
       list-style: none; cursor: pointer;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 9px 0; font-size: 13px; color: #555;
+      padding: 9px 0; font-size: 18px; color: #555;
     }
     .pay-etc > summary::-webkit-details-marker { display: none; }
     .pay-etc > summary .chev { font-size: 11px; color: #aaa; transition: transform .2s; }
@@ -425,24 +518,26 @@
     .pay-meta b { color: #666; font-weight: 700; }
     .pay-total {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; border-radius: 8px; background: #f0f4fb; border-top: 2px solid var(--navy);
+      padding: 12px 0;
     }
-    .pay-total .lbl { font-size: 14px; font-weight: 800; color: var(--navy); }
-    .pay-total .val { font-size: 16px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
+    .pay-total .lbl { font-size: 20px; font-weight: 800; color: var(--navy); }
+    .pay-total .val { font-size: 20px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
 
     .pay-grandtotal {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: var(--navy);
+      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: #dcdcdc ;
     }
-    .pay-grandtotal .lbl { font-size: 15px; font-weight: 800; color: #fff; }
-    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: #fff; font-family: 'Roboto', monospace; }
+    .pay-grandtotal__label { display: grid; gap: 3px; }
+    .pay-grandtotal .lbl { font-size: 25px; font-weight: 800; color: #000000; }
+    .pay-grandtotal .calc { font-size: 18px; font-weight: 600; color: rgba(28, 28, 28, 0.75); }
+    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
 
     /* 본문 풀폭 스택에서 우측 메모/묶음 카드 기본 패딩 보정 */
     .order__stack .order-list-box { padding: 24px; }
     @media (max-width: 600px) {
       .order-page-head { gap: 18px; }
       .order-page-head__row { align-items: flex-start; }
-      .order-page-head__sub { font-size: 19px; }
+      .order-page-head__sub { font-size: 21px; }
       .order-item {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -474,21 +569,22 @@
     /* 묶음배송 리스트 */
     .bundle-list {
       list-style: none;
-      margin: 0;
+      margin: 10px 0 0;
       padding: 0;
       display: grid;
-      gap: 26px;
+      gap: 30px;
       counter-reset: bundle;
-      max-height: 372px;
+      max-height: 100%;
       overflow-y: auto;
       scrollbar-width: thin;
     }
     .bundle-item__box {
       display: grid;
-      grid-template-columns: 34px 84px minmax(0, 1fr) 96px;
-      gap: 20px;
+      grid-template-columns: 22px 76px minmax(0, 1fr) 96px;
+      gap: 10px;
       align-items: center;
-      padding-bottom: 26px;
+      min-height: 126px;
+      padding: 10px 0 18px;
       border-bottom: 1px solid #f2f2f2;
       counter-increment: bundle;
     }
@@ -496,21 +592,22 @@
       content: counter(bundle);
       justify-self: center;
       color: #000;
-      font-size: 14px;
+      font-size: 19px;
       font-weight: 700;
     }
-    .bundle-item__box:last-child { border-bottom: 0; padding-bottom: 0; }
-    .bundle-item__box .img-wrap { width: 84px; height: 84px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 24px; }
+    .bundle-item__box:last-child { border-bottom: 0; }
+    .bundle-item__media { display: grid; gap: 6px; justify-items: center; align-self: center; }
+    .bundle-item__box .img-wrap { width: 76px; height: 76px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 22px; }
     .bundle-item__box .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
     .bundle-item__details { flex: 1; min-width: 0; }
-    .bundle-item__market { display: flex; align-items: center; gap: 7px; color: #59606d; font-size: 15px; margin-bottom: 8px; }
-    .bundle-item__market .platform__flag { width: 14px; height: 14px; }
-    .bundle-item__market .platform__flag img { width: 14px; height: 14px; }
-    .bundle-item__name { font-size: 0; margin: 0; }
-    .bundle-item__meta { display: grid; gap: 5px; color: #000; font-size: 13px; line-height: 1.35; }
-    .bundle-item__meta b { font-weight: 900; margin-right: 22px; }
+    .bundle-item__market { display: inline-flex; align-items: center; justify-content: center; gap: 5px; width: 76px; height: 22px; padding: 0 6px; border-radius: 4px; background: #fff3f6; color: var(--rose); font-size: 13px; font-weight: 800; margin: 0; white-space: nowrap; overflow: hidden; }
+    .bundle-item__market .platform__flag { width: 12px; height: 12px; }
+    .bundle-item__market .platform__flag img { width: 12px; height: 12px; }
+    .bundle-item__name { display: block; margin: 0 0 6px; color: #263142; font-size: 19px; font-weight: 700; line-height: 1.35; }
+    .bundle-item__meta { display: grid; gap: 4px; color: #555; font-size: 17px; line-height: 1.5; }
+    .bundle-item__meta b { color: #222; font-weight: 400; margin-right: 4px; }
     .bundle-item__delivery-status { justify-self: end; margin-top: 0; }
-    .basic-button__light-gray-line { display: inline-flex; align-items: center; justify-content: center; min-width: 96px; height: 32px; padding: 0 14px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #666; font-size: 12px; font-weight: 700; }
+    .basic-button__light-gray-line { display: inline-flex; align-items: center; justify-content: center; min-width: 96px; height: 32px; padding: 0 14px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #666; font-size: 13px; font-weight: 700; }
 
     /* 메모 */
     .order-memo-box { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
@@ -679,7 +776,7 @@
         <h2 class="order-page-head__title">주문상세정보</h2>
         <div class="order-page-head__row">
           <h3 class="order-page-head__sub">경매주문상품 정보</h3>
-          <button type="button" class="order-page-head__link">본 입찰내역 조회</button>
+          <button type="button" class="order-page-head__link" onclick="openBidHistoryModal()"><span style="font-size:16px">본 입찰내역 조회</span></button>
         </div>
       </div>
 
@@ -752,8 +849,7 @@
                 <li class="pay-row"><span class="lbl">대행수수료</span><span class="val">860엔 (20%)</span></li>
               </ul>
               <div class="pay-foot">
-                <p class="pay-meta">적용환율 <b>9.3원/엔</b> · 카드결제 · 승인 98704321</p>
-                <div class="pay-total"><span class="lbl">1차 합계</span><span class="val">47,988원</span></div>
+                <div class="pay-total"><span class="lbl">1차 합계</span><span class="val">5,160엔</span></div>
               </div>
             </div>
 
@@ -766,7 +862,7 @@
               <ul class="pay-rows">
                 <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted">—</span></li>
                 <li class="pay-row"><span class="lbl">현지운송료</span><span class="val">무료</span></li>
-                <li class="pay-row"><span class="lbl">국제운송료</span><span class="val">6,500원</span></li>
+                <li class="pay-row"><span class="lbl">국제운송료</span><span class="val">6,500엔</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc">
                     <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
@@ -779,16 +875,18 @@
                 </li>
               </ul>
               <div class="pay-foot">
-                <p class="pay-meta">적용환율 <b>9.3원/엔</b> · 카드결제 · 승인 98704321</p>
-                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val">6,500원</span></div>
+                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val">6,500엔</span></div>
               </div>
             </div>
           </div>
 
           <!-- 풀폭 총 결제금액 -->
           <div class="pay-grandtotal">
-            <span class="lbl">총 결제금액 (1차 + 2차)</span>
-            <span class="val">54,488원</span>
+            <span class="pay-grandtotal__label">
+              <span class="lbl">총 결제금액 (1차 + 2차)</span>
+              <span class="calc">총 11,660엔 * 환율 9.3원/엔</span>
+            </span>
+            <span class="val">108,438원</span>
           </div>
         </section>
 
@@ -796,7 +894,7 @@
         <section>
           <h3 class="order-title">
             <b>주문배송정보</b>
-            <button type="button" class="order-title__sub">인보이스 출력</button>
+            <button type="button" class="order-title__sub"><span style="font-size:16px">인보이스 출력</span></button>
           </h3>
           <article class="order-list-box">
             <ul class="order-list__details">
@@ -837,22 +935,25 @@
         <section>
           <h3 class="order-title">
             <b>관련 묶음배송 정보</b>
-            <a href="#" class="order-title__sub">묶음배송관리</a>
+            <a href="#" class="order-title__sub"><span style="font-size:16px">묶음배송관리</span></a>
           </h3>
           <article class="order-list-box">
             <ol class="bundle-list">
               <li class="bundle-item__box">
-                <div class="img-wrap"><i class="far fa-image"></i></div>
-                <div class="bundle-item__details">
+                <div class="bundle-item__media">
                   <p class="bundle-item__market">
                     <span class="platform__flag">
                       <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
                     </span>
-                    야후경매 - ホンダ XR 100 モタード 純正
+                    야후경매
                   </p>
+                  <div class="img-wrap"><i class="far fa-image"></i></div>
+                </div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__name">ホンダ XR 100 モタード 純正</p>
                   <div class="bundle-item__meta">
-                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
-                    <span><b>상품가</b>결제비용 : ￥3,100 / 28,830원</span>
+                    <span><b>구매일자 :</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가 :</b>3,100엔</span>
                   </div>
                 </div>
                 <div class="bundle-item__delivery-status">
@@ -860,17 +961,20 @@
                 </div>
               </li>
               <li class="bundle-item__box">
-                <div class="img-wrap"><i class="far fa-image"></i></div>
-                <div class="bundle-item__details">
+                <div class="bundle-item__media">
                   <p class="bundle-item__market">
                     <span class="platform__flag">
                       <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
                     </span>
-                    야후경매 - ホンダ エイプ XR100 フロント
+                    야후경매
                   </p>
+                  <div class="img-wrap"><i class="far fa-image"></i></div>
+                </div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__name">ホンダ エイプ XR100 フロント</p>
                   <div class="bundle-item__meta">
-                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
-                    <span><b>상품가</b>결제비용 : ￥1,200 / 11,160원</span>
+                    <span><b>구매일자 :</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가 :</b>1,200엔</span>
                   </div>
                 </div>
                 <div class="bundle-item__delivery-status">
@@ -878,17 +982,20 @@
                 </div>
               </li>
               <li class="bundle-item__box">
-                <div class="img-wrap"><i class="far fa-image"></i></div>
-                <div class="bundle-item__details">
+                <div class="bundle-item__media">
                   <p class="bundle-item__market">
                     <span class="platform__flag">
                       <img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'">
                     </span>
-                    야후경매 - ホンダ 純正 ウインカー 部品
+                    야후경매
                   </p>
+                  <div class="img-wrap"><i class="far fa-image"></i></div>
+                </div>
+                <div class="bundle-item__details">
+                  <p class="bundle-item__name">ホンダ 純正 ウインカー 部品</p>
                   <div class="bundle-item__meta">
-                    <span><b>구매일자</b>2025-12-08 15:15:12</span>
-                    <span><b>상품가</b>결제비용 : ￥900 / 8,370원</span>
+                    <span><b>구매일자 :</b>2025-12-08 15:15:12</span>
+                    <span><b>상품가 :</b>900엔</span>
                   </div>
                 </div>
                 <div class="bundle-item__delivery-status">
@@ -933,6 +1040,38 @@
     </main>
   </div><!-- /stage -->
 </div><!-- /page -->
+
+<div class="confirm-modal" id="bidHistoryModal" onclick="closeBidHistoryModal(event)">
+  <div class="confirm-modal-card bid-history-modal-card" onclick="event.stopPropagation()">
+    <div class="confirm-modal-body">
+      <div class="bid-hist-table-wrap">
+        <button class="bid-history-table-close" type="button" onclick="closeBidHistoryModal()" aria-label="닫기">&times;</button>
+        <table class="bid-hist-table">
+          <thead>
+            <tr><th>입찰일시</th><th>입찰가</th><th>상태</th></tr>
+          </thead>
+          <tbody id="bidHistoryBody">
+            <tr>
+              <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
+              <td><span style="font-size:11px;color:var(--ts)">옵션명옵션선명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+              <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
+            </tr>
+            <tr>
+              <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
+              <td><span style="font-size:11px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+              <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
+            </tr>
+            <tr>
+              <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
+              <td><span style="font-size:11px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+              <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── 드로어 ── -->
 <div class="drawer-ov" id="drawerOv" onclick="closeDrawer()"></div>
@@ -985,6 +1124,15 @@ function closeDrawer() {
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('drawerOv').classList.remove('open');
   document.getElementById('drawer').setAttribute('aria-hidden', 'true');
+}
+
+function openBidHistoryModal() {
+  document.getElementById('bidHistoryModal')?.classList.add('open');
+}
+
+function closeBidHistoryModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('bidHistoryModal')?.classList.remove('open');
 }
 </script>
 <script src="bb-common.js"></script>
