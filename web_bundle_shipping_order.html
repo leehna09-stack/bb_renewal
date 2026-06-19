@@ -253,6 +253,42 @@
       text-align: center;
       white-space: nowrap;
     }
+    .pickup-date-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 20px;
+      align-items: stretch;
+      margin: -12px 0 28px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .pickup-date-panel[hidden] { display: none; }
+    .pickup-date-guide { display: grid; gap: 8px; color: #444; font-size: 12px; line-height: 1.7; }
+    .pickup-date-guide__title { color: #1f2530; font-size: 13px; font-weight: 800; }
+    .pickup-date-guide p { margin: 0; }
+    .pickup-date-guide ul { margin: 0; padding-left: 0; list-style: none; color: #555; }
+    .pickup-date-picker {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      padding-left: 20px;
+      border-left: 1px solid var(--line-soft);
+    }
+    .pickup-date-picker label { font-size: 12px; font-weight: 800; color: #2b2f37; }
+    .pickup-date-picker input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #d3d8df;
+      border-radius: 6px;
+      padding: 0 12px;
+      color: #111;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .pickup-date-alert { min-height: 18px; color: var(--rose); font-size: 12px; font-weight: 700; }
 
     /* 주문자 및 수취인 정보 */
     .recipient-section { margin-bottom: 28px; }
@@ -608,6 +644,23 @@
         </tbody>
       </table>
 
+      <div class="pickup-date-panel" id="pickupDatePanel" hidden>
+        <div class="pickup-date-guide">
+          <div class="pickup-date-guide__title">인수희망 날짜 지정 :</div>
+          <p>상품 미도착시, 현지도착일을 기준으로 5일 이후</p>
+          <p>현지도착 상품의 경우 일본내 배송요청 일자로부터 5일 이후</p>
+          <ul>
+            <li>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</li>
+            <li>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</li>
+          </ul>
+        </div>
+        <div class="pickup-date-picker">
+          <label for="pickupDateInput">인수희망 날짜</label>
+          <input type="date" id="pickupDateInput" aria-describedby="pickupDateAlert">
+          <div class="pickup-date-alert" id="pickupDateAlert" aria-live="polite"></div>
+        </div>
+      </div>
+
       <!-- 주문자 및 수취인 정보 -->
       <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">주문자 및 수취인 정보</div>
       <div class="recipient-section">
@@ -718,14 +771,65 @@
   const featureCell = document.querySelector('.ship-compare-table .feature-cell');
   const sizeCell = document.querySelector('.ship-compare-table .size-cell');
   const daysCell = document.querySelector('.ship-compare-table .days-cell');
+  const pickupDatePanel = document.getElementById('pickupDatePanel');
+  const pickupDateInput = document.getElementById('pickupDateInput');
+  const pickupDateAlert = document.getElementById('pickupDateAlert');
+  const dateWarningText = '[해당 날짜로 지정할수없습니다]';
+
+  function formatDateValue(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  function setupPickupDateRange() {
+    if (!pickupDateInput) return;
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 3);
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    pickupDateInput.min = formatDateValue(minDate);
+    pickupDateInput.max = formatDateValue(maxDate);
+  }
+
+  function validatePickupDate() {
+    if (!pickupDateInput || !pickupDateAlert || !pickupDateInput.value) {
+      if (pickupDateAlert) pickupDateAlert.textContent = '';
+      return;
+    }
+
+    const selected = new Date(`${pickupDateInput.value}T00:00:00`);
+    const minDate = new Date(`${pickupDateInput.min}T00:00:00`);
+    const maxDate = new Date(`${pickupDateInput.max}T00:00:00`);
+    const day = selected.getDay();
+    const invalid = selected < minDate || selected > maxDate || day === 0 || day === 6;
+    pickupDateAlert.textContent = invalid ? dateWarningText : '';
+    if (invalid) pickupDateInput.value = '';
+  }
+
+  function updatePickupDatePanel() {
+    if (!pickupDatePanel) return;
+    const isJapanDelivery = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
+    pickupDatePanel.hidden = !isJapanDelivery;
+    if (!isJapanDelivery && pickupDateInput) {
+      pickupDateInput.value = '';
+      if (pickupDateAlert) pickupDateAlert.textContent = '';
+    }
+  }
+
+  setupPickupDateRange();
   if (shippingMethodSelect) {
     shippingMethodSelect.addEventListener('change', function() {
       const description = shippingDescriptions[shippingMethodSelect.value] || shippingDescriptions['최저가배송'];
       if (featureCell) featureCell.innerHTML = description.feature;
       if (sizeCell) sizeCell.innerHTML = description.size;
       if (daysCell) daysCell.textContent = description.days;
+      updatePickupDatePanel();
     });
+    updatePickupDatePanel();
   }
+  if (pickupDateInput) pickupDateInput.addEventListener('change', validatePickupDate);
 
   // 주문자와 동일 체크박스
   document.querySelector('.check-inline input').addEventListener('change', function() {
