@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -27,8 +27,8 @@
       --warm-2: #f7f3f0;
       --yellow: #f4b400;
       --stage-left: max(16px, calc((100vw - 1425px) / 2));
-      --sidebar-w: 221px;
-      --main-w: 1180px;
+      --sidebar-w: 280px;
+      --main-w: 1121px;
       --gap: 24px;
     }
 
@@ -487,6 +487,8 @@
       border: 1px solid var(--line); border-radius: 12px;
       background: #fff; padding: 20px;
     }
+    .pay-secondary-stack { min-width: 0; }
+    .pay-secondary-stack .pay-card[hidden] { display: none; }
     .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
     .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
     .pay-badge.first  { color: var(--navy); }
@@ -535,6 +537,14 @@
     .pay-grandtotal .lbl { font-size: 18px; font-weight: 800; color: #000000; }
     .pay-grandtotal .calc { font-size: 14px; font-weight: 600; color: rgba(28, 28, 28, 0.75); }
     .pay-grandtotal .val { font-size: 18px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
+    .payment-switch { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
+    .payment-switch__label { min-width: 72px; text-align: center; color: #555; font-size: 14px; font-weight: 800; }
+    .payment-switch__btn {
+      width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%;
+      background: #fff; color: var(--navy); font-size: 16px; font-weight: 900; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .payment-switch__btn:hover { border-color: var(--navy); background: #f7f9fc; }
 
     /* 본문 풀폭 스택에서 우측 메모/묶음 카드 기본 패딩 보정 */
     .order__stack .order-list-box { padding: 24px; }
@@ -853,7 +863,14 @@
 
         <!-- 주문결제정보 (1차/2차 좌우 2열) -->
         <section>
-          <h3 class="order-title"><b>주문결제정보</b></h3>
+          <h3 class="order-title">
+            <b>주문결제정보</b>
+            <span class="payment-switch" data-payment-switch>
+              <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
+              <span class="payment-switch__label" data-payment-switch-label>일본내배송</span>
+              <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
+            </span>
+          </h3>
           <div class="pay-2col">
             <!-- 1차 결제 -->
             <div class="pay-card" data-payment-card="primary">
@@ -878,7 +895,32 @@
             </div>
 
             <!-- 2차 결제 -->
-            <div class="pay-card" data-payment-card="secondary">
+            <div class="pay-secondary-stack" data-payment-secondary-stack>
+              <div class="pay-card" data-payment-card="secondary" data-payment-variant="일본내배송">
+                <div class="pay-card__head">
+                  <span class="pay-badge second">2차 결제비용</span>
+                  <span class="pay-card__date">2025-12-14 결제완료</span>
+                </div>
+                <ul class="pay-rows">
+                  <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
+                  <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
+                  <li class="pay-row is-toggle">
+                    <details class="pay-etc">
+                      <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                      <div class="pay-etc__inner">
+                        <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
+                        <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                        <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
+                      </div>
+                    </details>
+                  </li>
+                </ul>
+                <div class="pay-foot">
+                  <div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>6,798엔</span></div>
+                </div>
+              </div>
+
+              <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
               <div class="pay-card__head">
                 <span class="pay-badge second">2차 결제비용</span>
                 <span class="pay-card__date">2025-12-14 결제완료</span>
@@ -901,6 +943,7 @@
               <div class="pay-foot">
                 <div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>10,798엔</span></div>
               </div>
+              </div>
             </div>
           </div>
 
@@ -908,9 +951,9 @@
           <div class="pay-grandtotal">
             <span class="pay-grandtotal__label">
               <span class="lbl">총 결제금액 (1차 + 2차)</span>
-              <span class="calc" data-pay-grand-calc>총 14,660엔 * 환율 9.3원/엔</span>
+              <span class="calc" data-pay-grand-calc>총 10,660엔 * 환율 9.3원/엔</span>
             </span>
-            <span class="val" data-pay-grand-total>136,338원</span>
+            <span class="val" data-pay-grand-total>99,138원</span>
           </div>
         </section>
 
@@ -1247,6 +1290,7 @@ function updatePaymentTotals() {
   let secondaryTotal = 0;
 
   document.querySelectorAll('[data-payment-card]').forEach(card => {
+    if (card.hidden) return;
     const sum = kind => Array.from(card.querySelectorAll(`[data-pay-kind="${kind}"]`))
       .reduce((total, el) => total + parsePaymentYenText(el.textContent), 0);
     const base = sum('base');
@@ -1271,7 +1315,36 @@ function updatePaymentTotals() {
   });
 }
 
+function setupPaymentSwitch() {
+  const switchEl = document.querySelector('[data-payment-switch]');
+  const cards = Array.from(document.querySelectorAll('[data-payment-card="secondary"]'));
+  if (!switchEl || cards.length < 2) return;
+
+  const label = switchEl.querySelector('[data-payment-switch-label]');
+  let activeIndex = cards.findIndex(card => !card.hidden);
+  if (activeIndex < 0) activeIndex = 0;
+
+  const render = () => {
+    cards.forEach((card, index) => {
+      card.hidden = index !== activeIndex;
+    });
+    if (label) label.textContent = cards[activeIndex].dataset.paymentVariant || '';
+    updatePaymentTotals();
+  };
+
+  switchEl.querySelectorAll('[data-payment-switch-dir]').forEach(button => {
+    button.addEventListener('click', () => {
+      const dir = Number(button.dataset.paymentSwitchDir) || 1;
+      activeIndex = (activeIndex + dir + cards.length) % cards.length;
+      render();
+    });
+  });
+
+  render();
+}
+
 updatePaymentTotals();
+setupPaymentSwitch();
 </script>
 <script src="bb-common.js"></script>
 </body>

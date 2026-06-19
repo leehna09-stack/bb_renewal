@@ -1603,6 +1603,7 @@
     .pd-row .v.mono { font-family: Roboto, monospace; }
 
     .pay-card { border: 1px solid var(--line-soft); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
+    .pay-card[hidden] { display: none; }
     .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .pay-badge { font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 6px; }
     .pay-badge.first { background: #e8eef7; color: var(--navy); }
@@ -1633,6 +1634,14 @@
     .pay-grandtotal { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-radius: 12px; background: var(--navy); margin-top: 4px; }
     .pay-grandtotal .lbl { font-size: 16px; font-weight: 800; color: #fff; }
     .pay-grandtotal .val { font-size: 18px; font-weight: 800; color: #fff; font-family: Roboto, monospace; }
+    .payment-title-row { display: flex; align-items: center; gap: 12px; }
+    .payment-switch { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
+    .payment-switch__label { min-width: 60px; text-align: center; color: #555; font-size: 13px; font-weight: 800; }
+    .payment-switch__btn {
+      width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%;
+      background: #fff; color: var(--navy); font-size: 15px; font-weight: 900;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
 
     .pd-bundle { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f2f2f2; }
     .pd-bundle:first-child { padding-top: 0; }
@@ -2120,7 +2129,14 @@
       </section>
 
       <section class="pd-sec">
-        <h3 class="pd-title">주문결제정보</h3>
+        <h3 class="pd-title payment-title-row">
+          <span>주문결제정보</span>
+          <span class="payment-switch" data-payment-switch>
+            <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
+            <span class="payment-switch__label" data-payment-switch-label>일본내배송</span>
+            <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
+          </span>
+        </h3>
 
         <div class="pay-card" data-payment-card="primary">
           <div class="pay-card__head"><span class="pay-badge first">1차 결제비용</span><span class="pay-card__date">2025-12-08 결제완료</span></div>
@@ -2141,7 +2157,29 @@
           </div>
         </div>
 
-        <div class="pay-card" data-payment-card="secondary">
+        <div class="pay-card" data-payment-card="secondary" data-payment-variant="일본내배송">
+          <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><span class="pay-card__date">2025-12-14 결제완료</span></div>
+          <ul class="pay-rows">
+            <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
+            <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
+            <li class="pay-row is-toggle">
+              <details class="pay-etc">
+                <summary>기타 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
+                <div class="pay-etc__inner">
+                  <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
+                  <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                  <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
+                </div>
+              </details>
+            </li>
+          </ul>
+          <div class="pay-foot">
+            <p class="pay-meta">적용환율 <b>9.3원/엔</b> · 카드결제 · 승인 98704321</p>
+            <div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total data-pay-currency="krw">63,221원</span></div>
+          </div>
+        </div>
+
+        <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
           <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><span class="pay-card__date">2025-12-14 결제완료</span></div>
           <ul class="pay-rows">
             <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
@@ -2164,7 +2202,7 @@
           </div>
         </div>
 
-        <div class="pay-grandtotal"><span class="lbl">총 결제금액 (1차 + 2차)</span><span class="val" data-pay-grand-total>136,338원</span></div>
+        <div class="pay-grandtotal"><span class="lbl">총 결제금액 (1차 + 2차)</span><span class="val" data-pay-grand-total>99,138원</span></div>
       </section>
 
       <section class="pd-sec">
@@ -2670,6 +2708,7 @@
     let secondaryTotal = 0;
 
     document.querySelectorAll("[data-payment-card]").forEach(card => {
+      if (card.hidden) return;
       const sum = kind => Array.from(card.querySelectorAll(`[data-pay-kind="${kind}"]`))
         .reduce((total, el) => total + parsePaymentYenText(el.textContent), 0);
       const base = sum("base");
@@ -2694,7 +2733,36 @@
     });
   }
 
+  function setupPaymentSwitch() {
+    const switchEl = document.querySelector("[data-payment-switch]");
+    const cards = Array.from(document.querySelectorAll('[data-payment-card="secondary"]'));
+    if (!switchEl || cards.length < 2) return;
+
+    const label = switchEl.querySelector("[data-payment-switch-label]");
+    let activeIndex = cards.findIndex(card => !card.hidden);
+    if (activeIndex < 0) activeIndex = 0;
+
+    const render = () => {
+      cards.forEach((card, index) => {
+        card.hidden = index !== activeIndex;
+      });
+      if (label) label.textContent = cards[activeIndex].dataset.paymentVariant || "";
+      updatePaymentTotals();
+    };
+
+    switchEl.querySelectorAll("[data-payment-switch-dir]").forEach(button => {
+      button.addEventListener("click", () => {
+        const dir = Number(button.dataset.paymentSwitchDir) || 1;
+        activeIndex = (activeIndex + dir + cards.length) % cards.length;
+        render();
+      });
+    });
+
+    render();
+  }
+
   updatePaymentTotals();
+  setupPaymentSwitch();
 </script>
 </body>
 </html>

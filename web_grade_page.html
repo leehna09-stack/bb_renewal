@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -21,8 +21,9 @@
       --line-soft: #f0ebe8;
       --green: #35a94d;
       --gold: #d4891a;
-      --stage-left: max(16px, calc((100vw - 1044px) / 2));
-      --sidebar-w: 221px;
+      --stage-left: max(16px, calc((100vw - 1425px) / 2));
+      --sidebar-w: 280px;
+      --main-w: 1121px;
       --gap: 16px;
     }
 
@@ -276,7 +277,7 @@
       display: grid;
       grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
       gap: var(--gap);
-      width: calc(var(--sidebar-w) + var(--gap) + 819px);
+      width: calc(var(--sidebar-w) + var(--gap) + var(--main-w));
       margin-left: var(--stage-left);
       margin-top: 11px;
     }
