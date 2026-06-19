@@ -1663,8 +1663,37 @@ function formatKrwFromYen(value){
 }
 
 function formatCostPair(yen){
-  const krw = Math.round(Number(yen) * 9.3);
-  return `(${formatYen(yen)}) ₩${krw.toLocaleString('ko-KR')}`;
+  const amount = Number(yen) || 0;
+  const sign = amount < 0 ? '-' : '';
+  const absYen = Math.abs(amount);
+  const krw = Math.round(absYen * 9.3);
+  return `(${sign}${formatYen(absYen)}) ${sign}₩${krw.toLocaleString('ko-KR')}`;
+}
+
+function parseSignedYenText(value){
+  const text = String(value || '').replace(/−/g, '-').replace(/＋/g, '+').trim();
+  if(!text || /무료|없음|—/.test(text)) return { amount: 0, hasExplicitSign: false };
+  const match = text.match(/([+-])?\s*\(?\s*([+-])?\s*([0-9][0-9,]*)\s*엔/i);
+  if(!match) {
+    const wonMatch = text.match(/([+-])?\s*\(?\s*([+-])?\s*₩?\s*([0-9][0-9,]*)\s*원?/i);
+    if(!wonMatch) return { amount: 0, hasExplicitSign: false };
+    const wonSign = wonMatch[1] || wonMatch[2] || '';
+    const won = Number(wonMatch[3].replace(/,/g, '')) || 0;
+    const yenAmount = Math.round(won / 9.3);
+    return { amount: wonSign === '-' ? -yenAmount : yenAmount, hasExplicitSign: Boolean(wonSign) };
+  }
+  const sign = match[1] || match[2] || '';
+  const amount = Number(match[3].replace(/,/g, '')) || 0;
+  return { amount: sign === '-' ? -amount : amount, hasExplicitSign: Boolean(sign) };
+}
+
+function getCostRowYen(valueId, fallback = 0){
+  const valueEl = document.getElementById(valueId);
+  if(!valueEl) return fallback;
+  const parsed = parseSignedYenText(valueEl.textContent);
+  const rowSign = valueEl.closest('.cost-row')?.querySelector('.cost-sign')?.textContent.trim();
+  if(!parsed.hasExplicitSign && rowSign === '-') return -Math.abs(parsed.amount);
+  return parsed.amount;
 }
 
 function getSelectedBidType(){
@@ -1695,7 +1724,7 @@ function updateEstimateCosts(){
   const localTax = Math.round(primaryAmount * 0.1);
   const localShipping = 810;
   const intlShipping = getInternationalShippingCost();
-  const otherFee = 300;
+  const otherFee = getCostRowYen('otherFeeValue', 300);
   const totalKrw = Math.round((primaryAmount + serviceFee + localTax + localShipping + intlShipping + otherFee) * 9.3);
 
   const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
@@ -1704,7 +1733,6 @@ function updateEstimateCosts(){
   set('localShippingValue',  formatCostPair(localShipping));
   set('localTaxValue',       formatCostPair(localTax));
   set('intlShippingValue',   formatCostPair(intlShipping));
-  set('otherFeeValue',       formatCostPair(otherFee));
   set('estimateTotalValue',  `₩${totalKrw.toLocaleString('ko-KR')}`);
   const qty = Number(document.getElementById('bidQtyInput')?.value || 1);
   const krwAmt = Math.round(primaryAmount * qty * 9.3);
