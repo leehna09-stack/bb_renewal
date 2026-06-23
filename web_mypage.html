@@ -1436,6 +1436,7 @@
       font-size: 12px;
       font-weight: 800;
       line-height: 1;
+      text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
     }
@@ -1448,6 +1449,120 @@
       color: #fff;
       border-radius: 5px;
       font-size: 14px;
+    }
+
+    .quick-bid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.48);
+    }
+
+    .quick-bid-overlay.is-open { display: flex; }
+
+    .quick-bid-modal {
+      width: min(420px, 100%);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.22);
+      overflow: hidden;
+    }
+
+    .quick-bid-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quick-bid-title {
+      margin: 0;
+      color: #151922;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .quick-bid-close {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 7px;
+      background: #f4f6fa;
+      color: #5f6673;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .quick-bid-body {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .quick-bid-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .quick-bid-field label {
+      color: #343b48;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .quick-bid-input {
+      height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: #151922;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .quick-bid-input:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(26, 60, 110, 0.12);
+    }
+
+    .quick-bid-help {
+      color: var(--rose);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .quick-bid-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 16px 20px 20px;
+    }
+
+    .quick-bid-btn {
+      height: 38px;
+      min-width: 82px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: #626672;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .quick-bid-btn.primary {
+      border-color: var(--rose);
+      background: var(--rose);
+      color: #fff;
     }
 
     .order-table .col-ship-head .detail-top-btn {
@@ -1881,7 +1996,7 @@
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
                         <button class="mini-btn" type="button">상세보기</button>
-                        <button class="mini-btn primary" type="button">재입찰</button>
+                        <button class="mini-btn primary js-quick-bid-open" type="button">재입찰</button>
                       </div>
                     </td>
                   </tr>
@@ -1921,7 +2036,7 @@
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
                         <button class="mini-btn" type="button">상세보기</button>
-                        <button class="mini-btn primary" type="button">결제하기</button>
+                        <a class="mini-btn primary" href="web_bill_1st.html">결제하기</a>
                       </div>
                     </td>
                   </tr>
@@ -1953,7 +2068,7 @@
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
                     <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
-                    <td rowspan="3" class="col-ship">묶음배송<br>13,821원</td>
+                    <td rowspan="3" class="col-ship">개별결제<br>13,821원</td>
                   </tr>
                   <tr>
                     <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
@@ -1975,7 +2090,7 @@
             </div>
 
             <!-- BJP-2024041704 묶음 (bundle-group-end) -->
-            <div class="order-card bundle-group-end" data-trade-type="purchase" data-country="jp" data-status="second-payment-wait">
+            <div class="order-card bundle-group-end" data-trade-type="purchase" data-country="jp" data-status="local-arrived">
               <table class="order-table">
                 <thead><tr>
                   <th colspan="2" class="col-product-head">상품정보</th>
@@ -1988,11 +2103,11 @@
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후구매] BJP-2024041704</div>
                       <div class="order-title">무인양품 원목 수납박스 데스크 정리함 묶음</div>
-                      <span class="order-status-link">결제대기</span>
+                      <span class="order-status-link">1차 결제완료</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
                     <td class="col-label">총상품가격</td><td class="col-val">￥28,500</td>
-                    <td rowspan="3" class="col-ship">묶음배송<br>19,500원<button class="ship-btn" type="button">배송신청</button></td>
+                    <td rowspan="3" class="col-ship">개별결제<br>19,500원</td>
                   </tr>
                   <tr>
                     <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
@@ -2031,7 +2146,7 @@
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥9,800</td>
                     <td class="col-label">총상품가격</td><td class="col-val">￥9,800</td>
-                    <td rowspan="3" class="col-ship">묶음배송<br>13,821원</td>
+                    <td rowspan="3" class="col-ship">개별결제<br>13,821원</td>
                   </tr>
                   <tr>
                     <td class="col-label">주문일자</td><td class="col-val">2024.04.17</td>
@@ -2622,6 +2737,30 @@
       </main>
     </div>
   </div>
+  <div class="quick-bid-overlay" id="quickBidModal" aria-hidden="true">
+    <div class="quick-bid-modal" role="dialog" aria-modal="true" aria-labelledby="quickBidTitle">
+      <div class="quick-bid-head">
+        <h2 class="quick-bid-title" id="quickBidTitle">빠른 입찰</h2>
+        <button class="quick-bid-close" type="button" aria-label="닫기" data-quick-bid-close>&times;</button>
+      </div>
+      <div class="quick-bid-body">
+        <div class="quick-bid-field">
+          <label for="quickBidQty">수량</label>
+          <input class="quick-bid-input" id="quickBidQty" type="text" inputmode="numeric" value="1">
+        </div>
+        <div class="quick-bid-field">
+          <label for="quickBidAmount">입찰 금액</label>
+          <input class="quick-bid-input" id="quickBidAmount" type="text" inputmode="numeric" placeholder="13,900">
+          <div class="quick-bid-help">다음 입찰 금액은 13,900엔 이상</div>
+        </div>
+      </div>
+      <div class="quick-bid-actions">
+        <button class="quick-bid-btn" type="button" data-quick-bid-close>취소</button>
+        <button class="quick-bid-btn primary" type="button">입찰하기</button>
+      </div>
+    </div>
+  </div>
+
   <div class="drawer-ov" id="drawerOv" onclick="closeDrawer()"></div>
 
   <div class="drawer" id="drawer">
@@ -2837,8 +2976,8 @@
           return;
         }
 
-        const buttons = Array.from(actionWrap.querySelectorAll("button"));
-        const detailButton = buttons.find((button) => button.textContent.trim() === "상세보기");
+        const actions = Array.from(actionWrap.querySelectorAll("button, a"));
+        const detailButton = actions.find((action) => action.textContent.trim() === "상세보기");
 
         if (detailButton) {
           detailButton.classList.add("detail-top-btn");
@@ -2846,12 +2985,12 @@
 
         const stack = document.createElement("div");
         stack.className = "action-stack";
-        const existingShipButtonLabels = Array.from(shipCell.querySelectorAll("button")).map((button) => button.textContent.trim());
+        const existingShipButtonLabels = Array.from(shipCell.querySelectorAll("button, a")).map((action) => action.textContent.trim());
 
-        buttons.forEach((button) => {
-          const label = button.textContent.trim();
-          if (button !== detailButton && !existingShipButtonLabels.includes(label)) {
-            stack.appendChild(button);
+        actions.forEach((action) => {
+          const label = action.textContent.trim();
+          if (action !== detailButton && !existingShipButtonLabels.includes(label)) {
+            stack.appendChild(action);
           }
         });
 
@@ -3102,6 +3241,40 @@
 
     document.querySelectorAll(".user-name").forEach((userName) => {
       userName.addEventListener("click", openDrawer);
+    });
+
+    const quickBidModal = document.getElementById("quickBidModal");
+    const quickBidAmount = document.getElementById("quickBidAmount");
+
+    function openQuickBidModal() {
+      quickBidModal?.classList.add("is-open");
+      quickBidModal?.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => quickBidAmount?.focus(), 0);
+    }
+
+    function closeQuickBidModal() {
+      quickBidModal?.classList.remove("is-open");
+      quickBidModal?.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".js-quick-bid-open").forEach((button) => {
+      button.addEventListener("click", openQuickBidModal);
+    });
+
+    document.querySelectorAll("[data-quick-bid-close]").forEach((button) => {
+      button.addEventListener("click", closeQuickBidModal);
+    });
+
+    quickBidModal?.addEventListener("click", (event) => {
+      if (event.target === quickBidModal) closeQuickBidModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && quickBidModal?.classList.contains("is-open")) {
+        closeQuickBidModal();
+      }
     });
 
     renderDrawerState();

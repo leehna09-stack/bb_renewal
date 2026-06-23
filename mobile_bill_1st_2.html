@@ -104,6 +104,8 @@
   .option-caution { background:#FFF8F0; border:1px solid #F5C88A; border-radius:6px; padding:10px 12px; margin-top:8px; font-size:11px; color:#664400; line-height:1.7; }
   .option-caution-title { font-weight:700; color:#A06000; margin-bottom:4px; }
   .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:4px; background:#fff; color:var(--navy); font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
+  .photo-option-select { min-width:104px; height:34px; padding:0 10px; border:1px solid #ccd3dc; border-radius:6px; background:#fff; color:#333; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; }
+  .photo-option-select:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(26,60,110,.12); }
 
   /* ?  ? */
   .toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; }
@@ -346,7 +348,7 @@
   <div class="option-item">
     <div class="option-header">
       <div class="option-header-left">
-        <div class="option-name">튼튼 포장(깨지기 쉬운 물품)</div>
+        <div class="option-name">튼튼 포장</div>
       </div>
       <div class="toggle-wrap">
         <div class="toggle-track" id="packingTrack" onclick="togglePacking()"><div class="toggle-thumb"></div></div>
@@ -372,16 +374,19 @@
         <div class="option-name">사진 촬영서비스</div>
         <div class="option-price">+ 300엔 / 3장 (소형)<br>+ 500엔 / 3장 (대형)</div>
       </div>
-      <div class="toggle-wrap">
-        <div class="toggle-track" id="photoTrack" onclick="togglePhoto()"><div class="toggle-thumb"></div></div>
-        <span class="toggle-text" id="photoText">미신청</span>
-      </div>
+      <select class="photo-option-select" id="photoOptionSelect" aria-label="사진 촬영서비스 신청 수량">
+        <option value="0">신청안함</option>
+        <option value="3">3장</option>
+        <option value="5">5장</option>
+        <option value="7">7장</option>
+        <option value="10">10장</option>
+      </select>
     </div>
     <div class="option-body is-collapsed" id="photoOptionBody">
       <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 상품 입고 후 요청 상품의 사진을 촬영해 안내드리는 유료 서비스입니다.</strong></p>
       <ul>
-        <li>사진 촬영서비스 신청 시 입고 확인 및 사진 안내까지 다른 서비스 대비 처리 시간이 소요될 수 있습니다.</li>
-        <li>상품 상태, 수량, 촬영 범위에 따라 추가 확인 또는 안내가 필요할 수 있습니다.</li>
+        <li>해당 서비스 신청 시 미신청 건보다 처리 시간이 다소 소요될 수 있습니다.</li>
+        <li>상품 상태, 수량, 촬영 범위에 따라 담당자 안내 또는 추가 청구가 필요할 수 있습니다.</li>
       </ul>
     </div>
   </div>
@@ -779,6 +784,7 @@ function toggleCare() {
   s.textContent = isOn ? '신청' : '미신청';
   s.classList.toggle('on', isOn);
   body?.classList.toggle('is-collapsed', !isOn);
+  render();
 }
 
 function togglePacking() {
@@ -790,18 +796,14 @@ function togglePacking() {
   s.textContent = isOn ? '신청' : '미신청';
   s.classList.toggle('on', isOn);
   body?.classList.toggle('is-collapsed', !isOn);
+  render();
 }
 
-function togglePhoto() {
-  const t = document.getElementById('photoTrack');
-  const s = document.getElementById('photoText');
-  const body = document.getElementById('photoOptionBody');
-  t.classList.toggle('on');
-  const isOn = t.classList.contains('on');
-  s.textContent = isOn ? '신청' : '미신청';
-  s.classList.toggle('on', isOn);
-  body?.classList.toggle('is-collapsed', !isOn);
-}
+document.getElementById('photoOptionSelect')?.addEventListener('change', (event) => {
+  const isSelected = event.currentTarget.value !== '0';
+  document.getElementById('photoOptionBody')?.classList.toggle('is-collapsed', !isSelected);
+  render();
+});
 
 /* ? ?  ? 치 ?? ?  */
 let depFull = false;

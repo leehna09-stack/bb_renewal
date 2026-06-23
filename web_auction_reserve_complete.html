@@ -18,7 +18,7 @@
       --line-soft: #eee6e2;
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
-      --main-w: 1180px;
+      --main-w: 800px;
     }
 
     * { box-sizing: border-box; }
@@ -101,6 +101,7 @@
       font-size: 13px;
     }
     .result-row:last-child { border-bottom: 0; }
+    .result-row.qty-result-row { padding-bottom: 24px; }
     .result-row b { color: #5a5e66; font-size: 12px; font-weight: 800; }
     .result-row .val { color: #151922; font-weight: 700; }
     .result-row .val.amount { color: var(--rose); font-size: 16px; font-weight: 900; }
@@ -249,7 +250,7 @@
   <!-- 입찰 결과 -->
   <div class="result-box">
     <div class="result-row"><b>예약입찰금액</b><span class="val amount" id="rsAmount">¥ 92,000 <span class="sub">(약 ₩837,200)</span></span></div>
-    <div class="result-row"><b>예약입찰 수량</b><span class="val" id="rsQty">1개</span></div>
+    <div class="result-row qty-result-row"><b>예약입찰 수량</b><span class="val" id="rsQty">1개</span></div>
     <div class="result-row"><b>예약일시</b><span class="val" id="rsReserveAt">입찰종료 1시간 전</span></div>
     <div class="result-row"><b>경매낙찰정보</b><span class="val" id="rsOpen">공개</span></div>
     <div class="result-row"><b>예약 신청시각</b><span class="val" id="rsBidTime">2026-06-12 21:22:10</span></div>

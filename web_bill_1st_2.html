@@ -161,6 +161,8 @@
   .option-toggle[aria-pressed="true"] .option-toggle-thumb { transform: translateX(22px); }
   .option-toggle-text { min-width: 58px; color: #777; font-weight: 500; text-align: left; }
   .option-toggle[aria-pressed="true"] .option-toggle-text { color: #E8385A; font-weight: 700; }
+  .photo-option-select { width: 120px; height: 34px; padding: 0 10px; border: 1px solid #ccd3dc; border-radius: 4px; background: #fff; color: #333; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .photo-option-select:focus { outline: none; border-color: #1A3C6E; box-shadow: 0 0 0 3px rgba(26,60,110,0.12); }
   .paid-option-desc { margin-top: 12px; color: #555; line-height: 1.65; }
   .paid-option-desc p + p { margin-top: 8px; }
   .paid-option-desc ul { margin: 4px 0 10px; padding-left: 18px; list-style-position: outside; }
@@ -261,7 +263,7 @@
                   <span class="option-toggle-text">미신청</span>
                 </button>
                 <div class="paid-option-desc">
-                  <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 가입 시 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
+                  <p><strong><i class="fa-solid fa-circle-info" aria-hidden="true"></i> 가입 시 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
                   <ul>
                     <li>안심 케어 가입 건에 한해 보상 한도는 최대 50만원 까지 보상이 적용됩니다.</li>
                     <li>보상금액은 낙찰가(구매가)+국제 운송료 +수입신고시 발생한 세금까지 보상됩니다.</li>
@@ -286,10 +288,10 @@
                   <span class="option-toggle-text">미신청</span>
                 </button>
                 <div class="paid-option-desc">
-                  <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 깨지기 쉬운 물품은 안전 포장 옵션을 선택해 주세요.</strong></p>
+                  <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 해당 옵션을 선택해 주세요.</p>
                   <ul>
                     <li>신청 시 파손 위험을 줄이기 위한 보강 포장이 진행됩니다.</li>
-                    <li>보강 포장비는 기본 500엔이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
+                    <li>보강 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
                     <li>품목별 포장 비용은 하단의 [보강 포장 비용 안내]를 참고해 주세요.</li>
                     <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
                   </ul>
@@ -302,20 +304,28 @@
               <th>
                 <span class="paid-option-name">사진 촬영서비스</span>
                 <span class="paid-option-meta">
-                  <span class="paid-option-price">+ 300엔 / 3장 (소형)</span>
-                  <span class="paid-option-price">+ 500엔 / 3장 (대형)</span>
+                  <span class="paid-option-price">기본 300엔 / 3장</span>
+                  <span class="paid-option-price">+ 1장 100엔</span>
                 </span>
               </th>
               <td class="paid-option-choice">
-                <button class="option-toggle" type="button" aria-pressed="false">
-                  <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
-                  <span class="option-toggle-text">미신청</span>
-                </button>
+                <select class="photo-option-select" aria-label="사진 촬영서비스 신청 수량">
+                  <option value="0">신청안함</option>
+                  <option value="3">3장</option>
+                  <option value="5">5장</option>
+                  <option value="7">7장</option>
+                </select>
                 <div class="paid-option-desc">
-                  <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 상품 입고 후 요청 상품의 사진을 촬영해 안내드리는 유료 서비스입니다.</strong></p>
+                  <p><strong><i class="fa-solid fa-circle-info"aria-hidden="true"></i> 상품 입고 후 요청 상품의 사진을 촬영해 안내드리는 유료 서비스입니다.</strong></p>
                   <ul>
-                    <li>해당 서비스 신청 시 미신청 건보다 처리 시간이 다소 소요될 수 있습니다.</li>
+                    <li>해당 서비스 신청 시 <strong class="bold-red">미신청 건보다 처리 시간이 다소 소요될 수 있습니다.</strong></li>
                     <li>상품 상태, 수량, 촬영 범위에 따라 담당자 안내 또는 추가 청구가 필요할 수 있습니다.</li>
+                    <li>아래 상품은 사진 촬영 서비스가 제공되지 않습니다.
+                      <ul>
+                        <li>묶음 판매 상품 (예: LP 세트, 피규어 묶음 등 여러 개가 한 박스에 패키징된 경우)</li>
+                        <li>10kg 초과 대형 상품</li>
+                      </ul>
+                    </li>
                   </ul>
                 </div>
               </td>

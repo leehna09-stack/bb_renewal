@@ -770,7 +770,7 @@ button.user-menu-item{
 <!-- 바로가�?-->
 <div class="sc-bar">
   <div class="sc-inner">
-    <div class="sc-item"><div class="sc-icon si1"><i class="fas fa-table-cells-large"></i></div><span class="sc-lbl">편의기능</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openCustomsTaxPopup()" onkeydown="handleShortcutKey(event, openCustomsTaxPopup)"><div class="sc-icon si1"><i class="fas fa-table-cells-large"></i></div><span class="sc-lbl">편의기능</span></div>
     <div class="sc-item"><div class="sc-icon si2"><i class="fas fa-heart"></i></div><span class="sc-lbl">관심상품</span></div>
     <div class="sc-item"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
     <div class="sc-item"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
@@ -1081,6 +1081,15 @@ function closeUserDrawer(){
   document.getElementById('userDrawer')?.classList.remove('open');
   document.getElementById('userDrawerOv')?.classList.remove('open');
   document.body.style.overflow='';
+}
+function openCustomsTaxPopup(){
+  const url = 'https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do';
+  window.open(url, 'customsTaxCalculation', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+}
+function handleShortcutKey(event, callback){
+  if(event.key !== 'Enter' && event.key !== ' ') return;
+  event.preventDefault();
+  callback();
 }
 function bindUserMenu(){
   document.querySelectorAll('.user-menu-trigger').forEach(btn=>{

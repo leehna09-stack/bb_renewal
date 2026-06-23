@@ -120,36 +120,46 @@
     /* ── 메인 ── */
     .main { min-width: 0; padding-top: 36px; padding-bottom: 60px; }
 
-    /* VIP 배너 */
-    .vip-banner {
+    /* 주문 컨텍스트 헤더 */
+    .order-ctx {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #7b5ea7;
-      border-radius: 10px 10px 0 0;
-      padding: 14px 20px;
-      color: #fff;
-      margin-bottom: 0;
-    }
-    .vip-banner-name { font-size: 17px; font-weight: 900; }
-    .vip-banner-name span { font-size: 13px; font-weight: 700; margin-right: 6px; opacity: 0.85; }
-    .vip-banner-link { font-size: 12px; color: rgba(255,255,255,0.82); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-    .vip-banner-link:hover { color: #fff; }
-
-    /* 포인트 바 */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
       border: 1px solid var(--line);
-      border-top: none;
-      border-radius: 0 0 10px 10px;
-      margin-bottom: 28px;
+      border-radius: 10px;
+      padding: 16px 22px;
+      margin-bottom: 24px;
       background: #fff;
     }
-    .stat-item { padding: 12px 10px; text-align: center; border-right: 1px solid var(--line-soft); }
-    .stat-item:last-child { border-right: none; }
-    .stat-label { font-size: 11px; color: #888; display: block; margin-bottom: 4px; }
-    .stat-value { font-size: 15px; font-weight: 900; color: #1f242d; }
+    .order-ctx-user { display: flex; align-items: center; gap: 10px; }
+    .order-ctx-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #ffe7ef; color: var(--rose);
+      display: grid; place-items: center;
+      font-size: 16px; font-weight: 900; flex-shrink: 0;
+    }
+    .order-ctx-name { font-size: 15px; font-weight: 900; color: #1f242d; }
+    .order-ctx-grade {
+      display: inline-flex; align-items: center;
+      margin-left: 7px;
+      padding: 2px 9px; border-radius: 999px;
+      background: #7b5ea7; color: #fff;
+      font-size: 11px; font-weight: 800;
+    }
+    .order-ctx-stats {
+      display: flex; align-items: center; gap: 0;
+    }
+    .order-ctx-stat {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 22px;
+      border-right: 1px solid var(--line-soft);
+    }
+    .order-ctx-stat:last-child { border-right: none; padding-right: 0; }
+    .order-ctx-stat:first-child { padding-left: 0; }
+    .oct-label { font-size: 11px; color: #888; margin-bottom: 3px; white-space: nowrap; }
+    .oct-value { font-size: 15px; font-weight: 900; color: #1f242d; white-space: nowrap; }
+    .oct-value.accent { color: var(--rose); }
 
     /* 섹션 타이틀 */
     .section-title {
@@ -172,36 +182,36 @@
     }
     .goods-head, .goods-row {
       display: grid;
-      grid-template-columns: 72px 90px minmax(0,1fr) 100px 90px 90px;
+      grid-template-columns: 120px 90px minmax(0,1fr) 100px 100px 100px;
       align-items: center;
     }
     .goods-head {
       background: var(--warm);
       border-bottom: 1px solid var(--line);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 800;
       color: #5a5e66;
       text-align: center;
     }
-    .goods-head > div { padding: 9px 6px; }
+    .goods-head > div { padding: 9px 10px; }
     .goods-row {
       border-bottom: 1px solid var(--line-soft);
-      font-size: 12px;
+      font-size: 14px;
       color: #383b40;
       text-align: center;
       min-height: 80px;
     }
     .goods-row:last-child { border-bottom: none; }
-    .goods-row > div { padding: 12px 6px; }
-    .row-status-done { font-weight: 800; color: #59606d; font-size: 12px; }
+    .goods-row > div { padding: 10px 10px; }
+    .row-status-done { font-weight: 800; color: #59606d; font-size: 15px; }
     .goods-thumb {
-      width: 52px; height: 52px;
+      width: 60px; height: 60px;
       border-radius: 6px;
       background: var(--warm-2) center / cover no-repeat;
       display: inline-block;
       border: 1px solid var(--line-soft);
     }
-    .goods-name { font-size: 12px; color: #151922; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: left; }
+    .goods-name { font-size: 15px; color: #151922; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: left; }
     .price-link { color: var(--rose); font-weight: 800; text-decoration: none; }
     .price-link:hover { text-decoration: underline; }
 
@@ -209,11 +219,17 @@
     .ship-compare-table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
       margin: 0 0 28px;
       border: 1px solid var(--line);
       font-size: 13px;
       background: #fff;
     }
+    .shipping-method-table { table-layout: fixed; width: 100%; }
+    .ship-compare-table col.method-col { width: 14%; }
+    .ship-compare-table col.feature-col { width: 45%; }
+    .ship-compare-table col.size-col { width: 25%; }
+    .ship-compare-table col.days-col { width: 16%; }
     .ship-compare-table th {
       padding: 10px 12px;
       border: 1px solid var(--line);
@@ -228,6 +244,8 @@
       border: 1px solid var(--line);
       vertical-align: top;
     }
+    .shipping-method-table th,
+    .shipping-method-table td { word-break: keep-all; overflow-wrap: anywhere; }
     .ship-compare-table .method-name { font-weight: 700; text-align: center; white-space: nowrap; }
     .ship-compare-table .method-name select {
       width: 100%;
@@ -246,12 +264,16 @@
     }
     .ship-compare-table .feature-cell { font-size: 12px; line-height: 1.8; color: #444; }
     .ship-compare-table .feature-cell .note { color: #888; }
-    .ship-compare-table .size-cell { font-size: 12px; line-height: 1.8; color: #444; }
+    .ship-compare-table .size-cell { font-size: 12px; line-height: 1.8; color: #444; text-align: left; }
     .ship-compare-table .days-cell {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
       text-align: center;
-      white-space: nowrap;
+      color: #1A3C6E;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+      line-height: 1.6;
     }
     .pickup-date-panel {
       display: grid;
@@ -290,7 +312,7 @@
     }
     .pickup-date-alert { min-height: 18px; color: var(--rose); font-size: 12px; font-weight: 700; }
 
-    /* 주문자 및 수취인 정보 */
+    /* 수취인 정보 */
     .recipient-section { margin-bottom: 28px; }
     .recipient-table { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
     .rec-row {
@@ -300,6 +322,7 @@
       align-items: stretch;
       min-height: 46px;
     }
+    .rec-row[hidden] { display: none; }
     .rec-row:last-child { border-bottom: none; }
     .rec-label {
       background: var(--warm);
@@ -363,7 +386,7 @@
     }
     .field-notice.blue { color: #4f6b9a; }
 
-    /* 목록통관 면세안내 */
+    /* 관·부가세 안내 */
     .duty-notice {
       border: 1px solid #f5b8c2;
       border-radius: 10px;
@@ -431,7 +454,7 @@
         <i class="fas fa-shopping-cart" aria-hidden="true"></i>
       </button>
       <div class="user-name">
-        박경아님
+        홍길동님
         <span class="premium-chip">VIP</span>
       </div>
     </div>
@@ -444,7 +467,7 @@
         <div class="profile-main">
           <div class="avatar">박</div>
           <div>
-            <strong class="profile-name">박경아님</strong>
+            <strong class="profile-name">홍길동님</strong>
             <span class="profile-tier">VIP</span>
           </div>
         </div>
@@ -542,31 +565,24 @@
     <!-- 메인 -->
     <main class="main">
 
-      <!-- VIP 배너 + 포인트 바 -->
-      <div class="vip-banner">
-        <div class="vip-banner-name"><span>VIP</span> 박경아님</div>
-        <a class="vip-banner-link" href="#">등급혜택/쿠폰더보기 <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
-      </div>
-      <div class="stats-bar">
-        <div class="stat-item">
-          <span class="stat-label">등급 포인트</span>
-          <span class="stat-value">2,837 점</span>
+      <!-- 주문 컨텍스트 헤더 -->
+      <div class="order-ctx">
+        <div class="order-ctx-user">
+          <div class="order-ctx-avatar">홍</div>
+          <div>
+            <span class="order-ctx-name">홍길동 님</span>
+            <span class="order-ctx-grade">VIP</span>
+          </div>
         </div>
-        <div class="stat-item">
-          <span class="stat-label">쿠폰</span>
-          <span class="stat-value">9 장</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">예치금</span>
-          <span class="stat-value">0 원</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">야후 보증금</span>
-          <span class="stat-value">30,000 원</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">이베이 보증금</span>
-          <span class="stat-value">0 원</span>
+        <div class="order-ctx-stats">
+          <div class="order-ctx-stat">
+            <span class="oct-label">묶음</span>
+            <span class="oct-value accent">2 건</span>
+          </div>
+          <div class="order-ctx-stat">
+            <span class="oct-label">상품금액 합계</span>
+            <span class="oct-value">64,070 원</span>
+          </div>
         </div>
       </div>
 
@@ -588,32 +604,46 @@
         </div>
 
         <div class="goods-row">
-          <div class="row-status-done">1차결제완료</div>
+          <div class="row-status-done">1차 결제완료</div>
           <div><span class="goods-thumb"></span></div>
           <div style="text-align:left; padding-left:8px;">
-            <div class="goods-name">[YAHOO] n1233331631<br>VM6-031 オニキスネックレス イヤリングセット アクセサリー ネックレス イヤリング ケース付</div>
+            <div class="goods-name">
+              [YAHOO] n1233331631<br>
+              VM6-031 오닉스 목걸이 귀걸이 세트 액세서리 케이스 포함
+              <span style="display:block; font-size:10px; color:#9da2af; margin-top:3px;">VM6-031 オニキスネックレス イヤリングセット アクセサリー ネックレス イヤリング ケース付</span>
+            </div>
           </div>
           <div><a href="#" class="price-link">300 엔</a></div>
           <div style="color:#1f242d; font-weight:800;">20,678 원</div>
-          <div style="color:#59606d; font-size:11px;">2026.06.18</div>
+          <div style="color:#59606d; font-size:15px;">2026.06.18</div>
         </div>
 
         <div class="goods-row">
-          <div class="row-status-done">1차결제완료</div>
+          <div class="row-status-done">현지도착</div>
           <div><span class="goods-thumb"></span></div>
           <div style="text-align:left; padding-left:8px;">
-            <div class="goods-name">[YAHOO] l1233035428<br>香水まとめ 8品 CHANEL シャネル Dior ディオール NINA RICCI ニナリッチ 未開封品 開封品</div>
+            <div class="goods-name">
+              [YAHOO] l1233035428<br>
+              향수 묶음 8개 CHANEL 샤넬 Dior 디올 NINA RICCI 니나리치 미개봉·개봉 혼합
+              <span style="display:block; font-size:10px; color:#9da2af; margin-top:3px;">香水まとめ 8品 CHANEL シャネル Dior ディオール NINA RICCI ニナリッチ 未開封品 開封品</span>
+            </div>
           </div>
           <div><a href="#" class="price-link">3,200 엔</a></div>
           <div style="color:#1f242d; font-weight:800;">43,392 원</div>
-          <div style="color:#59606d; font-size:11px;">2026.06.18</div>
+          <div style="color:#59606d; font-size:15px;">2026.06.18</div>
         </div>
       </div>
 
       <!-- 배송정보 -->
       <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">배송정보</div>
 
-      <table class="ship-compare-table">
+      <table class="ship-compare-table shipping-method-table">
+        <colgroup>
+          <col class="method-col">
+          <col class="feature-col">
+          <col class="size-col">
+          <col class="days-col">
+        </colgroup>
         <thead>
           <tr>
             <th>배송방법</th>
@@ -629,17 +659,26 @@
                 <option value="비바항공특송">비바항공특송</option>
                 <option value="EMS">EMS</option>
                 <option value="선편특송">선편특송</option>
-                <option value="일본내배송">일본내배송</option>
-                <option value="최저가배송" selected>최저가배송</option>
+                <option value="최저가배송">최저가배송</option>
+                <optgroup label="현지배송">
+                  <option value="일본내배송">현지배송</option>
+                </optgroup>
               </select>
             </td>
             <td class="feature-cell">
-              - 최저가 배송은 물품의 무게/부피를 모르는 상태에서 국제운송방법 선택이 어려운 회원님을 위해 만들었습니다.<br>
-              - 물품이 도착하면 배송팀에서 포장 이후 국제배송료가 가장 저렴한 운송 방법으로 2차 결제 안내를 올려드립니다.<br>
-              - 단, 배송기간, 통관절차 등은 고려하지 않고 오로지 국제 운송료만을 기준으로 진행합니다.
+              - 현재 화물 위치 추적 가능<br>
+              - 전담관세사가 통관대행처리<br><br>
+              <span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br>
+              <span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br>
+              <span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>
             </td>
-            <td class="size-cell">운송방법에 따라 다름</td>
-            <td class="days-cell">운송방법에 따라 다름</td>
+            <td class="size-cell">
+              오버사이즈 : 1,550엔 추가비용 발생<br>
+              - 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지이상 초과하는 경우<br>
+              - 국내배송시 화물택배(대신, 천일, 경동 등) 으로 진행<br>
+              - 도서산간비용 : 지역에 따라 비용발생
+            </td>
+            <td class="days-cell">3 ~ 5일</td>
           </tr>
         </tbody>
       </table>
@@ -661,13 +700,13 @@
         </div>
       </div>
 
-      <!-- 주문자 및 수취인 정보 -->
-      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">주문자 및 수취인 정보</div>
+      <!-- 수취인 정보 -->
+      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">수취인 정보</div>
       <div class="recipient-section">
         <div class="recipient-table">
           <div class="rec-row">
             <div class="rec-label">주문자 정보</div>
-            <div class="rec-val">박경아</div>
+            <div class="rec-val">홍길동</div>
           </div>
           <div class="rec-row">
             <div class="rec-label">수취인 정보</div>
@@ -678,13 +717,13 @@
               <button class="small-btn accent" type="button">배송지 변경하기</button>
             </div>
           </div>
-          <div class="rec-row">
+          <div class="rec-row domestic-recipient-row">
             <div class="rec-label">수취인명<br>(회사명)</div>
             <div class="rec-val">
-              <input class="field-input" type="text" value="김순옥" placeholder="수취인명">
+              <input class="field-input" type="text" value="홍길동" placeholder="수취인명">
             </div>
           </div>
-          <div class="rec-row" style="align-items:flex-start;">
+          <div class="rec-row domestic-recipient-row" style="align-items:flex-start;">
             <div class="rec-label" style="align-items:flex-start; padding-top:14px;">주소</div>
             <div class="rec-val" style="flex-direction:column; align-items:flex-start; gap:6px; padding-top:14px;">
               <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
@@ -700,14 +739,14 @@
               </div>
             </div>
           </div>
-          <div class="rec-row">
-            <div class="rec-label">랜드폰</div>
+          <div class="rec-row domestic-recipient-row">
+            <div class="rec-label">핸드폰</div>
             <div class="rec-val">
               <input class="field-input phone" type="text" value="010-4210-0280" placeholder="휴대폰번호">
               <span class="field-notice">※ 개인통관고유부호 발급기 기재한 전화번호를 입력바랍니다. <b>불필시 틀 관이 지연됩니다.</b></span>
             </div>
           </div>
-          <div class="rec-row" style="align-items:flex-start;">
+          <div class="rec-row domestic-recipient-row" style="align-items:flex-start;">
             <div class="rec-label" style="align-items:flex-start; padding-top:14px;">개인통관고유부호<br>(사업자등록번호)</div>
             <div class="rec-val" style="flex-direction:column; align-items:flex-start; gap:6px; padding-top:14px;">
               <input class="field-input pin" type="text" value="P250014160079" placeholder="개인통관고유부호">
@@ -717,14 +756,42 @@
               </div>
             </div>
           </div>
+          <div class="rec-row japan-recipient-row" hidden>
+            <div class="rec-label">수취인명<br>(회사명)</div>
+            <div class="rec-val">
+              <input class="field-input" type="text" placeholder="수취인명 또는 회사명">
+              <span class="field-notice">현지 배송 받을 이름을 입력해주세요.</span>
+            </div>
+          </div>
+          <div class="rec-row japan-recipient-row" style="align-items:flex-start;" hidden>
+            <div class="rec-label" style="align-items:flex-start; padding-top:14px;">일본 수령주소</div>
+            <div class="rec-val" style="flex-direction:column; align-items:flex-start; gap:6px; padding-top:14px;">
+              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <input class="field-input zip" type="text" placeholder="우편번호 예) 160-0022">
+                <span class="field-notice">일본 우편번호를 입력해주세요.</span>
+              </div>
+              <input class="field-input addr" type="text" placeholder="도도부현 예) 東京都">
+              <input class="field-input addr" type="text" placeholder="시구정촌/번지 예) 新宿区新宿 3-1-1">
+              <input class="field-input addr2" type="text" placeholder="건물명/호실 예) サンプルビル 101">
+            </div>
+          </div>
+          <div class="rec-row japan-recipient-row" hidden>
+            <div class="rec-label">일본 연락처</div>
+            <div class="rec-val">
+              <input class="field-input phone" type="text" placeholder="전화번호">
+              <span class="field-notice">예) 03-1234-5678 또는 090-1234-5678</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 목록통관 면세안내 -->
-      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">목록통관 면세안내</div>
+      <!-- 관·부가세 안내 -->
+      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">관·부가세 안내</div>
       <div class="duty-notice">
-        <div class="duty-notice-title">목록통관 면세안내</div>
-        목록통관 면세조건 충족을 위해서는 반드시 <b>물품가격 기준(상품가격+현지운송료+소비세)</b> 미화 $150(단, 미국에서 구매한 제품은 원미FTA에 따라 미화 $200)이어야 하고, <b>목록통관 배제대상 물품</b>이 아니어야 합니다. 기준금액에 국내로 배송되는 <a href="#">국제운송료와 보험료는 미포함</a>이며 자가사용목적 물품과 회사에서 사용할 샘플 등이 이에 해당됩니다.
+        <div class="duty-notice-title">관·부가세 안내</div>
+        2차 결제 시 추가되는 비용 및 물품 입항일 환율에 따라 면세 한도를 초과할 수 있습니다.<br>
+        ※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)<br>
+        ※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
       </div>
 
       <!-- 저장하기 / 목록보기 -->
@@ -747,7 +814,7 @@
     },
     'EMS': {
       feature: '- 현재 화물 위치 추적 가능<br>- 파손, 분실 시 보상 받기 쉬움<br>- 20만엔 초과 상품은 통관 수수료 2,800엔이 2차 결제 시 청구 됩니다.',
-      size: '- 30kg까지 취급<br>- 한변 길이 150cm 미만',
+      size: '- 30kg까지 취급<br>- 한변길이 150cm미만',
       days: '3 ~ 5일'
     },
     '선편특송': {
@@ -756,9 +823,9 @@
       days: '7 ~ 12일'
     },
     '일본내배송': {
-      feature: '- 일본내배송 선택 시 수수료 건당 ¥1,000 별도 발생<br>- 파손 및 보상기준 있음<br>- 물품 파손 및 상품 이상 등의 클레임 대행 일절 불가 (직접 택배사에 접수 필요)',
-      size: '- 일본 내 일반택배(야마토)로 배송 가능한 사이즈 (세변의 합 200cm까지)',
-      days: '인수희망 날짜 지정 시 일본 영업일 기준 5일 이후'
+      feature: '- 현지배송 선택시 수수료 <strong>건당 ￥1,000 별도 발생</strong><br>- 파손 및 보상기준<br>물품의 파손 및 상품이상 등의 클레임 대행 일절 불가<br>(직접 택배사에 접수 필요)<br>- 인수희망 날짜 지정 :<br>상품 미도착시, 현지도착일을 기준으로 5일 이후<br>현지도착 상품의 경우 현지배송요청 일자로부터 5일 이후<br><strong>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</strong><br><strong>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</strong><br>- 인수 희망 날짜 지정은 반드시 메모로 신청바랍니다.',
+      size: '- 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
+      days: '3 ~ 5일'
     },
     '최저가배송': {
       feature: '- 최저가 배송은 물품의 무게/부피를 모르는 상태에서 국제운송방법 선택이 어려운 회원님을 위해 만들었습니다.<br>- 물품이 도착하면 배송팀에서 포장 이후 국제배송료가 가장 저렴한 운송 방법으로 2차 결제 안내를 올려드립니다.<br>- 단, 배송기간, 통관절차 등은 고려하지 않고 오로지 국제 운송료만을 기준으로 진행합니다.',
@@ -775,6 +842,14 @@
   const pickupDateInput = document.getElementById('pickupDateInput');
   const pickupDateAlert = document.getElementById('pickupDateAlert');
   const dateWarningText = '[해당 날짜로 지정할수없습니다]';
+  const domesticRecipientRows = Array.from(document.querySelectorAll('.domestic-recipient-row'));
+  const japanRecipientRows = Array.from(document.querySelectorAll('.japan-recipient-row'));
+
+  function updateRecipientForm() {
+    const isJapanDelivery = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
+    domesticRecipientRows.forEach(function(row) { row.hidden = isJapanDelivery; });
+    japanRecipientRows.forEach(function(row) { row.hidden = !isJapanDelivery; });
+  }
 
   function formatDateValue(date) {
     const year = date.getFullYear();
@@ -824,20 +899,22 @@
       const description = shippingDescriptions[shippingMethodSelect.value] || shippingDescriptions['최저가배송'];
       if (featureCell) featureCell.innerHTML = description.feature;
       if (sizeCell) sizeCell.innerHTML = description.size;
-      if (daysCell) daysCell.textContent = description.days;
+      if (daysCell) daysCell.innerHTML = description.days;
       updatePickupDatePanel();
+      updateRecipientForm();
     });
     updatePickupDatePanel();
+    updateRecipientForm();
   }
   if (pickupDateInput) pickupDateInput.addEventListener('change', validatePickupDate);
 
   // 주문자와 동일 체크박스
   document.querySelector('.check-inline input').addEventListener('change', function() {
     if (this.checked) {
-      document.querySelector('.field-input[placeholder="수취인명"]').value = '박경아';
+      document.querySelector('.field-input[placeholder="수취인명"]').value = '홍길동';
     }
   });
 </script>
 <script src="../bb-common.js"></script>
 </body>
-</html>
+</ht
