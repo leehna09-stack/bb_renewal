@@ -172,6 +172,8 @@
       background: #fff; color: #8a7f7a; font-size: 12px; font-weight: 700;
     }
     .status-board { display: grid; grid-template-columns: 127px repeat(6, 87px); gap: 20px; align-items: stretch; margin-left: 6px; }
+    .status-flow-row { display: contents; }
+    .flow-arr, .flow-row-connector { display: none; }
     .status-stack { display: grid; gap: 19px; }
     .status-card {
       min-height: 151px; border: 1px solid #ded8d5; border-radius: 7px;
@@ -278,12 +280,8 @@
       height: 29px; min-width: 58px; border: 1px solid var(--line); border-radius: 7px;
       background: #fff; color: #606672; font-size: 12px; font-weight: 800;
     }
-    .calendar-actions button.primary { border-color: var(--brand); background: var(--brand); color: #fff; }
-    .trade-table { border: 1px solid var(--line); border-radius: 11px; overflow: hidden; background: #fff; }
-    .table-head, .trade-row { display: grid; grid-template-columns: 120px minmax(0,1fr) 132px 180px; align-items: center; column-gap: 12px; }
-    .table-head { min-height: 37px; padding: 0 16px; background: var(--warm); color: #5a5e66; font-size: 11px; font-weight: 800; }
-    .table-head div:last-child { text-align: center; }
-    .trade-row { min-height: 85px; padding: 0 16px; border-top: 1px solid var(--line-soft); }
+    .table-head { min-height: 37px; padding: 0; background: var(--warm); color: #5a5e66; font-size: 11px; font-weight: 800; }
+    .trade-row { min-height: 85px; padding: 0; border-top: 1px solid var(--line-soft); }
     .trade-row.is-hidden { display: none; }
     .trade-row.status-extra { display: none; }
     .trade-table.status-filtered .trade-row:not(.is-hidden) { display: grid; }
@@ -522,11 +520,14 @@
 
       /* status board: 모바일 그리드 */
       .status-board {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px; margin-left: 0; margin-bottom: 20px;
+        display: flex; flex-direction: column;
+        gap: 6px; margin-left: 0; margin-bottom: 20px;
       }
+      .status-flow-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 4px; }
+      .flow-arr { display: block; width: 7px; height: 7px; border-top: 1.5px solid #b5bac2; border-right: 1.5px solid #b5bac2; transform: rotate(45deg); flex-shrink: 0; }
+      .flow-row-connector { display: none; }
       .status-stack {
-        grid-column: span 3;
+        display: grid;
         grid-template-columns: 1fr 1fr; gap: 8px;
       }
       .status-stack .status-card { min-height: 64px; }
@@ -900,19 +901,34 @@
       font-weight: 800;
     }
     .status-board {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       margin: 0 0 44px;
     }
     .status-stack {
       display: grid;
-      grid-column: 1 / -1;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 6px;
     }
+    .status-flow-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 4px;
+    }
+    .flow-arr {
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid #b5bac2;
+      border-right: 1.5px solid #b5bac2;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .flow-row-connector { display: none; }
     .status-card {
-      min-height: 80px;
+      height: 100px;
       padding: 12px 6px;
       border: 1px solid #e5dcd8;
       border-radius: 8px;
@@ -934,11 +950,20 @@
       line-height: 1.35;
     }
     .status-card .sub {
-      margin-top: 8px;
-      padding-top: 8px;
+      margin-top: 5px;
+      padding-top: 5px;
       border-top: 1px solid #e9e2de;
     }
-    .status-card .sub em { color: #f5a623; }
+    .status-card .sub em { color: #f5a623; font-size: 13px; margin-bottom: 2px; }
+    .status-card .sub strong { font-size: 10px; }
+    .status-card[data-status="local-arrived"] {
+      height: 100px;
+      min-height: unset;
+      padding: 8px 6px;
+      justify-content: center;
+    }
+    .status-card[data-status="local-arrived"] em { font-size: 14px; margin-bottom: 2px; }
+    .status-card[data-status="local-arrived"] > div > strong { font-size: 10px; }
     .trade-area { margin-top: 0; }
     .filter-row {
       display: grid;
@@ -1032,6 +1057,40 @@
     .trade-row[data-status="shipping-wait"] { order: 6; }
     .trade-row[data-status="international-shipping"] { order: 7; }
     .trade-empty { order: 99; }
+    .trade-row.bundle-group-start {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      margin-bottom: -1px;
+    }
+    .trade-row.bundle-group-end {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: 0;
+    }
+    .bundle-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px 10px 10px;
+      background: #f5f0ee;
+      border-bottom: 1px solid #e8e1de;
+      font-size: 12px;
+    }
+    .bundle-summary > div { flex: 1; min-width: 0; }
+    .bundle-summary b { color: #4b5260; margin-right: 10px; }
+    .bundle-summary span.val { color: #151922; font-weight: 800; }
+    .bundle-chip {
+      flex: 0 0 auto;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 6px;
+      border: 1px solid var(--brand);
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+    }
     .card-top {
       min-height: 39px;
       padding: 10px 14px;
@@ -1069,6 +1128,7 @@
       flex: 0 0 auto;
     }
     .card-info { min-width: 0; flex: 1; }
+    .order-id { color: #9a9fa8; font-size: 11px; font-weight: 600; margin-bottom: 3px; }
     .seller { margin-bottom: 3px; color: #8c8f98; font-size: 12px; }
     .product-title {
       margin-bottom: 7px;
@@ -1081,6 +1141,20 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+
+    .detail-link,
+    .product-detail-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .thumb-link {
+      display: block;
+      flex: 0 0 auto;
+      line-height: 0;
+    }
+
+    .product-detail-link:hover { color: var(--brand); }
     .price-row { display: flex; align-items: baseline; gap: 4px; }
     .price-main {
       color: #111827;
@@ -1090,20 +1164,38 @@
     }
     .price-main.bid { color: var(--brand); }
     .price-unit { color: #777; font-size: 11px; font-weight: 700; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr;
+      gap: 3px 4px;
+      padding: 5px 5px;
+      border-top: 1px solid #f1ebe8;
+      background: #faf7f5;
+      font-size: 11px;
+    }
+    .info-grid .lbl {
+      color: #9a9fa8; font-weight: 700; white-space: nowrap;
+      padding: 3px 8px 3px 0;
+    }
+    .info-grid .val {
+      color: #333; font-weight: 700;
+      padding: 3px 4px 3px 0;
+    }
+    .info-grid .val:nth-child(4n) { padding-right: 0; }
     .card-foot {
       min-height: 50px;
-      padding: 10px 12px;
+      padding: 5px 15px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 8px;
+      gap: 10px;
       border-top: 1px solid #f1ebe8;
     }
     .btn {
       height: 34px;
       min-width: 78px;
       padding: 0 14px;
-      border-radius: 999px;
+      border-radius: 8px;
       border: 1px solid #e5dcd8;
       background: #fff;
       color: #333;
@@ -1774,7 +1866,7 @@
             <span class="mpc-grade">Premium</span>
           </div>
         </div>
-        <div class="mpc-vip">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></div>
+        <div class="mpc-vip">VIP까지 <b>\23,000</b> 또는 <b>2건</b></div>
         <div class="mpc-bar-row">
           <div class="mpc-bar"><span></span></div>
           <span class="mpc-help">?</span>
@@ -1938,7 +2030,7 @@
             <span class="profile-tier"><i class="fa-solid fa-crown" aria-hidden="true"></i> Premium</span>
           </div>
         </div>
-        <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
+        <p class="vip-copy">VIP까지 <b>\23,000</b> 또는 <b>2건</b></p>
         <div class="vip-row"><div class="vip-progress"><span></span></div><span class="help-dot">?</span></div>
         <div class="profile-actions">
           <button class="soft-btn" type="button">1:1 문의내역</button>
@@ -2001,16 +2093,25 @@
             <div class="status-card" role="button" tabindex="0" data-status="auction-bid" data-label="경매입찰"><div><em>5</em><strong>경매입찰</strong></div></div>
             <div class="status-card" role="button" tabindex="0" data-status="purchase-request" data-label="구매 신청"><div><em>5</em><strong>구매 신청</strong></div></div>
           </div>
-          <div class="status-card" role="button" tabindex="0" data-status="first-payment-wait" data-label="1차 결제대기"><div><em class="hot">5</em><strong>1차<br>결제대기</strong></div></div>
-          <div class="status-card" role="button" tabindex="0" data-status="first-payment-complete" data-label="1차 결제완료"><div><em>5</em><strong>1차<br>결제완료</strong></div></div>
-          <div class="status-card" role="button" tabindex="0" data-status="local-arrived" data-label="현지도착">
-            <div><em>5</em><strong>현지도착</strong>
-              <span class="sub" role="button" tabindex="0" data-status="shipping-wait" data-label="배송대기"><em>3</em><strong>배송대기</strong></span>
+          <div class="status-flow-row">
+            <div class="status-card" role="button" tabindex="0" data-status="first-payment-wait" data-label="1차 결제대기"><div><em class="hot">5</em><strong>1차<br>결제대기</strong></div></div>
+            <span class="flow-arr" aria-hidden="true"></span>
+            <div class="status-card" role="button" tabindex="0" data-status="first-payment-complete" data-label="1차 결제완료"><div><em>5</em><strong>1차<br>결제완료</strong></div></div>
+            <span class="flow-arr" aria-hidden="true"></span>
+            <div class="status-card" role="button" tabindex="0" data-status="local-arrived" data-label="현지도착">
+              <div>
+                <em>5</em><strong>현지도착</strong>
+                <span class="sub" role="button" tabindex="0" data-status="shipping-wait" data-label="배송대기"><em>3</em><strong>배송대기</strong></span>
+              </div>
             </div>
           </div>
-          <div class="status-card" role="button" tabindex="0" data-status="second-payment-wait" data-label="2차 결제대기"><div><em class="hot">5</em><strong>2차<br>결제대기</strong></div></div>
-          <div class="status-card" role="button" tabindex="0" data-status="second-payment-complete" data-label="2차 결제 완료"><div><em>5</em><strong>2차<br>결제 완료</strong></div></div>
-          <div class="status-card" role="button" tabindex="0" data-status="international-shipping" data-label="국제배송"><div><em class="hot">5</em><strong>국제배송</strong></div></div>
+          <div class="status-flow-row">
+            <div class="status-card" role="button" tabindex="0" data-status="second-payment-wait" data-label="2차 결제대기"><div><em class="hot">5</em><strong>2차<br>결제대기</strong></div></div>
+            <span class="flow-arr" aria-hidden="true"></span>
+            <div class="status-card" role="button" tabindex="0" data-status="second-payment-complete" data-label="2차 결제 완료"><div><em>5</em><strong>2차<br>결제 완료</strong></div></div>
+            <span class="flow-arr" aria-hidden="true"></span>
+            <div class="status-card" role="button" tabindex="0" data-status="international-shipping" data-label="국제배송"><div><em class="hot">5</em><strong>국제배송</strong></div></div>
+          </div>
         </div>
       </section>
 
@@ -2132,15 +2233,20 @@
               <span class="card-time alert">종료 2시간 14분 전</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
+                <div class="order-id">[야후경매] AUC-2024041701</div>
                 <div class="seller">야후경매 · im111dancin</div>
-                <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                <div class="price-row"><span class="price-main bid">￥ 23,900</span><span class="price-unit">/ 1개</span></div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</a>
               </div>
             </div>
+            <div class="info-grid">
+              <span class="lbl">상품금액</span><span class="val">￥23,900 / 1개</span>
+              <span class="lbl">총상품가격</span><span class="val">￥23,900</span>
+              <span class="lbl">주문일자</span><span class="val">2024.04.17</span>
+              <span class="lbl">결제금액</span><span class="val">—</span>
+            </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
               <button class="btn primary" type="button">재입찰</button>
             </div>
           </div>
@@ -2150,32 +2256,69 @@
               <span class="card-time">04-17 14:32 낙찰</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
+                <div class="order-id">[야후경매] AUC-2024041702</div>
                 <div class="seller">야후경매 · im111dancin</div>
-                <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                <div class="price-row"><span class="price-main">￥ 28,500</span><span class="price-unit">/ 2개</span></div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">소니 워크맨 빈티지 카세트 플레이어 한정 컬러</a>
               </div>
             </div>
+            <div class="info-grid">
+              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
+              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
+              <span class="lbl">주문일자</span><span class="val">2024.04.17</span>
+              <span class="lbl">결제금액</span><span class="val">—</span>
+            </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
+              <button class="btn primary" type="button">결제하기</button>
             </div>
           </div>
-          <div class="trade-row" role="row" data-status="local-arrived">
+          <!-- 묶음배송 그룹 시작 -->
+          <div class="trade-row bundle-group-start" role="row" data-status="local-arrived">
+            <div class="bundle-summary">
+              <div><b>대표 주문번호</b><span class="val">BJP-2024041703</span></div>
+              <span class="bundle-chip">묶음배송 2건</span>
+            </div>
             <div class="card-top">
               <span class="card-status">현지도착</span>
-              <span class="card-time">보관 3일 경과</span>
+              <span class="card-time">보관 D+3</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
-                <div class="seller">야후경매 · im111dancin</div>
-                <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                <div class="price-row"><span class="price-main">￥ 28,500</span><span class="price-unit">/ 2개</span></div>
+                <div class="order-id">[구매대행] BJP-2024041703</div>
+                <div class="seller">야후구매 · bidbuy</div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">스타벅스 재팬 사쿠라 머그컵 텀블러 세트</a>
               </div>
             </div>
+            <div class="info-grid">
+              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
+              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
+              <span class="lbl">현지도착일</span><span class="val">2024.04.20</span>
+              <span class="lbl">국제배송일</span><span class="val">—</span>
+            </div>
+          </div>
+          <!-- 묶음배송 그룹 끝 -->
+          <div class="trade-row bundle-group-end status-extra" role="row" data-status="local-arrived">
+            <div class="card-top">
+              <span class="card-status">1차 결제완료</span>
+              <span class="card-time">04-17 14:32</span>
+            </div>
+            <div class="card-body">
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
+              <div class="card-info">
+                <div class="order-id">[구매대행] BJP-2024041704</div>
+                <div class="seller">야후구매 · bidbuy</div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">무인양품 원목 수납박스 데스크 정리함 묶음</a>
+              </div>
+            </div>
+            <div class="info-grid">
+              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
+              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
+              <span class="lbl">현지도착일</span><span class="val">2024.04.22</span>
+              <span class="lbl">국제배송일</span><span class="val">—</span>
+            </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
               <button class="btn dark" type="button">묶음배송 신청</button>
             </div>
           </div>
@@ -2185,15 +2328,21 @@
               <span class="card-time">04-17 14:32 낙찰</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
+                <div class="order-id">[야후경매] AUC-2024041704</div>
                 <div class="seller">야후경매 · im111dancin</div>
-                <div class="product-title">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</div>
-                <div class="price-row"><span class="price-main">￥ 28,500</span><span class="price-unit">/ 2개</span></div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</a>
               </div>
             </div>
+            <div class="info-grid">
+              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
+              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
+              <span class="lbl">현지도착일</span><span class="val">2024.04.19</span>
+              <span class="lbl">결제금액</span><span class="val">—</span>
+            </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
+              <button class="btn primary" type="button">결제하기</button>
             </div>
           </div>
           <div class="trade-row status-extra" role="row" data-status="purchase-request">
@@ -2202,15 +2351,12 @@
               <span class="card-time">04-16 14:20 접수</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
                 <div class="seller">구매대행 · bidbuy</div>
-                <div class="product-title">일본 한정 굿즈 구매 신청 상품 패키지</div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">일본 한정 굿즈 구매 신청 상품 패키지</a>
                 <div class="price-row"><span class="price-main">￥ 12,400</span><span class="price-unit">/ 1개</span></div>
               </div>
-            </div>
-            <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
             </div>
           </div>
           <div class="trade-row status-extra" role="row" data-status="shipping-wait">
@@ -2219,15 +2365,14 @@
               <span class="card-time alert">보관 30일 경과</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
                 <div class="seller">메루카리 · seller_24</div>
-                <div class="product-title">현지 물류센터 보관 중인 상품</div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">현지 물류센터 보관 중인 상품</a>
                 <div class="price-row"><span class="price-main">￥ 8,700</span><span class="price-unit">/ 1개</span></div>
               </div>
             </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
               <button class="btn primary" type="button">묶음배송 신청</button>
             </div>
           </div>
@@ -2237,15 +2382,14 @@
               <span class="card-time">04-18 출고</span>
             </div>
             <div class="card-body">
-              <div class="thumb"></div>
+              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
               <div class="card-info">
                 <div class="seller">배송센터 · tokyo</div>
-                <div class="product-title">국제배송 진행 중인 묶음 배송 상품</div>
+                <a class="product-title product-detail-link" href="mobile_payment_detail.html">국제배송 진행 중인 묶음 배송 상품</a>
                 <div class="price-row"><span class="price-main">￥ 44,200</span><span class="price-unit">/ 3개</span></div>
               </div>
             </div>
             <div class="card-foot">
-              <button class="btn ghost" type="button">상세보기</button>
               <button class="btn navy" type="button">배송조회</button>
             </div>
           </div>
@@ -2253,10 +2397,10 @@
         </div>
 
         <div class="pager" aria-label="페이지 이동">
-          <button type="button">«</button><button type="button">‹</button>
+          <button type="button">≪</button><button type="button">‹</button>
           <button type="button">1</button><button class="current" type="button">2</button>
           <button type="button">3</button><button type="button">4</button><button type="button">5</button>
-          <button type="button">›</button><button type="button">»</button>
+          <button type="button">›</button><button type="button">≫</button>
         </div>
       </section>
 
@@ -2315,7 +2459,7 @@
           <span class="user-vip-chip">VIP</span>
         </div>
       </div>
-      <p class="user-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 🎉</p>
+      <p class="user-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 ??</p>
       <div class="user-vip-bar"><span></span></div>
       <div class="user-asset-box">
         <div><span>마일리지</span><strong>4,500원</strong></div>
@@ -2384,7 +2528,7 @@
         </div>
       </div>
 
-      <button class="user-menu-item logout js-auth-toggle" type="button"><span class="emoji">🔒</span><span>로그아웃</span></button>
+      <button class="user-menu-item logout js-auth-toggle" type="button"><span class="emoji">??</span><span>로그아웃</span></button>
     </nav>
   </aside>
 </div><!-- /.page -->

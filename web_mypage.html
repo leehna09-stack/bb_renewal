@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -284,6 +284,31 @@
       color: var(--rose);
       font-size: 22px;
       font-weight: 800;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.65);
+    }
+
+    .avatar i {
+      line-height: 1;
+    }
+
+    .avatar.tier-standard {
+      background: #eef2f7;
+      color: #64748b;
+    }
+
+    .avatar.tier-premium {
+      background: #eef5ff;
+      color: var(--navy);
+    }
+
+    .avatar.tier-vip {
+      background: #fff7e6;
+      color: #f5a623;
+    }
+
+    .avatar.tier-prestige {
+      background: #fff0f4;
+      color: var(--rose);
     }
 
     .profile-name {
@@ -1376,6 +1401,19 @@
       margin-bottom: 8px;
     }
 
+    .detail-link,
+    .product-detail-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .thumb-link {
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .product-detail-link:hover { color: var(--rose); }
+
     .order-status-link {
       display: inline-flex;
       align-items: center;
@@ -1729,13 +1767,13 @@
      <aside class="sidebar">
         <section class="profile-card" aria-label="회원 정보">
           <div class="profile-main">
-            <div class="avatar">홍</div>
+            <div class="avatar tier-premium" aria-label="Premium 등급"><i class="fas fa-gem" aria-hidden="true"></i></div>
             <div>
               <strong class="profile-name">홍길동님</strong>
               <span class="profile-tier">Premium</span>
             </div>
           </div>
-          <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
+          <p class="vip-copy">VIP까지 <b>\23,000</b> 또는 <b>2건</b></p>
           <div class="vip-row">
             <div class="vip-progress"><span></span></div>
             <span class="help-dot">?</span>
@@ -1974,10 +2012,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후경매] AUC-2024041701</div>
-                      <div class="order-title">닌텐도 스위치 OLED 화이트 본체 풀박스 중고</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">닌텐도 스위치 OLED 화이트 본체 풀박스 중고</a>
                       <span class="order-status-link">입찰중 · 종료 2시간 14분 전</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥23,900</td>
@@ -1995,7 +2033,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary js-quick-bid-open" type="button">재입찰</button>
                       </div>
                     </td>
@@ -2014,10 +2051,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후경매] AUC-2024041702</div>
-                      <div class="order-title">소니 워크맨 빈티지 카세트 플레이어 한정 컬러</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">소니 워크맨 빈티지 카세트 플레이어 한정 컬러</a>
                       <span class="order-status-link">결제대기</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
@@ -2035,7 +2072,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <a class="mini-btn primary" href="web_bill_1st.html">결제하기</a>
                       </div>
                     </td>
@@ -2060,10 +2096,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후구매] BJP-2024041703</div>
-                      <div class="order-title">스타벅스 재팬 사쿠라 머그컵 텀블러 세트</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">스타벅스 재팬 사쿠라 머그컵 텀블러 세트</a>
                       <span class="order-status-link">현지도착 · 보관 D+3</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
@@ -2081,7 +2117,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2099,10 +2134,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후구매] BJP-2024041704</div>
-                      <div class="order-title">무인양품 원목 수납박스 데스크 정리함 묶음</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">무인양품 원목 수납박스 데스크 정리함 묶음</a>
                       <span class="order-status-link">1차 결제완료</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥28,500</td>
@@ -2120,7 +2155,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2138,10 +2172,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후구매] BJP-2024041703-B</div>
-                      <div class="order-title">스타벅스 재팬 사쿠라 플레이트 한정 컬렉션</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">스타벅스 재팬 사쿠라 플레이트 한정 컬렉션</a>
                       <span class="order-status-link">현지도착 · 보관 D+3</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥9,800</td>
@@ -2159,7 +2193,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2177,10 +2210,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[메루카리] BJP-2024041706</div>
-                      <div class="order-title">스투시 재팬 로고 반팔 티셔츠 블랙</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">스투시 재팬 로고 반팔 티셔츠 블랙</a>
                       <span class="order-status-link">현지도착 · 보관 D+1</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥7,900</td>
@@ -2198,7 +2231,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2216,10 +2248,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[미국이베이] AUC-2024041705</div>
-                      <div class="order-title">애플 매직키보드 일본어 배열 실버 모델</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">애플 매직키보드 일본어 배열 실버 모델</a>
                       <span class="order-status-link">국제배송중</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥23,900</td>
@@ -2237,7 +2269,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송조회</button>
                       </div>
                     </td>
@@ -2256,10 +2287,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[구매대행 - bidbuy] BJP-2024041606</div>
-                      <div class="order-title">산리오 쿠로미 한정 아크릴 키링 랜덤 박스</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">산리오 쿠로미 한정 아크릴 키링 랜덤 박스</a>
                       <span class="order-status-link">구매신청</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥12,400</td>
@@ -2277,7 +2308,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2295,10 +2325,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후경매 - shop_mall] BJP-2024041607</div>
-                      <div class="order-title">요코하마 기념 한정 우표 앨범 컬렉션</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">요코하마 기념 한정 우표 앨범 컬렉션</a>
                       <span class="order-status-link">1차 결제완료 (송금준비중)</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥18,900</td>
@@ -2316,7 +2346,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2334,10 +2363,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[일본경매 - hobby_store] AUC-2024041608</div>
-                      <div class="order-title">원피스 월드콜렉터블 피규어 루피 스페셜</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">원피스 월드콜렉터블 피규어 루피 스페셜</a>
                       <span class="order-status-link">1차 결제완료 (송금완료)</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥12,500</td>
@@ -2355,7 +2384,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2373,10 +2401,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[구매대행 - market_plus] BJP-2024041609</div>
-                      <div class="order-title">파이오니어 빈티지 오디오 앰프 부품 세트</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">파이오니어 빈티지 오디오 앰프 부품 세트</a>
                       <span class="order-status-link">1차 결제완료 (현지배송중)</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥8,900</td>
@@ -2394,7 +2422,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2412,10 +2439,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[메루카리 - seller_24] BJP-2024041510</div>
-                      <div class="order-title">미개봉 포켓몬 카드 프로모 팩 10매 묶음</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">미개봉 포켓몬 카드 프로모 팩 10매 묶음</a>
                       <span class="order-status-link">배송대기 · 보관 D+30</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥8,700</td>
@@ -2433,7 +2460,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송신청</button>
                       </div>
                     </td>
@@ -2452,10 +2478,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후경매 - camera_shop] AUC-2024041511</div>
-                      <div class="order-title">캐논 필름카메라 AE-1 렌즈 포함 세트</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">캐논 필름카메라 AE-1 렌즈 포함 세트</a>
                       <span class="order-status-link">배송대기 · 보관 D+12</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥18,900</td>
@@ -2473,7 +2499,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송신청</button>
                       </div>
                     </td>
@@ -2492,10 +2517,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[구매대행 - toy_collect] BJP-2024041512</div>
-                      <div class="order-title">건담 메탈빌드 한정판 피규어 미개봉</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">건담 메탈빌드 한정판 피규어 미개봉</a>
                       <span class="order-status-link">배송대기 · 보관 D+7</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥12,400</td>
@@ -2513,7 +2538,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송신청</button>
                       </div>
                     </td>
@@ -2532,10 +2556,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[야후경매 - vintage77] BJP-2024041413</div>
-                      <div class="order-title">다이슨 슈퍼소닉 드라이어 니켈 코퍼</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">다이슨 슈퍼소닉 드라이어 니켈 코퍼</a>
                       <span class="order-status-link">2차 결제완료</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">2개 / ￥31,000</td>
@@ -2553,7 +2577,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송조회</button>
                       </div>
                     </td>
@@ -2572,10 +2595,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[일본 라쿠텐] AUC-2024041314</div>
-                      <div class="order-title">일본 한정 레고 미니피규어 시리즈 묶음</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">일본 한정 레고 미니피규어 시리즈 묶음</a>
                       <span class="order-status-link">국제배송중</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">3개 / ￥44,200</td>
@@ -2593,7 +2616,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                         <button class="mini-btn primary" type="button">배송조회</button>
                       </div>
                     </td>
@@ -2612,10 +2634,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[일본경매 - retro_shop] AUC-2024041315</div>
-                      <div class="order-title">슈퍼패미컴 본체 컨트롤러 게임팩 세트</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">슈퍼패미컴 본체 컨트롤러 게임팩 세트</a>
                       <span class="order-status-link">유찰</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥15,000</td>
@@ -2633,7 +2655,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2651,10 +2672,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[일본경매 - figure_lab] AUC-2024041316</div>
-                      <div class="order-title">마블 아이언맨 프리미엄 액션 피규어 미개봉</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">마블 아이언맨 프리미엄 액션 피규어 미개봉</a>
                       <span class="order-status-link">낙찰</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥21,400</td>
@@ -2690,10 +2711,10 @@
                 </tr></thead>
                 <tbody>
                   <tr>
-                    <td rowspan="3" class="col-thumb"><div class="thumb"></div></td>
+                    <td rowspan="3" class="col-thumb"><a class="detail-link thumb-link" href="web_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a></td>
                     <td rowspan="3" class="col-info">
                       <div class="order-id">[구매대행 - cancel_shop] BJP-2024041217</div>
-                      <div class="order-title">아식스 젤카야노 한정 컬러 운동화</div>
+                      <a class="order-title product-detail-link" href="web_payment_detail.html">아식스 젤카야노 한정 컬러 운동화</a>
                       <span class="order-status-link">거래취소</span>
                     </td>
                     <td class="col-label">상품금액</td><td class="col-val">1개 / ￥6,200</td>
@@ -2711,7 +2732,6 @@
                   <tr>
                     <td colspan="7" class="col-actions">
                       <div class="row-actions">
-                        <button class="mini-btn" type="button">상세보기</button>
                       </div>
                     </td>
                   </tr>
@@ -2723,15 +2743,15 @@
           </div>
 
           <div class="pager" aria-label="페이지 이동">
-            <button type="button">«</button>
-            <button type="button">‹</button>
+            <button type="button">≪</button>
+            <button type="button">?</button>
             <button type="button">1</button>
             <button class="current" type="button">2</button>
             <button type="button">3</button>
             <button type="button">4</button>
             <button type="button">5</button>
-            <button type="button">›</button>
-            <button type="button">»</button>
+            <button type="button">?</button>
+            <button type="button">≫</button>
           </div>
         </section>
       </main>
@@ -2977,11 +2997,6 @@
         }
 
         const actions = Array.from(actionWrap.querySelectorAll("button, a"));
-        const detailButton = actions.find((action) => action.textContent.trim() === "상세보기");
-
-        if (detailButton) {
-          detailButton.classList.add("detail-top-btn");
-        }
 
         const stack = document.createElement("div");
         stack.className = "action-stack";
@@ -2989,15 +3004,10 @@
 
         actions.forEach((action) => {
           const label = action.textContent.trim();
-          if (action !== detailButton && !existingShipButtonLabels.includes(label)) {
+          if (!existingShipButtonLabels.includes(label)) {
             stack.appendChild(action);
           }
         });
-
-        // 상세보기 → 헤더 행 오른쪽 (order-status와 동일선상)
-        if (detailButton) {
-          shipHead.appendChild(detailButton);
-        }
 
         // 주요 액션 버튼 → 배송 셀
         if (stack.children.length) {

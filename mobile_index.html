@@ -80,38 +80,6 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
 </head>
 <body>
 
-<!-- 앱 헤더 -->
-<div class="app-header">
-  <div class="app-header-top">
-    <div class="app-brand-area">
-      <button class="hb" type="button" aria-label="메뉴"><span></span><span></span><span></span></button>
-      <a class="app-logo" href="#" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy"></a>
-    </div>
-    <div class="app-header-right">
-      <div class="preview-utils">
-        <div class="now-viewing" id="nowViewing"><b>메인</b></div>
-        <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i></button>
-        <a class="top-btn" id="openNewTab" href="mobile_main.html" target="_blank"><i class="fa-solid fa-up-right-from-square"></i></a>
-      </div>
-      <div style="width:1px;height:20px;background:var(--border);margin:0 2px"></div>
-      <button class="icon-btn" aria-label="알림"><i class="far fa-bell"></i></button>
-      <button class="icon-btn" aria-label="장바구니"><i class="fas fa-shopping-cart"></i></button>
-      <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700">한</div>
-    </div>
-    <form class="app-search" role="search" onsubmit="return false">
-      <input type="text" placeholder="키워드 또는 URL을 입력하세요.">
-      <button type="submit" aria-label="검색"><i class="fas fa-search"></i></button>
-    </form>
-  </div>
-  <nav class="channel-tabs">
-    <button class="ch-tab active" type="button">야후옥션</button>
-    <button class="ch-tab" type="button">메루카리</button>
-    <button class="ch-tab" type="button">라쿠텐</button>
-    <button class="ch-tab" type="button">라쿠마</button>
-    <button class="ch-tab" type="button">미국이베이</button>
-    <button class="ch-tab" type="button">영국이베이</button>
-  </nav>
-</div>
 
 <div class="layout">
   <nav class="nav" id="pageNav">
@@ -143,6 +111,7 @@ body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 
       <button class="nav-item" data-page="mobile_mypage.html"><i class="fa-solid fa-user-circle"></i><span class="nav-item-label">마이페이지<span class="nav-file">mobile_mypage.html</span></span></button>
       <button class="nav-item" data-page="mobile_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송 신청 가능 목록<span class="nav-file">mobile_bundle_shipping_management.html</span></span></button>
       <button class="nav-item" data-page="mobile_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송 신청 완료 목록<span class="nav-file">mobile_bundle_shipping_management_2.html</span></span></button>
+      <button class="nav-item" data-page="mobile_bundle_shipping_order.html"><i class="fa-solid fa-plane-departure"></i><span class="nav-item-label">국제배송 신청<span class="nav-file">mobile_bundle_shipping_order.html</span></span></button>
       <button class="nav-item" data-page="mobile_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">mobile_mileage.html</span></span></button>
       <button class="nav-item" data-page="mobile_grade.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">mobile_grade.html</span></span></button>
     </div>

@@ -1521,10 +1521,10 @@ function toggleActionWish(el){
 
 var _bidStateIndex = 0;
 var _bidStates = [
-  { type:'win',    icon:'fa-solid fa-crown',                title:'고객님은 현재 최고입찰자입니다!',           sub:'자동 상한 입찰가 <strong style="font-weight:800">16,800엔</strong>' },
+  { type:'win',    icon:'fa-solid fa-crown',                title:'고객님은 현재 최고입찰자입니다!',           sub:'상한 입찰가 <strong style="font-weight:800">16,800엔</strong>' },
   { type:'lose',   icon:'fa-solid fa-triangle-exclamation', title:'고객님은 현재 <strong style="font-weight:800">최고입찰자가 아닙니다.</strong>', sub:'현재 최고가 <strong style="font-weight:800">16,800엔</strong>' },
-  { type:'reserve',icon:'fa-solid fa-clock-rotate-left',    title:'예약입찰이 설정되어 있습니다',              sub:'<span class="roboto">2024.05.10 17:13:48</span> 예약 입찰가 <strong style="font-weight:800">16,800엔</strong>' },
-  { type:'none',   icon:'fa-solid fa-circle-info',          title:'아직 입찰 내역이 없습니다',                 sub:'<strong style="font-weight:800">입찰하기</strong> 버튼을 통해 입찰에 도전해보세요' }
+  { type:'reserve',icon:'fa-solid fa-clock-rotate-left',    title:'예약입찰이 설정되어 있습니다',              sub:'예약 입찰가 <strong style="font-weight:800">16,800엔</strong>' },
+  { type:'none',   icon:'fa-solid fa-circle-info',          title:'아직 입찰 내역이 없습니다',                 sub:'<strong style="font-weight:800">실시간 입찰하기</strong> 버튼을 통해 입찰에 도전해보세요' }
 ];
 function moveBidState(dir){
   _bidStateIndex = (_bidStateIndex + dir + _bidStates.length) % _bidStates.length;

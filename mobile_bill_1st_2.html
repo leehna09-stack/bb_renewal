@@ -372,14 +372,13 @@
     <div class="option-header">
       <div class="option-header-left">
         <div class="option-name">사진 촬영서비스</div>
-        <div class="option-price">+ 300엔 / 3장 (소형)<br>+ 500엔 / 3장 (대형)</div>
+        <div class="option-price">기본 300엔 / 3장<br>+ 1장 100엔</div>
       </div>
       <select class="photo-option-select" id="photoOptionSelect" aria-label="사진 촬영서비스 신청 수량">
         <option value="0">신청안함</option>
         <option value="3">3장</option>
         <option value="5">5장</option>
         <option value="7">7장</option>
-        <option value="10">10장</option>
       </select>
     </div>
     <div class="option-body is-collapsed" id="photoOptionBody">
@@ -563,29 +562,62 @@
     <div class="modal-body">
       <div class="packing-modal-meta">
         <p class="packing-unit">단위 : 엔(円)</p>
-        <a class="packing-detail-link" href="https://heyjapan.co.kr/cs/packing_frm" target="_blank" rel="noopener">자세히보기</a>
       </div>
       <div class="packing-table-wrap">
         <table class="packing-cost-table">
           <thead>
-            <tr><th rowspan="2" class="thick-right thick-bottom">구분</th><th colspan="3">자동차 부품</th><th rowspan="2" class="thick-bottom">엔진</th><th rowspan="2" class="thick-bottom">선외기</th><th rowspan="2" class="thick-bottom">자전거</th><th colspan="2">골동품,고미술품</th><th rowspan="2" class="thick-bottom">낚시대</th></tr>
-            <tr><th class="thick-bottom">범퍼</th><th class="thick-bottom">타이어</th><th class="thick-bottom">기타</th><th class="thick-bottom">액자,병풍 등</th><th class="thick-bottom">불상</th></tr>
+            <tr>
+              <th class="thick-right thick-bottom">주요 상품 (1개 기준)</th>
+              <th class="thick-bottom">턴테이블</th>
+              <th class="thick-bottom">앰프, CD플레이어</th>
+              <th class="thick-bottom">휠 붙은 타이어</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">악기 기타</th>
+              <th class="thick-bottom">중형 스피커 1쌍</th>
+              <th class="thick-bottom">대형 스피커 1쌍</th>
+              <th class="thick-bottom">범퍼</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">도자기</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><th class="thick-right">일반포장</th><td>2000-3000</td><td>500-2000</td><td>500-3000</td><td>2000-3000</td><td></td><td>2000-3000</td><td>1000-3000</td><td></td><td>500</td></tr>
-            <tr><th class="thick-right">특수포장</th><td colspan="3">5000-10000</td><td>6000-10000</td><td>6000-10000</td><td>5000-12000</td><td>5000-10000</td><td></td><td></td></tr>
-            <tr><th class="thick-right">나무포장</th><td></td><td></td><td></td><td>30000-40000</td><td>30000-50000</td><td></td><td>30000-50000</td><td></td><td></td></tr>
+            <tr>
+              <th class="thick-right">포장비</th>
+              <td>1,000</td>
+              <td>500</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>2,000</td>
+              <td>1,500</td>
+              <td>500</td>
+              <td>500</td>
+            </tr>
           </tbody>
         </table>
         <table class="packing-cost-table">
           <thead>
-            <tr><th rowspan="2" class="thick-right thick-bottom">구분</th><th colspan="3">가구</th><th colspan="6">가전제품</th><th rowspan="2" class="thick-bottom">그 외 품목</th></tr>
-            <tr><th class="thick-bottom">小</th><th class="thick-bottom">中</th><th class="thick-bottom">大</th><th class="thick-bottom">TV</th><th class="thick-bottom">스피커</th><th class="thick-bottom">앰프</th><th class="thick-bottom">PC본체</th><th class="thick-bottom">PC모니터</th><th class="thick-bottom">기타</th></tr>
+            <tr>
+              <th class="thick-right thick-bottom">자주 통합되는 상품</th>
+              <th class="thick-bottom">술 2~5병</th>
+              <th class="thick-bottom">낚시대 2~10개</th>
+              <th class="thick-bottom">골프채 1~3개</th>
+              <th class="thick-bottom">훨 1~2개</th>
+              <th class="thick-bottom">도자기 다수</th>
+              <th class="thick-bottom">고정 요금 없는 상품 중 200CM↑ / 조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><th class="thick-right">일반포장</th><td>500</td><td>1000-2000</td><td>2000-3000</td><td></td><td>1000-3000</td><td></td><td>500-2000</td><td>500-2000</td><td>500-2000</td><td rowspan="3" class="muted-cell">고객센터 문의<br>(대형상품 상담)</td></tr>
-            <tr><th class="thick-right">특수포장</th><td colspan="3">5000-15000</td><td>6000-12000</td><td>8000-20000</td><td></td><td>6000-8000</td><td></td><td>6000-20000</td></tr>
-            <tr><th class="thick-right">특수포장</th><td colspan="3">30000-60000</td><td colspan="6">40000-60000</td></tr>
+            <tr>
+              <th class="thick-right">포장비</th>
+              <td>500</td>
+              <td>1,500</td>
+              <td>500</td>
+              <td>500</td>
+              <td>1,000<br><span style="font-size:10px;color:#888">+박스당 500</span></td>
+              <td>2,000~3,000</td>
+            </tr>
           </tbody>
         </table>
       </div>

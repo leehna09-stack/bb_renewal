@@ -1682,8 +1682,10 @@
 
     /* 하단 고정 CTA (앱 네이티브 패턴) */
     .pd-fixed-cta { position: sticky; bottom: 0; z-index: 5; display: flex; gap: 18px; padding: 12px 14px; background: #fff; border-top: 1px solid var(--line-soft); }
-    .pd-cta-line { flex: 0 0 auto; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: #555; font-size: 14px; font-weight: 700; }
-    .pd-cta-fill { flex: 1; height: 48px; border: 0; border-radius: 24px; background: var(--navy); color: #fff; font-size: 15px; font-weight: 700; }
+    .pd-cta-line,
+    .pd-cta-fill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+    .pd-cta-line,
+    .pd-cta-fill { flex: 1 1 0; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: #555; font-size: 14px; font-weight: 700; }
 
   </style>
   <style>
@@ -2325,8 +2327,8 @@
     </main>
 
     <div class="pd-fixed-cta">
-      <button class="pd-cta-line" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> 인쇄</button>
-      <button class="pd-cta-fill" type="button"><i class="fa-solid fa-headset" aria-hidden="true"></i> 이 주문 문의하기</button>
+      <button class="pd-cta-line" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> 인쇄하기</button>
+      <a class="pd-cta-fill" href="mobile_mypage.html"><i class="fa-solid fa-list" aria-hidden="true"></i> 주문 목록</a>
     </div>
   </div><!-- /.stage -->
 

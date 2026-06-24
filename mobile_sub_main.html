@@ -251,7 +251,8 @@ a { text-decoration: none; color: inherit; }
 .product-grid.list-view .card-thumb { aspect-ratio: 1; }
 .product-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; }
 .card-thumb { width: 100%; padding-top: 100%; background: #EBEBEB; position: relative; }
-.card-thumb-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--tm); font-size: 26px; }
+.card-thumb-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--tm); font-size: 26px; overflow: hidden; }
+.card-thumb-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .thumb-label { position: absolute; left: 8px; bottom: 8px; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 8px; border-radius: 5px; }
 .thumb-label.auction { background: var(--navy); }
 .thumb-label.buyout  { background: var(--green); }
@@ -1100,6 +1101,12 @@ updateTrack();
 updateBadge();
 document.addEventListener('DOMContentLoaded', initCatPanel);
 initCatPanel();
+</script>
+<script>
+const subSeeds = ['camera1','camera2','camera3','camera4','camera5','camera6','camera7'];
+document.querySelectorAll('.card-thumb-inner').forEach((el, i) => {
+  el.innerHTML = `<img src="https://picsum.photos/seed/${subSeeds[i] || 'item'+i}/300/300" alt="상품이미지">`;
+});
 </script>
 </body>
 </html>
