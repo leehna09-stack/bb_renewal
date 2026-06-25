@@ -10,7 +10,7 @@
 :root{
   --rose:#E8385A;--rose-h:#C42F4C;--amber:#F5A623;
   --navy:#1A3C6E;--green:#3AAD4E;
-  --bg:#F5F7FA;--white:#fff;--border:#E0E4EB;
+  --bg:#fbf7f5;--white:#fff;--border:#e5dbd7;
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -59,14 +59,22 @@ a{text-decoration:none;color:inherit}
 
 /* ── 묶음 그룹 카드 ── */
 .bundle-group{background:#fff;border-bottom:8px solid var(--bg)}
-.bundle-group-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--border)}
-.bundle-group-title{font-size:14px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:7px}
-.bundle-group-title i{color:var(--rose);font-size:13px}
-.bundle-no{font-size:11px;color:var(--tm);font-family:'Roboto',sans-serif}
-.bundle-state{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
-.bundle-state.waiting{color:var(--amber);background:#FFF6E5}
-.bundle-state.paid{color:var(--green);background:#EDF7F0}
-.bundle-state.ready{color:var(--rose);background:#FFF0F4}
+.bundle-group-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border)}
+.bundle-info-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;flex:1}
+.bundle-info-list li{display:flex;flex-direction:column;gap:2px}
+.bi-label{font-size:10px;color:#999}
+.bi-val{font-size:13px;font-weight:800;color:#151922;font-family:'Roboto',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bi-val.hot{color:var(--rose)}
+.btn-group-pay{border:none;background:var(--rose);color:#fff;border-radius:8px;padding:8px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.btn-group-pay:active{background:var(--rose-h)}
+.bundle-group-head{cursor:pointer;user-select:none}
+.group-check{display:flex;align-items:center;flex-shrink:0;padding-top:2px}
+.group-check input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:var(--rose);pointer-events:none}
+.cancel-bar{position:fixed;bottom:0;left:0;right:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--border);z-index:200;display:flex;gap:8px}
+.btn-cancel-bar{flex:1;padding:13px;background:#fff;border:1px solid var(--border);color:#b3b8c2;border-radius:10px;font-size:14px;font-weight:700;cursor:default;font-family:inherit}
+.btn-cancel-bar.active{color:var(--rose);border-color:var(--rose);cursor:pointer}
+.btn-pay-bar{flex:1;padding:13px;background:#d0d4db;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:default;font-family:inherit}
+.btn-pay-bar.active{background:var(--rose);cursor:pointer}
 
 /* 주문 아이템 */
 .order-item{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #F0F2F5}
@@ -146,10 +154,15 @@ a{text-decoration:none;color:inherit}
 <!-- ── 일본 패널 ── -->
 <div class="bundle-panel active" data-panel-id="jp">
 
-  <div class="bundle-group">
+  <div class="bundle-group" data-pay="true">
     <div class="bundle-group-head">
-      <div class="bundle-group-title"><i class="fa-solid fa-boxes-stacked"></i> 묶음배송 <span class="bundle-no">#B20230606-01</span></div>
-      <span class="bundle-state ready">현지도착</span>
+      <ul class="bundle-info-list">
+        <li><span class="bi-label">신청일</span><span class="bi-val">2023-06-06</span></li>
+        <li><span class="bi-label">대표주문번호</span><span class="bi-val">#B20230606-01</span></li>
+        <li><span class="bi-label">묶음상품</span><span class="bi-val">2건</span></li>
+        <li><span class="bi-label">2차 결제금액</span><span class="bi-val hot">￦56,000</span></li>
+      </ul>
+      <label class="group-check" aria-label="묶음 선택"><input type="checkbox" class="cancel-check" value="B20230606-01" onchange="updateCancelBar()"></label>
     </div>
     <div class="order-item">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
@@ -174,16 +187,17 @@ a{text-decoration:none;color:inherit}
       <div class="bundle-sum-row"><span>수입신고금액 합계</span><b>￦68,000</b></div>
       <div class="bundle-sum-row total"><span>2차 결제금액</span><b>￦56,000</b></div>
     </div>
-    <div class="bundle-actions">
-      <button class="btn-line" type="button" disabled>신청 취소</button>
-      <button class="btn-primary" type="button" onclick="location.href='mobile_bill_2nd.html'">2차 결제하기</button>
-    </div>
   </div>
 
-  <div class="bundle-group">
+  <div class="bundle-group" data-pay="true">
     <div class="bundle-group-head">
-      <div class="bundle-group-title"><i class="fa-solid fa-boxes-stacked"></i> 묶음배송 <span class="bundle-no">#B20230528-03</span></div>
-      <span class="bundle-state ready">현지도착</span>
+      <ul class="bundle-info-list">
+        <li><span class="bi-label">신청일</span><span class="bi-val">2023-05-28</span></li>
+        <li><span class="bi-label">대표주문번호</span><span class="bi-val">#B20230528-03</span></li>
+        <li><span class="bi-label">묶음상품</span><span class="bi-val">2건</span></li>
+        <li><span class="bi-label">2차 결제금액</span><span class="bi-val hot">￦48,500</span></li>
+      </ul>
+      <label class="group-check" aria-label="묶음 선택"><input type="checkbox" class="cancel-check" value="B20230528-03" onchange="updateCancelBar()"></label>
     </div>
     <div class="order-item">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
@@ -208,16 +222,17 @@ a{text-decoration:none;color:inherit}
       <div class="bundle-sum-row"><span>수입신고금액 합계</span><b>￦60,500</b></div>
       <div class="bundle-sum-row total"><span>2차 결제금액</span><b>￦48,500</b></div>
     </div>
-    <div class="bundle-actions">
-      <button class="btn-line" type="button" disabled>신청 취소</button>
-      <button class="btn-primary" type="button" onclick="location.href='mobile_bill_2nd.html'"> 2차 결제하기</button>
-    </div>
   </div>
 
-  <div class="bundle-group">
+  <div class="bundle-group" data-pay="false">
     <div class="bundle-group-head">
-      <div class="bundle-group-title"><i class="fa-solid fa-boxes-stacked"></i> 묶음배송 <span class="bundle-no">#B20230609-04</span></div>
-      <span class="bundle-state waiting">2차 결제 안내 전</span>
+      <ul class="bundle-info-list">
+        <li><span class="bi-label">신청일</span><span class="bi-val">2023-06-09</span></li>
+        <li><span class="bi-label">대표주문번호</span><span class="bi-val">#B20230609-04</span></li>
+        <li><span class="bi-label">묶음상품</span><span class="bi-val">3건</span></li>
+        <li><span class="bi-label">2차 결제금액</span><span class="bi-val">-</span></li>
+      </ul>
+      <label class="group-check" aria-label="묶음배송 신청해지 선택"><input type="checkbox" class="cancel-check" value="B20230609-04" onchange="updateCancelBar()"></label>
     </div>
     <div class="order-item">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
@@ -225,7 +240,7 @@ a{text-decoration:none;color:inherit}
         <div class="order-status-row"><span class="order-status hot">1차 결제완료</span><span class="order-date">2023-06-07</span></div>
         <div class="order-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
         <a class="order-name" href="mobile_auction.html">일본 빈티지 세라믹 컵 세트 한정 컬러</a>
-        <div class="order-meta">[-] · 수입신고 <b>￦18,000</b></div>
+        <div class="order-meta">- · 수입신고 <b>￦18,000</b></div>
       </div>
     </div>
     <div class="order-item">
@@ -234,7 +249,7 @@ a{text-decoration:none;color:inherit}
         <div class="order-status-row"><span class="order-status hot">1차 결제완료</span><span class="order-date">2023-06-07</span></div>
         <div class="order-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
         <a class="order-name" href="mobile_auction.html">한정판 캐릭터 피규어 미개봉 패키지</a>
-        <div class="order-meta">[-] · 수입신고 <b>￦27,000</b></div>
+        <div class="order-meta">- · 수입신고 <b>￦27,000</b></div>
       </div>
     </div>
     <div class="order-item">
@@ -243,17 +258,13 @@ a{text-decoration:none;color:inherit}
         <div class="order-status-row"><span class="order-status hot">1차 결제완료</span><span class="order-date">2023-06-07</span></div>
         <div class="order-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
         <a class="order-name" href="mobile_auction.html">레트로 게임 소프트 컬렉션 3종</a>
-        <div class="order-meta">[-] · 수입신고 <b>￦16,000</b></div>
+        <div class="order-meta">- · 수입신고 <b>￦16,000</b></div>
       </div>
     </div>
     <div class="bundle-summary">
-      <div class="bundle-sum-row"><span>묶음 총 무게</span><b>[-]</b></div>
+      <div class="bundle-sum-row"><span>묶음 총 무게</span><b>-</b></div>
       <div class="bundle-sum-row"><span>수입신고금액 합계</span><b>￦61,000</b></div>
       <div class="bundle-sum-row total"><span>2차 결제금액</span><b style="color:var(--tp)">산정 전</b></div>
-    </div>
-    <div class="bundle-actions">
-      <button class="btn-line" type="button">신청 취소</button>
-      <button class="btn-primary pending" type="button" disabled><i class="fa-solid fa-clock"></i> 산정 전</button>
     </div>
   </div>
 
@@ -266,10 +277,15 @@ a{text-decoration:none;color:inherit}
 
 <!-- ── 미국 패널 ── -->
 <div class="bundle-panel" data-panel-id="us">
-  <div class="bundle-group">
+  <div class="bundle-group" data-pay="true">
     <div class="bundle-group-head">
-      <div class="bundle-group-title"><i class="fa-solid fa-boxes-stacked"></i> 묶음배송 <span class="bundle-no">#B20230601-02</span></div>
-      <span class="bundle-state ready">현지도착</span>
+      <ul class="bundle-info-list">
+        <li><span class="bi-label">신청일</span><span class="bi-val">2023-06-01</span></li>
+        <li><span class="bi-label">대표주문번호</span><span class="bi-val">#B20230601-02</span></li>
+        <li><span class="bi-label">묶음상품</span><span class="bi-val">2건</span></li>
+        <li><span class="bi-label">2차 결제금액</span><span class="bi-val hot">￦96,000</span></li>
+      </ul>
+      <label class="group-check" aria-label="묶음 선택"><input type="checkbox" class="cancel-check" value="B20230601-02" onchange="updateCancelBar()"></label>
     </div>
     <div class="order-item">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
@@ -295,10 +311,6 @@ a{text-decoration:none;color:inherit}
       <div class="bundle-sum-row" style="font-size:11px;color:var(--rose)"><span><i class="fa-solid fa-triangle-exclamation"></i> $150 초과 — 관·부가세 부과 대상</span></div>
       <div class="bundle-sum-row total"><span>2차 결제금액</span><b>￦96,000</b></div>
     </div>
-    <div class="bundle-actions">
-      <button class="btn-line" type="button" disabled>신청 취소</button>
-      <button class="btn-primary" type="button" onclick="location.href='mobile_bill_2nd.html'"><i class="fa-solid fa-credit-card"></i> 2차 결제하기</button>
-    </div>
   </div>
 
   <ul class="note-box">
@@ -309,10 +321,15 @@ a{text-decoration:none;color:inherit}
 
 <!-- ── 영국 패널 ── -->
 <div class="bundle-panel" data-panel-id="uk">
-  <div class="bundle-group">
+  <div class="bundle-group" data-pay="false">
     <div class="bundle-group-head">
-      <div class="bundle-group-title"><i class="fa-solid fa-boxes-stacked"></i> 묶음배송 <span class="bundle-no">#B20230609-05</span></div>
-      <span class="bundle-state waiting">2차 결제 안내 전</span>
+      <ul class="bundle-info-list">
+        <li><span class="bi-label">신청일</span><span class="bi-val">2023-06-09</span></li>
+        <li><span class="bi-label">대표주문번호</span><span class="bi-val">#B20230609-05</span></li>
+        <li><span class="bi-label">묶음상품</span><span class="bi-val">2건</span></li>
+        <li><span class="bi-label">2차 결제금액</span><span class="bi-val">-</span></li>
+      </ul>
+      <label class="group-check" aria-label="묶음배송 신청해지 선택"><input type="checkbox" class="cancel-check" value="B20230609-05" onchange="updateCancelBar()"></label>
     </div>
     <div class="order-item">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
@@ -320,7 +337,7 @@ a{text-decoration:none;color:inherit}
         <div class="order-status-row"><span class="order-status hot">1차 결제완료</span><span class="order-date">2023-06-07</span></div>
         <div class="order-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
         <a class="order-name" href="mobile_auction.html">Vintage Burberry Check Scarf Made in England</a>
-        <div class="order-meta">[-] · 수입신고 <b>￦42,000</b></div>
+        <div class="order-meta">- · 수입신고 <b>￦42,000</b></div>
       </div>
     </div>
     <div class="order-item">
@@ -329,17 +346,13 @@ a{text-decoration:none;color:inherit}
         <div class="order-status-row"><span class="order-status hot">1차 결제완료</span><span class="order-date">2023-06-07</span></div>
         <div class="order-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
         <a class="order-name" href="mobile_auction.html">Royal Doulton Tea Cup and Saucer Pair</a>
-        <div class="order-meta">[-] · 수입신고 <b>￦23,000</b></div>
+        <div class="order-meta">- · 수입신고 <b>￦23,000</b></div>
       </div>
     </div>
     <div class="bundle-summary">
-      <div class="bundle-sum-row"><span>묶음 총 무게</span><b>[-]</b></div>
+      <div class="bundle-sum-row"><span>묶음 총 무게</span><b>-</b></div>
       <div class="bundle-sum-row"><span>수입신고금액 합계</span><b>￦65,000</b></div>
       <div class="bundle-sum-row total"><span>2차 결제금액</span><b style="color:var(--tp)">산정 전</b></div>
-    </div>
-    <div class="bundle-actions">
-      <button class="btn-line" type="button">신청 취소</button>
-      <button class="btn-primary pending" type="button" disabled><i class="fa-solid fa-clock"></i> 산정 전</button>
     </div>
   </div>
 
@@ -347,7 +360,13 @@ a{text-decoration:none;color:inherit}
     <li>2차 결제금액 산정 후 결제하기 버튼이 표시됩니다.</li>
     <li>산정 전 단계에서는 신청 취소가 가능합니다.</li>
   </ul>
-  </div>
+</div>
+
+<!-- ── 선택 해지 바 ── -->
+<div class="cancel-bar">
+  <button class="btn-cancel-bar" id="cancelBarBtn" type="button" onclick="openCancelConfirm()">묶음배송 신청해지</button>
+  <button class="btn-pay-bar" id="payBarBtn" type="button" onclick="openPayConfirm()">2차 결제하기</button>
+</div>
 
 <script>
 function setMobileHeaderLogin(loggedIn){
@@ -368,6 +387,30 @@ function initMobileHeaderLogin(){
 }
 
 initMobileHeaderLogin();
+function updateCancelBar(){
+  const selected = [...document.querySelectorAll('.bundle-group.selected')];
+  const anyCancellable = selected.some(g => g.dataset.pay === 'false');
+  const anyPayable = selected.some(g => g.dataset.pay === 'true');
+  document.getElementById('cancelBarBtn').classList.toggle('active', anyCancellable);
+  document.getElementById('payBarBtn').classList.toggle('active', anyPayable);
+}
+function openCancelConfirm(){
+  if(!document.getElementById('cancelBarBtn').classList.contains('active')) return;
+  alert('선택 묶음배송 신청해지');
+}
+function openPayConfirm(){
+  if(!document.getElementById('payBarBtn').classList.contains('active')) return;
+  location.href = 'mobile_bill_2nd.html';
+}
+document.querySelectorAll('.bundle-group-head').forEach(function(head){
+  head.addEventListener('click', function(e){
+    const group = this.closest('.bundle-group');
+    group.classList.toggle('selected');
+    const cb = group.querySelector('.cancel-check');
+    if(cb) cb.checked = group.classList.contains('selected');
+    updateCancelBar();
+  });
+});
 function switchCountry(tab){
   document.querySelectorAll('.country-tab').forEach(t=>t.classList.remove('active'));
   tab.classList.add('active');
@@ -375,6 +418,8 @@ function switchCountry(tab){
   document.querySelectorAll('.bundle-panel').forEach(p=>{
     p.classList.toggle('active', p.getAttribute('data-panel-id')===id);
   });
+  document.querySelectorAll('.cancel-check').forEach(c=>c.checked=false);
+  updateCancelBar();
 }
 </script>
 </body>

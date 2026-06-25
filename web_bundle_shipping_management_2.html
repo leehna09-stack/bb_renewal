@@ -404,7 +404,10 @@
       padding: 13px 16px;
       background: var(--warm);
       border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      user-select: none;
     }
+
 
     .group-info {
       margin: 0;
@@ -679,9 +682,21 @@
       border: 1px solid var(--line);
       background: #fff;
       color: #626672;
+      cursor: default;
     }
 
-    .big-btn.line:hover { border-color: #b9b2ad; color: #41454f; }
+    .big-btn.line.active { cursor: pointer; border-color: var(--rose); color: var(--rose); }
+    .big-btn.line.active:hover { background: #fff5f7; }
+
+    .big-btn.primary {
+      border: none;
+      background: #d0d4db;
+      color: #fff;
+      cursor: default;
+    }
+
+    .big-btn.primary.active { background: var(--rose); cursor: pointer; }
+    .big-btn.primary.active:hover { background: #d62f54; }
 
     /* ── 모달 ── */
     .modal {
@@ -902,11 +917,12 @@
           <!-- 일본 -->
           <div class="bundle-panel active" data-panel-id="jp">
             <div class="bundle-actions">
-              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+              <button class="big-btn line" type="button" data-action="cancel">묶음배송 신청해지</button>
+              <button class="big-btn primary" type="button" data-action="pay">2차 결제하기</button>
             </div>
             <div class="group-list">
               <!-- 묶음 1 -->
-              <article class="group-card">
+              <article class="group-card" data-pay="true">
                 <div class="group-header">
                   <ul class="group-info">
                     <li><b>신청일</b><span>2024-06-08</span></li>
@@ -915,7 +931,7 @@
                     <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
                   </ul>
                   <div class="group-utils">
-                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -933,8 +949,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 k1226534794</div>
+                      <a href="web_auction.html" class="product-name">달콤한 피스타치오 샌드 쿠키 선물 세트</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -948,8 +964,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 k1121257627</div>
+                      <a href="web_auction.html" class="product-name">고급 버터 샌드 쿠키 기프트 박스</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -965,8 +981,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 c1197729370</div>
+                      <a href="web_auction.html" class="product-name">말차 크림 샌드 디저트 세트</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -982,8 +998,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 n1184306295</div>
+                      <a href="web_auction.html" class="product-name">한정판 견과류 쿠키 모음</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -996,7 +1012,7 @@
               </article>
 
               <!-- 묶음 2 -->
-              <article class="group-card">
+              <article class="group-card" data-pay="true">
                 <div class="group-header">
                   <ul class="group-info">
                     <li><b>신청일</b><span>2024-06-08</span></li>
@@ -1005,7 +1021,7 @@
                     <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
                   </ul>
                   <div class="group-utils">
-                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -1023,8 +1039,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 p1139482076</div>
+                      <a href="web_auction.html" class="product-name">프리미엄 초콜릿 샌드 과자 세트</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -1038,8 +1054,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 h1167825401</div>
+                      <a href="web_auction.html" class="product-name">바삭한 아몬드 쿠키 선물 패키지</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -1055,8 +1071,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 m1205368814</div>
+                      <a href="web_auction.html" class="product-name">수제 카라멜 비스킷 컬렉션</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -1072,8 +1088,8 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
-                      <a href="web_auction.html" class="product-name">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入 アソー</a>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 r1176403928</div>
+                      <a href="web_auction.html" class="product-name">과일향 샌드 쿠키 버라이어티</a>
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
@@ -1086,16 +1102,16 @@
               </article>
 
               <!-- 묶음 3 : 2차 결제 안내 전 -->
-              <article class="group-card">
+              <article class="group-card" data-pay="false">
                 <div class="group-header">
                   <ul class="group-info">
                     <li><b>신청일</b><span>2024-06-09</span></li>
                     <li><b>대표주문번호</b><span>BJP0194791464</span></li>
                     <li><b>묶음상품</b><span>3건</span></li>
-                    <li><b>2차 결제금액</b><span>산정 전</span></li>
+                    <li><b>2차 결제금액</b><span>-</span></li>
                   </ul>
                   <div class="group-utils">
-                    <label class="check"><input type="checkbox" aria-label="묶음 해지 선택"><span class="box"></span></label>
+                    <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -1106,14 +1122,14 @@
                   <div>낙찰가(상품가)<br>예상 수입신고금액</div>
                   <div>부피/무게</div>
                 </div>
-                <div class="group-volume"><strong>[-]</strong></div>
+                <div class="group-volume"><strong>-</strong></div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
                   <div class="row-date">2023-06-07</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 k1226534794</div>
                       <a href="web_auction.html" class="product-name">일본 빈티지 세라믹 컵 세트 한정 컬러</a>
                       <div class="product-price">¥ 32,000</div>
                     </div>
@@ -1128,7 +1144,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 k1121257627</div>
                       <a href="web_auction.html" class="product-name">한정판 캐릭터 피규어 미개봉 패키지</a>
                       <div class="product-price">¥ 48,000</div>
                     </div>
@@ -1143,7 +1159,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - tokyo_select</div>
+                      <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 c1197729370</div>
                       <a href="web_auction.html" class="product-name">레트로 게임 소프트 컬렉션 3종</a>
                       <div class="product-price">¥ 29,000</div>
                     </div>
@@ -1159,10 +1175,11 @@
           <!-- 미국 -->
           <div class="bundle-panel" data-panel-id="us">
             <div class="bundle-actions">
-              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+              <button class="big-btn line" type="button" data-action="cancel">선택 묶음배송 신청해지</button>
+              <button class="big-btn primary" type="button" data-action="pay">2차 결제하기</button>
             </div>
             <div class="group-list">
-              <article class="group-card">
+              <article class="group-card" data-pay="true">
                 <div class="group-header">
                   <ul class="group-info">
                     <li><b>신청일</b><span>2024-06-08</span></li>
@@ -1171,7 +1188,7 @@
                     <li><b>2차 결제금액</b><span class="hot">￦220,000</span></li>
                   </ul>
                   <div class="group-utils">
-                    <a href="web_bill_2nd.html" class="pay-btn">2차 결제하기</a>
+                    <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -1189,7 +1206,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
+                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - 483920174625</div>
                       <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
                       <div class="product-price">$ 920.00</div>
                     </div>
@@ -1204,7 +1221,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
+                      <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - 739184620517</div>
                       <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
                       <div class="product-price">$ 920.00</div>
                     </div>
@@ -1222,19 +1239,20 @@
           <!-- 영국 -->
           <div class="bundle-panel" data-panel-id="uk">
             <div class="bundle-actions">
-              <button class="big-btn line" type="button" onclick="openModal('modal-bundle-cancel')">선택 묶음배송 신청해지</button>
+              <button class="big-btn line" type="button" data-action="cancel">선택 묶음배송 신청해지</button>
+              <button class="big-btn primary" type="button" data-action="pay">2차 결제하기</button>
             </div>
             <div class="group-list">
-              <article class="group-card">
+              <article class="group-card" data-pay="false">
                 <div class="group-header">
                   <ul class="group-info">
                     <li><b>신청일</b><span>2024-06-09</span></li>
                     <li><b>대표주문번호</b><span>BUK0194791465</span></li>
                     <li><b>묶음상품</b><span>2건</span></li>
-                    <li><b>2차 결제금액</b><span>산정 전</span></li>
+                    <li><b>2차 결제금액</b><span>-</span></li>
                   </ul>
                   <div class="group-utils">
-                    <label class="check"><input type="checkbox" aria-label="묶음 해지 선택"><span class="box"></span></label>
+                    <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
                   </div>
                 </div>
                 <div class="bundle-head">
@@ -1245,14 +1263,14 @@
                   <div>낙찰가(상품가)<br>예상 수입신고금액</div>
                   <div>부피/무게</div>
                 </div>
-                <div class="group-volume"><strong>[-]</strong></div>
+                <div class="group-volume"><strong>-</strong></div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
                   <div class="row-date">2023-06-07</div>
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
+                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 602948173506</div>
                       <a href="web_auction.html" class="product-name">Vintage Burberry Check Scarf Made in England</a>
                       <div class="product-price">￡ 180.00</div>
                     </div>
@@ -1267,7 +1285,7 @@
                   <div class="row-product">
                     <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                     <div class="product-info">
-                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - london_goods</div>
+                      <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 918274650382</div>
                       <a href="web_auction.html" class="product-name">Royal Doulton Tea Cup and Saucer Pair</a>
                       <div class="product-price">￡ 95.00</div>
                     </div>
@@ -1314,8 +1332,43 @@
         var id = tab.getAttribute('data-panel');
         document.querySelectorAll('.bundle-panel').forEach(function (p) {
           p.classList.toggle('active', p.getAttribute('data-panel-id') === id);
+          p.querySelectorAll('.group-card.selected').forEach(function (c) { c.classList.remove('selected'); });
+          p.querySelectorAll('.group-check').forEach(function (c) { c.checked = false; });
         });
+        updateActionBtns();
       });
+    });
+
+    // 그룹 헤더 클릭 → 선택 토글
+    document.querySelectorAll('.group-header').forEach(function (header) {
+      header.addEventListener('click', function () {
+        var card = this.closest('.group-card');
+        card.classList.toggle('selected');
+        var cb = card.querySelector('.group-check');
+        if (cb) cb.checked = card.classList.contains('selected');
+        updateActionBtns();
+      });
+    });
+
+    function updateActionBtns() {
+      var panel = document.querySelector('.bundle-panel.active');
+      if (!panel) return;
+      var selected = panel.querySelectorAll('.group-card.selected');
+      var anyCancellable = false, anyPayable = false;
+      selected.forEach(function (card) {
+        if (card.getAttribute('data-pay') === 'false') anyCancellable = true;
+        if (card.getAttribute('data-pay') === 'true') anyPayable = true;
+      });
+      panel.querySelector('[data-action="cancel"]').classList.toggle('active', anyCancellable);
+      panel.querySelector('[data-action="pay"]').classList.toggle('active', anyPayable);
+    }
+
+    // 버튼 클릭
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn || !btn.classList.contains('active')) return;
+      if (btn.dataset.action === 'cancel') openModal('modal-bundle-cancel');
+      if (btn.dataset.action === 'pay') location.href = 'web_bill_2nd.html';
     });
 
     function openModal(id) {
