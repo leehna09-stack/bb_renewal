@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -26,9 +26,9 @@
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
       --yellow: #f4b400;
-      --stage-left: max(16px, calc((100vw - 1425px) / 2));
-      --sidebar-w: 280px;
-      --main-w: 1121px;
+      --stage-left: max(16px, calc((100vw - 1180px) / 2));
+      --sidebar-w: 231px;
+      --main-w: 925px;
       --gap: 24px;
     }
 
@@ -670,6 +670,9 @@
     .inquiry-btn:hover { background: #152f58; }
     .inquiry-btn--print:hover { background: #fff; }
 
+  
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
   </style>
 </head>
 <body>
@@ -713,7 +716,7 @@
     <aside class="sidebar">
       <section class="profile-card" aria-label="회원 정보">
         <div class="profile-main">
-          <div class="avatar">정</div>
+          <div class="avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
             <strong class="profile-name">홍길동님</strong>
             <span class="profile-tier">Premium</span>
@@ -905,7 +908,7 @@
                   <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
                   <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
                   <li class="pay-row is-toggle">
-                    <details class="pay-etc">
+                    <details class="pay-etc" open>
                       <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
                         <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
@@ -930,7 +933,7 @@
                 <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
                 <li class="pay-row"><span class="lbl">국제운송료</span><span class="val" data-pay-kind="base">6,500엔</span></li>
                 <li class="pay-row is-toggle">
-                  <details class="pay-etc">
+                  <details class="pay-etc" open>
                     <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
@@ -1211,7 +1214,7 @@
 <nav class="drawer" id="drawer" aria-label="사이트 메뉴" aria-hidden="true">
   <div class="dr-head">
     <div class="dr-user-mini">
-      <div class="u-av">정</div>
+      <div class="u-av tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
       <div>
         <div class="dr-user-mini-name">홍길동님</div>
         <div class="dr-user-mini-grade">Premium 회원</div>

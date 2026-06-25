@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -24,9 +24,9 @@
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
       --yellow: #f4b400;
-      --stage-left: max(16px, calc((100vw - 1425px) / 2));
-      --sidebar-w: 280px;
-      --main-w: 1121px;
+      --stage-left: max(16px, calc((100vw - 1180px) / 2));
+      --sidebar-w: 231px;
+      --main-w: 925px;
       --gap: 24px;
     }
 
@@ -567,13 +567,21 @@
       font-weight: 600;
     }
 
-    .foot-sum { grid-column: 2 / 4; text-align: right; white-space: nowrap; }
+    .foot-sum { text-align: center; }
     .foot-sum b { color: #151922; font-size: 13px; font-weight: 800; }
 
-    .bundle-foot.caution .foot-sum b { color: var(--yellow); }
-    .bundle-foot.danger .foot-sum b { color: var(--rose); }
+    .bundle-foot.over .foot-sum b { color: var(--rose); }
 
-    .foot-sum .duty-flag { display: none; }
+    .foot-sum .duty-flag {
+      display: none;
+      margin-top: 2px;
+      color: var(--rose);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .bundle-foot.over .foot-sum .duty-flag { display: block; }
 
     .table-empty {
       min-height: 110px;
@@ -895,8 +903,8 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
-                <div class="row-price"><b>￦34,000</b><span>￦54,000</span></div>
+                <div>1kg</div>
+                <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
                 </div>
@@ -914,8 +922,8 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
-                <div class="row-price"><b>￦59,000</b><span>￦62,000</span></div>
+                <div>1kg</div>
+                <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
                 </div>
@@ -933,8 +941,8 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
-                <div class="row-price"><b>￦120,000</b><span>￦128,000</span></div>
+                <div>1kg</div>
+                <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
                 </div>
@@ -952,8 +960,8 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
-                <div class="row-price"><b>￦34,000</b><span>￦54,000</span></div>
+                <div>1kg</div>
+                <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
                 </div>
@@ -961,11 +969,12 @@
 
               <div class="bundle-foot">
                 <div class="foot-label">
-                  선택건 예상 신고금액 합계<span class="foot-count">(0건)</span>
+                  선택건 예상 수입신고금액 합계<span class="foot-count">(0건)</span>
+                  <span class="duty-note">※ 예상 수입신고금액 합계가 $150 초과 시 관·부가세가 부과됩니다.</span>
                 </div>
                 <div class="foot-sum">
-                  <b>￦0 (약 0 $)</b>
-                  <span class="duty-flag"></span>
+                  <b>￦0</b>
+                  <span class="duty-flag">관·부가세 부과 대상</span>
                 </div>
                 <div></div>
               </div>
@@ -973,11 +982,8 @@
 
             <div class="bundle-utils">
               <ul class="bundle-notes">
-                <li>* 정확한 무게 및 부피는 배송신청 후 포장이 완료된 뒤 확인 가능하며, 해당 내용은 2차 결제 안내시 확인 가능합니다.</li>
-                <li>* 예상 수입신고금액 은 다음 항목 입니다. (물품가 + 대행수수료)</li>
-                <li>* 2차 결제 시 추가되는 비용 및 물품 입항일 환율에 따라 면세 한도를 초과할 수 있습니다.</p>
-                <li>※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)</li>
-                <li>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)</li>
+                <li>* 무게/부피값은 주문시 입력값 기준입니다.</li>
+                <li>* 예상 수입신고금액 은 다음 항목 입니다. (상품가격 + TAX + 현지비용)</li>
               </ul>
             </div>
           </div>
@@ -1011,7 +1017,7 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
+                <div>1kg</div>
                 <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
@@ -1030,7 +1036,7 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
+                <div>1kg</div>
                 <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
@@ -1049,7 +1055,7 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
+                <div>1kg</div>
                 <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
@@ -1068,7 +1074,7 @@
                   </div>
                 </div>
                 <div>박비드</div>
-                <div>-</div>
+                <div>1kg</div>
                 <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
                 <div>
                   <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
@@ -1078,14 +1084,21 @@
               <div class="bundle-foot">
                 <div class="foot-label">
                   선택건 예상 수입신고금액 합계<span class="foot-count">(0건)</span>
-                  <span class="duty-note">※ 예상 수입신고금액 합계 기준: $125 초과 주의, $150 초과 위험</span>
+                  <span class="duty-note">※ 예상 수입신고금액 합계가 $150 초과 시 관·부가세가 부과됩니다.</span>
                 </div>
                 <div class="foot-sum">
-                  <b>￦0 (약 0 $)</b>
-                  <span class="duty-flag"></span>
+                  <b>￦0</b>
+                  <span class="duty-flag">관·부가세 부과 대상</span>
                 </div>
                 <div></div>
               </div>
+            </div>
+
+            <div class="bundle-utils">
+              <ul class="bundle-notes">
+                <li>* 무게/부피값은 주문시 입력값 기준입니다.</li>
+                <li>* 예상 수입신고금액 은 다음 항목 입니다. (상품가격 + TAX + 현지비용)</li>
+              </ul>
             </div>
           </div>
 
@@ -1168,15 +1181,8 @@
       });
     });
 
-    // 선택건 예상 수입신고금액 합계 (환율 1,350원/$ 가정)
-    var EXCHANGE_RATE_KRW = 1350;
-    var DUTY_CAUTION_KRW = 125 * EXCHANGE_RATE_KRW;
-    var DUTY_LIMIT_KRW = 150 * EXCHANGE_RATE_KRW;
-
-    function formatDeclaredTotal(sum) {
-      var approxUsd = Math.round(sum / EXCHANGE_RATE_KRW);
-      return '￦' + sum.toLocaleString('ko-KR') + ' (약 ' + approxUsd.toLocaleString('ko-KR') + ' $)';
-    }
+    // 선택건 수입신고금액 합계 (합계 $150 초과 시 관·부가세 부과 — 환율 1,350원/$ 가정)
+    var DUTY_LIMIT_KRW = 150 * 1350;
 
     function updateDeclaredTotal(panel) {
       var foot = panel.querySelector('.bundle-foot');
@@ -1192,13 +1198,8 @@
         count += 1;
       });
       foot.querySelector('.foot-count').textContent = '(' + count + '건)';
-      foot.querySelector('.foot-sum b').textContent = formatDeclaredTotal(sum);
-      foot.classList.remove('caution', 'danger', 'over');
-      if (sum > DUTY_LIMIT_KRW) {
-        foot.classList.add('danger');
-      } else if (sum > DUTY_CAUTION_KRW) {
-        foot.classList.add('caution');
-      }
+      foot.querySelector('.foot-sum b').textContent = '￦' + sum.toLocaleString('ko-KR');
+      foot.classList.toggle('over', sum > DUTY_LIMIT_KRW);
     }
 
     document.querySelectorAll('.bundle-panel').forEach(function (panel) {

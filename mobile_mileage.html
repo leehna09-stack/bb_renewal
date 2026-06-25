@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -3083,6 +3083,9 @@
     body.is-logged-in .sidebar .drawer-head.is-member-only {
       display: flex !important;
     }
+  
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
   </style>
 </head>
 <body class="is-logged-out">
@@ -3122,7 +3125,7 @@
           <button class="icon-btn" type="button" aria-label="장바구니">
             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
           </button>
-          <button class="user-avatar-sm" type="button" aria-label="회원 메뉴" aria-expanded="false"><i class="fa-solid fa-crown" aria-hidden="true"></i></button>
+          <button class="user-avatar-sm tier-premium member-tier-icon" type="button" aria-label="회원 메뉴" aria-expanded="false"><i class="fa-solid fa-gem" aria-hidden="true"></i></button>
         </div>
       </div>
     </header>
@@ -3133,7 +3136,7 @@
         </div>
         <div class="drawer-head is-member-only">
           <div class="drawer-user">
-            <span class="drawer-crown"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+            <span class="drawer-crown tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></span>
             <div>
               <strong class="drawer-user-name">이한나님</strong>
               <span class="drawer-user-grade">PREMIUM 회원</span>
@@ -3367,7 +3370,7 @@
   <aside class="user-drawer" aria-label="회원 메뉴" aria-hidden="true">
     <div class="user-drawer-head">
       <div class="user-member-row">
-        <div class="user-crown"><i class="fa-solid fa-crown" aria-hidden="true"></i></div>
+        <div class="user-crown tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
         <div>
           <strong class="user-name-strong">이한나 회원님</strong>
           <span class="user-vip-chip">PREMIUM</span>

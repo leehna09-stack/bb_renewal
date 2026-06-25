@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -21,10 +21,10 @@
       --line-soft: #f0ebe8;
       --green: #35a94d;
       --gold: #d4891a;
-      --stage-left: max(16px, calc((100vw - 1425px) / 2));
-      --sidebar-w: 280px;
-      --main-w: 1121px;
-      --gap: 16px;
+      --stage-left: max(16px, calc((100vw - 1180px) / 2));
+      --sidebar-w: 231px;
+      --main-w: 925px;
+      --gap: 24px;
     }
 
     * {
@@ -859,6 +859,9 @@
       left: 0;
       top: 0;
     }
+  
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
   </style>
 </head>
 <body>
@@ -900,7 +903,7 @@
     <aside class="sidebar">
       <div class="profile-card">
         <div class="profile-main">
-          <div class="avatar">홍</div>
+          <div class="avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
             <span class="profile-name">홍길동님</span>
             <span class="profile-tier">Premium</span>
@@ -1103,7 +1106,7 @@
     </div>
     <div id="menuDrUserHd" class="dr-head">
       <div class="dr-user-mini">
-        <div class="u-av"><i class="fas fa-crown" aria-hidden="true"></i></div>
+        <div class="u-av tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
         <div>
           <div class="dr-user-mini-name">이한나님</div>
           <div class="dr-user-mini-grade">PREMIUM 회원</div>

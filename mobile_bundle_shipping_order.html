@@ -129,7 +129,10 @@
   .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:'Noto Sans KR',sans-serif; border:none; border-radius:10px; cursor:pointer; }
   .cta-cancel { background:#eee; color:#666; }
   .cta-approve { background:var(--navy); color:#fff; }
-</style>
+
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
+  </style>
 </head>
 <body>
 
@@ -143,7 +146,7 @@
     <div class="app-header-right">
       <button class="icon-btn" type="button" aria-label="알림"><i class="fa-regular fa-bell"></i><span class="i-badge">3</span></button>
       <button class="icon-btn" type="button" aria-label="장바구니"><i class="fa-solid fa-cart-shopping"></i></button>
-      <button class="user-avatar-sm" type="button" aria-label="회원 메뉴">홍</button>
+      <button class="user-avatar-sm tier-premium member-tier-icon" type="button" aria-label="회원 메뉴"><i class="fa-solid fa-gem" aria-hidden="true"></i></button>
     </div>
   </div>
 </div>
@@ -157,7 +160,7 @@
 <!-- 유저 컨텍스트 -->
 <div class="ctx-card">
   <div class="ctx-user">
-    <div class="ctx-avatar">홍</div>
+    <div class="ctx-avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
     <div>
       <span class="ctx-name">홍길동 님</span>
       <span class="ctx-grade">VIP</span>

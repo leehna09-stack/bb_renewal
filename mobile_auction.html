@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -160,7 +160,9 @@ a{text-decoration:none;color:inherit}
 .m-cost-val{font-family:'Roboto',sans-serif;font-weight:600;color:var(--tp);font-size:13px}
 .m-cost-defer{font-size:11px;color:var(--ts);font-weight:400;font-family:'Noto Sans KR',sans-serif}
 .m-cost-total{background:#FFF5F7;border:1.5px solid var(--rose);border-radius:10px;padding:12px 14px;margin-top:12px;display:flex;justify-content:space-between;align-items:center}
-.m-cost-total-label{font-size:13px;font-weight:700;color:var(--tp)}
+.m-cost-total-label{font-size:13px;font-weight:700;color:var(--tp);display:flex;flex-direction:column;gap:2px}
+.m-cost-total-rate{font-size:11px;font-weight:500;color:var(--tm)}
+.m-cost-total-rate span{font-weight:700;color:var(--ts);font-family:'Roboto',sans-serif}
 .m-cost-total-val{font-size:18px;font-weight:700;color:var(--rose);font-family:'Roboto',sans-serif}
 
 /* ── 입찰 버튼 ── */
@@ -581,7 +583,6 @@ a{text-decoration:none;color:inherit}
 
     <!-- 예상비용 탭 -->
     <div class="m-bid-tab-pane" id="mtab-cost">
-      <div class="m-exchange-rate">적용 환율 <span>9.3</span>원</div>
       <div class="m-cost-select-row">
         <select class="m-form-select"><option value="">국제운송 선택</option><option>EMS</option><option>항공</option><option>선박</option></select>
         <select class="m-form-select"><option value="">무게 선택</option><option>0.5kg</option><option>1kg</option><option>2kg</option></select>
@@ -593,7 +594,7 @@ a{text-decoration:none;color:inherit}
       <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행 수수료</span><span class="m-cost-val">(150엔) ₩1,395</span></div>
       <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 송금 수수료</span><span class="m-cost-val">(300엔) ₩2,790</span></div>
       <div class="m-cost-total">
-        <span class="m-cost-total-label">예상 경매대행 구입가</span>
+        <span class="m-cost-total-label">예상입찰비용<span class="m-cost-total-rate">적용 환율 <span>9.3</span>원</span></span>
         <span class="m-cost-total-val">₩39,060</span>
       </div>
     </div>

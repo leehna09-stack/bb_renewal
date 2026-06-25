@@ -24,9 +24,9 @@
       --warm: #fbf7f5;
       --warm-2: #f7f3f0;
       --yellow: #f4b400;
-      --stage-left: max(16px, calc((100vw - 1425px) / 2));
-      --sidebar-w: 280px;
-      --main-w: 1121px;
+      --stage-left: max(16px, calc((100vw - 1180px) / 2));
+      --sidebar-w: 231px;
+      --main-w: 925px;
       --gap: 24px;
     }
 
@@ -422,6 +422,9 @@
     .big-btn.primary:hover { background: #1567b0; }
     .big-btn.line { border: 1px solid var(--line); background: #fff; color: #626672; }
     .big-btn.line:hover { border-color: #b9b2ad; color: #41454f; }
+  
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
   </style>
 </head>
 <body>
@@ -465,7 +468,7 @@
     <aside class="sidebar">
       <section class="profile-card" aria-label="회원 정보">
         <div class="profile-main">
-          <div class="avatar">박</div>
+          <div class="avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
             <strong class="profile-name">홍길동님</strong>
             <span class="profile-tier">VIP</span>
@@ -568,7 +571,7 @@
       <!-- 주문 컨텍스트 헤더 -->
       <div class="order-ctx">
         <div class="order-ctx-user">
-          <div class="order-ctx-avatar">홍</div>
+          <div class="order-ctx-avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
             <span class="order-ctx-name">홍길동 님</span>
             <span class="order-ctx-grade">VIP</span>

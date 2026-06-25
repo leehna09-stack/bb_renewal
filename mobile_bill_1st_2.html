@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -317,34 +317,6 @@
 <div class="card">
   <div class="card-title">유료 옵션 서비스<span style="font-size:11px;color:#888;font-weight:400;">(선택)</span></div>
   <div class="option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
-  <div class="option-item">
-    <div class="option-header">
-      <div class="option-header-left">
-        <div class="option-name">안심 케어 플러스</div>
-        <div class="option-price">+ 1,000엔</div>
-      </div>
-      <div class="toggle-wrap">
-        <div class="toggle-track" id="careTrack" onclick="toggleCare()"><div class="toggle-thumb"></div></div>
-        <span class="toggle-text" id="careText">미신청</span>
-      </div>
-    </div>
-    <div class="option-body is-collapsed" id="careOptionBody">
-      <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 가입 시 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
-      <ul>
-        <li>안심 케어 가입 건에 한해 보상 한도는 최대 50만원 까지 보상이 적용됩니다.</li>
-        <li>보상금액은 낙찰가(구매가)+국제 운송료 +수입신고시 발생한 세금까지 보상됩니다.</li>
-        <li>가입 건은 개별배송으로만 진행되며, 2차결제시 청구됩니다.</li>
-      </ul>
-      <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
-      <ul>
-        <li><strong style="color:var(--red);">파손보상 불가 품목</strong>은 안심 케어 가입이 불가합니다.</li>
-        <li>현지 입고 후 불가 품목으로 확인될 경우, <strong style="color:var(--red);">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
-      </ul>
-      <div style="margin-top:8px;">
-        <button class="paid-option-detail" type="button">파손보상 불가 품목 보기</button>
-      </div>
-    </div>
-  </div>
   <div class="option-item">
     <div class="option-header">
       <div class="option-header-left">
@@ -807,18 +779,6 @@ function clearAllMileage() {
 /* mileageMaxRadio onclick?  HTML? 서 직접 처리 */
 
 /* ? ?  ? 심케???  ? ? ?  */
-function toggleCare() {
-  const t = document.getElementById('careTrack');
-  const s = document.getElementById('careText');
-  const body = document.getElementById('careOptionBody');
-  t.classList.toggle('on');
-  const isOn = t.classList.contains('on');
-  s.textContent = isOn ? '신청' : '미신청';
-  s.classList.toggle('on', isOn);
-  body?.classList.toggle('is-collapsed', !isOn);
-  render();
-}
-
 function togglePacking() {
   const t = document.getElementById('packingTrack');
   const s = document.getElementById('packingText');

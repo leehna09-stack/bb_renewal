@@ -55,13 +55,19 @@ a{text-decoration:none;color:inherit}
 .m-title-jp{font-size:11px;color:var(--tm)}
 
 /* ── 갤러리 ── */
-.m-gallery{background:#fff;position:relative}
-.m-gallery-main{width:100%;padding-top:100%;background:#EBEBEB;position:relative;overflow:hidden}
+.m-gallery{background:#fff;position:relative;padding:8px 16px 0}
+.m-gallery-main{width:100%;padding-top:100%;background:#EBEBEB;position:relative;overflow:hidden;border:1px solid var(--border);border-radius:14px}
 .m-gallery-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--tm)}
 .m-gallery-placeholder i{font-size:48px}
 .m-gallery-placeholder span{font-size:13px}
 .m-gallery-counter{position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;padding:3px 8px;border-radius:10px;font-family:'Roboto',sans-serif}
-.m-gallery-thumbs{display:flex;gap:6px;padding:10px 16px;background:#fff;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--border)}
+.m-gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;background:rgba(0,0,0,.35);border:none;border-radius:50%;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.m-gallery-nav.prev{left:10px}
+.m-gallery-nav.next{right:10px}
+.m-gallery-thumbs-wrap{display:grid;grid-template-columns:40px 1fr 40px;gap:8px;align-items:stretch;padding:10px 0;background:#fff;border-bottom:1px solid var(--border)}
+.m-gallery-bottom-nav{border:1px solid var(--border);background:#fff;border-radius:8px;color:var(--tm);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.m-gallery-bottom-nav:hover{border-color:var(--rose);color:var(--rose)}
+.m-gallery-thumbs{display:flex;gap:6px;padding:0;background:#fff;overflow-x:auto;scrollbar-width:none;min-width:0}
 .m-gallery-thumbs::-webkit-scrollbar{display:none}
 .m-thumb{width:56px;height:56px;border-radius:8px;background:#EBEBEB;border:2px solid transparent;display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:18px;flex-shrink:0;cursor:pointer}
 .m-thumb.active{border-color:var(--rose)}
@@ -211,15 +217,21 @@ a{text-decoration:none;color:inherit}
 <div class="m-gallery">
   <div class="m-gallery-main">
     <div class="m-gallery-placeholder"><i class="fa-regular fa-image"></i><span>상품 이미지</span></div>
-    <div class="m-gallery-counter">1 / 6</div>
+    <button class="m-gallery-nav prev" type="button" onclick="moveGallery(-1)" aria-label="이전 이미지"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="m-gallery-nav next" type="button" onclick="moveGallery(1)" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="m-gallery-counter" id="galleryCounter">1 / 6</div>
   </div>
-  <div class="m-gallery-thumbs">
-    <div class="m-thumb active"><i class="fa-regular fa-image"></i></div>
-    <div class="m-thumb"><i class="fa-regular fa-image"></i></div>
-    <div class="m-thumb"><i class="fa-regular fa-image"></i></div>
-    <div class="m-thumb"><i class="fa-regular fa-image"></i></div>
-    <div class="m-thumb"><i class="fa-regular fa-image"></i></div>
-    <div class="m-thumb"><i class="fa-regular fa-image"></i></div>
+  <div class="m-gallery-thumbs-wrap">
+    <button class="m-gallery-bottom-nav" type="button" onclick="moveGallery(-1)" aria-label="이전 이미지"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="m-gallery-thumbs">
+      <div class="m-thumb active" onclick="setMainImg(0)"><i class="fa-regular fa-image"></i></div>
+      <div class="m-thumb" onclick="setMainImg(1)"><i class="fa-regular fa-image"></i></div>
+      <div class="m-thumb" onclick="setMainImg(2)"><i class="fa-regular fa-image"></i></div>
+      <div class="m-thumb" onclick="setMainImg(3)"><i class="fa-regular fa-image"></i></div>
+      <div class="m-thumb" onclick="setMainImg(4)"><i class="fa-regular fa-image"></i></div>
+      <div class="m-thumb" onclick="setMainImg(5)"><i class="fa-regular fa-image"></i></div>
+    </div>
+    <button class="m-gallery-bottom-nav" type="button" onclick="moveGallery(1)" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </div>
 
@@ -370,6 +382,18 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
+function setMainImg(idx){
+  const total = 6;
+  galleryIdx = idx;
+  const counter = document.getElementById('galleryCounter');
+  if(counter) counter.textContent = (idx + 1) + ' / ' + total;
+  document.querySelectorAll('.m-thumb').forEach((thumb,i)=>thumb.classList.toggle('active', i === idx));
+}
+let galleryIdx = 0;
+function moveGallery(dir){
+  const total = 6;
+  setMainImg((galleryIdx + dir + total) % total);
+}
 function switchBuyTab(btn,id){
   document.querySelectorAll('.m-buy-tab').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.m-buy-pane').forEach(p=>p.classList.remove('active'));
