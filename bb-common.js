@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    BidBuy Renewal common shell
    - Standard header for index preview pages
    - Left / right drawers matched to mobile_main.html structure
@@ -177,7 +177,7 @@
       '<div class="bbu-head"><div class="bbu-member-row"><div class="bbu-crown"><i class="fas fa-crown" aria-hidden="true"></i></div><div><strong class="bbu-name">이한나 회원님</strong><span class="bbu-vip-chip">VIP</span></div></div><p class="bbu-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 🎉</p><div class="bbu-vip-bar"><span></span></div><div class="bbu-asset-box"><div><span>마일리지</span><strong>4,500원</strong></div><div><span>예치금</span><strong>29,870원</strong></div></div></div>' +
       '<div class="bbu-status-grid"><div><strong>3</strong><span>입찰 진행 중</span></div><div><strong>1</strong><span>1차 결제 대기</span></div><div><strong>0</strong><span>2차 결제 대기</span></div></div>' +
       '<nav class="bbu-menu-list">' +
-        menuSection('mm-menu-trade', 'fa-gavel', '나의 거래 현황', [['web_mypage.html','거래 전체 목록'], ['web_mypage.html','경매 입찰/유찰'], ['web_mypage.html','구매 신청 목록']]) +
+        menuSection('mm-menu-trade', 'fa-gavel', '나의 거래 현황', [['web_mainlist.html','거래 전체 목록'], ['web_mypage.html','경매 입찰/유찰'], ['web_mypage.html','구매 신청 목록']]) +
         menuSection('mm-menu-delivery', 'fa-truck-fast', '배송관리', [['web_bundle_shipping_management.html','배송신청/변경'], ['#','배송지 관리']]) +
         menuSection('mm-menu-favorites', 'fa-heart', '관심 항목 관리', [['#','관심 출품자'], ['#','관심 물품'], ['#','관심 키워드']]) +
         menuSection('mm-menu-benefit', 'fa-gift', 'MY 혜택', [['web_mileage.html','마일리지 / 쿠폰'], ['web_grade page.html','MY 등급']]) +

@@ -714,6 +714,12 @@
     cursor: pointer;
     user-select: none;
   }
+  .care-plus-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
   .option-toggle-label input[type="checkbox"] { display: none; }
   .option-toggle-track {
     width: 44px; height: 24px;
@@ -838,6 +844,24 @@
     line-height: 1.9;
     color: #111;
   }
+  .care-plus-table.is-disabled .care-plus-toggle {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .care-plus-table.is-disabled .paid-option-price {
+    color: #a6abb5;
+  }
+  .care-plus-unavailable {
+    margin: 0;
+    padding: 6px 10px;
+    border: 1px solid #f1d2d8;
+    border-radius: 6px;
+    background: #fff6f8;
+    color: #C42F4C;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
   .paid-option-desc p {
     margin-top: 18px;
   }
@@ -877,6 +901,22 @@
     cursor: pointer;
   }
   .paid-option-detail.damage-detail::before {
+    content: none;
+  }
+  .paid-option-detail.care-guide-detail {
+    height: 30px;
+    margin-left: 8px;
+    padding: 0 12px;
+    border: 1px solid #E8385A;
+    border-radius: 4px;
+    background: #fff;
+    color: #E8385A;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .paid-option-detail.care-guide-detail::before {
     content: none;
   }
 
@@ -1004,10 +1044,10 @@
     <!-- 배송방법 비교 테이블 -->
     <table class="ship-compare-table shipping-method-table">
       <colgroup>
-        <col style="width: 15%;">
-        <col style="width: 40%;">
-        <col style="width: 30%;">
-        <col style="width: 21%;">
+        <col style="width: 13%;">
+        <col style="width: 37%;">
+        <col style="width: 31%;">
+        <col style="width: 25%;">
       </colgroup>
       <thead>
         <tr>
@@ -1075,7 +1115,7 @@
               배송대기
             </label>
           </td>
-          <td class="method-desc">배송 방법을 아직 결정하지 않은 상품을 <strong>창고에 보관합니다.</strong>
+          <td class="method-desc">물품 입고후 배송 신청 전까지 <strong>창고에 보관합니다.</strong>
             <br>
             보관 중인 상품은 언제든지 묶음 배송 또는 개별배송으로 변경 할 수 있습니다.</td>
         </tr>
@@ -1089,11 +1129,14 @@
           <span class="paid-option-price">+ 1,000엔</span>
         </th>
         <td class="paid-option-choice">
-          <label class="option-toggle-label care-plus-toggle">
-            <input type="checkbox" class="option-chk" data-paid-option-yen="1000" aria-label="안심 케어 플러스 신청">
-            <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
-            <span class="option-toggle-text">미신청</span>
-          </label>
+          <div class="care-plus-control">
+            <label class="option-toggle-label care-plus-toggle">
+              <input type="checkbox" class="option-chk" data-paid-option-yen="1000" aria-label="안심 케어 플러스 신청">
+              <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+              <span class="option-toggle-text">미신청</span>
+            </label>
+            <span class="care-plus-unavailable" hidden> 개별배송 선택 시 이용 가능한 서비스입니다. 주문 이후 개별 배송으로 변경시 신청하실 수 있습니다.</span>
+          </div>
           <div class="paid-option-desc">
             <p><i class="fa-solid fa-circle-info" aria-hidden="true"></i> 상품을 더욱 안전하게 받아보실 수 있도록 <strong>튼튼 포장과 파손 보상</strong>을 함께 제공하는 유료 서비스입니다.</p>
             <ul>
@@ -1108,6 +1151,7 @@
               <li>튼튼 포장 비용이 500엔을 초과하는 경우, 초과 금액은  <strong class="bold-red">2차 결제 시 별도 청구됩니다.</strong></li>
             </ul>
             <button class="paid-option-detail damage-detail" type="button">파손보상 불가 품목 보기</button>
+            <button class="paid-option-detail care-guide-detail" type="button" onclick="window.location.href='web_cs_damage.html#care'">안심케어 서비스 안내</button>
           </div>
         </td>
       </tr>
@@ -1276,17 +1320,16 @@
     </div>
     <div class="modal-body">
       <ul>
-        <li>주류 병 파손은 보상 가능하나, <strong>코르크 손상 또는 누액</strong>은 <strong style="color: red;">보상 불가합니다.</strong></li>
+        <li>주류 병 파손은 보상 가능하나, 코르크 손상 또는 누액은 보상 불가</li>
         <li>턴테이블 및 턴테이블 부품(톤암, 카트리지, 더스트 커버 등)</li>
-        <li>열변형된 LP</li>
-        <li>전용 하드케이스에 포장되지 않은 악기류</li>
         <li>도자기, 사기, 유리, 크리스탈 등으로 만들었거나 주재료인 물품<br>(브라운관 모니터, 조명, 진공관, 램프, 차량 유리 등)</li>
-        <li>정크 품위로 등록된 상품</li>
-        <li>앤틱, 빈티지, 골동품으로 표기된 상품</li>
-        <li>균열이 있거나 파손된 상태로 등록된 상품(추가파손 및 다른부위 파손도 보상불가)</li>
-        <li>미술 및 상업용으로 제작된 조각상(스태츄), 프라모델 및 피규어, 미니카,비행기 모형(다이캐스트 모델 포함), 완구류 일체</li>
-        <li>접착제가 사용된 부위가 떨어져 나왔을 때</li>
-        <li>본품 외부에서 충격이 확인되지 않는 내부 부품 등의 파손</li>
+        <li>미술 및 상업용으로 제작된 조각상(스태츄), 프라모델 및 피규어, 미니카</li>
+        <li>비행기 모형(다이캐스트 모델 포함), 완구류 일체</li>
+        <li>정크품</li>
+        <li>균열, 파손, 사용감 등 기존 하자가 있는 상품</li>
+        <li>상품 작동 여부</li>
+        <li>구성품 누락, 진품·가품 여부 등 현지 입고 시 확인이 어려운 상품</li>
+        <li>단순 기스, 올 풀림, 오염, 찍힘 등 경미한 손상</li>
       </ul>
     </div>
   </div>
@@ -1364,6 +1407,29 @@
     });
   }
 
+  window.syncCarePlusAvailability = () => {
+    const selectedShippingType = document.querySelector('input[name="shippingType"]:checked')?.value;
+    const carePlusTable = document.querySelector('.care-plus-table');
+    const carePlusChk = carePlusTable?.querySelector('input.option-chk');
+    const carePlusToggleText = carePlusTable?.querySelector('.option-toggle-text');
+    const carePlusNotice = carePlusTable?.querySelector('.care-plus-unavailable');
+    const isAvailable = selectedShippingType === '개별배송';
+
+    if (!carePlusTable || !carePlusChk) return;
+
+    carePlusTable.classList.toggle('is-disabled', !isAvailable);
+    if (carePlusNotice) carePlusNotice.hidden = isAvailable;
+    carePlusChk.disabled = !isAvailable;
+
+    if (!isAvailable) {
+      carePlusChk.checked = false;
+      if (carePlusToggleText) {
+        carePlusToggleText.textContent = '미신청';
+        carePlusToggleText.classList.remove('active');
+      }
+    }
+  };
+
   (() => {
     const methodRows = Array.from(document.querySelectorAll('.ship-compare-table.method-select-table tbody tr.selectable'));
     if (methodRows.length > 0) {
@@ -1374,6 +1440,7 @@
           item.classList.toggle('selected', isSelected);
           if (checkbox) checkbox.checked = isSelected;
         });
+        window.syncCarePlusAvailability?.();
       };
 
       methodRows.forEach((row) => {
@@ -1385,6 +1452,7 @@
           }
         });
       });
+      window.syncCarePlusAvailability?.();
     }
   })();
 
@@ -1461,9 +1529,9 @@
         days: '7 ~ 12일'
       },
       '일본내배송': {
-        feature: '* 현지배송 선택시 수수료 <strong>건당 ￥1,000 별도 발생</strong><br>* 물품의 파손 및 상품이상 등의 클레임 대행 일절 불가<br>(직접 택배사에 접수 필요)<br><br>* 인수희망 날짜 지정 : <strong>반드시 메모로</strong> 신청바랍니다.<br>상품 미도착시, 현지도착일을 기준으로 <strong class="bold-red">5일 이후</strong><br>현지도착 상품의 경우 현지배송요청 일자로부터 <strong class="bold-red">5일 이후</strong><br><strong>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</strong><br><strong><strong class="bold-red">※택배영업소 도착 지정의 경우, 인수날짜지정 불가</strong>',
+        feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br>',
         size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
-        days: '3 ~ 5일'
+        days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 인수희망일 신청<br>물품 입고일로부 <strong class="bold-red">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
       },
       '최저가배송': {
         feature: '* 물품 도착 및 포장 후, 국제운송료가 가장 저렴한 운송 방법으로 2차 결제를 안내드립니다.<br>* 단, 배송기간과 통관절차는 고려하지 않고 국제운송료 기준으로만 진행됩니다.',
@@ -1486,6 +1554,27 @@
       if (sizeCell) sizeCell.innerHTML = description.size;
       if (daysCell) daysCell.innerHTML = description.days;
       updateRecipientForm(method);
+
+      // 일본내배송(현지배송) 선택 시 배송형태 제한
+      const isJapanLocal = method === '일본내배송';
+      const rowIndividual = document.querySelector('tr.selectable input[value="개별배송"]')?.closest('tr.selectable');
+      const rowWait = document.querySelector('tr.selectable input[value="배송대기"]')?.closest('tr.selectable');
+      const cbkIndividual = document.querySelector('input[name="shippingType"][value="개별배송"]');
+      const cbkWait = document.querySelector('input[name="shippingType"][value="배송대기"]');
+
+      if (isJapanLocal) {
+        // 개별배송 그레이 + 선택 불가
+        if (rowIndividual) { rowIndividual.classList.remove('selected'); rowIndividual.style.opacity = '0.4'; rowIndividual.style.pointerEvents = 'none'; }
+        if (cbkIndividual) { cbkIndividual.checked = false; cbkIndividual.disabled = true; }
+        // 배송대기 자동 선택
+        if (cbkWait) cbkWait.checked = true;
+        if (rowWait) rowWait.classList.add('selected');
+      } else {
+        if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; }
+        if (cbkIndividual) cbkIndividual.disabled = false;
+      }
+      window.syncCarePlusAvailability?.();
+
       feeCells.forEach((cell) => {
         const methodKey = cell.dataset.method;
         const value = prices[methodKey]?.[weight] ?? 0;

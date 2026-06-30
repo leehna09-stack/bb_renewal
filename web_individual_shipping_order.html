@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bidbuy 국제배송 및 배송형태 선택</title>
+  <title>Bidbuy 배송대기건 배송신청 (개별배송)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -147,9 +147,7 @@
       background: #7b5ea7; color: #fff;
       font-size: 11px; font-weight: 800;
     }
-    .order-ctx-stats {
-      display: flex; align-items: center; gap: 0;
-    }
+    .order-ctx-stats { display: flex; align-items: center; gap: 0; }
     .order-ctx-stat {
       display: flex; flex-direction: column; align-items: center;
       padding: 0 22px;
@@ -173,7 +171,6 @@
     }
     .section-title i { color: #7b5ea7; font-size: 14px; }
 
-    /* 상품묶음 정보 테이블 */
     /* ── 주문 상품 테이블 ── */
     .order-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 28px; }
     .order-table thead th {
@@ -201,7 +198,7 @@
     .price-link { color: var(--rose); font-weight: 700; text-decoration: none; }
     .price-link:hover { text-decoration: underline; }
 
-    /* 배송정보 */
+    /* ── 배송정보 표 ── */
     .ship-compare-table {
       width: 100%;
       border-collapse: collapse;
@@ -298,6 +295,32 @@
     }
     .pickup-date-alert { min-height: 18px; color: var(--rose); font-size: 12px; font-weight: 700; }
 
+    /* ── 유료옵션 테이블 ── */
+    .paid-option-table { border-collapse: collapse; width: 100%; margin-bottom: 28px; }
+    .paid-option-table th { width: 190px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; vertical-align: middle; border: 1px solid #dde1e7; }
+    .paid-option-table td { padding: 22px 18px; vertical-align: top; border: 1px solid #dde1e7; }
+    .paid-option-table tr + tr th, .paid-option-table tr + tr td { border-top: 2px solid #dde1e7; }
+    .paid-option-name { display: block; margin-bottom: 12px; }
+    .paid-option-price { display: grid; gap: 3px; color: var(--rose); font-size: 13px; line-height: 1.45; }
+    .paid-option-desc { margin-top: 14px; font-size: 13px; line-height: 1.9; color: #111; }
+    .paid-option-desc p { margin-top: 18px; }
+    .paid-option-desc ul { margin: 4px 0 0; padding-left: 18px; }
+    .paid-option-desc li { margin: 0; }
+
+    /* ── 안심케어 토글 ── */
+    .care-plus-control { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .option-toggle-label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+    .option-toggle-label input[type="checkbox"] { display: none; }
+    .option-toggle-track { width: 44px; height: 24px; background: #ccc; border-radius: 12px; position: relative; transition: background 0.2s; flex-shrink: 0; }
+    .option-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; border-radius: 50%; transition: left 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+    .option-chk:checked ~ .option-toggle-track { background: #3AAD4E; }
+    .option-chk:checked ~ .option-toggle-track .option-toggle-thumb { left: 23px; }
+    .option-toggle-text { font-size: 13px; font-weight: 500; color: #888; min-width: 36px; }
+    .option-toggle-text.active { color: #3AAD4E; }
+    .bold-red { font-weight: 700; color: var(--rose); }
+    .paid-option-detail.damage-detail { height: 30px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+    .paid-option-detail.care-guide-detail { height: 30px; margin-left: 8px; padding: 0 12px; border: 1px solid var(--rose); border-radius: 4px; background: #fff; color: var(--rose); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+
     /* ── 수취인 정보 테이블 ── */
     .info-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 28px; }
     .info-table th {
@@ -347,25 +370,13 @@
       margin-bottom: 28px;
     }
     .duty-notice-title { font-size: 13px; font-weight: 900; color: #c0203a; margin-bottom: 8px; }
-    .duty-notice a { color: var(--rose); font-weight: 700; }
 
     /* 하단 버튼 */
-    .form-actions {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
+    .form-actions { display: flex; justify-content: center; gap: 12px; }
     .big-btn {
-      height: 46px;
-      min-width: 140px;
-      padding: 0 28px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
+      height: 46px; min-width: 140px; padding: 0 28px; border-radius: 10px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; white-space: nowrap;
     }
     .big-btn.primary { border: none; background: #1a7fcf; color: #fff; }
     .big-btn.primary:hover { background: #1567b0; }
@@ -374,45 +385,6 @@
 
     .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
     .member-tier-icon i { line-height:1; }
-
-    /* ── 배송형태 선택 테이블 ── */
-    .ship-compare-table.method-select-table tbody tr.selectable { cursor: pointer; transition: background-color 0.2s ease, box-shadow 0.2s ease; }
-    .ship-compare-table.method-select-table tbody tr.selectable:hover { background-color: #f4f7ff; }
-    .ship-compare-table.method-select-table tbody tr.selectable.selected { background-color: #eef5ff; box-shadow: inset 4px 0 0 var(--navy); }
-    .ship-compare-table.method-select-table .method-checkbox { width: 16px; height: 16px; accent-color: var(--navy); flex-shrink: 0; }
-    .ship-compare-table.method-select-table .method-name { width: 190px; }
-    .ship-compare-table.method-select-table .method-name label { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%; cursor: pointer; }
-    .ship-compare-table .method-desc { font-size: 12px; line-height: 1.8; color: #444; text-align: left; }
-
-    /* ── 유료옵션 테이블 ── */
-    .paid-option-table { border-collapse: collapse; width: 100%; margin-bottom: 28px; }
-    .paid-option-table th { width: 190px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; vertical-align: middle; border: 1px solid #dde1e7; }
-    .paid-option-table td { padding: 22px 18px; vertical-align: top; border: 1px solid #dde1e7; }
-    .paid-option-table tr + tr th, .paid-option-table tr + tr td { border-top: 2px solid #dde1e7; }
-    .paid-option-name { display: block; margin-bottom: 12px; }
-    .paid-option-price { display: grid; gap: 3px; color: var(--rose); font-size: 13px; line-height: 1.45; }
-    .paid-option-desc { margin-top: 14px; font-size: 13px; line-height: 1.9; color: #111; }
-    .paid-option-desc p { margin-top: 18px; }
-    .paid-option-desc ul { margin: 4px 0 0; padding-left: 18px; }
-    .paid-option-desc li { margin: 0; }
-
-    /* ── 안심케어 토글 ── */
-    .care-plus-control { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .option-toggle-label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
-    .option-toggle-label input[type="checkbox"] { display: none; }
-    .option-toggle-track { width: 44px; height: 24px; background: #ccc; border-radius: 12px; position: relative; transition: background 0.2s; flex-shrink: 0; }
-    .option-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; border-radius: 50%; transition: left 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
-    .option-chk:checked ~ .option-toggle-track { background: #3AAD4E; }
-    .option-chk:checked ~ .option-toggle-track .option-toggle-thumb { left: 23px; }
-    .option-toggle-text { font-size: 13px; font-weight: 500; color: #888; min-width: 36px; }
-    .option-toggle-text.active { color: #3AAD4E; }
-    .care-plus-unavailable { margin: 0; padding: 6px 10px; border: 1px solid #f1d2d8; border-radius: 6px; background: #fff6f8; color: #C42F4C; font-size: 12px; font-weight: 700; line-height: 1.6; }
-    .care-plus-table.is-disabled .care-plus-toggle { opacity: 0.45; pointer-events: none; }
-    .care-plus-table.is-disabled .paid-option-price { color: #a6abb5; }
-    .bold-red { font-weight: 700; color: var(--rose); }
-    .bold-navy { font-weight: 700; color: var(--navy); }
-    .paid-option-detail.damage-detail { height: 30px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
-    .paid-option-detail.care-guide-detail { height: 30px; margin-left: 8px; padding: 0 12px; border: 1px solid var(--rose); border-radius: 4px; background: #fff; color: var(--rose); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
 
     /* ── 모달 ── */
     .modal-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.45); opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; z-index: 1000; }
@@ -439,26 +411,14 @@
         <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
       </a>
     </div>
-
     <form class="search">
       <input type="text" placeholder="키워드 또는 URL을 입력하세요.">
-      <button type="submit">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        검색
-      </button>
+      <button type="submit"><i class="fas fa-search" aria-hidden="true"></i> 검색</button>
     </form>
-
     <div class="user-tools" aria-label="회원 메뉴">
-      <button class="icon-btn" type="button" aria-label="알림">
-        <i class="far fa-bell" aria-hidden="true"></i>
-      </button>
-      <button class="icon-btn" type="button" aria-label="장바구니">
-        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-      </button>
-      <div class="user-name">
-        홍길동님
-        <span class="premium-chip">VIP</span>
-      </div>
+      <button class="icon-btn" type="button" aria-label="알림"><i class="far fa-bell" aria-hidden="true"></i></button>
+      <button class="icon-btn" type="button" aria-label="장바구니"><i class="fas fa-shopping-cart" aria-hidden="true"></i></button>
+      <div class="user-name">홍길동님<span class="premium-chip">VIP</span></div>
     </div>
   </header>
 
@@ -486,16 +446,14 @@
 
       <section class="side-nav" aria-label="마이페이지 메뉴">
         <h2 class="side-title">마이페이지</h2>
-
         <div class="nav-section">
-          <strong>정매대행</strong>
+          <strong>경매대행</strong>
           <div class="nav-list">
             <a href="#">관심물품 목록</a>
             <a href="#">경매 입찰/유찰목록</a>
             <a href="#">낙찰목록</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>구매대행</strong>
           <div class="nav-list">
@@ -505,7 +463,6 @@
             <a href="#">주문목록</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>배송관리</strong>
           <div class="nav-list">
@@ -513,16 +470,14 @@
             <a href="#">배송지 관리</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>관심항목관리</strong>
           <div class="nav-list">
             <a href="#">관심키워드</a>
-            <a href="#">관심단매자</a>
+            <a href="#">관심판매자</a>
             <a href="#">바로가기</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>나의 계좌관리</strong>
           <div class="nav-list">
@@ -532,14 +487,12 @@
             <a href="#">쿠폰내역</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>고객상담</strong>
           <div class="nav-list">
             <a href="#">1:1문의하기</a>
           </div>
         </div>
-
         <div class="nav-section">
           <strong>나의 정보관리</strong>
           <div class="nav-list">
@@ -548,7 +501,6 @@
             <a href="#">회원탈퇴신청</a>
           </div>
         </div>
-
         <div class="nav-section biz-convert-section">
           <a href="#" class="biz-convert-link">
             <span class="biz-convert-inner">
@@ -578,12 +530,12 @@
         </div>
         <div class="order-ctx-stats">
           <div class="order-ctx-stat">
-            <span class="oct-label">묶음</span>
-            <span class="oct-value accent">2 건</span>
+            <span class="oct-label">개별배송</span>
+            <span class="oct-value accent">1 건</span>
           </div>
           <div class="order-ctx-stat">
-            <span class="oct-label">상품금액 합계</span>
-            <span class="oct-value">64,070 원</span>
+            <span class="oct-label">상품금액</span>
+            <span class="oct-value">20,678 원</span>
           </div>
         </div>
       </div>
@@ -593,8 +545,8 @@
         <i class="fas fa-location-dot"></i> 국제배송 및 배송형태 선택
       </h2>
 
-      <!-- 상품묶음 정보 -->
-      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">상품묶음 정보</div>
+      <!-- 상품 정보 -->
+      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">상품 정보</div>
       <table class="order-table">
         <thead>
           <tr>
@@ -617,17 +569,6 @@
             </td>
             <td class="price-cell"><a href="#" class="price-link">300 엔</a></td>
             <td class="price-cell">20,678 원</td>
-          </tr>
-          <tr>
-            <td style="white-space:nowrap;">현지도착</td>
-            <td class="date-cell">2026.06.18</td>
-            <td><div class="thumb-placeholder"></div></td>
-            <td class="product-info">
-              <div class="item-id">[YAHOO] l1233035428</div>
-              <div class="item-name">향수 묶음 8개 CHANEL 샤넬 Dior 디올 NINA RICCI 니나리치 미개봉·개봉 혼합</div>
-            </td>
-            <td class="price-cell"><a href="#" class="price-link">3,200 엔</a></td>
-            <td class="price-cell">43,392 원</td>
           </tr>
         </tbody>
       </table>
@@ -655,10 +596,10 @@
             <td class="method-name">
               <select id="shippingMethodSelect">
                 <optgroup label="국제배송">
-                <option value="비바항공특송">비바항공특송</option>
-                <option value="EMS">EMS</option>
-                <option value="선편특송">선편특송</option>
-                <option value="최저가배송">최저가배송</option>
+                  <option value="비바항공특송">비바항공특송</option>
+                  <option value="EMS">EMS</option>
+                  <option value="선편특송">선편특송</option>
+                  <option value="최저가배송">최저가배송</option>
                 </optgroup>
                 <optgroup label="일본내배송">
                   <option value="일본내배송">현지배송</option>
@@ -699,6 +640,43 @@
           <div class="pickup-date-alert" id="pickupDateAlert" aria-live="polite"></div>
         </div>
       </div>
+
+      <!-- 안심케어 플러스 -->
+      <table class="care-table paid-option-table care-plus-table">
+        <tbody>
+          <tr>
+            <th>
+              <span class="paid-option-name">안심 케어 플러스</span>
+              <span class="paid-option-price">+ 1,000엔</span>
+            </th>
+            <td class="paid-option-choice">
+              <div class="care-plus-control">
+                <label class="option-toggle-label care-plus-toggle">
+                  <input type="checkbox" class="option-chk" data-paid-option-yen="1000" aria-label="안심 케어 플러스 신청">
+                  <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                  <span class="option-toggle-text">미신청</span>
+                </label>
+              </div>
+              <div class="paid-option-desc">
+                <p>상품을 더욱 안전하게 받아보실 수 있도록 <strong>튼튼 포장과 파손 보상</strong>을 제공하는 유료 부가 서비스입니다.</p>
+                <ul>
+                  <li>가입 건에 한해 파손시, <strong>최대 50만 원 한도 내에서 보상</strong>해드립니다.</li>
+                  <li>보상 범위에는 <strong>낙찰가 또는 구매가, 국제 운송료, 수입신고 시 발생한 세금</strong>이 포함됩니다.</li>
+                  <li>해당 서비스 가입 건은 <strong>개별배송으로만 진행</strong>되며, 배송 대기 중인 상품과 묶음 배송이 불가합니다.</li>
+                </ul>
+                <p><strong>주의사항</strong></p>
+                <ul>
+                  <li><strong class="bold-red">파손보상 불가 품목</strong>은 안심 케어 가입이 제한됩니다.</li>
+                  <li>현지 입고 후 불가 품목으로 확인될 경우, <strong class="bold-red">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
+                  <li>튼튼 포장 비용이 500엔을 초과하는 경우, 초과 금액은 <strong class="bold-red">2차 결제 시 별도 청구됩니다.</strong></li>
+                </ul>
+                <button class="paid-option-detail damage-detail" type="button">파손보상 불가 품목 보기</button>
+                <button class="paid-option-detail care-guide-detail" type="button" onclick="window.location.href='web_cs_damage.html#care'">안심케어 서비스 안내</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <!-- 수취인 정보 -->
       <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">수취인 정보</div>
@@ -847,7 +825,7 @@
 </div>
 
 <script>
-  // 배송방법 표 전환
+  // ── 배송방법 표 전환 ──
   const shippingDescriptions = {
     '비바항공특송': {
       feature: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>',
@@ -888,48 +866,43 @@
   const japanRecipientRows = Array.from(document.querySelectorAll('.japan-recipient-row'));
 
   function updateRecipientForm() {
-    const isJapanDelivery = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
-    domesticRecipientRows.forEach(function(row) { row.hidden = isJapanDelivery; });
-    japanRecipientRows.forEach(function(row) { row.hidden = !isJapanDelivery; });
+    const isJapan = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
+    domesticRecipientRows.forEach(function(r) { r.hidden = isJapan; });
+    japanRecipientRows.forEach(function(r) { r.hidden = !isJapan; });
   }
 
   function formatDateValue(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return date.getFullYear() + '-' +
+      String(date.getMonth() + 1).padStart(2, '0') + '-' +
+      String(date.getDate()).padStart(2, '0');
   }
 
   function setupPickupDateRange() {
     if (!pickupDateInput) return;
-    const minDate = new Date();
-    minDate.setDate(minDate.getDate() + 3);
-    const maxDate = new Date();
-    maxDate.setMonth(maxDate.getMonth() + 1);
+    const minDate = new Date(); minDate.setDate(minDate.getDate() + 3);
+    const maxDate = new Date(); maxDate.setMonth(maxDate.getMonth() + 1);
     pickupDateInput.min = formatDateValue(minDate);
     pickupDateInput.max = formatDateValue(maxDate);
   }
 
   function validatePickupDate() {
     if (!pickupDateInput || !pickupDateAlert || !pickupDateInput.value) {
-      if (pickupDateAlert) pickupDateAlert.textContent = '';
-      return;
+      if (pickupDateAlert) pickupDateAlert.textContent = ''; return;
     }
-
-    const selected = new Date(`${pickupDateInput.value}T00:00:00`);
-    const minDate = new Date(`${pickupDateInput.min}T00:00:00`);
-    const maxDate = new Date(`${pickupDateInput.max}T00:00:00`);
-    const day = selected.getDay();
-    const invalid = selected < minDate || selected > maxDate || day === 0 || day === 6;
+    const sel = new Date(pickupDateInput.value + 'T00:00:00');
+    const min = new Date(pickupDateInput.min + 'T00:00:00');
+    const max = new Date(pickupDateInput.max + 'T00:00:00');
+    const day = sel.getDay();
+    const invalid = sel < min || sel > max || day === 0 || day === 6;
     pickupDateAlert.textContent = invalid ? dateWarningText : '';
     if (invalid) pickupDateInput.value = '';
   }
 
   function updatePickupDatePanel() {
     if (!pickupDatePanel) return;
-    const isJapanDelivery = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
-    pickupDatePanel.hidden = !isJapanDelivery;
-    if (!isJapanDelivery && pickupDateInput) {
+    const isJapan = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
+    pickupDatePanel.hidden = !isJapan;
+    if (!isJapan && pickupDateInput) {
       pickupDateInput.value = '';
       if (pickupDateAlert) pickupDateAlert.textContent = '';
     }
@@ -938,10 +911,10 @@
   setupPickupDateRange();
   if (shippingMethodSelect) {
     shippingMethodSelect.addEventListener('change', function() {
-      const description = shippingDescriptions[shippingMethodSelect.value] || shippingDescriptions['최저가배송'];
-      if (featureCell) featureCell.innerHTML = description.feature;
-      if (sizeCell) sizeCell.innerHTML = description.size;
-      if (daysCell) daysCell.innerHTML = description.days;
+      const d = shippingDescriptions[shippingMethodSelect.value] || shippingDescriptions['최저가배송'];
+      if (featureCell) featureCell.innerHTML = d.feature;
+      if (sizeCell) sizeCell.innerHTML = d.size;
+      if (daysCell) daysCell.innerHTML = d.days;
       updatePickupDatePanel();
       updateRecipientForm();
     });
@@ -949,56 +922,6 @@
     updateRecipientForm();
   }
   if (pickupDateInput) pickupDateInput.addEventListener('change', validatePickupDate);
-
-  // ── 배송형태 선택 ──
-  function syncCarePlusAvailability() {
-    const carePlusTable = document.querySelector('.care-plus-table');
-    const unavailableMsg = document.querySelector('.care-plus-unavailable');
-    const toggle = document.querySelector('.care-plus-toggle');
-    const optionChk = document.querySelector('.option-chk');
-    const toggleText = document.querySelector('.option-toggle-text');
-    const selectedType = document.querySelector('.method-select-table .selectable.selected .method-checkbox');
-    const isIndividual = selectedType && selectedType.value === '개별배송';
-
-    if (!carePlusTable) return;
-    if (isIndividual) {
-      carePlusTable.classList.remove('is-disabled');
-      if (unavailableMsg) unavailableMsg.hidden = true;
-    } else {
-      carePlusTable.classList.add('is-disabled');
-      if (unavailableMsg) unavailableMsg.hidden = false;
-      if (optionChk) { optionChk.checked = false; }
-      if (toggleText) { toggleText.textContent = '미신청'; toggleText.classList.remove('active'); }
-    }
-  }
-
-  document.querySelectorAll('.method-select-table .selectable').forEach(function(row) {
-    row.addEventListener('click', function(e) {
-      if (e.target.tagName === 'INPUT') return;
-      document.querySelectorAll('.method-select-table .selectable').forEach(function(r) {
-        r.classList.remove('selected');
-        var chk = r.querySelector('.method-checkbox');
-        if (chk) chk.checked = false;
-      });
-      this.classList.add('selected');
-      var chk = this.querySelector('.method-checkbox');
-      if (chk) chk.checked = true;
-      syncCarePlusAvailability();
-    });
-    var chk = row.querySelector('.method-checkbox');
-    if (chk) {
-      chk.addEventListener('change', function() {
-        document.querySelectorAll('.method-select-table .selectable').forEach(function(r) {
-          r.classList.remove('selected');
-          var c = r.querySelector('.method-checkbox');
-          if (c) c.checked = false;
-        });
-        row.classList.add('selected');
-        this.checked = true;
-        syncCarePlusAvailability();
-      });
-    }
-  });
 
   // ── 안심케어 플러스 토글 ──
   var optionChk = document.querySelector('.option-chk');
@@ -1010,10 +933,7 @@
     });
   }
 
-  syncCarePlusAvailability();
-
   // ── 파손보상 불가 품목 모달 ──
-  var damageModal = document.getElementById('damageModal');
   var damageModalOverlay = document.getElementById('damageModalOverlay');
   document.querySelectorAll('.damage-detail').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -1032,7 +952,7 @@
     });
   }
 
-  // 주문자와 동일 체크박스
+  // ── 주문자와 동일 체크박스 ──
   var sameChk = document.getElementById('sameAsOrdererChk');
   if (sameChk) {
     sameChk.addEventListener('change', function() {

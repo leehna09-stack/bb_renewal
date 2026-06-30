@@ -68,14 +68,18 @@
   .note { color:#999; font-size:11px; }
 
 
-  /* 배송형태 카드 */
-  .ship-type-cards { display:flex; gap:8px; margin-top:14px; }
-  .ship-type-card { flex:1; border:2px solid var(--border); border-radius:8px; padding:12px 10px; cursor:pointer; transition:border-color .15s,background .15s; }
-  .ship-type-card input { display:none; }
-  .ship-type-card.active { border-color:var(--navy); background:#F0F4FB; }
-  .ship-type-name { font-size:13px; font-weight:700; color:#333; margin-bottom:4px; }
-  .ship-type-card.active .ship-type-name { color:var(--navy); }
-  .ship-type-desc { font-size:11px; color:var(--text-sub); line-height:1.5; }
+  /* 배송형태 테이블 */
+  .method-select-table { width:100%; border-collapse:collapse; margin-top:12px; border:1px solid #dde1e7; border-radius:8px; overflow:hidden; }
+  .method-select-table thead th { background:#f0f3f8; color:var(--navy); font-size:13px; font-weight:700; padding:10px 14px; text-align:left; border-bottom:1px solid #dde1e7; }
+  .method-select-table tbody tr.selectable { cursor:pointer; transition:background .15s; border-bottom:1px solid #eee; }
+  .method-select-table tbody tr.selectable:last-child { border-bottom:none; }
+  .method-select-table tbody tr.selectable:hover { background:#f4f7ff; }
+  .method-select-table tbody tr.selectable.selected { background:#eef5ff; box-shadow:inset 4px 0 0 var(--navy); }
+  .method-select-table td { padding:12px 14px; vertical-align:top; }
+  .method-select-table .method-name { width:110px; font-weight:700; font-size:13px; white-space:nowrap; }
+  .method-select-table .method-name label { display:flex; align-items:center; gap:8px; cursor:pointer; }
+  .method-select-table .method-checkbox { width:16px; height:16px; accent-color:var(--navy); flex-shrink:0; cursor:pointer; }
+  .method-select-table .method-desc { font-size:12px; color:#555; line-height:1.7; }
   .warning-note { margin-top:12px; font-size:11px; color:#885500; background:#FFF8EC; border-radius:6px; padding:10px 12px; line-height:1.7; }
 
   /* 사진 카드 */
@@ -230,18 +234,28 @@
     <div class="ship-days" id="shipDays">3 ~ 5일</div>
   </div>
   <div class="field-label" style="margin-top:16px;">배송형태</div>
-  <div class="ship-type-cards">
-    <label class="ship-type-card active" id="card-individual">
-      <input type="radio" name="shippingType" value="개별배송" checked>
-      <div class="ship-type-name">개별배송</div>
-      <div class="ship-type-desc">건별 즉시 국제배송<br>빠르고 간단!</div>
-    </label>
-    <label class="ship-type-card" id="card-wait">
-      <input type="radio" name="shippingType" value="배송대기">
-      <div class="ship-type-name">배송대기</div>
-      <div class="ship-type-desc">창고 보관 후<br>묶음배송 지정 가능</div>
-    </label>
-  </div>
+  <table class="method-select-table">
+    <tbody>
+      <tr class="selectable selected" id="row-individual" tabindex="0">
+        <td class="method-name">
+          <label>
+            <input type="checkbox" name="shippingType" class="method-checkbox" value="개별배송" checked>
+            개별배송
+          </label>
+        </td>
+        <td class="method-desc">구매한 상품을 건별로 바로 출고하는 방식입니다.<br>일본 현지 도착 후 바로 출고되어 빠르게 받아볼 수 있습니다.</td>
+      </tr>
+      <tr class="selectable" id="row-wait" tabindex="0">
+        <td class="method-name">
+          <label>
+            <input type="checkbox" name="shippingType" class="method-checkbox" value="배송대기">
+            배송대기
+          </label>
+        </td>
+        <td class="method-desc">물품 입고후 배송 신청 전까지 <strong>창고에 보관합니다.</strong><br>보관 중인 상품은 언제든지 묶음 배송 또는 개별배송으로 변경 할 수 있습니다.</td>
+      </tr>
+    </tbody>
+  </table>
   
   <div class="option-item">
     <div class="option-header">
@@ -277,7 +291,7 @@
 
 <!-- 수취인 정보 -->
 <div class="card">
-  <div class="card-title">수취인 정보</div>
+  <div class="card-title">수취인 정보 <span id="recipientTitleNote" style="display:none; font-size:11px; font-weight:400; color:#885500;">※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
   <div class="recvr-top">
     <button class="btn-saved-addr">저장된 배송지 선택</button>
   </div>
@@ -380,7 +394,7 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
     '비바항공특송': {
       days: '3 ~ 5일',
       f: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>',
-      size: '오버사이즈 : 1,550엔 추가비용 발생<br>- 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>- 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>- 도서산간비용 : 지역에 따라 비용발생'
+      size: '<strong>오버사이즈 : 1,550엔 추가비용 발생</strong><br>* 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>* 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>* 도서산간비용 : 지역에 따라 비용발생'
     },
     'EMS': {
       days: '3 ~ 5일',
@@ -392,22 +406,53 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
       f: '* 대량 화물에 적합한 경제적인 특송 서비스<br>* 항공보다 저렴하지만 배송기간이 더 길어집니다<br>* 통관 및 운송비가 합리적인 옵션',
       size: '* 중량 및 부피에 따라 별도 문의<br>* 일반적으로 30kg 이상 대량 화물에 적합'
     },
-    '일본내배송': {
-      days: '3 ~ 5일',
-      f: '* 현지배송 선택시 수수료 <strong>건당 ￥1,000 별도 발생</strong><br>* 파손 및 보상기준<br>물품의 파손 및 상품이상 등의 클레임 대행 일절 불가<br>(직접 택배사에 접수 필요)<br>* 인수희망 날짜 지정 :<br>상품 미도착시, 현지도착일을 기준으로 5일 이후<br>현지도착 상품의 경우 현지배송요청 일자로부터 5일 이후<br><strong>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</strong><br><strong>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</strong><br>* 인수 희망 날짜 지정은 반드시 메모로 신청바랍니다.',
-      size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)'
+    '현지배송': {
+      f: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br><br>* 물품 파손, 상품 이상 등과 관련된 클레임 대행은 불가하며, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br><br>* 물품입고후 배송신청시 <strong>인수희망일을 별도로 지정</strong>해주셔야 합니다.',
+      size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
+      days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 입고일로부터 <strong style="color:#c00">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong style="color:#c00">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
     },
     '최저가배송': {
-      days: '- 운송방법에 따라 다름',
+      days: '운송방법에 따라 다름',
       f: '* 물품 도착 및 포장 후, 국제운송료가 가장 저렴한 운송 방법으로 2차 결제를 안내드립니다.<br>* 단, 배송기간과 통관절차는 고려하지 않고 국제운송료 기준으로만 진행됩니다.',
-      size: '- 운송방법에 따라 다름'
+      size: '운송방법에 따라 다름'
     }
   };
   document.getElementById('shippingMethodSelect').addEventListener('change', function(){
     const d = shipDesc[this.value] || shipDesc['비바항공특송'];
-    document.getElementById('shipDays').textContent = d.days;
+    document.getElementById('shipDays').innerHTML = d.days;
     document.getElementById('shipFeature').innerHTML = d.f;
     document.getElementById('shipSize').innerHTML = d.size;
+    const recipientNote = document.getElementById('recipientTitleNote');
+    if (recipientNote) recipientNote.style.display = this.value === '현지배송' ? 'inline' : 'none';
+
+    // 일본내배송(현지배송) 선택 시 배송형태 제한
+    const isJapanLocal = this.value === '현지배송';
+    const rowIndividual = document.getElementById('row-individual');
+    const rowWait = document.getElementById('row-wait');
+    const cbIndividual = rowIndividual?.querySelector('.method-checkbox');
+    const cbWait = rowWait?.querySelector('.method-checkbox');
+    const careTrack = document.getElementById('careTrack');
+    const careText = document.getElementById('careText');
+    const careOptionBody = document.getElementById('careOptionBody');
+    const careWrap = careTrack?.closest('.option-item');
+
+    if (isJapanLocal) {
+      // 개별배송 그레이 + 선택 불가
+      if (rowIndividual) { rowIndividual.classList.remove('selected'); rowIndividual.style.opacity = '0.4'; rowIndividual.style.pointerEvents = 'none'; }
+      if (cbIndividual) { cbIndividual.checked = false; cbIndividual.disabled = true; }
+      // 배송대기 자동 선택
+      if (rowWait) rowWait.classList.add('selected');
+      if (cbWait) { cbWait.checked = true; }
+      // 안심케어플러스 그레이 + 선택 불가, 미신청으로 초기화
+      if (careWrap) { careWrap.style.opacity = '0.4'; careWrap.style.pointerEvents = 'none'; }
+      if (careTrack) careTrack.classList.remove('on');
+      if (careText) { careText.textContent = '미신청'; careText.classList.remove('on'); }
+      if (careOptionBody) careOptionBody.classList.add('is-collapsed');
+    } else {
+      if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; }
+      if (cbIndividual) { cbIndividual.disabled = false; }
+      if (careWrap) { careWrap.style.opacity = ''; careWrap.style.pointerEvents = ''; }
+    }
   });
 
 
@@ -435,14 +480,22 @@ function toggleCare() {
   modal.addEventListener('click', (event) => { if (event.target === modal) hideModal(); });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) hideModal(); });
 })();
-  /* 배송형태 카드 */
-  document.querySelectorAll('.ship-type-card').forEach(c => {
-    c.addEventListener('click', () => {
-      document.querySelectorAll('.ship-type-card').forEach(x => x.classList.remove('active'));
-      c.classList.add('active');
-      c.querySelector('input').checked = true;
+  /* 배송형태 테이블 */
+  (() => {
+    const rows = Array.from(document.querySelectorAll('.method-select-table tbody tr.selectable'));
+    const selectRow = (row) => {
+      rows.forEach(r => {
+        const cb = r.querySelector('.method-checkbox');
+        const isTarget = r === row;
+        r.classList.toggle('selected', isTarget);
+        if (cb) cb.checked = isTarget;
+      });
+    };
+    rows.forEach(row => {
+      row.addEventListener('click', () => selectRow(row));
+      row.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); selectRow(row); } });
     });
-  });
+  })();
 
   /* 사진 카드 */
   function selectPhoto(el){

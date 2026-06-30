@@ -64,8 +64,13 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
 .nav::-webkit-scrollbar{width:6px}
 .nav::-webkit-scrollbar-thumb{background:#D8DEE8;border-radius:3px}
 .nav-group{padding:8px 16px 8px}
-.nav-group-title{font-size:11px;font-weight:800;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;padding:0 8px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.nav-group-title{font-size:11px;font-weight:800;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;padding:4px 8px;margin-bottom:6px;display:flex;align-items:center;gap:6px;cursor:pointer;border-radius:6px;user-select:none;transition:background .15s}
+.nav-group-title:hover{background:var(--bg)}
 .nav-group-title i{font-size:11px;color:var(--rose)}
+.nav-group-title .chevron{margin-left:auto;font-size:10px;color:var(--tm);transition:transform .2s ease}
+.nav-group-title.collapsed .chevron{transform:rotate(-90deg)}
+.nav-group-items{overflow:hidden;transition:max-height .25s ease,opacity .2s ease;max-height:1000px;opacity:1}
+.nav-group-items.collapsed{max-height:0;opacity:0}
 .nav-item{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;color:var(--ts);cursor:pointer;text-align:left;transition:all .12s;line-height:1.5}
 .nav-item:hover{background:#FFF5F7;color:var(--rose)}
 .nav-item.done{background:#EAF7EF;color:#247A3D;font-weight:700}
@@ -89,44 +94,59 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
 <div class="layout">
   <nav class="nav" id="pageNav">
     <div class="nav-group">
-      <div class="nav-group-title"><i class="fa-solid fa-house"></i> 메인 / 검색</div>
-      <button class="nav-item done" data-page="web_main.html"><i class="fa-solid fa-house"></i><span class="nav-item-label">메인<span class="nav-file">web_main.html</span></span></button>
-      <button class="nav-item" data-page="web_sub_main.html"><i class="fa-solid fa-table-columns"></i><span class="nav-item-label">서브 메인<span class="nav-file">web_sub_main.html</span></span></button>
-      <button class="nav-item" data-page="web_totalsearch.html"><i class="fa-solid fa-magnifying-glass"></i><span class="nav-item-label">통합검색<span class="nav-file">web_totalsearch.html</span></span></button>
+      <div class="nav-group-title"><i class="fa-solid fa-house"></i> 메인 / 검색<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
+        <button class="nav-item done" data-page="web_main.html"><i class="fa-solid fa-house"></i><span class="nav-item-label">메인<span class="nav-file">web_main.html</span></span></button>
+        <button class="nav-item" data-page="web_sub_main.html"><i class="fa-solid fa-table-columns"></i><span class="nav-item-label">서브 메인<span class="nav-file">web_sub_main.html</span></span></button>
+        <button class="nav-item" data-page="web_totalsearch.html"><i class="fa-solid fa-magnifying-glass"></i><span class="nav-item-label">통합검색<span class="nav-file">web_totalsearch.html</span></span></button>
+      </div>
     </div>
     <div class="nav-group">
-      <div class="nav-group-title"><i class="fa-solid fa-tag"></i> 상품 상세</div>
-      <button class="nav-item done" data-page="web_auction.html"><i class="fa-solid fa-gavel"></i><span class="nav-item-label">경매대행<span class="nav-file">web_auction.html</span></span></button>
-      <button class="nav-item done" data-page="web_auction_order.html"><i class="fa-solid fa-file-signature"></i><span class="nav-item-label">실시간 입찰하기<span class="nav-file">web_auction_order.html</span></span></button>
-      <button class="nav-item done" data-page="web_auction_reserve_order.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="nav-item-label">예약 입찰하기<span class="nav-file">web_auction_reserve_order.html</span></span></button>
-      <button class="nav-item done" data-page="web_auction_complete.html"><i class="fa-solid fa-circle-check"></i><span class="nav-item-label">입찰 완료<span class="nav-file">web_auction_complete.html</span></span></button>
-      <button class="nav-item done" data-page="web_auction_reserve_complete.html"><i class="fa-solid fa-circle-check"></i><span class="nav-item-label">예약입찰 완료<span class="nav-file">web_auction_reserve_complete.html</span></span></button>
-      <button class="nav-item done" data-page="web_purchase_url.html"><i class="fa-solid fa-link"></i><span class="nav-item-label">구매대행(URL)<span class="nav-file">web_purchase_url.html</span></span></button>
-      <button class="nav-item done" data-page="web_purchase_store.html"><i class="fa-solid fa-bag-shopping"></i><span class="nav-item-label">구매대행(스토어)<span class="nav-file">web_purchase_store.html</span></span></button>
-      <button class="nav-item done" data-page="web_purchase_merukari.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">구매대행(메루카리)<span class="nav-file">web_purchase_merukari.html</span></span></button>
+      <div class="nav-group-title"><i class="fa-solid fa-tag"></i> 상품 상세<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
+        <button class="nav-item done" data-page="web_auction.html"><i class="fa-solid fa-gavel"></i><span class="nav-item-label">경매대행<span class="nav-file">web_auction.html</span></span></button>
+        <button class="nav-item done" data-page="web_auction_order.html"><i class="fa-solid fa-file-signature"></i><span class="nav-item-label">실시간 입찰하기<span class="nav-file">web_auction_order.html</span></span></button>
+        <button class="nav-item done" data-page="web_auction_reserve_order.html"><i class="fa-solid fa-clock-rotate-left"></i><span class="nav-item-label">예약 입찰하기<span class="nav-file">web_auction_reserve_order.html</span></span></button>
+        <button class="nav-item done" data-page="web_auction_complete.html"><i class="fa-solid fa-circle-check"></i><span class="nav-item-label">입찰 완료<span class="nav-file">web_auction_complete.html</span></span></button>
+        <button class="nav-item done" data-page="web_auction_reserve_complete.html"><i class="fa-solid fa-circle-check"></i><span class="nav-item-label">예약입찰 완료<span class="nav-file">web_auction_reserve_complete.html</span></span></button>
+        <button class="nav-item done" data-page="web_purchase_url.html"><i class="fa-solid fa-link"></i><span class="nav-item-label">구매대행(URL)<span class="nav-file">web_purchase_url.html</span></span></button>
+        <button class="nav-item done" data-page="web_purchase_store.html"><i class="fa-solid fa-bag-shopping"></i><span class="nav-item-label">구매대행(스토어)<span class="nav-file">web_purchase_store.html</span></span></button>
+        <button class="nav-item done" data-page="web_purchase_merukari.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">구매대행(메루카리)<span class="nav-file">web_purchase_merukari.html</span></span></button>
+      </div>
     </div>
     <div class="nav-group">
-      <div class="nav-group-title"><i class="fa-solid fa-credit-card"></i> 결제</div>
-      <button class="nav-item" data-page="web_bill_1st.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 1page<span class="nav-file">web_bill_1st.html</span></span></button>
-      <button class="nav-item" data-page="web_bill_1st_2.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 2page<span class="nav-file">web_bill_1st_2.html</span></span></button>
-      <button class="nav-item" data-page="web_bill_2nd.html"><i class="fa-solid fa-2"></i><span class="nav-item-label">2차 결제<span class="nav-file">web_bill_2nd.html</span></span></button>
+      <div class="nav-group-title"><i class="fa-solid fa-credit-card"></i> 결제<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
+        <button class="nav-item" data-page="web_bill_1st.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 1page<span class="nav-file">web_bill_1st.html</span></span></button>
+        <button class="nav-item" data-page="web_bill_1st_2.html"><i class="fa-solid fa-1"></i><span class="nav-item-label">1차결제 2page<span class="nav-file">web_bill_1st_2.html</span></span></button>
+        <button class="nav-item" data-page="web_bill_2nd.html"><i class="fa-solid fa-2"></i><span class="nav-item-label">2차 결제<span class="nav-file">web_bill_2nd.html</span></span></button>
+      </div>
     </div>
     <div class="nav-group">
-      <div class="nav-group-title"><i class="fa-solid fa-user"></i> 마이페이지</div>
-      <button class="nav-item" data-page="web_mypage.html"><i class="fa-solid fa-user-circle"></i><span class="nav-item-label">마이페이지<span class="nav-file">web_mypage.html</span></span></button>
-      <button class="nav-item" data-page="web_payment_detail.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">결제상세내역<span class="nav-file">web_payment_detail.html</span></span></button>
-      <button class="nav-item" data-page="web_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송신청 가능목록<span class="nav-file">web_bundle_shipping_management.html</span></span></button>
-      <button class="nav-item" data-page="web_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송신청 완료목록<span class="nav-file">web_bundle_shipping_management_2.html</span></span></button>
-      <button class="nav-item" data-page="web_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">web_mileage.html</span></span></button>
-      <button class="nav-item" data-page="web_grade_page.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">web_grade_page.html</span></span></button>
+      <div class="nav-group-title"><i class="fa-solid fa-user"></i> 마이페이지<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
+        <button class="nav-item" data-page="web_mypage.html"><i class="fa-solid fa-user-circle"></i><span class="nav-item-label">마이페이지<span class="nav-file">web_mypage.html</span></span></button>
+        <button class="nav-item" data-page="web_mainlist.html"><i class="fa-solid fa-list-check"></i><span class="nav-item-label">거래 전체 목록<span class="nav-file">web_mainlist.html</span></span></button>
+        <button class="nav-item" data-page="web_payment_detail.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">결제상세내역<span class="nav-file">web_payment_detail.html</span></span></button>
+        <button class="nav-item" data-page="web_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송신청 가능목록<span class="nav-file">web_bundle_shipping_management.html</span></span></button>
+        <button class="nav-item" data-page="web_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송신청 완료목록<span class="nav-file">web_bundle_shipping_management_2.html</span></span></button>
+        <button class="nav-item" data-page="web_bundle_shipping_order.html"><i class="fa-solid fa-plane-departure"></i><span class="nav-item-label">배송대기건 배송신청 (묶음)<span class="nav-file">web_bundle_shipping_order.html</span></span></button>
+        <button class="nav-item" data-page="web_individual_shipping_order.html"><i class="fa-solid fa-box"></i><span class="nav-item-label">배송대기건 배송신청 (개별)<span class="nav-file">web_individual_shipping_order.html</span></span></button>
+        <button class="nav-item" data-page="web_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">web_mileage.html</span></span></button>
+        <button class="nav-item" data-page="web_grade_page.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">web_grade_page.html</span></span></button>
+      </div>
     </div>
     <div class="nav-group">
-      <div class="nav-group-title"><i class="fa-solid fa-headset"></i> 고객센터 / 기타</div>
-      <button class="nav-item" data-page="web_qna.html"><i class="fa-solid fa-list-check"></i><span class="nav-item-label">1:1 문의내역<span class="nav-file">web_qna.html</span></span></button>
-      <button class="nav-item" data-page="web_qna_form.html"><i class="fa-solid fa-pen"></i><span class="nav-item-label">1:1 문의하기<span class="nav-file">web_qna_form.html</span></span></button>
-      <button class="nav-item" data-page="web_qna_details.html"><i class="fa-solid fa-comments"></i><span class="nav-item-label">1:1 문의 상세<span class="nav-file">web_qna_details.html</span></span></button>
-      <button class="nav-item" data-page="web_cs_refund.html"><i class="fa-solid fa-rotate-left"></i><span class="nav-item-label">취소·반품·환불·교환<span class="nav-file">web_cs_refund.html</span></span></button>
-      <button class="nav-item" data-page="web_biz.html"><i class="fa-solid fa-building"></i><span class="nav-item-label">사업자 회원<span class="nav-file">web_biz.html</span></span></button>
+      <div class="nav-group-title"><i class="fa-solid fa-headset"></i> 고객센터 / 기타<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
+        <button class="nav-item" data-page="web_qna.html"><i class="fa-solid fa-list-check"></i><span class="nav-item-label">1:1 문의내역<span class="nav-file">web_qna.html</span></span></button>
+        <button class="nav-item" data-page="web_user_memo.html"><i class="fa-solid fa-note-sticky"></i><span class="nav-item-label">사용자메모 내역<span class="nav-file">web_user_memo.html</span></span></button>
+        <button class="nav-item" data-page="web_qna_form.html"><i class="fa-solid fa-pen"></i><span class="nav-item-label">1:1 문의하기<span class="nav-file">web_qna_form.html</span></span></button>
+        <button class="nav-item" data-page="web_qna_details.html"><i class="fa-solid fa-comments"></i><span class="nav-item-label">1:1 문의 상세<span class="nav-file">web_qna_details.html</span></span></button>
+        <button class="nav-item" data-page="web_cs_refund.html"><i class="fa-solid fa-rotate-left"></i><span class="nav-item-label">취소·반품·환불·교환<span class="nav-file">web_cs_refund.html</span></span></button>
+        <button class="nav-item" data-page="web_cs_damage.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">파손 보상안내<span class="nav-file">web_cs_damage.html</span></span></button>
+        <button class="nav-item" data-page="web_biz.html"><i class="fa-solid fa-building"></i><span class="nav-item-label">사업자 회원<span class="nav-file">web_biz.html</span></span></button>
+      </div>
     </div>
   </nav>
 
@@ -136,6 +156,36 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
 </div>
 
 <script>
+// ── 그룹 접기/펼치기 + localStorage 상태 유지 ──
+var STORE_KEY = 'bb_web_nav_collapsed';
+
+function loadCollapsed() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch(e) { return []; }
+}
+function saveCollapsed(arr) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(arr)); } catch(e) {}
+}
+
+var collapsed = loadCollapsed();
+
+document.querySelectorAll('.nav-group-title').forEach(function(title, idx) {
+  var groupItems = title.nextElementSibling;
+  // 저장된 상태 복원
+  if (collapsed.indexOf(String(idx)) !== -1) {
+    groupItems.classList.add('collapsed');
+    title.classList.add('collapsed');
+  }
+  title.addEventListener('click', function() {
+    var isCollapsed = groupItems.classList.toggle('collapsed');
+    title.classList.toggle('collapsed', isCollapsed);
+    var arr = loadCollapsed();
+    var key = String(idx);
+    if (isCollapsed) { if (arr.indexOf(key) === -1) arr.push(key); }
+    else { arr = arr.filter(function(i) { return i !== key; }); }
+    saveCollapsed(arr);
+  });
+});
+
 var frame = document.getElementById('pageFrame');
 var nowViewing = document.getElementById('nowViewing');
 var openNewTab = document.getElementById('openNewTab');
