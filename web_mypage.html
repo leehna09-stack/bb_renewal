@@ -169,15 +169,22 @@
       font-size: 16px;
       font-weight: 900;
     }
+    .side-title a {
+      color: inherit;
+      text-decoration: none;
+    }
     .nav-section {
       padding: 0 20px;
       margin-bottom: 14px;
     }
     .nav-section strong {
       display: block;
-      margin-bottom: 11px;
-      color: #292d35;
-      font-size: 12px;
+      margin: 0 0 9px;
+      padding: 7px 0;
+      border-radius: 0;
+      background: #ffffff;
+      color: #111;
+      font-size: 14px;
       font-weight: 900;
     }
     .nav-list {
@@ -330,71 +337,73 @@
       font-weight: 700;
     }
 
-    .status-flow {
+    .status-board {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      align-items: center;
-      min-height: 132px;
-      border-bottom: 1px solid var(--line-dark);
+      grid-template-columns: 1.45fr repeat(6, minmax(0, 1fr));
+      align-items: stretch;
+      column-gap: 20px;
+      row-gap: 12px;
+      padding: 22px 0 0;
     }
-    .status-item {
+    .status-step {
       position: relative;
       display: grid;
-      justify-items: center;
-      align-content: center;
-      gap: 7px;
-      min-height: 112px;
-      text-align: center;
+      min-width: 0;
     }
-    .status-item:not(:last-child)::after {
+    .status-step:not(:last-child)::after {
       content: "";
       position: absolute;
-      right: -8px;
-      top: 40%;
-      width: 15px;
-      height: 15px;
-      border-top: 3px solid #bcbec4;
-      border-right: 3px solid #bcbec4;
-      transform: rotate(45deg);
+      top: 50%;
+      right: -13px;
+      width: 7px;
+      height: 7px;
+      border-top: 2px solid #c8c1bd;
+      border-right: 2px solid #c8c1bd;
+      transform: translateY(-50%) rotate(45deg);
     }
-    .status-count {
-      color: var(--rose);
-      font-size: 28px;
-      line-height: 1;
-      font-weight: 900;
-    }
-    .status-label {
-      color: #111;
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .status-price {
-      color: #111;
-      font-size: 13px;
-      line-height: 1.2;
-    }
-    .summary-tabs {
+    .status-card {
+      min-height: 151px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-bottom: 1px solid var(--line-dark);
+      place-items: center;
+      padding: 16px 10px;
+      border: 1px solid #ded8d5;
+      border-radius: 7px;
+      background: #fff;
+      color: #383b40;
+      text-align: center;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
     }
-    .summary-tab {
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      background: #fafafa;
-      border-right: 1px solid var(--line-dark);
-      color: #111;
-      font-weight: 700;
+    .status-card:hover,
+    .status-card:focus-visible {
+      border-color: var(--rose);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+      transform: translateY(-1px);
+      outline: 0;
     }
-    .summary-tab:last-child { border-right: 0; }
-    .summary-tab em {
-      color: #111;
+    .status-stack {
+      gap: 19px;
+    }
+    .status-stack .status-card {
+      min-height: 66px;
+    }
+    .status-card em {
+      display: block;
+      color: #343b48;
+      font-size: 25px;
+      line-height: 1;
       font-style: normal;
-      text-decoration: underline;
       font-weight: 900;
+    }
+    .status-card em.hot {
+      color: var(--rose);
+    }
+    .status-card strong {
+      display: block;
+      margin-top: 9px;
+      color: #333943;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 800;
     }
 
     .table-wrap {
@@ -514,11 +523,10 @@
       .asset-cell { min-height: 68px; }
       .asset-cell:nth-child(2n) { border-right: 0; }
       .asset-cell:last-child { grid-column: span 2; border-top: 1px solid var(--line); }
-      .status-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 0; }
-      .status-item:not(:last-child)::after { display: none; }
-      .summary-tabs { grid-template-columns: 1fr; }
-      .summary-tab { border-right: 0; border-bottom: 1px solid var(--line-dark); }
-      .summary-tab:last-child { border-bottom: 0; }
+      .status-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .status-step:not(:last-child)::after { display: none; }
+      .status-card,
+      .status-stack .status-card { min-height: 82px; }
     }
   </style>
 </head>
@@ -552,9 +560,9 @@
       </section>
 
       <section class="side-nav" aria-label="마이페이지 메뉴">
-        <h2 class="side-title">마이페이지</h2>
+        <h2 class="side-title"><a href="web_mypage.html">마이페이지</a></h2>
         <div class="nav-section">
-          <strong>나의 거래 현황</strong>
+          <a href="web_mypage.html"><strong>나의 거래 현황</strong></a>
           <div class="nav-list">
             <a href="web_mainlist.html">거래 전체 목록</a>
             <a href="#">경매 입찰/유찰</a>
@@ -640,40 +648,50 @@
 
       <section class="section" aria-labelledby="order-status-title">
         <div class="section-head">
-          <h1 class="section-title" id="order-status-title">주문/배송 현황</h1>
+          <h1 class="section-title" id="order-status-title">나의 거래 현황</h1>
         </div>
-        <div class="status-flow">
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">1</strong>
-            <span class="status-label">1차 결제대기</span>
-            <span class="status-price">[ 15,288 원 ]</span>
-          </a>
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">0</strong>
-            <span class="status-label">1차 결제완료</span>
-          </a>
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">0</strong>
-            <span class="status-label">현지도착</span>
-          </a>
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">0</strong>
-            <span class="status-label">2차 결제대기</span>
-            <span class="status-price">[ 0 원 ]</span>
-          </a>
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">0</strong>
-            <span class="status-label">2차 결제완료</span>
-          </a>
-          <a class="status-item" href="web_mainlist.html">
-            <strong class="status-count">0</strong>
-            <span class="status-label">국제배송</span>
-          </a>
-        </div>
-        <div class="summary-tabs">
-          <a class="summary-tab" href="web_mainlist.html">진행중인 거래 <em>1</em></a>
-          <a class="summary-tab" href="web_mainlist.html">거래완료 <em>8</em></a>
-          <a class="summary-tab" href="web_mainlist.html">취소/반품 <em>17</em></a>
+        <div class="status-board">
+          <div class="status-step status-stack">
+            <a class="status-card" href="web_mainlist.html" data-status="auction-bid" data-label="경매입찰">
+              <div><em>5</em><strong>경매 입찰 상품</strong></div>
+            </a>
+            <a class="status-card" href="web_mainlist.html" data-status="purchase-request" data-label="구매 신청">
+              <div><em>5</em><strong>구매 신청 상품</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="first-payment-wait" data-label="1차 결제대기">
+              <div><em class="hot">5</em><strong>1차<br>결제대기</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="first-payment-complete" data-label="1차 결제완료">
+              <div><em>5</em><strong>1차<br>결제완료</strong></div>
+            </a>
+          </div>
+          <div class="status-step status-stack">
+            <a class="status-card" href="web_mainlist.html" data-status="local-arrived" data-label="현지도착">
+              <div><em>5</em><strong>현지도착</strong></div>
+            </a>
+            <a class="status-card" href="web_mainlist.html" data-status="shipping-wait" data-label="배송대기">
+              <div><em>3</em><strong>배송대기</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="second-payment-wait" data-label="2차 결제대기">
+              <div><em class="hot">5</em><strong>2차<br>결제대기</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="second-payment-complete" data-label="2차 결제 완료">
+              <div><em>5</em><strong>2차<br>결제 완료</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="international-shipping" data-label="국제배송">
+              <div><em class="hot">5</em><strong>국제배송</strong></div>
+            </a>
+          </div>
         </div>
       </section>
 

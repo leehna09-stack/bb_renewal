@@ -10,11 +10,13 @@
       --rose: #E8385A;
       --rose-h: #C42F4C;
       --navy: #1A3C6E;
-      --ink: #20242b;
-      --text: #33363d;
-      --muted: #777985;
-      --line: #e0e4eb;
-      --line-soft: #eef0f3;
+      --ink: #1A1A2E;
+      --text: #1A1A2E;
+      --muted: #666680;
+      --faint: #999BAA;
+      --line: #E0E4EB;
+      --line-soft: #EEF0F3;
+      --bg-soft: #F5F7FA;
       --warm: #fbf7f5;
       --sidebar-w: 231px;
       --main-w: 925px;
@@ -27,7 +29,7 @@
       min-width: 320px;
       background: #fff;
       color: var(--text);
-      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+      font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
       font-size: 14px;
       line-height: 1.5;
     }
@@ -63,7 +65,7 @@
       font-size: 22px;
       flex: 0 0 auto;
     }
-    .profile-name { display: block; margin-bottom: 3px; color: #262a31; font-size: 16px; font-weight: 800; }
+    .profile-name { display: block; margin-bottom: 3px; color: #262a31; font-size: 16px; font-weight: 700; }
     .profile-tier {
       display: inline-flex;
       align-items: center;
@@ -73,7 +75,7 @@
       background: #fff0c9;
       color: #f4a200;
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 700;
     }
     .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .soft-btn {
@@ -83,7 +85,7 @@
       background: #fff;
       color: #5c606b;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
     }
     .side-nav { padding-top: 33px; }
     .side-title {
@@ -92,12 +94,21 @@
       border-bottom: 1px solid #dcd9d6;
       color: #111;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 700;
     }
+    .side-title a { color: inherit; text-decoration: none; }
     .nav-section { padding: 0 20px; margin-bottom: 14px; }
-    .nav-section strong { display: block; margin-bottom: 11px; color: #292d35; font-size: 12px; font-weight: 900; }
+    .nav-section strong {
+      display: block;
+      margin: 0 0 9px;
+      padding: 7px 0;
+      border-radius: 0;
+      color: #111;
+      font-size: 14px;
+      font-weight: 700;
+    }
     .nav-list { display: grid; gap: 6px; }
-    .nav-list a { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .nav-list a { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: -0.22px; }
     .nav-list a:hover, .nav-list a.active { color: var(--rose); }
     .biz-convert-link {
       display: block;
@@ -133,6 +144,7 @@
       margin: 0;
       color: #292d35;
       font-size: 12px;
+      font-weight: 700;
     }
     .biz-chev {
       margin-left: auto;
@@ -142,26 +154,51 @@
 
     .main { min-width: 0; }
     .memo-title {
-      min-height: 54px;
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 0 0 14px;
-      padding: 0 14px;
-      border: 1px solid var(--line);
-      background: #fafafa;
-      color: #111;
+      margin: 0 0 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 700;
+      letter-spacing: -0.32px;
     }
-    .memo-title i { color: #1f7fe5; }
-    .memo-table-wrap { overflow-x: auto; }
+    .memo-title i { color: var(--rose); }
+    .country-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+    .country-tab {
+      min-width: 74px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.22px;
+    }
+    .country-tab.active {
+      border-color: var(--rose);
+      background: var(--rose);
+      color: #fff;
+    }
+    .memo-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
     .memo-table {
       width: 100%;
       min-width: 860px;
       border-collapse: collapse;
       table-layout: fixed;
-      border-top: 1px solid #111;
     }
     .memo-table th,
     .memo-table td {
@@ -172,37 +209,73 @@
     }
     .memo-table th {
       height: 40px;
-      background: #fff;
-      color: #111;
+      background: var(--bg-soft);
+      color: var(--ink);
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
+      letter-spacing: -0.22px;
     }
     .memo-table th:last-child,
     .memo-table td:last-child { border-right: 0; }
     .memo-table td {
       height: 72px;
       padding: 10px 8px;
-      color: #111;
+      color: var(--ink);
       font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.22px;
     }
+    .memo-table th:nth-child(4),
+    .memo-table td.memo-product {
+      text-align: left;
+    }
+    .memo-table tbody tr:last-child td { border-bottom: 0; }
+    .memo-table tbody tr[hidden] { display: none; }
     .flag {
-      width: 18px;
-      height: 13px;
+      width: 24px;
+      height: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #ddd;
+      border: 1px solid #d9e0e9;
       background: #fff;
+      position: relative;
+      overflow: hidden;
     }
-    .flag::before {
+    .flag.jp::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #d50024;
     }
+    .flag.us {
+      background: repeating-linear-gradient(to bottom, #b22234 0 1.2px, #fff 1.2px 2.4px);
+    }
+    .flag.us::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 8px;
+      background: #3c3b6e;
+    }
+    .flag.uk {
+      background: #012169;
+    }
+    .flag.uk::before,
+    .flag.uk::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: #fff;
+      transform: translate(-50%, -50%);
+    }
+    .flag.uk::before { width: 100%; height: 4px; }
+    .flag.uk::after { width: 4px; height: 100%; }
     .memo-product {
-      text-align: left;
       line-height: 1.55;
       word-break: break-all;
     }
@@ -217,23 +290,55 @@
       background: var(--rose);
       color: #fff;
       font-size: 8px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       vertical-align: middle;
     }
     .reply-badge {
-      min-width: 58px;
-      height: 22px;
+      min-width: 65px;
+      height: 28px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: #2f80d8;
+      border-radius: 5px;
+      background: var(--rose);
       color: #fff;
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.22px;
     }
     .reply-badge.wait {
       background: #f5a623;
+    }
+    .pager {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pager-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .pager-btn:disabled {
+      color: var(--faint);
+      background: var(--bg-soft);
+      cursor: default;
+    }
+    .pager-info {
+      min-width: 54px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.22px;
     }
 
     @media (max-width: 900px) {
@@ -242,6 +347,7 @@
         grid-template-columns: 1fr;
       }
       .sidebar { display: none; }
+      .country-tabs { overflow-x: auto; padding-bottom: 2px; }
     }
   </style>
 </head>
@@ -263,7 +369,7 @@
       </section>
 
       <section class="side-nav" aria-label="마이페이지 메뉴">
-        <h2 class="side-title">마이페이지</h2>
+        <h2 class="side-title"><a href="web_mypage.html">마이페이지</a></h2>
         <div class="nav-section">
           <strong>나의 거래 현황</strong>
           <div class="nav-list">
@@ -329,6 +435,11 @@
 
     <main class="main">
       <h1 class="memo-title"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>사용자메모</h1>
+      <div class="country-tabs" aria-label="국가별 사용자메모 필터">
+        <button class="country-tab active" type="button" data-country="jp">일본</button>
+        <button class="country-tab" type="button" data-country="us">미국</button>
+        <button class="country-tab" type="button" data-country="uk">영국</button>
+      </div>
       <div class="memo-table-wrap">
         <table class="memo-table">
           <colgroup>
@@ -350,67 +461,247 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0220006636</td>
               <td class="memo-product">指輪 リング レディース ニッケルフリー 金属アレルギー アクセサリー ワンサイ즈 13号 クリア...<span class="new-n">N</span></td>
               <td>2026-06-26</td>
               <td><span class="reply-badge">답변완료</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0219728972</td>
               <td class="memo-product">いきもの大図鑑アドバンス　モトイカブトトカゲ<span class="new-n">N</span></td>
               <td>2026-06-18</td>
               <td><span class="reply-badge">답변완료</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0218899632</td>
               <td class="memo-product">txt 7TH YEAR weverse album 新品未開封　バムギュ</td>
               <td>2026-05-27</td>
               <td><span class="reply-badge wait">답변대기</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0218664412</td>
               <td class="memo-product">キーリング(黄)アルファベット ビーズ/ARASHI</td>
               <td>2026-05-18</td>
               <td><span class="reply-badge">답변완료</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0216492102</td>
               <td class="memo-product">【防弾再入荷 / 楽天1位】【洋服の青山】《最短当日発送》礼服 裾上げ済み 喪服 メンズ...</td>
               <td>2026-03-16</td>
               <td><span class="reply-badge">답변완료</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0216492091</td>
               <td class="memo-product">5冠&1位【柔らかな上質牛革】 シュリンクレザー 本革 トートバッグ メンズ A4 ユニセックス...</td>
               <td>2026-03-16</td>
               <td><span class="reply-badge">답변완료</span></td>
             </tr>
-            <tr>
-              <td><span class="flag" aria-label="일본"></span></td>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
               <td>구매대행</td>
               <td>BJP0216098750</td>
               <td class="memo-product">LEGO ロ? ドオブザリング フロド ミニフィグ 正規品</td>
               <td>2026-03-05</td>
               <td><span class="reply-badge wait">답변대기</span></td>
             </tr>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
+              <td>구매대행</td>
+              <td>BJP0215901138</td>
+              <td class="memo-product">ポケモンカードゲーム 拡張パック BOX シュリンク付き</td>
+              <td>2026-02-27</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
+              <td>구매대행</td>
+              <td>BJP0215310045</td>
+              <td class="memo-product">無印良品 ステンレスユニットシェルフ 追加棚セット</td>
+              <td>2026-02-21</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
+              <td>구매대행</td>
+              <td>BJP0214889302</td>
+              <td class="memo-product">Nintendo Switch Joy-Con パステルカラー セット</td>
+              <td>2026-02-12</td>
+              <td><span class="reply-badge wait">답변대기</span></td>
+            </tr>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
+              <td>경매대행</td>
+              <td>BJA0214217788</td>
+              <td class="memo-product">YAMAHA オーディオインターフェース AG03 MK2 ホワイト</td>
+              <td>2026-02-04</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="jp">
+              <td><span class="flag jp" aria-label="일본"></span></td>
+              <td>구매대행</td>
+              <td>BJP0213900881</td>
+              <td class="memo-product">アニメ Blu-ray BOX 初回限定版 特典付き</td>
+              <td>2026-01-28</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="us">
+              <td><span class="flag us" aria-label="미국"></span></td>
+              <td>구매대행</td>
+              <td>BUS0260019284</td>
+              <td class="memo-product">Apple AirPods Pro 2nd Generation MagSafe Charging Case<span class="new-n">N</span></td>
+              <td>2026-06-22</td>
+              <td><span class="reply-badge wait">답변대기</span></td>
+            </tr>
+            <tr data-country="us">
+              <td><span class="flag us" aria-label="미국"></span></td>
+              <td>경매대행</td>
+              <td>BUA0259917742</td>
+              <td class="memo-product">Vintage Levi's 501 Denim Jacket Made in USA</td>
+              <td>2026-06-17</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="us">
+              <td><span class="flag us" aria-label="미국"></span></td>
+              <td>구매대행</td>
+              <td>BUS0258800194</td>
+              <td class="memo-product">Nike Air Jordan 1 Retro High OG Chicago Size 9</td>
+              <td>2026-05-29</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="us">
+              <td><span class="flag us" aria-label="미국"></span></td>
+              <td>구매대행</td>
+              <td>BUS0257814405</td>
+              <td class="memo-product">LEGO Star Wars Millennium Falcon Collector Series</td>
+              <td>2026-05-10</td>
+              <td><span class="reply-badge wait">답변대기</span></td>
+            </tr>
+            <tr data-country="us">
+              <td><span class="flag us" aria-label="미국"></span></td>
+              <td>경매대행</td>
+              <td>BUA0256912041</td>
+              <td class="memo-product">Sony Walkman WM-F10 Portable Cassette Player</td>
+              <td>2026-04-21</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="uk">
+              <td><span class="flag uk" aria-label="영국"></span></td>
+              <td>구매대행</td>
+              <td>BUK0260091142</td>
+              <td class="memo-product">Burberry Vintage Nova Check Scarf Made in England<span class="new-n">N</span></td>
+              <td>2026-06-24</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="uk">
+              <td><span class="flag uk" aria-label="영국"></span></td>
+              <td>경매대행</td>
+              <td>BUK0259402220</td>
+              <td class="memo-product">Dr. Martens 1460 Smooth Leather Boots UK 7</td>
+              <td>2026-06-09</td>
+              <td><span class="reply-badge wait">답변대기</span></td>
+            </tr>
+            <tr data-country="uk">
+              <td><span class="flag uk" aria-label="영국"></span></td>
+              <td>구매대행</td>
+              <td>BUK0258021297</td>
+              <td class="memo-product">Royal Albert Old Country Roses Tea Cup Set</td>
+              <td>2026-05-23</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="uk">
+              <td><span class="flag uk" aria-label="영국"></span></td>
+              <td>구매대행</td>
+              <td>BUK0257019308</td>
+              <td class="memo-product">The Beatles Abbey Road 50th Anniversary Vinyl LP</td>
+              <td>2026-05-02</td>
+              <td><span class="reply-badge">답변완료</span></td>
+            </tr>
+            <tr data-country="uk">
+              <td><span class="flag uk" aria-label="영국"></span></td>
+              <td>경매대행</td>
+              <td>BUK0256208441</td>
+              <td class="memo-product">Barbour Bedale Wax Jacket Sage Green 38</td>
+              <td>2026-04-14</td>
+              <td><span class="reply-badge wait">답변대기</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
+      <div class="pager" aria-label="사용자메모 페이지 이동">
+        <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <span class="pager-info" data-page-info>1 / 1</span>
+        <button class="pager-btn" type="button" data-page-next aria-label="다음 페이지"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
     </main>
   </div>
+  <script>
+    const memoRows = Array.from(document.querySelectorAll(".memo-table tbody tr"));
+    const countryTabs = Array.from(document.querySelectorAll(".country-tab"));
+    const pageInfo = document.querySelector("[data-page-info]");
+    const prevBtn = document.querySelector("[data-page-prev]");
+    const nextBtn = document.querySelector("[data-page-next]");
+    const pageSize = 10;
+    let activeCountry = "jp";
+    let currentPage = 1;
+
+    function renderMemoTable() {
+      const filteredRows = memoRows.filter((row) => row.dataset.country === activeCountry);
+      const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+
+      memoRows.forEach((row) => {
+        row.hidden = true;
+      });
+      filteredRows.slice(start, end).forEach((row) => {
+        row.hidden = false;
+      });
+
+      if (pageInfo) {
+        pageInfo.textContent = `${currentPage} / ${totalPages}`;
+      }
+      if (prevBtn) {
+        prevBtn.disabled = currentPage <= 1;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = currentPage >= totalPages;
+      }
+    }
+
+    countryTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        activeCountry = tab.dataset.country;
+        currentPage = 1;
+        countryTabs.forEach((item) => item.classList.toggle("active", item === tab));
+        renderMemoTable();
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      currentPage -= 1;
+      renderMemoTable();
+    });
+    nextBtn?.addEventListener("click", () => {
+      currentPage += 1;
+      renderMemoTable();
+    });
+
+    renderMemoTable();
+  </script>
   <script src="bb-common.js"></script>
 </body>
 </html>

@@ -148,6 +148,28 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .thumb-item.active,.thumb-item:hover{border-color:var(--rose)}
 .thumb-item i{font-size:20px;color:var(--tm)}
 
+/* 감정 배너 */
+.appraisal-banner{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.appraisal-banner-logo{width:36px;height:36px;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.appraisal-banner-logo svg{width:22px;height:22px}
+.appraisal-banner-info{flex:1;min-width:0}
+.appraisal-banner-title{font-size:12px;color:var(--tp);font-weight:500;display:flex;align-items:center;gap:6px}
+.appraisal-banner-detail{font-size:11px;color:var(--green);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.appraisal-banner-fee{font-size:12px;color:var(--ts);margin-top:2px}
+.appraisal-banner-fee strong{color:var(--tp);font-weight:700}
+
+/* 감정 팝업 */
+.appraisal-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:3000;align-items:center;justify-content:center}
+.appraisal-modal-overlay.open{display:flex}
+.appraisal-modal{background:#fff;border-radius:16px;width:540px;max-width:92vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.appraisal-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+.appraisal-modal-header span{font-size:15px;font-weight:700;color:var(--tp)}
+.appraisal-modal-close{border:none;background:none;font-size:20px;cursor:pointer;color:var(--ts);line-height:1;padding:0}
+.appraisal-modal-body{padding:20px}
+.appraisal-modal-img{width:100%;border-radius:12px;cursor:pointer;display:block;transition:opacity .15s}
+.appraisal-modal-img:hover{opacity:.88}
+.appraisal-modal-caption{text-align:center;font-size:11px;color:var(--ts);margin-top:8px}
+
 /* 판매자 카드 (이미지 하단) */
 .seller-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:auto;margin-bottom:16px}
 .seller-card-top{display:flex;align-items:center;gap:12px}
@@ -853,6 +875,23 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <button class="gallery-nav" type="button" onclick="moveGallery(1)" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
+    <!-- 감정 배너 -->
+    <div class="appraisal-banner">
+      <div class="appraisal-banner-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#111"/>
+          <text x="20" y="27" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" font-weight="700">SNKR</text>
+        </svg>
+      </div>
+      <div class="appraisal-banner-info">
+        <div class="appraisal-banner-title">
+          감정을 사용할 수 있습니다.
+          <span class="appraisal-banner-detail" onclick="openAppraisalModal()">상세</span>
+        </div>
+        <div class="appraisal-banner-fee">감정료 <strong>2,500 엔</strong></div>
+      </div>
+    </div>
+
     <div class="seller-card">
       <div class="seller-card-top">
         <div class="seller-avatar">e</div>
@@ -1086,7 +1125,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           <table class="acc-info-table">
             <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">j1232333613</td></tr>
             <tr><th>카테고리</th><td>장난감·게임 &gt; 피규어 &gt; 창작·오리지널 &gt; 일반</td></tr>
-            <tr><th>상품 상태</th><td><span style="color:var(--green);font-weight:700">눈에 띄는 흠집·오염 없음</span></td></tr>
+            <tr><th>상품 상태</th><td><span style="color:var(--rose);font-weight:700">눈에 띄는 흠집·오염 없음</span></td></tr>
             <tr><th>수량</th><td class="roboto">1개</td></tr>
             <tr><th>시작가격</th><td class="roboto">13,800엔</td></tr>
             <tr><th>시작시간</th><td class="roboto">2026-06-07 22:34</td></tr>
@@ -1918,6 +1957,26 @@ lockTabContainerHeight();
   <button class="lightbox-next" onclick="lbNext();event.stopPropagation()"><i class="fa-solid fa-chevron-right"></i></button>
   <div class="lightbox-counter" id="lbCounter">1 / 5</div>
 </div>
+<!-- 감정 팝업 모달 -->
+<div class="appraisal-modal-overlay" id="appraisalModal" onclick="closeAppraisalModal(event)">
+  <div class="appraisal-modal" onclick="event.stopPropagation()">
+    <div class="appraisal-modal-header">
+      <span>감정 대상 · 감정료</span>
+      <button class="appraisal-modal-close" onclick="closeAppraisalModal()">&times;</button>
+    </div>
+    <div class="appraisal-modal-body">
+      <a href="https://auctions.yahoo.co.jp/topic/promo/appraisal/card/index.html" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none">
+        <img src="yahoovalue.png" alt="감정 대상·감정료" style="width:100%;border-radius:12px;display:block;cursor:pointer">
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openAppraisalModal(){document.getElementById('appraisalModal').classList.add('open')}
+function closeAppraisalModal(e){if(!e||e.target===document.getElementById('appraisalModal'))document.getElementById('appraisalModal').classList.remove('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('appraisalModal').classList.remove('open')})
+</script>
 <script src="bb-common.js"></script>
 </body>
 </html>
