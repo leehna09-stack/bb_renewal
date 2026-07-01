@@ -197,6 +197,8 @@
   .packing-cost-table .thick-right { border-right: 3px solid #9a9a9a; }
   .packing-cost-table .thick-bottom { border-bottom: 3px solid #9a9a9a; }
   .packing-cost-table .muted-cell { color: #777; font-weight: 700; line-height: 1.8; }
+  .packing-cost-table .tier-note { display: block; color: #888; font-size: 11px; font-weight: 400; margin-top: 2px; }
+  .packing-note { margin: 10px 0 0; color: #888; font-size: 12px; line-height: 1.6; }
 
   /* ── 우측 패널 하단 적립 예정 블록 ── */
   .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
@@ -528,10 +530,10 @@
         <table class="packing-cost-table">
           <thead>
             <tr>
-              <th class="thick-right thick-bottom">주요 상품 (1개 기준)</th>
+              <th class="thick-right thick-bottom">주요 상품<br>(1개 기준)</th>
               <th class="thick-bottom">턴테이블</th>
               <th class="thick-bottom">앰프, CD플레이어</th>
-              <th class="thick-bottom">휠 붙은 타이어</th>
+              <th class="thick-bottom">휠 또는<br>휠 붙은 타이어</th>
               <th class="thick-bottom">낚시대</th>
               <th class="thick-bottom">악기 기타</th>
               <th class="thick-bottom">중형 스피커 1쌍</th>
@@ -546,7 +548,7 @@
               <th class="thick-right">포장비</th>
               <td>1,000</td>
               <td>500</td>
-              <td>500</td>
+              <td>1,000</td>
               <td>1,000</td>
               <td>500</td>
               <td>1,000</td>
@@ -560,27 +562,37 @@
         <table class="packing-cost-table">
           <thead>
             <tr>
-              <th class="thick-right thick-bottom">자주 통합되는 상품</th>
-              <th class="thick-bottom">술 2~5병</th>
-              <th class="thick-bottom">낚시대 2~10개</th>
-              <th class="thick-bottom">골프채 1~3개</th>
-              <th class="thick-bottom">훨 1~2개</th>
-              <th class="thick-bottom">도자기 다수</th>
-              <th class="thick-bottom">고정 요금 없는 상품 중 200CM↑ / 조립 장난감 / 포장 커스텀 요청</th>
+              <th class="thick-right thick-bottom">묶음 배송시</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">골프채</th>
+              <th class="thick-bottom">휠</th>
+              <th class="thick-bottom">도자기</th>
+              <th class="thick-bottom">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
+                        <tr>
+              <th class="thick-right thick-bottom">수량</th>
+              <th class="thick-bottom">2~5병 / 6~10병</th>
+              <th class="thick-bottom">2~10개</th>
+              <th class="thick-bottom">2~3개/4~6개/7~10개</th>
+              <th class="thick-bottom">2개 초과당</th>
+              <th class="thick-bottom">2개 이상</th>
+              <th class="thick-bottom"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th class="thick-right">포장비</th>
-              <td>500</td>
+              <th class="thick-right">총<br>포장비용</th>
+              <td>1,000/1,500</td>
               <td>1,500</td>
-              <td>500</td>
-              <td>500</td>
-              <td>1,000<br><span style="font-size:11px;color:#888">+박스당 500</span></td>
+              <td>500/1,000/1,500</td>
+              <td>1,000엔씩 추가</td>
+              <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
               <td>2,000~3,000</td>
             </tr>
           </tbody>
         </table>
+        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.</p>
       </div>
     </div>
   </div>
