@@ -64,7 +64,9 @@
   .payment-table th, .care-table th, .coupon-table th { background: #f5f7fa; border: 1px solid #dde1e7; padding: 10px 14px; text-align: left; font-weight: 500; color: #444; width: 160px; white-space: nowrap; vertical-align: middle; font-size: 13px; }
   .payment-table td, .care-table td, .coupon-table td { border: 1px solid #dde1e7; padding: 10px 14px; vertical-align: middle; font-size: 13px; }
   .member-badge { display: inline-flex; width:30px; align-items: center; justify-content: center; height: 18px; min-width: 32px; padding: 0 6px; border-radius: 3px; background: #0b3b82; color: #fff; font-size: 10px; font-weight: 700; vertical-align: middle; }
-  
+  .packing-cost-table th[rowspan] {
+  vertical-align: middle;
+}
   /* 구매 혜택 패널 */
   .benefit-panel { border: 1px solid #dde1e7; border-radius: 8px; overflow: hidden; margin-top: 6px; }
   .benefit-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f8fafd; }
@@ -559,39 +561,39 @@
             </tr>
           </tbody>
         </table>
-        <table class="packing-cost-table">
-          <thead>
-            <tr>
-              <th class="thick-right thick-bottom">묶음 배송시</th>
-              <th class="thick-bottom">술</th>
-              <th class="thick-bottom">낚시대</th>
-              <th class="thick-bottom">골프채</th>
-              <th class="thick-bottom">휠</th>
-              <th class="thick-bottom">도자기</th>
-              <th class="thick-bottom">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
-            </tr>
-                        <tr>
-              <th class="thick-right thick-bottom">수량</th>
-              <th class="thick-bottom">2~5병 / 6~10병</th>
-              <th class="thick-bottom">2~10개</th>
-              <th class="thick-bottom">2~3개/4~6개/7~10개</th>
-              <th class="thick-bottom">2개 초과당</th>
-              <th class="thick-bottom">2개 이상</th>
-              <th class="thick-bottom"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th class="thick-right">총<br>포장비용</th>
-              <td>1,000/1,500</td>
-              <td>1,500</td>
-              <td>500/1,000/1,500</td>
-              <td>1,000엔씩 추가</td>
-              <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
-              <td>2,000~3,000</td>
-            </tr>
-          </tbody>
-        </table>
+<table class="packing-cost-table">
+  <thead>
+    <tr>
+      <th class="thick-right thick-bottom">묶음 배송시</th>
+      <th class="thick-bottom">술</th>
+      <th class="thick-bottom">낚시대</th>
+      <th class="thick-bottom">골프채</th>
+      <th class="thick-bottom">휠</th>
+      <th class="thick-bottom">도자기</th>
+      <th class="thick-bottom" rowspan="2">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+    </tr>
+    <tr>
+      <th class="thick-right thick-bottom">수량</th>
+      <th class="thick-bottom">2~5병 / 6~10병</th>
+      <th class="thick-bottom">2~10개</th>
+      <th class="thick-bottom">1~3개/4~6개/7~10개</th>
+      <th class="thick-bottom">2개 초과당</th>
+      <th class="thick-bottom">2개 이상</th>
+      <!-- 여기 있던 마지막 <th></th> 삭제 -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="thick-right">총<br>포장비용</th>
+      <td>1,000/1,500</td>
+      <td>1,500</td>
+      <td>500/1,000/1,500</td>
+      <td>1,000엔씩 추가</td>
+      <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
+      <td>2,000~3,000</td>
+    </tr>
+  </tbody>
+</table>
         <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.</p>
       </div>
     </div>
