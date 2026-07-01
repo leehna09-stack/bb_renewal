@@ -200,10 +200,12 @@
     .product-thumb { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #e8e8e8; overflow: hidden; order: 0; }
     .product-thumb::before { content: "🇯🇵 야후옥션"; position: absolute; top: 11px; left: 11px; z-index: 1; height: 24px; padding: 0 10px; border-radius: 6px; background: rgba(255,255,255,.94); color: #143c76; font-size: 12px; font-weight: 800; line-height: 24px; box-shadow: 0 1px 2px rgba(30,42,60,.06); }
     .product-thumb::after { content: "\f03e"; position: absolute; inset: 0; display: grid; place-items: center; color: #969baa; font-family: "Font Awesome 6 Free"; font-size: 34px; font-weight: 400; }
+    .product-thumb.has-photo::after { display: none; }
+    .product-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .product-card:nth-child(4n+2) .product-thumb::before { content: "🇯🇵 메루카리"; }
     .product-card:nth-child(4n+3) .product-thumb::before { content: "🇯🇵 라쿠텐"; }
     .product-card:nth-child(4n+4) .product-thumb::before { content: "🇯🇵 야후옥션"; }
-    .appraisal-badge { position: absolute; top: 40px; left: 11px; z-index: 3; height: 22px; padding: 0 8px; border-radius: 5px; background: rgba(255,255,255,.94); color: #3a7d5e; font-size: 11px; font-weight: 800; line-height: 22px; box-shadow: 0 1px 2px rgba(30,42,60,.08); border: 1px solid rgba(58,125,94,.25); letter-spacing: -.2px; }
+    .appraisal-badge { position: absolute; top: 40px; left: 11px; z-index: 3; height: 25px; padding: 0 13px; border-radius: 5px; background: rgba(255,255,255,.94); color: #3a7d5e; font-size: 13px; font-weight: 800; line-height: 22px; box-shadow: 0 1px 2px rgba(30,42,60,.08); border: 1px solid rgba(58,125,94,.25); letter-spacing: -.2px; }
     .heart { position: absolute; top: 11px; right: 11px; z-index: 2; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.96); color: #657083; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; }
     .product-name { order: 2; margin: 0; padding: 12px 15px 0; overflow: hidden; color: #071836; font-size: 16px; font-weight: 500; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 61px; }
     .product-card > .seller { order: 1; align-self: flex-start; min-width: 51px; height: 27px; margin: -38px 0 0 12px; padding: 0 9px; border-radius: 6px; background: #153f77; color: #fff; font-size: 0; font-weight: 900; line-height: 27px; position: relative; z-index: 2; }
@@ -563,6 +565,7 @@
               <label class="choice"><input type="radio" name="seller" checked><span class="choice-text">전체</span></label>
               <label class="choice"><input type="radio" name="seller"><span class="choice-text">스토어</span></label>
               <label class="choice"><input type="radio" name="seller"><span class="choice-text">개인</span></label>
+              <label class="choice"><input type="radio" name="seller"><span class="choice-text">감정가능</span></label>
             </div>
           </div>
         </div>
@@ -589,6 +592,7 @@
       <h2 class="section-title" id="best-title">야후옥션 베스트</h2>
       <div class="product-grid">
         <article class="product-card"><div class="product-thumb"><span class="appraisal-badge">감정가능</span><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
@@ -650,6 +654,7 @@
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
         <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
       </div>
     </section>
     </div><!-- /.content-area -->
@@ -687,6 +692,30 @@
     let keywords = [];
     let withinKeywords = [];
     let mode = "main";
+
+    const productPhotoUrls = [
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=520&q=80"
+    ];
+    const shuffledProductPhotos = [...productPhotoUrls].sort(() => Math.random() - 0.5);
+
+    document.querySelectorAll(".product-thumb").forEach((thumb, index) => {
+      if (thumb.querySelector("img")) return;
+      const img = document.createElement("img");
+      img.src = shuffledProductPhotos[index % shuffledProductPhotos.length];
+      img.alt = "Product image";
+      img.loading = "lazy";
+      thumb.prepend(img);
+      thumb.classList.add("has-photo");
+    });
 
     // ── Mode switching ──
     function switchToSearch() {

@@ -154,7 +154,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .appraisal-banner-logo svg{width:22px;height:22px}
 .appraisal-banner-info{flex:1;min-width:0}
 .appraisal-banner-title{font-size:12px;color:var(--tp);font-weight:500;display:flex;align-items:center;gap:6px}
-.appraisal-banner-detail{font-size:11px;color:var(--green);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.appraisal-banner-detail{font-size:11px;color:var(--rose);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
 .appraisal-banner-fee{font-size:12px;color:var(--ts);margin-top:2px}
 .appraisal-banner-fee strong{color:var(--tp);font-weight:700}
 
@@ -480,13 +480,15 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bp-price-badges{display:flex;align-items:center;gap:6px;flex-basis:100%;margin-top:2px}
 .fee-tooltip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:5px;border-radius:50%;background:#F0F2F5;color:var(--ts);font-size:11px;font-weight:800;cursor:help;vertical-align:middle}
 .bp-badge.fee-tooltip{width:auto;height:auto;margin-left:0;border-radius:5px;background:#EEF2F9;color:var(--navy)}
+.bp-yahoobadge.fee-tooltip{width:auto;height:auto;margin-left:0;border-radius:5px;background:#faeded;color:var(--rose)}
 .fee-tooltip::after{content:attr(data-tooltip);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:max-content;max-width:260px;padding:8px 10px;border-radius:8px;background:#273142;color:#fff;font-size:12px;font-weight:500;line-height:1.45;white-space:normal;box-shadow:0 8px 24px rgba(0,0,0,.16);opacity:0;visibility:hidden;transition:opacity .15s,visibility .15s;z-index:20}
 .fee-tooltip::before{content:'';position:absolute;left:50%;bottom:calc(100% + 3px);transform:translateX(-50%);border:5px solid transparent;border-top-color:#273142;opacity:0;visibility:hidden;transition:opacity .15s,visibility .15s;z-index:21}
 .fee-tooltip:hover::after,.fee-tooltip:hover::before{opacity:1;visibility:visible}
 .bid-count-link{align-self:flex-start;border:none;background:none;padding:0;color:var(--navy);font:inherit;font-weight:700;text-align:left;text-decoration:underline;cursor:pointer}
 .bid-history-modal-card{width:min(560px,calc(100vw - 32px))}
 .bid-history-modal-card .confirm-modal-body{max-height:70vh;overflow:auto}
-.bp-badge{font-size:11px;font-weight:600;color:var(--navy);background:#EEF2F9;border:1px solid #C5D0E6;padding:2px 8px;border-radius:5px;cursor:help}
+.bp-badge{font-size:11px;font-weight:600;color:var(--navy);background:#EEF2F9;border:1px solid #C5D0E6;padding:2px 3px;border-radius:5px;cursor:help}
+.bp-yahoobadge{font-size:11px;font-weight:600;color:var(--navy);background:#EEF2F9;border:1px solid var(--rose);padding:2px 3px;border-radius:5px;cursor:help}
 
 /* ④ 비딩금액 + 수량 */
 .bid-inline-row{display:flex;gap:12px;align-items:center;min-height:39px}
@@ -885,7 +887,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       </div>
       <div class="appraisal-banner-info">
         <div class="appraisal-banner-title">
-          감정을 사용할 수 있습니다.
+          야후 감정 신청이 가능한 상품입니다.
           <span class="appraisal-banner-detail" onclick="openAppraisalModal()">상세</span>
         </div>
         <div class="appraisal-banner-fee">감정료 <strong>2,500 엔</strong></div>
@@ -901,7 +903,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <table class="seller-info-table">
         <tr><th>출품자위치</th><td>사이타마현</td></tr>
         <tr><th>출품자평가</th><td><span class="roboto">939</span> <span style="color:var(--ts);font-size:11px">(940 / 1)</span></td></tr>
-        <tr><th>피드백</th><td><span style="color:var(--green);font-weight:700">99.9%</span></td></tr>
+        <tr><th>피드백</th><td><span style="color:var(--rose);font-weight:700">99.9%</span></td></tr>
       </table>
     </div>
 
@@ -950,9 +952,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           <div class="bp-price-section">
             <div class="bp-price-row" style="align-items:center">
               <span class="bp-price-label">물품아이디</span>
-              <div style="display:flex;align-items:center;gap:8px">
+              <div style="display:flex;align-items:center;gap:3px">
                 <span class="roboto" style="font-size:13px;font-weight:700;color:var(--navy)">j1232333613</span>
                 <span class="bp-badge fee-tooltip" data-tooltip="출품자가 종료시간보다 앞당겨 경매를 끝내고 낙찰자를 즉시 확정할수 있는 경매건입니다.">조기종료</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:3px">
+                <span class="bp-yahoobadge fee-tooltip" data-tooltip="낙찰후 감정서비스 신청시 야후 자체 감정후 배송을 시작하는 상품입니다.">야후 안심 감정</span>
               </div>
             </div>
             <!-- 즉결가격 행 다음에 추가 -->

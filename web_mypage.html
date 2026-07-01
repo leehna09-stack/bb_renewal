@@ -312,10 +312,12 @@
 
     .section { margin-top: 44px; }
     .section-head {
-      min-height: 32px;
+      min-height: 42px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 7px;
       border-bottom: 1.5px solid var(--rose);
     }
     .section-title {
@@ -336,6 +338,27 @@
       font-size: 10px;
       font-weight: 700;
     }
+    .status-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      margin: 0;
+    }
+    .outline-pill {
+      height: 31px;
+      padding: 0 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #8a7f7a;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
 
     .status-board {
       display: grid;
@@ -343,6 +366,8 @@
       align-items: stretch;
       column-gap: 20px;
       row-gap: 12px;
+      width: 100%;
+      margin-left: 0;
       padding: 22px 0 0;
     }
     .status-step {
@@ -357,21 +382,26 @@
       right: -13px;
       width: 7px;
       height: 7px;
-      border-top: 2px solid #c8c1bd;
-      border-right: 2px solid #c8c1bd;
+      border-top: 1.5px solid #b5bac2;
+      border-right: 1.5px solid #b5bac2;
       transform: translateY(-50%) rotate(45deg);
+      pointer-events: none;
     }
     .status-card {
       min-height: 151px;
       display: grid;
       place-items: center;
-      padding: 16px 10px;
+      padding: 10px 8px;
       border: 1px solid #ded8d5;
       border-radius: 7px;
       background: #fff;
       color: #383b40;
       text-align: center;
+      overflow: hidden;
       transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .status-card > div {
+      width: 100%;
     }
     .status-card:hover,
     .status-card:focus-visible {
@@ -388,22 +418,24 @@
     }
     .status-card em {
       display: block;
-      color: #343b48;
-      font-size: 25px;
-      line-height: 1;
+      margin-bottom: 5px;
+      color: #3c3f45;
       font-style: normal;
+      font-size: 18px;
       font-weight: 900;
+      line-height: 1;
     }
     .status-card em.hot {
       color: var(--rose);
     }
     .status-card strong {
       display: block;
-      margin-top: 9px;
-      color: #333943;
+      color: #3e4249;
       font-size: 13px;
-      line-height: 1.35;
-      font-weight: 800;
+      font-weight: 600;
+      line-height: 1.45;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .table-wrap {
@@ -649,6 +681,10 @@
       <section class="section" aria-labelledby="order-status-title">
         <div class="section-head">
           <h1 class="section-title" id="order-status-title">나의 거래 현황</h1>
+          <div class="status-links">
+            <a class="outline-pill" href="web_mainlist.html">거래완료</a>
+            <a class="outline-pill" href="web_mainlist.html">취소/반품</a>
+          </div>
         </div>
         <div class="status-board">
           <div class="status-step status-stack">
@@ -771,21 +807,21 @@
                 <td>BJP0220006636</td>
                 <td class="memo-product">[일본구매대행 - 라쿠텐] BJP0220006636　指輪 リング レディース ニッケルフリー 金属アレルギー アクセサリー...</td>
                 <td>2026.06.26</td>
-                <td><button class="memo-btn" type="button" onclick="location.href='web_user_memo.html'">메모 보기</button></td>
+                <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
               </tr>
               <tr>
                 <td><span class="flag" aria-label="일본"></span></td>
                 <td>BJP0219728972</td>
                 <td class="memo-product">[일본구매대행 - 메루카리] BJP0219728972　いきもの大図鑑アドバンス　モトイカブトトカゲ</td>
                 <td>2026.06.18</td>
-                <td><button class="memo-btn" type="button" onclick="location.href='web_user_memo.html'">메모 보기</button></td>
+                <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
               </tr>
               <tr>
                 <td><span class="flag" aria-label="일본"></span></td>
                 <td>BJP0216069884</td>
                 <td class="memo-product">[일본구매대행 - 야후쇼핑] BJP0216069884　メダリスト ワンデープラス マキシボックス 90枚 2箱...</td>
                 <td>2026.03.04</td>
-                <td><button class="memo-btn" type="button" onclick="location.href='web_user_memo.html'">메모 보기</button></td>
+                <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
               </tr>
             </tbody>
           </table>

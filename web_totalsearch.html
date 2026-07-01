@@ -927,6 +927,17 @@
       font-weight: 400;
     }
 
+    .product-thumb.has-photo::after {
+      display: none;
+    }
+
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     .product-card:nth-child(4n+2) .product-thumb::before {
       content: "🇯🇵 메루카리";
     }
@@ -1764,6 +1775,30 @@
       ? initialQuery.trim().split(/\s+/).filter(Boolean)
       : ["나이키", "박스"];
     let withinKeywords = [];
+
+    const productPhotoUrls = [
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=520&q=80",
+      "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=520&q=80"
+    ];
+    const shuffledProductPhotos = [...productPhotoUrls].sort(() => Math.random() - 0.5);
+
+    document.querySelectorAll(".product-thumb").forEach((thumb, index) => {
+      if (thumb.querySelector("img")) return;
+      const img = document.createElement("img");
+      img.src = shuffledProductPhotos[index % shuffledProductPhotos.length];
+      img.alt = "Product image";
+      img.loading = "lazy";
+      thumb.prepend(img);
+      thumb.classList.add("has-photo");
+    });
 
     // Market Tab 클릭 이벤트 (멀티 선택 토글 + 스토어 아이콘 연동)
     marketTabs.forEach(tab => {

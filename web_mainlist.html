@@ -654,7 +654,7 @@
 
     .main {
       min-width: 0;
-      padding-top: 58px;
+      padding-top: 0;
       padding-bottom: 40px;
     }
 
@@ -663,13 +663,22 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin: 0 27px 11px 6px;
+      min-height: 42px;
+      margin: 0;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid var(--rose);
     }
 
-    .shopping-head h2,
+    .shopping-head h2 {
+      margin: 0;
+      color: var(--rose);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
     .list-title {
       margin: 0;
-      color: #2b2f37;
+      color: var(--rose);
       font-size: 15px;
       font-weight: 900;
     }
@@ -677,28 +686,35 @@
     .status-links {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 16px;
+      margin: 0;
     }
 
     .outline-pill {
       height: 31px;
       padding: 0 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: #fff;
       color: #8a7f7a;
       font-size: 12px;
       font-weight: 700;
+      text-decoration: none;
     }
 
     .status-board {
       display: grid;
       grid-template-columns: 1.45fr repeat(6, minmax(0, 1fr));
+      align-items: stretch;
       column-gap: 20px;
       row-gap: 12px;
-      align-items: stretch;
       width: 100%;
       margin-left: 0;
+      padding: 22px 0 0;
     }
 
     .status-step {
@@ -832,12 +848,22 @@
       margin-top: 56px;
     }
 
+    .trade-head {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid var(--rose);
+    }
+
     .filter-row {
       min-height: 34px;
       display: flex;
       align-items: center;
       gap: 22px;
-      margin-bottom: 9px;
+      margin: 12px 0 9px;
     }
 
     .filter-group,
@@ -2025,8 +2051,10 @@
         </section>
 
         <section class="trade-area" aria-labelledby="trade-list-title">
-          <div class="filter-row">
+          <div class="trade-head">
             <h2 class="list-title" id="trade-list-title">거래 전체 목록</h2>
+          </div>
+          <div class="filter-row">
             <div class="filter-group" aria-label="거래 유형">
               <button class="tab active" type="button" data-trade-type="">전체</button>
               <button class="tab" type="button" data-trade-type="auction">경매</button>
