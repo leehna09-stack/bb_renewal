@@ -424,6 +424,21 @@
     .modal-body { max-height: 70vh; overflow-y: auto; padding: 20px; font-size: 13px; line-height: 1.8; color: #333; }
     .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
     .modal-body li { margin-bottom: 10px; }
+
+    /* ── 보강 포장 비용 모달 ── */
+    .packing-modal { width: min(1120px,100%); }
+    .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
+    .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
+    .packing-table-wrap { overflow-x: auto; }
+    .packing-cost-table { width: 100%; min-width: 980px; border-collapse: collapse; border: 3px solid #9a9a9a; color: #5f6770; font-size: 13px; text-align: center; }
+    .packing-cost-table + .packing-cost-table { margin-top: 30px; }
+    .packing-cost-table th, .packing-cost-table td { border: 1px solid #e7e7e7; padding: 7px 8px; line-height: 1.35; vertical-align: middle; white-space: nowrap; }
+    .packing-cost-table thead th { background: #f4f4f4; font-weight: 700; }
+    .packing-cost-table th[rowspan] { vertical-align: middle; }
+    .packing-cost-table .thick-right { border-right: 3px solid #9a9a9a; }
+    .packing-cost-table .thick-bottom { border-bottom: 3px solid #9a9a9a; }
+    .packing-cost-table .tier-note { display: block; color: #888; font-size: 11px; font-weight: 400; margin-top: 2px; }
+    .packing-note { margin: 10px 0 0; color: #888; font-size: 12px; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -700,6 +715,35 @@
         </div>
       </div>
 
+      <!-- 유료 옵션 서비스 -->
+      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">유료 옵션 서비스 (선택)</div>
+      <table class="paid-option-table">
+        <tbody>
+          <tr>
+            <th>
+              <span class="paid-option-name">튼튼 포장</span>
+            </th>
+            <td class="paid-option-choice">
+              <label class="option-toggle-label">
+                <input type="checkbox" class="option-chk" id="packingChk" data-paid-option-yen="500" aria-label="튼튼 포장 신청">
+                <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                <span class="option-toggle-text">미신청</span>
+              </label>
+              <div class="paid-option-desc">
+                <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 해당 옵션을 선택해 주세요.</p>
+                <ul>
+                  <li>신청 시 파손 위험을 줄이기 위한 보강 포장이 진행됩니다.</li>
+                  <li>보강 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
+                  <li>품목별 포장 비용은 하단의 [보강 포장 비용 안내]를 참고해 주세요.</li>
+                  <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
+                </ul>
+                <button class="paid-option-detail packing-cost-detail" type="button">보강 포장 비용 안내</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <!-- 수취인 정보 -->
       <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">수취인 정보</div>
       <table class="info-table">
@@ -842,6 +886,88 @@
         <li>구성품 누락, 진품·가품 여부 등 현지 입고 시 확인이 어려운 상품</li>
         <li>단순 기스, 올 풀림, 오염, 찍힘 등 경미한 손상</li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 보강 포장 비용 참고표 모달 -->
+<div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
+  <div class="modal packing-modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="packingCostModalTitle">보강 포장 비용 안내</h2>
+      <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="packing-modal-meta">
+        <p class="packing-unit">단위 : 엔(円)</p>
+      </div>
+      <div class="packing-table-wrap">
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">주요 상품<br>(1개 기준)</th>
+              <th class="thick-bottom">턴테이블</th>
+              <th class="thick-bottom">앰프, CD플레이어</th>
+              <th class="thick-bottom">휠 또는<br>휠 붙은 타이어</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">악기 기타</th>
+              <th class="thick-bottom">중형 스피커 1쌍</th>
+              <th class="thick-bottom">대형 스피커 1쌍</th>
+              <th class="thick-bottom">범퍼</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">도자기</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">포장비</th>
+              <td>1,000</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>1,000</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>2,000</td>
+              <td>1,500</td>
+              <td>500</td>
+              <td>500</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">묶음 배송시</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">골프채</th>
+              <th class="thick-bottom">휠</th>
+              <th class="thick-bottom">도자기</th>
+              <th class="thick-bottom" rowspan="2">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
+            <tr>
+              <th class="thick-right thick-bottom">수량</th>
+              <th class="thick-bottom">2~5병 / 6~10병</th>
+              <th class="thick-bottom">2~10개</th>
+              <th class="thick-bottom">1~3개/4~6개/7~10개</th>
+              <th class="thick-bottom">2개 초과당</th>
+              <th class="thick-bottom">2개 이상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">총<br>포장비용</th>
+              <td>1,000/1,500</td>
+              <td>1,500</td>
+              <td>500/1,000/1,500</td>
+              <td>1,000엔씩 추가</td>
+              <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
+              <td>2,000~3,000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1000,17 +1126,35 @@
     }
   });
 
-  // ── 안심케어 플러스 토글 ──
-  var optionChk = document.querySelector('.option-chk');
-  var toggleText = document.querySelector('.option-toggle-text');
-  if (optionChk && toggleText) {
-    optionChk.addEventListener('change', function() {
-      toggleText.textContent = this.checked ? '신청' : '미신청';
-      toggleText.classList.toggle('active', this.checked);
+  // ── 유료 옵션 토글 (안심케어 플러스 / 튼튼 포장) ──
+  document.querySelectorAll('.option-chk').forEach(function(chk) {
+    var text = chk.closest('label')?.querySelector('.option-toggle-text');
+    chk.addEventListener('change', function() {
+      if (!text) return;
+      text.textContent = this.checked ? '신청' : '미신청';
+      text.classList.toggle('active', this.checked);
     });
-  }
+  });
 
   syncCarePlusAvailability();
+
+  // ── 보강 포장 비용 안내 모달 ──
+  (function() {
+    var btn = document.querySelector('.packing-cost-detail');
+    var modal = document.getElementById('packingCostModal');
+    var close = document.getElementById('packingCostModalClose');
+    if (!btn || !modal || !close) return;
+    var show = function() { modal.hidden = false; modal.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
+    var hide = function() {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      requestAnimationFrame(function() { if (!modal.classList.contains('is-open')) modal.hidden = true; });
+    };
+    btn.addEventListener('click', show);
+    close.addEventListener('click', hide);
+    modal.addEventListener('click', function(e) { if (e.target === modal) hide(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) hide(); });
+  })();
 
   // ── 파손보상 불가 품목 모달 ──
   var damageModal = document.getElementById('damageModal');
@@ -1049,5 +1193,4 @@
   }
 </script>
 <script src="../bb-common.js"></script>
-</body>
-</html>
+</b
