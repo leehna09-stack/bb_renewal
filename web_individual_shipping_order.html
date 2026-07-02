@@ -190,8 +190,10 @@
       text-align: center;
     }
     .order-table .product-info { text-align: left; }
-    .order-table .product-info .item-id { font-size: 12px; color: #666; margin-bottom: 4px; }
     .order-table .product-info .item-name { font-size: 13px; color: #222; line-height: 1.5; }
+    .product-market { display: block; margin-bottom: 4px; color: #59606d; font-size: 11px; font-weight: 700; }
+    .product-market .flag { display: inline-block; width: 16px; height: 11px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); vertical-align: -1px; margin-right: 5px; background: #fff center / cover no-repeat; }
+    .product-market .flag.jp { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23ffffff'/%3E%3Ccircle cx='15' cy='10' r='6' fill='%23bc002d'/%3E%3C/svg%3E"); }
     .order-table .price-cell { font-family: 'Roboto', sans-serif; font-weight: 700; color: #1A3C6E; font-size: 14px; white-space: nowrap; }
     .order-table .date-cell { font-family: 'Roboto', sans-serif; font-size: 12px; color: #666; white-space: nowrap; }
     .thumb-placeholder { width: 60px; height: 60px; background: #3a4a6b; border-radius: 4px; display: inline-block; }
@@ -258,42 +260,6 @@
       word-break: keep-all;
       line-height: 1.6;
     }
-    .pickup-date-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 20px;
-      align-items: stretch;
-      margin: -12px 0 28px;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
-    }
-    .pickup-date-panel[hidden] { display: none; }
-    .pickup-date-guide { display: grid; gap: 8px; color: #444; font-size: 12px; line-height: 1.7; }
-    .pickup-date-guide__title { color: #1f2530; font-size: 13px; font-weight: 800; }
-    .pickup-date-guide p { margin: 0; }
-    .pickup-date-guide ul { margin: 0; padding-left: 0; list-style: none; color: #555; }
-    .pickup-date-picker {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 8px;
-      padding-left: 20px;
-      border-left: 1px solid var(--line-soft);
-    }
-    .pickup-date-picker label { font-size: 12px; font-weight: 800; color: #2b2f37; }
-    .pickup-date-picker input {
-      width: 100%;
-      height: 42px;
-      border: 1px solid #d3d8df;
-      border-radius: 6px;
-      padding: 0 12px;
-      color: #111;
-      font-size: 13px;
-      font-family: inherit;
-    }
-    .pickup-date-alert { min-height: 18px; color: var(--rose); font-size: 12px; font-weight: 700; }
 
     /* ── 유료옵션 테이블 ── */
     .paid-option-table { border-collapse: collapse; width: 100%; margin-bottom: 28px; }
@@ -318,6 +284,7 @@
     .option-toggle-text { font-size: 13px; font-weight: 500; color: #888; min-width: 36px; }
     .option-toggle-text.active { color: #3AAD4E; }
     .bold-red { font-weight: 700; color: var(--rose); }
+    .recipient-section-title .title-note { margin-left: 10px; color: var(--rose); font-size: 13px; font-weight: 500; }
     .paid-option-detail.damage-detail { height: 30px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
     .paid-option-detail.care-guide-detail { height: 30px; margin-left: 8px; padding: 0 12px; border: 1px solid var(--rose); border-radius: 4px; background: #fff; color: var(--rose); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
 
@@ -402,13 +369,13 @@
     .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
     .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
     .packing-table-wrap { overflow-x: auto; }
-    .packing-cost-table { width: 100%; min-width: 980px; border-collapse: collapse; border: 3px solid #9a9a9a; color: #5f6770; font-size: 13px; text-align: center; }
+    .packing-cost-table { width: 100%; min-width: 980px; border-collapse: collapse; border: 1px solid #d7dce3; color: #5f6770; font-size: 13px; text-align: center; }
     .packing-cost-table + .packing-cost-table { margin-top: 30px; }
     .packing-cost-table th, .packing-cost-table td { border: 1px solid #e7e7e7; padding: 7px 8px; line-height: 1.35; vertical-align: middle; white-space: nowrap; }
     .packing-cost-table thead th { background: #f4f4f4; font-weight: 700; }
     .packing-cost-table th[rowspan] { vertical-align: middle; }
-    .packing-cost-table .thick-right { border-right: 3px solid #9a9a9a; }
-    .packing-cost-table .thick-bottom { border-bottom: 3px solid #9a9a9a; }
+    .packing-cost-table .thick-right { border-right: 1px solid #d7dce3; }
+    .packing-cost-table .thick-bottom { border-bottom: 1px solid #d7dce3; }
     .packing-cost-table .tier-note { display: block; color: #888; font-size: 11px; font-weight: 400; margin-top: 2px; }
     .packing-note { margin: 10px 0 0; color: #888; font-size: 12px; line-height: 1.6; }
   </style>
@@ -579,7 +546,7 @@
             <td class="date-cell">2026.06.18</td>
             <td><div class="thumb-placeholder"></div></td>
             <td class="product-info">
-              <div class="item-id">[YAHOO] n1233331631</div>
+              <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - n1233331631</div>
               <div class="item-name">VM6-031 오닉스 목걸이 귀걸이 세트 액세서리 케이스 포함</div>
             </td>
             <td class="price-cell"><a href="#" class="price-link">300 엔</a></td>
@@ -639,23 +606,6 @@
         </tbody>
       </table>
 
-      <div class="pickup-date-panel" id="pickupDatePanel" hidden>
-        <div class="pickup-date-guide">
-          <div class="pickup-date-guide__title">인수희망 날짜 지정 :</div>
-          <p>상품 미도착시, 현지도착일을 기준으로 5일 이후</p>
-          <p>현지도착 상품의 경우 일본내 배송요청 일자로부터 5일 이후</p>
-          <ul>
-            <li>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</li>
-            <li>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</li>
-          </ul>
-        </div>
-        <div class="pickup-date-picker">
-          <label for="pickupDateInput">인수희망 날짜</label>
-          <input type="date" id="pickupDateInput" aria-describedby="pickupDateAlert">
-          <div class="pickup-date-alert" id="pickupDateAlert" aria-live="polite"></div>
-        </div>
-      </div>
-
       <!-- 유료 옵션 서비스 -->
       <table class="care-table paid-option-table">
         <tbody>
@@ -681,7 +631,7 @@
               </div>
             </td>
           </tr>
-          <tr>
+          <tr class="care-plus-option-row">
             <th>
               <span class="paid-option-name">안심 케어 플러스</span>
               <span class="paid-option-price">+ 1,000엔</span>
@@ -716,7 +666,7 @@
       </table>
 
       <!-- 수취인 정보 -->
-      <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">수취인 정보</div>
+      <div class="section-title recipient-section-title">수취인 정보<span class="title-note" hidden>※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
       <table class="info-table">
         <tbody>
           <tr>
@@ -964,12 +914,12 @@
       days: '7 ~ 12일'
     },
     '일본내배송': {
-      feature: '* 현지배송 선택시 수수료 <strong>건당 ￥1,000 별도 발생</strong><br>* 파손 및 보상기준<br>물품의 파손 및 상품이상 등의 클레임 대행 일절 불가<br>(직접 택배사에 접수 필요)<br>* 인수희망 날짜 지정 :<br>상품 미도착시, 현지도착일을 기준으로 5일 이후<br>현지도착 상품의 경우 현지배송요청 일자로부터 5일 이후<br><strong>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</strong><br><strong>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</strong><br>* 인수 희망 날짜 지정은 반드시 메모로 신청바랍니다.',
+      feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br>',
       size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
-      days: '3 ~ 5일'
+      days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 인수희망일 신청<br>물품 입고일로부 <strong class="bold-red">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
     },
     '최저가배송': {
-      feature: '* 최저가 배송은 물품의 무게/부피를 모르는 상태에서 국제운송방법 선택이 어려운 회원님을 위해 만들었습니다.<br>* 물품이 도착하면 배송팀에서 포장 이후 국제배송료가 가장 저렴한 운송 방법으로 2차 결제 안내를 올려드립니다.<br>* 단, 배송기간, 통관절차 등은 고려하지 않고 오로지 국제 운송료만을 기준으로 진행합니다.',
+      feature: '* 최저가 배송은 물품의 무게와 부피를 미리 알기 어려워 국제운송 방법을 정하기 힘든 회원님을 위한 서비스입니다.<br>* 물품이 현지에 도착해 포장이 완료되면, 국제배송료가 가장 저렴한 운송 방법으로 2차 결제를 안내해 드립니다.<br>* 단, 배송기간과 통관절차는 고려하지 않으며 오직 국제 운송료만을 기준으로 방법을 선택합니다.',
       size: '* 운송방법에 따라 다름',
       days: '* 운송방법에 따라 다름'
     }
@@ -985,11 +935,26 @@
   const dateWarningText = '[해당 날짜로 지정할수없습니다]';
   const domesticRecipientRows = Array.from(document.querySelectorAll('.domestic-recipient-row'));
   const japanRecipientRows = Array.from(document.querySelectorAll('.japan-recipient-row'));
+  const recipientTitleNote = document.querySelector('.recipient-section-title .title-note');
+  const carePlusOptionRow = document.querySelector('.care-plus-option-row');
 
   function updateRecipientForm() {
     const isJapan = shippingMethodSelect && shippingMethodSelect.value === '일본내배송';
     domesticRecipientRows.forEach(function(r) { r.hidden = isJapan; });
     japanRecipientRows.forEach(function(r) { r.hidden = !isJapan; });
+    if (recipientTitleNote) recipientTitleNote.hidden = !isJapan;
+    if (carePlusOptionRow) {
+      carePlusOptionRow.hidden = isJapan;
+      if (isJapan) {
+        var carePlusChk = carePlusOptionRow.querySelector('.option-chk');
+        var carePlusText = carePlusOptionRow.querySelector('.option-toggle-text');
+        if (carePlusChk) carePlusChk.checked = false;
+        if (carePlusText) {
+          carePlusText.textContent = '미신청';
+          carePlusText.classList.remove('active');
+        }
+      }
+    }
   }
 
   function formatDateValue(date) {
