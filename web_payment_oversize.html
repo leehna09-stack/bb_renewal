@@ -160,7 +160,7 @@
     }
     .order-page-head__sub {
       margin: 0;
-      font-size: 15px; font-weight: 900; color: #000;
+      font-size: 20px; font-weight: 900; color: #000;
       line-height: 1.35;
     }
     .order-page-head__title {
@@ -346,10 +346,12 @@
     }
     .order-item__name-ko { font-size: 15px; font-weight: 900; color: #101827; letter-spacing: 0; line-height: 1.45; }
     .order-item__name-origin { font-size: 12px; font-weight: 500; color: #9ca3af; }
-    .order-item__meta-list { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 16px 18px; margin: 0; }
-    .order-item__meta-list dt { position: relative; font-size: 13px; font-weight: 700; color: #6d7481; }
-    .order-item__meta-list dt::before { content: ""; margin: 0; }
-    .order-item__meta-list dd { margin: 0; font-size: 13px; color: #263142; }
+    .order-item__meta-list { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 0; margin: 0; padding: 0 16px; }
+    .order-item__meta-list dt { position: relative; font-size: 13px; font-weight: 600; color: var(--ts); line-height: 1.55; padding: 7px 18px 7px 0; border-bottom: 0.5px solid var(--line); }
+    .order-item__meta-list dt::before { content: ""; margin: 10px 0; }
+    .order-item__meta-list dd { margin: 0; font-size: 13px; color: #000; line-height: 1.55; padding: 7px 0; border-bottom: 0.5px solid var(--line); }
+    .order-item__meta-list dt:last-of-type,
+    .order-item__meta-list dd:last-of-type { border-bottom: none; }
     .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin: 2px 0 0; }
     .order-status-card {
       grid-area: status;
@@ -368,15 +370,18 @@
     .order-status-card__list {
       display: grid;
       grid-template-columns: 100px minmax(0, 1fr);
-      gap: 16px 18px;
+      gap: 0;
       margin: 0;
-      font-size: 14px;
-      color: #263142;
+      padding: 0 16px;
+      font-size: 13px;
+      color: #000;
     }
-    .order-status-card__list dt { font-weight: 700; color: #6d7481; }
+    .order-status-card__list dt { font-size: 13px; font-weight: 600; color: var(--ts); line-height: 1.55; padding: 7px 18px 7px 0; border-bottom: 0.5px solid var(--line); }
     .order-status-card__list dt::before { content: ""; margin: 0; }
-    .order-status-card__list dd { margin: 0; font-family: 'Roboto', sans-serif; font-weight: 500; color: #263142; }
-    .order-status-card__list dd strong { font-weight: 900; }
+    .order-status-card__list dd { margin: 0; font-size: 13px; color: #000; line-height: 1.55; padding: 7px 0; border-bottom: 0.5px solid var(--line); }
+    .order-status-card__list dd strong { font-weight: 700; }
+    .order-status-card__list dt:last-of-type,
+    .order-status-card__list dd:last-of-type { border-bottom: none; }
     .order-item__badge {
       display: none;
     }
@@ -415,7 +420,6 @@
       border: 1px solid var(--line); border-radius: 10px;
       background: #fff;
     }
-    .order-list-box.order-list-box--flush { padding: 0; border: none; background: transparent; }
 
     /* 주문배송정보 좌우 분할 */
     .order-info-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -561,12 +565,101 @@
     }
     .payment-switch__btn:hover { border-color: var(--navy); background: #f7f9fc; }
 
+    .shipping-fee-compare {
+      margin-top: 12px;
+      border: 1px solid #cfcfcf;
+      background: #fff;
+    }
+    .shipping-fee-compare__notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #d8d8d8;
+      background: #fff8f0;
+      color: #7a4c00;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .shipping-fee-compare__notice i {
+      margin-top: 2px;
+      color: #d4891a;
+      font-size: 13px;
+    }
+    .shipping-fee-compare__table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+      color: #333;
+    }
+    .shipping-fee-compare__table th,
+    .shipping-fee-compare__table td {
+      border: 1px solid #cfcfcf;
+      padding: 6px 8px;
+      vertical-align: middle;
+    }
+    .shipping-fee-compare__table th {
+      width: 116px;
+      background: #fff1f1;
+      color: #555;
+      text-align: center;
+      font-weight: 500;
+    }
+    .shipping-fee-compare__table td { background: #fff; }
+    .shipping-fee-compare__input {
+      width: 64px;
+      height: 22px;
+      border: 1px solid #aaa;
+      padding: 0 6px;
+      font-size: 12px;
+      color: #111;
+      background: #fff;
+    }
+    .shipping-fee-compare__unit {
+      display: inline-block;
+      margin: 0 6px;
+      color: #555;
+    }
+    .shipping-fee-compare__btn {
+      height: 24px;
+      padding: 0 10px;
+      border: 1px solid #aaa;
+      background: #eee;
+      color: #c00;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .shipping-fee-compare__price-table {
+      width: 100%;
+      margin-top: 6px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+    }
+    .shipping-fee-compare__price-table th {
+      width: auto;
+      padding: 6px 8px;
+      background: #f0f0f0;
+      color: #555;
+      border: 1px solid #cfcfcf;
+      font-weight: 500;
+    }
+    .shipping-fee-compare__price-table td {
+      padding: 7px 8px;
+      border: 1px solid #cfcfcf;
+      line-height: 1.55;
+      background: #fff;
+    }
+
     /* 본문 풀폭 스택에서 우측 메모/묶음 카드 기본 패딩 보정 */
     .order__stack .order-list-box { padding: 24px; }
     @media (max-width: 600px) {
       .order-page-head { gap: 18px; }
       .order-page-head__row { align-items: flex-start; }
-      .order-page-head__sub { font-size: 15px; }
+      .order-page-head__sub { font-size: 21px; }
       .order-item {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -583,7 +676,7 @@
       .order-item__name-ko { font-size: 18px; }
       .order-item__name-origin { font-size: 14px; }
       .order-item__meta-list,
-      .order-status-card__list { grid-template-columns: 104px 1fr; gap: 14px 14px; }
+      .order-status-card__list { grid-template-columns: 104px 1fr; gap: 0 14px; }
       .order-item__meta-list dt,
       .order-item__meta-list dd,
       .order-status-card__list dt,
@@ -595,19 +688,41 @@
       .pay-foot { margin-top: 14px; }
     }
 
-    /* 묶음배송 구성 상품 테이블 - 5행 초과 시 스크롤 */
-    .bundle-table-wrap { max-height: 494px; overflow-y: auto; border: 1px solid #dde1e7; border-radius: 8px; }
-    .bundle-order-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .bundle-order-table thead th { position: sticky; top: 0; z-index: 1; background: #f5f7fa; border-bottom: 1px solid #dde1e7; padding: 10px 12px; text-align: center; font-weight: 500; color: #444; white-space: nowrap; }
-    .bundle-order-table tbody td { border-bottom: 1px solid #dde1e7; padding: 10px 12px; vertical-align: middle; color: #333; text-align: center; }
-    .bundle-order-table tbody tr:last-child td { border-bottom: none; }
-    .bundle-order-table .product-info { text-align: left; }
-    .bundle-order-table .item-tag { display: block; font-size: 12px; color: #666; margin-bottom: 4px; }
-    .bundle-order-table .item-name { font-size: 13px; color: #222; line-height: 1.5; }
-    .bundle-order-table .price-cell { font-family: 'Roboto', sans-serif; font-weight: 700; color: #1A3C6E; font-size: 14px; white-space: nowrap; }
-    .bundle-order-table .date-cell { font-family: 'Roboto', sans-serif; font-size: 12px; color: #666; white-space: nowrap; }
-    .bundle-thumb { width: 60px; height: 60px; flex-shrink: 0; border-radius: 6px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 20px; }
-    .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    /* 묶음배송 리스트 - 2열 그리드 */
+    .bundle-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-height: calc(4 * 72px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ddd transparent;
+    }
+    .bundle-item__box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid #f2f2f2;
+      border-right: 1px solid #f2f2f2;
+      min-height: 72px;
+    }
+    .bundle-item__box:nth-child(2n) { border-right: none; }
+    .bundle-item__box:nth-last-child(-n+2) { border-bottom: none; }
+    .bundle-item__box .img-wrap { width: 44px; height: 44px; flex-shrink: 0; border-radius: 6px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 16px; }
+    .bundle-item__box .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .bundle-item__details { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+    .bundle-item__top { display: flex; align-items: center; gap: 5px; }
+    .bundle-item__market { display: inline-flex; align-items: center; gap: 3px; background: #fff3f6; color: var(--rose); font-size: 10px; font-weight: 800; padding: 1px 5px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; }
+    .bundle-item__market .platform__flag { width: 10px; height: 10px; }
+    .bundle-item__market .platform__flag img { width: 10px; height: 10px; }
+    .bundle-item__orderno { font-size: 10px; color: #bbb; font-family: 'Roboto', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .bundle-item__name { display: block; color: #263142; font-size: 11px; font-weight: 600; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bundle-item__bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .bundle-item__price { font-size: 11px; font-weight: 700; color: #333; font-family: 'Roboto', monospace; }
+    .basic-button__light-gray-line { display: inline-flex; align-items: center; justify-content: center; height: 20px; padding: 0 7px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #666; font-size: 10px; font-weight: 700; white-space: nowrap; }
 
     /* 메모 */
     .order-memo-box { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
@@ -828,12 +943,12 @@
           </div>
           <aside class="order-status-card">
             <div class="order-status-card__head">
-              <p>현재상태: 배송완료</p>
+              <p>진행단계: 현지도착</p>
               <p>주문번호: BJP0194792054</p>
             </div>
             <dl class="order-status-card__list">
-              <dt>현재상태</dt>
-              <dd><strong>배송완료</strong></dd>
+              <dt>진행단계</dt>
+              <dd><strong>현지도착</strong></dd>
               <dt>낙찰가</dt>
               <dd>￥ 46,000</dd>
               <dt>입찰일자</dt>
@@ -897,8 +1012,9 @@
                     <details class="pay-etc" open>
                       <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
-                        <div class="pay-row"><span class="lbl">튼튼 배송</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
-                        <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                        <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
+                        <div class="pay-row"><span class="lbl">튼튼 배송</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                        <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
                       </div>
                     </details>
                   </li>
@@ -923,7 +1039,7 @@
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                       <div class="pay-row"><span class="lbl">튼튼 배송</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
-                      <div class="pay-row"><span class="lbl">사진 촬영 서비스</span><span class="val fee" data-pay-kind="extra">+ 300엔</span></div>
+                      <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
                     </div>
                   </details>
                 </li>
@@ -942,6 +1058,59 @@
               <span class="calc" data-pay-grand-calc>총 10,660엔 * 환율 9.3원/엔</span>
             </span>
             <span class="val" data-pay-grand-total>99,138원</span>
+          </div>
+
+          <div class="shipping-fee-compare" aria-label="배송방법별 국제운송료 계산">
+            <div class="shipping-fee-compare__notice">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+              <span>오버사이즈 또는 EMS 사이즈 기준 초과로 관리자 안내가 등록된 경우, 아래 배송방법별 국제운송료를 확인 후 다른 배송방법을 선택해 주세요.</span>
+            </div>
+            <table class="shipping-fee-compare__table">
+              <tbody>
+                <tr>
+                  <th>물품무게</th>
+                  <td>
+                    <input class="shipping-fee-compare__input" type="text" value="15" aria-label="물품무게">
+                    <span class="shipping-fee-compare__unit">Kg</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>물품사이즈</th>
+                  <td>
+                    <input class="shipping-fee-compare__input" type="text" value="2" aria-label="가로">
+                    <span class="shipping-fee-compare__unit">cm x</span>
+                    <input class="shipping-fee-compare__input" type="text" value="2" aria-label="세로">
+                    <span class="shipping-fee-compare__unit">cm x</span>
+                    <input class="shipping-fee-compare__input" type="text" value="2" aria-label="높이">
+                    <span class="shipping-fee-compare__unit">cm =</span>
+                    <input class="shipping-fee-compare__input" type="text" value="0" aria-label="부피무게">
+                    <span class="shipping-fee-compare__unit">Kg</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>배송방법별<br>국제 운송료 계산</th>
+                  <td>
+                    <button class="shipping-fee-compare__btn" type="button">국제운송료비교</button>
+                    <table class="shipping-fee-compare__price-table">
+                      <thead>
+                        <tr>
+                          <th>EMS</th>
+                          <th>비바항공특송</th>
+                          <th>선편특송</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>14,600 엔<br>(15Kg)</td>
+                          <td>10,900 엔<br>(15Kg)</td>
+                          <td>6,000 엔<br>(15Kg)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -970,7 +1139,7 @@
                   <th class="rgroup">묶음상태</th><td>묶음배송 <button type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:700;cursor:pointer">묶음 해제</button></td>
                 </tr>
                 <tr>
-                  <th class="rgroup">발송방법</th><td>비바항공특송</td>
+                  <th class="rgroup">발송방법</th><td>EMS (국제특급우편)</td>
                 </tr>
                 <tr>
                   <th class="rgroup">국제 배송일</th><td class="mono">2025-12-14</td>
@@ -990,103 +1159,19 @@
             <b>묶음배송 구성 상품 <span style="color:var(--rose);font-size:13px;font-weight:700">10건</span></b>
             <a href="web_bundle_shipping_management_2.html" class="order-title__sub"><span style="font-size:14px">묶음배송관리</span></a>
           </h3>
-          <article class="order-list-box order-list-box--flush">
-            <div class="bundle-table-wrap">
-              <table class="bundle-order-table">
-                <thead>
-                  <tr>
-                    <th>상태</th>
-                    <th>이미지</th>
-                    <th>상품정보</th>
-                    <th>상품가격</th>
-                    <th>결제비용</th>
-                    <th>구매일자</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009001</span><span class="item-name">ホンダ XR 100 モタード 純正</span></td>
-                    <td class="price-cell">3,100엔</td>
-                    <td class="price-cell">37,200원</td>
-                    <td class="date-cell">2026-06-29 22:55:42</td>
-                  </tr>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009002</span><span class="item-name">ホンダ エイプ XR100 フロント</span></td>
-                    <td class="price-cell">1,200엔</td>
-                    <td class="price-cell">14,400원</td>
-                    <td class="date-cell">2026-06-28 23:21:54</td>
-                  </tr>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009003</span><span class="item-name">ホンダ 純正 ウインカー 部品</span></td>
-                    <td class="price-cell">900엔</td>
-                    <td class="price-cell">10,800원</td>
-                    <td class="date-cell">2026-06-28 21:03:26</td>
-                  </tr>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009004</span><span class="item-name">スズキ GSX-R 純正ミラー セット</span></td>
-                    <td class="price-cell">2,500엔</td>
-                    <td class="price-cell">30,000원</td>
-                    <td class="date-cell">2026-06-27 21:14:11</td>
-                  </tr>
-                  <tr>
-                    <td>국내배송중</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009005</span><span class="item-name">カワサキ Z900 タンクパッド</span></td>
-                    <td class="price-cell">780엔</td>
-                    <td class="price-cell">9,360원</td>
-                    <td class="date-cell">2026-06-26 21:23:54</td>
-                  </tr>
-                  <tr>
-                    <td>국내배송중</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009006</span><span class="item-name">ヤマハ MT-07 レバーセット</span></td>
-                    <td class="price-cell">1,560엔</td>
-                    <td class="price-cell">18,720원</td>
-                    <td class="date-cell">2026-06-26 20:30:00</td>
-                  </tr>
-                  <tr>
-                    <td>입고완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009007</span><span class="item-name">ホンダ CBR600RR フェンダーレス</span></td>
-                    <td class="price-cell">4,200엔</td>
-                    <td class="price-cell">50,400원</td>
-                    <td class="date-cell">2026-06-25 19:12:08</td>
-                  </tr>
-                  <tr>
-                    <td>입고완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009008</span><span class="item-name">スズキ バンディット グリップ ペア</span></td>
-                    <td class="price-cell">650엔</td>
-                    <td class="price-cell">7,800원</td>
-                    <td class="date-cell">2026-06-25 18:44:37</td>
-                  </tr>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009009</span><span class="item-name">カワサキ Ninja ZX-6R スクリーン</span></td>
-                    <td class="price-cell">3,300엔</td>
-                    <td class="price-cell">39,600원</td>
-                    <td class="date-cell">2026-06-24 17:02:19</td>
-                  </tr>
-                  <tr>
-                    <td>배송완료</td>
-                    <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
-                    <td class="product-info"><span class="item-tag">[YAHOO] k19410009010</span><span class="item-name">ヤマハ YZF-R1 チェーンスライダー</span></td>
-                    <td class="price-cell">1,900엔</td>
-                    <td class="price-cell">22,800원</td>
-                    <td class="date-cell">2026-06-24 16:48:03</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <article class="order-list-box">
+            <ol class="bundle-list">
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후경매</p><span class="bundle-item__orderno">k19410009001</span></div><p class="bundle-item__name">ホンダ XR 100 モタード 純正</p><div class="bundle-item__bottom"><span class="bundle-item__price">3,100엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후구매</p><span class="bundle-item__orderno">k19410009002</span></div><p class="bundle-item__name">ホンダ エイプ XR100 フロント</p><div class="bundle-item__bottom"><span class="bundle-item__price">1,200엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>메루카리</p><span class="bundle-item__orderno">k19410009003</span></div><p class="bundle-item__name">ホンダ 純正 ウインカー 部品</p><div class="bundle-item__bottom"><span class="bundle-item__price">900엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후경매</p><span class="bundle-item__orderno">k19410009004</span></div><p class="bundle-item__name">スズキ GSX-R 純正ミラー セット</p><div class="bundle-item__bottom"><span class="bundle-item__price">2,500엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후구매</p><span class="bundle-item__orderno">k19410009005</span></div><p class="bundle-item__name">カワサキ Z900 タンクパッド</p><div class="bundle-item__bottom"><span class="bundle-item__price">780엔</span><span class="basic-button__light-gray-line">국내배송중</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>메루카리</p><span class="bundle-item__orderno">k19410009006</span></div><p class="bundle-item__name">ヤマハ MT-07 レバーセット</p><div class="bundle-item__bottom"><span class="bundle-item__price">1,560엔</span><span class="basic-button__light-gray-line">국내배송중</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후경매</p><span class="bundle-item__orderno">k19410009007</span></div><p class="bundle-item__name">ホンダ CBR600RR フェンダーレス</p><div class="bundle-item__bottom"><span class="bundle-item__price">4,200엔</span><span class="basic-button__light-gray-line">입고완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후구매</p><span class="bundle-item__orderno">k19410009008</span></div><p class="bundle-item__name">スズキ バンディット グリップ ペア</p><div class="bundle-item__bottom"><span class="bundle-item__price">650엔</span><span class="basic-button__light-gray-line">입고완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>메루카리</p><span class="bundle-item__orderno">k19410009009</span></div><p class="bundle-item__name">カワサキ Ninja ZX-6R スクリーン</p><div class="bundle-item__bottom"><span class="bundle-item__price">3,300엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+              <li class="bundle-item__box"><div class="img-wrap"><i class="far fa-image"></i></div><div class="bundle-item__details"><div class="bundle-item__top"><p class="bundle-item__market"><span class="platform__flag"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"></span>야후경매</p><span class="bundle-item__orderno">k19410009010</span></div><p class="bundle-item__name">ヤマハ YZF-R1 チェーンスライダー</p><div class="bundle-item__bottom"><span class="bundle-item__price">1,900엔</span><span class="basic-button__light-gray-line">배송완료</span></div></div></li>
+            </ol>
           </article>
         </section>
 
