@@ -334,6 +334,16 @@
       font-size: 14px;
       font-weight: 700;
     }
+    .order-item__platform .flag {
+      display: inline-block;
+      width: 16px;
+      height: 11px;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+      background: #fff center / cover no-repeat;
+    }
+    .order-item__platform .flag.jp { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23ffffff'/%3E%3Ccircle cx='15' cy='10' r='6' fill='%23bc002d'/%3E%3C/svg%3E"); }
+    .order-item__platform .market-sep { color: #c1c7d0; font-weight: 700; }
     .platform__flag { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; margin: 0; }
     .platform__flag img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; }
     .order-item__name {
@@ -427,6 +437,7 @@
     .order-info-table td.mono, .order-info-table th.mono { font-family: 'Roboto', monospace; }
     .order-info-table th.rgroup { border-left: 0.5px solid var(--line); padding-left: 16px; }
     .order-info-table tr:last-child th, .order-info-table tr:last-child td { border-bottom: none; }
+    .order-info-action-btn { font-family: Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     .info-chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 4px; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 700; }
     .track-btn { height: 22px; margin-left: 8px; padding: 0 8px; border: 0; border-radius: 4px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 
@@ -507,13 +518,14 @@
     .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
     .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
     .pay-badge.first  { color: var(--navy); }
-    .pay-badge.second { color: #9a6207; }
-    .pay-card__date { font-size: 12px; color: #999; font-family: 'Roboto', sans-serif; }
+    .pay-badge.second { color: var(--navy); }
+    .pay-card__date { font-size: 12px; color: #999; font-family: Pretendard, 'Noto Sans KR', monospace; }
 
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
+    .pay-row--spacer { visibility: hidden; pointer-events: none; }
     .pay-row .lbl { font-size: 14px; color: #555; }
-    .pay-row .val { font-size: 14px; color: #000; font-family: 'Roboto', monospace; }
+    .pay-row .val { font-size: 14px; color: #000; font-family: Pretendard, 'Noto Sans KR', monospace; }
     .pay-row .val.muted { color: #000000; }
     .pay-row .val.discount { color: var(--rose); }
     .pay-row .val.fee { color: var(--navy); }
@@ -598,13 +610,13 @@
     /* 묶음배송 구성 상품 테이블 - 5행 초과 시 스크롤 */
     .bundle-table-wrap { max-height: 494px; overflow-y: auto; border: 1px solid #dde1e7; border-radius: 8px; }
     .bundle-order-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .bundle-order-table thead th { position: sticky; top: 0; z-index: 1; background: #f5f7fa; border-bottom: 1px solid #dde1e7; padding: 10px 12px; text-align: center; font-weight: 500; color: #444; white-space: nowrap; }
+    .bundle-order-table thead th { position: sticky; top: 0; z-index: 1; background: #fbf7f5; border-bottom: 1px solid #dde1e7; padding: 10px 12px; text-align: center; font-weight: 500; color: #444; white-space: nowrap; }
     .bundle-order-table tbody td { border-bottom: 1px solid #dde1e7; padding: 10px 12px; vertical-align: middle; color: #333; text-align: center; }
     .bundle-order-table tbody tr:last-child td { border-bottom: none; }
     .bundle-order-table .product-info { text-align: left; }
     .bundle-order-table .item-tag { display: block; font-size: 12px; color: #666; margin-bottom: 4px; }
     .bundle-order-table .item-name { font-size: 13px; color: #222; line-height: 1.5; }
-    .bundle-order-table .price-cell { font-family: 'Roboto', sans-serif; font-weight: 700; color: #1A3C6E; font-size: 14px; white-space: nowrap; }
+    .bundle-order-table .price-cell { font-family: 'Roboto', sans-serif; font-weight: 700; color: #333; font-size: 14px; white-space: nowrap; }
     .bundle-order-table .date-cell { font-family: 'Roboto', sans-serif; font-size: 12px; color: #666; white-space: nowrap; }
     .bundle-thumb { width: 60px; height: 60px; flex-shrink: 0; border-radius: 6px; overflow: hidden; border: 1px solid #eee; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 20px; }
     .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; }
@@ -792,15 +804,16 @@
         <h2 class="order-page-head__title">주문상세정보</h2>
         <div class="order-page-head__row">
           <h3 class="order-page-head__sub">경매주문상품 정보</h3>
-          <button type="button" class="order-page-head__link" onclick="openBidHistoryModal()"><span style="font-size:16px">본 입찰내역 조회</span></button>
+          <button type="button" class="order-page-head__link" onclick="openBidHistoryModal()"><span style="font-size:14px">본 입찰내역 조회</span></button>
         </div>
       </div>
 
       <!-- 경매주문상품정보 카드 -->
       <article class="order-item">
         <div class="order-item__platform">
-          <b><span class="platform-dot"></span>야후경매</b>
-          <span>물품아이디 : k12345678901</span>
+          <span class="flag jp" role="img" aria-label="일본"></span>
+          <span>야후경매</span>
+          <span>BJP0194792054</span>
         </div>
         <a href="#" class="order-item__name">
           <span class="order-item__name-ko">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</span>
@@ -828,12 +841,12 @@
           </div>
           <aside class="order-status-card">
             <div class="order-status-card__head">
-              <p>현재상태: 배송완료</p>
+              <p>현재상태: 현지도착</p>
               <p>주문번호: BJP0194792054</p>
             </div>
             <dl class="order-status-card__list">
               <dt>현재상태</dt>
-              <dd><strong>배송완료</strong></dd>
+              <dd><strong>현지도착</strong></dd>
               <dt>낙찰가</dt>
               <dd>￥ 46,000</dd>
               <dt>입찰일자</dt>
@@ -870,14 +883,17 @@
               <ul class="pay-rows">
                 <li class="pay-row"><span class="lbl">물품가</span><span class="val" data-pay-kind="base">4,300엔</span></li>
                 <li class="pay-row"><span class="lbl">대행수수료</span><span class="val" data-pay-kind="base">860엔</span></li>
+                <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
+                <li class="pay-row is-toggle">
+                  <details class="pay-etc" open>
+                    <summary>할인 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <div class="pay-etc__inner">
+                      <div class="pay-row"><span class="lbl">쿠폰 적용</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">마일리지 사용</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
+                    </div>
+                  </details>
+                </li>
               </ul>
-              <details class="pay-etc" open>
-                <summary>할인 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
-                <div class="pay-etc__inner">
-                  <div class="pay-row"><span class="lbl">쿠폰 적용</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
-                  <div class="pay-row"><span class="lbl">마일리지 사용</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
-                </div>
-              </details>
               <div class="pay-foot">
                 <div class="pay-total"><span class="lbl">1차 합계</span><span class="val" data-pay-total>3,862엔</span></div>
               </div>
@@ -893,11 +909,12 @@
                 <ul class="pay-rows">
                   <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
                   <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
+                  <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                   <li class="pay-row is-toggle">
                     <details class="pay-etc" open>
                       <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
-                        <div class="pay-row"><span class="lbl">튼튼 배송</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
+                        <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
                         <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
                       </div>
                     </details>
@@ -922,7 +939,7 @@
                     <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
-                      <div class="pay-row"><span class="lbl">튼튼 배송</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
                       <div class="pay-row"><span class="lbl">사진 촬영 서비스</span><span class="val fee" data-pay-kind="extra">+ 300엔</span></div>
                     </div>
                   </details>
@@ -963,11 +980,11 @@
                 </tr>
                 <tr>
                   <th>개인통관고유부호<br>(사업자번호)</th><td class="mono">P932150008388</td>
-                  <th class="rgroup">안심케어플러스</th><td><span style="display:flex;align-items:center;gap:8px"><strong style="color:red">신청</strong><button type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:700;cursor:pointer">신청 해제</button></span></td>
+                  <th class="rgroup">안심케어플러스</th><td><span style="display:flex;align-items:center;gap:8px"><strong style="color:red">신청</strong><button class="order-info-action-btn" type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:700;cursor:pointer">신청 해제</button></span></td>
                 </tr>
                 <tr>
                   <th rowspan="3">배송지</th><td rowspan="3">06234<br>서울특별시 강남구 테헤란로 123<br>비드바이빌딩 401호</td>
-                  <th class="rgroup">묶음상태</th><td>묶음배송 <button type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:700;cursor:pointer">묶음 해제</button></td>
+                  <th class="rgroup">묶음상태</th><td>묶음배송 <button class="order-info-action-btn" type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:700;cursor:pointer">묶음 해제</button></td>
                 </tr>
                 <tr>
                   <th class="rgroup">발송방법</th><td>비바항공특송</td>
@@ -977,7 +994,7 @@
                 </tr>
                 <tr>
                   <th>연락처</th><td class="mono">010-1234-5678</td>
-                  <th class="rgroup">운송장번호</th><td class="mono">EJ123456789JP <button type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:rgb(201, 201, 201);color:#555;font-size:11px;font-weight:700;cursor:pointer">배송조회</button></td>
+                  <th class="rgroup">운송장번호</th><td class="mono">EJ123456789JP <button class="order-info-action-btn" type="button" style="height:24px;padding:0 10px;border:1px solid var(--line);border-radius:4px;background:rgb(201, 201, 201);color:#555;font-size:11px;font-weight:700;cursor:pointer">배송조회</button></td>
                 </tr>
               </tbody>
             </table>
@@ -990,7 +1007,7 @@
             <b>묶음배송 구성 상품 <span style="color:var(--rose);font-size:13px;font-weight:700">10건</span></b>
             <a href="web_bundle_shipping_management_2.html" class="order-title__sub"><span style="font-size:14px">묶음배송관리</span></a>
           </h3>
-          <article class="order-list-box order-list-box--flush">
+          
             <div class="bundle-table-wrap">
               <table class="bundle-order-table">
                 <thead>
@@ -1005,7 +1022,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009001</span><span class="item-name">ホンダ XR 100 モタード 純正</span></td>
                     <td class="price-cell">3,100엔</td>
@@ -1013,7 +1030,7 @@
                     <td class="date-cell">2026-06-29 22:55:42</td>
                   </tr>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009002</span><span class="item-name">ホンダ エイプ XR100 フロント</span></td>
                     <td class="price-cell">1,200엔</td>
@@ -1021,7 +1038,7 @@
                     <td class="date-cell">2026-06-28 23:21:54</td>
                   </tr>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009003</span><span class="item-name">ホンダ 純正 ウインカー 部品</span></td>
                     <td class="price-cell">900엔</td>
@@ -1029,7 +1046,7 @@
                     <td class="date-cell">2026-06-28 21:03:26</td>
                   </tr>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009004</span><span class="item-name">スズキ GSX-R 純正ミラー セット</span></td>
                     <td class="price-cell">2,500엔</td>
@@ -1037,7 +1054,7 @@
                     <td class="date-cell">2026-06-27 21:14:11</td>
                   </tr>
                   <tr>
-                    <td>국내배송중</td>
+                    <td>1차 결제완료<br>(현지배송중)</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009005</span><span class="item-name">カワサキ Z900 タンクパッド</span></td>
                     <td class="price-cell">780엔</td>
@@ -1045,7 +1062,7 @@
                     <td class="date-cell">2026-06-26 21:23:54</td>
                   </tr>
                   <tr>
-                    <td>국내배송중</td>
+                    <td>1차 결제완료<br>(송금완료)</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009006</span><span class="item-name">ヤマハ MT-07 レバーセット</span></td>
                     <td class="price-cell">1,560엔</td>
@@ -1053,7 +1070,7 @@
                     <td class="date-cell">2026-06-26 20:30:00</td>
                   </tr>
                   <tr>
-                    <td>입고완료</td>
+                    <td>1차 결제대기</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009007</span><span class="item-name">ホンダ CBR600RR フェンダーレス</span></td>
                     <td class="price-cell">4,200엔</td>
@@ -1061,7 +1078,7 @@
                     <td class="date-cell">2026-06-25 19:12:08</td>
                   </tr>
                   <tr>
-                    <td>입고완료</td>
+                    <td>1차 결제대기</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009008</span><span class="item-name">スズキ バンディット グリップ ペア</span></td>
                     <td class="price-cell">650엔</td>
@@ -1069,7 +1086,7 @@
                     <td class="date-cell">2026-06-25 18:44:37</td>
                   </tr>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009009</span><span class="item-name">カワサキ Ninja ZX-6R スクリーン</span></td>
                     <td class="price-cell">3,300엔</td>
@@ -1077,7 +1094,7 @@
                     <td class="date-cell">2026-06-24 17:02:19</td>
                   </tr>
                   <tr>
-                    <td>배송완료</td>
+                    <td>현지도착</td>
                     <td><div class="bundle-thumb"><i class="far fa-image"></i></div></td>
                     <td class="product-info"><span class="item-tag">[YAHOO] k19410009010</span><span class="item-name">ヤマハ YZF-R1 チェーンスライダー</span></td>
                     <td class="price-cell">1,900엔</td>
@@ -1087,7 +1104,7 @@
                 </tbody>
               </table>
             </div>
-          </article>
+       
         </section>
 
         <!-- 주문 메모 내역 -->

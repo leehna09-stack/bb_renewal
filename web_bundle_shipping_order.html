@@ -216,9 +216,9 @@
       background: #fff;
     }
     .shipping-method-table { table-layout: fixed; width: 100%; }
-    .ship-compare-table col.method-col { width: 14%; }
-    .ship-compare-table col.feature-col { width: 45%; }
-    .ship-compare-table col.size-col { width: 25%; }
+    .ship-compare-table col.method-col { width: 18%; }
+    .ship-compare-table col.feature-col { width: 43%; }
+    .ship-compare-table col.size-col { width: 23%; }
     .ship-compare-table col.days-col { width: 16%; }
     .ship-compare-table th {
       padding: 10px 12px;
@@ -441,7 +441,7 @@
     .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
     .modal-body li { margin-bottom: 10px; }
 
-    /* ── 보강 포장 비용 모달 ── */
+    /* ── 튼튼 포장비 모달 ── */
     .packing-modal { width: min(1120px,100%); }
     .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
     .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
@@ -600,13 +600,7 @@
 
       <!-- 주문 컨텍스트 헤더 -->
       <div class="order-ctx">
-        <div class="order-ctx-user">
-          <div class="order-ctx-avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
-          <div>
-            <span class="order-ctx-name">홍길동 님</span>
-            <span class="order-ctx-grade">VIP</span>
-          </div>
-        </div>
+
         <div class="order-ctx-stats">
           <div class="order-ctx-stat">
             <span class="oct-label">묶음</span>
@@ -699,15 +693,15 @@
             <td class="feature-cell">
               * 현재 화물 위치 추적 가능<br>
               * 전담관세사가 통관대행처리<br><br>
-              <span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br>
+              <span class="note">※ 멀티박스 : 박스당 250엔 추가비용 발생</span><br>
               <span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br>
-              <span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>
+              <span class="note">※ 20만원 이상 수출 시, 수출대액통관료 1,500엔 발생</span>
             </td>
             <td class="size-cell">
-              <strong>오버사이즈 : 1,550엔 추가비용 발생</strong><br>
-              * 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>
-              * 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>
-              * 도서산간비용 : 지역에 따라 비용발생
+              <strong>※ 오버사이즈 : 1,550엔 추가비용 발생</strong><br>
+              중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>
+              국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>
+              도서산간비용 : 지역에 따라 비용발생
             </td>
             <td class="days-cell">3 ~ 5일</td>
           </tr>
@@ -731,14 +725,14 @@
         </div>
       </div>
 
-      <!-- 유료 옵션 서비스 -->
-      <div class="section-title paid-option-section-title">유료 옵션 서비스 (선택)</div>
+      <!-- 선택 옵션 서비스 -->
+      <div class="section-title paid-option-section-title">선택 옵션 서비스</div>
       <div class="paid-option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
       <table class="care-table paid-option-table">
         <tbody>
           <tr>
             <th>
-              <span class="paid-option-name">튼튼 포장</span>
+              <span class="paid-option-name">튼튼 포장비</span>
             </th>
             <td class="paid-option-choice">
               <button class="option-toggle" type="button" aria-pressed="false" data-paid-option-yen="500">
@@ -748,12 +742,12 @@
               <div class="paid-option-desc">
                 <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 해당 옵션을 선택해 주세요.</p>
                 <ul>
-                  <li>신청 시 파손 위험을 줄이기 위한 보강 포장이 진행됩니다.</li>
-                  <li>보강 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
-                  <li>품목별 포장 비용은 하단의 [보강 포장 비용 안내]를 참고해 주세요.</li>
+                  <li>신청 시 파손 위험을 줄이기 위한 튼튼 포장이 진행됩니다.</li>
+                  <li>튼튼 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
+                  <li>품목별 포장 비용은 하단의 [튼튼 포장비 안내]를 참고해 주세요.</li>
                   <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
                 </ul>
-                <button class="paid-option-detail packing-cost-detail" type="button">보강 포장 비용 안내</button>
+                <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장 비용 안내</button>
               </div>
             </td>
           </tr>
@@ -907,11 +901,11 @@
   </div>
 </div>
 
-<!-- 보강 포장 비용 참고표 모달 -->
+<!-- 튼튼 포장비 참고표 모달 -->
 <div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
   <div class="modal packing-modal">
     <div class="modal-header">
-      <h2 class="modal-title" id="packingCostModalTitle">보강 포장 비용 안내</h2>
+      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장 비용 안내</h2>
       <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="modal-body">
@@ -993,19 +987,19 @@
   // 배송방법 표 전환
   const shippingDescriptions = {
     '비바항공특송': {
-      feature: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>',
-      size: '<strong>오버사이즈 : 1,550엔 추가비용 발생</strong><br>* 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>* 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>* 도서산간비용 : 지역에 따라 비용발생',
+      feature: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만원 이상 수출 시, 수출대액통관료 1,500엔 발생</span>',
+      size: '<strong>※ 오버사이즈 : 1,550엔 추가비용 발생</strong><br>중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>도서산간비용 : 지역에 따라 비용발생',
       days: '3 ~ 5일'
     },
     'EMS': {
-      feature: '* 현재 화물 위치 추적 가능<br>* 파손, 분실 시 보상 받기 쉬움<br>* 20만엔 초과 상품은 통관 수수료 2,800엔이 2차 결제 시 청구 됩니다.',
+      feature: '* 현재 화물 위치 추적 가능<br>* 파손, 분실 시 보상 받기 쉬움<br>* 20만엔 초과시 2차 결제시 통관 수수료 2,800엔이 청구됩니다.',
       size: '* 30kg까지 취급<br>* 한변길이 150cm미만',
       days: '3 ~ 5일'
     },
     '선편특송': {
       feature: '* 대량 화물에 적합한 경제적인 특송 서비스<br>* 항공보다 저렴하지만 배송기간이 더 길어집니다<br>* 통관 및 운송비가 합리적인 옵션',
-      size: '* 중량 및 부피에 따라 별도 문의<br>* 일반적으로 30kg 이상 대량 화물에 적합',
-      days: '7 ~ 12일'
+      size: '* 30kg 초과시 5kg당 + 2,000엔',
+      days: '5 ~ 7일'
     },
     '일본내배송': {
       feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br>',
@@ -1013,7 +1007,7 @@
       days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 인수희망일 신청<br>물품 입고일로부 <strong class="bold-red">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
     },
     '최저가배송': {
-      feature: '* 최저가 배송은 물품의 무게와 부피를 미리 알기 어려워 국제운송 방법을 정하기 힘든 회원님을 위한 서비스입니다.<br>* 물품이 현지에 도착해 포장이 완료되면, 국제배송료가 가장 저렴한 운송 방법으로 2차 결제를 안내해 드립니다.<br>* 단, 배송기간과 통관절차는 고려하지 않으며 오직 국제 운송료만을 기준으로 방법을 선택합니다.',
+      feature: '* 물품이 현지 도착후 포장이 완료되면, 국제배송료가 가장 저렴한 배송방법으로 2차 결제를 안내해 드립니다.<br>* 단, 배송기간과 통관 절차는 고려하지 않으며 오직 국제 운송료만을 기준으로 방법을 선택합니다.',
       size: '* 운송방법에 따라 다름',
       days: '* 운송방법에 따라 다름'
     }
@@ -1145,7 +1139,7 @@
     }
   });
 
-  // ── 유료 옵션 토글 (안심케어 플러스 / 튼튼 포장) ──
+  // ── 유료 옵션 토글 (안심케어 플러스 / 튼튼 포장비) ──
   document.querySelectorAll('.option-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var pressed = this.getAttribute('aria-pressed') === 'true';
@@ -1166,7 +1160,7 @@
 
   syncCarePlusAvailability();
 
-  // ── 보강 포장 비용 안내 모달 ──
+  // ── 튼튼 포장비 안내 모달 ──
   (function() {
     var btn = document.querySelector('.packing-cost-detail');
     var modal = document.getElementById('packingCostModal');

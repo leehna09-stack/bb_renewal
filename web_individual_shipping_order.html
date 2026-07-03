@@ -170,6 +170,7 @@
       gap: 7px;
     }
     .section-title i { color: #7b5ea7; font-size: 14px; }
+    .paid-option-section-title { display: block; color: var(--navy); font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #e8ecf2; text-align: left; }
 
     /* ── 주문 상품 테이블 ── */
     .order-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 28px; }
@@ -211,9 +212,9 @@
       background: #fff;
     }
     .shipping-method-table { table-layout: fixed; width: 100%; }
-    .ship-compare-table col.method-col { width: 14%; }
-    .ship-compare-table col.feature-col { width: 45%; }
-    .ship-compare-table col.size-col { width: 25%; }
+    .ship-compare-table col.method-col { width: 18%; }
+    .ship-compare-table col.feature-col { width: 43%; }
+    .ship-compare-table col.size-col { width: 23%; }
     .ship-compare-table col.days-col { width: 16%; }
     .ship-compare-table th {
       padding: 10px 12px;
@@ -263,9 +264,10 @@
 
     /* ── 유료옵션 테이블 ── */
     .paid-option-table { border-collapse: collapse; width: 100%; margin-bottom: 28px; }
-    .paid-option-table th { width: 190px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; vertical-align: middle; border: 1px solid #dde1e7; }
+    .paid-option-table th { width: 190px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; text-align: left; vertical-align: top; border: 1px solid #dde1e7; }
     .paid-option-table td { padding: 22px 18px; vertical-align: top; border: 1px solid #dde1e7; }
     .paid-option-table tr + tr th, .paid-option-table tr + tr td { border-top: 2px solid #dde1e7; }
+    .paid-option-common-note { margin: -4px 0 12px; padding: 10px 12px; border: 1px solid rgba(232,56,90,0.18); border-radius: 6px; background: #fff8fa; color: var(--rose); font-size: 12px; font-weight: 700; line-height: 1.5; }
     .paid-option-name { display: block; margin-bottom: 12px; }
     .paid-option-price { display: grid; gap: 3px; color: var(--rose); font-size: 13px; line-height: 1.45; }
     .paid-option-desc { margin-top: 14px; font-size: 13px; line-height: 1.9; color: #111; }
@@ -285,7 +287,8 @@
     .option-toggle-text.active { color: #3AAD4E; }
     .bold-red { font-weight: 700; color: var(--rose); }
     .recipient-section-title .title-note { margin-left: 10px; color: var(--rose); font-size: 13px; font-weight: 500; }
-    .paid-option-detail.damage-detail { height: 30px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+    .paid-option-detail { height: 30px; padding: 0 12px; border: 1px solid var(--navy); border-radius: 4px; background: #fff; color: var(--navy); font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .paid-option-detail.damage-detail { border-color: var(--navy); color: var(--navy); }
     .paid-option-detail.care-guide-detail { height: 30px; margin-left: 8px; padding: 0 12px; border: 1px solid var(--rose); border-radius: 4px; background: #fff; color: var(--rose); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
 
     /* ── 수취인 정보 테이블 ── */
@@ -364,7 +367,7 @@
     .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
     .modal-body li { margin-bottom: 10px; }
 
-    /* ── 보강 포장 비용 모달 ── */
+    /* ── 튼튼 포장비 모달 ── */
     .packing-modal { width: min(1120px,100%); }
     .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
     .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
@@ -503,13 +506,7 @@
 
       <!-- 주문 컨텍스트 헤더 -->
       <div class="order-ctx">
-        <div class="order-ctx-user">
-          <div class="order-ctx-avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
-          <div>
-            <span class="order-ctx-name">홍길동 님</span>
-            <span class="order-ctx-grade">VIP</span>
-          </div>
-        </div>
+
         <div class="order-ctx-stats">
           <div class="order-ctx-stat">
             <span class="oct-label">개별배송</span>
@@ -591,47 +588,27 @@
             <td class="feature-cell">
               * 현재 화물 위치 추적 가능<br>
               * 전담관세사가 통관대행처리<br><br>
-              <span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br>
+              <span class="note">※ 멀티박스 : 박스당 250엔 추가비용 발생</span><br>
               <span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br>
-              <span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>
+              <span class="note">※ 20만원 이상 수출 시, 수출대액통관료 1,500엔 발생</span>
             </td>
             <td class="size-cell">
-              <strong>오버사이즈 : 1,550엔 추가비용 발생</strong><br>
-              * 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>
-              * 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>
-              * 도서산간비용 : 지역에 따라 비용발생
+              <strong>※ 오버사이즈 : 1,550엔 추가비용 발생</strong><br>
+              중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>
+              국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>
+              도서산간비용 : 지역에 따라 비용발생
             </td>
             <td class="days-cell">3 ~ 5일</td>
           </tr>
         </tbody>
       </table>
 
-      <!-- 유료 옵션 서비스 -->
+      <!-- 선택 옵션 서비스 -->
+      <div class="section-title paid-option-section-title">선택 옵션 서비스</div>
+      <div class="paid-option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
       <table class="care-table paid-option-table">
         <tbody>
-          <tr>
-            <th>
-              <span class="paid-option-name">튼튼 포장</span>
-            </th>
-            <td class="paid-option-choice">
-              <label class="option-toggle-label">
-                <input type="checkbox" class="option-chk" id="packingChk" data-paid-option-yen="500" aria-label="튼튼 포장 신청">
-                <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
-                <span class="option-toggle-text">미신청</span>
-              </label>
-              <div class="paid-option-desc">
-                <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 해당 옵션을 선택해 주세요.</p>
-                <ul>
-                  <li>신청 시 파손 위험을 줄이기 위한 보강 포장이 진행됩니다.</li>
-                  <li>보강 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
-                  <li>품목별 포장 비용은 하단의 [보강 포장 비용 안내]를 참고해 주세요.</li>
-                  <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
-                </ul>
-                <button class="paid-option-detail packing-cost-detail" type="button">보강 포장 비용 안내</button>
-              </div>
-            </td>
-          </tr>
-          <tr class="care-plus-option-row">
+                    <tr class="care-plus-option-row">
             <th>
               <span class="paid-option-name">안심 케어 플러스</span>
               <span class="paid-option-price">+ 1,000엔</span>
@@ -645,7 +622,7 @@
                 </label>
               </div>
               <div class="paid-option-desc">
-                <p>상품을 더욱 안전하게 받아보실 수 있도록 <strong>튼튼 포장과 파손 보상</strong>을 제공하는 유료 부가 서비스입니다.</p>
+                <p>상품을 더욱 안전하게 받아보실 수 있도록 <strong>튼튼 포장비와 파손 보상</strong>을 제공하는 유료 부가 서비스입니다.</p>
                 <ul>
                   <li>가입 건에 한해 파손시, <strong>최대 50만 원 한도 내에서 보상</strong>해드립니다.</li>
                   <li>보상 범위에는 <strong>낙찰가 또는 구매가, 국제 운송료, 수입신고 시 발생한 세금</strong>이 포함됩니다.</li>
@@ -655,13 +632,36 @@
                 <ul>
                   <li><strong class="bold-red">파손보상 불가 품목</strong>은 안심 케어 플러스 가입 후에도 서비스가 취소되거나 보상이 제한될 수 있으니, 가입 전 반드시 확인해 주세요.</li>
                   <li>현지 입고 후 불가 품목으로 확인될 경우, <strong class="bold-red">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
-                  <li>튼튼 포장 비용이 500엔을 초과하는 경우, 초과 금액은 <strong class="bold-red">2차 결제 시 별도 청구됩니다.</strong></li>
+                  <li>튼튼 포장비가 500엔을 초과하는 경우, 초과 금액은 <strong class="bold-red">2차 결제 시 별도 청구됩니다.</strong></li>
                 </ul>
                 <button class="paid-option-detail damage-detail" type="button">파손보상 불가 품목 보기</button>
                 <button class="paid-option-detail care-guide-detail" type="button" onclick="window.location.href='web_cs_damage.html#care'">안심케어 서비스 안내</button>
               </div>
             </td>
           </tr>
+          <tr>
+            <th>
+              <span class="paid-option-name">튼튼 포장비</span>
+            </th>
+            <td class="paid-option-choice">
+              <label class="option-toggle-label">
+                <input type="checkbox" class="option-chk" id="packingChk" data-paid-option-yen="500" aria-label="튼튼 포장비 신청">
+                <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                <span class="option-toggle-text">미신청</span>
+              </label>
+              <div class="paid-option-desc">
+                <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 해당 옵션을 선택해 주세요.</p>
+                <ul>
+                  <li>신청 시 파손 위험을 줄이기 위한 튼튼 포장이 진행됩니다.</li>
+                  <li>튼튼 포장비는 기본 500엔~ 최대 3,000엔 이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
+                  <li>품목별 포장 비용은 하단의 [튼튼 포장비 안내]를 참고해 주세요.</li>
+                  <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
+                </ul>
+                <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장 비용 안내</button>
+              </div>
+            </td>
+          </tr>
+
         </tbody>
       </table>
 
@@ -770,7 +770,6 @@
       <!-- 관·부가세 안내 -->
       <div style="font-size:13px; font-weight:800; color:#2b2f37; margin-bottom:10px;">관·부가세 안내</div>
       <div class="duty-notice">
-        <div class="duty-notice-title">관·부가세 안내</div>
         2차 결제 시 추가되는 비용 및 물품 입항일 환율에 따라 면세 한도를 초과할 수 있습니다.<br>
         ※ 과세가격 = 물품가 + 현지세금 + 현지배송비 + 국제운임 + 보험료 + 포장비 (CIF)<br>
         ※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
@@ -813,11 +812,11 @@
   </div>
 </div>
 
-<!-- 보강 포장 비용 참고표 모달 -->
+<!-- 튼튼 포장비 참고표 모달 -->
 <div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
   <div class="modal packing-modal">
     <div class="modal-header">
-      <h2 class="modal-title" id="packingCostModalTitle">보강 포장 비용 안내</h2>
+      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장 비용 안내</h2>
       <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="modal-body">
@@ -899,8 +898,8 @@
   // ── 배송방법 표 전환 ──
   const shippingDescriptions = {
     '비바항공특송': {
-      feature: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 1박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만엔 이상 수출 시, 수출대액 통관료 1,500엔 발생</span>',
-      size: '<strong>오버사이즈 : 1,550엔 추가비용 발생</strong><br>* 중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>* 국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>* 도서산간비용 : 지역에 따라 비용발생',
+      feature: '* 현재 화물 위치 추적 가능<br>* 전담관세사가 통관대행처리<br><br><span class="note">※ 멀티박스 : 박스당 250엔 추가비용 발생</span><br><span class="note">※ 부피무게 30KG 이상인 경우 부피무게 적용</span><br><span class="note">※ 20만원 이상 수출 시, 수출대액통관료 1,500엔 발생</span>',
+      size: '<strong>※ 오버사이즈 : 1,550엔 추가비용 발생</strong><br>중량 : 20KG / 세변의합 : 160cm / 한변 100cm 중 한가지 이상 초과하는 경우<br>국내배송시 화물택배(대신, 천일, 경동 등)으로 진행<br>도서산간비용 : 지역에 따라 비용발생',
       days: '3 ~ 5일'
     },
     'EMS': {
@@ -1009,7 +1008,7 @@
   }
   if (pickupDateInput) pickupDateInput.addEventListener('change', validatePickupDate);
 
-  // ── 유료 옵션 토글 (튼튼 포장 / 안심케어 플러스) ──
+  // ── 유료 옵션 토글 (튼튼 포장비 / 안심케어 플러스) ──
   document.querySelectorAll('.option-chk').forEach(function(chk) {
     var text = chk.closest('label')?.querySelector('.option-toggle-text');
     chk.addEventListener('change', function() {
@@ -1019,7 +1018,7 @@
     });
   });
 
-  // ── 보강 포장 비용 안내 모달 ──
+  // ── 튼튼 포장비 안내 모달 ──
   (function() {
     var btn = document.querySelector('.packing-cost-detail');
     var modal = document.getElementById('packingCostModal');

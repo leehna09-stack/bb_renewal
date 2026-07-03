@@ -441,7 +441,7 @@
 
     .product-market {
       color: #59606d;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       margin-bottom: 4px;
       overflow: hidden;
@@ -458,6 +458,31 @@
       vertical-align: -1px;
       margin-right: 5px;
       background: #fff center / cover no-repeat;
+    }
+
+    .product-market--with-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .product-market-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .product-market-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 5px;
+      background: #E6F1FB;
+      color: #185FA5;
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .flag.jp {
@@ -491,7 +516,7 @@
 
     .row-price { display: grid; gap: 3px; }
     .row-price b { color: #151922; font-size: 12px; font-weight: 800; }
-    .row-price span { color: #8d929d; font-size: 11px; }
+    .row-price span { color: #8d929d; font-size: 12px; }
 
     /* 체크박스 */
     .check {
