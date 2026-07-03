@@ -23,10 +23,15 @@
   --dot-green:#20EB1D;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{width:100%;overflow-x:hidden;overscroll-behavior-x:none}
 body{
   font-family:'Noto Sans KR',sans-serif;
   background:var(--bg);
   min-height:100vh;
+  width:100%;
+  overflow-x:hidden;
+  overscroll-behavior-x:none;
+  touch-action:pan-y;
 }
 .demo-bar{
   position:fixed;top:0;left:0;right:0;z-index:9999;
@@ -47,6 +52,7 @@ body{
   margin:0 auto;
   background:#fff;
   position:relative;
+  overflow:hidden;
 }
 .phone-notch{ display:none; }
 .notch-island{
@@ -57,6 +63,9 @@ body{
 .notch-speaker{width:52px;height:5px;background:#1a1a1a;border-radius:3px}
 .app-body{
   background:var(--bg);
+  width:100%;
+  overflow-x:hidden;
+  touch-action:pan-y;
 }
 .app-body::-webkit-scrollbar{display:none}
 .app-header{
@@ -138,12 +147,9 @@ body{
 }
 .app-search button i{font-size:14px;color:#fff}
 .channel-tabs{
-  display:flex;overflow-x:auto;scrollbar-width:none;
+  display:flex;overflow:hidden;scrollbar-width:none;
   border-top:1px solid #E6DDDA;margin:0;padding:0 14px;
-  scroll-snap-type:x proximity;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-x:contain;
-  touch-action:pan-x;
+  touch-action:pan-y;
 }
 .channel-tabs::-webkit-scrollbar{display:none}
 .ch-tab{
@@ -281,8 +287,8 @@ body{
 .slide-fade-wrap.light::after{
   background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.9) 55%,rgba(255,255,255,1));
 }
-.brand-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 22px 2px 0;scroll-snap-type:x proximity}
-.brand-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
+.brand-scroll{display:flex;gap:10px;overflow:hidden;scrollbar-width:none;padding:0 22px 2px 0}
+.brand-scroll{touch-action:pan-y}
 .brand-scroll::-webkit-scrollbar{display:none}
 .brand-chip{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:58px;cursor:pointer;flex-shrink:0;scroll-snap-align:start}
 .brand-img{
@@ -339,8 +345,8 @@ body{
   font-family:'Inter','Noto Sans KR',sans-serif;
 }
 .best-price strong{font-size:12px}
-.review-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 26px 2px 0;scroll-snap-type:x proximity}
-.review-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
+.review-scroll{display:flex;gap:10px;overflow:hidden;scrollbar-width:none;padding:0 26px 2px 0}
+.review-scroll{touch-action:pan-y}
 .review-scroll::-webkit-scrollbar{display:none}
 .rv-card{
   min-width:160px;background:#fff;border-radius:12px;
@@ -375,16 +381,19 @@ body{
 .drawer-ov{position:absolute;inset:0;background:rgba(0,0,0,0);z-index:100;pointer-events:none;transition:background .3s}
 .drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
 .drawer{
-  position:absolute;top:0;left:-100%;bottom:0;
+  position:absolute;top:0;left:0;bottom:0;
   width:88%;max-width:340px;
   background:#fff;z-index:101;overflow-y:auto;scrollbar-width:none;
-  transition:left .3s cubic-bezier(.4,0,.2,1);
+  transform:translateX(-100%);
+  visibility:hidden;
+  pointer-events:none;
+  transition:transform .3s cubic-bezier(.4,0,.2,1), visibility 0s linear .3s;
   display:flex;flex-direction:column;
   box-shadow:4px 0 20px rgba(0,0,0,.12);
   border-top-right-radius:16px;border-bottom-right-radius:16px;
 }
 .drawer::-webkit-scrollbar{display:none}
-.drawer.open{left:0}
+.drawer.open{transform:translateX(0);visibility:visible;pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .dr-head{
   display:flex;align-items:center;justify-content:space-between;
   padding:18px 16px 16px;
@@ -532,14 +541,17 @@ body{
 .user-drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}
 .user-drawer{
   position:absolute;
-  top:0;right:-105%;bottom:0;
+  top:0;right:0;bottom:0;
   width:84%;max-width:300px;
   background:#fff;z-index:103;
   overflow-y:auto;scrollbar-width:none;
-  transition:right .28s cubic-bezier(.4,0,.2,1);
+  transform:translateX(100%);
+  visibility:hidden;
+  pointer-events:none;
+  transition:transform .28s cubic-bezier(.4,0,.2,1), visibility 0s linear .28s;
 }
 .user-drawer::-webkit-scrollbar{display:none}
-.user-drawer.open{right:0}
+.user-drawer.open{transform:translateX(0);visibility:visible;pointer-events:auto;transition:transform .28s cubic-bezier(.4,0,.2,1)}
 .user-drawer-head{padding:18px 14px 12px;background:#fff8f5;border-bottom:1px solid #efe6e2;}
 .user-member-row{display:flex;align-items:center;gap:12px;}
 .user-crown{
@@ -688,9 +700,9 @@ button.user-menu-item{
         </div>
       </div>
       <div class="mb-dots">
-        <div class="mb-dot active" onclick="goMbSlide(0)"></div>
-        <div class="mb-dot" onclick="goMbSlide(1)"></div>
-        <div class="mb-dot" onclick="goMbSlide(2)"></div>
+        <div class="mb-dot active"></div>
+        <div class="mb-dot"></div>
+        <div class="mb-dot"></div>
       </div>
     </div>
 
@@ -1188,51 +1200,16 @@ function bindUserMenu() {
   });
 }
 
-function hintHorizontalScroll(selector, distance = 26, startDelay = 500) {
-  const el = document.querySelector(selector);
-  if (!el) return;
-  if (el.scrollWidth <= el.clientWidth + 8) return;
-
-  let interacted = false;
-  const markInteracted = () => { interacted = true; };
-  el.addEventListener('touchstart', markInteracted, { once: true, passive: true });
-  el.addEventListener('pointerdown', markInteracted, { once: true, passive: true });
-  el.addEventListener('wheel', markInteracted, { once: true, passive: true });
-
-  setTimeout(() => {
-    if (interacted) return;
-    el.scrollTo({ left: distance, behavior: 'smooth' });
-    setTimeout(() => {
-      if (interacted) return;
-      el.scrollTo({ left: 0, behavior: 'smooth' });
-    }, 650);
-  }, startDelay);
-}
-
 function goMbSlide(n) {
-  mbCur = (n + mbTotal) % mbTotal;
-  document.getElementById('mbSlides')?.style.setProperty('transform', `translateX(-${mbCur * 100}%)`);
+  mbCur = 0;
+  document.getElementById('mbSlides')?.style.setProperty('transform', 'translateX(0)');
   document.querySelectorAll('.mb-dot').forEach((d, i) => {
-    d.classList.toggle('active', i === mbCur);
+    d.classList.toggle('active', i === 0);
   });
 }
 
 function bindMainBanner() {
-  const banner = document.getElementById('mainBanner');
-  if (!banner) return;
-
-  let startX = 0;
-
-  banner.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  banner.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) {
-      goMbSlide(mbCur + (dx < 0 ? 1 : -1));
-    }
-  }, { passive: true });
+  document.getElementById('mainBanner')?.style.setProperty('touch-action', 'pan-y');
 }
 
 function init() {
@@ -1241,10 +1218,7 @@ function init() {
   bindBestCards();
   bindUserMenu();
   bindMainBanner();
-  setInterval(() => goMbSlide(mbCur + 1), 3800);
-  hintHorizontalScroll('.channel-tabs', 22, 450);
-  hintHorizontalScroll('.brand-scroll', 32, 1000);
-  hintHorizontalScroll('.review-scroll', 32, 1450);
+  goMbSlide(0);
 }
 
 window.addEventListener('load', init);
