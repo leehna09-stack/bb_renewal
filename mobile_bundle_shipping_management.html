@@ -75,6 +75,9 @@ a{text-decoration:none;color:inherit}
 .order-info{flex:1;min-width:0}
 .order-market{font-size:11px;color:var(--ts);font-weight:600;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .order-market .flag{width:15px;height:10px;vertical-align:-1px;margin-right:4px}
+.order-market--with-badge{display:flex;align-items:center;gap:6px}
+.order-market-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.order-market-badge{flex-shrink:0;display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:5px;background:#E6F1FB;color:#185FA5;font-size:10px;font-weight:700}
 .order-name{font-size:13px;color:var(--tp);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-bottom:3px}
 .order-price{font-size:13px;font-weight:700;color:var(--tp);font-family:'Roboto',sans-serif}
 .order-meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;padding:9px 12px;background:var(--bg);border-radius:8px}
@@ -132,6 +135,7 @@ a{text-decoration:none;color:inherit}
 .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .modal-actions .line{border:1px solid var(--border);background:#fff;color:var(--ts);border-radius:10px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 .modal-actions .primary{border:none;background:var(--rose);color:#fff;border-radius:10px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.modal-actions.wrap button{height:auto;min-height:44px;padding:8px 6px;font-size:12px;line-height:1.35;white-space:normal}
 .modal-bundle-box{background:var(--bg);border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;color:var(--ts);display:grid;gap:4px}
 .modal-bundle-box b{color:var(--tp);font-family:'Roboto',sans-serif}
 
@@ -190,7 +194,7 @@ a{text-decoration:none;color:inherit}
     <div class="order-body">
       <a class="order-thumb" href="mobile_auction.html" aria-label="상품 보기"><i class="fa-regular fa-image"></i></a>
       <div class="order-info">
-        <div class="order-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</div>
+        <div class="order-market order-market--with-badge"><span class="order-market-text"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - im111dancin</span><span class="order-market-badge">안심케어플러스</span></div>
         <a class="order-name" href="mobile_auction.html">【 公式 】 父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ 【 ピスタチオサンド 10枚入</a>
         <div class="order-price">¥ 92,000</div>
       </div>
@@ -372,7 +376,7 @@ a{text-decoration:none;color:inherit}
 <!-- ── 하단 고정 바 ── -->
 <div class="m-sticky-bar">
   <button class="m-sticky-line" type="button" onclick="openModal('modal-div-delivery')">선택건 개별배송</button>
-  <button class="m-sticky-primary" type="button" onclick="openModal('modal-bundle-delivery')">선택건 묶음신청</button>
+  <button class="m-sticky-primary" type="button" onclick="handleBundleSubmit()">선택건 묶음신청</button>
 </div>
 
 <!-- MODAL :: 개별배송처리안내 -->
@@ -412,6 +416,25 @@ a{text-decoration:none;color:inherit}
       <div class="modal-actions">
         <button class="line" type="button">묶음 신청 취소</button>
         <button class="primary" type="button" onclick="closeModal('modal-bundle-delivery')">확인</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL :: 안심케어플러스 묶음배송 불가 안내 -->
+<div class="modal" id="modal-carecare-guard" role="dialog" aria-modal="true">
+  <div class="modal-dim" onclick="closeModal('modal-carecare-guard')"></div>
+  <section class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">묶음배송 신청 불가 안내</div>
+      <button class="modal-close" type="button" aria-label="닫기" onclick="closeModal('modal-carecare-guard')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-text">안심케어플러스 가입 건은<br><span style="color:var(--rose)">개별배송</span>으로만 진행 가능합니다.</p>
+      <p class="modal-small">묶음 신청을 진행하시려면 안심케어플러스를 해지해 주세요.</p>
+      <div class="modal-actions wrap">
+        <button class="line" type="button" onclick="closeModal('modal-carecare-guard')">취소하기</button>
+        <button class="primary" type="button" onclick="confirmCareCancelAndBundle()">안심케어플러스 해지하고<br>묶음신청</button>
       </div>
     </div>
   </section>
@@ -513,6 +536,27 @@ function openModal(id){
   modal.classList.add('open');
 }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+// 안심케어플러스 가입건 + 다른 건 혼합 선택 시 묶음 신청 차단
+function handleBundleSubmit(){
+  const panel = document.querySelector('.bundle-panel.active');
+  if(!panel) return;
+  const checkedCards = Array.from(panel.querySelectorAll('.order-card')).filter(card=>{
+    const box = card.querySelector('.check input');
+    return box && box.checked;
+  });
+  const hasCareCare = checkedCards.some(card=>!!card.querySelector('.order-market-badge'));
+  if(checkedCards.length >= 2 && hasCareCare){
+    openModal('modal-carecare-guard');
+    return;
+  }
+  openModal('modal-bundle-delivery');
+}
+
+function confirmCareCancelAndBundle(){
+  closeModal('modal-carecare-guard');
+  openModal('modal-bundle-delivery');
+}
 </script>
 </body>
 </html>

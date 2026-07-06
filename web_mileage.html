@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -1456,9 +1456,11 @@
     .mileage-popup {
       width: min(300px, calc(100vw - 44px));
       padding: 20px 22px 18px;
-      border-radius: 8px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       background: #fff;
-      box-shadow: 0 14px 30px rgba(32, 36, 43, .18), 0 2px 8px rgba(32, 36, 43, .12);
+      box-shadow: 0 10px 24px rgba(26, 60, 110, .10);
+      font-family: Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       transform: translateY(8px);
       transition: transform .18s ease;
     }
@@ -1469,18 +1471,18 @@
 
     .mileage-popup h3 {
       margin: 0 0 18px;
-      color: #30343d;
-      font-size: 15px;
-      font-weight: 900;
+      color: var(--tp);
+      font-size: 14px;
+      font-weight: 700;
       line-height: 1.35;
     }
 
     .mileage-popup-content {
       display: grid;
       gap: 14px;
-      color: #8b93a3;
+      color: var(--ts);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 400;
       line-height: 1.55;
     }
 
@@ -1495,8 +1497,8 @@
     }
 
     .mileage-popup-label {
-      color: #7d8493;
-      font-weight: 800;
+      color: var(--ts);
+      font-weight: 600;
     }
 
     .mileage-popup-ok {
@@ -1504,16 +1506,16 @@
       height: 34px;
       margin: 18px auto 0;
       padding: 0 18px;
-      border: 1px solid #e8e3df;
+      border: 1px solid var(--border);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #fff;
-      color: #222832;
-      box-shadow: 0 5px 12px rgba(32, 36, 43, .12);
+      color: var(--navy);
+      box-shadow: none;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .mileage-popup.is-list-detail {
@@ -1532,8 +1534,9 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      color: #202833;
-      font-size: 20px;
+      color: var(--tp);
+      font-size: 14px;
+      font-weight: 700;
       line-height: 1.28;
     }
 
@@ -1546,13 +1549,13 @@
       min-height: 22px;
       padding: 4px 12px 3px;
       border-radius: 999px;
-      background: #ffd521;
-      color: #111827;
+      background: #FFF3E0;
+      color: var(--yellow);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       white-space: nowrap;
     }
@@ -1560,9 +1563,9 @@
     .mileage-popup-subtitle {
       margin: 0;
       padding: 0 24px 17px;
-      color: #8993a0;
+      color: var(--ts);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 400;
       line-height: 1.45;
     }
 
@@ -1571,9 +1574,9 @@
       padding: 0 24px;
       display: block;
       overflow-y: auto;
-      color: #222832;
+      color: var(--tp);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 400;
       line-height: 1.45;
     }
 
@@ -1582,7 +1585,7 @@
       display: grid;
       gap: 13px;
       border-radius: 8px;
-      background: #f3f6f9;
+      background: #F5F7FA;
     }
 
     .mileage-popup-summary-row {
@@ -1593,27 +1596,27 @@
     }
 
     .mileage-popup-summary-label {
-      color: #111827;
+      color: var(--ts);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 600;
       white-space: nowrap;
     }
 
     .mileage-popup-summary-value {
-      color: #111827;
+      color: var(--tp);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       text-align: right;
       word-break: keep-all;
     }
 
     .mileage-popup-summary-amount {
-      color: #3269f5;
+      color: var(--rose);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 20px;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 700;
       line-height: 1;
       white-space: nowrap;
     }
@@ -1622,20 +1625,20 @@
       width: 19px;
       height: 19px;
       border-radius: 50%;
-      background: #ffc21c;
+      background: var(--yellow);
       color: #fff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
     }
 
     .mileage-popup-divider {
       height: 1px;
       margin: 17px 0 15px;
-      background: #edf0f3;
+      background: var(--border);
     }
 
     .mileage-popup-list {
@@ -1652,38 +1655,38 @@
     }
 
     .mileage-popup-list-date {
-      color: #303743;
+      color: var(--tp);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       white-space: nowrap;
     }
 
     .mileage-popup-list-name {
       min-width: 0;
       overflow: hidden;
-      color: #303743;
+      color: var(--tp);
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .mileage-popup-list-amount {
-      color: #202833;
-      font-weight: 900;
+      color: var(--rose);
+      font-weight: 700;
       text-align: right;
       white-space: nowrap;
     }
 
     .mileage-popup.is-list-detail .mileage-popup-ok {
       width: calc(100% - 48px);
-      height: 50px;
+      height: 44px;
       margin: 18px 24px 24px;
       border: 0;
-      border-radius: 5px;
-      background: #3468f6;
+      border-radius: 12px;
+      background: var(--rose);
       color: #fff;
       box-shadow: none;
-      font-size: 17px;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 700;
     }
 
     
@@ -1726,7 +1729,7 @@
           <i class="fas fa-shopping-cart" aria-hidden="true"></i>
         </button>
         <div class="user-name">
-          이한나님
+          홍길동 님
           <span class="premium-chip">PREMIUM</span>
         </div>
       </div>
@@ -1754,53 +1757,68 @@
         </section>
 
         <section class="side-nav" aria-label="마이페이지 메뉴">
-          <h2 class="side-title">마이페이지</h2>
-
-          <div class="nav-section">
-            <strong>나의 거래 현황</strong>
-            <div class="nav-list">
-              <a class="active" href="web_mainlist.html">거래 전체 목록</a>
-              <a href="#">경매 입찰/유찰</a>
-              <a href="#">구매 신청 목록</a>
-            </div>
+        <h2 class="side-title"><a href="web_mypage.html">마이페이지</a></h2>
+        <div class="nav-section">
+          <strong>나의 거래 현황</strong>
+          <div class="nav-list">
+            <a href="web_mainlist.html">거래 전체 목록</a>
+            <a href="#">경매 입찰/유찰</a>
+            <a href="#">구매 신청 목록</a>
           </div>
-
-          <div class="nav-section">
-            <strong>배송관리</strong>
-            <div class="nav-list">
-              <a href="#">배송신청/변경</a>
-              <a href="#">배송지 관리</a>
-            </div>
+        </div>
+        <div class="nav-section">
+          <strong>배송관리</strong>
+          <div class="nav-list">
+            <a href="web_bundle_shipping_management.html">배송신청/변경</a>
+            <a href="#">배송지 관리</a>
           </div>
-
-          <div class="nav-section">
-            <strong>관심 항목 관리</strong>
-            <div class="nav-list">
-              <a href="#">관심 출품자</a>
-              <a href="#">관심 물품</a>
-              <a href="#">관심 키워드</a>
-            </div>
+        </div>
+        <div class="nav-section">
+          <strong>관심 항목 관리</strong>
+          <div class="nav-list">
+            <a href="#">관심 출품자</a>
+            <a href="#">관심 물품</a>
+            <a href="#">관심 키워드</a>
           </div>
-
-          <div class="nav-section">
-            <strong>MY 혜택</strong>
-            <div class="nav-list">
-              <a href="web_mileage.html">마일리지 / 쿠폰</a>
-              <a href="web_grade page.html">MY 등급</a>
-            </div>
+        </div>
+        <div class="nav-section">
+          <strong>MY 혜택</strong>
+          <div class="nav-list">
+            <a class="active" href="web_mileage.html">마일리지 / 쿠폰</a>
+            <a href="web_grade_page.html">MY 등급</a>
           </div>
-
-          <div class="nav-section">
-            <strong>나의 정보관리</strong>
-            <div class="nav-list">
-              <a href="#">예치금 관리</a>
-              <a href="#">보증금 관리</a>
-              <a href="#">회원정보 수정</a>
-              <a href="#">비밀번호 변경</a>
-              <a href="#">회원 탈퇴</a>
-            </div>
+        </div>
+        <div class="nav-section">
+          <strong>나의 정보관리</strong>
+          <div class="nav-list">
+            <a href="#">예치금 관리</a>
+            <a href="#">보증금 관리</a>
+            <a href="#">회원정보 수정</a>
+            <a href="#">비밀번호 변경</a>
+            <a href="#">회원 탈퇴</a>
           </div>
-        </section>
+        </div>
+        <div class="nav-section">
+          <strong>고객상담</strong>
+          <div class="nav-list">
+            <a href="web_user_memo.html">사용자메모</a>
+            <a href="web_qna.html">1:1 문의내역</a>
+            <a href="web_qna_form.html">1:1 문의하기</a>
+          </div>
+        </div>
+        <div class="nav-section biz-convert-section">
+          <a href="web_biz.html" class="biz-convert-link">
+            <span class="biz-convert-inner">
+              <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
+              <span class="biz-convert-text">
+                <strong>사업자 회원 전환</strong>
+                <span>사업자 전용 혜택을 확인해보세요</span>
+              </span>
+              <i class="fas fa-chevron-right biz-chev"></i>
+            </span>
+          </a>
+        </div>
+      </section>
       </aside>
 
       <main class="main">
@@ -1966,7 +1984,7 @@
         <div class="dr-user-mini">
           <div class="u-av tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
-            <div class="dr-user-mini-name">이한나님</div>
+            <div class="dr-user-mini-name">홍길동 님</div>
             <div class="dr-user-mini-grade">PREMIUM 회원</div>
           </div>
         </div>
@@ -2035,7 +2053,7 @@
         <div class="dr-link-grid">
           <a href="#">공지사항</a>
           <a href="#">자주하는질문</a>
-          <a href="#">1:1문의</a>
+          <a href="#">1:1 문의하기</a>
           <a href="#">커뮤니티</a>
         </div>
       </div>

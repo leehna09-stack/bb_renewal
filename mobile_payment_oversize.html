@@ -20,7 +20,7 @@
     body{
       margin:0 auto; min-width:320px; max-width:var(--mobile-w);
       color:var(--tp); background:#fff;
-      font-family:'Noto Sans KR',-apple-system,sans-serif;
+      font-family:Pretendard,'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
       font-size:14px; line-height:1.5; overflow-x:hidden;
     }
     button,input,select,textarea{font:inherit} button{cursor:pointer} a{text-decoration:none;color:inherit}
@@ -148,16 +148,16 @@
     .payment-switch__btn{width:26px;height:26px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--navy);font-size:14px;font-weight:900;display:inline-flex;align-items:center;justify-content:center}
 
     /* 오버사이즈 배송비 비교 */
-    .oversize-box{border:1px solid #cfcfcf;border-radius:10px;overflow:hidden;background:var(--warm)}
-    .oversize-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 14px;border-bottom:1px solid #cfcfcf;color:#7a4c00;font-size:11px;line-height:1.6}
-    .oversize-notice i{margin-top:2px;color:#d4891a}
-    .oversize-dims{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;font-size:11px;color:#555;background:#fff;border-bottom:1px solid #eee}
-    .oversize-dims b{color:#111;font-weight:800}
+    .oversize-box{border:1px solid #cfcfcf;border-radius:10px;overflow:hidden;background:#fbf7f5}
+    .oversize-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 14px;border-bottom:1px solid #cfcfcf;background:#fbf7f5;color:#7a4c00;font-size:11px;line-height:1.6}
+    .oversize-notice i{margin-top:2px;color:#d4891a;font-size:14px}
+    .oversize-dims{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;font-size:11px;color:#555;background:#fff;border-bottom:1px solid #cfcfcf}
+    .oversize-dims b{color:#111;font-weight:700}
     .oversize-table-wrap{overflow-x:auto;background:#fff}
-    .oversize-table{width:100%;min-width:320px;border-collapse:collapse;text-align:center;font-size:12px}
-    .oversize-table th{padding:8px 6px;background:#f0f0f0;color:#555;border:1px solid #e2e2e2;font-weight:700;white-space:nowrap}
-    .oversize-table td{padding:8px 6px;border:1px solid #e2e2e2;color:#333;line-height:1.5}
-    .oversize-table td.is-lowest{background:#fff3f3;color:var(--rose);font-weight:800}
+    .oversize-table{width:100%;min-width:320px;border-collapse:collapse;text-align:center;color:#555;font-size:12px}
+    .oversize-table th{padding:8px 6px;background:#f0f0f0;color:#555;border:1px solid #cfcfcf;font-weight:600;white-space:nowrap}
+    .oversize-table td{padding:8px 6px;border:1px solid #cfcfcf;color:#333;line-height:1.5;background:#fff}
+    .oversize-table td.is-lowest{background:#fff3f3;color:var(--rose);font-weight:700}
 
     .pd-bundle{display:flex;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #f2f2f2}
     .pd-bundle:first-child{padding-top:0}
@@ -231,7 +231,7 @@
     <div class="drawer-user">
       <span class="drawer-crown tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></span>
       <div>
-        <strong class="drawer-user-name">이한나님</strong>
+        <strong class="drawer-user-name">홍길동님</strong>
         <span class="drawer-user-grade">PREMIUM 회원</span>
       </div>
     </div>

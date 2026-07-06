@@ -153,9 +153,9 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .appraisal-banner-logo{width:36px;height:36px;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .appraisal-banner-logo svg{width:22px;height:22px}
 .appraisal-banner-info{flex:1;min-width:0}
-.appraisal-banner-title{font-size:12px;color:var(--tp);font-weight:500;display:flex;align-items:center;gap:6px}
-.appraisal-banner-detail{font-size:11px;color:var(--rose);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
-.appraisal-banner-fee{font-size:12px;color:var(--ts);margin-top:2px}
+.appraisal-banner-title{font-size:16px;color:var(--tp);font-weight:500;display:flex;align-items:center;gap:6px}
+.appraisal-banner-detail{font-size:14px;color:var(--rose);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.appraisal-banner-fee{font-size:14px;color:var(--ts);margin-top:10px}
 .appraisal-banner-fee strong{color:var(--tp);font-weight:700}
 
 /* 감정 팝업 */
@@ -722,15 +722,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <button class="hbtn"><i class="fas fa-shopping-cart"></i><span>장바구니</span></button>
       <div style="position:relative">
         <button class="user-trig" id="userTrig" onclick="doLogout()">
-          <div class="u-av">LH</div>
-          <div><div class="u-nm">이한나님</div><span class="u-gr">PREMIUM</span></div>
+          <div class="u-av">홍</div>
+          <div><div class="u-nm">홍길동님</div><span class="u-gr">PREMIUM</span></div>
           <i class="fas fa-chevron-down u-chv"></i>
         </button>
         <div class="user-dd" id="userDD">
           <div class="dd-hd">
             <div class="dd-user-row">
               <div class="dd-crown"><i class="fas fa-crown"></i></div>
-              <div><div class="dd-name">이한나 회원님</div><div class="dd-grade-txt">PREMIUM</div></div>
+              <div><div class="dd-name">홍길동 회원님</div><div class="dd-grade-txt">PREMIUM</div></div>
             </div>
             <div class="dd-milbox">
               <div class="dd-mil"><div class="dd-mil-label">마일리지</div><div class="dd-mil-val">4,500<span>원</span></div></div>
@@ -1966,12 +1966,12 @@ lockTabContainerHeight();
 <div class="appraisal-modal-overlay" id="appraisalModal" onclick="closeAppraisalModal(event)">
   <div class="appraisal-modal" onclick="event.stopPropagation()">
     <div class="appraisal-modal-header">
-      <span>감정 대상 · 감정료</span>
+      <span>야후 감정 서비스 상세 안내</span>
       <button class="appraisal-modal-close" onclick="closeAppraisalModal()">&times;</button>
     </div>
     <div class="appraisal-modal-body">
       <a href="https://auctions.yahoo.co.jp/topic/promo/appraisal/card/index.html" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none">
-        <img src="yahoovalue.png" alt="감정 대상·감정료" style="width:100%;border-radius:12px;display:block;cursor:pointer">
+        <img src="yahoovalue.png" alt="감정 대상·감정료" style="width: 700px;height: auto;border-radius:12px;display:block;cursor:pointer">
       </a>
     </div>
   </div>

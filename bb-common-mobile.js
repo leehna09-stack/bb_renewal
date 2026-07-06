@@ -23,7 +23,7 @@
       '<div id="drUserHd" class="dr-head" style="display:none">' +
         '<div class="dr-user-mini">' +
           '<div class="u-av"><i class="fas fa-crown" aria-hidden="true"></i></div>' +
-          '<div><div class="dr-user-mini-name">이한나님</div><div class="dr-user-mini-grade">PREMIUM 회원</div></div>' +
+          '<div><div class="dr-user-mini-name">홍길동님</div><div class="dr-user-mini-grade">PREMIUM 회원</div></div>' +
         '</div>' +
       '</div>' +
       '<div id="drGuestPanel" class="dr-guest-card">' +
@@ -79,7 +79,7 @@
 
   function rightDrawerHTML() {
     return (
-      '<div class="user-drawer-head"><div class="user-member-row"><div class="user-crown"><i class="fas fa-crown" aria-hidden="true"></i></div><div><strong class="user-name-strong">이한나 회원님</strong><span class="user-vip-chip">VIP</span></div></div>' +
+      '<div class="user-drawer-head"><div class="user-member-row"><div class="user-crown"><i class="fas fa-crown" aria-hidden="true"></i></div><div><strong class="user-name-strong">홍길동 회원님</strong><span class="user-vip-chip">VIP</span></div></div>' +
         '<p class="user-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 🎉</p>' +
         '<div class="user-vip-bar"><span></span></div>' +
         '<div class="user-asset-box"><div><span>마일리지</span><strong>4,500원</strong></div><div><span>예치금</span><strong>29,870원</strong></div></div>' +
@@ -119,6 +119,18 @@
     });
   }
 
+  // 좌/우 드로어의 로그인 의존 UI를 현재 상태에 맞게 토글
+  function syncLoginUI() {
+    var loggedIn = isLoggedIn();
+    var set = function (id, display) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = display;
+    };
+    set('drGuestHd', loggedIn ? 'none' : 'flex');
+    set('drUserHd', loggedIn ? 'flex' : 'none');
+    set('drGuestPanel', loggedIn ? 'none' : 'block');
+  }
+
   function render() {
     var drawerOv = ensureNode('drawerOv', 'div', 'drawer-ov');
     var drawer = ensureNode('drawer', 'div', 'drawer');
@@ -130,6 +142,7 @@
     drawer.innerHTML = leftDrawerHTML();
     userDrawer.innerHTML = rightDrawerHTML();
     bindUserMenu();
+    syncLoginUI();
 
     document.dispatchEvent(new CustomEvent('bb:mobile-login', { detail: { loggedIn: isLoggedIn() } }));
   }
@@ -151,6 +164,7 @@
     else localStorage.setItem(LOGIN_KEY, '1');
     closeDrawer();
     closeUserDrawer();
+    syncLoginUI();
     document.dispatchEvent(new CustomEvent('bb:mobile-login', { detail: { loggedIn: isLoggedIn() } }));
   };
   window.openDrawer = function () {
