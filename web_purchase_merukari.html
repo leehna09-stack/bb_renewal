@@ -160,6 +160,8 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .seller-stats{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--ts)}
 .seller-stats span{display:flex;align-items:center;gap:3px}
 .seller-rating-label{font-weight:700;color:var(--tp)}
+.btn-seller-rating{height:22px;border:1px solid var(--border);background:#fff;color:var(--navy);font-size:11px;font-weight:700;padding:0 8px;border-radius:6px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-seller-rating:hover{border-color:var(--navy);background:#F5F7FA}
 .seller-stars{color:var(--amber);font-size:11px;letter-spacing:-1px}
 .seller-badge{background:#EDF7F0;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
 .btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
@@ -622,13 +624,14 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
     <!-- 출품자 정보 -->
     <div class="seller-card">
-      <div class="seller-avatar">다</div>
       <div class="seller-info">
         <div class="seller-name">ダゴニャン</div>
         <div class="seller-divider"></div>
         <div class="seller-stats">
           <span class="seller-rating-label">판매자평가</span>
           <span>Good : 2,283&nbsp;&nbsp;Bad : 0</span>
+                    <button class="btn-seller-rating" type="button" onclick="location.href='https://jp.mercari.com/'">평가보기</button>
+
         </div>
       <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심출품자</button>
       </div>
