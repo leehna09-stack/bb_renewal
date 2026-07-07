@@ -31,38 +31,38 @@
         '<div class="dr-guest-copy">로그인하고 입찰 현황, 마일리지, 관심 상품을 빠르게 확인하세요.</div>' +
         '<div class="dr-login-actions">' +
           '<button class="dr-action-btn" type="button" onclick="toggleLogin();closeDrawer()">로그인</button>' +
-          '<button class="dr-action-btn secondary" type="button">회원가입</button>' +
+          '<button class="dr-action-btn secondary" type="button" onclick="location.href=\'mobile_index.html\'">회원가입</button>' +
         '</div>' +
       '</div>' +
       '<div class="dr-sec"><div class="dr-quick">' +
-        '<div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-truck-fast"></i></div><div class="dr-quick-label">배송관리</div></div>' +
-        '<div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-won-sign"></i></div><div class="dr-quick-label">MY혜택</div></div>' +
-        '<div class="dr-quick-item"><div class="dr-quick-icon"><i class="fas fa-file-invoice"></i></div><div class="dr-quick-label">관심항목</div></div>' +
+        '<div class="dr-quick-item" onclick="location.href=\'mobile_bundle_shipping_management.html\'" style="cursor:pointer"><div class="dr-quick-icon"><i class="fas fa-truck-fast"></i></div><div class="dr-quick-label">배송관리</div></div>' +
+        '<div class="dr-quick-item" onclick="location.href=\'mobile_mileage.html\'" style="cursor:pointer"><div class="dr-quick-icon"><i class="fas fa-won-sign"></i></div><div class="dr-quick-label">MY혜택</div></div>' +
+        '<div class="dr-quick-item" onclick="location.href=\'mobile_mainlist.html\'" style="cursor:pointer"><div class="dr-quick-icon"><i class="fas fa-file-invoice"></i></div><div class="dr-quick-label">관심항목</div></div>' +
         '<div class="dr-quick-item" onclick="location.href=\'mobile_mypage.html\'" style="cursor:pointer"><div class="dr-quick-icon"><i class="fas fa-calendar-check"></i></div><div class="dr-quick-label">마이페이지</div></div>' +
       '</div></div>' +
       '<div class="dr-sec"><div class="dr-sec-title">카테고리</div><div class="dr-cat-list">' +
-        '<div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본야후경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
-        '<div class="dr-cat-item"><span class="dr-cat-flag">US</span><span class="dr-cat-label">미국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
-        '<div class="dr-cat-item"><span class="dr-cat-flag">GB</span><span class="dr-cat-label">영국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
-        '<div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본메루카리</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
-        '<div class="dr-cat-item"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본구매대행</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
+        '<div class="dr-cat-item" onclick="location.href=\'mobile_auction.html\'"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본야후경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
+        '<div class="dr-cat-item" onclick="location.href=\'mobile_sub_main.html\'"><span class="dr-cat-flag">US</span><span class="dr-cat-label">미국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
+        '<div class="dr-cat-item" onclick="location.href=\'mobile_sub_main.html\'"><span class="dr-cat-flag">GB</span><span class="dr-cat-label">영국이베이경매</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
+        '<div class="dr-cat-item" onclick="location.href=\'mobile_purchase_merukari.html\'"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본메루카리</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
+        '<div class="dr-cat-item" onclick="location.href=\'mobile_purchase_store.html\'"><span class="dr-cat-flag">JP</span><span class="dr-cat-label">일본구매대행</span><i class="fas fa-chevron-down dr-cat-arrow"></i></div>' +
       '</div></div>' +
       '<div class="dr-sec"><div class="dr-sec-title">이용가이드</div><div class="dr-link-grid">' +
-        '<a href="#">초보자가이드</a><a href="#">수수료안내</a><a href="#">배송비안내</a><a href="#">관부가세안내</a>' +
+        '<a href="mobile_fakenotice.html">초보자가이드</a><a href="mobile_cs_refund.html">수수료안내</a><a href="mobile_bundle_shipping_order.html">배송비안내</a><a href="mobile_cs_damage.html">관부가세안내</a>' +
       '</div></div>' +
       '<div class="dr-sec" style="border-bottom:none"><div class="dr-sec-title">고객센터</div><div class="dr-link-grid">' +
-        '<a href="#">공지사항</a><a href="#">자주하는질문</a><a href="#">1:1문의</a><a href="#">커뮤니티</a>' +
+        '<a href="mobile_fakenotice.html">공지사항</a><a href="mobile_qna.html">자주하는질문</a><a href="mobile_qna_form.html">1:1문의</a><a href="mobile_qna.html">커뮤니티</a>' +
       '</div></div>' +
       '<div class="drawer-cs-card">' +
         '<div class="drawer-cs-tel">1544-5224</div>' +
         '<p class="drawer-cs-time">평일 AM 10:00 - PM 17:00 (점심 PM 12:30 - 13:30)</p>' +
-        '<div class="drawer-cs-actions"><button type="button">1:1 문의</button><button type="button">FAQ</button><button type="button">공지사항</button></div>' +
+        '<div class="drawer-cs-actions"><button type="button" onclick="location.href=\'mobile_qna_form.html\'">1:1 문의</button><button type="button" onclick="location.href=\'mobile_qna.html\'">FAQ</button><button type="button" onclick="location.href=\'mobile_fakenotice.html\'">공지사항</button></div>' +
       '</div>' +
       '<div style="height:24px"></div>'
     );
   }
 
-  function menuSection(id, icon, label, links) {
+  function menuSection(id, label, links) {
     var linkHtml = links.map(function (item) {
       var danger = item[2] ? ' danger' : '';
       return '<a class="user-menu-link' + danger + '" href="' + item[0] + '">' + item[1] + '</a>';
@@ -70,7 +70,7 @@
     return (
       '<div class="user-menu-section">' +
         '<button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="' + id + '">' +
-          '<span class="user-menu-icon"><i class="fas ' + icon + '" aria-hidden="true"></i></span><span>' + label + '</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>' +
+          '<span>' + label + '</span><span class="chev"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>' +
         '</button>' +
         '<div class="user-menu-panel" id="' + id + '">' + linkHtml + '</div>' +
       '</div>'
@@ -86,11 +86,12 @@
       '</div>' +
       '<div class="user-status-grid"><div><strong>3</strong><span>입찰 진행 중</span></div><div><strong>1</strong><span>1차 결제 대기</span></div><div><strong>0</strong><span>2차 결제 대기</span></div></div>' +
       '<nav class="user-menu-list">' +
-        menuSection('mm-menu-trade', 'fa-gavel', '나의 거래 현황', [['mobile_mypage.html', '거래 전체 목록'], ['mobile_mypage.html', '경매 입찰/유찰'], ['mobile_mypage.html', '구매 신청 목록']]) +
-        menuSection('mm-menu-delivery', 'fa-truck-fast', '배송관리', [['#', '배송 신청/변경'], ['#', '배송지 관리']]) +
-        menuSection('mm-menu-favorites', 'fa-heart', '관심 항목 관리', [['#', '관심 출품자'], ['#', '관심 물품'], ['#', '관심 키워드']]) +
-        menuSection('mm-menu-benefit', 'fa-gift', 'MY 혜택', [['mobile_mileage.html', '마일리지 / 쿠폰'], ['#', 'MY 등급']]) +
-        menuSection('mm-menu-info', 'fa-user', '나의 정보관리', [['#', '예치금 관리'], ['#', '보증금 관리'], ['#', '회원정보 수정'], ['#', '비밀번호 변경'], ['#', '회원 탈퇴', true]]) +
+        menuSection('mm-menu-trade', '나의 거래 현황', [['mobile_mainlist.html', '거래 전체 목록'], ['mobile_auction_order.html', '경매 입찰/유찰'], ['mobile_purchase_store.html', '구매 신청 목록']]) +
+        menuSection('mm-menu-delivery', '배송관리', [['mobile_bundle_shipping_management.html', '배송 신청/변경'], ['mobile_individual_shipping_order.html', '배송지 관리']]) +
+        menuSection('mm-menu-favorites', '관심 항목 관리', [['mobile_mainlist.html', '관심 출품자'], ['mobile_mainlist.html', '관심 물품'], ['mobile_totalsearch.html', '관심 키워드']]) +
+        menuSection('mm-menu-benefit', 'MY 혜택', [['mobile_mileage.html', '마일리지 / 쿠폰'], ['mobile_grade_page.html', 'MY 등급']]) +
+        menuSection('mm-menu-info', '나의 정보관리', [['mobile_mileage.html', '예치금 관리'], ['mobile_mileage.html', '보증금 관리'], ['mobile_mypage.html', '회원정보 수정'], ['mobile_mypage.html', '비밀번호 변경'], ['mobile_mypage.html', '회원 탈퇴', true]]) +
+        menuSection('mm-menu-cs', '고객상담', [['mobile_user_memo.html', '사용자메모'], ['mobile_qna.html', '1:1문의내역'], ['mobile_qna_form.html', '1:1문의하기']]) +
         '<button class="user-menu-item logout" type="button" onclick="toggleLogin();closeUserDrawer()"><span class="emoji">🔒</span><span>로그아웃</span></button>' +
       '</nav>'
     );

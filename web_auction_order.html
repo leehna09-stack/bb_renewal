@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -178,6 +178,7 @@
     .confirm-row .val { color: #151922; font-weight: 700; }
     .confirm-row .val.amount { color: var(--rose); font-size: 16px; font-weight: 900; }
     .confirm-row .val .sub { color: var(--muted); font-size: 12px; font-weight: 500; }
+    .confirm-box > .confirm-row.confirm-packing-row { align-items: center; padding: 12px 4px 24px; }
 
     .confirm-warn {
       margin: 0;
@@ -217,12 +218,12 @@
     .confirm-modal-close { border: 0; background: none; color: var(--faint); font-size: 20px; line-height: 1; }
     .confirm-modal-body { padding: 20px; }
     .confirm-amount-box { background: var(--warm); border: 1px solid var(--line-soft); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
-    .confirm-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
-    .confirm-row:first-child { padding-top: 0; }
-    .confirm-row:last-child { padding-bottom: 0; border-bottom: 0; }
-    .confirm-row span { color: var(--muted); font-size: 12px; font-weight: 700; }
-    .confirm-row strong { color: #151922; font-family: Roboto, sans-serif; font-size: 16px; font-weight: 900; }
-    .confirm-row strong.amount { color: var(--rose); font-size: 20px; }
+    .confirm-modal .confirm-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
+    .confirm-modal .confirm-row:first-child { padding-top: 0; }
+    .confirm-modal .confirm-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .confirm-modal .confirm-row span { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .confirm-modal .confirm-row strong { color: #151922; font-family: Roboto, sans-serif; font-size: 16px; font-weight: 900; }
+    .confirm-modal .confirm-row strong.amount { color: var(--rose); font-size: 20px; }
     .confirm-note { margin: 0 0 18px; color: var(--rose); font-size: 12px; font-weight: 800; line-height: 1.7; }
     .confirm-actions { display: flex; justify-content: flex-end; gap: 8px; }
     .confirm-btn { height: 40px; padding: 0 18px; border-radius: 4px; font-size: 13px; font-weight: 800; }
@@ -258,6 +259,7 @@
     <div class="confirm-box">
       <div class="confirm-row"><b>입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩11,830)</span></span></div>
       <div class="confirm-row"><b>입찰 수량</b><span class="val" id="cfQty">1개</span></div>
+      <div class="confirm-row confirm-packing-row"><b>포장옵션</b><span class="val" id="cfPacking">선택 안함</span></div>
     </div>
     <p class="confirm-warn">
       최고 입찰자로 낙찰된 후에는 <b>낙찰 취소가 불가능</b>합니다.<br>
@@ -307,6 +309,10 @@
           <span>수량</span>
           <strong id="modalBidQty">1개</strong>
         </div>
+        <div class="confirm-row">
+          <span>포장옵션</span>
+          <strong id="modalBidPacking">선택 안함</strong>
+        </div>
       </div>
       <p class="confirm-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다.
         <br>금액과 수량을 다시 확인하신 후 진행해 주세요.</p>
@@ -319,12 +325,25 @@
 </div>
 
 <script>
-const CONFIRMED_BID = 1300;
-const CONFIRMED_QTY = 1;
+const ORDER_PARAMS = new URLSearchParams(location.search);
+const CONFIRMED_BID = Number(ORDER_PARAMS.get('bid') || 1300);
+const CONFIRMED_QTY = Number(ORDER_PARAMS.get('qty') || 1);
+const CONFIRMED_PACKING = ORDER_PARAMS.get('packing') || '선택 안함';
 const KRW_RATE = 9.1;
 
 function formatBidAmount(yen) {
   return yen.toLocaleString('ko-KR') + '엔 (약 ₩' + Math.round(yen * KRW_RATE).toLocaleString('ko-KR') + ')';
+}
+
+function updateConfirmedValues() {
+  const cfAmount = document.getElementById('cfAmount');
+  const cfQty = document.getElementById('cfQty');
+  const cfPacking = document.getElementById('cfPacking');
+  if (cfAmount) {
+    cfAmount.innerHTML = '¥ ' + CONFIRMED_BID.toLocaleString('ko-KR') + ' <span class="sub">(약 ₩' + Math.round(CONFIRMED_BID * KRW_RATE).toLocaleString('ko-KR') + ')</span>';
+  }
+  if (cfQty) cfQty.textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  if (cfPacking) cfPacking.textContent = CONFIRMED_PACKING;
 }
 
 function updateState() {
@@ -340,6 +359,7 @@ function updateState() {
 function submitBid() {
   document.getElementById('modalBidAmount').textContent = formatBidAmount(CONFIRMED_BID);
   document.getElementById('modalBidQty').textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  document.getElementById('modalBidPacking').textContent = CONFIRMED_PACKING;
   document.getElementById('finalBidModal').classList.add('open');
 }
 
@@ -349,9 +369,10 @@ function closeFinalBidModal(event) {
 }
 
 function confirmFinalBid() {
-  location.href = 'web_auction_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY;
+  location.href = 'web_auction_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY + '&packing=' + encodeURIComponent(CONFIRMED_PACKING);
 }
 
+updateConfirmedValues();
 updateState();
 </script>
 <script src="bb-common.js"></script>

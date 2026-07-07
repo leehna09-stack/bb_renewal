@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -91,7 +91,7 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 /* ?�═ ?????�안: 배너(�? + ?�원?�널(?? 2컬럼 73:27 ?�═ */
 .main-hero{background:#fff;padding:0}
 .hero-inner{
-  max-width:1440px;margin:0 auto;padding:20px 24px;
+  max-width:1060px;margin:0 auto;padding:28px 0 18px;
   display:grid;
   grid-template-columns:73fr 27fr;
   gap:16px;
@@ -103,7 +103,7 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .banner-slider{height:300px;position:relative;overflow:hidden;border-radius:12px}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .5s;display:flex;align-items:center}
 .slide.active{opacity:1}
-/* 배너 배경: ?�림/베이지 */
+/* 배너 배경: ?림/베이지 */
 .sl-1{background:linear-gradient(135deg,#FFF5EE,#FDEEE4)}
 .sl-2{background:linear-gradient(135deg,#EEF2FF,#DFE8FF)}
 .sl-3{background:linear-gradient(135deg,#EDFAF1,#D8EFE0)}
@@ -125,10 +125,7 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .dot.active{width:18px;background:var(--rose)}
 
 /* ?????�안: ?�측 ?�원 ?�널 - 27% (grid�?비율 결정) */
-.hero-panel{
-  background:#fff;border:1px solid var(--border);border-radius:12px;
-  overflow:hidden;display:flex;flex-direction:column;min-width:0;
-}
+.hero-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 /* 비로그인 ?�널 */
 .panel-guest{
   padding:32px 20px;text-align:center;
@@ -141,54 +138,36 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .panel-login-btn:hover{background:var(--rose-h)}
 .panel-signup-btn{background:#fff;color:var(--ts);border:1.5px solid var(--border);padding:10px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
 /* 로그???�널 */
-.panel-user{display:none;flex-direction:column;flex:1}
-.panel-user-top{
-  background:linear-gradient(160deg,#FFF8F5,#FFF3EE);
-  padding:16px;border-bottom:1px solid var(--border);
-}
-.panel-user-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.pu-crown{font-size:28px;flex-shrink:0}
-.pu-name{font-size:15px;font-weight:700;color:var(--tp)}
-.pu-grade{display:inline-block;background:var(--rose);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:2px}
-.pu-milbox{display:grid;grid-template-columns:1fr 1px 1fr;background:#fff;border:1px solid var(--border);border-radius:9px;margin-bottom:10px}
-.pu-mil{text-align:center;padding:8px 6px}
-.pu-mil-div{background:var(--border)}
-.pu-mil-label{font-size:9px;color:var(--tm);margin-bottom:2px}
-.pu-mil-val{font-size:14px;font-weight:700;color:var(--tp);font-family:'Roboto',sans-serif}
-/* ?�급 진행�?*/
-.pu-prog-label{font-size:10px;color:var(--ts);margin-bottom:4px;display:flex;justify-content:space-between}
-.pu-prog-label b{color:var(--rose)}
-.pu-prog-bg{background:#EEE;border-radius:3px;height:5px}
-.pu-prog-fill{background:linear-gradient(90deg,var(--rose),var(--amber));height:5px;border-radius:3px;width:62%}
-/* 3�??�태 */
-.pu-status{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
-.pu-st{text-align:center;padding:10px 4px;cursor:pointer;transition:background .1s}
-.pu-st:hover{background:var(--bg)}
-.pu-st+.pu-st{border-left:1px solid var(--border)}
-.pu-st-num{font-size:20px;font-weight:700;color:var(--tp);font-family:'Roboto',sans-serif;line-height:1}
+.panel-user{display:none;flex-direction:column;flex:1;padding:14px}
+.panel-user-top{padding:0 0 10px;border-bottom:1px solid #F0F2F5}
+.panel-user-row{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.pu-crown{width:30px;height:30px;border-radius:50%;background:#FFF4D6;color:#F5A623;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.pu-name{font-size:14px;font-weight:800;color:var(--tp)}
+.pu-grade{display:inline-block;color:#8B94A3;font-size:10px;font-weight:700;margin-top:1px}
+.pu-manage-card{background:#FFF7F0;border:1px solid #FFE2C6;border-radius:8px;padding:8px 10px;margin-bottom:10px}
+.pu-manage-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:800;color:#F08A24}
+.pu-grade-progress{height:5px;margin-top:7px;border-radius:999px;background:#FFE2C6;overflow:hidden}
+.pu-grade-progress span{display:block;width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--rose),var(--amber));transition:width .2s ease}
+.pu-manage-sub{display:block;margin-top:6px;padding-top:5px;border-top:1px solid #FFE2C6;color:#B9A18D;font-size:10px;text-align:right;text-decoration:none}
+.pu-manage-sub:hover{color:var(--rose)}
+.pu-status{display:grid;gap:6px;padding:10px 0}
+.pu-st{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:22px}
+.pu-st-label{display:flex;align-items:center;gap:6px;color:#6B7280;font-size:12px;font-weight:700}
+.pu-st-label::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E}
+.pu-st:nth-child(2) .pu-st-label::before{background:#E8385A}
+.pu-st:nth-child(3) .pu-st-label::before{background:#22C55E}
+.pu-st-num{font-size:13px;font-weight:900;color:var(--tp);font-family:'Roboto',sans-serif}
 .pu-st-num.red{color:var(--rose)}
-.pu-st-label{font-size:9px;color:var(--tm);margin-top:3px;line-height:1.3}
-/* ?�널 ?�단 버튼 3�?*/
-.pu-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.pu-btn{padding:11px 6px;font-size:11px;font-weight:600;color:var(--ts);background:#fff;border:none;cursor:pointer;font-family:inherit;text-align:center;transition:background .1s;position:relative}
+.pu-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.pu-btn{height:32px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:11px;font-weight:800;color:#5D6675;cursor:pointer;font-family:inherit;text-align:center;position:relative}
 .pu-btn:hover{background:var(--bg);color:var(--tp)}
-.pu-btn+.pu-btn{border-left:1px solid var(--border)}
 /* 신규 소식 표시: 오른쪽 위 N (1:1 문의내역과 동일) */
 .new-n{color:var(--rose);font-family:Roboto,sans-serif;font-size:9px;font-weight:900;line-height:1;vertical-align:super;margin-left:2px}
-
-/* ?�═ ?�림�??�═ */
-.alert-bar{background:var(--alert);border-bottom:1px solid #FFE0A0;padding:10px 0;display:none}
-.alert-inner{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.al-item{display:flex;align-items:center;gap:6px;font-size:13px}
-.al-dot{width:8px;height:8px;border-radius:50%}
-.al-dot.g{background:var(--green)}.al-dot.a{background:var(--amber)}.al-dot.gr{background:#ccc}
-.al-count{font-weight:700;color:var(--tp)}
-.al-label{color:var(--ts)}
-.al-link{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
+k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 
 /* ?�═ 멤버??배너 ?�═ */
 .member-bar{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0}
-.member-inner{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.member-inner{max-width:1060px;margin:0 auto;padding:0;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
 .mb-lbl{font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
 .mb-sub{font-size:12px;color:var(--ts);flex-shrink:0}
 /* 비로그인 3??*/
@@ -202,18 +181,18 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 
 /* ?�═ 바로가�??�═ */
 .sc-bar{background:#fff;border-bottom:1px solid var(--border);padding: 14px 0}
-.sc-inner{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;justify-content:center;gap:4px;overflow-x:auto;scrollbar-width:none}
+.sc-inner{max-width:1060px;margin:0 auto;padding:0;display:flex;justify-content:space-between;gap:8px;overflow-x:auto;scrollbar-width:none}
 .sc-inner::-webkit-scrollbar{display:none}
-.sc-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;cursor:pointer;min-width:68px;border:1.5px solid transparent;transition:all .15s}
+.sc-item{display:flex;flex-direction:column;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;cursor:pointer;min-width:74px;border:1.5px solid transparent;transition:all .15s}
 .sc-item:hover{background:#FFF5F7;border-color:rgba(232,56,90,.15)}
-.sc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.sc-icon i{font-size:19px;color:var(--navy)}
-.si1{background:#FFF0E6}.si2{background:#E8F5E9}.si3{background:#E3F2FD}.si4{background:#F3E5F5}
-.si5{background:#FFEBEE}.si6{background:#FFF8E1}.si7{background:#E0F7FA}.si8{background:#F1F8E9}.si9{background:#FFF3E0}.si10{background:#FCE4EC}
+.sc-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
+.sc-icon i{font-size:17px;color:#fff}
+.si1{background:#6C63FF}.si2{background:#EC4899}.si3{background:#F59E0B}.si4{background:#10B981}
+.si5{background:#3B82F6}.si6{background:#F97316}.si7{background:#8B5CF6}.si8{background:#06B6D4}.si9{background:#14B8A6}.si10{background:#64748B}
 .sc-lbl{font-size:11px;color:var(--ts);font-weight:500;white-space:nowrap}
 
 /* ?�═ ?�션 공통 ?�═ */
-.section{max-width:1440px;margin:0 auto;padding:32px 24px}
+.section{max-width:1060px;margin:0 auto;padding:34px 0}
 .sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .sec-title{font-size:18px;font-weight:700}
 .sec-more{font-size:13px;color:var(--tm);display:flex;align-items:center;gap:4px}
@@ -221,12 +200,27 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .sec-meta{font-size:12px;color:var(--tm)}
 
 /* ?�═ 브랜???�═ */
-.brand-grid{display:flex;justify-content:center;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:4px}
-.br-chip{display:flex;flex-direction:column;align-items:center;gap:7px;width:78px;cursor:pointer}
-.br-img{width:68px;height:68px;border-radius:16px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ts);overflow:hidden;transition:box-shadow .15s}
+.brand-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:16px;padding-bottom:4px}
+.br-chip{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;cursor:pointer}
+.br-img{width:64px;height:56px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--tp);overflow:hidden;transition:box-shadow .15s}
 .br-chip:hover .br-img{box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .br-img img{width:100%;height:100%;object-fit:contain;padding:10px}
 .br-name{font-size:11px;color:var(--ts);font-weight:500;text-align:center;line-height:1.35}
+
+/* 실시간 베스트 */
+.live-best-section{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:34px 0}
+.live-best-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.live-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .15s;cursor:pointer}
+.live-card:hover{box-shadow:0 5px 18px rgba(0,0,0,.08)}
+.live-thumb{position:relative;width:100%;aspect-ratio:1;background:#F2F3F5;overflow:hidden}
+.live-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.live-fav{position:absolute;right:10px;bottom:10px;width:28px;height:28px;border-radius:50%;border:1px solid #F4C8D0;background:#fff;color:var(--rose);display:grid;place-items:center;font-size:13px}
+.live-info{padding:10px 12px 12px}
+.live-source{height:24px;border:1px solid #EEEFF3;border-radius:4px;display:flex;align-items:center;gap:6px;padding:0 8px;color:#6B7280;font-size:10px;margin-bottom:8px}
+.live-source::before{content:"";width:7px;height:7px;border-radius:50%;background:#E60026}
+.live-name{min-height:34px;color:#111827;font-size:12px;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.live-price{margin-top:8px;color:#111827;font-size:17px;font-weight:900;font-family:'Roboto',sans-serif}
+.live-meta{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:#8B94A3;font-size:10px}
 
 /* ?�═ 카테고리 BEST ?�═ */
 .best-sec{background:#fff;padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -717,21 +711,18 @@ button.user-menu-item{
         <div class="panel-user-top">
           <div class="panel-user-row">
             <div class="pu-crown"><i class="fas fa-crown"></i></div>
-            <div><div class="pu-name">홍길동 회원님</div><span class="pu-grade">PREMIUM</span></div>
+            <div><div class="pu-name">홍길동님</div><span class="pu-grade">마일리지 0원 · 예치금 339,119원</span></div>
           </div>
-          <div class="pu-milbox">
-            <div class="pu-mil"><div class="pu-mil-label">마일리지</div><div class="pu-mil-val">4,500원</div></div>
-            <div class="pu-mil-div"></div>
-            <div class="pu-mil"><div class="pu-mil-label">예치금</div><div class="pu-mil-val">29,870원</div></div>
+          <div class="pu-manage-card">
+            <div class="pu-manage-row"><span><i class="fas fa-star"></i> Premium</span><span class="pu-grade-remaining" data-remaining="80">일반회원까지 <strong style="color: #E8385A;">80%</strong> 남음</span></div>
+            <div class="pu-grade-progress" aria-hidden="true"><span id="puGradeProgressFill"></span></div>
+            <a class="pu-manage-sub" href="web_mygrade.html">등급 혜택 자세히보기</a>
           </div>
-          <div class="pu-prog-label"><span style="color:var(--amber);font-weight:700">PREMIUM</span><span>VIP까지 <b style="color:var(--rose)">23,000원</b> 또는 <b style="color:var(--rose)">2건</b></span></div>
-          <div class="pu-prog-bg"><div class="pu-prog-fill"></div></div>
-          <a href="web_grade page.html" style="font-size:11px;color:var(--ts);display:block;text-align:right;margin-top:4px">등급 혜택 상세 더보기</a>
         </div>
         <div class="pu-status">
-          <div class="pu-st"><div class="pu-st-num">3</div><div class="pu-st-label">입찰 진행 중</div></div>
-          <div class="pu-st"><div class="pu-st-num red">1</div><div class="pu-st-label">1차 결제 대기</div></div>
-          <div class="pu-st"><div class="pu-st-num">0</div><div class="pu-st-label">2차 결제 대기</div></div>
+          <div class="pu-st"><div class="pu-st-label">입찰 진행 중</div><div class="pu-st-num">3건</div></div>
+          <div class="pu-st"><div class="pu-st-label">1차 결제 대기</div><div class="pu-st-num red">1건</div></div>
+          <div class="pu-st"><div class="pu-st-label">2차 결제 대기</div><div class="pu-st-num">0건</div></div>
         </div>
         <div class="pu-btns">
           <button class="pu-btn">고객센터</button>
@@ -743,15 +734,6 @@ button.user-menu-item{
   </div>
 </div>
 
-<!-- ?�림�?-->
-<div class="alert-bar" id="alertBar">
-  <div class="alert-inner">
-    <div class="al-item"><span class="al-dot g"></span><span class="al-label">입찰 진행 중</span><span class="al-count">3건</span></div>
-    <div class="al-item"><span class="al-dot a"></span><span class="al-label">1차 결제 대기</span><span class="al-count" style="color:var(--rose)">1건</span></div>
-    <div class="al-item"><span class="al-dot gr"></span><span class="al-label">2차 결제 대기</span><span class="al-count">0건</span></div>
-    <a href="web_mypage.html" class="al-link">마이페이지에서 확인</a>
-  </div>
-</div>
 
 <!-- 멤버??배너 -->
 <div class="member-bar">
@@ -797,6 +779,27 @@ button.user-menu-item{
     <div class="br-chip"><div class="br-img" style="font-size:10px;font-weight:700">LEVI'S</div><span class="br-name">LEVI'S</span></div>
     <div class="br-chip"><div class="br-img"><img src="https://logo.clearbit.com/adidas.com" alt="Adidas" onerror="this.parentElement.textContent='ADIDAS'"></div><span class="br-name">ADIDAS</span></div>
     <div class="br-chip"><div class="br-img"><img src="https://logo.clearbit.com/prada.com" alt="Prada" onerror="this.parentElement.textContent='PRADA'"></div><span class="br-name">PRADA</span></div>
+  </div>
+</div>
+
+<!-- 실시간 베스트 -->
+<div class="live-best-section">
+  <div class="section" style="padding:0">
+    <div class="sec-hd"><h2 class="sec-title">실시간 베스트</h2><span class="sec-meta">2026-04-30 20:00 업데이트</span></div>
+    <div class="live-best-grid">
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-1/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">シチズン クォーツ 腕時計 メンズ 文字盤</div><div class="live-price">¥ 3,030</div><div class="live-meta"><span>2026-04-30 19:38:26</span><span>10 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-2/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">TISSOT ティソ PR100 P350/450 クォーツ</div><div class="live-price">¥ 1,100</div><div class="live-meta"><span>2026-04-30 18:27:54</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-3/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 腕時計 メンズ デジアナ アラーム</div><div class="live-price">¥ 5,000</div><div class="live-meta"><span>2026-04-30 19:09:09</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-4/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN CLUB LA MER 自動巻き</div><div class="live-price">¥ 21</div><div class="live-meta"><span>2026-04-30 20:05:22</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-5/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">SEIKO QUARTZ 腕時計 ゴールド 稼働品</div><div class="live-price">¥ 2,222</div><div class="live-meta"><span>2026-05-01 21:50:44</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-6/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 腕時計 2730-274822 セット</div><div class="live-price">¥ 19,800</div><div class="live-meta"><span>2026-04-30 21:49:58</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-7/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">美品 シチズン 腕時計 エコドライブ</div><div class="live-price">¥ 10,450</div><div class="live-meta"><span>2026-04-30 23:58:13</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-8/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">EL2001 CITIZEN ランキング クォーツ</div><div class="live-price">¥ 2,610</div><div class="live-meta"><span>2026-05-01 21:18:01</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-9/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">腕時計 CITIZEN XC エコドライブ</div><div class="live-price">¥ 520</div><div class="live-meta"><span>2026-04-30 19:34:24</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-10/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 7連 ベルト ブレスレット</div><div class="live-price">¥ 3,750</div><div class="live-meta"><span>2026-05-04 20:20:21</span><span>4 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-11/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">シチズン A15803 シャルマン 手巻き</div><div class="live-price">¥ 4,000</div><div class="live-meta"><span>2026-05-03 21:06:23</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-12/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN シチズン 自動巻き 腕時計</div><div class="live-price">¥ 4,310</div><div class="live-meta"><span>2026-04-30 18:50:05</span><span>33 Bids</span></div></div></div>
+    </div>
   </div>
 </div>
 
@@ -1024,6 +1027,17 @@ setInterval(()=>changeSlide(1),4000);
 
 // 로그인 상태: bb-common.js(localStorage)가 단일 소스. bb:login 이벤트로 동기화
 let loggedIn = localStorage.getItem('bb_logged_in') === '1';
+function updateGradeProgress(){
+  const textEl = document.querySelector('.pu-grade-remaining');
+  const fillEl = document.getElementById('puGradeProgressFill');
+  if(!textEl || !fillEl) return;
+  const fromData = Number(textEl.dataset.remaining);
+  const match = textEl.textContent.match(/(\d+(?:\.\d+)?)\s*%/);
+  const remaining = Number.isFinite(fromData) ? fromData : Number(match?.[1] || 0);
+  const progress = Math.max(0, Math.min(100, 100 - remaining));
+  fillEl.style.width = progress + '%';
+  fillEl.setAttribute('aria-label', '등급 진행률 ' + progress + '%');
+}
 function applyState(){
   const setDisplay = (id, display) => {
     const el = document.getElementById(id);
@@ -1039,6 +1053,7 @@ function applyState(){
   setDisplay('drGuestPanel', loggedIn ? 'none' : 'block');
   setDisplay('drUserAssets', loggedIn ? 'grid' : 'none');
   setDisplay('drMemberPanel', loggedIn ? 'block' : 'none');
+  updateGradeProgress();
 }
 function closeDD(){ const dd=document.getElementById('userDD'); const trig=document.getElementById('userTrig'); if(dd)dd.classList.remove('open'); if(trig)trig.classList.remove('open'); }
 // doLogin/doLogout/toggleLogin은 bb-common.js가 제공. 상태 변경 시 페이지 UI만 갱신
@@ -1120,5 +1135,6 @@ mainSearchForm?.addEventListener('submit', event => {
 });
 </script>
 <script src="bb-common.js"></script>
+<script src="bb-search-modal.js"></script>
 </body>
 </html>

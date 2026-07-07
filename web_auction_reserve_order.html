@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -228,6 +228,7 @@
     .confirm-row .val { color: #151922; font-weight: 700; }
     .confirm-row .val.amount { color: var(--rose); font-size: 16px; font-weight: 900; }
     .confirm-row .val .sub { color: var(--muted); font-size: 12px; font-weight: 500; }
+    .confirm-box > .confirm-packing-row { padding-bottom: 12px; }
 
     .confirm-warn {
       margin: 14px 0 0;
@@ -295,6 +296,7 @@
     <div class="confirm-box">
       <div class="confirm-row"><b>예약입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩11,830)</span></span></div>
       <div class="confirm-row"><b>예약입찰 수량</b><span class="val" id="cfQty">1개</span></div>
+      <div class="confirm-row confirm-packing-row"><b>포장옵션</b><span class="val" id="cfPacking">선택 안함</span></div>
       <div class="confirm-row"><b>예약일시</b><span class="val" id="cfReserveAt">입찰종료 1시간 전 <span class="sub">(2026-06-14 11:12:12)</span></span></div>
       <div class="confirm-row"><b>경매낙찰정보</b><span class="val">공개</span></div>
     </div>
@@ -328,8 +330,28 @@
 </div>
 
 <script>
-const CONFIRMED_BID = 1300;
-const CONFIRMED_QTY = 1;
+const ORDER_PARAMS = new URLSearchParams(location.search);
+const CONFIRMED_BID = Number(ORDER_PARAMS.get('bid') || 1300);
+const CONFIRMED_QTY = Number(ORDER_PARAMS.get('qty') || 1);
+const CONFIRMED_PACKING = ORDER_PARAMS.get('packing') || '선택 안함';
+const CONFIRMED_RESERVE_AT = ORDER_PARAMS.get('reserveAt') || '입찰종료 1시간 전';
+const CONFIRMED_RESERVE_OFFSET = ORDER_PARAMS.get('reserveOffset') || '';
+const KRW_RATE = 9.1;
+
+function updateConfirmedValues() {
+  const cfAmount = document.getElementById('cfAmount');
+  const cfQty = document.getElementById('cfQty');
+  const cfPacking = document.getElementById('cfPacking');
+  const cfReserveAt = document.getElementById('cfReserveAt');
+  if (cfAmount) {
+    cfAmount.innerHTML = '¥ ' + CONFIRMED_BID.toLocaleString('ko-KR') + ' <span class="sub">(약 ₩' + Math.round(CONFIRMED_BID * KRW_RATE).toLocaleString('ko-KR') + ')</span>';
+  }
+  if (cfQty) cfQty.textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  if (cfPacking) cfPacking.textContent = CONFIRMED_PACKING;
+  if (cfReserveAt) {
+    cfReserveAt.innerHTML = (CONFIRMED_RESERVE_OFFSET || '예약입찰') + ' <span class="sub">(' + CONFIRMED_RESERVE_AT + ')</span>';
+  }
+}
 
 function updateState() {
   const agreed = document.getElementById('agreeChk').checked;
@@ -342,9 +364,10 @@ function updateState() {
 }
 
 function submitBid() {
-  location.href = 'web_auction reserve complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY + '&reserveAt=' + encodeURIComponent('입찰종료 1시간 전');
+  location.href = 'web_auction_reserve_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY + '&packing=' + encodeURIComponent(CONFIRMED_PACKING) + '&reserveAt=' + encodeURIComponent(CONFIRMED_RESERVE_AT) + '&reserveOffset=' + encodeURIComponent(CONFIRMED_RESERVE_OFFSET);
 }
 
+updateConfirmedValues();
 updateState();
 </script>
 <script src="bb-common.js"></script>

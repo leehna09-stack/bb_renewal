@@ -236,6 +236,12 @@
       padding: 16px 0 24px;
       background: #fff;
       overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .store-strip::-webkit-scrollbar {
+      display: none;
     }
 
     .store-list {
@@ -245,15 +251,8 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      padding: 1px;
+      padding: 6px 4px;
       box-sizing: border-box;
-    }
-
-    .store-list::-webkit-scrollbar {
-      display: none;
     }
 
     .store-chip {
@@ -299,42 +298,10 @@
       display: none;
     }
 
-    .yahoo-mark {
-      position: relative;
-      width: 42px;
-      height: 42px;
-      color: var(--accent);
-    }
-
-    .yahoo-mark::before,
-    .yahoo-mark::after {
-      content: "";
-      position: absolute;
-      left: 15px;
-      top: 3px;
-      width: 11px;
-      height: 36px;
-      border-radius: 2px;
-      background: currentColor;
-      transform: rotate(-45deg);
-    }
-
-    .yahoo-mark::after {
-      left: 7px;
-      top: 2px;
-      width: 27px;
-      height: 10px;
-    }
-
-    .yahoo-mark span {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      color: var(--rose);
-      font-size: 9px;
-      font-weight: 900;
-      transform: rotate(-7deg);
+    .store-yahoo {
+      color: #e43e2e;
+      transform: rotate(-42deg);
+      font-size: 11px;
     }
 
     .store-mercari {
@@ -451,112 +418,6 @@
       font-weight: 900;
     }
 
-    .market-panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-card);
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .market-tabs {
-      display: grid;
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 0;
-      overflow: hidden;
-      padding: 0;
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .market-tab {
-      position: relative;
-      min-height: 56px;
-      min-width: 0;
-      padding: 10px 8px 12px;
-      border: 0;
-      border-right: 1px solid var(--divider);
-      background: #fff;
-      display: grid;
-      place-items: center;
-      align-content: center;
-      gap: 4px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
-      word-break: keep-all;
-    }
-
-    .market-tab:last-child {
-      border-right: 0;
-    }
-
-    .market-tab.active {
-      color: var(--rose);
-    }
-
-    .market-tab::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      border-radius: 0;
-      background: transparent;
-      transition: background-color .16s ease;
-    }
-
-    .market-label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .market-check {
-      display: none;
-      width: 15px;
-      height: 15px;
-      border: 1.5px solid var(--rose);
-      border-radius: 3px;
-      background: var(--rose);
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .market-check::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 5px;
-      height: 2.5px;
-      border: 2px solid #fff;
-      border-top: 0;
-      border-right: 0;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      transform-origin: center;
-    }
-
-    .market-tab.active .market-check {
-      display: inline-block;
-    }
-
-    .market-tab.active::after {
-      background: var(--rose);
-    }
-
-    .market-count {
-      color: inherit;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .market-tab.active .market-count {
-      color: var(--rose);
-    }
-
     .category-grid {
       padding: 24px;
       display: grid;
@@ -579,214 +440,178 @@
     }
 
     .filter-panel {
-      --filter-font-size: 15px;
-      margin-top: 5px;
-      border: 1px solid #ddd;
-      border-radius: 0;
+      padding: 20px;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
       background: #fff;
-      overflow-x: hidden;
     }
 
-    .filter-row {
-      min-height: 46px;
-      width: 100%;
-      min-width: 0;
+    .filter-title {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .filter-block {
+      margin-bottom: 22px;
+    }
+
+    .filter-block:last-of-type {
+      margin-bottom: 18px;
+    }
+
+    .filter-block-title {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .site-check-list {
       display: grid;
-      grid-template-columns: 8% minmax(0, 52%) 8% minmax(0, 32%);
-      border-top: 0;
+      gap: 8px;
     }
 
-    .filter-row:first-child {
-      border-top: 0;
-    }
-
-    .filter-label {
+    .site-check {
+      position: relative;
+      height: 42px;
+      padding: 0 14px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-right: 1px solid #ddd;
-      background: #F2F0EC;
+      gap: 8px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .15s, background-color .15s;
+    }
+
+    .site-check.active {
+      border-color: var(--rose);
+      background: #fdf1f3;
+    }
+
+    .site-check input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .site-check-label {
+      flex: 1;
       color: var(--ink);
-      font-size: var(--filter-font-size);
+      font-size: 14px;
       font-weight: 700;
+    }
+
+    .site-check-mark {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      border: 1.5px solid #d8d8d8;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      font-size: 11px;
+    }
+
+    .site-check.active .site-check-mark {
+      border-color: var(--rose);
+      background: var(--rose);
+      color: #fff;
+    }
+
+    .site-dot {
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--rose);
+    }
+
+    .site-flag {
+      width: 20px;
+      height: 14px;
+      flex-shrink: 0;
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .price-range-fields {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .range-sep {
+      color: var(--secondary);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .filter-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .filter-two-col + .filter-two-col {
+      margin-top: 8px;
+    }
+
+    .filter-text-input,
+    .filter-select {
+      width: 100%;
+      height: 38px;
+      padding: 0 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font-size: 13px;
+      outline: 0;
+    }
+
+    .filter-text-input:focus,
+    .filter-select:focus {
+      border-color: var(--rose);
+    }
+
+    .filter-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .filter-checkbox-row input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--rose);
     }
 
     .filter-submit {
       width: 100%;
-      height: 34px;
-      margin-top: 14px;
+      height: 46px;
+      margin-top: 4px;
       border: 0;
-      border-radius: 0;
+      border-radius: 8px;
       background: var(--rose);
       color: #fff;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 900;
-    }
-
-    .filter-label.keyword-label {
-      border-left: 1px solid #ddd;
-    }
-
-    .filter-label.amount-label {
-      border-left: 1px solid #ddd;
-    }
-
-    .filter-label-text {
-      width: auto;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .filter-body {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      overflow: visible;
-    }
-
-    .filter-body.option-groups {
-      display: grid;
-      grid-template-columns: minmax(130px, .95fr) minmax(150px, 1fr) minmax(160px, 1.05fr);
-      align-items: stretch;
-    }
-
-    .filter-body.amount-cell {
-      min-height: 46px;
-    }
-
-    .filter-group {
-      min-height: 46px;
-      padding: 6px 8px 7px;
-      border-right: 1px solid #e4e4e4;
-      display: grid;
-      align-content: center;
-      gap: 4px;
-      white-space: normal;
-      min-width: 0;
-    }
-
-    .filter-group.condition {
-      width: auto;
-    }
-
-    .filter-group.delivery {
-      width: auto;
-      border-right: 0;
-    }
-
-    .filter-group.seller {
-      width: auto;
-    }
-
-    .filter-group-title {
-      color: #555;
-      font-size: var(--filter-font-size);
-      font-weight: 700;
-      line-height: 1.1;
-      text-align: center;
-    }
-
-    .filter-group-title::after {
-      content: "";
-      display: block;
-      width: min(132px, 100%);
-      height: 1px;
-      margin: 3px auto 0;
-      background: #d8d8d8;
-    }
-
-    .filter-options,
-    .amount-mode {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px 12px;
-      flex-wrap: wrap;
-      min-width: 0;
-    }
-
-    .amount-mode {
-      gap: 10px;
-      margin-right: 8px;
-    }
-
-    .choice {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      color: var(--secondary);
-      font-size: var(--filter-font-size);
-      font-weight: 700;
-      white-space: nowrap;
-      min-width: 0;
-    }
-
-    .choice-text {
-      width: auto;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .choice-text.long {
-      width: auto;
-    }
-
-    .choice input {
-      appearance: none;
-      width: 8px;
-      height: 8px;
-      margin: 0;
-      border: 1px solid #cfcfcf;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: none;
-    }
-
-    .choice input:checked {
-      border-color: var(--rose);
-      background: var(--rose);
     }
 
     .global-search button:active {
       background: var(--rose-h);
-    }
-
-    .amount-filter {
-      width: 100%;
-      min-height: 46px;
-      padding: 0 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .amount-input {
-      width: 82px;
-      height: 24px;
-      padding: 0 8px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      outline: 0;
-      background: #fff;
-      color: var(--text);
-      font-size: var(--filter-font-size);
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .amount-separator {
-      color: #777;
-      font-size: var(--filter-font-size);
-      font-weight: 700;
-    }
-
-    .filter-actions {
-      display: flex;
-      align-items: center;
-      gap: 24px;
     }
 
     .sort-select {
@@ -799,50 +624,6 @@
       color: var(--secondary);
       font-size: 12px;
       font-weight: 700;
-    }
-
-    .view-buttons {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .view-button {
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: #fff;
-      color: var(--muted);
-      display: grid;
-      place-items: center;
-    }
-
-    .view-button.active {
-      color: #1675cf;
-    }
-
-    .view-list,
-    .view-grid {
-      width: 15px;
-      height: 15px;
-      display: grid;
-      gap: 2px;
-    }
-
-    .view-list {
-      grid-template-rows: repeat(3, 1fr);
-    }
-
-    .view-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .view-list span,
-    .view-grid span {
-      display: block;
-      background: currentColor;
     }
 
     .result-section {
@@ -1116,251 +897,6 @@
       font-weight: 700;
     }
 
-    .search-layout .filter-panel {
-      --filter-font-size: 12px;
-      margin-top: 0;
-      border: 0;
-      background: #fff;
-      overflow: visible;
-    }
-
-    .search-layout .filter-row {
-      min-height: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      border: 1px solid #e4e4e4;
-    }
-
-    .search-layout .filter-label {
-      min-height: 61px;
-      border-right: 0;
-      border-bottom: 1px solid #ddd;
-      background: #f6f5f4;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .search-layout .filter-label.amount-label {
-      min-height: 42px;
-      border-left: 0;
-      background: #fff;
-      justify-content: center;
-      padding: 0 8px;
-      color: #555;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .search-layout .filter-body.option-groups {
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-
-    .search-layout .filter-body.amount-cell {
-      min-height: 0;
-    }
-
-    .search-layout .filter-group {
-      min-height: 0;
-      padding: 8px 8px 10px;
-      border-right: 0;
-      border-bottom: 1px solid #e4e4e4;
-      gap: 6px;
-      min-width: 0;
-      white-space: normal;
-    }
-
-    .search-layout .filter-group.delivery {
-      border-bottom: 0;
-    }
-
-    .search-layout .filter-group-title {
-      font-size: 14px;
-    }
-
-    .search-layout .filter-group-title::after {
-      width: 74px;
-      margin-top: 4px;
-    }
-
-    .search-layout .within-search .filter-group-title::after {
-      display: none;
-    }
-
-    .search-layout .filter-options,
-    .search-layout .amount-mode {
-      gap: 8px 9px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      min-width: 0;
-    }
-
-    .search-layout .choice {
-      gap: 4px;
-      font-size: 14px;
-      justify-content: flex-start;
-      white-space: normal;
-      line-height: 1.25;
-    }
-
-    .search-layout .amount-filter {
-      min-height: 0;
-      min-width: 0;
-      padding: 8px 14px 14px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      overflow: visible;
-    }
-
-    .search-layout .amount-range {
-      display: block;
-      width: 100%;
-      margin: 6px 0;
-      box-sizing: border-box;
-      accent-color: rgba(91, 166, 247, .6);
-      background: transparent;
-    }
-
-    .search-layout .amount-range::-webkit-slider-runnable-track {
-      height: 4px;
-      border: 1px solid #fff;
-      border-radius: 999px;
-      background: rgba(91, 166, 247, .6);
-    }
-
-    .search-layout .amount-range::-webkit-slider-thumb {
-      margin-top: -7px;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .16);
-    }
-
-    .search-layout .amount-range::-moz-range-track {
-      height: 4px;
-      border: 1px solid #fff;
-      border-radius: 999px;
-      background: rgba(91, 166, 247, .6);
-    }
-
-    .search-layout .amount-range::-moz-range-thumb {
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .16);
-    }
-
-    .search-layout .amount-fields {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr);
-      align-items: center;
-      gap: 12px;
-    }
-
-    .search-layout .amount-input {
-      width: 100%;
-      height: 44px;
-      border: 0;
-      border-radius: 4px;
-      background: #f7f7f9;
-      font-size: 13px;
-    }
-
-    .search-layout .amount-separator {
-      align-self: center;
-      text-align: center;
-      font-size: 11px;
-    }
-
-    .search-layout .amount-apply {
-      width: 100%;
-      height: 46px;
-      border: 1px solid #d9d9d9;
-      border-radius: 4px;
-      background: #fff;
-      color: var(--ink);
-      font-size: 14px;
-      font-weight: 900;
-    }
-
-    .search-layout .within-search {
-      display: grid;
-      gap: 12px;
-    }
-
-    .search-layout .within-search-head {
-      display: block;
-      text-align: center;
-      order: 1;
-    }
-
-    .search-layout .within-keyword-list {
-      min-height: 35px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      order: 3;
-    }
-
-    .search-layout .within-chip {
-      height: 35px;
-      padding: 0 11px;
-      border-radius: 4px;
-      background: #f6f6f7;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .search-layout .within-chip button {
-      width: 16px;
-      height: 16px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #b4b4b4;
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .search-layout .within-search-form {
-      position: relative;
-      min-width: 0;
-      order: 2;
-    }
-
-    .search-layout .within-search-form input {
-      min-width: 0;
-      width: 100%;
-      height: 44px;
-      border: 1px solid #dedede;
-      border-radius: 8px;
-      background: #fff;
-      padding: 0 52px 0 12px;
-      outline: 0;
-    }
-
-    .search-layout .within-search-form button {
-      width: 44px;
-      height: 42px;
-      position: absolute;
-      top: 1px;
-      right: 1px;
-      border: 0;
-      border-radius: 0 7px 7px 0;
-      background: transparent;
-      display: grid;
-      place-items: center;
-      color: var(--ink);
-    }
-
-    .search-layout .within-search-form svg {
-      width: 24px;
-      height: 24px;
-      stroke-width: 2;
-    }
-
     .search-layout .result-section {
       padding-bottom: 72px;
     }
@@ -1374,8 +910,8 @@
     }
 
     .search-layout .product-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 26px 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px 16px;
     }
 
     .search-layout .product-card {
@@ -1601,180 +1137,148 @@
 <p class="result-copy" data-result-copy><span class="red">'나이키 박스'</span>에 대한 검색결과 입니다.</p>
 
     <main class="search-page">
-        <section class="market-panel" aria-label="마켓별 검색결과">
-        <div class="market-tabs" role="tablist" aria-label="마켓 선택" aria-multiselectable="true">
-          <button class="market-tab active" type="button" role="tab" aria-selected="true" data-store-name="야후 옥션"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>야후 옥션</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="메루카리"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>메루카리</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="라쿠텐"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>일본 라쿠텐</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="라쿠마"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>라쿠마</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="야후 쇼핑"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>야후 쇼핑</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="일본 아마존"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>일본 아마존</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="미국 이베이"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>미국 이베이</strong></span></button>
-          <button class="market-tab" type="button" role="tab" aria-selected="false" data-store-name="영국 이베이"><span class="market-label"><span class="market-check" aria-hidden="true"></span><strong>영국 이베이</strong></span></button>
-        </div>
-       </section>
       <div class="search-layout">
       <section class="filter-panel" aria-label="검색 필터">
-        <div class="filter-row has-keyword">
-          <div class="filter-label"><span class="filter-label-text">검색조건</span></div>
-          <div class="filter-body option-groups">
-            <div class="filter-group within-search">
-              <div class="within-search-head">
-                <div class="filter-group-title">목록내 검색</div>
-              </div>
-              <div class="within-keyword-list" data-within-list></div>
-              <div class="within-search-form">
-                <input type="search" aria-label="목록내 검색어" data-within-input>
-                <button type="button" aria-label="목록내 검색" data-within-submit>
-                  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-            <div class="filter-group purchase-type">
-              <div class="filter-group-title">구매형태</div>
-              <div class="filter-options">
-                <label class="choice"><input type="checkbox" name="purchaseType" value="auction"><span class="choice-text">경매</span></label>
-                <label class="choice"><input type="checkbox" name="purchaseType" value="buy"><span class="choice-text">구매</span></label>
-                <label class="choice"><input type="checkbox" name="purchaseType" value="freeDelivery"><span class="choice-text">무료배송</span></label>
-              </div>
-            </div>
-            <div class="filter-group condition">
-              <div class="filter-group-title">상태</div>
-              <div class="filter-options">
-                <label class="choice"><input type="radio" name="condition" checked><span class="choice-text">전체</span></label>
-                <label class="choice"><input type="radio" name="condition"><span class="choice-text">신품</span></label>
-                <label class="choice"><input type="radio" name="condition"><span class="choice-text">중고</span></label>
-              </div>
-            </div>
-            <div class="filter-group seller">
-              <div class="filter-group-title">출품자 유형</div>
-              <div class="filter-options">
-                <label class="choice"><input type="radio" name="seller" checked><span class="choice-text">전체</span></label>
-                <label class="choice"><input type="radio" name="seller"><span class="choice-text">스토어</span></label>
-                <label class="choice"><input type="radio" name="seller"><span class="choice-text">개인</span></label>
-              </div>
-            </div>
-          </div>
-          <div class="filter-label amount-label"><span class="filter-label-text">금액</span></div>
-          <div class="filter-body amount-cell">
-            <div class="amount-filter">
-              <input class="amount-range" type="range" min="0" max="1000000" value="1000000" aria-label="금액 범위">
-              <div class="amount-fields">
-                <input class="amount-input" type="text" value="0" aria-label="최소 금액" data-amount-min>
-                <span class="amount-separator" aria-hidden="true">~</span>
-                <input class="amount-input" type="text" value="1000000" aria-label="최대 금액" data-amount-max>
-              </div>
-              <button class="amount-apply" type="button">적용</button>
-            </div>
+        <h2 class="filter-title">검색 필터</h2>
+
+        <div class="filter-block">
+          <div class="filter-block-title">사이트</div>
+          <div class="site-check-list" data-site-list>
+            <label class="site-check active" data-site-all>
+              <input type="checkbox" checked>
+              <span class="site-check-label">전체</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="야후옥션">
+              <input type="checkbox" checked>
+              <span class="site-dot" aria-hidden="true"></span>
+              <span class="site-check-label">야후옥션</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="메루카리">
+              <input type="checkbox" checked>
+              <span class="site-dot" aria-hidden="true"></span>
+              <span class="site-check-label">메루카리</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="라쿠텐">
+              <input type="checkbox" checked>
+              <span class="site-dot" aria-hidden="true"></span>
+              <span class="site-check-label">라쿠텐</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="야후쇼핑">
+              <input type="checkbox" checked>
+              <span class="site-dot" aria-hidden="true"></span>
+              <span class="site-check-label">야후쇼핑</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="라쿠마">
+              <input type="checkbox" checked>
+              <span class="site-dot" aria-hidden="true"></span>
+              <span class="site-check-label">라쿠마</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="이베이 USA">
+              <input type="checkbox" checked>
+              <span class="site-flag flag-us" aria-hidden="true"></span>
+              <span class="site-check-label">이베이 USA</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
+            <label class="site-check active" data-site="이베이 UK">
+              <input type="checkbox" checked>
+              <span class="site-flag flag-uk" aria-hidden="true"></span>
+              <span class="site-check-label">이베이 UK</span>
+              <span class="site-check-mark"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            </label>
           </div>
         </div>
-        <button class="filter-submit" type="button">검색</button>
+
+        <div class="filter-block">
+          <div class="filter-block-title">가격</div>
+          <div class="price-range-fields">
+            <input type="text" class="filter-text-input" placeholder="최소" aria-label="최소 가격">
+            <span class="range-sep" aria-hidden="true">~</span>
+            <input type="text" class="filter-text-input" placeholder="최대" aria-label="최대 가격">
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <div class="filter-block-title">상품상태</div>
+          <select class="filter-select" aria-label="상품상태">
+            <option>전체</option>
+            <option>신품</option>
+            <option>중고</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <div class="filter-block-title">배송/판매</div>
+          <label class="filter-checkbox-row"><input type="checkbox"><span>무료배송</span></label>
+          <select class="filter-select" aria-label="거래방식">
+            <option>거래방식 전체</option>
+            <option>경매</option>
+            <option>즉시구매</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <div class="filter-block-title">판매자/브랜드</div>
+          <div class="filter-two-col">
+            <input type="text" class="filter-text-input" placeholder="판매자" aria-label="판매자">
+            <input type="text" class="filter-text-input" placeholder="브랜드" aria-label="브랜드">
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <div class="filter-block-title">기타</div>
+          <div class="filter-two-col">
+            <input type="text" class="filter-text-input" placeholder="지역/국가" aria-label="지역/국가">
+            <input type="text" class="filter-text-input" placeholder="색상" aria-label="색상">
+          </div>
+          <div class="filter-two-col">
+            <input type="text" class="filter-text-input" placeholder="사이즈" aria-label="사이즈">
+            <select class="filter-select" aria-label="세일여부">
+              <option>세일여부 전체</option>
+              <option>세일상품만</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="filter-submit" type="button">필터 적용</button>
       </section>
 
       <section class="result-section" aria-label="검색 결과">
         <div class="result-header">
-          <h1 class="result-title">검색 결과 (전체 <span class="red">2,859</span>건)</h1>
-          <div class="filter-actions" aria-label="검색 결과 보기 설정">
-            <select class="sort-select" aria-label="정렬">
-              <option>인기상품순</option>
-              <option>낮은가격순</option>
-              <option>높은가격순</option>
-              <option>신규등록순</option>
-            </select>
-            <div class="view-buttons" aria-label="보기 방식">
-              <button class="view-button" type="button" aria-label="목록 보기">
-                <span class="view-list" aria-hidden="true"><span></span><span></span><span></span></span>
-              </button>
-              <button class="view-button active" type="button" aria-label="그리드 보기">
-                <span class="view-grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-              </button>
-            </div>
-          </div>
+          <h1 class="result-title">전체 <span class="red">2,859</span>건</h1>
+          <select class="sort-select" aria-label="정렬">
+            <option>인기순</option>
+            <option>낮은가격순</option>
+            <option>높은가격순</option>
+            <option>신규등록순</option>
+          </select>
         </div>
 
-        <div class="product-grid">
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><span class="appraisal-badge">감정가능</span><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-          <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-                    <article class="product-card">
-            <div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div>
-            <p class="product-name">니콘 수동 필름 카메라 바디</p>
-            <span class="seller">현재가</span>
-            <strong class="price">1,650엔</strong>
-          </article>
-        </div>
+        <div class="product-grid" id="productGrid"></div>
       </section>
       </div>
     </main>
   </div>
 
-  <footer class="more-footer">
-    <button class="more-row" type="button">펼쳐보기</button>
+  <footer class="more-footer" id="moreFooter">
+    <button class="more-row" type="button" id="moreBtn">펼쳐보기</button>
   </footer>
 
   <script>
-    const marketTabs = document.querySelectorAll(".market-tab");
     const storeChips = document.querySelectorAll(".store-chip");
     const globalSearch = document.querySelector("[data-global-search]");
     const keywordList = document.querySelector("[data-keyword-list]");
     const resultCopy = document.querySelector("[data-result-copy]");
-    const amountMinInput = document.querySelector("[data-amount-min]");
-    const amountMaxInput = document.querySelector("[data-amount-max]");
-    const withinInput = document.querySelector("[data-within-input]");
-    const withinSubmit = document.querySelector("[data-within-submit]");
-    const withinList = document.querySelector("[data-within-list]");
-    const amountLimit = 1000000;
     const searchParams = new URLSearchParams(window.location.search);
     const initialQuery = searchParams.get("q") || "";
     let keywords = initialQuery.trim()
       ? initialQuery.trim().split(/\s+/).filter(Boolean)
       : ["나이키", "박스"];
-    let withinKeywords = [];
 
     const productPhotoUrls = [
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=520&q=80",
@@ -1790,72 +1294,144 @@
     ];
     const shuffledProductPhotos = [...productPhotoUrls].sort(() => Math.random() - 0.5);
 
-    document.querySelectorAll(".product-thumb").forEach((thumb, index) => {
-      if (thumb.querySelector("img")) return;
+    // 상품 카드 렌더링: 4열 x 3줄(12개) 기본 노출, "펼쳐보기" 클릭 후 무한스크롤로 최대 36개까지 로드
+    const PAGE_SIZE = 12;
+    const MAX_ITEMS = 36;
+    const productGrid = document.getElementById("productGrid");
+    const moreFooter = document.getElementById("moreFooter");
+    const moreBtn = document.getElementById("moreBtn");
+    let renderedCount = 0;
+    let infiniteScrollActive = false;
+
+    function createProductCard(index) {
+      const article = document.createElement("article");
+      article.className = "product-card";
+
+      const thumb = document.createElement("div");
+      thumb.className = "product-thumb";
+
+      if ((index + 1) % 4 === 0) {
+        const badge = document.createElement("span");
+        badge.className = "appraisal-badge";
+        badge.textContent = "감정가능";
+        thumb.append(badge);
+      }
+
       const img = document.createElement("img");
       img.src = shuffledProductPhotos[index % shuffledProductPhotos.length];
       img.alt = "Product image";
       img.loading = "lazy";
-      thumb.prepend(img);
+      thumb.append(img);
       thumb.classList.add("has-photo");
-    });
 
-    // Market Tab 클릭 이벤트 (멀티 선택 토글 + 스토어 아이콘 연동)
-    marketTabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const isNowActive = !tab.classList.contains("active");
-        tab.classList.toggle("active", isNowActive);
-        tab.setAttribute("aria-selected", String(isNowActive));
+      const heart = document.createElement("button");
+      heart.className = "heart";
+      heart.type = "button";
+      heart.setAttribute("aria-label", "관심상품");
+      heart.innerHTML = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
+      thumb.append(heart);
 
-        const storeName = tab.dataset.storeName;
-        const chip = Array.from(storeChips).find(c => c.dataset.storeName === storeName);
-        if (chip) chip.classList.toggle("active", isNowActive);
+      const name = document.createElement("p");
+      name.className = "product-name";
+      name.textContent = "니콘 수동 필름 카메라 바디";
+
+      const seller = document.createElement("span");
+      seller.className = "seller";
+      seller.textContent = "현재가";
+
+      const price = document.createElement("strong");
+      price.className = "price";
+      price.textContent = "1,650엔";
+
+      article.append(thumb, name, seller, price);
+
+      article.addEventListener("click", (event) => {
+        if (event.target.closest("button, a")) return;
+        window.location.href = "web_bill_1st.html";
       });
+
+      return article;
+    }
+
+    function appendCards(count) {
+      const toAdd = Math.min(count, MAX_ITEMS - renderedCount);
+      for (let i = 0; i < toAdd; i++) {
+        productGrid.append(createProductCard(renderedCount));
+        renderedCount++;
+      }
+
+      if (renderedCount >= MAX_ITEMS) {
+        stopInfiniteScroll();
+        moreFooter.style.display = "none";
+      }
+    }
+
+    function checkInfiniteScroll() {
+      if (!infiniteScrollActive) return;
+      const rect = moreFooter.getBoundingClientRect();
+      if (rect.top <= window.innerHeight + 200) appendCards(PAGE_SIZE);
+    }
+
+    function startInfiniteScroll() {
+      if (infiniteScrollActive) return;
+      infiniteScrollActive = true;
+      window.addEventListener("scroll", checkInfiniteScroll, { passive: true });
+      window.addEventListener("resize", checkInfiniteScroll);
+      checkInfiniteScroll();
+    }
+
+    function stopInfiniteScroll() {
+      infiniteScrollActive = false;
+      window.removeEventListener("scroll", checkInfiniteScroll);
+      window.removeEventListener("resize", checkInfiniteScroll);
+    }
+
+    moreBtn.addEventListener("click", () => {
+      appendCards(PAGE_SIZE);
+      moreBtn.style.display = "none";
+      if (renderedCount < MAX_ITEMS) startInfiniteScroll();
     });
 
-    // 스토어 바로가기 클릭 이벤트 (멀티 선택 토글 + 마켓 탭 연동)
+    appendCards(PAGE_SIZE);
+
+    // 스토어 바로가기 클릭 이벤트 (멀티 선택 토글)
     storeChips.forEach(chip => {
       chip.addEventListener("click", (e) => {
         e.preventDefault();
-        const isNowActive = !chip.classList.contains("active");
-        chip.classList.toggle("active", isNowActive);
-
-        const storeName = chip.dataset.storeName;
-        const tab = Array.from(marketTabs).find(t => t.dataset.storeName === storeName);
-        if (tab) {
-          tab.classList.toggle("active", isNowActive);
-          tab.setAttribute("aria-selected", String(isNowActive));
-        }
+        chip.classList.toggle("active");
       });
     });
 
-    function clampAmount(value) {
-      return Math.min(amountLimit, Math.max(0, value));
-    }
+    // 사이트 필터 체크박스 (전체 선택 + 개별 토글 동기화)
+    const siteList = document.querySelector("[data-site-list]");
+    if (siteList) {
+      const siteChecks = Array.from(siteList.querySelectorAll(".site-check"));
+      const siteAll = siteList.querySelector("[data-site-all]");
+      const siteItems = siteChecks.filter(item => item !== siteAll);
 
-    function parseAmount(value) {
-      const numeric = Number(String(value).replace(/[^\d]/g, ""));
-      return Number.isFinite(numeric) ? clampAmount(numeric) : 0;
-    }
-
-    function formatAmount(value) {
-      return String(clampAmount(value)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    function updateAmountFilter(source) {
-      let minValue = parseAmount(amountMinInput.value);
-      let maxValue = parseAmount(amountMaxInput.value);
-
-      if (minValue > maxValue) {
-        if (source === amountMinInput) {
-          maxValue = minValue;
-        } else {
-          minValue = maxValue;
-        }
+      function setSiteCheck(item, checked) {
+        item.classList.toggle("active", checked);
+        item.querySelector("input").checked = checked;
       }
 
-      amountMinInput.value = formatAmount(minValue);
-      amountMaxInput.value = formatAmount(maxValue);
+      function syncSiteAll() {
+        setSiteCheck(siteAll, siteItems.every(item => item.classList.contains("active")));
+      }
+
+      siteAll.addEventListener("click", (e) => {
+        e.preventDefault();
+        const checked = !siteAll.classList.contains("active");
+        setSiteCheck(siteAll, checked);
+        siteItems.forEach(item => setSiteCheck(item, checked));
+      });
+
+      siteItems.forEach(item => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          setSiteCheck(item, !item.classList.contains("active"));
+          syncSiteAll();
+        });
+      });
     }
 
     function updateResultCopy() {
@@ -1892,35 +1468,6 @@
       updateResultCopy();
     }
 
-    function saveWithinKeyword() {
-      const nextKeyword = withinInput.value.trim();
-      if (!nextKeyword) return;
-
-      if (!withinKeywords.includes(nextKeyword)) {
-        withinKeywords.push(nextKeyword);
-      }
-      withinInput.value = "";
-      renderWithinKeywords();
-    }
-
-    function renderWithinKeywords() {
-      withinList.replaceChildren();
-
-      withinKeywords.forEach((keyword, index) => {
-        const chip = document.createElement("span");
-        chip.className = "within-chip";
-        chip.append(document.createTextNode(`${keyword} `));
-
-        const removeButton = document.createElement("button");
-        removeButton.type = "button";
-        removeButton.setAttribute("aria-label", `${keyword} 삭제`);
-        removeButton.dataset.withinRemove = String(index);
-        removeButton.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
-        chip.append(removeButton);
-        withinList.append(chip);
-      });
-    }
-
     keywordList.addEventListener("click", (event) => {
       const removeButton = event.target.closest("[data-keyword-index]");
       if (!removeButton) return;
@@ -1949,38 +1496,9 @@
       input.value = "";
     });
 
-    withinSubmit.addEventListener("click", saveWithinKeyword);
-
-    withinInput.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter") return;
-      event.preventDefault();
-      saveWithinKeyword();
-    });
-
-    withinList.addEventListener("click", (event) => {
-      const removeButton = event.target.closest("[data-within-remove]");
-      if (!removeButton) return;
-
-      withinKeywords.splice(Number(removeButton.dataset.withinRemove), 1);
-      renderWithinKeywords();
-    });
-
-    document.querySelectorAll(".product-card").forEach((card) => {
-      card.addEventListener("click", (event) => {
-        if (event.target.closest("button, a")) return;
-        window.location.href = "web_bill_1st.html";
-      });
-    });
-
-    [amountMinInput, amountMaxInput].forEach((input) => {
-      input.addEventListener("change", () => updateAmountFilter(input));
-      input.addEventListener("blur", () => updateAmountFilter(input));
-    });
-
-    updateAmountFilter(amountMaxInput);
-    renderWithinKeywords();
     renderKeywords();
   </script>
 <script src="bb-common.js"></script>
+<script src="bb-search-modal.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -150,10 +150,11 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 
 /* 감정 배너 */
 .appraisal-banner{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.appraisal-banner-logo{width:36px;height:36px;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.appraisal-banner-logo svg{width:22px;height:22px}
+.appraisal-banner-logo{width:50px;height:50px;border-radius:6px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.appraisal-banner-logo img{width:100%;height:100%;object-fit:contain;padding:7px;display:block}
 .appraisal-banner-info{flex:1;min-width:0}
-.appraisal-banner-title{font-size:16px;color:var(--tp);font-weight:500;display:flex;align-items:center;gap:6px}
+.appraisal-banner-title{font-size:16px;color:var(--tp);font-weight:500;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%}
+.appraisal-banner-title-text{min-width:0}
 .appraisal-banner-detail{font-size:14px;color:var(--rose);font-weight:700;cursor:pointer;text-decoration:underline;white-space:nowrap}
 .appraisal-banner-fee{font-size:14px;color:var(--ts);margin-top:10px}
 .appraisal-banner-fee strong{color:var(--tp);font-weight:700}
@@ -161,7 +162,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 /* 감정 팝업 */
 .appraisal-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:3000;align-items:center;justify-content:center}
 .appraisal-modal-overlay.open{display:flex}
-.appraisal-modal{background:#fff;border-radius:16px;width:540px;max-width:92vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.appraisal-modal{background:#fff;border-radius:16px;width:740px;max-width:92vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.2)}
 .appraisal-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
 .appraisal-modal-header span{font-size:15px;font-weight:700;color:var(--tp)}
 .appraisal-modal-close{border:none;background:none;font-size:20px;cursor:pointer;color:var(--ts);line-height:1;padding:0}
@@ -492,6 +493,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 
 /* ④ 비딩금액 + 수량 */
 .bid-inline-row{display:flex;gap:12px;align-items:center;min-height:39px}
+.bid-qty-row{margin-bottom:5px}
 .bid-inline-row .bid-input{flex:none;width:90px}
 .bid-amount-input{width:90px !important}
 .bid-qty-input{width:55px !important}
@@ -539,8 +541,18 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .confirm-detail-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--border);font-size:13px;color:var(--ts)}
 .confirm-detail-row strong{font-family:'Roboto',sans-serif;font-size:15px;color:var(--tp)}
 .confirm-modal-note{font-size:12px;color:var(--tm);line-height:1.7;margin-bottom:18px}
-.confirm-modal-actions{display:flex;justify-content:flex-end}
-.confirm-modal-confirm{background:var(--tp);color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.confirm-modal-actions{display:flex;grid-template-columns:repeat(2,minmax(0,1fr)); padding-top:8px; justify-content:center;gap:8px}
+.confirm-modal-confirm{background:var(--navy);color:#fff;border:none;border-radius:30px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit; width: 200px}
+.reserve-modal-card{width:min(460px,calc(100vw - 32px))}
+.reserve-form{display:grid;gap:14px;margin-bottom:14px}
+.reserve-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;align-items:center}
+.reserve-label{font-size:13px;font-weight:800;color:var(--ts)}
+.reserve-select,.reserve-date{width:100%;height:42px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--tp);font-family:inherit;font-size:13px;padding:0 12px;outline:none}
+.reserve-select:focus{border-color:var(--navy)}
+.reserve-date{display:flex;align-items:center;font-weight:800;background:#FAFBFC}
+.reserve-guide{margin:0;padding:12px 14px;border-radius:10px;background:#FFF8E8;color:#76624B;font-size:12px;line-height:1.7}
+.reserve-guide strong{color:var(--rose);font-weight:900}
+.confirm-modal-cancel{background:#fff;color:var(--ts);border:1px solid var(--border);border-radius:30px;padding:12px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-right:8px; width: 200px}
 
 /* ── 경매 하단 아코디언 ── */
 .auction-accordions{max-width:1440px;margin:0 auto;padding:20px 24px 0;display:flex;flex-direction:column;gap:8px}
@@ -623,11 +635,31 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .tab-content.active{display:block}
 
 /* 상품 설명 */
+.bid-check-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:16px;color:var(--ts);font-size:13px;line-height:1.75}
+.bid-check-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--tp);font-size:15px;font-weight:800}
+.bid-check-title i{color:var(--ts);font-size:14px}
+.bid-check-points{display:flex;flex-wrap:wrap;gap:10px 22px;margin-bottom:10px;color:var(--rose);font-size:13px;font-weight:800}
+.bid-check-card p{margin:0}
+.bid-check-sub{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)}
+.desc-collapse{position:relative;max-height:260px;overflow:hidden}
+.desc-collapse:not(.expanded)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;background:linear-gradient(rgba(255,255,255,0),#fff)}
+.desc-more-btn{width:100%;height:42px;margin-top:8px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--ts);font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+.desc-more-btn:hover{border-color:var(--navy);color:var(--navy)}
+.desc-more-btn i{font-size:11px;transition:transform .2s}
+.desc-collapse.expanded + .desc-more-btn i{transform:rotate(180deg)}
 .desc-block{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;font-size:13px;line-height:1.8;color:var(--ts)}
 .desc-block h4{font-size:13px;font-weight:700;color:var(--tp);margin-bottom:8px}
 .desc-block p{margin-bottom:10px}
 .desc-tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ts);margin:2px 3px 2px 0}
 .desc-block-jp{background:#FAFBFC;border-top:1px dashed var(--border);margin-top:14px;padding-top:14px;font-size:12px;color:var(--tm);line-height:1.8}
+.desc-qa-stack{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.desc-qa-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.desc-qa-title{font-size:15px;font-weight:800;color:var(--tp)}
+.desc-qa-link{border:0;background:none;color:var(--navy);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+.desc-empty-card{border:1px solid var(--border);border-radius:10px;background:#fff;padding:28px;text-align:center;color:var(--tm);font-size:13px}
+.desc-question-card{border:1px solid var(--border);border-radius:10px;background:#fff;padding:20px}
+.desc-question-title{font-size:12px;font-weight:800;color:var(--tp);margin-bottom:8px}
+.desc-question-help{margin:8px 0 0;color:var(--tm);font-size:11px;line-height:1.7}
 
 /* 상세 사항 테이블 */
 .spec-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -879,15 +911,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
     <!-- 감정 배너 -->
     <div class="appraisal-banner">
-      <div class="appraisal-banner-logo">
-        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="8" fill="#111"/>
-          <text x="20" y="27" text-anchor="middle" fill="#fff" font-size="11" font-family="Arial,sans-serif" font-weight="700">SNKR</text>
-        </svg>
-      </div>
+      <div class="appraisal-banner-logo"><img src="yahoologo.png" alt="야후 안심 감정"></div>
       <div class="appraisal-banner-info">
         <div class="appraisal-banner-title">
-          야후 감정 신청이 가능한 상품입니다.
+          <span class="appraisal-banner-title-text">야후 감정 신청이 가능한 상품입니다.</span>
           <span class="appraisal-banner-detail" onclick="openAppraisalModal()">상세</span>
         </div>
         <div class="appraisal-banner-fee">감정료 <strong>2,500 엔</strong></div>
@@ -993,7 +1020,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
                   <span class="bid-krw-amount" id="bidAmountKrw">(12만 9270원)</span>
                 </div>
                 <div class="bid-hint" style="padding:5px 0 0">다음 비딩금액은 <strong id="bidHintAmount">13,900엔</strong> 이상</div>
-                <div class="bid-inline-row" style="margin-top:8px">
+                <div class="bid-inline-row bid-qty-row" style="margin-top:8px">
                   <span class="bid-section-label">수량</span>
                   <input type="number" class="bid-input bid-qty-input" id="bidQtyInput" value="1" min="1">
                   <span class="bid-unit">개</span>
@@ -1002,11 +1029,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
               <div class="bid-form-row" style="margin-bottom:0">
                 <span class="bid-form-label">포장 옵션</span>
                 <div class="bid-form-input">
-                  <select class="form-select">
+                  <select class="form-select" id="bidPackingSelect">
                     <option value="">옵션을 선택하세요</option>
-                    <option value="basic">현지 도착상태 그대로 발송</option>
-                    <option value="basic">최소 포장</option>
-                    <option value="gift">깨지기 쉬운 물품(+500엔)</option>
+                    <option value="arrival">현지도착상태 그대로 발송</option>
+                    <option value="basic">기본포장</option>
+                    <option value="strong">튼튼포장</option>
                   </select>
                 </div>
               </div>
@@ -1019,7 +1046,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
                   <span class="bid-krw-amount" id="buyNowAmountKrw">(18만 4140원)</span>
                 </div>
                 <div class="bid-hint bid-hint-spacer" aria-hidden="true"></div>
-                <div class="bid-inline-row" style="margin-top:8px">
+                <div class="bid-inline-row bid-qty-row" style="margin-top:8px">
                   <span class="bid-section-label">수량</span>
                   <input type="number" class="bid-input bid-qty-input" id="buyNowQtyInput" value="1" min="1">
                   <span class="bid-unit">개</span>
@@ -1028,11 +1055,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
               <div class="bid-form-row" style="margin-bottom:0">
                 <span class="bid-form-label">포장 옵션</span>
                 <div class="bid-form-input">
-                  <select class="form-select">
+                  <select class="form-select" id="buyNowPackingSelect">
                     <option value="">옵션을 선택하세요</option>
-                    <option value="basic">현지 도착상태 그대로 발송</option>
-                    <option value="basic">기본 포장</option>
-                    <option value="gift">튼튼 포장(+500~2,000엔)</option>
+                    <option value="arrival">현지도착상태 그대로 발송</option>
+                    <option value="basic">기본포장</option>
+                    <option value="strong">튼튼포장</option>
                   </select>
                 </div>
               </div>
@@ -1040,8 +1067,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <!-- 입찰 버튼: 하단 고정 -->
             <div style="margin-top:auto;padding-top:14px">
               <div class="bp-action-wrap" id="bp-action-bid" style="display:none">
-                <button class="bp-btn-bid" type="button" onclick="location.href='web_auction_order.html'"><i class="fa-solid fa-gavel"></i> 실시간 입찰</button>
-                <button class="bp-btn-wish" onclick="location.href='web_auction_reserve_order.html'"><i class="fa-solid fa-clock-rotate-left"></i> 예약 입찰하기</button>
+                <button class="bp-btn-bid" type="button" onclick="goAuctionOrder('realtime')"><i class="fa-solid fa-gavel"></i> 실시간 입찰</button>
+                <button class="bp-btn-wish" type="button" onclick="goAuctionOrder('reserve')"><i class="fa-solid fa-clock-rotate-left"></i> 예약 입찰하기</button>
               </div>
               <div class="bp-login-action" id="bp-action-login-bid">
                 <button class="bp-btn-bid" type="button" onclick="doLogin()"><i class="fa-solid fa-right-to-bracket"></i> 로그인하고 입찰하기</button>
@@ -1204,16 +1231,23 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
       <!-- 상품 설명 -->
       <div class="tab-content active" id="tab-desc">
-        <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:12px;line-height:2;color:var(--ts);margin-bottom:12px">
-          <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
-          <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
-          <div>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 입찰을 부탁드립니다.</div>
-          <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.<br>번역 오류로 인한 피해는 비드바이가 보장하지 않습니다. 항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.</div>
+        <div class="bid-check-card">
+          <div class="bid-check-title"><i class="fa-regular fa-circle-check"></i> 입찰 전 꼭 확인해주세요.</div>
+          <div class="bid-check-points">
+            <span>1. 정크/가품 여부 확인 불가</span>
+            <span>2. 정크(JUNK) 상품 주의</span>
+            <span>3. 반품 가능 여부 확인</span>
+          </div>
+          <p>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</p>
+          <p>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</p>
+          <p>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 입찰을 부탁드립니다.</p>
+          <br><p class="bid-check-sub">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.<br><strong style="color: #d62f54;">번역 오류로 인한 피해는 비드바이가 보장하지 않습니다.</strong> 항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.</strong></p>
         </div>
-        <div class="desc-block">
-          <h4>상품 설명 (번역)</h4>
-          <p>【즉구입 가능】
-            <br>【익명 배송】
+        <div class="desc-collapse" id="auctionDescCollapse">
+          <div class="desc-block">
+            <h4>상품 설명 (번역)</h4>
+            <p>【즉구입 가능】
+              <br>【익명 배송】
 
 <br>가챠
 <br>
@@ -1245,14 +1279,48 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 <br>
 <br>유 패킷 포스트 발송을 예정하고 있습니다.
 <br>검토 정도, 잘 부탁드립니다.</p>
-          <p>MIROCK TOY의 마시브어택 소프비 피규어입니다. 3회 출품 후 종료 예정이니 관심 있으신 분은 서둘러 입찰해주세요. 눈에 띄는 흠집이나 오염은 없으나 중고품임을 양해 바랍니다.</p>
-          <div style="margin-top:10px">
-            <span class="desc-tag">#MIROCKTOY</span>
-            <span class="desc-tag">#ミロクトイ</span>
-            <span class="desc-tag">#マッシブアタック</span>
-            <span class="desc-tag">#ソフビ</span>
-            <span class="desc-tag">#피규어</span>
+            <p>MIROCK TOY의 마시브어택 소프비 피규어입니다. 3회 출품 후 종료 예정이니 관심 있으신 분은 서둘러 입찰해주세요. 눈에 띄는 흠집이나 오염은 없으나 중고품임을 양해 바랍니다.</p>
+            <div style="margin-top:10px">
+              <span class="desc-tag">#MIROCKTOY</span>
+              <span class="desc-tag">#ミロクトイ</span>
+              <span class="desc-tag">#マッシブアタック</span>
+              <span class="desc-tag">#ソフビ</span>
+              <span class="desc-tag">#피규어</span>
+            </div>
           </div>
+        </div>
+        <button class="desc-more-btn" type="button" onclick="toggleAuctionDescription(this)" aria-expanded="false">상품설명 더보기 <i class="fa-solid fa-chevron-down"></i></button>
+
+        <div class="desc-qa-stack">
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">출품자 공개 질문&amp;답변</div>
+              <button class="desc-qa-link" type="button">답변 완료보기 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></button>
+            </div>
+            <div class="desc-empty-card">등록된 공개 질문&amp;답변이 없습니다.</div>
+          </section>
+
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">나의 문의 내역</div>
+            </div>
+            <div class="desc-empty-card">등록된 질문이 없습니다.</div>
+          </section>
+
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">출품자 문의하기</div>
+            </div>
+            <div class="desc-question-card">
+              <div class="desc-question-title">문의 작성</div>
+              <textarea class="qa-textarea" placeholder="질문은 한글로 작성해 주세요. 상품 상태, 구성품, 배송 조건 등 구매에 직접 관련된 내용만 문의할 수 있습니다."></textarea>
+              <p class="desc-question-help">질문은 출품자에게 번역되어 전달되며, 답변이 등록되면 마이페이지에서 확인할 수 있습니다.<br>개인정보, 가격 흥정, 직거래 요청 등은 등록할 수 없습니다.</p>
+              <div class="qa-form-actions">
+                <button class="qa-btn-cancel" type="button">취소</button>
+                <button class="qa-btn-submit" type="button">문의 신청</button>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
@@ -1443,6 +1511,42 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <div class="confirm-modal-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다. 금액과 수량을 다시 확인하신 후 진행해 주세요.</div>
       <div class="confirm-modal-actions">
         <button class="confirm-modal-confirm" type="button" onclick="submitBidConfirm()">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-modal" id="reserveBidModal" onclick="closeReserveBidModal(event)">
+  <div class="confirm-modal-card reserve-modal-card" onclick="event.stopPropagation()">
+    <div class="confirm-modal-head">
+      <strong>예약입찰 시간 설정</strong>
+      <button class="confirm-modal-close" type="button" onclick="closeReserveBidModal()">&times;</button>
+    </div>
+    <div class="confirm-modal-body">
+      <div class="reserve-form">
+        <div class="reserve-row">
+          <label class="reserve-label" for="reserveOffsetSelect">예약시점</label>
+          <select class="reserve-select" id="reserveOffsetSelect" onchange="updateReserveBidDate()">
+            <option value="30">종료 30초전</option>
+            <option value="60">종료 1분전</option>
+            <option value="300">종료 5분전</option>
+            <option value="600">종료 10분전</option>
+            <option value="1800">종료 30분전</option>
+            <option value="3600" selected>종료 1시간전</option>
+          </select>
+        </div>
+        <div class="reserve-row">
+          <span class="reserve-label">예약일시</span>
+          <div class="reserve-date" id="reserveBidDate">2026-06-10 21:34:00</div>
+        </div>
+      </div>
+      <p class="reserve-guide">
+        선택하신 시점(경매 종료 기준)에 입력한 입찰금액으로 자동 입찰됩니다. 예약 일시는 직접 수정할 수 있습니다.
+        <br>예약입찰은 입찰 반영 1분전까지 취소할 수 있습니다.
+      </p>
+      <div class="confirm-modal-actions">
+        <button class="confirm-modal-cancel" type="button" onclick="closeReserveBidModal()">취소</button>
+        <button class="confirm-modal-confirm" type="button" onclick="submitReserveBidSetting()"><i class="fas fa-clock-rotate-left"></i> 예약입찰</button>
       </div>
     </div>
   </div>
@@ -1648,6 +1752,14 @@ function toggleItemSpecifics(btn){
   btn.firstChild.nodeValue = expanded ? '접어보기 ' : '펼쳐보기 ';
 }
 
+function toggleAuctionDescription(btn){
+  const desc = document.getElementById('auctionDescCollapse');
+  if(!desc) return;
+  const expanded = desc.classList.toggle('expanded');
+  btn.setAttribute('aria-expanded', String(expanded));
+  btn.firstChild.nodeValue = expanded ? '상품설명 접기 ' : '상품설명 더보기 ';
+}
+
 // 입찰 방식 탭 전환
 // 탭 컨테이너 높이를 경매입찰 탭 기준으로 고정
 function lockTabContainerHeight(){
@@ -1749,6 +1861,73 @@ function getPrimaryAmount(){
   if(getSelectedBidType() === 'buynow') return 19800;
   const bidInput = document.getElementById('bidAmountInput');
   return bidInput ? Number(bidInput.value || 13800) : 13800;
+}
+
+function getSelectedPackingOption(type){
+  const selectId = type === 'buynow' ? 'buyNowPackingSelect' : 'bidPackingSelect';
+  const select = document.getElementById(selectId);
+  if(!select || !select.value) return '';
+  return select.options[select.selectedIndex].textContent.trim();
+}
+
+function buildAuctionOrderUrl(page, type){
+  const amount = type === 'buynow' ? 19800 : Number(document.getElementById('bidAmountInput')?.value || 1300);
+  const qty = type === 'buynow' ? Number(document.getElementById('buyNowQtyInput')?.value || 1) : Number(document.getElementById('bidQtyInput')?.value || 1);
+  const packing = getSelectedPackingOption(type);
+  const params = new URLSearchParams({
+    bid: String(amount),
+    qty: String(qty)
+  });
+  if(packing) params.set('packing', packing);
+  return `${page}?${params.toString()}`;
+}
+
+function getAuctionEndDate(){
+  return new Date(2026, 5, 10, 22, 34, 0);
+}
+
+function formatDateTime(date){
+  const pad = n => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+
+function updateReserveBidDate(){
+  const select = document.getElementById('reserveOffsetSelect');
+  const dateEl = document.getElementById('reserveBidDate');
+  if(!select || !dateEl) return '';
+  const offsetSeconds = Number(select.value || 3600);
+  const reserveDate = new Date(getAuctionEndDate().getTime() - offsetSeconds * 1000);
+  const formatted = formatDateTime(reserveDate);
+  dateEl.textContent = formatted;
+  return formatted;
+}
+
+function openReserveBidModal(){
+  updateReserveBidDate();
+  document.getElementById('reserveBidModal')?.classList.add('open');
+}
+
+function closeReserveBidModal(event){
+  if(event && event.target !== event.currentTarget) return;
+  document.getElementById('reserveBidModal')?.classList.remove('open');
+}
+
+function submitReserveBidSetting(){
+  const select = document.getElementById('reserveOffsetSelect');
+  const reserveAt = updateReserveBidDate();
+  let url = buildAuctionOrderUrl('web_auction_reserve_order.html', 'bid');
+  const separator = url.includes('?') ? '&' : '?';
+  url += separator + 'reserveOffset=' + encodeURIComponent(select?.options[select.selectedIndex]?.textContent.trim() || '') + '&reserveAt=' + encodeURIComponent(reserveAt);
+  window.location.href = url;
+}
+
+function goAuctionOrder(mode){
+  if(mode === 'reserve') {
+    openReserveBidModal();
+    return;
+  }
+  const page = mode === 'reserve' ? 'web_auction_reserve_order.html' : 'web_auction_order.html';
+  window.location.href = buildAuctionOrderUrl(page, 'bid');
 }
 
 function getInternationalShippingCost(){

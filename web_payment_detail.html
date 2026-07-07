@@ -36,7 +36,7 @@
     html { background: #fff; }
     body {
       margin: 0; min-width: 320px; color: var(--text); background: #fff;
-      font-family: Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
       font-size: 14px; line-height: 1.5;
     }
     button, input, select, textarea { font: inherit; }
@@ -178,7 +178,7 @@
     .order-page-head__link {
       text-align: right;
       font-size: 14px; color: #666;
-      text-decoration: underline; text-underline-offset: 2px;
+      text-decoration: none;
       background: none; border: 0; cursor: pointer; padding: 0;
     }
     .order-page-head__link:hover { color: var(--navy); }
@@ -360,7 +360,7 @@
     .order-item__meta-list dt { position: relative; font-size: 13px; font-weight: 700; color: #6d7481; }
     .order-item__meta-list dt::before { content: ""; margin: 0; }
     .order-item__meta-list dd { margin: 0; font-size: 13px; color: #263142; }
-    .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin: 2px 0 0; }
+    .order-item__meta-list a { display: block; width: fit-content; color: #2584ff; font-size: 13px; font-weight: 700; text-decoration: none; margin: 2px 0 0; }
     .order-status-card {
       grid-area: status;
       position: relative;
@@ -415,7 +415,7 @@
     .order-title__sub {
       font-size: 12px; font-weight: 600; color: #666;
       border: 0; background: none; padding: 0; cursor: pointer;
-      text-decoration: underline; text-underline-offset: 2px;
+      text-decoration: none;
     }
     .order-title__sub:hover { color: var(--navy); }
 
@@ -437,7 +437,7 @@
     .order-info-table td.mono, .order-info-table th.mono { font-family: 'Roboto', monospace; }
     .order-info-table th.rgroup { border-left: 0.5px solid var(--line); padding-left: 16px; }
     .order-info-table tr:last-child th, .order-info-table tr:last-child td { border-bottom: none; }
-    .order-info-action-btn { font-family: Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .order-info-action-btn { font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif; }
     .info-chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 4px; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 700; }
     .track-btn { height: 22px; margin-left: 8px; padding: 0 8px; border: 0; border-radius: 4px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 
@@ -519,13 +519,13 @@
     .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
     .pay-badge.first  { color: var(--navy); }
     .pay-badge.second { color: var(--navy); }
-    .pay-card__date { font-size: 12px; color: #999; font-family: Pretendard, 'Noto Sans KR', monospace; }
+    .pay-card__date { font-size: 12px; color: #999; font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
 
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
     .pay-row--spacer { visibility: hidden; pointer-events: none; }
     .pay-row .lbl { font-size: 14px; color: #555; }
-    .pay-row .val { font-size: 14px; color: #000; font-family: Pretendard, 'Noto Sans KR', monospace; }
+    .pay-row .val { font-size: 14px; color: #000; font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
     .pay-row .val.muted { color: #000000; }
     .pay-row .val.discount { color: var(--rose); }
     .pay-row .val.fee { color: var(--navy); }
@@ -737,7 +737,7 @@
           <strong>나의 거래 현황</strong>
           <div class="nav-list">
             <a href="web_mainlist.html">거래 전체 목록</a>
-            <a href="#">경매 입찰/유찰</a>
+            <a href="web_auction_bid_list.html">경매 입찰/유찰</a>
             <a href="#">구매 신청 목록</a>
           </div>
         </div>
