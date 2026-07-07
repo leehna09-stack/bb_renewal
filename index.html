@@ -90,6 +90,17 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
 </head>
 <body>
 
+<header>
+  <div class="hdr">
+    <button class="hb-btn" type="button" aria-label="메뉴"><span></span><span></span><span></span></button>
+    <a class="logo" href="web_main.html" target="pageFrame" aria-label="BidBuy 메인"><img src="Bidbuy logo.png" alt="BidBuy"></a>
+    <div class="preview-utils">
+      <span class="now-viewing" id="nowViewing">현재 페이지: <b>메인</b></span>
+      <a class="top-btn" id="openNewTab" href="web_main.html" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> 새 탭으로 열기</a>
+      <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
+    </div>
+  </div>
+</header>
 
 <div class="layout">
   <nav class="nav" id="pageNav">
@@ -209,8 +220,8 @@ function setActive(page, label) {
   items.forEach(function(it) {
     it.classList.toggle('active', it.getAttribute('data-page') === page);
   });
-  if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
-  if (openNewTab) openNewTab.href = page;
+  nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
+  openNewTab.href = page;
 }
 
 items.forEach(function(it) {
@@ -229,8 +240,8 @@ frame.addEventListener('load', function() {
     if (match) {
       setActive(file, match.querySelector('.nav-item-label').childNodes[0].textContent);
     } else if (file) {
-      if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
-      if (openNewTab) openNewTab.href = file;
+      nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
+      openNewTab.href = file;
     }
   } catch(e) {}
 });
