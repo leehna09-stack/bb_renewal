@@ -885,18 +885,7 @@
 
       .product-card,
       .search-layout .product-card {
-        min-height: auto;
         border-radius: 12px;
-      }
-
-      .product-thumb::before {
-        top: 8px;
-        left: 8px;
-        height: 20px;
-        padding: 0 7px;
-        border-radius: 5px;
-        font-size: 9px;
-        line-height: 20px;
       }
 
       .product-thumb::after {
@@ -904,49 +893,26 @@
       }
 
       .heart {
-        top: 8px;
         right: 8px;
+        bottom: 8px;
         width: 30px;
         height: 30px;
         font-size: 13px;
       }
 
-      .product-card > .seller {
-        min-width: auto;
-        height: 24px;
-        margin: -36px 0 0 8px;
-        padding: 0 8px;
-        border-radius: 5px;
-        line-height: 24px;
-      }
-
-      .product-card > .seller::before {
-        font-size: 12px;
-      }
-
       .product-name {
-        padding: 9px 11px 0;
+        margin: 8px 11px 0;
         font-size: 12px;
         line-height: 1.45;
-        min-height: 44px;
+        min-height: 34px;
       }
 
-      .product-card > .price {
-        margin: 5px 11px 0;
+      .price-row {
+        margin: 8px 11px 12px;
       }
 
-      .product-card > .price::before {
+      .price {
         font-size: 14px;
-      }
-
-      .product-card > .price::after {
-        margin-top: 2px;
-        font-size: 10px;
-      }
-
-      .product-card::after {
-        margin: 4px 11px 12px;
-        font-size: 10px;
       }
     }
 
@@ -1201,19 +1167,19 @@
     let renderedCount = 0;
     let infiniteScrollActive = false;
 
+    const SITE_ROTATION = [
+      { name: "라쿠마", flag: "jp" },
+      { name: "야후 프리마", flag: "jp" },
+      { name: "야후 프리마", flag: "jp" },
+      { name: "이베이", flag: "us" }
+    ];
+
     function createProductCard(index) {
       const article = document.createElement("article");
       article.className = "product-card";
 
       const thumb = document.createElement("div");
       thumb.className = "product-thumb";
-
-      if ((index + 1) % 4 === 0) {
-        const badge = document.createElement("span");
-        badge.className = "appraisal-badge";
-        badge.textContent = "감정가능";
-        thumb.append(badge);
-      }
 
       const img = document.createElement("img");
       img.src = shuffledProductPhotos[index % shuffledProductPhotos.length];
@@ -1229,19 +1195,32 @@
       heart.innerHTML = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
       thumb.append(heart);
 
+      const site = SITE_ROTATION[index % SITE_ROTATION.length];
+      const badge = document.createElement("div");
+      badge.className = "site-badge";
+      const flagEl = document.createElement("span");
+      flagEl.className = site.flag === "us" ? "site-flag-us" : "site-dot";
+      flagEl.setAttribute("aria-hidden", "true");
+      badge.append(flagEl, document.createTextNode(site.name));
+
       const name = document.createElement("p");
       name.className = "product-name";
       name.textContent = "니콘 수동 필름 카메라 바디";
 
-      const seller = document.createElement("span");
-      seller.className = "seller";
-      seller.textContent = "현재가";
-
+      const priceRow = document.createElement("div");
+      priceRow.className = "price-row";
       const price = document.createElement("strong");
       price.className = "price";
-      price.textContent = "1,650엔";
+      price.textContent = site.flag === "us" ? "$ 175.00" : "¥ 1,650";
+      priceRow.append(price);
+      if (site.flag === "us") {
+        const bids = document.createElement("span");
+        bids.className = "bids";
+        bids.textContent = "(0 Bids)";
+        priceRow.append(bids);
+      }
 
-      article.append(thumb, name, seller, price);
+      article.append(thumb, badge, name, priceRow);
 
       article.addEventListener("click", (event) => {
         if (event.target.closest("button, a")) return;

@@ -131,10 +131,20 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
         <button class="nav-item done" data-page="web_auction_bid_list.html"><i class="fa-solid fa-bars-staggered"></i><span class="nav-item-label">경매 입찰/유찰<span class="nav-file">web_auction_bid_list.html</span></span></button>
         <button class="nav-item" data-page="web_payment_detail.html"><i class="fa-solid fa-receipt"></i><span class="nav-item-label">결제상세내역<span class="nav-file">web_payment_detail.html</span></span></button>
         <button class="nav-item" data-page="web_payment_oversize.html"><i class="fa-solid fa-weight-scale"></i><span class="nav-item-label">오버사이즈 안내<span class="nav-file">web_payment_oversize.html</span></span></button>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title"><i class="fa-solid fa-boxes-stacked"></i> 배송 관리<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
         <button class="nav-item" data-page="web_bundle_shipping_management.html"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-item-label">배송신청 가능목록<span class="nav-file">web_bundle_shipping_management.html</span></span></button>
         <button class="nav-item" data-page="web_bundle_shipping_management_2.html"><i class="fa-solid fa-box-open"></i><span class="nav-item-label">배송신청 완료목록<span class="nav-file">web_bundle_shipping_management_2.html</span></span></button>
         <button class="nav-item" data-page="web_bundle_shipping_order.html"><i class="fa-solid fa-plane-departure"></i><span class="nav-item-label">묶음 배송신청<span class="nav-file">web_bundle_shipping_order.html</span></span></button>
         <button class="nav-item" data-page="web_individual_shipping_order.html"><i class="fa-solid fa-box"></i><span class="nav-item-label">개별 배송신청<span class="nav-file">web_individual_shipping_order.html</span></span></button>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title"><i class="fa-solid fa-gift"></i> 혜택 안내<i class="fa-solid fa-chevron-down chevron"></i></div>
+      <div class="nav-group-items">
         <button class="nav-item" data-page="web_mileage.html"><i class="fa-solid fa-coins"></i><span class="nav-item-label">마일리지 / 쿠폰<span class="nav-file">web_mileage.html</span></span></button>
         <button class="nav-item" data-page="web_grade_page.html"><i class="fa-solid fa-crown"></i><span class="nav-item-label">MY 등급<span class="nav-file">web_grade_page.html</span></span></button>
       </div>
@@ -199,8 +209,8 @@ function setActive(page, label) {
   items.forEach(function(it) {
     it.classList.toggle('active', it.getAttribute('data-page') === page);
   });
-  nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
-  openNewTab.href = page;
+  if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
+  if (openNewTab) openNewTab.href = page;
 }
 
 items.forEach(function(it) {
@@ -219,8 +229,8 @@ frame.addEventListener('load', function() {
     if (match) {
       setActive(file, match.querySelector('.nav-item-label').childNodes[0].textContent);
     } else if (file) {
-      nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
-      openNewTab.href = file;
+      if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
+      if (openNewTab) openNewTab.href = file;
     }
   } catch(e) {}
 });

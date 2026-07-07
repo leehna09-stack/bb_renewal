@@ -178,14 +178,20 @@
     .view-list span, .view-grid span { display: block; background: currentColor; }
 
     /* ── Product grid ── */
-    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 34px; }
-    .product-card { position: relative; min-width: 0; cursor: pointer; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; }
+    .product-card { position: relative; min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; cursor: pointer; }
     .product-card:hover .product-name { text-decoration: underline; text-underline-offset: 2px; }
-    .product-thumb { position: relative; height: 130px; margin-bottom: 8px; background: var(--thumb); overflow: hidden; }
-    .heart { position: absolute; right: 12px; bottom: 8px; border: 0; background: transparent; color: var(--brand); font-size: 22px; line-height: 1; }
-    .product-name { margin: 0 0 1px; overflow: hidden; color: #2460a5; font-size: 12px; font-weight: 700; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
-    .seller { display: block; margin-bottom: 1px; color: #657083; font-size: 12px; line-height: 1.35; }
-    .price { color: #172033; font-size: 18px; font-weight: 900; line-height: 1.15; }
+    .product-thumb { position: relative; width: 100%; aspect-ratio: 1 / 1; background: var(--thumb); overflow: hidden; }
+    .product-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .heart { position: absolute; right: 11px; bottom: 11px; z-index: 2; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: var(--brand); font-size: 16px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+    .site-badge { display: inline-flex; align-items: center; gap: 6px; margin: 12px 12px 0; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; color: #333; font-size: 12px; font-weight: 700; }
+    .site-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); flex: 0 0 auto; }
+    .site-flag-us { width: 16px; height: 12px; border-radius: 2px; flex: 0 0 auto; background: linear-gradient(#c9263b 0 12%, #fff 12% 24%, #c9263b 24% 36%, #fff 36% 48%, #c9263b 48% 60%, #fff 60% 72%, #c9263b 72% 84%, #fff 84%); }
+    .site-flag-uk { width: 16px; height: 12px; border-radius: 2px; flex: 0 0 auto; background: linear-gradient(45deg, #153f8f 0 38%, #fff 38% 44%, #d6223b 44% 56%, #fff 56% 62%, #153f8f 62%); }
+    .product-name { margin: 10px 12px 0; overflow: hidden; color: #1a1a1a; font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 39px; }
+    .price-row { display: flex; align-items: baseline; justify-content: space-between; margin: 10px 12px 14px; }
+    .price { color: #111; font-size: 17px; font-weight: 800; font-family: 'Roboto', sans-serif; }
+    .bids { color: var(--muted); font-size: 12px; font-weight: 600; }
 
     /* More / footer */
     .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
@@ -396,14 +402,14 @@
     <section data-view-main aria-labelledby="best-title">
       <h2 class="section-title" id="best-title">야후옥션 베스트</h2>
       <div class="product-grid">
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
       </div>
       <div class="more-row">펼쳐보기</div>
     </section>
@@ -450,14 +456,14 @@
       </div>
 
       <div class="product-grid">
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
-        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><p class="product-name">니콘 수동 필름 카메라 바디</p><span class="seller">현재가</span><strong class="price">1,650엔</strong></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
+        <article class="product-card"><div class="product-thumb"><button class="heart" type="button" aria-label="관심상품"><i class="fa-regular fa-heart" aria-hidden="true"></i></button></div><div class="site-badge" data-site-badge><span class="site-dot" aria-hidden="true"></span>야후</div><p class="product-name">니콘 수동 필름 카메라 바디</p><div class="price-row"><strong class="price">¥ 1,650</strong></div></article>
       </div>
     </section>
     </div><!-- /.content-area -->
@@ -746,6 +752,16 @@
     // ── Store chips ──
     let activeStore = "야후 옥션";
 
+    function updateSiteBadges() {
+      const isUK = activeStore === "영국 이베이";
+      const isEbay = isUK || activeStore === "미국 이베이";
+      document.querySelectorAll("[data-site-badge]").forEach(badge => {
+        badge.innerHTML = isEbay
+          ? '<span class="' + (isUK ? "site-flag-uk" : "site-flag-us") + '" aria-hidden="true"></span>이베이'
+          : '<span class="site-dot" aria-hidden="true"></span>야후';
+      });
+    }
+
     document.querySelectorAll(".store-chip").forEach(chip => {
       chip.addEventListener("click", e => {
         e.preventDefault();
@@ -757,6 +773,7 @@
           if (catStoreName) catStoreName.textContent = sn;
           if (bestTitleEl) bestTitleEl.textContent = chip.dataset.bestTitle || sn + " 베스트";
         }
+        updateSiteBadges();
         resetCategories();
       });
     });
