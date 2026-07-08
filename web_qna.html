@@ -139,16 +139,6 @@
     .qna-row:last-child { border-bottom: 0; }
     .qna-row:hover { background: var(--warm); }
 
-    /* 신규 답변 표시: 오른쪽 위 N */
-    .new-n {
-      color: var(--rose);
-      font-family: Roboto, sans-serif;
-      font-size: 9px;
-      font-weight: 900;
-      line-height: 1;
-      vertical-align: super;
-      margin-left: 2px;
-    }
     .qna-row > div { padding: 12px 8px; }
     .qna-date { color: #59606d; font-size: 12px; }
     .qna-cat { color: #59606d; font-size: 12px; font-weight: 600; }
@@ -167,8 +157,8 @@
       font-size: 12px;
       font-weight: 800;
     }
-    .status-text.waiting { color: #e09a00; }
-    .status-text.done { color: #2e9e4f; }
+    .status-text.waiting { color: #999; }
+    .status-text.done { color: var(--rose); }
 
     /* 페이지네이션 */
     .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin: 22px 0 80px; }
@@ -267,7 +257,7 @@
             <span class="reply-count">[3]</span>
             <i class="fas fa-paperclip clip" aria-hidden="true"></i>
           </div>
-          <div><span class="status-text done">답변완료<sup class="new-n" aria-label="신규 답변">N</sup></span></div>
+          <div><span class="status-text done">답변완료</span></div>
         </a>
 
         <a class="qna-row" data-status="waiting" href="web_qna_details.html">
