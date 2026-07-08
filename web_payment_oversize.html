@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -611,6 +611,30 @@
       font-weight: 500;
     }
     .shipping-fee-compare__table td { background: #fff; }
+    .shipping-fee-compare__table tr.is-admin-fixed th,
+    .shipping-fee-compare__table tr.is-admin-fixed td {
+      background: #F3F4F6;
+      color: #8A93A3;
+      cursor: not-allowed;
+    }
+    .shipping-fee-compare__table tr.is-admin-fixed .shipping-fee-compare__static,
+    .shipping-fee-compare__table tr.is-admin-fixed .shipping-fee-compare__unit {
+      color: #7B8494;
+    }
+    .shipping-fee-compare__fixed-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      margin-left: 8px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: #E1E5EC;
+      color: #687385;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
     .shipping-fee-compare__table td.shipping-fee-compare__cell--flush {
       padding: 0;
       border: 0;
@@ -1065,7 +1089,7 @@
             </div>
             <table class="shipping-fee-compare__table">
               <tbody>
-                <tr>
+                <tr class="is-admin-fixed" aria-disabled="true">
                   <th>중량무게</th>
                   <td>
                     <div class="shipping-fee-compare__split">

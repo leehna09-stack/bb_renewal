@@ -308,7 +308,12 @@
       header = document.createElement('header');
       header.id = 'bbCommonHeader';
       header.className = 'bbh-header';
-      document.body.insertBefore(header, document.body.firstChild);
+      var notice = document.body.querySelector(':scope > .notice-bar');
+      if (notice) {
+        notice.insertAdjacentElement('afterend', header);
+      } else {
+        document.body.insertBefore(header, document.body.firstChild);
+      }
     }
     header.innerHTML = headerHTML();
 
