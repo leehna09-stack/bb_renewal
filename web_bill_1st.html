@@ -1406,11 +1406,13 @@
       const selectRow = (row, event) => {
         const checkbox = row.querySelector('.method-checkbox');
         if (!checkbox || checkbox.disabled) return;
-        const clickedCheckbox = Boolean(event?.target?.closest('.method-checkbox'));
-        if (!clickedCheckbox && event?.target?.closest('label')) event.preventDefault();
-        const nextChecked = clickedCheckbox ? checkbox.checked : !checkbox.checked;
-        checkbox.checked = nextChecked;
-        row.classList.toggle('selected', nextChecked);
+        if (event?.target?.closest('label')) event.preventDefault();
+        methodRows.forEach((item) => {
+          const itemCheckbox = item.querySelector('.method-checkbox');
+          const isSelected = item === row;
+          item.classList.toggle('selected', isSelected);
+          if (itemCheckbox) itemCheckbox.checked = isSelected;
+        });
         window.syncCarePlusAvailability?.();
       };
 
@@ -1549,6 +1551,8 @@
       }
       if (cbkIndividual) { cbkIndividual.checked = wasIndividualChecked; cbkIndividual.disabled = false; }
       if (cbkWait) { cbkWait.checked = wasWaitChecked; cbkWait.disabled = false; }
+      if (cbkIndividual?.checked && cbkWait?.checked) cbkWait.checked = false;
+      if (!cbkIndividual?.checked && !cbkWait?.checked && cbkIndividual) cbkIndividual.checked = true;
       if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; rowIndividual.classList.toggle('selected', Boolean(cbkIndividual?.checked)); }
       if (rowWait) rowWait.classList.toggle('selected', Boolean(cbkWait?.checked));
 
