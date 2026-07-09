@@ -179,19 +179,21 @@
 
     /* ── Product grid ── */
     .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; }
-    .product-card { position: relative; min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; cursor: pointer; }
+    .product-card { position: relative; min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden; cursor: pointer; }
     .product-card:hover .product-name { text-decoration: underline; text-underline-offset: 2px; }
     .product-thumb { position: relative; width: 100%; aspect-ratio: 1 / 1; background: var(--thumb); overflow: hidden; }
     .product-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .heart { position: absolute; right: 11px; bottom: 11px; z-index: 2; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: var(--brand); font-size: 16px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
-    .site-badge { display: inline-flex; align-items: center; gap: 6px; margin: 12px 12px 0; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; color: #333; font-size: 12px; font-weight: 700; }
+    .heart { position: absolute; right: 10px; bottom: 10px; z-index: 2; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: var(--brand); font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 5px rgba(0,0,0,.18); transition: background .16s, color .16s, transform .16s; }
+    .heart.active { background: var(--brand); color: #fff; transform: scale(1.04); }
+    .site-badge { width: calc(100% - 24px); display: inline-flex; align-items: center; gap: 6px; margin: 10px 12px 0; padding: 5px 10px; border: 1px solid var(--line); border-radius: 4px; color: #333; font-size: 12px; font-weight: 700; }
     .site-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); flex: 0 0 auto; }
     .site-flag-us { width: 16px; height: 12px; border-radius: 2px; flex: 0 0 auto; background: linear-gradient(#c9263b 0 12%, #fff 12% 24%, #c9263b 24% 36%, #fff 36% 48%, #c9263b 48% 60%, #fff 60% 72%, #c9263b 72% 84%, #fff 84%); }
     .site-flag-uk { width: 16px; height: 12px; border-radius: 2px; flex: 0 0 auto; background: linear-gradient(45deg, #153f8f 0 38%, #fff 38% 44%, #d6223b 44% 56%, #fff 56% 62%, #153f8f 62%); }
-    .product-name { margin: 10px 12px 0; overflow: hidden; color: #1a1a1a; font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 39px; }
-    .price-row { display: flex; align-items: baseline; justify-content: space-between; margin: 10px 12px 14px; }
+    .product-name { margin: 10px 14px 0; overflow: hidden; color: #1a1a1a; font-size: 14px; font-weight: 600; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 41px; }
+    .price-row { display: block; margin: 12px 14px 16px; }
     .price { color: #111; font-size: 17px; font-weight: 800; font-family: 'Roboto', sans-serif; }
-    .bids { color: var(--muted); font-size: 12px; font-weight: 600; }
+    .auction-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 14px; color: #7c8490; font-size: 12px; font-weight: 600; }
+    .bids { color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; }
 
     /* More / footer */
     .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
@@ -762,6 +764,24 @@
       });
     }
 
+    updateSiteBadges = function() {
+      const raw = activeStore || "야후경매";
+      const isUK = raw.includes("영국");
+      const isEbay = raw.includes("이베이");
+      const label = isEbay
+        ? "이베이"
+        : raw.includes("라쿠마")
+          ? "라쿠마"
+          : raw.includes("쇼핑")
+            ? "야후 쇼핑"
+            : "야후경매";
+      document.querySelectorAll("[data-site-badge]").forEach(badge => {
+        badge.innerHTML = isEbay
+          ? '<span class="' + (isUK ? "site-flag-uk" : "site-flag-us") + '" aria-hidden="true"></span>' + label
+          : '<span class="site-dot" aria-hidden="true"></span>' + label;
+      });
+    };
+
     document.querySelectorAll(".store-chip").forEach(chip => {
       chip.addEventListener("click", e => {
         e.preventDefault();
@@ -790,6 +810,57 @@
     });
 
     // ── View buttons ──
+    const productStores = [
+      { name: "야후경매", price: "¥ 2,500", auction: true },
+      { name: "라쿠마", price: "¥ 1,800", auction: false },
+      { name: "야후 쇼핑", price: "¥ 2,499", auction: false },
+      { name: "이베이", price: "$ 21.79", auction: true, flag: "us" }
+    ];
+    const auctionTimes = ["30분", "2시간", "8시간", "1일", "2일"];
+
+    function renderStoreBadge(badge, store) {
+      const icon = store.flag === "us"
+        ? '<span class="site-flag-us" aria-hidden="true"></span>'
+        : '<span class="site-dot" aria-hidden="true"></span>';
+      badge.innerHTML = icon + store.name;
+    }
+
+    function enhanceProductCards() {
+      document.querySelectorAll(".product-card").forEach((card, index) => {
+        const store = productStores[index % productStores.length];
+        const badge = card.querySelector(".site-badge");
+        if (badge) renderStoreBadge(badge, store);
+
+        const price = card.querySelector(".price");
+        if (price) price.textContent = store.price;
+
+        const priceRow = card.querySelector(".price-row");
+        if (priceRow && !priceRow.querySelector(".auction-meta")) {
+          const meta = document.createElement("div");
+          meta.className = "auction-meta";
+          meta.innerHTML = store.auction
+            ? '<span>' + auctionTimes[index % auctionTimes.length] + '</span><span class="bids">(' + (((index * 13) % 99) + 1) + ' Bids)</span>'
+            : '<span></span><span></span>';
+          priceRow.append(meta);
+        }
+
+        const heart = card.querySelector(".heart");
+        if (heart && !heart.dataset.bound) {
+          heart.dataset.bound = "true";
+          heart.setAttribute("aria-pressed", "false");
+          heart.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            const active = heart.classList.toggle("active");
+            heart.setAttribute("aria-pressed", String(active));
+            heart.innerHTML = '<i class="' + (active ? "fa-solid" : "fa-regular") + ' fa-heart" aria-hidden="true"></i>';
+          });
+        }
+      });
+    }
+
+    enhanceProductCards();
+
     document.querySelectorAll(".view-button").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".view-button").forEach(b => b.classList.remove("active"));
