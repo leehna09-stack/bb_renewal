@@ -164,7 +164,7 @@
 
     /* ── MAIN ── */
     .main { min-width: 0; padding-top: 58px; padding-bottom: 40px; }
-    .shopping-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 27px 11px 6px; }
+    .shopping-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 27px 11px 6px; } 
     .shopping-head h2, .list-title { margin: 0; color: #2b2f37; font-size: 15px; font-weight: 900; }
     .status-links { display: flex; align-items: center; gap: 16px; }
     .outline-pill {
@@ -257,7 +257,7 @@
     }
     .calendar-head {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 12px; color: #252a32; font-size: 14px; font-weight: 900;
+      margin-bottom: 1px; color: #252a32; font-size: 14px; font-weight: 900;
     }
     .calendar-head button {
       width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 7px;
@@ -601,7 +601,7 @@
       .price-unit { color: #707070; font-size: 12px; }
       .card-foot {
         display: flex; width: 100%; gap: 8px; justify-content: flex-end;
-        padding: 10px 14px; border-top: 1px solid #EEE5E2;
+        padding: 10px 10px; border-top: 1px solid #EEE5E2;
       }
       .btn {
         height: 34px; padding: 0 14px; border-radius: 10px;
@@ -1197,7 +1197,7 @@
       height: 34px;
       min-width: 78px;
       padding: 0 14px;
-      border-radius: 8px;
+      border-radius: 5px;
       border: 1px solid #e5dcd8;
       background: #fff;
       color: #333;
@@ -1668,6 +1668,16 @@
   
     .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
     .member-tier-icon i { line-height:1; }
+
+    /* 결제대기/종료임박/사용자메모 요약 (웹 마이페이지 구성과 동일) */
+    .mini-section { margin: 0 -10px; padding: 15px 0 4px; border-top: 8px solid #f0f2f5; }
+    .mini-section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding: 0 15px; }
+    .mini-section-head h2 { margin: 0; font-size: 16px; font-weight: 900; color: #E8385A; }
+    .mini-more { font-size: 12px; font-weight: 700; color: var(--brand); }
+    .mini-list { display: flex; flex-direction: column; gap: 0; }
+    .mini-list .trade-row { margin-bottom: 0; border-radius: 0; }
+    .mini-date { color: #9a9fa8; font-size: 11px; }
+    .mini-empty { padding: 10px 10px 10px; text-align: center; color: #9aa3b2; font-size: 13px; }
   </style>
   <style>
     /* mobile_main 타이포 스케일 동기화 */
@@ -1701,6 +1711,77 @@
       font-size: 12px;
       font-weight: 600;
       line-height: 1.4;
+    }
+    .status-board {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+    .status-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .status-flow-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 10px minmax(0, 1fr) 10px minmax(0, 1fr);
+      align-items: center;
+      gap: 4px;
+    }
+    .flow-arr {
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid #c7cdd6;
+      border-right: 1.5px solid #c7cdd6;
+      transform: rotate(45deg);
+      justify-self: center;
+    }
+    .status-card,
+    .status-stack .status-card,
+    .status-card[data-status="local-arrived"] {
+      height: 108px;
+      min-height: 108px;
+      padding: 12px 6px;
+      border: 1px solid #e5dcd8;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: none;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+    .status-card em,
+    .status-card[data-status="local-arrived"] em {
+      margin-bottom: 4px;
+      color: #0f2a4a;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .status-card em.hot { color: var(--brand); }
+    .status-card strong,
+    .status-card[data-status="local-arrived"] > div > strong {
+      color: #172238;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .status-card .sub {
+      margin-top: 12px;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .status-card .sub em {
+      color: #f5a623;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    .status-card .sub strong {
+      color: #172238;
+      font-size: 11px;
+      font-weight: 700;
     }
     .card-status {
       font-size: 12px;
@@ -1973,7 +2054,7 @@
           </a>
           <div class="drawer-mypage-panel is-open" id="drawer-mypage-shopping">
             <a class="drawer-mypage-link active" href="#">거래 목록</a>
-            <a class="drawer-mypage-link" href="#">경매 입찰/유찰</a>
+            <a class="drawer-mypage-link" href="mobile_auction_bid_list.html">경매 입찰/유찰</a>
             <a class="drawer-mypage-link" href="#">구매 신청 목록</a>
             <a class="drawer-mypage-link" href="#">관심 항목 관리</a>
           </div>
@@ -2055,7 +2136,7 @@
           <strong>마이 쇼핑</strong>
           <ul class="nav-list">
             <li><a href="#" class="active">거래 목록</a></li>
-            <li><a href="#">경매 입찰/유찰</a></li>
+            <li><a href="mobile_auction_bid_list.html">경매 입찰/유찰</a></li>
             <li><a href="#">구매 신청 목록</a></li>
             <li><a href="#">관심 항목 관리</a></li>
           </ul>
@@ -2090,10 +2171,10 @@
     <!-- ④ 메인 콘텐츠 -->
     <main class="main">
 
-      <!-- 나의 쇼핑 현황 -->
+      <!-- 나의 거래 현황 -->
       <section aria-labelledby="shopping-status-title">
         <div class="shopping-head">
-          <h2 id="shopping-status-title">나의 쇼핑 현황</h2>
+          <h2 id="shopping-status-title">나의 거래 현황</h2>
           <div class="status-links">
             <button class="outline-pill" type="button">거래완료</button>
             <button class="outline-pill" type="button">취소/반품</button>
@@ -2126,292 +2207,95 @@
         </div>
       </section>
 
-      <!-- 거래 목록 -->
-      <section class="trade-area" aria-labelledby="trade-list-title">
-        <div class="filter-row">
-          <h2 class="list-title" id="trade-list-title">거래 전체 목록</h2>
-          <div class="filter-group" aria-label="거래 유형">
-            <button class="tab active" type="button">전체</button>
-            <button class="tab" type="button">경매</button>
-            <button class="tab" type="button">구매</button>
+      <!-- 결제 대기 물품 목록 -->
+      <section class="mini-section" aria-labelledby="payment-wait-title">
+        <div class="mini-section-head">
+          <h2 id="payment-wait-title">결제 대기 물품 목록</h2>
+          <a class="mini-more" href="mobile_mainlist.html">+ 더보기</a>
+        </div>
+        <div class="mini-list">
+          <div class="trade-row">
+            <div class="card-body">
+              <a class="detail-link thumb-link" href="mobile_bill_1st.html" aria-label="결제상세내역"><div class="thumb"></div></a>
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>라쿠텐 · BJP0220006636</div>
+                <a class="product-title product-detail-link" href="mobile_bill_1st.html">반지 링 여성용 실버 금속 알레르기 방지 액세서리 여름용 심플 메일편 무료배송</a>
+                <div class="price-row"><span class="price-main">15,288원</span></div>
+              </div>
+            </div>
+            <div class="card-foot"><button class="btn primary" type="button" onclick="location.href='mobile_bill_1st.html'">결제하기</button></div>
           </div>
-          <div class="utility-group">
-            <div class="filter-dropdown" data-dropdown>
-              <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-                <span data-dropdown-label="country">거래 국가</span>
-                <span class="chevron" aria-hidden="true"></span>
-              </button>
-              <div class="dropdown-panel country-panel" role="menu" aria-label="거래 국가 선택">
-                <button class="dropdown-item active" type="button" role="menuitem" data-country="jp">일본</button>
-                <button class="dropdown-item" type="button" role="menuitem" data-country="us">미국</button>
-                <button class="dropdown-item" type="button" role="menuitem" data-country="uk">영국</button>
+          <div class="trade-row">
+            <div class="card-body">
+              <a class="detail-link thumb-link" href="mobile_bill_1st.html" aria-label="결제상세내역"><div class="thumb"></div></a>
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 · BJP0219872210</div>
+                <a class="product-title product-detail-link" href="mobile_bill_1st.html">드래곤볼 피규어 이치방쿠지 세트 미개봉 레어</a>
+                <div class="price-row"><span class="price-main">38,420원</span></div>
               </div>
             </div>
-            <div class="filter-dropdown" data-dropdown>
-              <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-                <span data-dropdown-label="period">최근 1개월</span>
-                <span class="chevron" aria-hidden="true"></span>
-              </button>
-              <div class="dropdown-panel calendar-panel" role="dialog" aria-label="조회 기간 선택">
-                <div class="range-shortcuts" aria-label="빠른 기간 선택">
-                  <button type="button" data-period-label="1주일">1주일</button>
-                  <button class="active" type="button" data-period-label="최근 1개월">1개월</button>
-                  <button type="button" data-period-label="1년">1년</button>
-                </div>
-                <div class="calendar-head">
-                  <button type="button" aria-label="이전 달">‹</button>
-                  <strong>2024.04</strong>
-                  <button type="button" aria-label="다음 달">›</button>
-                </div>
-                <div class="calendar-week" aria-hidden="true">
-                  <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
-                </div>
-                <div class="calendar-days" aria-label="날짜 선택">
-                  <button class="is-muted" type="button">31</button>
-                  <button type="button">1</button>
-                  <button type="button">2</button>
-                  <button type="button">3</button>
-                  <button type="button">4</button>
-                  <button type="button">5</button>
-                  <button type="button">6</button>
-                  <button type="button">7</button>
-                  <button type="button">8</button>
-                  <button type="button">9</button>
-                  <button type="button">10</button>
-                  <button type="button">11</button>
-                  <button type="button">12</button>
-                  <button type="button">13</button>
-                  <button type="button">14</button>
-                  <button type="button">15</button>
-                  <button type="button">16</button>
-                  <button class="selected" type="button">17</button>
-                  <button type="button">18</button>
-                  <button type="button">19</button>
-                  <button type="button">20</button>
-                  <button type="button">21</button>
-                  <button type="button">22</button>
-                  <button type="button">23</button>
-                  <button type="button">24</button>
-                  <button type="button">25</button>
-                  <button type="button">26</button>
-                  <button type="button">27</button>
-                  <button type="button">28</button>
-                  <button type="button">29</button>
-                  <button type="button">30</button>
-                  <button class="is-muted" type="button">1</button>
-                  <button class="is-muted" type="button">2</button>
-                  <button class="is-muted" type="button">3</button>
-                  <button class="is-muted" type="button">4</button>
-                </div>
-                <div class="calendar-actions">
-                  <button type="button" data-calendar-reset>초기화</button>
-                  <button class="primary" type="button" data-calendar-apply>적용</button>
-                </div>
+            <div class="card-foot"><button class="btn primary" type="button" onclick="location.href='mobile_bill_1st.html'">결제하기</button></div>
+          </div>
+          <div class="trade-row">
+            <div class="card-body">
+              <a class="detail-link thumb-link" href="mobile_bill_2nd.html" aria-label="결제상세내역"><div class="thumb"></div></a>
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>메루카리 · BJP0218830042</div>
+                <a class="product-title product-detail-link" href="mobile_bill_2nd.html">코치 숄더백 가죽 빈티지 상태 좋음</a>
+                <div class="price-row"><span class="price-main">92,150원</span></div>
               </div>
             </div>
-            <div class="filter-dropdown" data-dropdown>
-              <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-                <span data-dropdown-label="status">진행 상태</span>
-                <span class="chevron" aria-hidden="true"></span>
-              </button>
-              <div class="dropdown-panel status-panel" role="menu" aria-label="진행 상태 선택">
-                <button class="status-filter-option status-active" type="button" role="menuitem" data-status="" data-label="전체">전체</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="auction-bid" data-label="입찰중">입찰중</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="failed-bid" data-label="유찰">유찰</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="trade-cancel" data-label="거래취소">거래취소</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="successful-bid" data-label="낙찰">낙찰</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-wait" data-label="1차 결제대기">1차 결제대기</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="first-payment-complete" data-label="1차 결제완료">1차 결제완료</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-wait" data-label="2차 결제대기">2차 결제대기</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="second-payment-complete" data-label="2차 결제완료">2차 결제완료</button>
-                <button class="status-filter-option" type="button" role="menuitem" data-status="international-shipping" data-label="국제배송">국제배송</button>
-              </div>
-            </div>
+            <div class="card-foot"><button class="btn primary" type="button" onclick="location.href='mobile_bill_2nd.html'">결제하기</button></div>
           </div>
         </div>
+      </section>
 
-        <div class="trade-table" role="table" aria-label="거래 목록">
-          <div class="table-head" role="row">
-            <div role="columnheader">낙찰일/구매일</div>
-            <div role="columnheader">상품정보</div>
-            <div role="columnheader">상품가</div>
-            <div role="columnheader">진행 단계</div>
-          </div>
-          <!-- rows -->
-          <div class="trade-row" role="row" data-status="auction-bid">
-            <div class="card-top alert">
-              <span class="card-status alert">입찰중</span>
-              <span class="card-time alert">종료 2시간 14분 전</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - a2024041701</div>
-                <div class="seller">야후경매 · im111dancin</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</a>
-              </div>
-            </div>
-            <div class="info-grid">
-              <span class="lbl">상품금액</span><span class="val">￥23,900 / 1개</span>
-              <span class="lbl">총상품가격</span><span class="val">￥23,900</span>
-              <span class="lbl">주문일자</span><span class="val">2024.04.17</span>
-              <span class="lbl">결제금액</span><span class="val">—</span>
-            </div>
-            <div class="card-foot">
-              <button class="btn primary" type="button">재입찰</button>
-            </div>
-          </div>
-          <div class="trade-row" role="row" data-status="first-payment-wait">
-            <div class="card-top">
-              <span class="card-status">1차 결제대기</span>
-              <span class="card-time">04-17 14:32 낙찰</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - e2024041702</div>
-                <div class="seller">야후경매 · im111dancin</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">소니 워크맨 빈티지 카세트 플레이어 한정 컬러</a>
-              </div>
-            </div>
-            <div class="info-grid">
-              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
-              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
-              <span class="lbl">주문일자</span><span class="val">2024.04.17</span>
-              <span class="lbl">결제금액</span><span class="val">—</span>
-            </div>
-            <div class="card-foot">
-              <button class="btn primary" type="button">결제하기</button>
-            </div>
-          </div>
-                    <!-- 묶음배송 그룹 시작 -->
-          <div class="trade-row bundle-group-start" role="row" data-status="second-payment-wait">
-            <div class="bundle-summary">
-              <div><b>대표 주문번호</b><span class="val">BJP2024041703</span></div>
-              <span class="bundle-chip">묶음배송 2건</span>
-            </div>
-            <div class="card-top">
-              <span class="card-status">2차결제대기</span>
-              <span class="card-time">보관 D+3</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후구매 - BJP2024041703</div>
-                <div class="seller">야후구매 · bidbuy</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">스타벅스 재팬 사쿠라 머그컵 텀블러 세트</a>
-              </div>
-            </div>
-            <div class="info-grid">
-              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
-              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
-              <span class="lbl">현지도착일</span><span class="val">2024.04.20</span>
-              <span class="lbl">국제배송일</span><span class="val">—</span>
-            </div>
-          </div>
-          <!-- 묶음배송 그룹 끝 -->
-          <div class="trade-row bundle-group-end status-extra" role="row" data-status="second-payment-wait">
-            <div class="card-top">
-              <span class="card-status">2차결제대기</span>
-              <span class="card-time">04-17 14:32</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후구매 - BJP2024041704</div>
-                <div class="seller">야후구매 · bidbuy</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">무인양품 원목 수납박스 데스크 정리함 묶음</a>
-              </div>
-            </div>
-            <div class="info-grid">
-              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
-              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
-              <span class="lbl">현지도착일</span><span class="val">2024.04.22</span>
-              <span class="lbl">국제배송일</span><span class="val">—</span>
-            </div>
-            <div class="card-foot">
-              <button class="btn dark" type="button">묶음배송 신청</button>
-            </div>
-          </div>
-          <div class="trade-row" role="row" data-status="second-payment-wait">
-            <div class="card-top">
-              <span class="card-status">2차 결제대기</span>
-              <span class="card-time">04-17 14:32 낙찰</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - i2024041704</div>
-                <div class="seller">야후경매 · im111dancin</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">【公式】父の日 ギフト スイーツ クッキー プレゼント 2024 ビスタチオ...</a>
-              </div>
-            </div>
-            <div class="info-grid">
-              <span class="lbl">상품금액</span><span class="val">￥28,500 / 2개</span>
-              <span class="lbl">총상품가격</span><span class="val">￥28,500</span>
-              <span class="lbl">현지도착일</span><span class="val">2024.04.19</span>
-              <span class="lbl">결제금액</span><span class="val">—</span>
-            </div>
-            <div class="card-foot">
-              <button class="btn primary" type="button">결제하기</button>
-            </div>
-          </div>
-          <div class="trade-row status-extra" role="row" data-status="purchase-request">
-            <div class="card-top">
-              <span class="card-status">구매 신청</span>
-              <span class="card-time">04-16 14:20 접수</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="seller">구매대행 · bidbuy</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">일본 한정 굿즈 구매 신청 상품 패키지</a>
-                <div class="price-row"><span class="price-main">￥ 12,400</span><span class="price-unit">/ 1개</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="trade-row status-extra" role="row" data-status="shipping-wait">
-            <div class="card-top alert">
-              <span class="card-status alert">현지도착</span>
-              <span class="card-time alert">보관 30일 경과</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="seller">메루카리 · seller_24</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">현지 물류센터 보관 중인 상품</a>
-                <div class="price-row"><span class="price-main">￥ 8,700</span><span class="price-unit">/ 1개</span></div>
-              </div>
-            </div>
-            <div class="card-foot">
-              <button class="btn primary" type="button">묶음배송 신청</button>
-            </div>
-          </div>
-          <div class="trade-row status-extra" role="row" data-status="international-shipping">
-            <div class="card-top">
-              <span class="card-status">국제배송중</span>
-              <span class="card-time">04-18 출고</span>
-            </div>
-            <div class="card-body">
-              <a class="detail-link thumb-link" href="mobile_payment_detail.html" aria-label="결제상세내역"><div class="thumb"></div></a>
-              <div class="card-info">
-                <div class="seller">배송센터 · tokyo</div>
-                <a class="product-title product-detail-link" href="mobile_payment_detail.html">국제배송 진행 중인 묶음 배송 상품</a>
-                <div class="price-row"><span class="price-main">￥ 44,200</span><span class="price-unit">/ 3개</span></div>
-              </div>
-            </div>
-            <div class="card-foot">
-              <button class="btn navy" type="button">배송조회</button>
-            </div>
-          </div>
-          <div class="trade-empty" role="row">선택한 쇼핑 현황에 해당하는 거래가 없습니다.</div>
+      <!-- 종료 임박 물품 목록 -->
+      <section class="mini-section" aria-labelledby="ending-soon-title">
+        <div class="mini-section-head">
+          <h2 id="ending-soon-title">종료 임박 물품 목록</h2>
+          <a class="mini-more" href="mobile_mainlist.html">+ 더보기</a>
         </div>
+        <div class="mini-empty">입찰 중인 상품이 없습니다.</div>
+      </section>
 
-        <div class="pager" aria-label="페이지 이동">
-          <button type="button">≪</button><button type="button">‹</button>
-          <button type="button">1</button><button class="current" type="button">2</button>
-          <button type="button">3</button><button type="button">4</button><button type="button">5</button>
-          <button type="button">›</button><button type="button">≫</button>
+      <!-- 사용자 메모 알림 서비스 -->
+      <section class="mini-section" aria-labelledby="memo-service-title">
+        <div class="mini-section-head">
+          <h2 id="memo-service-title">사용자 메모 알림 서비스</h2>
+          <a class="mini-more" href="mobile_user_memo.html">+ 더보기</a>
+        </div>
+        <div class="mini-list">
+          <div class="trade-row">
+            <div class="card-body">
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>라쿠텐 · BJP0220006636</div>
+                <a class="product-title product-detail-link" href="mobile_user_memo.html">반지 링 여성용 니켈프리 금속 알레르기 액세서리...</a>
+                <div class="mini-date">2026.06.26</div>
+              </div>
+            </div>
+            <div class="card-foot"><button class="btn" type="button" onclick="location.href='mobile_user_memo.html'">메모 보기</button></div>
+          </div>
+          <div class="trade-row">
+            <div class="card-body">
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>메루카리 · BJP0219728972</div>
+                <a class="product-title product-detail-link" href="mobile_user_memo.html">생물도감 어드밴스 모토이카부토카게</a>
+                <div class="mini-date">2026.06.18</div>
+              </div>
+            </div>
+            <div class="card-foot"><button class="btn" type="button" onclick="location.href='mobile_user_memo.html'">메모 보기</button></div>
+          </div>
+          <div class="trade-row">
+            <div class="card-body">
+              <div class="card-info">
+                <div class="order-id"><span class="flag jp" role="img" aria-label="일본"></span>야후쇼핑 · BJP0216069884</div>
+                <a class="product-title product-detail-link" href="mobile_user_memo.html">메달리스트 원데이 플러스 맥시박스 90매 2박스...</a>
+                <div class="mini-date">2026.03.04</div>
+              </div>
+            </div>
+            <div class="card-foot"><button class="btn" type="button" onclick="location.href='mobile_user_memo.html'">메모 보기</button></div>
+          </div>
         </div>
       </section>
 
@@ -2423,7 +2307,7 @@
             <p class="mypage-menu-group-title">마이 쇼핑</p>
             <ul class="mypage-menu-list">
               <li><a href="#" class="active">거래 목록<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
-              <li><a href="#">경매 입찰/유찰<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+              <li><a href="mobile_auction_bid_list.html">경매 입찰/유찰<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
               <li><a href="#">구매 신청 목록<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
               <li><a href="#">관심 항목 관리<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
             </ul>
@@ -2491,7 +2375,7 @@
         </button>
         <div class="user-menu-panel" id="user-menu-trade">
           <a class="user-menu-link" href="#">거래 전체 목록</a>
-          <a class="user-menu-link" href="#">경매 입찰/유찰</a>
+          <a class="user-menu-link" href="mobile_auction_bid_list.html">경매 입찰/유찰</a>
           <a class="user-menu-link" href="#">구매 신청 목록</a>
         </div>
       </div>
@@ -2646,173 +2530,21 @@
     });
   });
 
-  // 탭 필터
-  document.querySelectorAll(".filter-group").forEach(group => {
-    const tabs = group.querySelectorAll("button");
-    tabs.forEach(tab => {
-      tab.setAttribute("aria-pressed", String(tab.classList.contains("active")));
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => { const a = t===tab; t.classList.toggle("active",a); t.setAttribute("aria-pressed",String(a)); });
-      });
-    });
-  });
-
-  // 거래 목록 상단 드롭다운
-  const dropdowns = document.querySelectorAll("[data-dropdown]");
-
-  function closeDropdowns(exceptDropdown) {
-    dropdowns.forEach(dropdown => {
-      if (dropdown === exceptDropdown) return;
-      dropdown.classList.remove("is-open");
-      dropdown.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
-    });
-  }
-
-  dropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector(".dropdown-toggle");
-    toggle?.addEventListener("click", () => {
-      const willOpen = !dropdown.classList.contains("is-open");
-      closeDropdowns(dropdown);
-      dropdown.classList.toggle("is-open", willOpen);
-      toggle.setAttribute("aria-expanded", String(willOpen));
-    });
-  });
-
-  document.addEventListener("click", event => {
-    if (!event.target.closest("[data-dropdown]")) closeDropdowns();
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") closeDropdowns();
-  });
-
-  const countryLabel = document.querySelector('[data-dropdown-label="country"]');
-  document.querySelectorAll(".country-panel .dropdown-item").forEach(item => {
-    item.addEventListener("click", () => {
-      document.querySelectorAll(".country-panel .dropdown-item").forEach(option => {
-        option.classList.toggle("active", option === item);
-      });
-      if (countryLabel) countryLabel.textContent = item.textContent.trim();
-      closeDropdowns();
-    });
-  });
-
-  const periodLabel = document.querySelector('[data-dropdown-label="period"]');
-  const rangeButtons = document.querySelectorAll(".range-shortcuts button");
-  const calendarDays = document.querySelectorAll(".calendar-days button:not(.is-muted)");
-
-  rangeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      rangeButtons.forEach(item => item.classList.toggle("active", item === button));
-      if (periodLabel) periodLabel.textContent = button.dataset.periodLabel || button.textContent.trim();
-    });
-  });
-
-  calendarDays.forEach(day => {
-    day.addEventListener("click", () => {
-      calendarDays.forEach(item => item.classList.toggle("selected", item === day));
-    });
-  });
-
-  document.querySelector("[data-calendar-reset]")?.addEventListener("click", () => {
-    rangeButtons.forEach(item => item.classList.toggle("active", item.dataset.periodLabel === "최근 1개월"));
-    calendarDays.forEach(item => item.classList.toggle("selected", item.textContent.trim() === "17"));
-    if (periodLabel) periodLabel.textContent = "최근 1개월";
-  });
-
-  document.querySelector("[data-calendar-apply]")?.addEventListener("click", () => {
-    closeDropdowns();
-  });
-
-  // 쇼핑 현황 필터
-  const statusTriggers = document.querySelectorAll(".status-card[data-status], .status-card .sub[data-status], .status-filter-option[data-status]");
-  const statusOptions = document.querySelectorAll(".status-filter-option[data-status]");
-  const tradeTable = document.querySelector(".trade-table");
-  const tradeRows = document.querySelectorAll(".trade-row[data-status]");
-  const tradeEmpty = document.querySelector(".trade-empty");
-  const tradeTitle = document.querySelector("#trade-list-title");
-  const statusDropdownLabel = document.querySelector('[data-dropdown-label="status"]');
-  let activeStatus = "";
-
-  function updateStatusDropdown(status, label) {
-    let selectedLabel = label || "진행 상태";
-
-    statusOptions.forEach(option => {
-      const isActive = (option.dataset.status || "") === status;
-      option.classList.toggle("status-active", isActive);
-      option.setAttribute("aria-pressed", String(isActive));
-
-      if (isActive && status) {
-        selectedLabel = option.dataset.label || option.textContent.trim();
-      }
-    });
-
-    if (statusDropdownLabel) {
-      statusDropdownLabel.textContent = status ? selectedLabel : "진행 상태";
-    }
-  }
-
-  function setFilter(status, label, forceSelection = false) {
-    const nextStatus = status || "";
-    const same = activeStatus === nextStatus;
-    activeStatus = !forceSelection && same ? "" : nextStatus;
-
-    statusTriggers.forEach(t => { t.classList.remove("status-active"); t.setAttribute("aria-pressed","false"); });
-
-    if (activeStatus) {
-      statusTriggers.forEach(item => {
-        if ((item.dataset.status || "") !== activeStatus) return;
-        item.classList.add("status-active");
-        item.setAttribute("aria-pressed", "true");
-        const p = item.closest(".status-card");
-        if (item.classList.contains("sub") && p) {
-          p.classList.add("status-active");
-          p.setAttribute("aria-pressed", "true");
-        }
-      });
-    } else {
-      statusOptions.forEach(option => {
-        const isAll = (option.dataset.status || "") === "";
-        option.classList.toggle("status-active", isAll);
-        option.setAttribute("aria-pressed", String(isAll));
-      });
-    }
-
-    updateStatusDropdown(activeStatus, label);
-
-    if (!activeStatus) {
-      const allOption = document.querySelector('.status-filter-option[data-status=""]');
-      allOption?.classList.add("status-active");
-      allOption?.setAttribute("aria-pressed", "true");
-    }
-
-    tradeTable?.classList.toggle("status-filtered", Boolean(activeStatus));
-    let vis = 0;
-    tradeRows.forEach(r => { const show = !activeStatus || r.dataset.status===activeStatus; r.classList.toggle("is-hidden",!show); if(activeStatus&&show) vis++; });
-    tradeEmpty?.classList.toggle("is-visible", Boolean(activeStatus) && vis===0);
-    if (tradeTitle) tradeTitle.textContent = activeStatus ? `${label} 거래 목록` : "거래 전체 목록";
-  }
-
-  statusTriggers.forEach(el => {
-    el.setAttribute("aria-pressed","false");
+  // 쇼핑 현황 카드 → 관련 목록 페이지로 이동 (경매입찰만 경매 입찰/유찰 목록으로 연결)
+  document.querySelectorAll(".status-card[data-status], .status-card .sub[data-status]").forEach(el => {
+    const dest = el.dataset.status === "auction-bid" ? "mobile_auction_bid_list.html" : "mobile_mainlist.html";
     el.addEventListener("click", e => {
-      e.stopPropagation();
-      const isDropdownOption = el.classList.contains("status-filter-option");
-      setFilter(el.dataset.status, el.dataset.label, isDropdownOption);
-      if (isDropdownOption) closeDropdowns();
+      if (el.classList.contains("sub")) e.stopPropagation();
+      location.href = dest;
     });
     el.addEventListener("keydown", e => {
-      if(e.key==="Enter"||e.key===" ") {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        e.stopPropagation();
-        const isDropdownOption = el.classList.contains("status-filter-option");
-        setFilter(el.dataset.status, el.dataset.label, isDropdownOption);
-        if (isDropdownOption) closeDropdowns();
+        if (el.classList.contains("sub")) e.stopPropagation();
+        location.href = dest;
       }
     });
   });
-
-  updateStatusDropdown(activeStatus);
 </script>
 </body>
 </html>
