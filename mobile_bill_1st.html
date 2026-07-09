@@ -142,6 +142,18 @@
   .check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
   .check-label input { accent-color:var(--navy); width:16px; height:16px; }
   .btn-saved-addr { padding:8px 12px; font-size:12px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; }
+  .japan-only,
+  .japan-only-inline { display:none; }
+  .recipient-card.is-japan-local .domestic-only { display:none !important; }
+  .recipient-card.is-japan-local .japan-only { display:block; }
+  .recipient-card.is-japan-local .japan-only-inline { display:inline-flex; }
+  .recipient-card.is-japan-local .recvr-top { justify-content:flex-start; margin:0; padding:0 0 10px; }
+  .recipient-card.is-japan-local .btn-saved-addr { border-color:#555; background:#555; color:#fff; border-radius:5px; font-weight:700; }
+  .recipient-card.is-japan-local .form-group { margin:0; padding:10px 0; border-top:1px solid var(--border); }
+  .recipient-card.is-japan-local .form-label { margin-bottom:8px; color:#1A3C6E; font-weight:600; }
+  .recipient-card.is-japan-local .form-row { margin-bottom:8px; }
+  .recipient-card.is-japan-local .form-input { border-radius:5px; }
+  .recipient-card.is-japan-local .japan-helper { align-items:center; margin-left:6px; color:#1A3C6E; font-size:11px; line-height:1.4; }
 
   /* 핸드폰 */
   .phone-row { display:flex; gap:6px; align-items:center; }
@@ -290,38 +302,45 @@
 
 
 <!-- 수취인 정보 -->
-<div class="card">
-  <div class="card-title">수취인 정보 <span id="recipientTitleNote" style="display:none; font-size:11px; font-weight:400; color:#885500;">※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
+<div class="card recipient-card" id="recipientCard">
+  <div class="card-title">수취인 정보 <span id="recipientTitleNote" style="display:none; font-size:11px; font-weight:400; color:#E8385A;">※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
   <div class="recvr-top">
     <button class="btn-saved-addr">저장된 배송지 선택</button>
   </div>
   <div class="form-group">
-    <div class="form-label">수취인명 (회사명)</div>
+    <div class="form-label" id="receiverNameLabel">수취인명 (회사명)</div>
     <input type="text" class="form-input" id="receiverName" placeholder="수취인명 입력">
-    <div class="form-hint">+5자리 이내만 가능합니다.</div>
+    <div class="form-hint domestic-only">+5자리 이내만 가능합니다.</div>
+    <div class="form-hint japan-only">현지 배송 받을 이름을 입력해주세요.</div>
   </div>
   <div class="form-group">
-    <div class="form-label">수령주소</div>
+    <div class="form-label" id="receiverAddressLabel">수령주소</div>
     <div class="form-row">
       <input type="text" class="form-input" id="receiverZip" placeholder="우편번호">
-      <button class="btn-sm">우편번호검색</button>
+      <button class="btn-sm domestic-only">우편번호검색</button>
+      <span class="japan-only-inline japan-helper">예) 160-0022</span>
     </div>
     <input type="text" class="form-input" id="receiverAddr1" placeholder="기본주소" style="display:block;margin-bottom:6px;">
     <input type="text" class="form-input" id="receiverAddr2" placeholder="상세주소" style="display:block;">
-    <div class="form-hint red">※ 개인통관고유부호 발급시 등록한 배송주소(우편번호)를 입력바랍니다.</div>
+    <input type="text" class="form-input japan-only" id="receiverAddr3" placeholder="건물명/호실 예) サンプルビル 101">
+    <div class="form-hint red domestic-only">※ 개인통관고유부호 발급시 등록한 배송주소(우편번호)를 입력바랍니다.</div>
   </div>
   <div class="form-group">
-    <div class="form-label">핸드폰</div>
-    <div class="phone-row">
+    <div class="form-label" id="receiverPhoneLabel">핸드폰</div>
+    <div class="phone-row domestic-only">
       <select class="phone-select" id="receiverPhone1"><option>010</option><option>011</option><option>016</option><option>017</option><option>019</option></select>
       <span class="phone-dash">-</span>
       <input type="text" class="form-input phone-input" id="receiverPhone2" placeholder="0000">
       <span class="phone-dash">-</span>
       <input type="text" class="form-input phone-input" id="receiverPhone3" placeholder="0000">
     </div>
-    <div class="form-hint red">※ 개인통관고유부호 발급시 기재한 전화번호를 입력바랍니다.</div>
+    <div class="form-row japan-only" style="margin-bottom:0;">
+      <input type="text" class="form-input" id="receiverJapanPhone" placeholder="전화번호">
+      <span class="japan-only-inline japan-helper">예) 03-1234-5678 또는 090-1234-5678</span>
+    </div>
+    <div class="form-hint red domestic-only">※ 개인통관고유부호 발급시 기재한 전화번호를 입력바랍니다.</div>
   </div>
-  <div class="form-group">
+  <div class="form-group domestic-only">
     <div class="form-label">개인통관고유부호 (사업자등록번호)</div>
     <input type="text" class="form-input" id="receiverCustomsCode" placeholder="P123456789000">
     <div class="customs-actions">
@@ -407,7 +426,7 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
       size: '* 중량 및 부피에 따라 별도 문의<br>* 일반적으로 30kg 이상 대량 화물에 적합'
     },
     '현지배송': {
-      f: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br><br>* 물품 파손, 상품 이상 등과 관련된 클레임 대행은 불가하며, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br><br>* 물품입고후 배송신청시 <strong>인수희망일을 별도로 지정</strong>해주셔야 합니다.',
+      f: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 또는 개별배송으로 지정 가능합니다.<br><br>* 물품 파손, 상품 이상 등과 관련된 클레임 대행은 불가하며, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br><br>* 물품입고후 배송신청시 <strong>인수희망일을 별도로 지정</strong>해주셔야 합니다.',
       size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
       days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 입고일로부터 <strong style="color:#c00">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong style="color:#c00">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
     },
@@ -424,6 +443,22 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
     document.getElementById('shipSize').innerHTML = d.size;
     const recipientNote = document.getElementById('recipientTitleNote');
     if (recipientNote) recipientNote.style.display = this.value === '현지배송' ? 'inline' : 'none';
+    const recipientCard = document.getElementById('recipientCard');
+    if (recipientCard) recipientCard.classList.toggle('is-japan-local', this.value === '현지배송');
+    const nameLabel = document.getElementById('receiverNameLabel');
+    const addressLabel = document.getElementById('receiverAddressLabel');
+    const phoneLabel = document.getElementById('receiverPhoneLabel');
+    const receiverName = document.getElementById('receiverName');
+    const receiverZip = document.getElementById('receiverZip');
+    const receiverAddr1 = document.getElementById('receiverAddr1');
+    const receiverAddr2 = document.getElementById('receiverAddr2');
+    if (nameLabel) nameLabel.textContent = this.value === '현지배송' ? '수취인명 (회사명)' : '수취인명 (회사명)';
+    if (addressLabel) addressLabel.textContent = this.value === '현지배송' ? '일본 수령주소' : '수령주소';
+    if (phoneLabel) phoneLabel.textContent = this.value === '현지배송' ? '일본 연락처' : '핸드폰';
+    if (receiverName) receiverName.placeholder = this.value === '현지배송' ? '수취인명 또는 회사명' : '수취인명 입력';
+    if (receiverZip) receiverZip.placeholder = '우편번호';
+    if (receiverAddr1) receiverAddr1.placeholder = this.value === '현지배송' ? '도도부현 예) 東京都' : '기본주소';
+    if (receiverAddr2) receiverAddr2.placeholder = this.value === '현지배송' ? '시구정촌/번지 예) 新宿区新宿 3-1-1' : '상세주소';
 
     // 일본내배송(현지배송) 선택 시 배송형태 제한
     const isJapanLocal = this.value === '현지배송';
@@ -435,6 +470,9 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
     const careText = document.getElementById('careText');
     const careOptionBody = document.getElementById('careOptionBody');
     const careWrap = careTrack?.closest('.option-item');
+
+    const wasIndividualChecked = Boolean(cbIndividual?.checked);
+    const wasWaitChecked = Boolean(cbWait?.checked);
 
     if (isJapanLocal) {
       // 개별배송 그레이 + 선택 불가
@@ -453,7 +491,19 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
       if (cbIndividual) { cbIndividual.disabled = false; }
       if (careWrap) { careWrap.style.opacity = ''; careWrap.style.pointerEvents = ''; }
     }
+    if (cbIndividual) { cbIndividual.checked = wasIndividualChecked; cbIndividual.disabled = false; }
+    if (cbWait) { cbWait.checked = wasWaitChecked; cbWait.disabled = false; }
+    if (cbIndividual?.checked && cbWait?.checked) cbWait.checked = false;
+    if (!cbIndividual?.checked && !cbWait?.checked && cbIndividual) cbIndividual.checked = true;
+    if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; rowIndividual.classList.toggle('selected', Boolean(cbIndividual?.checked)); }
+    if (rowWait) rowWait.classList.toggle('selected', Boolean(cbWait?.checked));
+    if (careWrap) {
+      careWrap.hidden = isJapanLocal;
+      careWrap.style.opacity = '';
+      careWrap.style.pointerEvents = '';
+    }
   });
+  document.getElementById('shippingMethodSelect')?.dispatchEvent(new Event('change'));
 
 
 function toggleCare() {
@@ -483,7 +533,8 @@ function toggleCare() {
   /* 배송형태 테이블 */
   (() => {
     const rows = Array.from(document.querySelectorAll('.method-select-table tbody tr.selectable'));
-    const selectRow = (row) => {
+    const selectRow = (row, event) => {
+      if (event?.target?.closest('label')) event.preventDefault();
       rows.forEach(r => {
         const cb = r.querySelector('.method-checkbox');
         const isTarget = r === row;
@@ -492,8 +543,8 @@ function toggleCare() {
       });
     };
     rows.forEach(row => {
-      row.addEventListener('click', () => selectRow(row));
-      row.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); selectRow(row); } });
+      row.addEventListener('click', (event) => selectRow(row, event));
+      row.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); selectRow(row, e); } });
     });
   })();
 

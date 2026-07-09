@@ -151,7 +151,7 @@
     }
     .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 11px; }
     .soft-btn {
-      height: 26px; border: 1px solid var(--line); border-radius: 999px;
+      height: 26px; border: 1px solid var(--line); border-radius: 5px;
       background: #fff; color: #5c606b; font-size: 12px; font-weight: 700;
     }
     .side-nav { padding-top: 33px; }
@@ -410,7 +410,7 @@
       .user-name { display: none; }
       .login-pill {
         display: inline-flex; min-width: 66px; height: 32px; border: 0;
-        border-radius: 999px; background: var(--brand); color: #fff;
+        border-radius: 5px; background: var(--brand); color: #fff;
         align-items: center; justify-content: center; font-size: 11px; font-weight: 900;
       }
       .logo-link { display: none; }
@@ -467,7 +467,7 @@
       }
       .mpc-actions { display: none; grid-template-columns: 1fr 1fr; gap: 8px; }
       .mpc-btn {
-        height: 32px; border: 1px solid var(--line); border-radius: 999px;
+        height: 32px; border: 1px solid var(--line); border-radius: 5px;
         background: #fff; color: #4a4f5b; font-size: 12px; font-weight: 700;
       }
       .mpc-btn.primary { border-color: var(--brand); color: var(--brand); font-weight: 800; }
@@ -664,7 +664,7 @@
     }
     .brand-area { display: flex; align-items: center; gap: 10px; min-width: 0; }
     .menu-button {
-      width: 34px; height: 34px; border: 0; border-radius: 9px;
+      width: 34px; height: 34px; border: 0; border-radius: 5px;
       background: transparent; padding: 0; display: grid; place-items: center;
     }
     .menu-lines { width: 18px; display: grid; gap: 4px; }
@@ -683,12 +683,12 @@
     body.is-logged-in .is-guest-only { display: none !important; }
     body:not(.is-logged-in) .is-member-only { display: none !important; }
     .login-pill {
-      min-width: 66px; height: 32px; border: 0; border-radius: 999px;
+      min-width: 66px; height: 32px; border: 0; border-radius: 5px;
       background: var(--brand); color: #fff; display: inline-flex;
       align-items: center; justify-content: center; font-size: 11px; font-weight: 900;
     }
     .member-tools .icon-btn {
-      width: 34px; height: 34px; border: 0; border-radius: 9px;
+      width: 34px; height: 34px; border: 0; border-radius: 5px;
       background: transparent; color: #333; display: grid !important;
       place-items: center; padding: 0; position: relative;
     }
@@ -760,7 +760,7 @@
     .drawer-guest-copy { margin: 0 0 13px; color: #6b7280; font-size: 12px; line-height: 1.45; }
     .drawer-login-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .drawer-action-btn {
-      height: 36px; border: 1px solid var(--brand); border-radius: 10px;
+      height: 36px; border: 1px solid var(--brand); border-radius: 5px;
       background: var(--brand); color: #fff; font-size: 12px; font-weight: 800;
     }
     .drawer-action-btn.secondary { background: #fff; color: #4b5563; border-color: #d9e0e9; }
@@ -807,14 +807,14 @@
       box-shadow: none;
     }
     .brand-area { gap: 10px; }
-    .menu-button { width: 34px; height: 34px; border-radius: 9px; }
+    .menu-button { width: 34px; height: 34px; border-radius: 5px; }
     .menu-lines { width: 18px; gap: 4px; }
     .menu-lines span { height: 2px; background: #101827; }
     .logo-link { width: 76px; max-width: 24vw; }
     .login-pill {
       min-width: 64px;
       height: 32px;
-      border-radius: 999px;
+      border-radius: 5px;
       background: var(--brand);
       font-size: 11px;
       font-weight: 900;
@@ -1366,7 +1366,7 @@
     .drawer-cs-actions button {
       height: 34px;
       border: 1px solid #d9e0e9;
-      border-radius: 8px;
+      border-radius: 5px;
       background: #fff;
       color: #1f2530;
       font-size: 12px;
@@ -1657,7 +1657,7 @@
     .pd-memo-input { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
     .pd-memo-input textarea { width: 100%; min-height: 72px; resize: vertical; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; color: #333; outline: 0; font-family: inherit; }
     .pd-memo-input textarea:focus { border-color: var(--navy); }
-    .pd-memo-btn { align-self: flex-end; height: 38px; padding: 0 22px; background: #707070; color: #fff; border: 0; border-radius: 24px; font-size: 14px; font-weight: 700; }
+    .pd-memo-btn { align-self: flex-end; height: 38px; padding: 0 22px; background: #707070; color: #fff; border: 0; border-radius: 5px; font-size: 14px; font-weight: 700; }
     .pd-memo { padding-top: 14px; border-top: 1px solid #f2f2f2; }
     .pd-memo__head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
     .pd-memo-admin,
@@ -1686,7 +1686,7 @@
     .pd-cta-line,
     .pd-cta-fill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
     .pd-cta-line,
-    .pd-cta-fill { flex: 1 1 0; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: #555; font-size: 14px; font-weight: 700; }
+    .pd-cta-fill { flex: 1 1 0; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: #555; font-size: 14px; font-weight: 700; }
 
   
     .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
