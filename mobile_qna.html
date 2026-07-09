@@ -36,7 +36,7 @@
     }
     .m-back-btn{
       flex-shrink:0; width:32px; height:32px;
-      border:none; background:none;
+      border:none; border-radius:5px; background:none;
       color:var(--tp); font-size:16px;
       display:flex; align-items:center; justify-content:center;
     }
@@ -44,7 +44,7 @@
     .m-header-logo img{height:22px; width:auto; display:block}
     .m-header-icons{display:flex; align-items:center; gap:4px}
     .m-icon-btn{
-      width:32px; height:32px; border:none; background:none;
+      width:32px; height:32px; border:none; border-radius:5px; background:none;
       color:var(--ts); font-size:17px;
       display:flex; align-items:center; justify-content:center;
     }
@@ -102,12 +102,8 @@
     .status-chip{
       flex-shrink:0; font-size:12px; font-weight:800;
     }
-    .status-chip.waiting{color:var(--amber)}
-    .status-chip.done{color:var(--green)}
-    .new-n{
-      color:var(--rose); font-family:Roboto,sans-serif;
-      font-size:9px; font-weight:900; vertical-align:super; margin-left:1px;
-    }
+    .status-chip.waiting{color:var(--tm)}
+    .status-chip.done{color:var(--rose)}
     .qna-title{
       font-size:14px; font-weight:600; color:var(--tp);
       overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
@@ -173,7 +169,7 @@
         <span class="qna-cat-badge">일본</span>
         <span class="qna-cat-badge">배송문의</span>
       </div>
-      <span class="status-chip done">답변완료<sup class="new-n">N</sup></span>
+      <span class="status-chip done">답변완료</span>
     </div>
     <div class="qna-title">묶음배송 신청건 국제배송 일정 문의드립니다</div>
     <div class="qna-meta">
