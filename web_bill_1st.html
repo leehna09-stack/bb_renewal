@@ -1403,22 +1403,23 @@
   (() => {
     const methodRows = Array.from(document.querySelectorAll('.ship-compare-table.method-select-table tbody tr.selectable'));
     if (methodRows.length > 0) {
-      const selectRow = (row) => {
-        methodRows.forEach((item) => {
-          const checkbox = item.querySelector('.method-checkbox');
-          const isSelected = item === row;
-          item.classList.toggle('selected', isSelected);
-          if (checkbox) checkbox.checked = isSelected;
-        });
+      const selectRow = (row, event) => {
+        const checkbox = row.querySelector('.method-checkbox');
+        if (!checkbox || checkbox.disabled) return;
+        const clickedCheckbox = Boolean(event?.target?.closest('.method-checkbox'));
+        if (!clickedCheckbox && event?.target?.closest('label')) event.preventDefault();
+        const nextChecked = clickedCheckbox ? checkbox.checked : !checkbox.checked;
+        checkbox.checked = nextChecked;
+        row.classList.toggle('selected', nextChecked);
         window.syncCarePlusAvailability?.();
       };
 
       methodRows.forEach((row) => {
-        row.addEventListener('click', () => selectRow(row));
+        row.addEventListener('click', (event) => selectRow(row, event));
         row.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            selectRow(row);
+            selectRow(row, event);
           }
         });
       });
@@ -1499,7 +1500,7 @@
         days: '7 ~ 12일'
       },
       '일본내배송': {
-        feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br>',
+        feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 또는 개별배송으로 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품의 파손 및 상품이상 등의 클레임 대행 일절 불가합니다.<br>(직접 택배사에 접수 필요)<br>',
         size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
         days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 인수희망일 신청<br>물품 입고일로부 <strong class="bold-red">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
       },
@@ -1532,6 +1533,9 @@
       const cbkIndividual = document.querySelector('input[name="shippingType"][value="개별배송"]');
       const cbkWait = document.querySelector('input[name="shippingType"][value="배송대기"]');
 
+      const wasIndividualChecked = Boolean(cbkIndividual?.checked);
+      const wasWaitChecked = Boolean(cbkWait?.checked);
+
       if (isJapanLocal) {
         // 개별배송 그레이 + 선택 불가
         if (rowIndividual) { rowIndividual.classList.remove('selected'); rowIndividual.style.opacity = '0.4'; rowIndividual.style.pointerEvents = 'none'; }
@@ -1543,6 +1547,18 @@
         if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; }
         if (cbkIndividual) cbkIndividual.disabled = false;
       }
+      if (cbkIndividual) { cbkIndividual.checked = wasIndividualChecked; cbkIndividual.disabled = false; }
+      if (cbkWait) { cbkWait.checked = wasWaitChecked; cbkWait.disabled = false; }
+      if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; rowIndividual.classList.toggle('selected', Boolean(cbkIndividual?.checked)); }
+      if (rowWait) rowWait.classList.toggle('selected', Boolean(cbkWait?.checked));
+
+      const carePlusTable = document.querySelector('.care-plus-table');
+      const carePlusChk = carePlusTable?.querySelector('input.option-chk');
+      if (isJapanLocal && carePlusChk) {
+        carePlusChk.checked = false;
+        carePlusChk.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (carePlusTable) carePlusTable.hidden = isJapanLocal;
       window.syncCarePlusAvailability?.();
 
       feeCells.forEach((cell) => {
