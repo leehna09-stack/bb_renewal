@@ -4,24 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bidbuy | 파손 보상안내</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --rose:#E8385A; --rose-h:#C42F4C;
       --amber:#F5A623; --navy:#1A3C6E;
       --green:#3AAD4E;
-      --bg:#F0F5FA; --white:#FFFFFF;
+      --bg:#FFFFFF; --white:#FFFFFF;
       --border:#E0E4EB; --border-soft:#F0EDE9;
-      --bg-warm:#FBF7F5;
+      --bg-warm:#FFFFFF;
       --tp:#1A1A2E; --ts:#666680; --tm:#999BAA;
       --alert-bg:#FFF8E6;
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html{background:var(--bg)}
+    html{background:#fff}
     body{
-      font-family:'Noto Sans KR',sans-serif;
-      background:var(--bg);
+      font-family:Pretendard,'Noto Sans KR',sans-serif;
+      background:#fff;
       max-width:430px; margin:0 auto;
       min-height:100vh; overflow-x:hidden;
     }
@@ -108,11 +109,13 @@
 
     /* ── 상단 안내 ── */
     .top-notice{
-      font-size:12px; color:var(--tp); line-height:1.8;
-      padding:14px 16px;
-      background:var(--bg-warm);
-      border-left:3px solid var(--navy);
+      --top-notice-sentence-gap:10px;
+      font-size:12px; color:var(--tp); line-height:1.5;
+      padding:15px 30px;
+      background-color : #fbf7f5;
+      border-bottom:1px solid var(--navy);
     }
+    .top-notice li + li{margin-top:var(--top-notice-sentence-gap)}
     .top-notice .note{color:var(--ts); display:block; margin-top:4px}
 
     /* ── 대분류 탭 ── */
@@ -136,7 +139,7 @@
     }
 
     /* ── 패널 ── */
-    .cs-panel{display:none; padding:16px}
+    .cs-panel{display:none; padding:16px; background:#fff}
     .cs-panel.active{display:block}
 
     /* ── 섹션 ── */
@@ -149,7 +152,7 @@
 
     /* ── 정책 박스 ── */
     .policy-box{
-      background:var(--white);
+      background:#fff;
       border:1px solid var(--border);
       border-radius:10px;
       padding:16px;
@@ -178,7 +181,8 @@
     .black-note{
       display:flex; align-items:flex-start; gap:6px;
       margin:12px 0 0; padding:11px 12px;
-      background:#f2f2f2;
+      background:#fff;
+      border:1px solid var(--border);
       font-size:12px; line-height:1.6; color:var(--tp);
     }
     .black-note::before{content:"■"; flex-shrink:0; color:#111}
@@ -200,7 +204,7 @@
 <div class="app-header">
   <div class="app-header-top">
     <div class="app-brand-area">
-      <button class="hb" type="button" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="app-logo" href="mobile_main.html" aria-label="Bidbuy 홈">
         <img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency">
       </a>
@@ -227,12 +231,6 @@
   <h2>파손 보상안내</h2>
 </div>
 
-<!-- ── 상단 안내 ── -->
-<div class="top-notice">
-  * 파손인정기준은 완파기준으로 잔기스나 찍그러짐은 파손 보상의 대상에서 제외됩니다.<br>
-  * 운송장으로 하나당 보상 한도입니다.
-  <span class="note">（하나의 운송장번호에 묶음배송으로 인하여 여러 상품이 합포장되어 있고 여러상품이 파손된 경우에도 보상 한도 내에서 보상됩니다.）</span>
-</div>
 
 <!-- ── 대분류 탭 ── -->
 <div class="cs-tabs" role="tablist">
@@ -240,6 +238,14 @@
   <button class="cs-tab" type="button" onclick="switchTab(this,'bidbuy')">비드바이특송</button>
   <button class="cs-tab" type="button" onclick="switchTab(this,'nocover')">보상불가 품목</button>
   <button class="cs-tab" type="button" onclick="switchTab(this,'care')">안심케어 서비스</button>
+</div>
+
+<!-- ── 상단 안내 ── -->
+<div class="top-notice">
+<li>파손 인정 기준은 완파 기준이며, 잔기스·찍힘·찌그러짐 등 경미한 손상은 <strong>파손 보상 대상에서 제외됩니다.</strong></li>
+      <li>안심케어에 가입되지 않은 건이거나 보상 불가 품목에 해당하는 경우, <strong>파손 보상 대상에서 제외됩니다.</strong></li>
+      <li>보상 한도는 운송장 번호 1건당 적용됩니다.</li>
+      <li>하나의 운송장 번호에 여러 상품이 합포장된 경우, 복수의 상품이 파손되었더라도 해당 운송장의 보상 한도 내에서 보상됩니다.</li>
 </div>
 
 <!-- ── EMS 패널 ── -->
@@ -311,19 +317,21 @@
   <div class="content-section">
     <p class="cs-section-title">보상불가 품목안내</p>
     <div class="policy-box">
-      <p class="step-head">보상이 되지 않는 경우</p>
       <p style="font-size:12px;color:var(--tp);line-height:1.7;margin-bottom:8px">다음 아래의 상품은 보상 대상에 포함되지 않습니다.</p>
       <ul class="dash-list">
-        <li>인터넷 및 인터넷 쇼핑 품목（흡정, 카드리지, 디스크 등）</li>
-        <li>앨범형 등</li>
-        <li>전용 하드케이스에 포장되지 않은 전자기류</li>
-        <li>도자기, 사기, 유리, 크리스탈 등으로 만들어지거나 주재료인 물품（브라운관 모니터, 조명, 진공관, 램프, 차량 유리 등）</li>
-        <li>정크 플레이트 등록 상품</li>
-        <li>균열이 있는 상태로 등록된 상품（추가파손도 보상불가）</li>
-        <li>미술 및 상업용도로 제작된 조각상, 프라모델 및 피규어, 미니카/비행기 모형（다이캐스트 모델 포함）, 완구류 일체</li>
-        <li>본품 외부에서 충격이 확인되지 않는 내부 부품 등의 파손</li>
-        <li>주류, 음료 등 병 파손 또는 코르크 손상 등으로 인한 누액</li>
-        <li>그 외 반입 금지제품</li>
+<li>>주류 코르크 손상 또는 누액은 보상 불가</li>
+<li>턴테이블 및 턴테이블 부품(톤암, 카트리지, 더스트 커버 등)</li>
+<li>도자기, 사기, 유리, 크리스탈 등으로 만들었거나 주재료인 물품</li>
+<li>(브라운관 모니터, 조명, 진공관, 램프, 차량 유리 등)</li>
+<li>미술 및 상업용으로 제작된 조각상(스태츄), 프라모델 및 피규어, 미니카</li>
+<li>비행기 모형(다이캐스트 모델 포함), 완구류 일체</li>
+<li>전용 하드케이스에 포장되지 않은 악기류</li>
+<li>서적 또는 의류의 변색,구겨짐</li>
+<li>정크품</li>
+<li>균열, 파손, 사용감 등 기존 하자가 있는 상품</li>
+<li>상품 작동 여부</li>
+<li>구성품 누락, 진품·가품 여부 등 현지 입고 시 확인이 어려운 상품</li>
+<li>단순 기스, 올 풀림, 오염, 찍힘 등 경미한 손상</li>
       </ul>
     </div>
   </div>

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bidbuy 예약 입찰하기</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -32,7 +33,7 @@
       max-width: 480px;
       color: var(--tp);
       background: var(--bg);
-      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      font-family: Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
       font-size: 14px;
       line-height: 1.5;
       overflow-x: hidden;
@@ -42,46 +43,30 @@
     button { cursor: pointer; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── 헤더 ── */
-    .m-header {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; gap: 8px;
-      height: 52px;
-      padding: 0 12px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+    /* ── 헤더 (mobile_auction 이식) ── */
+    .m-header{
+      background:var(--white); border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:100;
     }
-    .m-back-btn {
-      flex-shrink: 0;
-      width: 32px; height: 32px;
-      border: none; border-radius: 5px; background: none;
-      color: var(--tp); font-size: 16px;
-      display: grid; place-items: center;
+    .m-header-top{
+      display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px;
+      padding:10px 14px 8px;
     }
-    .m-logo-link { flex-shrink: 0; display: flex; align-items: center; }
-    .m-search-bar {
-      flex: 1; min-width: 0;
-      display: flex; align-items: center; gap: 6px;
-      height: 34px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      padding: 0 12px;
-    }
-    .m-search-icon { color: var(--tm); font-size: 13px; flex-shrink: 0; }
-    .m-search-input {
-      flex: 1; min-width: 0;
-      border: none; background: none; outline: none;
-      font-size: 13px; color: var(--tp);
-    }
-    .m-search-input::placeholder { color: var(--tm); }
-    .m-user-btn {
-      flex-shrink: 0;
-      width: 32px; height: 32px;
-      border: none; background: none;
-      color: var(--tp); font-size: 18px;
-      display: grid; place-items: center;
-    }
+    .m-brand-area{display:flex; align-items:center; gap:8px; min-width:0}
+    .hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
+    .hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
+    .m-logo{display:flex; align-items:center}
+    .m-header-right{display:flex; gap:4px; align-items:center; justify-self:end}
+    .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
+    .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
+    .m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
+    .m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#F5A623);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
+    .m-header-search{display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;margin:0 14px 10px}
+    .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
+    .m-header-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 8px 0 8px;color:#333;font-size:13px;font-family:inherit}
+    .m-header-search input::placeholder{color:#99A2B0}
+    .m-header-search button{width:40px;height:100%;border:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .m-header-search button i{font-size:13px}
 
     /* ── 콘텐츠 ── */
     .stage {
@@ -196,15 +181,30 @@
 
 <!-- 헤더 -->
 <header class="m-header">
-  <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fas fa-chevron-left"></i></button>
-  <a href="mobile_main.html" class="m-logo-link">
-    <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
-  </a>
-  <div class="m-search-bar">
-    <i class="fas fa-search m-search-icon"></i>
-    <input type="text" class="m-search-input" placeholder="상품명, 물품아이디 검색">
+  <div class="m-header-top">
+    <div class="m-brand-area">
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
+      <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
+        <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
+      </a>
+    </div>
+    <div class="m-header-right" id="m-guest-area">
+      <button class="m-login-btn" onclick="doMLogin()">로그인</button>
+    </div>
+    <div class="m-header-right" id="m-user-area" style="display:none">
+      <button class="m-icon-btn" aria-label="알림">
+        <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+      </button>
+      <button class="m-icon-btn" aria-label="장바구니">
+        <i class="fa-solid fa-cart-shopping"></i><span class="badge">2</span>
+      </button>
+      <button class="m-user-avatar" onclick="alert('마이페이지')" aria-label="회원 메뉴">한</button>
+    </div>
   </div>
-  <button class="m-user-btn" aria-label="내 계정"><i class="fas fa-user-check"></i></button>
+  <div class="m-header-search">
+    <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
+    <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
 </header>
 
 <div class="stage">
@@ -272,6 +272,10 @@
 </div>
 
 <script>
+function doMLogin(){
+  document.getElementById('m-guest-area').style.display = 'none';
+  document.getElementById('m-user-area').style.display = '';
+}
 const CONFIRMED_BID = 1300;
 const CONFIRMED_QTY = 1;
 const KRW_RATE = 9.3;

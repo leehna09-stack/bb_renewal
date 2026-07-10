@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>배송대기건 배송신청 (개별배송) - BidBuy</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -14,7 +15,7 @@
     --text-main:#111; --text-sub:#666; --text-hint:#999;
   }
   html, body { width:100%; max-width:390px; margin:0 auto; background:var(--bg); overflow-x:hidden; }
-  body { font-family:'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:88px; }
+  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:88px; }
 
   /* 앱바 */
   .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
@@ -71,7 +72,7 @@
   .field-label { font-size:12px; color:var(--text-sub); font-weight:500; margin-bottom:6px; }
   .select-full {
     width:100%; padding:11px 14px; border:1px solid #dde1e7; border-radius:8px;
-    font-size:14px; font-family:'Noto Sans KR',sans-serif; color:#333;
+    font-size:14px; font-family:Pretendard,'Noto Sans KR',sans-serif; color:#333;
     background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 14px center;
     appearance:none; cursor:pointer;
   }
@@ -87,7 +88,7 @@
   .pickup-panel.show { display:block; }
   .pickup-title { font-size:12px; font-weight:800; color:#664400; margin-bottom:8px; }
   .pickup-guide { font-size:11px; color:#885500; line-height:1.7; margin-bottom:10px; }
-  .form-input { width:100%; padding:11px 14px; border:1px solid #dde1e7; border-radius:8px; font-size:14px; font-family:'Noto Sans KR',sans-serif; color:#333; background:#fff; }
+  .form-input { width:100%; padding:11px 14px; border:1px solid #dde1e7; border-radius:8px; font-size:14px; font-family:Pretendard,'Noto Sans KR',sans-serif; color:#333; background:#fff; }
   .form-input:focus { outline:none; border-color:var(--navy); }
   .form-hint { font-size:11px; color:var(--text-hint); margin-top:5px; line-height:1.6; }
   .form-hint.red { color:var(--red); }
@@ -96,13 +97,13 @@
   .recvr-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--border); }
   .check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
   .check-label input { accent-color:var(--navy); width:16px; height:16px; }
-  .btn-saved-addr { padding:8px 12px; font-size:12px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); cursor:pointer; }
+  .btn-saved-addr { padding:8px 12px; font-size:12px; font-weight:500; font-family:Pretendard,'Noto Sans KR',sans-serif; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); cursor:pointer; }
   .form-group { margin-bottom:16px; }
   .form-group:last-child { margin-bottom:0; }
   .form-label { font-size:12px; font-weight:500; color:var(--text-sub); margin-bottom:6px; display:block; }
   .form-row { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
   .form-row .form-input { flex:1; margin-bottom:0; }
-  .btn-sm { padding:10px 12px; font-size:12px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #bbb; border-radius:5px; background:#f5f5f5; color:#444; cursor:pointer; white-space:nowrap; }
+  .btn-sm { padding:10px 12px; font-size:12px; font-weight:500; font-family:Pretendard,'Noto Sans KR',sans-serif; border:1px solid #bbb; border-radius:5px; background:#f5f5f5; color:#444; cursor:pointer; white-space:nowrap; }
 
   /* 관부가세 안내 */
   .duty-box { background:#fff8f9; border:1px solid #f5b8c2; border-radius:8px; padding:14px; font-size:12px; line-height:1.7; color:#6b2c3a; }
@@ -125,7 +126,7 @@
 
   /* 하단 CTA */
   .bottom-cta { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; display:flex; gap:8px; padding:10px 16px 16px; background:#fff; border-top:1px solid var(--border); box-shadow:0 -2px 10px rgba(0,0,0,.08); z-index:100; }
-  .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:'Noto Sans KR',sans-serif; border:none; border-radius:5px; cursor:pointer; }
+  .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:Pretendard,'Noto Sans KR',sans-serif; border:none; border-radius:5px; cursor:pointer; }
   .cta-cancel { background:#eee; color:#666; }
   .cta-approve { background:var(--navy); color:#fff; }
 
@@ -147,7 +148,7 @@
   .option-body ul { margin:0; padding-left:18px; }
   .option-body li { margin-bottom:3px; }
   .option-body li strong.bold-red { color:var(--red); }
-  .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
+  .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
   .paid-option-detail.care-guide-detail { border-color:var(--red); color:var(--red); margin-left:6px; margin-top:6px; }
 
   /* 토글 */
@@ -191,7 +192,7 @@
 <div class="app-header">
   <div class="app-header-top">
     <div class="app-brand-area">
-      <button class="hb" type="button" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="app-logo" href="mobile_main.html" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency"></a>
     </div>
     <div class="app-header-right">

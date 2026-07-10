@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Relirium -레릴룸- 유적과 만남과 모험과 사운드트랙 음원 DL버전 | BidBuy Korea</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -14,7 +15,7 @@
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;max-width:480px;margin:0 auto;overflow-x:hidden}
+body{font-family:Pretendard,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;max-width:480px;margin:0 auto;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 .roboto{font-family:'Roboto',sans-serif}
 
@@ -24,6 +25,8 @@ a{text-decoration:none;color:inherit}
 .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
 .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
 .m-back-btn:hover{background:var(--bg)}
+.hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
+.hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
 .m-logo{display:flex;align-items:center}
 .m-logo-text{font-size:17px;font-weight:900;color:var(--rose);letter-spacing:-0.5px}
 .m-logo-text span{color:var(--tp)}
@@ -170,7 +173,7 @@ a{text-decoration:none;color:inherit}
 .m-cost-sign{font-size:10px;font-weight:700;color:var(--ts);background:#F0F2F5;padding:1px 5px;border-radius:3px;flex-shrink:0}
 .m-cost-sign.minus{color:var(--green);background:#EDF7F0}
 .m-cost-val{font-family:'Roboto',sans-serif;font-weight:600;color:var(--tp);font-size:13px}
-.m-cost-defer{font-size:11px;color:var(--ts);font-weight:400;font-family:'Noto Sans KR',sans-serif}
+.m-cost-defer{font-size:11px;color:var(--ts);font-weight:400;font-family:Pretendard,'Noto Sans KR',sans-serif}
 .m-cost-total{background:#FFF5F7;border:1.5px solid var(--rose);border-radius:10px;padding:12px 14px;margin-top:12px;display:flex;justify-content:space-between;align-items:center}
 .m-cost-total-label{font-size:13px;font-weight:700;color:var(--tp);display:flex;flex-direction:column;gap:2px}
 .m-cost-total-rate{font-size:11px;font-weight:500;color:var(--tm)}
@@ -306,7 +309,7 @@ a{text-decoration:none;color:inherit}
 .m-shipping-val{font-size:14px;font-weight:700;color:var(--tp);font-family:'Roboto',sans-serif}
 
 /* ── KRW 환산 표시 ── */
-.m-bid-krw{font-size:11px;font-weight:500;color:var(--ts);font-family:'Noto Sans KR',sans-serif;white-space:nowrap}
+.m-bid-krw{font-size:11px;font-weight:500;color:var(--ts);font-family:Pretendard,'Noto Sans KR',sans-serif;white-space:nowrap}
 .m-bid-amount-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .m-exchange-rate{font-size:11px;color:var(--tm);margin-bottom:10px;text-align:right}
 .m-exchange-rate span{font-weight:700;color:var(--ts);font-family:'Roboto',sans-serif}
@@ -366,7 +369,7 @@ a{text-decoration:none;color:inherit}
 <header class="m-header">
   <div class="m-header-top">
     <div class="m-brand-area">
-      <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
         <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
       </a>

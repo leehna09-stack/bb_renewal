@@ -13,10 +13,22 @@
     return localStorage.getItem(LOGIN_KEY) === '1';
   }
 
+  function isMainPage() {
+    var file = (location.pathname.split('/').pop() || '').toLowerCase();
+    return file === 'web_main.html';
+  }
+
+  function removeNonMainNotice() {
+    if (isMainPage()) return;
+    document.querySelectorAll('.notice-bar, .top-notice-spacer').forEach(function (el) {
+      el.remove();
+    });
+  }
+
   var css = [
     'body{min-width:1280px !important}',
 
-    '.bbh-header{background:#fff;border-bottom:1px solid #E0E4EB;position:sticky;top:0;z-index:900;box-shadow:0 1px 4px rgba(0,0,0,.06);font-family:"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E}',
+    '.bbh-header{background:#fff;border-bottom:1px solid #E0E4EB;position:sticky;top:0;z-index:900;box-shadow:0 1px 4px rgba(0,0,0,.06);font-family:Pretendard,"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E}',
     '.bbh-hdr{max-width:1440px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:16px}',
     '.bbh-menu{display:flex;flex-direction:column;gap:4.5px;padding:8px;border-radius:5px;cursor:pointer;background:none;border:none;margin-right:12px;transition:background .15s;flex-shrink:0}',
     '.bbh-menu:hover{background:#F5F7FA}',
@@ -47,10 +59,10 @@
 
     '.bbd-ov{position:fixed;inset:0;background:rgba(0,0,0,0);pointer-events:none;transition:background .3s;z-index:1000}',
     '.bbd-ov.open{background:rgba(0,0,0,.45);pointer-events:all}',
-    '.bbd{position:fixed;top:0;bottom:0;left:-100%;width:88%;max-width:340px;z-index:1001;background:#fff;overflow-y:auto;scrollbar-width:none;font-family:"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E;transition:left .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:4px 0 20px rgba(0,0,0,.12)}',
+    '.bbd{position:fixed;top:0;bottom:0;left:-100%;width:88%;max-width:340px;z-index:1001;background:#fff;overflow-y:auto;scrollbar-width:none;font-family:Pretendard,"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E;transition:left .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:4px 0 20px rgba(0,0,0,.12)}',
     '.bbd::-webkit-scrollbar{display:none}',
     '.bbd.open{left:0}',
-    '.bbu{position:fixed;top:64px;right:24px;width:320px;max-width:calc(100vw - 32px);max-height:calc(100vh - 88px);z-index:1002;background:linear-gradient(#FFF5F1 0 192px,#fff 192px 100%);overflow-y:auto;scrollbar-width:none;font-family:"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E;border:1px solid #DDE3EB;border-radius:16px;box-shadow:0 18px 42px rgba(17,24,39,.16);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .18s ease,transform .18s ease,visibility .18s}',
+    '.bbu{position:fixed;top:64px;right:24px;width:320px;max-width:calc(100vw - 32px);max-height:calc(100vh - 88px);z-index:1002;background:linear-gradient(#FFF5F1 0 192px,#fff 192px 100%);overflow-y:auto;scrollbar-width:none;font-family:Pretendard,"Apple SD Gothic Neo","Helvetica Neue","Malgun Gothic",sans-serif;font-size:14px;color:#1A1A2E;border:1px solid #DDE3EB;border-radius:16px;box-shadow:0 18px 42px rgba(17,24,39,.16);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .18s ease,transform .18s ease,visibility .18s}',
     '.bbu::-webkit-scrollbar{display:none}',
     '.bbu.open{opacity:1;visibility:visible;transform:translateY(0)}',
 
@@ -287,6 +299,8 @@
   }
 
   function render() {
+    removeNonMainNotice();
+
     if (!document.getElementById('bbCommonCss')) {
       var style = document.createElement('style');
       style.id = 'bbCommonCss';

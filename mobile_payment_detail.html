@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bidbuy 마이페이지</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
@@ -33,7 +34,7 @@
     html { background: #f0f5fa; }
     body {
       margin: 0; min-width: var(--mobile-w); color: var(--text); background: #f0f5fa;
-      font-family: "Noto Sans KR", -apple-system, sans-serif;
+      font-family: Pretendard, "Noto Sans KR", -apple-system, sans-serif;
       font-size: 13px; line-height: 1.45;
     }
     button, input, select { font: inherit; }
@@ -315,7 +316,7 @@
     .drawer-close { width: 28px; height: 28px; border: 0; background: transparent; color: #555; font-size: 20px; display: grid; place-items: center; }
     .drawer-section { padding: 16px 20px; border-bottom: 1px solid #f0ebe8; }
     .drawer-section-title { margin: 0 0 12px; color: #888; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
-    .drawer-quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .drawer-quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .drawer-quick-item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #2c3038; }
     .drawer-quick-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--warm); border: 1px solid #ede7e3; display: grid; place-items: center; font-size: 18px; font-weight: 900; }
     .drawer-quick-icon svg { width: 20px; height: 20px; stroke-width: 1.7; }
@@ -1272,7 +1273,7 @@
     }
     .drawer-quick-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       padding: 0;
     }
@@ -1695,12 +1696,12 @@
   <style>
     /* mobile_main 타이포 스케일 동기화 */
     body {
-      font-family: "Noto Sans KR", sans-serif;
+      font-family: Pretendard, "Noto Sans KR", sans-serif;
       font-size: 14px;
       line-height: 1.45;
     }
     .page {
-      font-family: "Noto Sans KR", sans-serif;
+      font-family: Pretendard, "Noto Sans KR", sans-serif;
     }
     .list-title {
       font-size: 15px;
@@ -1948,22 +1949,19 @@
       <div class="drawer-vip-row is-member-only">
       </div>
       <section class="drawer-section">
+        <h2 class="drawer-section-title">빠른 메뉴</h2>
         <div class="drawer-quick-grid">
           <a class="drawer-quick-item" href="#">
+            <span class="drawer-quick-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
+            <span>비용 계산기</span>
+          </a>
+          <a class="drawer-quick-item" href="mobile_bundle_shipping_management.html">
+            <span class="drawer-quick-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span>
+            <span>입고/보관중인 물건 조회</span>
+          </a>
+          <a class="drawer-quick-item" href="mobile_bundle_shipping_management_2.html">
             <span class="drawer-quick-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></span>
-            <span>배송관리</span>
-          </a>
-          <a class="drawer-quick-item" href="#">
-            <span class="drawer-quick-icon"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
-            <span>MY 혜택</span>
-          </a>
-          <a class="drawer-quick-item" href="#">
-            <span class="drawer-quick-icon"><i class="fa-regular fa-calendar" aria-hidden="true"></i></span>
-            <span>관심항목</span>
-          </a>
-          <a class="drawer-quick-item" href="#">
-            <span class="drawer-quick-icon"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i></span>
-            <span>마이페이지</span>
+            <span>출고 배송중</span>
           </a>
         </div>
       </section>
@@ -1971,70 +1969,21 @@
       <section class="drawer-section">
         <h2 class="drawer-section-title">카테고리</h2>
         <div class="drawer-category-list">
-          <a class="drawer-category-item" href="#"><span class="drawer-country">JP</span><span>일본야후경매</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="#"><span class="drawer-country">US</span><span>미국이베이경매</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="#"><span class="drawer-country">GB</span><span>영국이베이경매</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="#"><span class="drawer-country">JP</span><span>일본메루카리</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="#"><span class="drawer-country">JP</span><span>일본구매대행</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></a>
-        </div>
-      </section>
-
-      <section class="drawer-section">
-        <h2 class="drawer-section-title">커뮤니티</h2>
-        <div class="drawer-link-grid">
-          <a href="#">이벤트</a><a href="#">카테고리 추천</a>
-          <a href="#">고객 후기</a><a href="#">비바 매거진</a>
-        </div>
-      </section>
-
-      <section class="drawer-section drawer-mypage-section is-member-only">
-        <h2 class="drawer-section-title">마이페이지</h2>
-        <div class="drawer-mypage-list">
-          <a class="drawer-mypage-item is-open" href="#" aria-expanded="true" aria-controls="drawer-mypage-shopping">
-            <i class="fa-regular fa-user" aria-hidden="true"></i>
-            <span>마이쇼핑</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-          </a>
-          <div class="drawer-mypage-panel is-open" id="drawer-mypage-shopping">
-            <a class="drawer-mypage-link active" href="#">거래 목록</a>
-            <a class="drawer-mypage-link" href="mobile_auction_bid_list.html">경매 입찰/유찰</a>
-            <a class="drawer-mypage-link" href="#">구매 신청 목록</a>
-            <a class="drawer-mypage-link" href="#">관심 항목 관리</a>
-          </div>
-          <a class="drawer-mypage-item" href="#" aria-expanded="false" aria-controls="drawer-mypage-delivery">
-            <i class="fa-solid fa-truck" aria-hidden="true"></i>
-            <span>배송관리</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-          </a>
-          <div class="drawer-mypage-panel" id="drawer-mypage-delivery">
-            <a class="drawer-mypage-link" href="#">묶음 배송 신청</a>
-            <a class="drawer-mypage-link" href="#">배송지 관리</a>
-          </div>
-          <a class="drawer-mypage-item" href="#" aria-expanded="false" aria-controls="drawer-mypage-benefit">
-            <i class="fa-solid fa-gift" aria-hidden="true"></i>
-            <span>MY 혜택</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-          </a>
-          <div class="drawer-mypage-panel" id="drawer-mypage-benefit">
-            <a class="drawer-mypage-link" href="mobile_mileage.html">마일리지 / 쿠폰</a>
-            <a class="drawer-mypage-link" href="#">MY 등급</a>
-          </div>
-          <a class="drawer-mypage-item" href="#" aria-expanded="false" aria-controls="drawer-mypage-info">
-            <i class="fa-solid fa-gear" aria-hidden="true"></i>
-            <span>나의정보관리</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-          </a>
-          <div class="drawer-mypage-panel" id="drawer-mypage-info">
-            <a class="drawer-mypage-link" href="#">예치금 관리</a>
-            <a class="drawer-mypage-link" href="#">보증금 관리</a>
-            <a class="drawer-mypage-link" href="#">회원정보 수정</a>
-            <a class="drawer-mypage-link" href="#">비밀번호 변경</a>
-            <a class="drawer-mypage-link danger" href="#">회원 탈퇴</a>
-          </div>
+          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">JP</span><span>야후옥션</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_purchase_merukari.html"><span class="drawer-country">M</span><span>메루카리</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_purchase_store.html"><span class="drawer-country">RA</span><span>라쿠텐</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_purchase_url.html"><span class="drawer-country">JP</span><span>야후쇼핑</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_purchase_store.html"><span class="drawer-country">MA</span><span>라쿠마</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">US</span><span>미국이베이</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
+          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">UK</span><span>영국이베이</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
         </div>
       </section>
 
       <section class="drawer-section">
         <h2 class="drawer-section-title">이용가이드</h2>
         <div class="drawer-link-grid">
-          <a href="#">초보자가이드</a><a href="#">수수료안내</a>
-          <a href="#">배송비안내</a><a href="#">관부가세안내</a>
+          <a href="mobile_fakenotice.html">경매대행 이용안내</a><a href="mobile_fakenotice.html">구매대행 이용안내</a>
+          <a href="mobile_cs_refund.html">수수료 및 관부가세</a>
         </div>
         <a class="drawer-biz-switch" href="mobile_biz.html" aria-label="사업자 회원으로 전환하기">
           <span class="drawer-biz-icon" aria-hidden="true"><i class="fa-solid fa-building" aria-hidden="true"></i></span>
@@ -2046,13 +1995,21 @@
         </a>
       </section>
 
+      <section class="drawer-section">
+        <h2 class="drawer-section-title">고객센터</h2>
+        <div class="drawer-link-grid">
+          <a href="mobile_fakenotice.html">공지사항</a><a href="mobile_qna.html">자주하는질문</a>
+          <a href="mobile_qna_form.html">1:1문의</a><a href="mobile_qna.html">커뮤니티</a>
+        </div>
+      </section>
+
       <div class="drawer-cs-card">
         <div class="drawer-cs-tel">1544-5224</div>
         <p class="drawer-cs-time">평일 AM 10:00 - PM 17:00 (점심 PM 12:30 - 13:30)</p>
         <div class="drawer-cs-actions">
-          <button type="button">1:1 문의</button>
-          <button type="button">FAQ</button>
-          <button type="button">공지사항</button>
+          <button type="button" onclick="location.href='mobile_qna_form.html'">1:1 문의</button>
+          <button type="button" onclick="location.href='mobile_qna.html'">FAQ</button>
+          <button type="button" onclick="location.href='mobile_fakenotice.html'">공지사항</button>
         </div>
       </div>
 

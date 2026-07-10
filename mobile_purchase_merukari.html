@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>BTS 7TH YEAR weverse album 신품 미개봉 다고냥 | BidBuy Korea</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -16,7 +17,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 /* 네이버 모바일 기본 타이포그래피: 시스템 한글 폰트 스택 / 14px / line-height 1.5, 여백 8px 그리드 */
-body{font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;line-height:1.5;max-width:480px;margin:0 auto}
+body{font-family:Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;line-height:1.5;max-width:480px;margin:0 auto}
 a{text-decoration:none;color:inherit}
 .roboto{font-family:'Roboto',sans-serif}
 
@@ -26,6 +27,8 @@ a{text-decoration:none;color:inherit}
 .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
 .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
 .m-back-btn:hover{background:var(--bg)}
+.hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
+.hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
 .m-logo{display:flex;align-items:center}
 .m-logo-text{font-size:17px;font-weight:900;color:var(--rose);letter-spacing:-0.5px}
 .m-logo-text span{color:var(--tp)}
@@ -33,6 +36,8 @@ a{text-decoration:none;color:inherit}
 .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
 .m-icon-btn:hover{background:var(--bg)}
 .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
+.m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
+.m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
 .m-header-search{display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;margin:0 14px 10px}
 .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
 .m-header-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 8px 0 8px;color:#333;font-size:13px;font-family:inherit}
@@ -182,14 +187,18 @@ a{text-decoration:none;color:inherit}
 <header class="m-header">
   <div class="m-header-top">
     <div class="m-brand-area">
-      <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
-        <span class="m-logo-text">Bid<span>Buy</span></span>
+        <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
       </a>
     </div>
-    <div class="m-header-right">
-      <button class="m-icon-btn" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
-      <button class="m-icon-btn" aria-label="장바구니"><i class="fa-solid fa-cart-shopping"></i><span class="badge">3</span></button>
+    <div class="m-header-right" id="m-guest-area">
+      <button class="m-login-btn" onclick="doMLogin()">로그인</button>
+    </div>
+    <div class="m-header-right" id="m-user-area" style="display:none">
+      <button class="m-icon-btn" aria-label="알림"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
+      <button class="m-icon-btn" aria-label="장바구니"><i class="fa-solid fa-cart-shopping"></i><span class="badge">2</span></button>
+      <button class="m-user-avatar" onclick="alert('마이페이지')" aria-label="회원 메뉴">한</button>
     </div>
   </div>
   <div class="m-header-search">
@@ -382,6 +391,10 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
+function doMLogin(){
+  document.getElementById('m-guest-area').style.display = 'none';
+  document.getElementById('m-user-area').style.display = '';
+}
 function setMainImg(idx){
   const total = 4;
   galleryIdx = idx;
@@ -413,5 +426,6 @@ function toggleMWish(btn){
   btn.querySelector('strong').textContent = active ? '13' : '12';
 }
 </script>
+<script src="bb-common-mobile.js"></script>
 </body>
 </html>

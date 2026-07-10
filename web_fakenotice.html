@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bidbuy 가품 관련 주의사항</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --rose: #E8385A;
@@ -29,7 +30,7 @@
     body {
       margin: 0; min-width: 320px;
       color: var(--text); background: #fff;
-      font-family: 'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-family: Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
       font-size: 14px; line-height: 1.5;
     }
     button, input, select { font: inherit; }
@@ -41,7 +42,7 @@
     /* ── 상단바 ── */
     .topbar { height: 67px; width: min(calc(100vw - 32px), 1057px); margin: 0 auto; display: grid; grid-template-columns: 221px minmax(0, 714px) 221px; align-items: center; gap: 16px; background: #fff; }
     .brand-area { display: flex; align-items: center; gap: 22px; min-width: 0; }
-    .menu-button { width: 25px; height: 25px; border: 0; background: transparent; padding: 0; display: grid; place-items: center; }
+    .menu-button { width: 25px; height: 25px; border: 0; border-radius: 5px; background: transparent; padding: 0; display: grid; place-items: center; }
     .menu-lines { width: 23px; display: grid; gap: 6px; }
     .menu-lines span { height: 2.5px; border-radius: 999px; background: #1f2530; }
     .logo-link { display: inline-flex; align-items: center; width: 122px; line-height: 0; }
@@ -51,7 +52,7 @@
     .search input::placeholder { color: #8c8985; }
     .search button { width: 111px; border: 0; background: var(--rose); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 700; }
     .user-tools { justify-self: end; display: grid; grid-template-columns: 28px 28px auto; align-items: center; gap: 10px; }
-    .icon-btn { width: 28px; height: 28px; border: 0; background: transparent; font-size: 15px; color: var(--text); display: grid; place-items: center; }
+    .icon-btn { width: 28px; height: 28px; border: 0; border-radius: 5px; background: transparent; font-size: 15px; color: var(--text); display: grid; place-items: center; }
     .user-name { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
     .premium-chip { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--rose); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .04em; vertical-align: middle; }
 

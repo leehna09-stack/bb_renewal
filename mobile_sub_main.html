@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bidbuy 검색결과</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
@@ -23,7 +24,7 @@
 html, body { height: 100%; }
 body {
   max-width: 480px; margin: 0 auto; overflow-x: hidden;
-  font-family: 'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+  font-family: Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
   font-size: 14px; line-height: 1.5; color: var(--tp); background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
@@ -37,6 +38,8 @@ a { text-decoration: none; color: inherit; }
 .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
 .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
 .m-back-btn:hover{background:var(--bg)}
+.hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
+.hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
 .m-logo{display:flex;align-items:center}
 .m-header-right{display:flex;gap:4px;align-items:center;justify-self:end}
 .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
@@ -458,7 +461,7 @@ a { text-decoration: none; color: inherit; }
 <header class="m-header">
   <div class="m-header-top">
     <div class="m-brand-area">
-      <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
         <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
       </a>

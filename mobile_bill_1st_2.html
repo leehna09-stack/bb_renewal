@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>결제 확인 - BidBuy</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -14,7 +15,7 @@
     --text-main:#111; --text-sub:#666; --text-hint:#999;
   }
   html, body { width:100%; max-width:390px; margin:0 auto; background:var(--bg); overflow-x:hidden; }
-  body { font-family:'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
+  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
 
   /* ? 바 */
   .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
@@ -45,10 +46,10 @@
   .fee-row-label-control { display:inline-flex; align-items:center; gap:7px; }
   .fee-row-val { display:inline-flex; align-items:center; gap:8px; font-family:'Roboto',sans-serif; font-size:13px; font-weight:500; color:var(--text-main); }
   .fee-row-val.undecided { color:var(--text-hint); font-size:12px; }
-  .fee-action-btn { padding:5px 9px; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); font-family:'Noto Sans KR',sans-serif; font-size:11px; font-weight:500; line-height:1.2; cursor:pointer; white-space:nowrap; }
+  .fee-action-btn { padding:5px 9px; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:11px; font-weight:500; line-height:1.2; cursor:pointer; white-space:nowrap; }
   .fee-action-btn.active { background:#d0d0d0; border-color:#aaa; color:#666; }
   .fee-help { position:relative; display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border:1px solid #B8C1CF; border-radius:50%; color:#8B95A1; font-family:'Roboto',sans-serif; font-size:10px; font-weight:700; line-height:1; }
-  .fee-help::after { content:attr(data-tooltip); position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%); display:none; width:210px; padding:8px 10px; border-radius:6px; background:#1F2937; color:#fff; font-family:'Noto Sans KR',sans-serif; font-size:11px; font-weight:500; line-height:1.5; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.18); z-index:10; }
+  .fee-help::after { content:attr(data-tooltip); position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%); display:none; width:210px; padding:8px 10px; border-radius:6px; background:#1F2937; color:#fff; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:11px; font-weight:500; line-height:1.5; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.18); z-index:10; }
   .fee-help:hover::after,
   .fee-help:focus::after { display:block; }
   .fee-discount-result { display:inline-flex; align-items:center; gap:6px; font-family:'Roboto',sans-serif; color:#006BFF; text-align:right; }
@@ -103,8 +104,8 @@
   .option-body li { margin-bottom:3px; }
   .option-caution { background:#FFF8F0; border:1px solid #F5C88A; border-radius:6px; padding:10px 12px; margin-top:8px; font-size:11px; color:#664400; line-height:1.7; }
   .option-caution-title { font-weight:700; color:#A06000; margin-bottom:4px; }
-  .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:4px; background:#fff; color:var(--navy); font-family:'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
-  .photo-option-select { min-width:104px; height:34px; padding:0 10px; border:1px solid #ccd3dc; border-radius:6px; background:#fff; color:#333; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; }
+  .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:4px; background:#fff; color:var(--navy); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
+  .photo-option-select { min-width:104px; height:34px; padding:0 10px; border:1px solid #ccd3dc; border-radius:6px; background:#fff; color:#333; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; }
   .photo-option-select:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(26,60,110,.12); }
 
   /* ?  ? */
@@ -143,7 +144,7 @@
     cursor:pointer;
   }
   .amount-clear.show { display:inline-flex; }
-  .btn-mileage-all { padding:8px 12px; font-size:12px; font-weight:500; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; font-family:'Noto Sans KR',sans-serif; white-space:nowrap; transition:background .15s,color .15s; }
+  .btn-mileage-all { padding:8px 12px; font-size:12px; font-weight:500; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; font-family:Pretendard,'Noto Sans KR',sans-serif; white-space:nowrap; transition:background .15s,color .15s; }
   .btn-mileage-all.active { background:#d0d0d0; border-color:#aaa; color:#666; }
   .mileage-used-summary { display:none; font-size:12px; color:var(--navy); margin-top:4px; }
   .mileage-used-summary strong { font-family:'Roboto',monospace; color:var(--red); }
@@ -188,7 +189,7 @@
   .pass-row { display:flex; align-items:center; justify-content:space-between; }
   .pass-check-label { display:inline-flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; }
   .pass-check-label input { accent-color:var(--navy); width:16px; height:16px; }
-  .btn-pass-more { padding:7px 12px; font-size:12px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; color:#555; cursor:pointer; font-family:'Noto Sans KR',sans-serif; }
+  .btn-pass-more { padding:7px 12px; font-size:12px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; color:#555; cursor:pointer; font-family:Pretendard,'Noto Sans KR',sans-serif; }
 
   /* 배너 */
   .banner-tax { background:#FFF8EC; border-left:3px solid var(--amber); padding:12px 14px; margin-bottom:8px; font-size:12px; line-height:1.7; color:#664400; }
@@ -214,7 +215,7 @@
   .deposit-inp { border:none; outline:none; font-family:'Roboto',monospace; font-size:14px; font-weight:500; color:#222; width:80px; text-align:right; background:transparent; }
   .deposit-inp.error { color:var(--red); }
   .deposit-unit { font-size:13px; color:#555; }
-  .btn-dep-all { padding:8px 12px; font-size:12px; font-weight:500; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; font-family:'Noto Sans KR',sans-serif; white-space:nowrap; transition:background .15s,color .15s; }
+  .btn-dep-all { padding:8px 12px; font-size:12px; font-weight:500; border:1px solid var(--navy); border-radius:6px; background:#fff; color:var(--navy); cursor:pointer; font-family:Pretendard,'Noto Sans KR',sans-serif; white-space:nowrap; transition:background .15s,color .15s; }
   .btn-dep-all.active { background:#d0d0d0; border-color:#aaa; color:#666; }
   .deposit-warn { display:none; font-size:11px; color:var(--red); margin-top:5px; }
   .deposit-warn.show { display:block; }
@@ -230,7 +231,7 @@
   .pay-method-label { font-size:13px; font-weight:500; color:#333; margin-bottom:5px; }
   .pay-method-label .req { color:var(--red); }
   .pay-method-btn-group { display:flex; gap:10px;  }
-  .pay-method-btn {height: 60px; flex:1; padding:5px 0; font-size:16px; font-weight:500; font-family:'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
+  .pay-method-btn {height: 60px; flex:1; padding:5px 0; font-size:16px; font-weight:500; font-family:Pretendard,'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
   .pay-method-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:700; }
   .pay-method-wrap.is-required {
     background:#FFF8F0;
@@ -254,7 +255,7 @@
   .fee-mileage-row { display:block; }
   .fee-mileage-main { display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .mileage-top-left { display:inline-flex; align-items:center; gap:10px; min-width:0; }
-  .mileage-max-btn { height:30px; padding:0 12px; border:1px solid #bfc6d4; border-radius:8px; background:#eef2ff; color:#43506a; font-family:'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s,border-color .15s,color .15s; }
+  .mileage-max-btn { height:30px; padding:0 12px; border:1px solid #bfc6d4; border-radius:8px; background:#eef2ff; color:#43506a; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s,border-color .15s,color .15s; }
   .mileage-max-btn.is-active { background:#d6d9df; border-color:#b6bac2; color:#666; }
   .mileage-clear-btn { display:none; align-items:center; justify-content:center; width:20px; height:20px; border:0; border-radius:50%; background:#E5E7EB; color:#666; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; line-height:1; cursor:pointer; }
   .mileage-clear-btn.show { display:inline-flex; }
@@ -290,7 +291,7 @@
   .packing-note { margin:10px 0 0; color:#888; font-size:11px; line-height:1.6; }
 
   .bottom-cta { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; display:flex; gap:8px; padding:10px 16px 16px; background:#fff; border-top:1px solid var(--border); box-shadow:0 -2px 10px rgba(0,0,0,.08); z-index:100; }
-  .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:'Noto Sans KR',sans-serif; border:none; border-radius:5px; cursor:pointer; }
+  .cta-btn { flex:1; padding:15px 0; font-size:15px; font-weight:700; font-family:Pretendard,'Noto Sans KR',sans-serif; border:none; border-radius:5px; cursor:pointer; }
   .cta-cancel { background:#eee; color:#666; flex:0.6; }
   .cta-approve { background:var(--navy); color:#fff; }
 </style>
@@ -300,7 +301,7 @@
 <div class="app-header">
   <div class="app-header-top">
     <div class="app-brand-area">
-      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="app-logo" href="mobile_main.html" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency"></a>
     </div>
     <div class="app-header-right" id="guestArea">

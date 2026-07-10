@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bidbuy 야후옥션</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
       --brand: #ff4668;
@@ -21,7 +22,7 @@
 
     html, body {
       margin: 0; min-width: 320px; background: #fff; color: var(--text);
-      font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
+      font-family:Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;
       font-size:14px; line-height:1.5;
     }
 
@@ -42,7 +43,7 @@
 
     .brand-area { display: flex; align-items: center; gap: 24px; min-width: 0; }
 
-    .menu-button { width: 28px; height: 28px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; }
+    .menu-button { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 5px; background: transparent; display: grid; place-items: center; }
 
     .menu-lines,
     .menu-lines::before,
@@ -73,7 +74,7 @@
     .search-chip button { width: 14px; height: 14px; padding: 0; border: 0; background: transparent; color: #111; font-size: 13px; line-height: 1; }
 
     .user-tools { justify-self: end; display: flex; align-items: center; gap: 18px; }
-    .icon-btn { width: 22px; height: 22px; padding: 0; border: 0; background: transparent; color: #6d7483; display: grid; place-items: center; }
+    .icon-btn { width: 22px; height: 22px; padding: 0; border: 0; border-radius: 5px; background: transparent; color: #6d7483; display: grid; place-items: center; }
     .user-name { display: grid; gap: 2px; color: #1d2430; font-size: 13px; font-weight: 900; text-align: center; white-space: nowrap; }
     .premium-chip { padding: 2px 9px; border-radius: 999px; background: #fff1cf; color: #f2a300; font-size: 10px; font-weight: 900; }
 
@@ -123,7 +124,7 @@
     .sub-cat-item.active { border-color: var(--brand); background: #fff5f7; color: var(--brand); }
 
     .category-more-wrap { padding: 0 28px 16px; display: flex; justify-content: flex-end; }
-    .all-category-button { min-width: 116px; height: 30px; border: 0; border-radius: 4px; background: #f7f6f4; color: #111; font-size: 12px; font-weight: 900; }
+    .all-category-button { min-width: 116px; height: 30px; border: 0; border-radius: 5px; background: #f7f6f4; color: #111; font-size: 12px; font-weight: 900; }
 
     /* Category search bar */
     .category-search-bar { display: grid; grid-template-columns: 108px minmax(72px, .65fr) minmax(320px, 420px) 140px minmax(40px, 1fr); height: 50px; margin-bottom: 0; border: 1px solid var(--line); background: #f7f6f4; }
@@ -149,7 +150,7 @@
     .filter-text-input:focus, .filter-select:focus { border-color: var(--brand); }
     .filter-checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; color: var(--text); font-size: 13px; font-weight: 600; }
     .filter-checkbox-row input { width: 16px; height: 16px; accent-color: var(--brand); }
-    .filter-submit { width: 100%; height: 46px; margin-top: 4px; border: 0; border-radius: 8px; background: var(--brand); color: #fff; font-size: 14px; font-weight: 900; }
+    .filter-submit { width: 100%; height: 46px; margin-top: 4px; border: 0; border-radius: 5px; background: var(--brand); color: #fff; font-size: 14px; font-weight: 900; }
 
     /* ── Best section (메인 모드) ── */
     .section-title { margin: 0 0 12px; color: #1d2636; font-size: 21px; font-weight: 900; }
@@ -199,7 +200,7 @@
     .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
     .more-row::before { content: ""; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 10px solid currentColor; }
     .more-footer { padding: 30px 0; background: #fff; }
-    .more-footer button { width: min(calc(100vw - 60px), var(--page-w)); height: 36px; margin: 0 auto; display: flex; border: 1px dashed #d7d1cc; border-radius: 7px; background: #111; color: #fff; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 900; }
+    .more-footer button { width: min(calc(100vw - 60px), var(--page-w)); height: 36px; margin: 0 auto; display: flex; border: 1px dashed #d7d1cc; border-radius: 5px; background: #111; color: #fff; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 900; }
     .more-footer button::before { content: ""; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #fff; }
 
     /* ── Content layout (sidebar + main area) ── */

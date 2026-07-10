@@ -17,6 +17,18 @@
     return localStorage.getItem(LOGIN_KEY) === '1';
   }
 
+  function isMainPage() {
+    var file = (location.pathname.split('/').pop() || '').toLowerCase();
+    return file === 'mobile_main.html';
+  }
+
+  function removeNonMainNotice() {
+    if (isMainPage()) return;
+    document.querySelectorAll('.app-notice-bar').forEach(function (el) {
+      el.remove();
+    });
+  }
+
   // 좌/우 드로어 공통 CSS. 각 페이지가 .drawer/.user-drawer 등을 직접
   // 정의하지 않아도 <script src="bb-common-mobile.js">만 포함하면 동작하도록
   // mobile_main.html의 드로어 스타일을 그대로 주입한다. (색상 변수는
@@ -274,6 +286,7 @@
   }
 
   function render() {
+    removeNonMainNotice();
     injectStyles();
 
     var drawerOv = ensureNode('drawerOv', 'div', 'drawer-ov');

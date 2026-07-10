@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bidbuy MY 등급</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --rose: #E8385A;
@@ -21,6 +22,10 @@
       --line-soft: #f0ebe8;
       --green: #35a94d;
       --gold: #d4891a;
+      --grade-std: #D4891A;
+      --grade-pre: #1f477d;
+      --grade-vip: #3AAD4E;
+      --grade-prs: #E8385A;
       --stage-left: max(16px, calc((100vw - 1180px) / 2));
       --sidebar-w: 231px;
       --main-w: 925px;
@@ -40,7 +45,7 @@
     body {
       min-width: 320px;
       color: var(--text);
-      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+      font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
       font-size: 14px;
       line-height: 1.5;
       letter-spacing: 0;
@@ -78,6 +83,7 @@
       width: 28px;
       height: 28px;
       border: 0;
+      border-radius: 5px;
       background: transparent;
       display: grid;
       place-items: center;
@@ -158,6 +164,7 @@
       width: 26px;
       height: 26px;
       border: 0;
+      border-radius: 5px;
       background: transparent;
       color: inherit;
       display: grid;
@@ -443,7 +450,7 @@
     .page-title h1 {
       color: #20242b;
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.25;
     }
 
@@ -460,11 +467,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 428px;
       align-items: stretch;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fff;
+      gap: 20px;
     }
 
     .hero-card {
@@ -473,8 +476,8 @@
       gap: 0;
       min-height: 0;
       padding: 27px 28px 30px;
-      border: 0;
-      border-radius: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
       background: #fff;
     }
 
@@ -482,17 +485,18 @@
       margin-bottom: 16px;
       color: #333;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.25;
     }
+.hero-sub{font-size:14px;color:var(--text-secondary);margin-bottom:4px;line-height:1.5}
 
     .hero-left {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       gap: 24px;
+      box-shadow: inset 0 -1px 0 var(--line);
       padding-bottom: 9px;
-      border-bottom: 1px solid var(--line);
     }
 
     .hero-label {
@@ -558,11 +562,10 @@
     }
 
     .grade-status-card {
-      align-self: start;
+      align-self: stretch;
       padding: 17px 18px 15px;
-      border: 0;
-      border-left: 1px solid var(--border);
-      border-radius: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
       background: #fff;
     }
 
@@ -588,11 +591,12 @@
       min-width: 90px;
       min-height: 25px;
       padding: 4px 15px;
-      border-radius: 999px;
-      background: var(--navy);
-      color: #fff;
+      border: 1px solid var(--navy);
+      border-radius: 50px;
+      background: #fff;
+      color: var(--navy);
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
     }
 
@@ -607,7 +611,7 @@
       gap: 16px;
       margin-bottom: 4px;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.25;
     }
 
@@ -686,7 +690,7 @@
     .gc-val {
       color: #111827;
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.1;
       white-space: nowrap;
     }
@@ -703,7 +707,7 @@
       margin-bottom: 9px;
       color: #20242b;
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.25;
     }
 
@@ -722,7 +726,7 @@
     }
 
     .benefit-col.current-grade {
-      border: 2px solid var(--navy);
+      border: 2px solid var(--grade-vip);
     }
 
     .benefit-col-head {
@@ -735,13 +739,13 @@
 
     .benefit-col.current-grade .benefit-col-head {
       margin: 0px 0px 0;
-      border-bottom-color: var(--navy);
-      background: var(--navy);
+      border-bottom-color: var(--grade-vip);
+      background: var(--grade-vip);
     }
 
     .bc-name {
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.1;
     }
 
@@ -762,34 +766,36 @@
     }
 
     .bc-name-standard {
-      color: #8b8b8b;
+      color: var(--grade-std);
     }
 
     .bc-name-premium {
-      color: var(--green);
+      color: var(--grade-pre);
     }
 
     .bc-name-vip {
-      color: var(--navy);
+      color: var(--grade-vip);
     }
 
     .bc-name-prestige {
-      color: var(--gold);
+      color: var(--grade-prs);
     }
 
     .benefit-rows {
-      padding: 0px 0 0;
+      padding: px 0 0;
     }
 
     .benefit-section-divider {
       height: 30px;
-      padding: 15px 15px 15px;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
       border-top: 1px solid var(--line-soft);
       border-bottom: 1px solid var(--line-soft);
       background: #faf7f5;
       color: #a6adbc;
-      font-size: 13px;
-      font-weight: 900;
+      font-size: 15px;
+      font-weight: 700;
       line-height: 1;
     }
 
@@ -827,15 +833,15 @@
     }
 
     .br-val.accent {
-      color: var(--rose);
+      color: var(--grade-prs);
     }
 
     .br-val.navy {
-      color: var(--navy);
+      color: var(--grade-vip);
     }
 
     .br-val.green {
-      color: var(--green);
+      color: var(--grade-pre);
     }
 
     .br-val.muted {
@@ -977,7 +983,7 @@
         <div class="hero-card">
           <h2 class="hero-title">홍길동님이 받은 프리미엄 혜택</h2>
           <div class="hero-left">
-            <p class="hero-label">총 누적 혜택</p>
+            <p class="hero-sub">총 누적 혜택</p>
             <p class="hero-amount">177,000<span>원</span></p>
           </div>
           <p class="hero-period">2023.12.01 ~ 현재</p>
@@ -1096,7 +1102,8 @@
       </section>
 
       <div class="downgrade-notice">
-        <p>월 거래 기준 만족 시 다음달 1일 승급, 2개월 연속 미달 시 1단계 강등</p>
+        <p>월 거래 금액 기준은 1차결제 합산을 의미하며, 2차결제 비용은 포함되지 않습니다.</p>
+        <p>거래 기준 만족 시 다음달 1일 승급, 2개월 연속 미달 시 1단계 강등</p>
         <p>Prestige 등급은 3개월 기준 미달 시 VIP로 강등 (3개월 100건 / 300만엔 유지)</p>
         <p>거래 기준은 거래건수 또는 거래금액 중 하나만 충족하면 됩니다.</p>
       </div>

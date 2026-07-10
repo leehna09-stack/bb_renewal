@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1차 결제 - BidBuy Korea</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family:'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif; font-size:14px; color: #222; background: #fff; padding-top: 64px;line-height:1.5;}
+  body { font-family:Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif; font-size:14px; color: #222; background: #fff; padding-top: 64px;line-height:1.5;}
   .bb-header{position:fixed;top:0;left:0;right:0;z-index:300;background:#fff;border-bottom:1px solid #E0E4EB;box-shadow:0 1px 4px rgba(0,0,0,.06)}
   .bb-hdr{max-width:1440px;height:64px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px}
   .bb-hb{display:flex;flex-direction:column;gap:4.5px;padding:8px;margin-right:4px;border:0;border-radius:5px;background:none;cursor:pointer}.bb-hb:hover{background:#F5F7FA}.bb-hb span{display:block;width:17px;height:2px;border-radius:1px;background:#1A1A2E}
@@ -51,7 +52,7 @@
   .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
   .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
   .val-undecided { color: #aaa; font-size: 12px; }
-  .panel-action-btn { height: 26px; padding: 0 10px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .panel-action-btn { height: 26px; padding: 0 10px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-action-btn:hover { background: #1A3C6E; color: #fff; }
   .panel-action-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
 
@@ -102,14 +103,14 @@
   .dep-remain { color: #1A3C6E; display: none; }
   .dep-remain span { font-family: 'Roboto', monospace; font-weight: 500; }
   .dep-warn { color: #E8385A; display: none; }
-  .dep-apply-btn { width: 74px; height: 36px; border: 1px solid #d3d8df; border-radius: 5px; background: #f8f8f8; color: #111; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .dep-apply-btn { width: 74px; height: 36px; border: 1px solid #d3d8df; border-radius: 5px; background: #f8f8f8; color: #111; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
   .dep-apply-btn.is-active { border: none; color: #fff; background: #cfd3d8; }
   /* ── 마일리지 모바일형 UI ── */
   .mob-mile-wrap { display: flex; flex-direction: column; gap: 10px; max-width: 362px; }
   .mob-mile-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
   .mob-mile-top-left { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
   .mob-mile-label { font-size: 13px; color: #222; display: inline-flex; align-items: center; white-space: nowrap; }
-  .mob-mile-max-btn { width: 70px; height: 30px; padding: 0 5px; border: 1px solid #bfc6d4; border-radius: 5px; background: #eef2ff; color: #43506a; font-family: 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
+  .mob-mile-max-btn { width: 70px; height: 30px; padding: 0 5px; border: 1px solid #bfc6d4; border-radius: 5px; background: #eef2ff; color: #43506a; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
   .mob-mile-max-btn.is-active { background: #d6d9df; border-color: #b6bac2; color: #666; }
   .mob-mile-hold { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #666; padding-top: 2px; }
   .mob-mile-hold-val { font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 700; color: #111; }
@@ -147,7 +148,7 @@
   .disc-val   { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; min-width: 60px; }
   .disc-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 1px 8px; border-radius: 3px; }
   .badge-mile    { background: #E6F1FB; color: #185FA5; }
-  .amount-total { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: #333; }
+  .amount-total { font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 13px; color: #333; }
   .formula { font-family: 'Roboto', sans-serif; font-size: 13px; color: #555; margin-right: 6px; }
   .amount-red { font-family: 'Roboto', sans-serif; font-weight: 700; color: #E8385A; font-size: 15px; }
   .paid-option-table th { vertical-align: top; }
@@ -156,23 +157,23 @@
   .paid-option-meta { display: grid; gap: 2px; color: #777; font-size: 12px; font-weight: 400; line-height: 1.45; }
   .paid-option-price { color: #E8385A; font-family: 'Roboto', sans-serif; font-weight: 700; }
   .paid-option-choice { color: #333; }
-  .option-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; border: 0; background: transparent; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; }
+  .option-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; border: 0; background: transparent; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; }
   .option-toggle-track { position: relative; display: inline-block; width: 46px; height: 24px; border-radius: 999px; background: #cfd5dd; transition: background 0.2s; }
   .option-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.22); transition: transform 0.2s; }
   .option-toggle[aria-pressed="true"] .option-toggle-track { background: #1A3C6E; }
   .option-toggle[aria-pressed="true"] .option-toggle-thumb { transform: translateX(22px); }
   .option-toggle-text { min-width: 58px; color: #777; font-weight: 500; text-align: left; }
   .option-toggle[aria-pressed="true"] .option-toggle-text { color: #E8385A; font-weight: 700; }
-  .photo-option-select { width: 120px; height: 34px; padding: 0 10px; border: 1px solid #ccd3dc; border-radius: 4px; background: #fff; color: #333; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .photo-option-select { width: 120px; height: 34px; padding: 0 10px; border: 1px solid #ccd3dc; border-radius: 4px; background: #fff; color: #333; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; }
   .photo-option-select:focus { outline: none; border-color: #1A3C6E; box-shadow: 0 0 0 3px rgba(26,60,110,0.12); }
   .paid-option-desc { margin-top: 12px; color: #555; line-height: 1.65; }
   .paid-option-desc p + p { margin-top: 8px; }
   .paid-option-desc ul { margin: 4px 0 10px; padding-left: 18px; list-style-position: outside; }
   .paid-option-desc li { margin: 2px 0; word-break: keep-all; overflow-wrap: anywhere; }
   .bold-red { color: #E8385A; }
-  .paid-option-detail { height: 30px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .paid-option-detail { height: 30px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
   .btn-area { display: flex; justify-content: center; gap: 12px; margin-top: 32px; }
-  .btn { padding: 13px 50px; font-size: 15px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; border: none; border-radius: 5px; cursor: pointer; transition: background 0.2s; }
+  .btn { padding: 13px 50px; font-size: 15px; font-weight: 700; font-family: Pretendard, 'Noto Sans KR', sans-serif; border: none; border-radius: 5px; cursor: pointer; transition: background 0.2s; }
   .btn-primary { background: #1A3C6E; color: #fff; }
   .btn-primary:hover { background: #152f58; }
   .btn-cancel  { background: #aaa; color: #fff; }
