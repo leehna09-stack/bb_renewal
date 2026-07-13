@@ -403,7 +403,7 @@
       <div class="pd-row"><span class="k">현지도착일</span><span class="v mono">2025-12-09 10:15</span></div>
       <div class="pd-row"><span class="k">국제 배송일</span><span class="v mono">2025-12-14</span></div>
       <div class="pd-row"><span class="k">묶음상태</span><span class="v">묶음배송 <button class="row-btn" type="button">묶음 해제</button></span></div>
-      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" style="color:var(--rose);font-weight:800">신청 <button class="row-btn" type="button">해제</button></span></div>
+      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" data-care-plus-toggle data-care-active="true" style="color:var(--rose);font-weight:800"><span data-care-plus-status>신청</span> <button data-care-plus-button class="row-btn" type="button">신청 해제</button></span></div>
     </article>
   </section>
 
@@ -539,8 +539,31 @@ function setupPaymentSwitch() {
   render();
 }
 
+function setupCarePlusToggle() {
+  document.querySelectorAll('[data-care-plus-toggle]').forEach(row => {
+    const status = row.querySelector('[data-care-plus-status]');
+    const button = row.querySelector('[data-care-plus-button]');
+    if (!status || !button) return;
+
+    const render = () => {
+      const isActive = row.dataset.careActive === 'true';
+      status.textContent = isActive ? '신청' : '미신청';
+      row.style.color = isActive ? 'var(--rose)' : '#999';
+      button.textContent = isActive ? '신청 해제' : '신청';
+    };
+
+    button.addEventListener('click', () => {
+      row.dataset.careActive = row.dataset.careActive === 'true' ? 'false' : 'true';
+      render();
+    });
+
+    render();
+  });
+}
+
 updatePaymentTotals();
 setupPaymentSwitch();
+setupCarePlusToggle();
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>

@@ -84,24 +84,15 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
 .nav-item-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nav-file{display:block;font-size:11px;font-weight:400;color:var(--tm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.4}
 
-/* 우측: iframe */
-.viewer{flex:1;min-width:0;overflow:hidden}
-.viewer iframe{width:100%;height:100%;border:none;background:#fff;display:block}
+/* 우측: 모니터 프레임 뷰어 */
+.viewer{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#CDD1D9;padding:32px;overflow:auto}
+.monitor-screen{width:100%;height:100%;max-width:1600px;flex:1;min-height:0;background:#fff;border-radius:12px;border:12px solid #1C2028;box-shadow:0 20px 50px rgba(20,24,32,.3);overflow:hidden;display:flex}
+.monitor-screen iframe{flex:1;width:100%;border:none;background:#fff;display:block}
+.monitor-neck{width:140px;height:40px;flex-shrink:0;background:linear-gradient(180deg,#2b3040,#1C2028);clip-path:polygon(38% 0,62% 0,78% 100%,22% 100%)}
+.monitor-base{width:360px;max-width:70%;height:14px;flex-shrink:0;background:#1C2028;border-radius:8px;box-shadow:0 8px 16px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="hdr">
-    <button class="hb-btn" type="button" aria-label="메뉴"><span></span><span></span><span></span></button>
-    <a class="logo" href="web_main.html" target="pageFrame" aria-label="BidBuy 메인"><img src="Bidbuy logo.png" alt="BidBuy"></a>
-    <div class="preview-utils">
-      <span class="now-viewing" id="nowViewing">현재 페이지: <b>메인</b></span>
-      <a class="top-btn" id="openNewTab" href="web_main.html" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> 새 탭으로 열기</a>
-      <button class="top-btn" type="button" onclick="reloadFrame()"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
-    </div>
-  </div>
-</header>
 
 <div class="layout">
   <nav class="nav" id="pageNav">
@@ -177,7 +168,11 @@ header{background:#fff;border-bottom:1px solid var(--border);flex-shrink:0;box-s
   </nav>
 
   <div class="viewer">
-    <iframe id="pageFrame" src="web_main.html" title="페이지 미리보기"></iframe>
+    <div class="monitor-screen">
+      <iframe id="pageFrame" src="web_main.html" title="페이지 미리보기"></iframe>
+    </div>
+    <div class="monitor-neck"></div>
+    <div class="monitor-base"></div>
   </div>
 </div>
 
@@ -221,8 +216,8 @@ function setActive(page, label) {
   items.forEach(function(it) {
     it.classList.toggle('active', it.getAttribute('data-page') === page);
   });
-  nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
-  openNewTab.href = page;
+  if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + label + '</b>';
+  if (openNewTab) openNewTab.href = page;
 }
 
 items.forEach(function(it) {
@@ -241,8 +236,8 @@ frame.addEventListener('load', function() {
     if (match) {
       setActive(file, match.querySelector('.nav-item-label').childNodes[0].textContent);
     } else if (file) {
-      nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
-      openNewTab.href = file;
+      if (nowViewing) nowViewing.innerHTML = '현재 페이지: <b>' + file + '</b>';
+      if (openNewTab) openNewTab.href = file;
     }
   } catch(e) {}
 });

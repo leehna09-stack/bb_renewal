@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -103,6 +103,7 @@
     .soft-btn { height: 26px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: #5c606b; font-size: 12px; font-weight: 700; }
     .side-nav { padding-top: 33px; }
     .side-title { margin: 0 0 18px; padding: 0 15px 17px; border-bottom: 1px solid #dcd9d6; color: #111; font-size: 16px; font-weight: 900; }
+    .side-title a, .side-title a:visited { color: inherit; text-decoration: none; }
     .nav-section { padding: 0 20px; margin-bottom: 14px; }
     .nav-section strong { display: block; margin-bottom: 11px; color: #292d35; font-size: 14px; font-weight: 900; }
     .nav-list { display: grid; gap: 13px; }
@@ -266,18 +267,7 @@
       word-break: keep-all;
       line-height: 1.6;
     }
-    .pickup-date-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 20px;
-      align-items: stretch;
-      margin: -12px 0 28px;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
-    }
-    .pickup-date-panel[hidden] { display: none; }
+
     .pickup-date-guide { display: grid; gap: 8px; color: #444; font-size: 12px; line-height: 1.7; }
     .pickup-date-guide__title { color: #1f2530; font-size: 13px; font-weight: 800; }
     .pickup-date-guide p { margin: 0; }
@@ -505,7 +495,7 @@
             <span class="profile-tier">VIP</span>
           </div>
         </div>
-        <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
+        <p class="vip-copy">VIP까지 <b>₩215,000</b> 또는 <b>3건</b></p>
         <div class="vip-row">
           <div class="vip-progress"><span></span></div>
           <span class="help-dot">?</span>
@@ -693,23 +683,6 @@
           </tr>
         </tbody>
       </table>
-
-      <div class="pickup-date-panel" id="pickupDatePanel" hidden>
-        <div class="pickup-date-guide">
-          <div class="pickup-date-guide__title">인수희망 날짜 지정 :</div>
-          <p>상품 미도착시, 현지도착일을 기준으로 5일 이후</p>
-          <p>현지도착 상품의 경우 일본내 배송요청 일자로부터 5일 이후</p>
-          <ul>
-            <li>※일본 영업일을 기준으로 주말, 일본공휴일은 제외</li>
-            <li>※택배영업소 도착 지정의 경우, 인수날짜지정 불가</li>
-          </ul>
-        </div>
-        <div class="pickup-date-picker">
-          <label for="pickupDateInput">인수희망 날짜</label>
-          <input type="date" id="pickupDateInput" aria-describedby="pickupDateAlert">
-          <div class="pickup-date-alert" id="pickupDateAlert" aria-live="polite"></div>
-        </div>
-      </div>
 
       <!-- 선택 옵션 서비스 -->
       <div class="section-title paid-option-section-title">선택 옵션 서비스</div>
@@ -988,9 +961,9 @@
       days: '5 ~ 7일'
     },
     '일본내배송': {
-      feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br>',
+      feature: '* 주문 건당 수수료 <strong>￥1,000 별도 발생</strong><br>* 현지배송은 배송대기 상태로만 지정 가능합니다.<br>* 물품입고후 <strong>인수희망일을 별도로 지정</strong>할 수 있습니다.<br><br><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 물품 파손의 경우, 고객님께서 직접 택배사에 접수해주셔야 합니다.<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>',
       size: '* 일본 내 일반택배(야마토)로 배송 가능한 사이즈<br>(세변의 합 200cm까지)',
-      days: '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 인수희망일 신청<br>물품 입고일로부 <strong class="bold-red">5일 이후</strong>부터 지정 가능<br><br><strong>※일본 영업일 기준 주말, 공휴일은 지정 불가</strong><br><strong class="bold-red">※택배 영업소의 경우, 인수 날짜 지정 불가</strong>'
+      days: '인수희망일 신청: <br>물품 입고일로부터 <strong class="bold-red">5일 이후</strong>부터 지정 가능'
     },
     '최저가배송': {
       feature: '* 물품이 현지 도착후 포장이 완료되면, 국제배송료가 가장 저렴한 배송방법으로 2차 결제를 안내해 드립니다.<br>* 단, 배송기간과 통관 절차는 고려하지 않으며 오직 국제 운송료만을 기준으로 방법을 선택합니다.',

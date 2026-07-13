@@ -1848,7 +1848,7 @@
   <header>
     <div class="topbar">
       <div class="brand-area">
-        <button class="menu-button" type="button" aria-label="메뉴 열기">
+        <button class="menu-button" type="button" aria-label="메뉴 열기" onclick="openDrawer()">
           <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
         <a class="logo-link" href="mobile_main.html" aria-label="Bidbuy 홈">
@@ -1862,7 +1862,7 @@
           검색
         </button>
       </form>
-      <div class="user-tools" aria-label="회원 메뉴">
+      <div class="user-tools">
         <div class="guest-tools is-guest-only">
           <button class="login-pill js-auth-toggle" type="button">로그인</button>
         </div>
@@ -1920,152 +1920,6 @@
       <div class="asset-item"><span>쿠폰</span><strong>8장</strong></div>
     </section>
 
-    <!-- ③ 사이드바 (데스크탑) / 드로어 (모바일) -->
-    <aside class="sidebar" aria-label="사이트 메뉴">
-      <div class="drawer-head is-guest-only">
-        <strong>비드바이 로그인</strong>
-        <button class="drawer-close" type="button" aria-label="메뉴 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-      </div>
-      <div class="drawer-head is-member-only">
-        <div class="drawer-user">
-          <span class="drawer-crown tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></span>
-          <div>
-            <strong class="drawer-user-name">홍길동님</strong>
-            <span class="drawer-user-grade">PREMIUM 회원</span>
-          </div>
-        </div>
-        <button class="drawer-close" type="button" aria-label="메뉴 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-      </div>
-
-      <section class="drawer-guest-panel is-guest-only">
-        <p class="drawer-guest-title">로그인이 필요해요</p>
-        <p class="drawer-guest-copy">로그인하고 거래 현황, 마일리지, 관심 항목을 빠르게 확인하세요.</p>
-        <div class="drawer-login-actions">
-          <button class="drawer-action-btn js-auth-toggle" type="button">로그인</button>
-          <button class="drawer-action-btn secondary" type="button">회원가입</button>
-        </div>
-      </section>
-
-      <div class="drawer-vip-row is-member-only">
-      </div>
-      <section class="drawer-section">
-        <h2 class="drawer-section-title">빠른 메뉴</h2>
-        <div class="drawer-quick-grid">
-          <a class="drawer-quick-item" href="#">
-            <span class="drawer-quick-icon"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
-            <span>비용 계산기</span>
-          </a>
-          <a class="drawer-quick-item" href="mobile_bundle_shipping_management.html">
-            <span class="drawer-quick-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span>
-            <span>입고/보관중인 물건 조회</span>
-          </a>
-          <a class="drawer-quick-item" href="mobile_bundle_shipping_management_2.html">
-            <span class="drawer-quick-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></span>
-            <span>출고 배송중</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="drawer-section">
-        <h2 class="drawer-section-title">카테고리</h2>
-        <div class="drawer-category-list">
-          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">JP</span><span>야후옥션</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_purchase_merukari.html"><span class="drawer-country">M</span><span>메루카리</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_purchase_store.html"><span class="drawer-country">RA</span><span>라쿠텐</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_purchase_url.html"><span class="drawer-country">JP</span><span>야후쇼핑</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_purchase_store.html"><span class="drawer-country">MA</span><span>라쿠마</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">US</span><span>미국이베이</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-          <a class="drawer-category-item" href="mobile_sub_main.html"><span class="drawer-country">UK</span><span>영국이베이</span><span class="drawer-chevron"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span></a>
-        </div>
-      </section>
-
-      <section class="drawer-section">
-        <h2 class="drawer-section-title">이용가이드</h2>
-        <div class="drawer-link-grid">
-          <a href="mobile_fakenotice.html">경매대행 이용안내</a><a href="mobile_fakenotice.html">구매대행 이용안내</a>
-          <a href="mobile_cs_refund.html">수수료 및 관부가세</a>
-        </div>
-        <a class="drawer-biz-switch" href="mobile_biz.html" aria-label="사업자 회원으로 전환하기">
-          <span class="drawer-biz-icon" aria-hidden="true"><i class="fa-solid fa-building" aria-hidden="true"></i></span>
-          <span class="drawer-biz-copy">
-            <strong class="drawer-biz-title">사업자 회원 전환</strong>
-            <span class="drawer-biz-desc">사업자 전용 혜택을 확인해보세요</span>
-          </span>
-          <span class="drawer-biz-arrow" aria-hidden="true">›</span>
-        </a>
-      </section>
-
-      <section class="drawer-section">
-        <h2 class="drawer-section-title">고객센터</h2>
-        <div class="drawer-link-grid">
-          <a href="mobile_fakenotice.html">공지사항</a><a href="mobile_qna.html">자주하는질문</a>
-          <a href="mobile_qna_form.html">1:1문의</a><a href="mobile_qna.html">커뮤니티</a>
-        </div>
-      </section>
-
-      <div class="drawer-cs-card">
-        <div class="drawer-cs-tel">1544-5224</div>
-        <p class="drawer-cs-time">평일 AM 10:00 - PM 17:00 (점심 PM 12:30 - 13:30)</p>
-        <div class="drawer-cs-actions">
-          <button type="button" onclick="location.href='mobile_qna_form.html'">1:1 문의</button>
-          <button type="button" onclick="location.href='mobile_qna.html'">FAQ</button>
-          <button type="button" onclick="location.href='mobile_fakenotice.html'">공지사항</button>
-        </div>
-      </div>
-
-      <div class="profile-card is-member-only">
-        <div class="profile-main">
-          <div class="avatar tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
-          <div class="profile-member">
-            <span class="profile-name">홍길동님</span>
-            <span class="profile-tier"><i class="fa-solid fa-crown" aria-hidden="true"></i> Premium</span>
-          </div>
-        </div>
-        <p class="vip-copy">VIP까지 <b>₩23,000</b> 또는 <b>2건</b></p>
-        <div class="vip-row"><div class="vip-progress"><span></span></div><span class="help-dot">?</span></div>
-        <div class="profile-actions">
-          <button class="soft-btn" type="button">1:1 문의내역</button>
-          <button class="soft-btn js-auth-toggle" type="button">로그아웃</button>
-        </div>
-      </div>
-
-      <nav class="side-nav" aria-label="마이페이지 메뉴">
-        <h2 class="side-title">마이페이지</h2>
-        <div class="nav-section">
-          <strong>마이 쇼핑</strong>
-          <ul class="nav-list">
-            <li><a href="#" class="active">거래 목록</a></li>
-            <li><a href="mobile_auction_bid_list.html">경매 입찰/유찰</a></li>
-            <li><a href="#">구매 신청 목록</a></li>
-            <li><a href="#">관심 항목 관리</a></li>
-          </ul>
-        </div>
-        <div class="nav-section">
-          <strong>나의 배송관리</strong>
-          <ul class="nav-list">
-            <li><a href="#">묶음 배송 신청/변경</a></li>
-            <li><a href="#">배송지 관리</a></li>
-          </ul>
-        </div>
-        <div class="nav-section">
-          <strong>MY 혜택</strong>
-          <ul class="nav-list">
-            <li><a href="mobile_mileage.html">마일리지 / 쿠폰</a></li>
-            <li><a href="#">MY 등급</a></li>
-          </ul>
-        </div>
-        <div class="nav-section">
-          <strong>나의 정보관리</strong>
-          <ul class="nav-list">
-            <li><a href="#">예치금 관리</a></li>
-            <li><a href="#">보증금 관리</a></li>
-            <li><a href="#">회원정보 수정</a></li>
-            <li><a href="#">비밀번호 변경</a></li>
-            <li><a href="#">회원 탈퇴</a></li>
-          </ul>
-        </div>
-      </nav>
-    </aside>
 
     <!-- ④ 메인 콘텐츠 -->
         <main class="main pay-detail">
@@ -2092,6 +1946,41 @@
             <div class="pd-item__platform"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"> <b>야후경매</b></div>
             <a href="#" class="pd-item__name">42) ホンダ XR 100 モタード 純正 フロントウインカーセット HD13-1001 エイプB1</a>
             <div class="pd-item__meta"><span><b>낙찰가</b>4,300엔</span><span><b>수량</b>1개</span></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="pd-sec">
+        <h3 class="pd-title">주문배송정보 <a class="pd-sub" href="#">인보이스</a></h3>
+        <article class="pd-list">
+          <div class="pd-row"><span class="k">수취인명</span><span class="v">홍길동</span></div>
+          <div class="pd-row"><span class="k">배송지</span><span class="v">서울특별시 강남구 테헤란로 123, 비드바이빌딩 401호 (06234)</span></div>
+          <div class="pd-row"><span class="k">연락처</span><span class="v mono">010-1234-5678</span></div>
+          <div class="pd-row"><span class="k">발송방법</span><span class="v">EMS (국제특급우편)</span></div>
+          <div class="pd-row"><span class="k">공송장번호</span><span class="v mono">EJ123456789JP</span></div>
+          <div class="pd-row"><span class="k">현지 출발</span><span class="v mono">2025-12-14</span></div>
+          <div class="pd-row"><span class="k">국내 도착</span><span class="v mono">2025-12-17</span></div>
+        </article>
+      </section>
+
+      <section class="pd-sec">
+        <h3 class="pd-title">묶음배송 구성 상품 <span style="color:var(--rose);font-size:13px;font-weight:700">2건</span> <a class="pd-sub" href="#">묶음배송관리</a></h3>
+        <article class="pd-list">
+          <div class="pd-bundle">
+            <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+            <div class="pd-bundle__body">
+              <p class="pd-bundle__name">ホンダ XR 100 モタード 純正 フロントウインカーセット HD13-1001 エイプB1</p>
+              <div class="pd-bundle__meta">낙찰가 3,100엔 · 수수료 620엔</div>
+            </div>
+            <span class="pd-tag">낙찰완료</span>
+          </div>
+          <div class="pd-bundle">
+            <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+            <div class="pd-bundle__body">
+              <p class="pd-bundle__name">ホンダ エイプ XR100 フロントウインカー 左右セット 純正品</p>
+              <div class="pd-bundle__meta">낙찰가 1,200엔 · 수수료 240엔</div>
+            </div>
+            <span class="pd-tag done">배송완료</span>
           </div>
         </article>
       </section>
@@ -2174,42 +2063,7 @@
       </section>
 
       <section class="pd-sec">
-        <h3 class="pd-title">주문배송정보 <a class="pd-sub" href="#">인보이스</a></h3>
-        <article class="pd-list">
-          <div class="pd-row"><span class="k">수취인명</span><span class="v">홍길동</span></div>
-          <div class="pd-row"><span class="k">배송지</span><span class="v">서울특별시 강남구 테헤란로 123, 비드바이빌딩 401호 (06234)</span></div>
-          <div class="pd-row"><span class="k">연락처</span><span class="v mono">010-1234-5678</span></div>
-          <div class="pd-row"><span class="k">발송방법</span><span class="v">EMS (국제특급우편)</span></div>
-          <div class="pd-row"><span class="k">공송장번호</span><span class="v mono">EJ123456789JP</span></div>
-          <div class="pd-row"><span class="k">현지 출발</span><span class="v mono">2025-12-14</span></div>
-          <div class="pd-row"><span class="k">국내 도착</span><span class="v mono">2025-12-17</span></div>
-        </article>
-      </section>
-
-      <section class="pd-sec">
-        <h3 class="pd-title">관련 상품유형 정보 <a class="pd-sub" href="#">묶음배송관리</a></h3>
-        <article class="pd-list">
-          <div class="pd-bundle">
-            <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
-            <div class="pd-bundle__body">
-              <p class="pd-bundle__name">ホンダ XR 100 モタード 純正 フロントウインカーセット HD13-1001 エイプB1</p>
-              <div class="pd-bundle__meta">낙찰가 3,100엔 · 수수료 620엔</div>
-            </div>
-            <span class="pd-tag">낙찰완료</span>
-          </div>
-          <div class="pd-bundle">
-            <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
-            <div class="pd-bundle__body">
-              <p class="pd-bundle__name">ホンダ エイプ XR100 フロントウインカー 左右セット 純正品</p>
-              <div class="pd-bundle__meta">낙찰가 1,200엔 · 수수료 240엔</div>
-            </div>
-            <span class="pd-tag done">배송완료</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="pd-sec">
-        <h3 class="pd-title">주문 메모 내역</h3>
+        <h3 class="pd-title">사용자 메모 내역</h3>
         <article class="pd-list">
           <div class="pd-memo-input">
             <textarea placeholder="메모 또는 문의 내용 입력 (최대 500자)" maxlength="500"></textarea>
@@ -2298,146 +2152,21 @@
     </div>
   </div><!-- /.stage -->
 
-  <div class="drawer-scrim" aria-hidden="true"></div>
-  <div class="user-drawer-scrim" aria-hidden="true"></div>
-
-  <aside class="user-drawer" aria-label="회원 메뉴" aria-hidden="true">
-    <div class="user-drawer-head">
-      <div class="user-member-row">
-        <div class="user-crown tier-premium member-tier-icon" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
-        <div>
-          <strong class="user-name-strong">홍길동 회원님</strong>
-          <span class="user-vip-chip">VIP</span>
-        </div>
-      </div>
-      <p class="user-vip-copy">VIP 등급 달성! 최고 혜택을 누리세요 🎉</p>
-      <div class="user-vip-bar"><span></span></div>
-      <div class="user-asset-box">
-        <div><span>마일리지</span><strong>4,500원</strong></div>
-        <div><span>예치금</span><strong>29,870원</strong></div>
-      </div>
-    </div>
-
-    <div class="user-status-grid">
-      <div><strong>3</strong><span>입찰 진행 중</span></div>
-      <div><strong>1</strong><span>1차 결제 대기</span></div>
-      <div><strong>0</strong><span>2차 결제 대기</span></div>
-    </div>
-
-    <nav class="user-menu-list">
-      <div class="user-menu-section">
-        <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-trade">
-          <span class="user-menu-icon"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span><span>나의 거래 현황</span><span class="chev"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="user-menu-panel" id="user-menu-trade">
-          <a class="user-menu-link" href="#">거래 전체 목록</a>
-          <a class="user-menu-link" href="mobile_auction_bid_list.html">경매 입찰/유찰</a>
-          <a class="user-menu-link" href="#">구매 신청 목록</a>
-        </div>
-      </div>
-
-      <div class="user-menu-section">
-        <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-delivery">
-          <span class="user-menu-icon"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></span><span>배송관리</span><span class="chev"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="user-menu-panel" id="user-menu-delivery">
-          <a class="user-menu-link" href="#">묶음 배송 신청/변경</a>
-          <a class="user-menu-link" href="#">배송지 관리</a>
-        </div>
-      </div>
-
-      <div class="user-menu-section">
-        <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-favorites">
-          <span class="user-menu-icon"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></span><span>관심 항목 관리</span><span class="chev"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="user-menu-panel" id="user-menu-favorites">
-          <a class="user-menu-link" href="#">관심 출품자</a>
-          <a class="user-menu-link" href="#">관심 물품</a>
-          <a class="user-menu-link" href="#">관심 키워드</a>
-        </div>
-      </div>
-      <div class="user-menu-section">
-        <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-benefit">
-          <span class="user-menu-icon"><i class="fa-solid fa-gift" aria-hidden="true"></i></span><span>MY 혜택</span><span class="chev"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="user-menu-panel" id="user-menu-benefit">
-          <a class="user-menu-link" href="mobile_mileage.html">마일리지 / 쿠폰</a>
-          <a class="user-menu-link" href="#">MY 등급</a>
-        </div>
-      </div>
-
-      <div class="user-menu-section">
-        <button class="user-menu-item user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-info">
-          <span class="user-menu-icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span><span>나의 정보관리</span><span class="chev"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-        </button>
-        <div class="user-menu-panel" id="user-menu-info">
-          <a class="user-menu-link" href="#">예치금 관리</a>
-          <a class="user-menu-link" href="#">보증금 관리</a>
-          <a class="user-menu-link" href="#">회원정보 수정</a>
-          <a class="user-menu-link" href="#">비밀번호 변경</a>
-          <a class="user-menu-link danger" href="#">회원 탈퇴</a>
-        </div>
-      </div>
-
-      <button class="user-menu-item logout js-auth-toggle" type="button"><span class="emoji">🔒</span><span>로그아웃</span></button>
-    </nav>
-  </aside>
 </div><!-- /.page -->
 
 <script>
-  // 드로어
-  const drawer = document.querySelector(".sidebar");
-  const trigger = document.querySelector(".menu-button");
-  const closeButtons = document.querySelectorAll(".drawer-close");
-  const scrim = document.querySelector(".drawer-scrim");
-  const userDrawer = document.querySelector(".user-drawer");
-  const userDrawerScrim = document.querySelector(".user-drawer-scrim");
-  const userAvatarButton = document.querySelector(".user-avatar-sm");
   let pageLoggedIn = false;
-
-  document.body.classList.remove("drawer-open", "user-drawer-open");
-  drawer?.setAttribute("aria-hidden", "true");
-  userDrawer?.setAttribute("aria-hidden", "true");
-  trigger?.setAttribute("aria-expanded", "false");
-  userAvatarButton?.setAttribute("aria-expanded", "false");
-  trigger?.addEventListener("click", () => {
-    closeUserDrawer();
-    document.body.classList.add("drawer-open");
-    drawer?.setAttribute("aria-hidden","false");
-    trigger?.setAttribute("aria-expanded","true");
-  });
-  const closeDrawer = () => { document.body.classList.remove("drawer-open"); drawer?.setAttribute("aria-hidden","true"); trigger?.setAttribute("aria-expanded","false"); };
-  const openUserDrawer = () => {
-    if (!pageLoggedIn) return;
-    closeDrawer();
-    document.body.classList.add("user-drawer-open");
-    userDrawer?.setAttribute("aria-hidden", "false");
-    userAvatarButton?.setAttribute("aria-expanded", "true");
-  };
-  const closeUserDrawer = () => {
-    document.body.classList.remove("user-drawer-open");
-    userDrawer?.setAttribute("aria-hidden", "true");
-    userAvatarButton?.setAttribute("aria-expanded", "false");
-  };
-  closeButtons.forEach(button => button.addEventListener("click", closeDrawer));
-  scrim?.addEventListener("click", closeDrawer);
-  userDrawerScrim?.addEventListener("click", closeUserDrawer);
-  userAvatarButton?.addEventListener("click", openUserDrawer);
-  document.addEventListener("keydown", e => { if(e.key==="Escape") { closeDrawer(); closeUserDrawer(); } });
 
   function renderAuthState() {
     document.body.classList.toggle("is-logged-in", pageLoggedIn);
     document.body.classList.toggle("is-logged-out", !pageLoggedIn);
     document.querySelectorAll(".is-guest-only .js-auth-toggle").forEach(button => { button.textContent = "로그인"; });
     document.querySelectorAll(".is-member-only .js-auth-toggle").forEach(button => { button.textContent = "로그아웃"; });
-    if (!pageLoggedIn) closeUserDrawer();
   }
 
   document.querySelectorAll(".js-auth-toggle").forEach(button => {
     button.addEventListener("click", () => {
       pageLoggedIn = !pageLoggedIn;
-      closeDrawer();
-      closeUserDrawer();
       renderAuthState();
     });
   });
@@ -2462,29 +2191,6 @@
   });
 
   renderAuthState();
-
-  // 드로어 마이페이지 하위 메뉴
-  const mypageTabs = document.querySelectorAll(".drawer-mypage-item[aria-controls]");
-  mypageTabs.forEach(tab => {
-    tab.addEventListener("click", event => {
-      event.preventDefault();
-      const panel = document.getElementById(tab.getAttribute("aria-controls"));
-      const isOpen = tab.classList.contains("is-open");
-
-      mypageTabs.forEach(item => {
-        item.classList.remove("is-open");
-        item.setAttribute("aria-expanded", "false");
-        const target = document.getElementById(item.getAttribute("aria-controls"));
-        target?.classList.remove("is-open");
-      });
-
-      if (!isOpen) {
-        tab.classList.add("is-open");
-        tab.setAttribute("aria-expanded", "true");
-        panel?.classList.add("is-open");
-      }
-    });
-  });
 
   // 탭 필터
   document.querySelectorAll(".filter-group").forEach(group => {
@@ -2732,5 +2438,6 @@
   updatePaymentTotals();
   setupPaymentSwitch();
 </script>
+<script src="bb-common-mobile.js"></script>
 </body>
 </html>

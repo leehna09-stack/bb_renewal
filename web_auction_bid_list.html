@@ -53,11 +53,11 @@
     }
     .store-strip::-webkit-scrollbar { display: none; }
     .store-list {
-      width: 100%;
+      width: min(calc(100vw - 60px), 900px);
       max-width: none;
       margin: 0 auto;
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
       gap: 20px;
       padding: 6px 4px;
       box-sizing: border-box;
@@ -83,14 +83,19 @@
       border: 1px solid var(--line);
       border-radius: 50%;
       background: #fff;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
       color: var(--text);
       font-size: 11px;
       font-weight: 900;
       line-height: 1.1;
       overflow: hidden;
     }
+    .store-badge .flag { font-size: 16px; line-height: 1; }
+    .store-badge .brand { font-size: 8px; font-weight: 700; color: #1a1a2e; white-space: nowrap; }
     .store-chip.active .store-badge {
       border-color: var(--rose);
       box-shadow: 0 0 0 2px var(--rose);
@@ -142,15 +147,16 @@
     .profile-card {
       display: grid;
       align-content: center;
-      gap: 14px;
+      gap: 0;
       min-height: 0;
-      padding: 18px 22px;
+      padding: 28px 25px 12px;
       background: var(--warm);
     }
     .profile-main { display: flex; align-items: center; gap: 13px; }
+    .profile-main.login-only { margin-bottom: 24px; }
     .avatar {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: grid;
       place-items: center;
@@ -160,7 +166,7 @@
       font-size: 22px;
       font-weight: 800;
     }
-    .profile-name { display: block; margin-bottom: 3px; color: #262a31; font-size: 16px; font-weight: 800; line-height: 1.25; }
+    .profile-name { display: block; margin-bottom: 3px; color: #111; font-size: 18px; font-weight: 800; line-height: 1.25; }
     .profile-tier {
       display: inline-flex;
       align-items: center;
@@ -172,9 +178,22 @@
       font-size: 10px;
       font-weight: 900;
     }
+    .profile-main.login-only .profile-tier {
+      display: block;
+      min-height: 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--rose);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .vip-copy { margin: 0 0 10px; color: #2f3541; font-size: 14px; font-weight: 700; }
+    .vip-copy b { color: #1f2937; font-weight: 900; }
     .vip-row { display: flex; align-items: center; gap: 8px; }
-    .vip-progress { flex: 1; height: 5px; overflow: hidden; border-radius: 999px; background: #eee2de; }
-    .vip-progress span { display: block; width: 8%; height: 100%; background: var(--rose); }
+    .vip-progress { flex: 1; height: 9px; overflow: hidden; border-radius: 999px; background: #eee2de; }
+    .vip-progress span { display: block; width: 84%; height: 100%; background: linear-gradient(90deg, #ff7590, var(--rose)); border-radius: inherit; }
     .help-dot {
       width: 16px;
       height: 16px;
@@ -182,27 +201,28 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: #d8dde6;
-      color: #fff;
+      border: 1px solid #9aa3b3;
+      background: #fff;
+      color: #7f8796;
       font-size: 10px;
       font-weight: 900;
       flex: 0 0 auto;
     }
-    .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
     .soft-btn {
-      height: 26px;
+      height: 29px;
       border: 1px solid #e5dbd7;
       border-radius: 5px;
       background: #fff;
-      color: #5c606b;
-      font-size: 12px;
+      color: #2f3541;
+      font-size: 14px;
       font-weight: 700;
     }
     .soft-btn.primary { border-color: var(--rose); background: var(--rose); color: #fff; }
 
     .side-nav { padding-top: 33px; }
     .side-title { margin: 0 0 18px; padding: 0 15px 17px; border-bottom: 1px solid #dcd9d6; color: #111; font-size: 16px; font-weight: 900; }
-    .side-title a { color: inherit; text-decoration: none; }
+    .side-title a, .side-title a:visited { color: inherit; text-decoration: none; }
     .nav-section { padding: 0 20px; margin-bottom: 14px; }
     .nav-section strong { display: block; margin: 0 0 9px; padding: 7px 0; color: #111; font-size: 14px; font-weight: 900; }
     .nav-list { display: grid; gap: 6px; }
@@ -286,11 +306,6 @@
       box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
       transform: translateY(-1px);
       outline: 0;
-    }
-    .status-card.active {
-      border-color: var(--rose);
-      border-width: 2px;
-      box-shadow: 0 8px 18px rgba(232, 56, 90, .12);
     }
     .status-stack { gap: 19px; }
     .status-stack .status-card { min-height: 66px; }
@@ -444,28 +459,28 @@
   <div class="store-strip">
     <nav class="store-list" aria-label="스토어 바로가기">
       <a class="store-chip active" href="#" data-store-name="야후 옥션">
-        <div class="store-badge"><span class="store-yahoo">YAHOO!</span></div><strong>야후 옥션</strong>
+        <div class="store-badge"><span class="flag">JP</span><span class="brand" style="color:#E60026;font-size:9px;font-weight:900">YAHOO!</span></div><strong>야후 옥션</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="메루카리">
-        <div class="store-badge store-mercari">m</div><strong>메루카리</strong>
+        <div class="store-badge"><span class="flag" style="font-size:18px;color:#19ce60;font-weight:900">M</span></div><strong>메루카리</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="라쿠텐">
-        <div class="store-badge store-rakuten">R</div><strong>일본 라쿠텐</strong>
+        <div class="store-badge"><span class="flag" style="font-size:14px;color:#BF0000;font-weight:900">楽天</span></div><strong>일본 라쿠텐</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="라쿠마">
-        <div class="store-badge">amazon</div><strong>일본 라쿠마</strong>
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#BF0000;font-weight:700">Rakuten</span></div><strong>일본 라쿠마</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="야후 쇼핑">
-        <div class="store-badge store-cart"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div><strong>야후 쇼핑</strong>
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div><strong>야후 쇼핑</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="일본 아마존">
-        <div class="store-badge">amazon</div><strong>일본 라쿠마</strong>
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div><strong>일본 아마존</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="미국 이베이">
-        <div class="store-badge flag-us">USA</div><strong>미국 이베이</strong>
+        <div class="store-badge"><span class="flag">US</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div><strong>미국 이베이</strong>
       </a>
       <a class="store-chip" href="#" data-store-name="영국 이베이">
-        <div class="store-badge flag-uk">UK</div><strong>영국 이베이</strong>
+        <div class="store-badge"><span class="flag">UK</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div><strong>영국 이베이</strong>
       </a>
     </nav>
   </div>
@@ -476,10 +491,11 @@
         <div class="profile-main login-only">
           <div class="avatar" aria-label="회원 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
-            <strong class="profile-name">이준목님</strong>
-            <span class="profile-tier">한국관리자</span>
+            <strong class="profile-name">홍길동님</strong>
+            <span class="profile-tier">Premium</span>
           </div>
         </div>
+        <p class="vip-copy login-only">VIP까지 <b>₩215,000</b> 또는 <b>3건</b></p>
         <div class="vip-row login-only">
           <div class="vip-progress"><span></span></div>
           <span class="help-dot" aria-label="등급 안내">?</span>
@@ -578,7 +594,7 @@
         </div>
         <div class="status-board">
           <div class="status-step status-stack">
-            <a class="status-card active" href="web_auction_bid_list.html" data-status="auction-bid" data-label="경매입찰">
+            <a class="status-card" href="web_auction_bid_list.html" data-status="auction-bid" data-label="경매입찰">
               <div><em>14</em><strong>경매 입찰 상품</strong></div>
             </a>
             <a class="status-card" href="web_mainlist.html" data-status="purchase-request" data-label="구매 신청">

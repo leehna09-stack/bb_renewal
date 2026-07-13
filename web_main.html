@@ -64,7 +64,7 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .hb-btn:hover{background:var(--bg)}
 .hb-btn span{display:block;width:17px;height:2px;background:var(--tp);border-radius:1px}
 /* ???형 채널 ?이?그리??*/
-.channel-icons{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center}
+.channel-icons{display:grid;grid-template-columns:repeat(8,1fr);gap:16px;width:min(calc(100vw - 60px),900px);margin:0 auto}
 .channel-icons::-webkit-scrollbar{display:none}
 .ch-icon-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 14px;cursor:pointer;min-width:80px;flex-shrink:0;transition:opacity .15s}
 .ch-icon-item:hover{opacity:.8}

@@ -55,6 +55,24 @@
       background: var(--warm);
     }
     .profile-main { display: flex; align-items: center; gap: 13px; }
+    .vip-copy { margin: 18px 0 6px; color: #5c6270; font-size: 12px; font-weight: 600; }
+    .vip-copy b { color: #454b58; font-weight: 800; }
+    .vip-row { display: flex; align-items: center; gap: 8px; }
+    .vip-progress { flex: 1; height: 5px; overflow: hidden; border-radius: 999px; background: #eee2de; }
+    .vip-progress span { display: block; width: 72%; height: 100%; background: var(--rose); }
+    .help-dot {
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #d8dde6;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
     .avatar {
       width: 48px;
       height: 48px;
@@ -97,7 +115,7 @@
       font-size: 16px;
       font-weight: 700;
     }
-    .side-title a { color: inherit; text-decoration: none; }
+    .side-title a, .side-title a:visited { color: inherit; text-decoration: none; }
     .nav-section { padding: 0 20px; margin-bottom: 14px; }
     .nav-section strong {
       display: block;
@@ -346,6 +364,11 @@
             <strong class="profile-name">홍길동님</strong>
             <span class="profile-tier">Premium</span>
           </div>
+        </div>
+        <p class="vip-copy">VIP까지 <b>₩215,000</b> 또는 <b>3건</b></p>
+        <div class="vip-row">
+          <div class="vip-progress"><span></span></div>
+          <span class="help-dot" aria-label="등급 안내">?</span>
         </div>
         <div class="profile-actions">
           <button class="soft-btn" type="button" onclick="location.href='web_qna_form.html'">1:1 문의</button>

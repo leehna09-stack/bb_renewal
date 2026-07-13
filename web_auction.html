@@ -82,7 +82,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .dd-div{height:1px;background:var(--border);margin:4px 8px}
 .dd-logout{color:var(--tm) !important;font-weight:400 !important}
 .dd-logout:hover{color:var(--rose) !important}
-.channel-icons{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center}
+.channel-icons{display:grid;grid-template-columns:repeat(8,1fr);gap:16px;width:min(calc(100vw - 60px),900px);margin:0 auto}
 .channel-icons::-webkit-scrollbar{display:none}
 .ch-circle-logo{width:38px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
 .ch-circle-logo .flag{font-size:16px;line-height:1}
