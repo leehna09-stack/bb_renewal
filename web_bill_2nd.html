@@ -87,7 +87,11 @@
 
   /* ── 주문 상품 테이블 ── */
   .order-table tbody td.product-info {
+    width: 70%;
     text-align: left;
+  }
+  .order-table .product-info-head {
+    width: 70%;
   }
   .order-table tbody td.product-info .item-id {
     font-size: 12px;
@@ -256,6 +260,36 @@
   .paid-option-table th {
     vertical-align: top;
   }
+  .paid-option-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .option-scenario-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .option-scenario-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #cfd6df;
+    border-radius: 4px;
+    background: #fff;
+    color: #1A3C6E;
+    cursor: pointer;
+  }
+  .option-scenario-label {
+    min-width: 86px;
+    color: #1A3C6E;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
   .paid-option-name {
     display: block;
     margin-bottom: 5px;
@@ -328,7 +362,8 @@
   .paid-option-choice {
     color: #333;
   }
-  .vip-care-note { background:#FFF8E6; border-left:3px solid #F5A623; border-radius:4px; padding:8px 12px; margin-bottom:12px; font-size:12px; font-weight:600; color:#7A5000; }
+  .vip-care-note { display:none; background:#FFF8E6; border-left:3px solid #F5A623; border-radius:4px; padding:8px 12px; margin-bottom:12px; font-size:12px; font-weight:600; color:#7A5000; }
+  .vip-care-note.is-visible { display:block; }
   .paid-option-desc {
     margin-top: 12px;
     color: #555;
@@ -787,6 +822,27 @@
     background: #fff;
     transform: translate(-50%, -4px) rotate(45deg);
   }
+  .tooltip-grid {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 4px 12px;
+    text-align: center;
+  }
+  .tooltip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+  }
+  .order-table .tooltip-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+  .order-table .tooltip-box {
+    min-width: 228px;
+  }
   .tooltip-wrap:hover .tooltip-box,
   .tooltip-wrap:focus-within .tooltip-box {
     display: block;
@@ -843,6 +899,7 @@
   .fee-extra-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: #666; }
   .fee-extra-item strong { font-family: 'Roboto', sans-serif; font-size: 12px; color: #222; }
   .fee-extra-item strong.is-active { color: #E8385A; }
+  .fee-extra-item strong.is-free { color: #3AAD4E; }
   .panel-coupon-btn { height: 28px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-coupon-btn:hover { background: #1A3C6E; color: #fff; }
   .panel-coupon-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
@@ -888,18 +945,17 @@
     <table class="order-table">
       <thead>
         <tr>
-          <th>진행단계</th>
-          <th>주문(낙찰)일</th>
           <th class="thumb-cell">이미지</th>
-          <th>상품정보</th>
-          <th>수량</th>
-          <th>상품결제금액</th>
+          <th class="product-info-head">상품정보</th>
+          <th>물품가</th>
+          <th>소비세</th>
+          <th>현지배송료</th>
+          <th>창고보관료</th>
+          <th>기타 추가비용</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="status-cell">2차 결제대기</td>
-          <td class="date-cell">2026.05.13<br>23:08:11</td>
           <td class="thumb-cell">
             <div class="thumb-placeholder">스티어링<br>휠</div>
           </td>
@@ -907,8 +963,105 @@
             <div class="item-id">[YAHOO] g1227816237</div>
             <div class="item-name">D1SPEC DEEP70 35パイ レッドステッチ D1スペック ステアリング ディープ70</div>
           </td>
-          <td>1</td>
-          <td class="price-cell">7,255 엔</td>
+          <td class="price-cell">7,000 엔</td>
+          <td class="price-cell">700 엔</td>
+          <td class="price-cell">772 엔</td>
+          <td class="price-cell">
+            100 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="창고보관료 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-grid">
+                  <span>보관일수</span><span>D-3</span>
+                  <span>상품분류</span><span>소형</span>
+                </span>
+              </span>
+            </span>
+          </td>
+          <td class="price-cell">
+            2,100 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="기타 추가비용 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-list">
+                  <span>유료사진서비스 +700엔</span>
+                  <span>추가포장비 +800엔</span>
+                  <span>검수수수료 +600엔</span>
+                </span>
+              </span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="thumb-cell">
+            <div class="thumb-placeholder">머플러<br>팁</div>
+          </td>
+          <td class="product-info">
+            <div class="item-id">[YAHOO] h1184923051</div>
+            <div class="item-name">汎用 ステンレス マフラーカッター チタンカラー 90mm エキゾースト パーツ</div>
+          </td>
+          <td class="price-cell">5,800 엔</td>
+          <td class="price-cell">580 엔</td>
+          <td class="price-cell">650 엔</td>
+          <td class="price-cell">
+            100 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="창고보관료 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-grid">
+                  <span>보관일수</span><span>D-3</span>
+                  <span>상품분류</span><span>소형</span>
+                </span>
+              </span>
+            </span>
+          </td>
+          <td class="price-cell">
+            1,400 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="기타 추가비용 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-list">
+                  <span>추가포장비 +800엔</span>
+                  <span>분할포장비 +600엔</span>
+                </span>
+              </span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="thumb-cell">
+            <div class="thumb-placeholder">시프트<br>노브</div>
+          </td>
+          <td class="product-info">
+            <div class="item-id">[YAHOO] k1198307742</div>
+            <div class="item-name">TRD 5速 シフトノブ ブラック レザー調 M12 汎用 旧車 ドレスアップ</div>
+          </td>
+          <td class="price-cell">4,200 엔</td>
+          <td class="price-cell">420 엔</td>
+          <td class="price-cell">540 엔</td>
+          <td class="price-cell">
+            100 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="창고보관료 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-grid">
+                  <span>보관일수</span><span>D-3</span>
+                  <span>상품분류</span><span>소형</span>
+                </span>
+              </span>
+            </span>
+          </td>
+          <td class="price-cell">
+            700 엔
+            <span class="tooltip-wrap" tabindex="0">
+              <span class="tooltip-icon" aria-label="기타 추가비용 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+              <span class="tooltip-box">
+                <span class="tooltip-list">
+                  <span>유료사진서비스 +700엔</span>
+                </span>
+              </span>
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -945,23 +1098,30 @@
 
   <!-- ── 유료 옵션 ── -->
   <div class="section paid-option-static">
-    <div class="section-title">선택 옵션 서비스</div>
+    <div class="section-title paid-option-head">
+      <span>선택 옵션 서비스</span>
+      <span class="option-scenario-nav" aria-label="회원 등급 예시 전환">
+        <button class="option-scenario-btn" type="button" id="optionScenarioPrev" aria-label="이전 예시"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <span class="option-scenario-label" id="optionScenarioLabel">프리미엄회원</span>
+        <button class="option-scenario-btn" type="button" id="optionScenarioNext" aria-label="다음 예시"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      </span>
+    </div>
     <table class="care-table paid-option-table">
       <tbody>
         <tr>
           <th>
             <span class="paid-option-name">안심 케어</span>
             <span class="paid-option-meta">
-              <span class="paid-option-price">+ 200엔</span>
+              <span class="paid-option-price" id="careOptionPrice">+ 200엔</span>
             </span>
           </th>
           <td class="paid-option-choice">
-            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="0" data-panel-detail="panelDetailCare">
+            <button class="option-toggle" type="button" aria-pressed="true" data-paid-option-yen="200" data-panel-detail="panelDetailCare">
               <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
               <span class="option-toggle-text">신청</span>
             </button>
             <div class="paid-option-desc">
-              <div class="vip-care-note"><i class="fa-solid fa-gem"></i> [VIP 회원] 전용 혜택 | 안심 케어 무료 제공</div>
+              <div class="vip-care-note" id="vipCareNote"><i class="fa-solid fa-gem"></i> [VIP / PRESTIGE 회원] 전용 혜택 | 안심 케어 무료 제공</div>
               <p><strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
               <ul>
                 <li>안심 케어 가입 송장건에 한해 최대 20만원 까지 보상이 적용됩니다.</li>
@@ -989,7 +1149,7 @@
       <tbody>
         <tr>
           <th>전체 금액</th>
-          <td><span class="amount-neutral" id="txtTotalWon">36,912 원</span></td>
+          <td><span class="amount-neutral" id="txtTotalWon">102,835 원</span></td>
         </tr>
         <tr>
           <th>결제할 예치금</th>
@@ -1017,8 +1177,8 @@
         <tr>
           <th>결제하실 금액</th>
           <td>
-            <span class="formula" id="txtFormula">3,845 엔 × 9.6 원 =</span>
-            <span class="amount-display" id="txtPayWon">36,912 원</span>
+            <span class="formula" id="txtFormula">10,712 엔 × 9.6 원 =</span>
+            <span class="amount-display" id="txtPayWon">102,835 원</span>
           </td>
         </tr>
         
@@ -1078,12 +1238,16 @@
     </div>
     <div class="bill-panel-body">
       <div class="fee-row">
+        <span class="fee-row-label">물품가</span>
+        <span class="fee-row-val">17,000 엔</span>
+      </div>
+      <div class="fee-row">
         <span class="fee-row-label">소비세</span>
-        <span class="fee-row-val">725 엔</span>
+        <span class="fee-row-val">1,700 엔</span>
       </div>
       <div class="fee-row">
         <span class="fee-row-label">현지배송료</span>
-        <span class="fee-row-val">770 엔</span>
+        <span class="fee-row-val">1,962 엔</span>
       </div>
       <div class="fee-row">
         <span class="fee-row-label">
@@ -1093,7 +1257,7 @@
             <span class="tooltip-box">D-3 / 소형</span>
           </span>
         </span>
-        <span class="fee-row-val">0 엔</span>
+        <span class="fee-row-val">300 엔</span>
       </div>
 
       <div class="fee-row">
@@ -1109,36 +1273,28 @@
       <div class="fee-row fee-row-toggle" id="panelExtraToggleRow">
         <span class="fee-row-label">추가비용</span>
         <span style="display:inline-flex;align-items:center;gap:6px;">
-          <span class="fee-row-val" id="panelExtraYen">0 엔</span>
+          <span class="fee-row-val" id="panelExtraYen">4,400 엔</span>
           <button class="fee-toggle-btn" type="button" id="panelExtraToggleBtn" aria-expanded="false" aria-controls="panelExtraDetail">
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
         </span>
       </div>
       <div class="fee-extra-detail" id="panelExtraDetail">
-        <div class="fee-extra-item" id="panelDetailCare" style="display:none;">
+        <div class="fee-extra-item" id="panelDetailCare">
           <span>안심 케어</span>
-          <strong id="panelExtraCareYen" class="is-active" style="color:#3AAD4E;">무료</strong>
+          <strong class="is-active" id="panelDetailCareAmount">200 엔</strong>
         </div>
-        <div class="fee-extra-item" id="panelDetailCarePlus" style="display:none;">
-          <span>안심 케어 플러스</span>
-          <strong id="panelExtraCarePlusYen" class="is-active">400 엔</strong>
+        <div class="fee-extra-item">
+          <span>[YAHOO] g1227816237</span>
+          <strong class="is-active">2,100 엔</strong>
         </div>
-        <div class="fee-extra-item" id="panelDetailStorage" style="display:none;">
-          <span>창고 보관료</span>
-          <strong id="panelExtraStorageYen" class="is-active">100 엔</strong>
+        <div class="fee-extra-item">
+          <span>[YAHOO] h1184923051</span>
+          <strong class="is-active">1,400 엔</strong>
         </div>
-        <div class="fee-extra-item" id="panelDetailPacking" style="display:none;">
-          <span>포장비</span>
-          <strong id="panelExtraPackingYen" class="is-active">150 엔</strong>
-        </div>
-        <div class="fee-extra-item" id="panelDetailPallet" style="display:none;">
-          <span>팔렛트</span>
-          <strong id="panelExtraPalletYen" class="is-active">500 엔</strong>
-        </div>
-        <div class="fee-extra-item" id="panelDetailJpShip" >
-          <span>일본내 배송수수료</span>
-          <strong id="panelExtraJpShipYen" class="is-active">1,000 엔</strong>
+        <div class="fee-extra-item">
+          <span>[YAHOO] k1198307742</span>
+          <strong class="is-active">700 엔</strong>
         </div>
       </div>
       
@@ -1152,11 +1308,11 @@
       </div>
       <div class="fee-row fee-row-subtotal">
         <span class="fee-row-label">총액</span>
-        <span class="fee-row-val" id="panelSubtotal">3,845 엔</span>
+        <span class="fee-row-val" id="panelSubtotal">10,712 엔</span>
       </div>
       <div class="fee-row fee-row-total">
         <span class="fee-row-label">총 결제금액</span>
-        <span class="fee-row-val" id="panelTotal">36,912원</span>
+        <span class="fee-row-val" id="panelTotal">102,835원</span>
       </div>
     </div>
   </div>
@@ -1332,6 +1488,45 @@
   })();
 
   (() => {
+    const scenarios = [
+      { key: 'premium', label: '프리미엄회원', priceText: '+ 200엔', careYen: 200, panelText: '200 엔', noteVisible: false },
+      { key: 'vip', label: 'VIP회원', priceText: '무료', careYen: 0, panelText: '무료', noteVisible: true },
+    ];
+    let currentIndex = 0;
+    const prevBtn = document.getElementById('optionScenarioPrev');
+    const nextBtn = document.getElementById('optionScenarioNext');
+    const label = document.getElementById('optionScenarioLabel');
+    const price = document.getElementById('careOptionPrice');
+    const note = document.getElementById('vipCareNote');
+    const toggle = document.querySelector('.option-toggle[data-panel-detail="panelDetailCare"]');
+    const panelCareAmount = document.getElementById('panelDetailCareAmount');
+
+    const applyScenario = () => {
+      const scenario = scenarios[currentIndex];
+      if (label) label.textContent = scenario.label;
+      if (price) price.textContent = scenario.priceText;
+      if (note) note.classList.toggle('is-visible', scenario.noteVisible);
+      if (toggle) toggle.dataset.paidOptionYen = String(scenario.careYen);
+      if (panelCareAmount) {
+        panelCareAmount.textContent = scenario.panelText;
+        panelCareAmount.classList.toggle('is-active', scenario.careYen > 0);
+        panelCareAmount.classList.toggle('is-free', scenario.careYen === 0);
+      }
+      window.renderPaymentSummary?.();
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + scenarios.length - 1) % scenarios.length;
+      applyScenario();
+    });
+    nextBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % scenarios.length;
+      applyScenario();
+    });
+    applyScenario();
+  })();
+
+  (() => {
     const toggleRow = document.getElementById('panelExtraToggleRow');
     const toggleBtn = document.getElementById('panelExtraToggleBtn');
     const detail = document.getElementById('panelExtraDetail');
@@ -1492,12 +1687,16 @@
   (() => {
     const renderPaymentSummary = () => {
       const rate = 9.6;
-      const baseTotalYen = 3845;
-      const fmt = (n) => n.toLocaleString('ko-KR');
-      const fixedExtraYen = 1000; /* 일본내 배송수수료 고정 청구 */
-      const paidOptionYen = fixedExtraYen + Array.from(document.querySelectorAll('.option-toggle[aria-pressed="true"]'))
+      const taxTotalYen = 1700;
+      const localShippingTotalYen = 1962;
+      const storageTotalYen = 300;
+      const internationalShippingYen = 2350;
+      const orderExtraTotalYen = 4200;
+      const paidOptionYen = Array.from(document.querySelectorAll('.option-toggle[aria-pressed="true"]'))
         .reduce((sum, toggle) => sum + (Number(toggle.dataset.paidOptionYen) || 0), 0);
-      const totalYen = baseTotalYen + paidOptionYen;
+      const extraTotalYen = orderExtraTotalYen + paidOptionYen;
+      const totalYen = taxTotalYen + localShippingTotalYen + storageTotalYen + internationalShippingYen + extraTotalYen;
+      const fmt = (n) => n.toLocaleString('ko-KR');
       const totalWon = Math.round(totalYen * rate);
       const depositWon = Math.min(Number(String(document.getElementById('depositInput')?.value || 0).replace(/[^\d]/g, '')) || 0, totalWon);
       const payWon = Math.max(totalWon - depositWon, 0);
@@ -1510,12 +1709,12 @@
       const elPayWon = document.getElementById('txtPayWon');
 
       if (elExtraShippingYen) {
-        elExtraShippingYen.textContent = `${fmt(paidOptionYen)} 엔`;
-        elExtraShippingYen.classList.toggle('fee-added', paidOptionYen > 0);
+        elExtraShippingYen.textContent = `${fmt(extraTotalYen)} 엔`;
+        elExtraShippingYen.classList.toggle('fee-added', extraTotalYen > 0);
       }
       if (elTotalYen) {
         elTotalYen.textContent = `${fmt(totalYen)} 엔`;
-        elTotalYen.classList.toggle('fee-added', paidOptionYen > 0);
+        elTotalYen.classList.toggle('fee-added', extraTotalYen > 0);
       }
       if (elFeeTotalWon) elFeeTotalWon.textContent = `${fmt(totalWon)}원`;
       if (elTotalWon) elTotalWon.textContent = `${fmt(totalWon)} 원`;
@@ -1527,9 +1726,9 @@
       // 우측 패널 업데이트
       const panelExtra = document.getElementById('panelExtraYen');
       if (panelExtra) {
-        panelExtra.textContent = paidOptionYen > 0 ? `${fmt(paidOptionYen)} 엔` : '0 엔';
-        panelExtra.style.color = paidOptionYen > 0 ? '#E8385A' : '';
-        panelExtra.style.fontWeight = paidOptionYen > 0 ? '700' : '';
+        panelExtra.textContent = extraTotalYen > 0 ? `${fmt(extraTotalYen)} 엔` : '0 엔';
+        panelExtra.style.color = extraTotalYen > 0 ? '#E8385A' : '';
+        panelExtra.style.fontWeight = extraTotalYen > 0 ? '700' : '';
       }
       /* 안심케어 패널 행 표시/숨김 (토글 연동) */
       document.querySelectorAll('.option-toggle[data-panel-detail]').forEach((toggle) => {
