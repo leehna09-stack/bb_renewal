@@ -421,6 +421,14 @@
     .paid-option-detail.damage-detail { border-color: var(--navy); color: var(--navy); }
     .paid-option-detail.care-guide-detail { height: 30px; margin-left: 8px; padding: 0 12px; border: 1px solid var(--rose); border-radius: 5px; background: #fff; color: var(--rose); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
 
+    /* ── 안심케어 표 보조 스타일 ── */
+    .paid-option-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .option-scenario-nav { display: inline-flex; align-items: center; gap: 8px; }
+    .option-scenario-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid #cfd6df; border-radius: 4px; background: #fff; color: var(--navy); cursor: pointer; }
+    .option-scenario-label { min-width: 86px; color: var(--navy); font-size: 13px; font-weight: 700; text-align: center; }
+    .vip-care-note { display: none; background: #FFF8E6; border-left: 3px solid #F5A623; border-radius: 4px; padding: 8px 12px; margin-bottom: 12px; font-size: 12px; font-weight: 600; color: #7A5000; }
+    .vip-care-note.is-visible { display: block; }
+
     /* ── 모달 ── */
     .modal-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.45); opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; z-index: 1000; }
     .modal-overlay.is-open { opacity: 1; visibility: visible; }
@@ -707,6 +715,35 @@
                   <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
                 </ul>
                 <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장 비용 안내</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <span class="paid-option-name">안심 케어</span>
+              <span class="paid-option-meta">
+                <span class="paid-option-price">+ 200엔</span>
+              </span>
+            </th>
+            <td class="paid-option-choice">
+              <button class="option-toggle" type="button" aria-pressed="false" data-paid-option-yen="200">
+                <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
+                <span class="option-toggle-text">미신청</span>
+              </button>
+              <div class="paid-option-desc">
+                <div class="vip-care-note"><i class="fa-solid fa-gem"></i> [VIP / PRESTIGE 회원] 전용 혜택 | 안심 케어 무료 제공</div>
+                <p><strong>가입 시 보상 한도 내에서 보상받을 수 있는 유료 안심 케어 서비스입니다.</strong></p>
+                <ul>
+                  <li>안심 케어 가입 송장건에 한해 최대 20만원 까지 보상이 적용됩니다.</li>
+                  <li>선택한 송장 건의 물품 총액을 기준으로 보상됩니다.</li>
+                </ul>
+                <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
+                <ul>
+                  <li><strong class="bold-red">파손보상 불가 품목</strong>은 안심 케어 서비스를 가입하더라도 보상이 불가하므로, 가입전 반드시 확인해주시기 바랍니다.</li>
+                  <li>전체 물품중 파손보상 불가 품목이 포함된 경우, <strong class="bold-red">해당 품목을 제외하고 보상이 적용됩니다.</strong></li>
+                  <li>미가입시 파손 물품에 대해 보상이 일체 불가 합니다.</li>
+                </ul>
+                <button class="paid-option-detail damage-detail" type="button">파손보상 불가 품목 보기</button>
               </div>
             </td>
           </tr>

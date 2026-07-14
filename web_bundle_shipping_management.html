@@ -1380,7 +1380,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="modal-text">안심케어플러스 가입 건은<br><span style="color:var(--rose);">개별배송</span>으로만 진행 가능합니다.</p>
+        <p class="modal-text">안심케어플러스 신청 건은<br><span style="color:var(--rose);">개별배송</span>으로만 진행 가능합니다.</p>
         <p class="modal-small">묶음 신청을 진행하시려면 안심케어플러스를 해지해 주세요.</p>
         <div class="modal-actions wrap">
           <button class="line" type="button" onclick="closeModal('modal-carecare-guard')">취소하기</button>
@@ -1455,7 +1455,7 @@
       if (modal) modal.classList.remove('open');
     }
 
-    // 안심케어플러스 가입건 + 다른 건 혼합 선택 시 묶음 신청 차단
+    // 안심케어플러스 신청건 + 다른 건 혼합 선택 시 묶음 신청 차단
     function handleBundleSubmit() {
       var panel = document.querySelector('.bundle-panel.active');
       if (!panel) return;
