@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bidbuy 寃쎈ℓ ?낆같/?좎같</title>
+  <title>Bidbuy 경매 입찰/유찰</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -55,7 +55,9 @@
       justify-content: center;
       font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
     }
-    .notice-bar b { color: var(--rose); }
+    .notice-bar b {
+      color: var(--rose);
+    }
     .channel-bar {
       background: #fff;
       border-bottom: 1px solid var(--line);
@@ -78,7 +80,9 @@
       flex: 1;
       justify-content: center;
     }
-    .channel-icons::-webkit-scrollbar { display: none; }
+    .channel-icons::-webkit-scrollbar {
+      display: none;
+    }
     .ch-icon-item {
       display: flex;
       flex-direction: column;
@@ -90,7 +94,9 @@
       flex-shrink: 0;
       transition: opacity 0.15s;
     }
-    .ch-icon-item:hover { opacity: 0.8; }
+    .ch-icon-item:hover {
+      opacity: 0.8;
+    }
     .ch-circle {
       width: 56px;
       height: 56px;
@@ -104,7 +110,9 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
       transition: box-shadow 0.15s;
     }
-    .ch-icon-item:hover .ch-circle { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13); }
+    .ch-icon-item:hover .ch-circle {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+    }
     .ch-circle-logo {
       width: 38px;
       height: 38px;
@@ -114,7 +122,10 @@
       justify-content: center;
       gap: 1px;
     }
-    .ch-circle-logo .flag { font-size: 16px; line-height: 1; }
+    .ch-circle-logo .flag {
+      font-size: 16px;
+      line-height: 1;
+    }
     .ch-circle-logo .brand {
       font-size: 8px;
       font-weight: 700;
@@ -128,7 +139,7 @@
       white-space: nowrap;
     }
 
-    /* ?ㅽ넗??諛곗? */
+    /* 스토어 배지 */
     .store-strip {
       padding: 16px 0 24px;
       background: #fff;
@@ -138,11 +149,11 @@
     }
     .store-strip::-webkit-scrollbar { display: none; }
     .store-list {
-      width: min(calc(100vw - 60px), 900px);
+      width: 100%;
       max-width: none;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
+      display: flex;
+      justify-content: center;
       gap: 20px;
       padding: 6px 4px;
       box-sizing: border-box;
@@ -168,19 +179,14 @@
       border: 1px solid var(--line);
       border-radius: 50%;
       background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1px;
+      display: grid;
+      place-items: center;
       color: var(--text);
       font-size: 11px;
       font-weight: 900;
       line-height: 1.1;
       overflow: hidden;
     }
-    .store-badge .flag { font-size: 16px; line-height: 1; }
-    .store-badge .brand { font-size: 8px; font-weight: 700; color: #1a1a2e; white-space: nowrap; }
     .store-chip.active .store-badge {
       border-color: var(--rose);
       box-shadow: 0 0 0 2px var(--rose);
@@ -201,7 +207,7 @@
         repeating-linear-gradient(#c9263b 0 6px, #fff 6px 12px);
     }
     .flag-us::before {
-      content: "";
+      content: "● ● ●\A ● ● ●\A ● ● ●";
       position: absolute;
       left: 6px;
       top: 7px;
@@ -218,11 +224,11 @@
         linear-gradient(-34deg, #153f8f 0 43%, #fff 43% 47%, #d51f35 47% 53%, #fff 53% 57%, #153f8f 57%);
     }
 
-    /* 留덉씠?섏씠吏 ??*/
+    /* 마이페이지 셸 */
     .mypage-shell {
       width: calc(var(--sidebar-w) + var(--gap) + var(--main-w));
       max-width: calc(100vw - 32px);
-      margin: 24px auto 56px;
+      margin: 8px auto 56px;
       display: grid;
       grid-template-columns: var(--sidebar-w) minmax(0, var(--main-w));
       gap: var(--gap);
@@ -257,16 +263,14 @@
       min-height: 19px;
       padding: 2px 9px;
       border-radius: 999px;
-      background: #fff0c9;
-      color: #f4a200;
+      background: #fdeceb;
+      color: var(--rose);
       font-size: 10px;
       font-weight: 900;
     }
-    .vip-copy { margin: 14px 0 8px; color: #6b7280; font-size: 11px; font-weight: 700; }
-    .vip-copy b { color: var(--rose); }
     .vip-row { display: flex; align-items: center; gap: 8px; }
     .vip-progress { flex: 1; height: 5px; overflow: hidden; border-radius: 999px; background: #eee2de; }
-    .vip-progress span { display: block; width: 68%; height: 100%; background: var(--rose); }
+    .vip-progress span { display: block; width: 8%; height: 100%; background: var(--rose); }
     .help-dot {
       width: 16px;
       height: 16px;
@@ -278,8 +282,9 @@
       color: #fff;
       font-size: 10px;
       font-weight: 900;
+      flex: 0 0 auto;
     }
-    .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0; }
+    .profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .soft-btn {
       height: 26px;
       border: 1px solid #e5dbd7;
@@ -293,7 +298,7 @@
 
     .side-nav { padding-top: 33px; }
     .side-title { margin: 0 0 18px; padding: 0 15px 17px; border-bottom: 1px solid #dcd9d6; color: #111; font-size: 16px; font-weight: 900; }
-    .side-title a, .side-title a:visited { color: inherit; text-decoration: none; }
+    .side-title a { color: inherit; text-decoration: none; }
     .nav-section { padding: 0 20px; margin-bottom: 14px; }
     .nav-section strong { display: block; margin: 0 0 9px; padding: 7px 0; color: #111; font-size: 14px; font-weight: 900; }
     .nav-list { display: grid; gap: 6px; }
@@ -378,13 +383,18 @@
       transform: translateY(-1px);
       outline: 0;
     }
+    .status-card.active {
+      border-color: var(--rose);
+      border-width: 2px;
+      box-shadow: 0 8px 18px rgba(232, 56, 90, .12);
+    }
     .status-stack { gap: 19px; }
     .status-stack .status-card { min-height: 66px; }
     .status-card em { display: block; margin-bottom: 5px; color: #3c3f45; font-style: normal; font-size: 18px; font-weight: 900; line-height: 1; }
     .status-card em.hot { color: var(--rose); }
     .status-card strong { display: block; color: #3e4249; font-size: 13px; font-weight: 600; line-height: 1.45; word-break: keep-all; overflow-wrap: break-word; }
 
-    /* ?낆같/?좎같 ??*/
+    /* 입찰/유찰 탭 */
     .bid-tabs {
       display: flex;
       gap: 28px;
@@ -546,7 +556,7 @@
         </div>
         <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
           <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:14px;color:#BF0000;font-weight:900">璵썲ㄹ</span></div>
+            <div class="ch-circle-logo"><span class="flag" style="font-size:14px;color:#BF0000;font-weight:900">楽天</span></div>
           </div>
           <span class="ch-label">일본 라쿠텐</span>
         </div>
@@ -588,14 +598,18 @@
     <aside class="sidebar">
       <section class="profile-card" aria-label="회원 정보">
         <div class="profile-main login-only">
-          <div class="avatar" aria-label="Premium 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
+          <div class="avatar" aria-label="회원 등급"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
           <div>
-            <strong class="profile-name">홍길동님</strong>
-            <span class="profile-tier">Premium</span>
+            <strong class="profile-name">이준목님</strong>
+            <span class="profile-tier">한국관리자</span>
           </div>
         </div>
+        <div class="vip-row login-only">
+          <div class="vip-progress"><span></span></div>
+          <span class="help-dot" aria-label="등급 안내">?</span>
+        </div>
         <div class="profile-actions login-only">
-          <button class="soft-btn" type="button" onclick="location.href='web_qna_form.html'">문의 내역</button>
+          <button class="soft-btn" type="button" onclick="location.href='web_qna_form.html'">1:1 문의</button>
           <button class="soft-btn" type="button" onclick="toggleLogin()">로그아웃</button>
         </div>
 
@@ -606,70 +620,69 @@
             <span class="profile-tier">Guest</span>
           </div>
         </div>
-        <p class="vip-copy guest-only">로그인하고 거래 현황과 혜택을 확인하세요.</p>
         <div class="profile-actions guest-only">
           <button class="soft-btn primary" type="button" onclick="doLogin()">로그인</button>
           <button class="soft-btn" type="button">회원가입</button>
         </div>
       </section>
 
-      <section class="side-nav" aria-label="留덉씠?섏씠吏 硫붾돱">
-        <h2 class="side-title"><a href="web_mypage.html">留덉씠?섏씠吏</a></h2>
+      <section class="side-nav" aria-label="마이페이지 메뉴">
+        <h2 class="side-title"><a href="web_mypage.html">마이페이지</a></h2>
         <div class="nav-section">
-          <strong>?섏쓽 嫄곕옒 ?꾪솴</strong>
+          <strong>나의 거래 현황</strong>
           <div class="nav-list">
-            <a href="web_mainlist.html">嫄곕옒 ?꾩껜 紐⑸줉</a>
-            <a href="web_auction_bid_list.html" class="active">寃쎈ℓ ?낆같/?좎같</a>
-            <a href="#">援щℓ ?좎껌 紐⑸줉</a>
+            <a href="web_mainlist.html">거래 전체 목록</a>
+            <a href="web_auction_bid_list.html" class="active">경매 입찰/유찰</a>
+            <a href="#">구매 신청 목록</a>
           </div>
         </div>
         <div class="nav-section">
-          <strong>諛곗넚愿由?/strong>
+          <strong>배송관리</strong>
           <div class="nav-list">
-            <a href="web_bundle_shipping_management.html">諛곗넚?좎껌/蹂寃?/a>
-            <a href="#">諛곗넚吏 愿由?/a>
+            <a href="web_bundle_shipping_management.html">배송신청/변경</a>
+            <a href="#">배송지 관리</a>
           </div>
         </div>
         <div class="nav-section">
-          <strong>愿????ぉ 愿由?/strong>
+          <strong>관심 항목 관리</strong>
           <div class="nav-list">
-            <a href="#">愿??異쒗뭹??/a>
-            <a href="#">愿??臾쇳뭹</a>
-            <a href="#">愿???ㅼ썙??/a>
+            <a href="#">관심 출품자</a>
+            <a href="#">관심 물품</a>
+            <a href="#">관심 키워드</a>
           </div>
         </div>
         <div class="nav-section">
-          <strong>MY ?쒗깮</strong>
+          <strong>MY 혜택</strong>
           <div class="nav-list">
-            <a href="web_mileage.html">留덉씪由ъ? / 荑좏룿</a>
-            <a href="web_grade_page.html">MY ?깃툒</a>
+            <a href="web_mileage.html">마일리지 / 쿠폰</a>
+            <a href="web_grade_page.html">MY 등급</a>
           </div>
         </div>
         <div class="nav-section">
-          <strong>?섏쓽 ?뺣낫愿由?/strong>
+          <strong>나의 정보관리</strong>
           <div class="nav-list">
-            <a href="#">?덉튂湲?愿由?/a>
-            <a href="#">蹂댁쬆湲?愿由?/a>
-            <a href="#">?뚯썝?뺣낫 ?섏젙</a>
-            <a href="#">鍮꾨?踰덊샇 蹂寃?/a>
-            <a href="#">?뚯썝 ?덊눜</a>
+            <a href="#">예치금 관리</a>
+            <a href="#">보증금 관리</a>
+            <a href="#">회원정보 수정</a>
+            <a href="#">비밀번호 변경</a>
+            <a href="#">회원 탈퇴</a>
           </div>
         </div>
         <div class="nav-section">
-          <strong>怨좉컼?곷떞</strong>
+          <strong>고객상담</strong>
           <div class="nav-list">
-            <a href="web_user_memo.html">?ъ슜?먮찓紐?/a>
-            <a href="web_qna.html">1:1 臾몄쓽?댁뿭</a>
-            <a href="web_qna_form.html">1:1 臾몄쓽?섍린</a>
+            <a href="web_user_memo.html">사용자메모</a>
+            <a href="web_qna.html">1:1 문의내역</a>
+            <a href="web_qna_form.html">1:1 문의하기</a>
           </div>
         </div>
-        <div class="nav-section biz-convert-section" hidden>
+        <div class="nav-section biz-convert-section">
           <a href="web_biz.html" class="biz-convert-link">
             <span class="biz-convert-inner">
               <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
               <span class="biz-convert-text">
-                <strong>?ъ뾽???뚯썝 ?꾪솚</strong>
-                <span>?ъ뾽???꾩슜 ?쒗깮???뺤씤?대낫?몄슂</span>
+                <strong>사업자 회원 전환</strong>
+                <span>사업자 전용 혜택을 확인해보세요</span>
               </span>
               <i class="fas fa-chevron-right biz-chev"></i>
             </span>
@@ -681,52 +694,52 @@
     <main class="page">
       <section class="section" aria-labelledby="order-status-title">
         <div class="section-head">
-          <h1 class="section-title" id="order-status-title">?섏쓽 嫄곕옒 ?꾪솴</h1>
+          <h1 class="section-title" id="order-status-title">나의 거래 현황</h1>
           <div class="status-links">
-            <a class="outline-pill" href="web_mainlist.html">嫄곕옒?꾨즺</a>
-            <a class="outline-pill" href="web_mainlist.html">痍⑥냼/諛섑뭹</a>
+            <a class="outline-pill" href="web_mainlist.html">거래완료</a>
+            <a class="outline-pill" href="web_mainlist.html">취소/반품</a>
           </div>
         </div>
         <div class="status-board">
           <div class="status-step status-stack">
-            <a class="status-card" href="web_auction_bid_list.html" data-status="auction-bid" data-label="寃쎈ℓ?낆같">
-              <div><em>14</em><strong>寃쎈ℓ ?낆같 ?곹뭹</strong></div>
+            <a class="status-card active" href="web_auction_bid_list.html" data-status="auction-bid" data-label="경매입찰">
+              <div><em>14</em><strong>경매 입찰 상품</strong></div>
             </a>
-            <a class="status-card" href="web_mainlist.html" data-status="purchase-request" data-label="援щℓ ?좎껌">
-              <div><em>20</em><strong>援щℓ ?좎껌 ?곹뭹</strong></div>
-            </a>
-          </div>
-          <div class="status-step">
-            <a class="status-card" href="web_mainlist.html" data-status="first-payment-wait" data-label="1李?寃곗젣?湲?>
-              <div><em class="hot">1</em><strong>1李?br>寃곗젣?湲?/strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="purchase-request" data-label="구매 신청">
+              <div><em>20</em><strong>구매 신청 상품</strong></div>
             </a>
           </div>
           <div class="status-step">
-            <a class="status-card" href="web_mainlist.html" data-status="first-payment-complete" data-label="1李?寃곗젣?꾨즺">
-              <div><em>1,062</em><strong>1李?br>寃곗젣?꾨즺</strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="first-payment-wait" data-label="1차 결제대기">
+              <div><em class="hot">1</em><strong>1차<br>결제대기</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="first-payment-complete" data-label="1차 결제완료">
+              <div><em>1,062</em><strong>1차<br>결제완료</strong></div>
             </a>
           </div>
           <div class="status-step status-stack">
-            <a class="status-card" href="web_mainlist.html" data-status="local-arrived" data-label="?꾩??꾩갑">
-              <div><em>8</em><strong>?꾩??꾩갑</strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="local-arrived" data-label="현지도착">
+              <div><em>8</em><strong>현지도착</strong></div>
             </a>
-            <a class="status-card" href="web_mainlist.html" data-status="shipping-wait" data-label="諛곗넚?湲?>
-              <div><em>0</em><strong>諛곗넚?湲?/strong></div>
-            </a>
-          </div>
-          <div class="status-step">
-            <a class="status-card" href="web_mainlist.html" data-status="second-payment-wait" data-label="2李?寃곗젣?湲?>
-              <div><em class="hot">9</em><strong>2李?br>寃곗젣?湲?/strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="shipping-wait" data-label="배송대기">
+              <div><em>0</em><strong>배송대기</strong></div>
             </a>
           </div>
           <div class="status-step">
-            <a class="status-card" href="web_mainlist.html" data-status="second-payment-complete" data-label="2李?寃곗젣 ?꾨즺">
-              <div><em>2</em><strong>2李?br>寃곗젣 ?꾨즺</strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="second-payment-wait" data-label="2차 결제대기">
+              <div><em class="hot">9</em><strong>2차<br>결제대기</strong></div>
             </a>
           </div>
           <div class="status-step">
-            <a class="status-card" href="web_mainlist.html" data-status="international-shipping" data-label="援?젣諛곗넚">
-              <div><em class="hot">11</em><strong>援?젣諛곗넚</strong></div>
+            <a class="status-card" href="web_mainlist.html" data-status="second-payment-complete" data-label="2차 결제 완료">
+              <div><em>2</em><strong>2차<br>결제 완료</strong></div>
+            </a>
+          </div>
+          <div class="status-step">
+            <a class="status-card" href="web_mainlist.html" data-status="international-shipping" data-label="국제배송">
+              <div><em class="hot">11</em><strong>국제배송</strong></div>
             </a>
           </div>
         </div>
@@ -734,32 +747,32 @@
 
       <section class="section" aria-labelledby="bid-list-title">
         <div class="section-head">
-          <h2 class="section-title" id="bid-list-title">寃쎈ℓ ?낆같/?좎같 紐⑸줉</h2>
+          <h2 class="section-title" id="bid-list-title">경매 입찰/유찰 목록</h2>
         </div>
 
-        <div class="bid-tabs" role="tablist" aria-label="?낆같 ?곹깭">
-          <button class="bid-tab active" type="button" role="tab" aria-selected="true" data-bid-tab="bidding">?낆같</button>
-          <button class="bid-tab" type="button" role="tab" aria-selected="false" data-bid-tab="failed">?좎같</button>
+        <div class="bid-tabs" role="tablist" aria-label="입찰 상태">
+          <button class="bid-tab active" type="button" role="tab" aria-selected="true" data-bid-tab="bidding">입찰</button>
+          <button class="bid-tab" type="button" role="tab" aria-selected="false" data-bid-tab="failed">유찰</button>
         </div>
 
         <div class="bid-toolbar">
-          <select class="bid-count-select" aria-label="紐⑸줉 ??>
-            <option>?꾩껜 (14嫄?</option>
-            <option>?낆같以?(12嫄?</option>
-            <option>醫낅즺 ?꾨컯 (2嫄?</option>
+          <select class="bid-count-select" aria-label="목록 수">
+            <option>전체 (14건)</option>
+            <option>입찰중 (12건)</option>
+            <option>종료 임박 (2건)</option>
           </select>
           <div class="bid-search">
-            <input type="search" placeholder="寃쎈ℓ肄붾뱶 寃?? aria-label="寃쎈ℓ肄붾뱶 寃??>
-            <button class="btn-search" type="button">寃??/button>
-            <button class="btn-bulk" type="button">?쇨큵議고쉶</button>
+            <input type="search" placeholder="경매코드 검색" aria-label="경매코드 검색">
+            <button class="btn-search" type="button">검색</button>
+            <button class="btn-bulk" type="button">일괄조회</button>
           </div>
         </div>
 
         <div class="bid-list" data-bid-panel="bidding">
-          <article class="bid-row" data-live-bid="true">
+          <article class="bid-row">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true"></span>?낆같以?/span>
-              <span class="bid-oid">EBAY 쨌 375604375357</span>
+              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중 · 종료</span>
+              <span class="bid-oid">EBAY · 375604375357</span>
             </div>
             <div class="bid-body">
               <div class="bid-product">
@@ -767,26 +780,26 @@
                 <p class="bid-title">Transformers G1 G2 Go Bots Collector Case Bumblebee Skywarp Blurr Bl</p>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?낆같湲덉븸</span><span class="mv">1媛?/ $13</span></div>
-                <div class="bid-meta-row"><span class="ml">醫낅즺?쇱떆</span><span class="mv">2024.09.01 10:30</span></div>
-                <div class="bid-meta-row"><span class="ml">?덉빟?쒓컙</span><span class="mv">2024.09.01 10:29</span></div>
+                <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / $13</span></div>
+                <div class="bid-meta-row"><span class="ml">종료일시</span><span class="mv">2024.09.01 10:30</span></div>
+                <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">2024.09.01 10:29</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?꾩옱媛/?낆같??/span><span class="mv bid-current-price">議고쉶瑜??뚮윭二쇱꽭??/span></div>
-                <div class="bid-meta-row"><span class="ml">?⑥??쒓컙</span><span class="mv bid-time-left">-</span></div>
-                <div class="bid-meta-row"><span class="ml">理쒓퀬?낆같??/span><span class="mv">議고쉶瑜??뚮윭二쇱꽭??/span></div>
+                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv">조회를 눌러주세요</span></div>
+                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv">종료</span></div>
+                <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">조회를 눌러주세요</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" data-refresh-bid>議고쉶</button>
-                <button class="btn-rebid" type="button">?ъ엯李?/button>
+                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
+                <button class="btn-rebid" type="button">재입찰</button>
               </div>
             </div>
           </article>
 
-          <article class="bid-row" data-live-bid="true">
+          <article class="bid-row">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true"></span>?낆같以?/span>
-              <span class="bid-oid">EBAY 쨌 297323435868</span>
+              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중 · 종료</span>
+              <span class="bid-oid">EBAY · 297323435868</span>
             </div>
             <div class="bid-body">
               <div class="bid-product">
@@ -794,18 +807,18 @@
                 <p class="bid-title">Mario Kart 64 Toy Biz Mario &amp; Wario With Kart And Projectile</p>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?낆같湲덉븸</span><span class="mv">1媛?/ $0</span></div>
-                <div class="bid-meta-row"><span class="ml">醫낅즺?쇱떆</span><span class="mv">2025.05.27 09:16</span></div>
-                <div class="bid-meta-row"><span class="ml">?덉빟?쒓컙</span><span class="mv">??/span></div>
+                <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / $0</span></div>
+                <div class="bid-meta-row"><span class="ml">종료일시</span><span class="mv">2025.05.27 09:16</span></div>
+                <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">—</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?꾩옱媛/?낆같??/span><span class="mv bid-current-price">議고쉶瑜??뚮윭二쇱꽭??/span></div>
-                <div class="bid-meta-row"><span class="ml">?⑥??쒓컙</span><span class="mv bid-time-left">-</span></div>
-                <div class="bid-meta-row"><span class="ml">理쒓퀬?낆같??/span><span class="mv">議고쉶瑜??뚮윭二쇱꽭??/span></div>
+                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv">조회를 눌러주세요</span></div>
+                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv">종료</span></div>
+                <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">조회를 눌러주세요</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" data-refresh-bid>議고쉶</button>
-                <button class="btn-rebid" type="button">?ъ엯李?/button>
+                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
+                <button class="btn-rebid" type="button">재입찰</button>
               </div>
             </div>
           </article>
@@ -814,26 +827,26 @@
         <div class="bid-list" data-bid-panel="failed" style="display:none">
           <article class="bid-row">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true" style="background:#9aa3b2"></span>?좎같</span>
-              <span class="bid-oid">?쇳썑寃쎈ℓ 쨌 a2024032210</span>
+              <span class="bid-status"><span class="dot" aria-hidden="true" style="background:#9aa3b2"></span>유찰</span>
+              <span class="bid-oid">야후경매 · a2024032210</span>
             </div>
             <div class="bid-body">
               <div class="bid-product">
-                <div class="bid-thumb"><img src="https://images.unsplash.com/photo-1585011664466-b7bbf827d51d?auto=format&fit=crop&w=200&q=80" alt="?뚰뀗???ㅼ쐞移?寃뚯엫 移댄듃由ъ?"></div>
-                <p class="bid-title">?뚰뀗???ㅼ쐞移?寃뚯엫 移댄듃由ъ? ?ㅻ떎???꾩꽕 ?뺢뎅???덈Ъ</p>
+                <div class="bid-thumb"><img src="https://images.unsplash.com/photo-1585011664466-b7bbf827d51d?auto=format&fit=crop&w=200&q=80" alt="닌텐도 스위치 게임 카트리지"></div>
+                <p class="bid-title">닌텐도 스위치 게임 카트리지 젤다의 전설 왕국의 눈물</p>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?낆같湲덉븸</span><span class="mv">1媛?/ 占?,500</span></div>
-                <div class="bid-meta-row"><span class="ml">醫낅즺?쇱떆</span><span class="mv">2024.03.22 21:00</span></div>
-                <div class="bid-meta-row"><span class="ml">?덉빟?쒓컙</span><span class="mv">2024.03.22 20:59</span></div>
+                <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / ￥4,500</span></div>
+                <div class="bid-meta-row"><span class="ml">종료일시</span><span class="mv">2024.03.22 21:00</span></div>
+                <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">2024.03.22 20:59</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">?숈같媛/?낆같??/span><span class="mv">占?,200 / 3紐?/span></div>
-                <div class="bid-meta-row"><span class="ml">寃곌낵</span><span class="mv">?좎같</span></div>
-                <div class="bid-meta-row"><span class="ml">理쒓퀬?낆같??/span><span class="mv">? ?뚯썝</span></div>
+                <div class="bid-meta-row"><span class="ml">낙찰가/입찰수</span><span class="mv">￥6,200 / 3명</span></div>
+                <div class="bid-meta-row"><span class="ml">결과</span><span class="mv">유찰</span></div>
+                <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">타 회원</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" onclick="location.href='web_auction.html'">?곸꽭蹂닿린</button>
+                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
               </div>
             </div>
           </article>
@@ -868,52 +881,6 @@
         bidPanels.forEach((panel) => {
           panel.style.display = panel.dataset.bidPanel === target ? "grid" : "none";
         });
-      });
-    });
-
-    function makeRandomTimeLeft() {
-      const days = Math.floor(Math.random() * 4);
-      const hours = Math.floor(Math.random() * 24);
-      const minutes = Math.floor(Math.random() * 60);
-      const seconds = Math.floor(Math.random() * 60);
-      const parts = [];
-      if (days > 0) parts.push(`${days}d`);
-      parts.push(`${hours}h`, `${minutes}m`, `${seconds}s`);
-      return `${parts.join(" ")} left`;
-    }
-
-    function refreshBidTime(row) {
-      const time = row.querySelector(".bid-time-left");
-      if (time) time.textContent = makeRandomTimeLeft();
-    }
-
-    function getBidAmount(row) {
-      const bidText = row.textContent || "";
-      const symbol = bidText.includes("$") ? "$" : "";
-      const amount = Number((bidText.match(/([\d,]+)/)?.[1] || "0").replace(/,/g, "")) || 0;
-      return { symbol, amount };
-    }
-
-    function formatBidPrice(symbol, amount) {
-      return `${symbol}${amount.toLocaleString("ko-KR")}`;
-    }
-
-    function refreshBidCurrentPrice(row) {
-      const target = row.querySelector(".bid-current-price");
-      if (!target) return;
-      const bid = getBidAmount(row);
-      const base = bid.amount > 0 ? bid.amount : 1;
-      const increment = Math.max(1, Math.ceil(base * (0.08 + Math.random() * 0.32)));
-      const current = bid.amount + increment;
-      const bidders = Math.floor(Math.random() * 12) + 2;
-      target.textContent = `${formatBidPrice(bid.symbol, current)} / ${bidders}`;
-    }
-
-    document.querySelectorAll("[data-live-bid='true']").forEach((row) => {
-      refreshBidTime(row);
-      row.querySelector("[data-refresh-bid]")?.addEventListener("click", () => {
-        refreshBidTime(row);
-        refreshBidCurrentPrice(row);
       });
     });
   </script>
