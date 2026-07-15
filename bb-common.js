@@ -104,11 +104,9 @@
     '.bbd-store-cat:hover{color:#E8385A;text-decoration:underline}',
     '.bbd-link-grid{display:grid;grid-template-columns:repeat(2,1fr);row-gap:14px;column-gap:24px;padding:14px 16px}',
     '.bbd-link-grid a{font-size:14px;color:#666680;text-decoration:none}',
-    '.bbd-cs-card{margin:22px 26px 34px;padding:18px 14px;background:#fcfcfd;text-align:center}',
-    '.bbd-cs-tel{color:#1A3C6E;font-family:Roboto,sans-serif;font-size:26px;font-weight:900}',
-    '.bbd-cs-time{margin:8px 0 16px;color:#7b8494;font-size:11px}',
-    '.bbd-cs-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}',
-    '.bbd-cs-actions button{height:34px;border:1px solid #d9e0e9;border-radius:5px;background:#fff;color:#1f2530;font-size:12px;font-weight:900;font-family:inherit}',
+    '.bbd-cs-card{margin:5px 5px 5px;padding:18px 14px;background:#fcfcfd;text-align:center}',
+    '.bbd-cs-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:240px;margin:0 auto}',
+    '.bbd-cs-actions button{height:39px;border:1px solid #d9e0e9;border-radius:5px;background:#fff;color:#1f2530;font-size:12px;font-weight:900;font-family:inherit;cursor:pointer}',
     '.bbd-cs-actions button:first-child{border-color:#E8385A;background:#E8385A;color:#fff}',
 
     '.bbu-head{padding:20px 16px 24px;background:transparent;display:flex;align-items:center;gap:12px}',
@@ -271,7 +269,7 @@
         '<a class="bbd-guide-item" href="#"><span class="bbd-guide-icon"><i class="fas fa-coins"></i></span><span class="bbd-guide-text"><span class="bbd-guide-label">수수료 및 관부가세</span><span class="bbd-guide-desc">예상 비용과 세금 안내</span></span><i class="fas fa-chevron-right bbd-cat-arrow"></i></a>' +
       '</div></div>' +
       '<div class="bbd-sec" style="border-bottom:none"><div class="bbd-sec-title">고객센터</div><div class="bbd-link-grid"><a href="#">공지사항<sup class="new-n" aria-label="새 소식">N</sup></a><a href="#">자주하는질문</a><a href="web_qna_form.html">1:1문의<sup class="new-n" aria-label="새 답변">N</sup></a><a href="#">커뮤니티</a></div></div>' +
-      '<div class="bbd-cs-card"><div class="bbd-cs-tel">1544-5224</div><p class="bbd-cs-time">평일 AM 10:00 - PM 17:00 (점심 PM 12:30 - 13:30)</p><div class="bbd-cs-actions"><button type="button" onclick="location.href=\'web_qna_form.html\'">1:1 문의</button><button type="button">FAQ</button><button type="button">공지사항</button></div></div>' +
+      '<div class="bbd-cs-card"><div class="bbd-cs-actions"><button type="button" onclick="doLogout()">로그아웃</button><button type="button" onclick="location.href=\'https://www.bidbuy.co.kr/cs\'">FAQ</button></div></div>' +
       '<div style="height:24px"></div>'
     );
   }

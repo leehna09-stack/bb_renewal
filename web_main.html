@@ -197,23 +197,7 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .market-info-overlay.open{display:flex}
 .market-info-popup{width:min(742px,calc(100vw - 32px));background:#f5f7fa;border:1px solid #d9dee6;box-shadow:0 18px 48px rgba(15,23,42,.2);position:relative}
 .market-info-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:#fff;color:#697386;border-radius:4px;display:grid;place-items:center;z-index:2}
-.market-info-body{display:grid;grid-template-columns:174px minmax(0,1fr);gap:20px;padding:14px}
-.exchange-floating{position:fixed;top:210px;left:max(12px,calc((100vw - 1060px)/2 - 90px));width:50px;z-index:120;background:#fff;border:1px solid #d9dee6;box-shadow:0 8px 24px rgba(15,23,42,.08);overflow:hidden}
-.exchange-floating-arrow{height:24px;border:0;background:#f7f8fa;color:#8b95a3;display:flex;align-items:center;justify-content:center;font-size:10px}
-.exchange-floating-arrow.top{border-bottom:1px solid #e1e5eb}
-.exchange-floating-arrow.bottom{border-top:1px solid #e1e5eb}
-.exchange-floating-list{display:grid;background:#fff}
-.exchange-floating-item{min-height:50px;display:grid;place-items:center;align-content:center;gap:2px;border-bottom:1px solid #edf0f4}
-.exchange-floating-item:last-child{border-bottom:0}
-.exchange-floating-code{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:900;color:#111827;line-height:1;text-transform:uppercase}
-.exchange-floating-value{font-family:Roboto,Arial,sans-serif;font-size:12px;font-weight:900;color:#1A3C6E;line-height:1}
-.exchange-table{width:100%;height:224px;border-collapse:collapse;background:#fff;border:1px solid #d9dee6}
-.exchange-table th,.exchange-table td{border:1px solid #e1e5eb;padding:10px 12px;font-size:12px;text-align:center;color:#1f2937}
-.exchange-table th{font-weight:700;background:#fbfcfd}
-.exchange-table td:first-child{text-align:center}
-.exchange-flag{display:inline-block;width:15px;text-align:center;margin-right:6px;font-size:18px;vertical-align:-2px}
-.exchange-rate{font-family:Roboto,Arial,sans-serif;text-align:right!important;white-space:nowrap}
-.exchange-time{height:36px;color:#8b95a3!important;font-size:11px!important;text-align:center!important;padding-left:12px!important}
+.market-info-body{display:grid;grid-template-columns:1fr;gap:20px;padding:14px}
 .office-grid{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:0}
 .office-card{min-height:112px;padding:18px 18px 16px 24px;border:0;display:flex;align-items:center;gap:12px}
 .office-card:nth-child(2n){border-right:0}
@@ -225,18 +209,9 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .office-country .flag{font-size:16px;margin-right:5px}
 .office-branch{font-size:12px;color:#4b5563}
 .office-time{font-family:Roboto,Arial,sans-serif;font-size:12px;color:#1d74ff;white-space:nowrap}
-.info-office-title{font-size:15px;font-weight:700;margin-bottom:14px}
-.info-office-grid{display:flex;flex-direction:column}
-.info-office-grid .office-card{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:0;padding:11px 0;border:0;border-bottom:1px solid #F0F2F5}
-.info-office-grid .office-card:last-child{border-bottom:0}
-.office-row-left{display:flex;align-items:center;gap:10px;min-width:0}
-.info-office-grid .office-branch{font-size:13px;font-weight:700;color:#1f2530;white-space:nowrap}
-.info-office-grid .office-time{font-size:12px;color:#1d74ff}
-.info-office-grid .office-status{width:auto;height:auto;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:800;background:#9CA3AF;color:#fff;flex:0 0 auto}
-.info-office-grid .office-status.is-open{background:#22C55E}
+
 @media (max-width:720px){
   .market-info-body{grid-template-columns:1fr}
-  .exchange-table{height:auto}
   .office-grid{grid-template-columns:1fr}
   .office-card,.office-card:nth-child(2n),.office-card:nth-last-child(-n+2){border:0}
   .office-card:last-child{border-bottom:0}
@@ -328,19 +303,29 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .rv-item{font-size:11px;color:var(--tm);margin-top:8px}
 
 /* ? ═ 공 ?+CS ? ═ */
-.info-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .info-card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;min-width:0}
 .info-title{font-size:15px;font-weight:700;margin-bottom:14px}
-.cs-title-row{display:flex;align-items:center;gap:6px;margin-bottom:14px}
-.cs-title-row .info-title{margin-bottom:0}
-.cs-check-btn{height:20px;padding:0 6px;border:1px solid #F97316;background:#fff;color:#F97316;border-radius:2px;font-size:10px;font-weight:700;font-family:inherit;line-height:18px;cursor:pointer}
-.cs-check-btn:hover{background:#FFF7ED}
 .notice-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F5F7FA;font-size:13px;cursor:pointer}
 .notice-row:last-child{border-bottom:none}
 .notice-txt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .notice-date{font-size:11px;color:var(--tm);white-space:nowrap}
-.cs-num{font-size:28px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif;margin-bottom:6px}
-.cs-info{font-size:12px;color:var(--ts);line-height:1.8}
+.rate-title{font-size:16px;font-weight:800;color:#111827;margin-bottom:10px}
+.rate-desc{font-size:11px;color:#111827;line-height:1.55;margin-bottom:8px}
+.rate-period{font-size:11px;font-weight:800;color:#111827;margin-bottom:8px}
+.rate-list{display:grid;gap:0}
+.rate-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;min-height:25px;border-bottom:1px solid #d9dee6;font-size:11px}
+.rate-currency{display:flex;align-items:center;gap:5px;color:#111827}
+.rate-flag{width:16px;height:11px;object-fit:cover;display:block;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.rate-value{font-family:Roboto,Arial,sans-serif;color:#ff4b00;font-weight:800;white-space:nowrap}
+.rate-delta{color:#1f2937;font-weight:600}
+.rate-more{display:flex;justify-content:flex-end;margin-top:9px;color:#0067ff;font-size:11px;font-weight:700}
+.cs-num{font-size:30px;font-weight:900;color:var(--rose);font-family:'Roboto',sans-serif;line-height:1.1;margin-bottom:14px}
+.cs-hours{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;margin-bottom:14px;color:#8B94A3;font-size:12px;line-height:1.45}
+.cs-hours strong{color:#8B94A3;font-weight:900;white-space:nowrap}
+.cs-shortcuts{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.cs-shortcut{display:inline-flex;align-items:center;gap:6px;color:#6B7280;font-size:12px;font-weight:900;text-decoration:none}
+.cs-shortcut i{width:16px;height:16px;border-radius:50%;background:#1f2530;color:#fff;display:grid;place-items:center;font-size:8px}
 .cs-btns{display:flex;gap:8px;margin-top:14px}
 .cs-btn{flex:1;padding:9px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .1s}
 .cs-btn:hover{background:var(--bg)}
@@ -569,7 +554,6 @@ button.user-menu-item{
   .banner-wrap{margin:0}
   .best-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.rv-grid{grid-template-columns:repeat(2,1fr)}
   .info-grid{grid-template-columns:1fr}
-  .exchange-floating{display:none}
   .mb-tiers{flex-wrap:wrap}
 }
 @media(max-width:767px){
@@ -759,7 +743,7 @@ button.user-menu-item{
               <span class="slide-tag">안심 케어 패키지</span>
               <h2 class="slide-title">최대 50,000원<br>보상 서비스</h2>
               <p class="slide-sub">업계 최고 수준의 케어 서비스로 최대 5만엔 상당 보상을 지원합니다.</p>
-              <button class="slide-cta">상세 더보기 <i class="fas fa-arrow-right"></i></button>
+              <button class="slide-cta">상세보기 <i class="fas fa-arrow-right"></i></button>
             </div>
             <div class="slide-obj"><i class="fas fa-shield-heart"></i></div>
           </div>
@@ -805,9 +789,9 @@ button.user-menu-item{
           <div class="pu-st"><div class="pu-st-label">2차 결제 대기</div><div class="pu-st-num">0건</div></div>
         </div>
         <div class="pu-btns">
-          <button class="pu-btn">고객센터</button>
-          <button class="pu-btn">나의 계좌관리</button>
-          <button class="pu-btn">공지사항<sup class="new-n" aria-label="새 소식">N</sup></button>
+          <button class="pu-btn" type="button" onclick="openbidbuycsPopup()">고객센터</button>
+          <button class="pu-btn" type="button" onclick="openaccountPopup()">나의 계좌관리</button>
+          <button class="pu-btn" type="button" onclick="openbidbuynoticePopup()">공지사항<sup class="new-n" aria-label="새 소식">N</sup></button>
         </div>
       </div>
     </div>
@@ -825,7 +809,7 @@ button.user-menu-item{
       <div class="mb-tier"><div class="mb-tier-name" style="color:var(--amber)">Premium</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 1만원</div></div>
       <div class="mb-tier"><div class="mb-tier-name" style="color:var(--rose)">VIP</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 2만원</div></div>
     </div>
-    <button class="mb-detail-btn">상세 더보기</button>
+    <a class="mb-detail-btn" href="web_grade_page.html">상세보기</a>
   </div>
 </div>
 
@@ -837,9 +821,9 @@ button.user-menu-item{
     <div class="sc-item"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
     <div class="sc-item"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openMarketInfoPopup()" onkeydown="handleShortcutKey(event, openMarketInfoPopup)"><div class="sc-icon si5"><i class="fas fa-thumbs-up"></i></div><span class="sc-lbl">환율·운영정보</span></div>
-    <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="handleShortcutKey(event, openConvenienceToolsPopup)"><div class="sc-icon si6"><i class="fas fa-gift"></i></div><span class="sc-lbl">편의도구</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="handleShortcutKey(event, openConvenienceToolsPopup)"><div class="sc-icon si6"><i class="fas fa-toolbox"></i></div><span class="sc-lbl">편의도구</span></div>
     <div class="sc-item" onclick="location.href='web_mileage.html'" style="cursor:pointer"><div class="sc-icon si7"><i class="fas fa-ticket"></i></div><span class="sc-lbl">마일리지/쿠폰</span></div>
-    <div class="sc-item"><div class="sc-icon si8"><i class="fas fa-clipboard-list"></i></div><span class="sc-lbl">이용가이드</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openbidbuycsPopup()" onkeydown="handleShortcutKey(event, openbidbuycsPopup)"><div class="sc-icon si8"><i class="fas fa-clipboard-list"></i></div><span class="sc-lbl">자주하는질문</span></div>
     <div class="sc-item"><div class="sc-icon si9"><i class="fas fa-plane-departure"></i></div><span class="sc-lbl">배송조회</span></div>
     <div class="sc-item"><div class="sc-icon si10"><i class="fas fa-users"></i></div><span class="sc-lbl">커뮤니티</span></div>
   </div>
@@ -894,16 +878,6 @@ button.user-menu-item{
   </div>
 </div>
 
-<aside class="exchange-floating" aria-label="환율정보 소메뉴">
-  <div class="exchange-floating-arrow top"><i class="fas fa-chevron-up" aria-hidden="true"></i></div>
-  <div class="exchange-floating-list" aria-label="환율정보">
-    <div class="exchange-floating-item"><span class="exchange-floating-code">JPY</span><span class="exchange-floating-value">9.5원</span></div>
-    <div class="exchange-floating-item"><span class="exchange-floating-code">USD</span><span class="exchange-floating-value">1530원</span></div>
-    <div class="exchange-floating-item"><span class="exchange-floating-code">GBP</span><span class="exchange-floating-value">2050원</span></div>
-  </div>
-  <div class="exchange-floating-arrow bottom"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
-</aside>
-    
 <!-- 공지+CS -->
 <div class="section" style="padding-top:0">
   <div class="info-grid">
@@ -914,44 +888,29 @@ button.user-menu-item{
       <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 쇼와의 날(4/29) 휴무에 따른 배송 스케줄 안내</span><span class="notice-date">26.03.25</span></div>
     </div>
     <div class="info-card">
-      <div class="cs-title-row">
-        <h3 class="info-title">고객센터</h3>
-        <button class="cs-check-btn" type="button">자주하는 질문</button>
+      <div class="rate-title">고시환율</div>
+      <p class="rate-desc">관세청에서 관/부가세 계산시 적용되는 환율로 주 단위로 고시되며,<br>매주 금요일에 다음 주 (월~토) 적용 환율을 고시합니다.</p>
+      <div class="rate-period">고시시간 2026-07-14 12:30:00</div>
+      <div class="rate-list" aria-label="고시환율 목록">
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_usa.png" alt="">USD</span><span class="rate-value">1,522.44 </span></div>
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_jp.png" alt="">JPY</span><span class="rate-value">9.39 </span></div>
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_uk.png" alt="">GBP</span><span class="rate-value">2,037.08 </span></div>
       </div>
-      <div class="cs-num">1544-5224</div>
-      <div class="cs-info">FAX: 070-4009-0304<br>MAIL: korea@bidbuy.co.kr<br><br>평일 업무시간 AM 10:00 ~ PM 17:00<br>(점심시간 PM 12:30 ~ PM 13:30)</div>
     </div>
     <div class="info-card">
-      <h3 class="info-title info-office-title">사무실 운영정보</h3>
-      <div class="info-office-grid" aria-label="나라별 근무시간">
-        <div class="office-card" data-office-timezone="Asia/Seoul">
-          <div class="office-row-left">
-            <span class="office-branch">한국 사무실</span>
-            <span class="office-time">-</span>
-          </div>
-          <div class="office-status">업무중</div>
-        </div>
-        <div class="office-card" data-office-timezone="Asia/Tokyo">
-          <div class="office-row-left">
-            <span class="office-branch">오사카 사무실</span>
-            <span class="office-time">-</span>
-          </div>
-          <div class="office-status">업무중</div>
-        </div>
-        <div class="office-card" data-office-timezone="America/Los_Angeles">
-          <div class="office-row-left">
-            <span class="office-branch">캘리포니아 사무실</span>
-            <span class="office-time">-</span>
-          </div>
-          <div class="office-status">업무중</div>
-        </div>
-        <div class="office-card" data-office-timezone="Europe/London">
-          <div class="office-row-left">
-            <span class="office-branch">런던 사무실</span>
-            <span class="office-time">-</span>
-          </div>
-          <div class="office-status">업무중</div>
-        </div>
+      <h3 class="info-title">고객센터</h3>
+      <div class="cs-num">1544 - 5224</div>
+      <div class="cs-hours">
+        <strong>운영시간</strong>
+        <span>평일 10시~17시</span>
+        <strong>점심시간</strong>
+        <span>PM 12:30 - PM 13:30</span>
+        <strong>휴일</strong>
+        <span>주말/공휴일</span>
+      </div>
+      <div class="cs-shortcuts">
+        <a class="cs-shortcut" href="https://www.bidbuy.co.kr/cs">전화문의전 클릭 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+        <a class="cs-shortcut" href="web_qna_form.html">1:1문의 바로가기 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
@@ -1142,31 +1101,6 @@ button.user-menu-item{
   <div class="market-info-popup" role="dialog" aria-modal="true" aria-label="환율정보 및 나라별 근무시간">
     <button class="market-info-close" type="button" aria-label="닫기" onclick="closeMarketInfoPopup()"><i class="fas fa-times" aria-hidden="true"></i></button>
     <div class="market-info-body">
-      <table class="exchange-table" aria-label="환율정보">
-        <thead>
-          <tr>
-            <th>국가(통화)</th>
-            <th>비드바이환율</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="exchange-flag">🇯🇵</span>1 JPY</td>
-            <td class="exchange-rate">9.5 원</td>
-          </tr>
-          <tr>
-            <td><span class="exchange-flag">🇺🇸</span>1 USD</td>
-            <td class="exchange-rate">1530 원</td>
-          </tr>
-          <tr>
-            <td><span class="exchange-flag">🇬🇧</span>1 GBP</td>
-            <td class="exchange-rate">2050 원</td>
-          </tr>
-          <tr>
-            <td class="exchange-time" colspan="2">고시시간 <span class="exchange-published-at">-</span></td>
-          </tr>
-        </tbody>
-      </table>
       <div class="office-grid" aria-label="나라별 근무시간">
         <div class="office-card" data-office-timezone="Asia/Seoul">
           <div class="office-status">업무중</div>
@@ -1322,6 +1256,18 @@ function openCustomsTaxPopup(){
   const url = 'https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do';
   window.open(url, 'customsTaxCalculation', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
 }
+function openbidbuycsPopup(){
+  const url = 'https://www.bidbuy.co.kr/cs';
+  window.open(url, 'bidbuycs', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+}
+function openbidbuynoticePopup(){
+  const url = 'https://www.bidbuy.co.kr/cs/notice';
+  window.open(url, 'bidbuynotice', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+}
+function openaccountPopup(){
+  const url = 'https://www.bidbuy.co.kr/mypage/account';
+  window.open(url, 'account', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+}
 function openMarketInfoPopup(){
   const popup = document.getElementById('marketInfoPopup');
   if (!popup) return;
@@ -1399,19 +1345,6 @@ function isOfficeOpen(date, timeZone){
 }
 function updateMarketInfo(){
   const now = new Date();
-  const seoul = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
-    timeZone:'Asia/Seoul',
-    year:'numeric',
-    month:'2-digit',
-    day:'2-digit',
-    hour:'2-digit',
-    minute:'2-digit',
-    second:'2-digit',
-    hour12:false,
-  }).formatToParts(now).map(part => [part.type, part.value]));
-  document.querySelectorAll('.exchange-published-at').forEach(published => {
-    published.textContent = `${seoul.year}-${seoul.month}-${seoul.day} ${seoul.hour}:${seoul.minute}:${seoul.second}`;
-  });
   document.querySelectorAll('.office-card[data-office-timezone]').forEach(card => {
     const timeZone = card.dataset.officeTimezone;
     const open = isOfficeOpen(now, timeZone);
