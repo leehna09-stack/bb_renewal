@@ -661,9 +661,9 @@
         </div>
 
         <div class="bid-list" data-bid-panel="bidding">
-          <article class="bid-row">
+          <article class="bid-row" data-live-bid="true">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중 · 종료</span>
+              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중</span>
               <span class="bid-oid">EBAY · 375604375357</span>
             </div>
             <div class="bid-body">
@@ -677,20 +677,20 @@
                 <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">2024.09.01 10:29</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv">조회를 눌러주세요</span></div>
-                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv">종료</span></div>
+                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv bid-current-price">조회를 눌러주세요</span></div>
+                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv bid-time-left">-</span></div>
                 <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">조회를 눌러주세요</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
+                <button class="btn-view" type="button" data-refresh-bid>조회</button>
                 <button class="btn-rebid" type="button">재입찰</button>
               </div>
             </div>
           </article>
 
-          <article class="bid-row">
+          <article class="bid-row" data-live-bid="true">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중 · 종료</span>
+              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중</span>
               <span class="bid-oid">EBAY · 297323435868</span>
             </div>
             <div class="bid-body">
@@ -704,12 +704,12 @@
                 <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">—</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv">조회를 눌러주세요</span></div>
-                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv">종료</span></div>
+                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv bid-current-price">조회를 눌러주세요</span></div>
+                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv bid-time-left">-</span></div>
                 <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">조회를 눌러주세요</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
+                <button class="btn-view" type="button" data-refresh-bid>조회</button>
                 <button class="btn-rebid" type="button">재입찰</button>
               </div>
             </div>
@@ -738,7 +738,7 @@
                 <div class="bid-meta-row"><span class="ml">최고입찰자</span><span class="mv">타 회원</span></div>
               </div>
               <div class="bid-actions">
-                <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
+                <button class="btn-view" type="button" onclick="location.href='web_auction.html'">상세보기</button>
               </div>
             </div>
           </article>
@@ -780,6 +780,54 @@
         bidPanels.forEach((panel) => {
           panel.style.display = panel.dataset.bidPanel === target ? "grid" : "none";
         });
+      });
+    });
+
+    function makeRandomTimeLeft() {
+      const days = Math.floor(Math.random() * 4);
+      const hours = Math.floor(Math.random() * 24);
+      const minutes = Math.floor(Math.random() * 60);
+      const seconds = Math.floor(Math.random() * 60);
+      const parts = [];
+      if (days > 0) parts.push(`${days}일`);
+      parts.push(`${hours}시간`, `${minutes}분`, `${seconds}초`);
+      return `${parts.join(" ")} 남음`;
+    }
+
+    function refreshBidTime(row) {
+      const time = row.querySelector(".bid-time-left");
+      if (time) time.textContent = makeRandomTimeLeft();
+    }
+
+    function getBidAmount(row) {
+      const bidText = Array.from(row.querySelectorAll(".bid-meta-row"))
+        .find((item) => item.querySelector(".ml")?.textContent.trim() === "입찰금액")
+        ?.querySelector(".mv")?.textContent || "";
+      const symbol = bidText.includes("￥") ? "￥" : bidText.includes("$") ? "$" : "";
+      const amount = Number((bidText.match(/[$￥]?\s*([\d,]+)/)?.[1] || "0").replace(/,/g, "")) || 0;
+      return { symbol, amount };
+    }
+
+    function formatBidPrice(symbol, amount) {
+      return `${symbol}${amount.toLocaleString("ko-KR")}`;
+    }
+
+    function refreshBidCurrentPrice(row) {
+      const target = row.querySelector(".bid-current-price");
+      if (!target) return;
+      const bid = getBidAmount(row);
+      const base = bid.amount > 0 ? bid.amount : 1;
+      const increment = Math.max(1, Math.ceil(base * (0.08 + Math.random() * 0.32)));
+      const current = bid.amount + increment;
+      const bidders = Math.floor(Math.random() * 12) + 2;
+      target.textContent = `${formatBidPrice(bid.symbol, current)} / ${bidders}명`;
+    }
+
+    document.querySelectorAll("[data-live-bid='true']").forEach((row) => {
+      refreshBidTime(row);
+      row.querySelector("[data-refresh-bid]")?.addEventListener("click", () => {
+        refreshBidTime(row);
+        refreshBidCurrentPrice(row);
       });
     });
   </script>

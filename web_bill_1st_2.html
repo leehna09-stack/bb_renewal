@@ -178,6 +178,8 @@
   .btn-primary:hover { background: #152f58; }
   .btn-cancel  { background: #aaa; color: #fff; }
   .btn-cancel:hover { background: #888; }
+  .bill-panel .btn-area { margin: 0; padding: 14px 18px 18px; border-top: 1px solid #dde1e7; background: #fff; }
+  .bill-panel .btn { flex: 1; padding: 11px 0; font-size: 13px; }
   .modal-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.45); opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; z-index: 1000; }
   .modal-overlay.is-open { opacity: 1; visibility: visible; }
   .modal { width: min(560px,100%); background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.18); }
@@ -391,10 +393,6 @@
         </div>
       </div>
 
-      <div class="btn-area">
-        <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제취소</button>
-        <button class="btn btn-primary" type="button" id="btnApproveFinal">결제승인</button>
-      </div>
     </div>
 
     <!-- 우측 1차 결제 비용 패널 (sticky) -->
@@ -485,6 +483,10 @@
             </div>
             <p class="benefit-note" style="margin-top:8px;">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
           </div>
+        </div>
+        <div class="btn-area">
+          <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제취소</button>
+          <button class="btn btn-primary" type="button" id="btnApproveFinal">결제승인</button>
         </div>
       </div>
     </div>

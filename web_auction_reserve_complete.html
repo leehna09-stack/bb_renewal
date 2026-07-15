@@ -148,7 +148,11 @@
     .item-name { color: #151922; font-size: 14px; font-weight: 800; margin: 0 0 8px; }
     .item-meta { display: grid; gap: 3px; color: var(--muted); font-size: 12px; }
     .item-meta b { color: #5a5e66; font-weight: 800; margin-right: 6px; }
-    .item-meta .seller-good { color: var(--navy); font-weight: 700; }
+    .seller-rating-count { color: var(--navy); font-weight: 700; margin-right: 6px; }
+    .rating-badge { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; vertical-align: middle; }
+    .rating-badge.good { background: #EAF3FF; color: #1E6FD9; }
+    .rating-badge.bad { background: #FDECEC; color: #D64545; }
+    .rating-badge i { font-size: 10px; }
 
     /* ── 액션 ── */
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 34px; }
@@ -252,7 +256,7 @@
   <div class="result-box">
     <div class="result-row"><b>예약입찰금액</b><span class="val amount" id="rsAmount">¥ 92,000 <span class="sub">(약 ₩837,200)</span></span></div>
     <div class="result-row qty-result-row"><b>예약입찰 수량</b><span class="val" id="rsQty">1개</span></div>
-    <div class="result-row"><b>예약일시</b><span class="val" id="rsReserveAt">입찰종료 1시간 전</span></div>
+    <div class="result-row"><b>예약일시</b><span class="val" id="rsReserveAt">2026-06-14 11:12:12 <span class="sub">(종료 1시간 전)</span></span></div>
     <div class="result-row"><b>경매낙찰정보</b><span class="val" id="rsOpen">공개</span></div>
     <div class="result-row"><b>예약 신청시각</b><span class="val" id="rsBidTime">2026-06-12 21:22:10</span></div>
     <div class="result-row"><b>경매 종료시간</b><span class="val" id="rsEndTime">2026-06-14 12:12:12</span></div>
@@ -269,7 +273,7 @@
       <p class="item-name">소니 렌즈 신품미사용! FE PZ 16-35mm F4 G SELP1635G</p>
       <div class="item-meta">
         <span><b>물품아이디</b>v1135509199 (옵션명)</span>
-        <span><b>출품자</b>bookoff2014 <span class="seller-good">(평가 1,372,983 · 좋은 평가 98%)</span></span>
+        <span><b>출품자</b>bookoff2014 <span class="seller-rating-count">(1,372,983)</span><span class="rating-badge good"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> 좋은평가 1,345,523</span><span class="rating-badge bad"><i class="fa-solid fa-thumbs-down" aria-hidden="true"></i> 나쁜평가 27,460</span></span>
         <span><b>예약신청일시</b><span id="bidTime">2026-06-12 21:22:10</span></span>
       </div>
     </div>
@@ -303,6 +307,7 @@
   const qty = p.get('qty');
   const open = p.get('open');
   const reserveAt = p.get('reserveAt');
+  const reserveOffset = p.get('reserveOffset');
   const KRW_RATE = 9.1;
 
   if (bid > 0) {
@@ -311,7 +316,10 @@
   }
   if (qty) document.getElementById('rsQty').textContent = qty + '개';
   if (open) document.getElementById('rsOpen').textContent = open;
-  if (reserveAt) document.getElementById('rsReserveAt').textContent = reserveAt;
+  if (reserveAt) {
+    document.getElementById('rsReserveAt').innerHTML =
+      reserveAt + (reserveOffset ? ' <span class="sub">(' + reserveOffset + ')</span>' : '');
+  }
 
   const now = new Date();
   const pad = n => String(n).padStart(2, '0');

@@ -328,7 +328,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 
 /* ── 상단/하단 구분 ── */
 
-/* ── 출품자 다른 상품 (상단 우측 패널) ── */
+/* ── 판매자 다른 상품 (상단 우측 패널) ── */
 .seller-other{margin-top:16px}
 .seller-other-title{font-size:13px;font-weight:700;color:var(--tp);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .seller-other-title span{display:flex;align-items:center;gap:6px}
@@ -602,7 +602,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 <!-- 상품 메인 영역 -->
 <div class="item-wrapper">
 
-  <!-- 좌(4): 이미지 갤러리 + 출품자 정보 + 출품자 다른 상품 -->
+  <!-- 좌(4): 이미지 갤러리 + 판매자 정보 + 판매자 다른 상품 -->
   <div class="gallery-area">
     <div class="gallery-main" id="galleryMain" onclick="openLightbox()" style="cursor:zoom-in">
       <img class="gallery-main-img" id="galleryMainImg" src="https://picsum.photos/seed/bts1/600/600" alt="상품 이미지">
@@ -620,7 +620,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <button class="gallery-nav" type="button" onclick="lbNext();event.stopPropagation()" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
-    <!-- 출품자 정보 -->
+    <!-- 판매자 정보 -->
     <div class="seller-card">
       <div class="seller-avatar">다</div>
       <div class="seller-info">
@@ -630,7 +630,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
           <span class="seller-rating-label">판매자평가</span>
           <span>Good : 2,283&nbsp;&nbsp;Bad : 0</span>
         </div>
-      <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심출품자</button>
+      <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심 판매자</button>
       </div>
     </div>
 
@@ -658,10 +658,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <div class="local-delivery-box">
               <table class="local-delivery-table">
                 <tr><th>판매가격</th><td><span class="roboto" style="font-size:24px;font-weight:700;color:var(--navy);line-height:1.2">1,496<span style="font-size:14px;margin-left:2px">円</span></span></td></tr>
-                <tr><th>현지운송료</th><td><span class="roboto">660円</span></td></tr>
+                <tr><th>현지배송비</th><td><span class="roboto">660円</span></td></tr>
                 <tr><th>카테고리</th><td>핸드메이드·수예 &gt; 가방 &gt; 토트 백</td></tr>
                 <tr><th>상품 상태</th><td>신품, 미사용</td></tr>
-                <tr><th>배송료 부담</th><td>배송비 포함 (출품자 부담)</td></tr>
+                <tr><th>배송료 부담</th><td>배송비 포함 (판매자 부담)</td></tr>
                 <tr><th>배송 방법</th><td>유유 메르카리 항공편</td></tr>
                 <tr><th>발송지역</th><td>사이타마현</td></tr>
                 <tr><th>발송까지의 일수</th><td>2~3일에 발송</td></tr>
@@ -714,7 +714,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 판매가격</span><span class="cost-val roboto" id="pPrimaryVal">(¥5,000) ₩46,500</span></div>
             <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 대행수수료</span><span class="cost-val roboto" id="pServiceFeeVal">(¥500) ₩4,650</span></div>
             <div class="cost-subtitle">2차 결제 비용</div>
-            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지운송료</span><span class="cost-val roboto" id="pLocalShippingVal">(¥660) ₩6,138</span></div>
+            <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지배송비</span><span class="cost-val roboto" id="pLocalShippingVal">(¥660) ₩6,138</span></div>
             <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 현지세금</span><span class="cost-val roboto" id="pLocalTaxVal">(¥0) ₩0</span></div>
             <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 국제운송료</span><span class="cost-val roboto" id="pIntlShippingVal">(¥2,400) ₩22,320</span></div>
             <div class="cost-row"><span class="cost-label"><span class="cost-sign">+</span> 기타비용</span><span class="cost-val roboto" id="pOtherFeeVal">(¥300) ₩2,790</span></div>
@@ -734,11 +734,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   </div>
 </div>
 
-<!-- 출품자의 다른 상품 (구분선 위 독립 섹션) -->
+<!-- 판매자의 다른 상품 (구분선 위 독립 섹션) -->
 <div class="seller-other-panel">
   <div class="seller-other-panel-card">
     <div class="seller-other-panel-head">
-      <span><i class="fa-solid fa-box-open"></i> 출품자의 다른 상품</span>
+      <span><i class="fa-solid fa-box-open"></i> 판매자의 다른 상품</span>
       <span class="seller-other-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:9px"></i></span>
     </div>
     <div class="seller-other-panel-body">
@@ -828,19 +828,19 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <span class="qa-history-num">13번 질문</span>
             <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
             <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-wait">출품자 답변 대기</button>
+            <button class="qa-history-badge qa-badge-wait">판매자 답변 대기</button>
           </div>
           <div class="qa-history-item">
             <span class="qa-history-num">13번 질문</span>
             <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
             <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-confirm">출품자 답변 확인</button>
+            <button class="qa-history-badge qa-badge-confirm">판매자 답변 확인</button>
           </div>
           <div class="qa-history-item">
             <span class="qa-history-num">13번 질문</span>
             <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
             <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-view">출품자 답변 보기</button>
+            <button class="qa-history-badge qa-badge-view">판매자 답변 보기</button>
           </div>
         </div>
 

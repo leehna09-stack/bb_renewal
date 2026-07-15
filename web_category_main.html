@@ -102,10 +102,12 @@
     main { width: min(calc(100vw - 40px), var(--page-w)); margin: 0 auto; padding-bottom: 56px; }
 
     /* ── Category bar ── */
-    .category-bar { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 24px; }
+    .category-bar { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
     .category-bar-title { color: var(--rose); font-size: 20px; font-weight: 900; }
     .category-bar-label { color: var(--muted); font-size: 13px; font-weight: 700; }
     .category-bar-select { height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; }
+    .category-bar-arrow { color: var(--muted); font-size: 11px; }
+    .category-bar .is-hidden { display: none !important; }
 
     /* ── Filter panel ── */
     .filter-panel { padding: 20px; border: 1px solid #e2e2e2; border-radius: 10px; background: #fff; }
@@ -285,7 +287,15 @@
     <div class="category-bar">
       <strong class="category-bar-title">장난감, 게임</strong>
       <span class="category-bar-label">하위 카테고리</span>
-      <select class="category-bar-select" aria-label="하위 카테고리 선택" data-category-bar-select>
+      <select class="category-bar-select" aria-label="하위 카테고리 선택 1" data-category-level="1">
+        <option value="">선택하세요</option>
+      </select>
+      <i class="fas fa-chevron-right category-bar-arrow is-hidden" aria-hidden="true" data-category-arrow="2"></i>
+      <select class="category-bar-select is-hidden" aria-label="하위 카테고리 선택 2" data-category-level="2">
+        <option value="">선택하세요</option>
+      </select>
+      <i class="fas fa-chevron-right category-bar-arrow is-hidden" aria-hidden="true" data-category-arrow="3"></i>
+      <select class="category-bar-select is-hidden" aria-label="하위 카테고리 선택 3" data-category-level="3">
         <option value="">선택하세요</option>
       </select>
     </div>
@@ -294,6 +304,11 @@
     <!-- 왼쪽: 검색 필터 사이드바 -->
     <section class="filter-panel" aria-label="검색 필터">
       <h2 class="filter-title">검색 필터</h2>
+
+      <div class="filter-block">
+        <div class="filter-block-title">키워드</div>
+        <input type="text" class="filter-text-input" placeholder="검색어를 입력하세요" aria-label="키워드 검색">
+      </div>
 
       <div class="filter-block">
         <div class="filter-block-title">가격</div>
@@ -341,10 +356,13 @@
       <div class="result-header">
         <h1 class="result-title">전체 <span class="red">4,788,005</span> 건</h1>
         <select class="sort-select" aria-label="정렬">
-          <option>인기순</option>
+          <option>인기상품순</option>
+          <option>마감임박순</option>
           <option>낮은가격순</option>
           <option>높은가격순</option>
-          <option>신규등록순</option>
+          <option>입찰수높은순</option>
+          <option>입찰수낮은순</option>
+          <option>신상품순</option>
         </select>
       </div>
 
@@ -487,13 +505,80 @@
       });
     });
 
-    // ── 하위 카테고리 드롭다운 ──
-    const subCategories = ["피규어", "프라모델", "RC카/드론", "보드게임", "비디오게임", "트레이딩카드", "퍼즐"];
-    const categorySelect = document.querySelector("[data-category-bar-select]");
-    subCategories.forEach(name => {
+    // ── 하위 카테고리 드롭다운(최대 3단계, 선택시 다음 단계가 화살표로 이어짐) ──
+    const categoryTree = {
+      "피규어": {
+        "특수 촬영": ["로봇 영웅", "가면라이더", "울트라맨"],
+        "애니메이션": ["원피스", "나루토", "드래곤볼"],
+        "게임 캐릭터": ["포켓몬", "젤다", "마리오"]
+      },
+      "프라모델": {
+        "건프라": ["MG", "RG", "HG"],
+        "자동차": ["미니카", "다이캐스트", "슈퍼카"]
+      },
+      "RC카/드론": {},
+      "보드게임": {},
+      "비디오게임": {},
+      "트레이딩카드": {},
+      "퍼즐": {}
+    };
+
+    const categorySelects = {
+      1: document.querySelector('[data-category-level="1"]'),
+      2: document.querySelector('[data-category-level="2"]'),
+      3: document.querySelector('[data-category-level="3"]')
+    };
+    const categoryArrows = {
+      2: document.querySelector('[data-category-arrow="2"]'),
+      3: document.querySelector('[data-category-arrow="3"]')
+    };
+
+    Object.keys(categoryTree).forEach(name => {
       const opt = document.createElement("option");
       opt.textContent = name;
-      categorySelect.append(opt);
+      categorySelects[1].append(opt);
+    });
+
+    function resetCategorySelect(select) {
+      select.innerHTML = '<option value="">선택하세요</option>';
+    }
+
+    function hideCategoryLevel(level) {
+      resetCategorySelect(categorySelects[level]);
+      categorySelects[level].classList.add("is-hidden");
+      categoryArrows[level].classList.add("is-hidden");
+    }
+
+    function showCategoryLevel(level, options) {
+      resetCategorySelect(categorySelects[level]);
+      options.forEach(name => {
+        const opt = document.createElement("option");
+        opt.textContent = name;
+        categorySelects[level].append(opt);
+      });
+      categorySelects[level].classList.remove("is-hidden");
+      categoryArrows[level].classList.remove("is-hidden");
+    }
+
+    categorySelects[1].addEventListener("change", () => {
+      hideCategoryLevel(3);
+      const children = categoryTree[categorySelects[1].value];
+      const childNames = children ? Object.keys(children) : [];
+      if (childNames.length) {
+        showCategoryLevel(2, childNames);
+      } else {
+        hideCategoryLevel(2);
+      }
+    });
+
+    categorySelects[2].addEventListener("change", () => {
+      const parent = categoryTree[categorySelects[1].value] || {};
+      const children = parent[categorySelects[2].value];
+      if (children && children.length) {
+        showCategoryLevel(3, children);
+      } else {
+        hideCategoryLevel(3);
+      }
     });
 
     // ── Product card navigation ──

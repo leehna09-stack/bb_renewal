@@ -550,10 +550,27 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .reserve-label{font-size:13px;font-weight:800;color:var(--ts)}
 .reserve-select,.reserve-date{width:100%;height:42px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--tp);font-family:inherit;font-size:13px;padding:0 12px;outline:none}
 .reserve-select:focus{border-color:var(--navy)}
-.reserve-date{display:flex;align-items:center;font-weight:800;background:#FAFBFC}
+.reserve-date{display:flex;align-items:center;gap:6px;font-weight:800;background:#FAFBFC}
+.reserve-date-wrap{display:flex;align-items:center;gap:8px}
+.reserve-date-wrap .reserve-date{flex:1}
+.reserve-date-offset{font-size:12px;font-weight:600;color:var(--ts)}
+.reserve-date-edit{flex:0 0 auto;width:42px;height:42px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--navy);font-size:15px;cursor:pointer;display:grid;place-items:center}
+.reserve-date-edit:hover{background:var(--bg)}
 .reserve-guide{margin:0;padding:12px 14px;border-radius:10px;background:#FFF8E8;color:#76624B;font-size:12px;line-height:1.7}
 .reserve-guide strong{color:var(--rose);font-weight:900}
 .confirm-modal-cancel{background:#fff;color:var(--ts);border:1px solid var(--border);border-radius:5px;padding:12px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-right:8px; width: 200px}
+
+/* 예약일시 직접 수정 팝업 */
+.rde-modal-card{width:min(360px,calc(100vw - 32px))}
+.rde-date-row{margin-bottom:14px}
+.rde-date-input{width:100%;height:44px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--tp);font-family:inherit;font-size:14px;font-weight:700;padding:0 12px;outline:none}
+.rde-date-input:focus{border-color:var(--navy)}
+.rde-time-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px}
+.rde-time-input{width:56px;height:44px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--tp);font-family:inherit;font-size:15px;font-weight:700;text-align:center;outline:none}
+.rde-time-input:focus{border-color:var(--navy)}
+.rde-time-unit{font-size:13px;font-weight:700;color:var(--ts);margin-right:2px}
+.rde-actions{display:flex;justify-content:center;gap:8px}
+.rde-actions .confirm-modal-confirm,.rde-actions .confirm-modal-cancel{width:130px;padding:11px 0;margin:0}
 
 /* ── 경매 하단 아코디언 ── */
 .auction-accordions{max-width:1440px;margin:0 auto;padding:20px 24px 0;display:flex;flex-direction:column;gap:8px}
@@ -1528,17 +1545,23 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <div class="reserve-row">
           <label class="reserve-label" for="reserveOffsetSelect">예약시점</label>
           <select class="reserve-select" id="reserveOffsetSelect" onchange="updateReserveBidDate()">
-            <option value="30">종료 30초전</option>
-            <option value="60">종료 1분전</option>
-            <option value="300">종료 5분전</option>
-            <option value="600">종료 10분전</option>
-            <option value="1800">종료 30분전</option>
-            <option value="3600" selected>종료 1시간전</option>
+            <option value="30">종료 30초 전</option>
+            <option value="60">종료 1분 전</option>
+            <option value="300">종료 5분 전</option>
+            <option value="600">종료 10분 전</option>
+            <option value="1800">종료 30분 전</option>
+            <option value="3600" selected>종료 1시간 전</option>
           </select>
         </div>
         <div class="reserve-row">
           <span class="reserve-label">예약일시</span>
-          <div class="reserve-date" id="reserveBidDate">2026-06-10 21:34:00</div>
+          <div class="reserve-date-wrap">
+            <div class="reserve-date">
+              <span id="reserveBidDate">2026-06-10 21:34:00</span>
+              <span class="reserve-date-offset" id="reserveOffsetLabel">(종료 1시간 전)</span>
+            </div>
+            <button class="reserve-date-edit" type="button" onclick="openReserveDateEditor()" aria-label="예약일시 직접 수정"><i class="fa-regular fa-calendar" aria-hidden="true"></i></button>
+          </div>
         </div>
       </div>
       <p class="reserve-guide">
@@ -1548,6 +1571,29 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <div class="confirm-modal-actions">
         <button class="confirm-modal-cancel" type="button" onclick="closeReserveBidModal()">취소</button>
         <button class="confirm-modal-confirm" type="button" onclick="submitReserveBidSetting()"><i class="fas fa-clock-rotate-left"></i> 예약입찰</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-modal" id="reserveDateEditModal" onclick="closeReserveDateEditor(event)">
+  <div class="confirm-modal-card rde-modal-card" onclick="event.stopPropagation()">
+    <div class="confirm-modal-head">
+      <strong>예약일시 직접 수정</strong>
+      <button class="confirm-modal-close" type="button" onclick="closeReserveDateEditor()">&times;</button>
+    </div>
+    <div class="confirm-modal-body">
+      <div class="rde-date-row">
+        <input type="date" class="rde-date-input" id="rdeDateInput" aria-label="예약 날짜">
+      </div>
+      <div class="rde-time-row">
+        <input type="number" class="rde-time-input" id="rdeHour" min="0" max="23" aria-label="예약 시"><span class="rde-time-unit">시</span>
+        <input type="number" class="rde-time-input" id="rdeMinute" min="0" max="59" aria-label="예약 분"><span class="rde-time-unit">분</span>
+        <input type="number" class="rde-time-input" id="rdeSecond" min="0" max="59" aria-label="예약 초"><span class="rde-time-unit">초</span>
+      </div>
+      <div class="rde-actions">
+        <button class="confirm-modal-confirm" type="button" onclick="confirmReserveDateEdit()">확인</button>
+        <button class="confirm-modal-cancel" type="button" onclick="closeReserveDateEditor()">취소</button>
       </div>
     </div>
   </div>
@@ -1892,15 +1938,44 @@ function formatDateTime(date){
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 }
 
+function formatOffsetLabel(reserveDate, auctionEnd){
+  const diffSeconds = Math.max(0, Math.round((auctionEnd.getTime() - reserveDate.getTime()) / 1000));
+  const hours = Math.floor(diffSeconds / 3600);
+  const minutes = Math.floor((diffSeconds % 3600) / 60);
+  const seconds = diffSeconds % 60;
+  const parts = [];
+  if(hours) parts.push(hours + '시간');
+  if(minutes) parts.push(minutes + '분');
+  if(!hours && !minutes) parts.push(seconds + '초');
+  return '종료 ' + parts.join(' ') + ' 전';
+}
+
+function updateReserveOffsetLabel(reserveDate){
+  const label = document.getElementById('reserveOffsetLabel');
+  if(!label) return;
+  label.textContent = '(' + formatOffsetLabel(reserveDate, getAuctionEndDate()) + ')';
+}
+
+let reserveDateManuallyEdited = false;
+
 function updateReserveBidDate(){
   const select = document.getElementById('reserveOffsetSelect');
   const dateEl = document.getElementById('reserveBidDate');
   if(!select || !dateEl) return '';
+  reserveDateManuallyEdited = false;
   const offsetSeconds = Number(select.value || 3600);
   const reserveDate = new Date(getAuctionEndDate().getTime() - offsetSeconds * 1000);
   const formatted = formatDateTime(reserveDate);
   dateEl.textContent = formatted;
+  updateReserveOffsetLabel(reserveDate);
   return formatted;
+}
+
+function parseReserveBidDate(){
+  const text = document.getElementById('reserveBidDate')?.textContent.trim() || '';
+  const m = text.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/);
+  if(!m) return getAuctionEndDate();
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), Number(m[4]), Number(m[5]), Number(m[6]));
 }
 
 function openReserveBidModal(){
@@ -1913,12 +1988,65 @@ function closeReserveBidModal(event){
   document.getElementById('reserveBidModal')?.classList.remove('open');
 }
 
+function openReserveDateEditor(){
+  const current = parseReserveBidDate();
+  const auctionEnd = getAuctionEndDate();
+  const pad = n => String(n).padStart(2, '0');
+  const dateInput = document.getElementById('rdeDateInput');
+  dateInput.value = `${current.getFullYear()}-${pad(current.getMonth() + 1)}-${pad(current.getDate())}`;
+  dateInput.max = `${auctionEnd.getFullYear()}-${pad(auctionEnd.getMonth() + 1)}-${pad(auctionEnd.getDate())}`;
+  document.getElementById('rdeHour').value = current.getHours();
+  document.getElementById('rdeMinute').value = current.getMinutes();
+  document.getElementById('rdeSecond').value = current.getSeconds();
+  document.getElementById('reserveDateEditModal')?.classList.add('open');
+}
+
+function closeReserveDateEditor(event){
+  if(event && event.target !== event.currentTarget) return;
+  document.getElementById('reserveDateEditModal')?.classList.remove('open');
+}
+
+function confirmReserveDateEdit(){
+  const dateVal = document.getElementById('rdeDateInput').value;
+  const hour = Number(document.getElementById('rdeHour').value);
+  const minute = Number(document.getElementById('rdeMinute').value);
+  const second = Number(document.getElementById('rdeSecond').value);
+
+  if(!dateVal){
+    alert('예약 날짜를 입력해 주세요.');
+    return;
+  }
+  if([hour, minute, second].some(v => Number.isNaN(v)) || hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59){
+    alert('시간을 올바르게 입력해 주세요. (시 0~23, 분/초 0~59)');
+    return;
+  }
+
+  const [y, mo, d] = dateVal.split('-').map(Number);
+  const editedDate = new Date(y, mo - 1, d, hour, minute, second);
+  const auctionEnd = getAuctionEndDate();
+
+  if(editedDate.getTime() > auctionEnd.getTime()){
+    alert('예약일시는 경매 마감시간(' + formatDateTime(auctionEnd) + ')을 넘을 수 없습니다.');
+    return;
+  }
+
+  document.getElementById('reserveBidDate').textContent = formatDateTime(editedDate);
+  updateReserveOffsetLabel(editedDate);
+  reserveDateManuallyEdited = true;
+  closeReserveDateEditor();
+}
+
 function submitReserveBidSetting(){
   const select = document.getElementById('reserveOffsetSelect');
-  const reserveAt = updateReserveBidDate();
+  const reserveAt = reserveDateManuallyEdited
+    ? document.getElementById('reserveBidDate').textContent.trim()
+    : updateReserveBidDate();
+  const reserveOffset = reserveDateManuallyEdited
+    ? formatOffsetLabel(parseReserveBidDate(), getAuctionEndDate())
+    : (select?.options[select.selectedIndex]?.textContent.trim() || '');
   let url = buildAuctionOrderUrl('web_auction_reserve_order.html', 'bid');
   const separator = url.includes('?') ? '&' : '?';
-  url += separator + 'reserveOffset=' + encodeURIComponent(select?.options[select.selectedIndex]?.textContent.trim() || '') + '&reserveAt=' + encodeURIComponent(reserveAt);
+  url += separator + 'reserveOffset=' + encodeURIComponent(reserveOffset) + '&reserveAt=' + encodeURIComponent(reserveAt);
   window.location.href = url;
 }
 
@@ -2105,6 +2233,15 @@ if(bidAmountInput) bidAmountInput.addEventListener('input', updateEstimateCosts)
 
 const bidQtyInput = document.getElementById('bidQtyInput');
 if(bidQtyInput) bidQtyInput.addEventListener('input', updateEstimateCosts);
+
+// 재입찰 등 외부에서 bid/qty 값을 넘겨받아 입찰 입력값에 반영
+(function prefillBidFromQuery(){
+  const params = new URLSearchParams(window.location.search);
+  const bidParam = Number(params.get('bid'));
+  const qtyParam = Number(params.get('qty'));
+  if(bidAmountInput && bidParam > 0) bidAmountInput.value = bidParam;
+  if(bidQtyInput && qtyParam > 0) bidQtyInput.value = qtyParam;
+})();
 
 const buyNowQtyInput = document.getElementById('buyNowQtyInput');
 if(buyNowQtyInput) buyNowQtyInput.addEventListener('input', updateEstimateCosts);

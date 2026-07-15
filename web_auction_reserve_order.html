@@ -288,7 +288,7 @@
     <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>¥1,200</strong> <span class="krw">(₩10,920)</span></span></div>
     <div class="item-summary-row"><b>입찰방식</b><span class="val">예약입찰 <span class="krw">(설정하신 시간에 입력한 금액으로 입찰)</span></span></div>
     <div class="item-summary-row"><b>종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
-    <div class="item-summary-row"><b>예약일시</b><span class="val">입찰종료 1시간 전 <span class="krw">(2026-06-14 11:12:12)</span></span></div>
+    <div class="item-summary-row"><b>예약일시</b><span class="val">2026-06-14 11:12:12 <span class="krw">(종료 1시간 전)</span></span></div>
   </div>
 
   <!-- 1. 예약입찰내용 확인 -->
@@ -298,7 +298,7 @@
       <div class="confirm-row"><b>예약입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩11,830)</span></span></div>
       <div class="confirm-row"><b>예약입찰 수량</b><span class="val" id="cfQty">1개</span></div>
       <div class="confirm-row confirm-packing-row"><b>포장옵션</b><span class="val" id="cfPacking">선택 안함</span></div>
-      <div class="confirm-row"><b>예약일시</b><span class="val" id="cfReserveAt">입찰종료 1시간 전 <span class="sub">(2026-06-14 11:12:12)</span></span></div>
+      <div class="confirm-row"><b>예약일시</b><span class="val" id="cfReserveAt">2026-06-14 11:12:12 <span class="sub">(종료 1시간 전)</span></span></div>
       <div class="confirm-row"><b>경매낙찰정보</b><span class="val">공개</span></div>
     </div>
     <p class="confirm-warn">
@@ -334,8 +334,8 @@ const ORDER_PARAMS = new URLSearchParams(location.search);
 const CONFIRMED_BID = Number(ORDER_PARAMS.get('bid') || 1300);
 const CONFIRMED_QTY = Number(ORDER_PARAMS.get('qty') || 1);
 const CONFIRMED_PACKING = ORDER_PARAMS.get('packing') || '선택 안함';
-const CONFIRMED_RESERVE_AT = ORDER_PARAMS.get('reserveAt') || '입찰종료 1시간 전';
-const CONFIRMED_RESERVE_OFFSET = ORDER_PARAMS.get('reserveOffset') || '';
+const CONFIRMED_RESERVE_AT = ORDER_PARAMS.get('reserveAt') || '2026-06-14 11:12:12';
+const CONFIRMED_RESERVE_OFFSET = ORDER_PARAMS.get('reserveOffset') || '종료 1시간 전';
 const KRW_RATE = 9.1;
 
 function updateConfirmedValues() {
@@ -349,7 +349,7 @@ function updateConfirmedValues() {
   if (cfQty) cfQty.textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
   if (cfPacking) cfPacking.textContent = CONFIRMED_PACKING;
   if (cfReserveAt) {
-    cfReserveAt.innerHTML = (CONFIRMED_RESERVE_OFFSET || '예약입찰') + ' <span class="sub">(' + CONFIRMED_RESERVE_AT + ')</span>';
+    cfReserveAt.innerHTML = CONFIRMED_RESERVE_AT + ' <span class="sub">(' + (CONFIRMED_RESERVE_OFFSET || '예약입찰') + ')</span>';
   }
 }
 

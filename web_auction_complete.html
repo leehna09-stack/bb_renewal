@@ -148,7 +148,11 @@
     .item-name { color: #151922; font-size: 14px; font-weight: 800; margin: 0 0 8px; }
     .item-meta { display: grid; gap: 3px; color: var(--muted); font-size: 12px; }
     .item-meta b { color: #5a5e66; font-weight: 800; margin-right: 6px; }
-    .item-meta .seller-good { color: var(--navy); font-weight: 700; }
+    .seller-rating-count { color: var(--navy); font-weight: 700; margin-right: 6px; }
+    .rating-badge { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; vertical-align: middle; }
+    .rating-badge.good { background: #EAF3FF; color: #1E6FD9; }
+    .rating-badge.bad { background: #FDECEC; color: #D64545; }
+    .rating-badge i { font-size: 10px; }
 
     /* ── 액션 ── */
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 34px; }
@@ -210,6 +214,27 @@
       }
     }
 
+    /* ── 재입찰 팝업 ── */
+    .rebid-modal { position: fixed; inset: 0; background: rgba(17,24,39,.45); display: none; align-items: center; justify-content: center; z-index: 500; }
+    .rebid-modal.open { display: flex; }
+    .rebid-modal-card { width: min(360px, calc(100vw - 32px)); background: #fff; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.18); overflow: hidden; }
+    .rebid-modal-head { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+    .rebid-modal-head strong { font-size: 15px; color: var(--ink); }
+    .rebid-modal-close { border: none; background: none; font-size: 18px; color: var(--faint); cursor: pointer; }
+    .rebid-modal-body { padding: 20px; }
+    .rebid-row { display: grid; grid-template-columns: 72px minmax(0,1fr); align-items: center; gap: 12px; margin-bottom: 14px; }
+    .rebid-row:last-of-type { margin-bottom: 20px; }
+    .rebid-label { font-size: 13px; font-weight: 800; color: var(--muted); }
+    .rebid-input-wrap { display: flex; align-items: center; gap: 8px; height: 42px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; padding: 0 12px; }
+    .rebid-input-wrap:focus-within { border-color: var(--navy); }
+    .rebid-input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: var(--ink); font-family: inherit; font-size: 14px; font-weight: 800; }
+    .rebid-unit { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .rebid-modal-actions { display: flex; justify-content: center; gap: 8px; }
+    .rebid-btn-cancel, .rebid-btn-confirm { flex: 1; height: 44px; border-radius: 5px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .rebid-btn-cancel { background: #fff; color: var(--muted); border: 1px solid var(--line); }
+    .rebid-btn-confirm { background: var(--navy); color: #fff; border: none; }
+    .rebid-btn-confirm:hover { background: #102c50; }
+
     /* ── 안내 ── */
     .notes {
       margin: 0;
@@ -244,7 +269,7 @@
   <!-- 완료 메시지 -->
   <div class="done-head">
     <div class="done-icon"><i class="fas fa-gavel"></i></div>
-    <h2 class="done-title">축하합니다. 경매물품에 <b>입찰이 완료</b>되었습니다.</h2>
+    <h2 class="done-title">경매물품에 <b>입찰이 완료</b>되었습니다.</h2>
     <p class="done-time" id="doneTime">2026-06-12 21:22:10</p>
   </div>
 
@@ -268,12 +293,12 @@
       <p class="item-name">소니 렌즈 신품미사용! FE PZ 16-35mm F4 G SELP1635G</p>
       <div class="item-meta">
         <span><b>물품아이디</b>v1135509199 (옵션명)</span>
-        <span><b>출품자</b>bookoff2014 <span class="seller-good">(평가 1,372,983 · 좋은 평가 98%)</span></span>
+        <span><b>출품자</b>bookoff2014 <span class="rating-badge good"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> 좋은평가 523</span><span class="rating-badge bad"><i class="fa-solid fa-thumbs-down" aria-hidden="true"></i> 나쁜평가 460</span></span>
         <span><b>입찰일시</b><span id="bidTime">2026-06-12 21:22:10</span></span>
       </div>
     </div>
     <div class="item-actions" aria-label="입찰 물품 작업">
-      <button class="item-action-btn primary" type="button" onclick="location.href='web_auction order.html'">재입찰하기 <i class="fas fa-rotate-right"></i></button>
+      <button class="item-action-btn primary" type="button" onclick="openRebidModal()">재입찰하기 <i class="fas fa-rotate-right"></i></button>
       <button class="item-action-btn" type="button" onclick="location.href='web_auction.html'">상세보기 <i class="fas fa-magnifying-glass"></i></button>
       <button class="item-action-btn" type="button" onclick="shareBidItem()">공유하기 <i class="fas fa-share-nodes"></i></button>
     </div>
@@ -292,6 +317,35 @@
     <li>국제배송은 출고 후 항공 기준 통상 3~5일 내 국내 도착하며, 지역·배송 방법에 따라 달라질 수 있습니다.</li>
   </ul>
 
+</div>
+
+<div class="rebid-modal" id="rebidModal" onclick="closeRebidModal(event)">
+  <div class="rebid-modal-card" onclick="event.stopPropagation()">
+    <div class="rebid-modal-head">
+      <strong>재입찰하기</strong>
+      <button class="rebid-modal-close" type="button" onclick="closeRebidModal()">&times;</button>
+    </div>
+    <div class="rebid-modal-body">
+      <div class="rebid-row">
+        <label class="rebid-label" for="rebidAmountInput">비딩금액</label>
+        <div class="rebid-input-wrap">
+          <input type="number" class="rebid-input" id="rebidAmountInput" min="1" step="100">
+          <span class="rebid-unit">엔</span>
+        </div>
+      </div>
+      <div class="rebid-row">
+        <label class="rebid-label" for="rebidQtyInput">수량</label>
+        <div class="rebid-input-wrap">
+          <input type="number" class="rebid-input" id="rebidQtyInput" min="1" step="1">
+          <span class="rebid-unit">개</span>
+        </div>
+      </div>
+      <div class="rebid-modal-actions">
+        <button class="rebid-btn-cancel" type="button" onclick="closeRebidModal()">취소</button>
+        <button class="rebid-btn-confirm" type="button" onclick="submitRebid()"><i class="fas fa-gavel"></i> 입찰하기</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -330,6 +384,47 @@ function shareBidItem() {
     return;
   }
   navigator.clipboard?.writeText(location.href);
+}
+
+/* 재입찰 팝업 */
+function parseCurrentBidAmount() {
+  const text = document.getElementById('rsAmount')?.textContent || '';
+  const m = text.match(/([\d,]+)/);
+  return m ? Number(m[1].replace(/,/g, '')) : 0;
+}
+
+function parseCurrentBidQty() {
+  const text = document.getElementById('rsQty')?.textContent || '';
+  const m = text.match(/(\d+)/);
+  return m ? Number(m[1]) : 1;
+}
+
+function openRebidModal() {
+  document.getElementById('rebidAmountInput').value = parseCurrentBidAmount();
+  document.getElementById('rebidQtyInput').value = parseCurrentBidQty();
+  document.getElementById('rebidModal')?.classList.add('open');
+}
+
+function closeRebidModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('rebidModal')?.classList.remove('open');
+}
+
+function submitRebid() {
+  const amount = Number(document.getElementById('rebidAmountInput').value);
+  const qty = Number(document.getElementById('rebidQtyInput').value);
+
+  if (!amount || amount <= 0) {
+    alert('비딩금액을 올바르게 입력해 주세요.');
+    return;
+  }
+  if (!qty || qty <= 0) {
+    alert('수량을 올바르게 입력해 주세요.');
+    return;
+  }
+
+  const params = new URLSearchParams({ bid: String(amount), qty: String(qty) });
+  window.location.href = 'web_auction_order.html?' + params.toString();
 }
 </script>
 <script src="bb-common.js"></script>
