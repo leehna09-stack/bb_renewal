@@ -453,7 +453,7 @@
 
     .bundle-head, .bundle-row {
       display: grid;
-      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 126px;
+      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 80px 104px;
       align-items: center;
     }
 
@@ -469,13 +469,10 @@
 
     .bundle-head > div { padding: 8px 6px; line-height: 1.4; white-space: nowrap; }
     .bundle-head > div:nth-child(4),
+    .bundle-row > div:nth-child(4) { border-left: 1px solid var(--line-soft); align-self: stretch; display: flex; align-items: center; justify-content: center; }
     .bundle-head > div:nth-child(5),
-    .bundle-row > div:nth-child(4),
-    .bundle-row > div:nth-child(5) { border-left: 1px solid var(--line-soft); align-self: stretch; }
-    .bundle-head > div:nth-child(4),
-    .bundle-head > div:nth-child(5),
-    .bundle-row > div:nth-child(4) { display: flex; align-items: center; justify-content: center; }
-    .bundle-row > div:nth-child(5) { align-content: center; }
+    .bundle-row > div:nth-child(5),
+    .bundle-head > div:nth-child(6) { border-left: 1px solid var(--line-soft); align-self: stretch; display: flex; align-items: center; justify-content: center; }
 
     .bundle-row {
       min-height: 96px;
@@ -598,6 +595,36 @@
       font-size: 11px;
       font-weight: 700;
     }
+
+    .group-recipient, .group-shipping {
+      position: absolute;
+      top: 107px;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #343942;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      z-index: 1;
+      border-left: 1px solid var(--line-soft);
+    }
+    .group-recipient { right: 184px; width: 72px; }
+    .group-shipping  { right: 104px; width: 80px; }
+
+    .row-auction-cell {
+      grid-column: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 12px 8px;
+    }
+    .row-auction-cell strong { font-size: 12px; font-weight: 800; color: #151922; }
+    .row-auction-cell span { font-size: 11px; color: #7a808a; font-weight: 600; }
 
     /* 체크박스 */
     .check {
@@ -951,9 +978,11 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
+                  <div>배송방법</div>
+                  <div>낙찰가<br>예상 수입신고금액</div>
                 </div>
-                <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
+                <div class="group-recipient">박비드</div>
+                <div class="group-shipping">항공</div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -965,8 +994,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -979,8 +1007,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -993,8 +1020,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1007,8 +1033,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
               </article>
 
@@ -1029,9 +1054,11 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
+                  <div>배송방법</div>
+                  <div>낙찰가<br>예상 수입신고금액</div>
                 </div>
-                <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
+                <div class="group-recipient">박비드</div>
+                <div class="group-shipping">항공</div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -1043,8 +1070,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1057,8 +1083,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1071,8 +1096,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1085,8 +1109,7 @@
                       <div class="product-price">¥ 92,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 92,000</strong><span>34,000원</span></div>
                 </div>
               </article>
 
@@ -1107,9 +1130,11 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
+                  <div>배송방법</div>
+                  <div>낙찰가<br>예상 수입신고금액</div>
                 </div>
-                <div class="group-volume"><strong>-</strong></div>
+                <div class="group-recipient">박비드</div>
+                <div class="group-shipping">항공</div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
                   <div class="row-date">2023-06-07</div>
@@ -1121,8 +1146,7 @@
                       <div class="product-price">¥ 32,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦18,000</b><span>￦18,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 32,000</strong><span>12,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1135,8 +1159,7 @@
                       <div class="product-price">¥ 48,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦27,000</b><span>￦27,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 48,000</strong><span>18,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1149,8 +1172,7 @@
                       <div class="product-price">¥ 29,000</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦16,000</b><span>￦16,000</span></div>
+                  <div class="row-auction-cell"><strong>¥ 29,000</strong><span>11,000원</span></div>
                 </div>
               </article>
             </div>
@@ -1179,9 +1201,11 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가합<br>예상 수입신고금액(원화)</div>
+                  <div>배송방법</div>
+                  <div>낙찰가<br>예상 수입신고금액</div>
                 </div>
-                <div class="group-volume"><strong>총 2kg</strong><span>0.12㎥</span></div>
+                <div class="group-recipient">박비드</div>
+                <div class="group-shipping">항공</div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
                   <div class="row-date">2023-06-06</div>
@@ -1193,8 +1217,7 @@
                       <div class="product-price">$ 920.00</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>$ 920.00</strong><span>34,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1207,8 +1230,7 @@
                       <div class="product-price">$ 920.00</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
+                  <div class="row-auction-cell"><strong>$ 920.00</strong><span>34,000원</span></div>
                 </div>
               </article>
             </div>
@@ -1237,9 +1259,11 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가합<br>예상 수입신고금액(원화)</div>
+                  <div>배송방법</div>
+                  <div>낙찰가<br>예상 수입신고금액</div>
                 </div>
-                <div class="group-volume"><strong>-</strong></div>
+                <div class="group-recipient">박비드</div>
+                <div class="group-shipping">항공</div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
                   <div class="row-date">2023-06-07</div>
@@ -1251,8 +1275,7 @@
                       <div class="product-price">￡ 180.00</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦42,000</b><span>￦42,000</span></div>
+                  <div class="row-auction-cell"><strong>￡ 180.00</strong><span>32,000원</span></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1265,8 +1288,7 @@
                       <div class="product-price">￡ 95.00</div>
                     </div>
                   </div>
-                  <div>박비드</div>
-                  <div class="row-price"><b>￦23,000</b><span>￦23,000</span></div>
+                  <div class="row-auction-cell"><strong>￡ 95.00</strong><span>17,000원</span></div>
                 </div>
               </article>
             </div>
