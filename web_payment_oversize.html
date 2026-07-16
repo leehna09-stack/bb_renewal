@@ -434,7 +434,6 @@
     .order-info-table td.mono, .order-info-table th.mono { font-family: 'Roboto', monospace; }
     .order-info-table th.rgroup { border-left: 0.5px solid var(--line); padding-left: 16px; }
     .order-info-table tr:last-child th, .order-info-table tr:last-child td { border-bottom: none; }
-    .info-chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 4px; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 700; }
     .track-btn { height: 22px; margin-left: 8px; padding: 0 8px; border: 0; border-radius: 5px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 
     /* 정보 행 (레퍼런스: .order-list__line) */
@@ -516,8 +515,8 @@
     .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
     .pay-badge.first  { color: var(--navy); }
     .pay-badge.second { color: var(--navy); }
-    .pay-card__date { font-size: 12px; color: #999; font-family: 'Roboto', sans-serif; }
-    .pay-card__receipt { border: 0; background: none; padding: 0; color: #777; font: inherit; font-size: 12px; cursor: pointer; }
+    .pay-card__date { font-size: 12px; color: #444444; font-family: 'Roboto', sans-serif; }
+    .pay-card__receipt { border: 0; background: none; padding: 0; color: #444444; font: inherit; font-size: 12px; cursor: pointer; }
     .pay-card__receipt:hover { color: var(--navy); text-decoration: underline; }
 
     .receipt-modal-card { width: min(506px, calc(100vw - 24px)); border-radius: 8px; }
@@ -561,6 +560,13 @@
     .pay-row .val.discount { color: var(--rose); }
     .pay-row .val.fee { color: var(--navy); }
 
+    .tooltip-wrap { position: relative; display: inline-flex; align-items: center; margin-left: 4px; vertical-align: middle; }
+    .tooltip-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 1px solid #2b8cff; border-radius: 2px; background: #fff; color: #2b8cff; font-size: 12px; font-weight: 700; line-height: 1; cursor: pointer; font-family: 'Roboto', sans-serif; }
+    .tooltip-box { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: 20; display: none; min-width: 138px; padding: 8px 10px; border: 1px solid #1d78ff; background: #fff; color: #111; font-size: 11px; font-weight: 400; line-height: 1.45; text-align: center; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    .tooltip-box::after { content: ""; position: absolute; left: 50%; top: 100%; width: 8px; height: 8px; border-right: 1px solid #1d78ff; border-bottom: 1px solid #1d78ff; background: #fff; transform: translate(-50%, -4px) rotate(45deg); }
+    .tooltip-grid { display: grid; grid-template-columns: 64px 1fr; gap: 4px 12px; text-align: center; }
+    .tooltip-wrap:hover .tooltip-box, .tooltip-wrap:focus-within .tooltip-box { display: block; }
+
     /* 기타 펼치기 */
     .pay-row.is-toggle { padding: 0; border-bottom: 1px solid #f6f6f6; }
     .pay-etc { width: 100%; }
@@ -573,16 +579,16 @@
     .pay-etc > summary .chev { font-size: 11px; color: #aaa; transition: transform .2s; }
     .pay-etc[open] > summary .chev { transform: rotate(180deg); }
     .pay-etc__inner { padding: 2px 0 8px; }
-    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fafafa; border-radius: 6px; margin-top: 4px; }
+    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fff; border-radius: 6px; margin-top: 4px; }
     .pay-etc__inner .pay-row .lbl { font-size: 14px; color: #777; }
 
     /* 합계 영역: margin-top:auto 로 카드 바닥에 고정 → 좌우 같은 평행선 */
-    .pay-foot { margin-top: auto; padding-top: 14px; }
+    .pay-foot { margin-top: auto; padding-top: 10px; }
     .pay-meta { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 10px; }
     .pay-meta b { color: #666; font-weight: 700; }
     .pay-total {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 0;
+      padding: 10px 0 4px;
     }
     .pay-total .lbl { font-size: 16px; font-weight: 800; color: var(--navy); }
     .pay-total .val { font-size: 16px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
@@ -591,14 +597,14 @@
 
     .pay-grandtotal {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: #fcebee;
+      padding: 11.75px 22px; margin-top: 16px; border-radius: 12px; background: var(--warm);
     }
     .pay-grandtotal__label { display: grid; gap: 3px; }
     .pay-grandtotal .lbl { font-size: 16px; font-weight: 800; color: #000000; }
     .pay-grandtotal .calc { font-size: 14px; font-weight: 600; color: rgba(28, 28, 28, 0.75); }
     .pay-grandtotal .val-group { display: grid; justify-items: end; gap: 2px; }
-    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: var(--rose); font-family: 'Roboto', monospace; }
-    .pay-grandtotal .val-sm { font-size: 13px; font-weight: 600; color: rgba(232, 56, 90, 0.7); font-family: 'Roboto', monospace; }
+    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
+    .pay-grandtotal .val-sm { font-size: 13px; font-weight: 600; color: rgba(28, 28, 28, .6); font-family: 'Roboto', monospace; }
     .payment-switch { display: inline-flex; align-items: center; gap: 8px; }
     .payment-switch__label { min-width: 72px; text-align: center; color: #555; font-size: 14px; font-weight: 800; }
     .payment-switch__btn {
@@ -1058,7 +1064,7 @@
                 <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
               </span>
             </span>
-            <span class="info-chip">¥ 환율 9.3원/엔</span>
+            <span style="font-weight:500">¥ 환율 9.3원/엔</span>
           </h3>
           <div class="pay-2col">
             <!-- 1차 결제 -->
@@ -1073,10 +1079,10 @@
                 <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc" open>
-                    <summary>할인 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <summary>할인/쿠폰 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
-                      <div class="pay-row"><span class="lbl">쿠폰 적용</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
-                      <div class="pay-row"><span class="lbl">마일리지 사용</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
+                      <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">마일리지 할인</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
                     </div>
                   </details>
                 </li>
@@ -1099,11 +1105,10 @@
                   <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                   <li class="pay-row is-toggle">
                     <details class="pay-etc" open>
-                      <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                      <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
-                        <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
-                        <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
-                        <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
+                        <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
+                        <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
                       </div>
                     </details>
                   </li>
@@ -1121,11 +1126,10 @@
               <ul class="pay-rows">
                 <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
                 <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
-                <li class="pay-row"><span class="lbl">국제운송료</span><span class="val" data-pay-kind="base">6,500엔</span></li>
-                <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
+                <li class="pay-row"><span class="lbl">국제운송료<span class="tooltip-wrap" tabindex="0"><span class="tooltip-icon" aria-label="국제운송료 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span><span class="tooltip-box"><span class="tooltip-grid"><span>무게</span><span>2.5kg</span><span>국제운임</span><span>2,600엔</span></span></span></span></span><span class="val" data-pay-kind="base">2,600엔</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc" open>
-                    <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                       <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>

@@ -176,7 +176,9 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .seller-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:auto;margin-bottom:16px}
 .seller-card-top{display:flex;align-items:center;gap:12px}
 .seller-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FFD0DC,#FF8FAD);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
-.seller-name{font-size:14px;font-weight:700;color:var(--tp);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seller-name-group{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.seller-name{font-size:14px;font-weight:700;color:#185FA5;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seller-name-sub{font-weight:500;color:#5B87B8;font-size:12px;margin-left:4px}
 .seller-info-table{width:100%;border-collapse:collapse;font-size:12px}
 .seller-info-table th{color:var(--ts);font-weight:600;text-align:left;padding:4px 0;width:72px;white-space:nowrap}
 .seller-info-table td{color:var(--tp);font-weight:500;padding:4px 0}
@@ -186,8 +188,11 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .seller-rating-label{display:none}
 .seller-stars{color:var(--amber);font-size:11px;letter-spacing:-1px}
 .seller-badge{background:#EDF7F0;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
-.btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:7px 14px;border-radius:5px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
+.btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
 .btn-seller:hover{border-color:var(--navy);color:var(--navy)}
+.seller-rating-cell{display:flex;align-items:center;gap:8px}
+.rating-view-btn{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--ts);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;background:#fff;cursor:pointer;text-decoration:none;transition:all .15s}
+.rating-view-btn:hover{border-color:var(--navy);color:var(--navy)}
 
 /* 우측: 상품 정보 */
 .item-info-area{}
@@ -428,7 +433,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-form-input{flex:1}
 .bid-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:14px;font-family:'Roboto',sans-serif;font-weight:700;color:var(--tp);outline:none;transition:border-color .2s}
 .bid-input:focus{border-color:var(--navy)}
-.bid-hint{font-size:12px;color:var(--navy);margin-top:4px}
+.bid-hint{font-size:14px;color:var(--navy);margin-top:5px}
 .bid-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:inherit;color:var(--tp);outline:none;resize:vertical;min-height:35px;transition:border-color .2s}
 .bid-textarea:focus{border-color:var(--navy)}
 .btn-bid-main{width:100%;background:var(--rose);color:#fff;border:none;padding:14px;border-radius:0 0 12px 12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:4px}
@@ -499,10 +504,10 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-amount-input{width:90px !important}
 .bid-qty-input{width:55px !important}
 .bid-unit{font-size:14px;color:var(--ts);white-space:nowrap;flex-shrink:0}
-.bid-section-label{font-size:14px;font-weight:600;color:var(--ts);white-space:nowrap;flex-shrink:0;width:78px}
-.bid-krw-amount{font-size:12px;font-weight:500;color:var(--ts);font-family:Pretendard,'Noto Sans KR',sans-serif;white-space:nowrap;flex-shrink:0}
+.bid-section-label{font-size:15px;font-weight:700;color:var(--ts);white-space:nowrap;flex-shrink:0;width:78px}
+.bid-krw-amount{font-size:13px;font-weight:600;color:var(--ts);font-family:Pretendard,'Noto Sans KR',sans-serif;white-space:nowrap;flex-shrink:0}
 .bid-static-amount{display:inline-flex;align-items:center;width:90px;min-height:39px;flex:none;line-height:1}
-.bid-hint-spacer{height:24px}
+.bid-hint-spacer{height:15px}
 
 /* ④ 입찰 방식 탭 */
 .bp-tab-header{display:flex;border-bottom:2px solid var(--border);background:#FAFBFC;min-height:57px;box-sizing:border-box}
@@ -941,14 +946,22 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
     <div class="seller-card">
       <div class="seller-card-top">
-        <div class="seller-avatar">e</div>
-        <span class="seller-name">exans1500</span>
+        <div class="seller-avatar">正</div>
+        <div class="seller-name-group">
+          <span class="seller-name">正直屋さん<span class="seller-name-sub">安さで注目の玩具屋</span></span>
+          <span class="seller-badge">STORE</span>
+        </div>
         <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심 출품자</button>
       </div>
       <table class="seller-info-table">
-        <tr><th>출품자위치</th><td>사이타마현</td></tr>
-        <tr><th>출품자평가</th><td><span class="roboto">939</span> <span style="color:var(--ts);font-size:11px">(940 / 1)</span></td></tr>
-        <tr><th>피드백</th><td><span style="color:var(--rose);font-weight:700">99.9%</span></td></tr>
+        <tr><th>출품자위치</th><td>오사카부 오사카시 스미노에구</td></tr>
+        <tr><th>출품자평가</th><td>
+          <div class="seller-rating-cell">
+            <span class="roboto">79,021</span> <span style="color:var(--ts);font-size:11px">(79,034 / 13)</span>
+            <span class="seller-badge">100%</span>
+            <a class="rating-view-btn" href="https://auctions.yahoo.co.jp/jp/show/rating?auc_user_id=3dzL2bpogs6E1ywnX9dXUr83tmteU" target="_blank" rel="noopener noreferrer">평가보기</a>
+          </div>
+        </td></tr>
       </table>
     </div>
 
@@ -1032,20 +1045,20 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <div class="bid-form-section bp-tab-content" id="bptab-bid">
               <div>
                 <div class="bid-inline-row">
-                  <span class="bid-section-label">비딩금액</span>
+                  <span class="bid-section-label">입찰금액</span>
                   <input type="number" class="bid-input bid-amount-input" id="bidAmountInput" value="13900" min="13900" step="100">
                   <span class="bid-unit">엔</span>
                   <span class="bid-krw-amount" id="bidAmountKrw">(12만 9270원)</span>
                 </div>
-                <div class="bid-hint" style="padding:5px 0 0">다음 비딩금액은 <strong id="bidHintAmount">13,900엔</strong> 이상</div>
                 <div class="bid-inline-row bid-qty-row" style="margin-top:8px">
                   <span class="bid-section-label">수량</span>
                   <input type="number" class="bid-input bid-qty-input" id="bidQtyInput" value="1" min="1">
                   <span class="bid-unit">개</span>
                 </div>
+                <div class="bid-hint" style="padding:10px 90px 10px"><strong id="bidHintAmount" class="text-danger">13,900엔</strong> 이상으로 입찰 가능합니다.</div>
               </div>
               <div class="bid-form-row" style="margin-bottom:0">
-                <span class="bid-form-label">포장 옵션</span>
+                <span class="bid-section-label">포장 옵션</span>
                 <div class="bid-form-input">
                   <select class="form-select" id="bidPackingSelect">
                     <option value="">옵션을 선택하세요</option>
@@ -1063,7 +1076,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
                   <span class="roboto bid-static-amount" id="buyNowAmountLabel" style="font-size:20px;font-weight:700;color:var(--tp)">19,800엔</span>
                   <span class="bid-krw-amount" id="buyNowAmountKrw">(18만 4140원)</span>
                 </div>
-                <div class="bid-hint bid-hint-spacer" aria-hidden="true"></div>
+                <div class="bid-hint" style="padding:10px 90px 10px"><strong id="buyNowHintAmount" class="text-danger">19,800엔</strong> 이상으로 즉결 가능합니다.</div>
                 <div class="bid-inline-row bid-qty-row" style="margin-top:8px">
                   <span class="bid-section-label">수량</span>
                   <input type="number" class="bid-input bid-qty-input" id="buyNowQtyInput" value="1" min="1">
@@ -1071,7 +1084,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
                 </div>
               </div>
               <div class="bid-form-row" style="margin-bottom:0">
-                <span class="bid-form-label">포장 옵션</span>
+                <span class="bid-section-label">포장 옵션</span>
                 <div class="bid-form-input">
                   <select class="form-select" id="buyNowPackingSelect">
                     <option value="">옵션을 선택하세요</option>
@@ -1920,12 +1933,12 @@ function getSelectedPackingOption(type){
 function buildAuctionOrderUrl(page, type){
   const amount = type === 'buynow' ? 19800 : Number(document.getElementById('bidAmountInput')?.value || 1300);
   const qty = type === 'buynow' ? Number(document.getElementById('buyNowQtyInput')?.value || 1) : Number(document.getElementById('bidQtyInput')?.value || 1);
-  const packing = getSelectedPackingOption(type);
+  const packing = getSelectedPackingOption(type) || '선택 안함';
   const params = new URLSearchParams({
     bid: String(amount),
-    qty: String(qty)
+    qty: String(qty),
+    packing
   });
-  if(packing) params.set('packing', packing);
   return `${page}?${params.toString()}`;
 }
 

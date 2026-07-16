@@ -84,6 +84,14 @@
     .item-summary-row .val { color: #151922; }
     .item-summary-row .val strong { color: var(--rose); font-weight: 900; }
     .item-summary-row .val .krw { color: var(--muted); font-weight: 500; font-size: 12px; }
+    .seller-eval { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; vertical-align: middle; font-size: 12px; color: #111; }
+    .seller-eval__item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .seller-eval__item i { font-size: 14px; line-height: 1; }
+    .seller-eval__item.good i { color: #19bfb4; }
+    .seller-eval__item.bad i { color: #f26a21; }
+    .seller-eval__count.good { color: #0070c9; }
+    .seller-eval__count.bad { color: #e8382f; }
+    .seller-eval__divider { width: 1px; height: 14px; background: #d8d8d8; }
 
     /* ── 섹션 공통 ── */
     .sec { margin-bottom: 28px; }
@@ -285,7 +293,8 @@
   <!-- 물품 요약 -->
   <div class="item-summary">
     <div class="item-summary-row"><b>물품아이디 (옵션)</b><span class="val">v1135509199 (옵션명)</span></div>
-    <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>¥1,200</strong> <span class="krw">(₩10,920)</span></span></div>
+    <div class="item-summary-row"><b>출품자</b><span class="val">bookoff2014 <span class="seller-eval"><span class="seller-eval__item good"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i><span>좋은평가</span> <span class="seller-eval__count good">1,071</span></span><span class="seller-eval__divider" aria-hidden="true"></span><span class="seller-eval__item bad"><i class="fa-solid fa-thumbs-down" aria-hidden="true"></i><span>나쁜평가</span> <span class="seller-eval__count bad">6</span></span></span></span></div>
+    <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>1,200 엔 (천이백 엔)</strong></span></div>
     <div class="item-summary-row"><b>입찰방식</b><span class="val">예약입찰 <span class="krw">(설정하신 시간에 입력한 금액으로 입찰)</span></span></div>
     <div class="item-summary-row"><b>종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
     <div class="item-summary-row"><b>예약일시</b><span class="val">2026-06-14 11:12:12 <span class="krw">(종료 1시간 전)</span></span></div>
@@ -295,7 +304,7 @@
   <section class="sec" aria-labelledby="sec2-title">
     <h3 class="sec-title" id="sec2-title"><span class="sec-no">01</span> 예약입찰내용 확인</h3>
     <div class="confirm-box">
-      <div class="confirm-row"><b>예약입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩11,830)</span></span></div>
+      <div class="confirm-row"><b>예약입찰금액</b><span class="val amount" id="cfAmount">1,300 엔 (천삼백 엔)</span></div>
       <div class="confirm-row"><b>예약입찰 수량</b><span class="val" id="cfQty">1개</span></div>
       <div class="confirm-row confirm-packing-row"><b>포장옵션</b><span class="val" id="cfPacking">선택 안함</span></div>
       <div class="confirm-row"><b>예약일시</b><span class="val" id="cfReserveAt">2026-06-14 11:12:12 <span class="sub">(종료 1시간 전)</span></span></div>
@@ -337,13 +346,43 @@ const CONFIRMED_RESERVE_AT = ORDER_PARAMS.get('reserveAt') || '2026-06-14 11:12:
 const CONFIRMED_RESERVE_OFFSET = ORDER_PARAMS.get('reserveOffset') || '종료 1시간 전';
 const KRW_RATE = 9.1;
 
+function formatBidYen(value) {
+  const amount = Number(value) || 0;
+  return amount.toLocaleString('ko-KR') + ' 엔 (' + numberToKorean(amount) + ' 엔)';
+}
+
+function numberToKorean(value) {
+  const amount = Number(value) || 0;
+  if (amount === 0) return '영';
+  const digitNames = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+  const smallUnits = ['', '십', '백', '천'];
+  const bigUnits = ['', '만', '억'];
+  const readGroup = group => {
+    let text = '';
+    const digits = String(group).padStart(4, '0').split('').map(Number);
+    digits.forEach((digit, index) => {
+      if (!digit) return;
+      const unitIndex = 3 - index;
+      text += (digit === 1 && unitIndex > 0 ? '' : digitNames[digit]) + smallUnits[unitIndex];
+    });
+    return text;
+  };
+  const groups = [];
+  let rest = amount;
+  while (rest > 0) {
+    groups.push(rest % 10000);
+    rest = Math.floor(rest / 10000);
+  }
+  return groups.map((group, index) => group ? readGroup(group) + bigUnits[index] : '').reverse().join('');
+}
+
 function updateConfirmedValues() {
   const cfAmount = document.getElementById('cfAmount');
   const cfQty = document.getElementById('cfQty');
   const cfPacking = document.getElementById('cfPacking');
   const cfReserveAt = document.getElementById('cfReserveAt');
   if (cfAmount) {
-    cfAmount.innerHTML = '¥ ' + CONFIRMED_BID.toLocaleString('ko-KR') + ' <span class="sub">(약 ₩' + Math.round(CONFIRMED_BID * KRW_RATE).toLocaleString('ko-KR') + ')</span>';
+    cfAmount.textContent = formatBidYen(CONFIRMED_BID);
   }
   if (cfQty) cfQty.textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
   if (cfPacking) cfPacking.textContent = CONFIRMED_PACKING;

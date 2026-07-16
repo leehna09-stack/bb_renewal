@@ -441,7 +441,6 @@
     .order-info-table th.rgroup { border-left: 0.5px solid var(--line); padding-left: 16px; }
     .order-info-table tr:last-child th, .order-info-table tr:last-child td { border-bottom: none; }
     .order-info-action-btn { font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif; }
-    .info-chip { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 4px; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 700; }
     .track-btn { height: 22px; margin-left: 8px; padding: 0 8px; border: 0; border-radius: 5px; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 
     /* 정보 행 (레퍼런스: .order-list__line) */
@@ -523,7 +522,41 @@
     .pay-badge { font-size: 16px; font-weight: 800; padding: 0; border-radius: 0; background: transparent; }
     .pay-badge.first  { color: var(--navy); }
     .pay-badge.second { color: var(--navy); }
-    .pay-card__date { font-size: 12px; color: #999; font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
+    .pay-card__date { font-size: 12px; color: #444444; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
+    .pay-card__receipt { border: 0; background: none; padding: 0; color: #444444; font: inherit; font-size: 12px; cursor: pointer; }
+    .pay-card__receipt:hover { color: var(--navy); text-decoration: underline; }
+
+    .receipt-modal-card { width: min(506px, calc(100vw - 24px)); border-radius: 8px; }
+    .receipt-modal-body { max-height: 88vh; overflow: auto; padding: 28px 30px; background: #fafafa; color: #111; }
+    .receipt-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .receipt-head h2 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 0; }
+    .receipt-actions { display: inline-flex; align-items: center; gap: 10px; }
+    .receipt-icon-btn { border: 0; background: none; color: #555; font-size: 24px; cursor: pointer; line-height: 1; }
+    .receipt-icon-btn:hover { color: var(--navy); }
+    .receipt-tools { display: grid; grid-template-columns: 176px 1fr 30px; gap: 12px; margin-bottom: 24px; }
+    .receipt-tools select,
+    .receipt-tools input { height: 32px; border: 1px solid #c8ccd3; border-radius: 4px; background: #fff; padding: 0 10px; font-size: 14px; }
+    .receipt-send { display: grid; place-items: center; width: 30px; height: 30px; border: 0; background: #333943; color: #fff; font-size: 14px; cursor: pointer; }
+    .receipt-paper { padding: 30px 26px; border-radius: 6px; background: #fff; box-shadow: 0 5px 18px rgba(0, 0, 0, .08); }
+    .receipt-list { display: grid; gap: 8px; margin: 0; }
+    .receipt-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start; font-size: 15px; line-height: 1.35; }
+    .receipt-row dt { color: #111; font-weight: 500; }
+    .receipt-row dd { margin: 0; text-align: right; font-weight: 800; color: #111; word-break: keep-all; }
+    .receipt-row.receipt-total { margin: 14px 0; padding: 14px 0; border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9; color: #005bc4; }
+    .receipt-row.receipt-total dt,
+    .receipt-row.receipt-total dd { color: #005bc4; }
+    .receipt-company { margin-top: 14px; padding-top: 12px; border-top: 1px solid #d9d9d9; }
+    .receipt-note { margin: 16px 0 20px; color: #666; font-size: 12px; }
+    .receipt-nice { color: #a5a5a5; font-size: 20px; font-weight: 900; letter-spacing: 0; }
+    .receipt-footer { margin-top: 10px; color: #555; font-size: 11px; line-height: 1.7; }
+    .receipt-footer strong { display: block; margin-bottom: 6px; color: #333; font-size: 12px; }
+    @media (max-width: 560px) {
+      .receipt-modal-body { padding: 22px 18px; }
+      .receipt-tools { grid-template-columns: 1fr; }
+      .receipt-send { width: 100%; }
+      .receipt-paper { padding: 24px 18px; }
+      .receipt-row { grid-template-columns: 82px 1fr; font-size: 13px; }
+    }
 
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
@@ -553,16 +586,16 @@
     .pay-etc > summary .chev { font-size: 11px; color: #aaa; transition: transform .2s; }
     .pay-etc[open] > summary .chev { transform: rotate(180deg); }
     .pay-etc__inner { padding: 2px 0 8px; }
-    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fafafa; border-radius: 6px; margin-top: 4px; }
+    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fff; border-radius: 6px; margin-top: 4px; }
     .pay-etc__inner .pay-row .lbl { font-size: 14px; color: #777; }
 
     /* 합계 영역: margin-top:auto 로 카드 바닥에 고정 → 좌우 같은 평행선 */
-    .pay-foot { margin-top: auto; padding-top: 14px; }
+    .pay-foot { margin-top: auto; padding-top: 10px; }
     .pay-meta { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 10px; }
     .pay-meta b { color: #666; font-weight: 700; }
     .pay-total {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 0;
+      padding: 10px 0 4px;
     }
     .pay-total .lbl { font-size: 16px; font-weight: 800; color: var(--navy); }
     .pay-total .val { font-size: 16px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
@@ -571,7 +604,7 @@
 
     .pay-grandtotal {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: var(--warm);
+      padding: 11.75px 22px; margin-top: 16px; border-radius: 12px; background: var(--warm);
     }
     .pay-grandtotal__label { display: grid; gap: 3px; }
     .pay-grandtotal .lbl { font-size: 16px; font-weight: 800; color: #000000; }
@@ -911,7 +944,7 @@
                 <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
               </span>
             </span>
-            <span class="info-chip">¥ 환율 9.3원/엔</span>
+            <span style="font-weight:500">¥ 환율 9.3원/엔</span>
           </h3>
           <div class="pay-2col">
             <!-- 1차 결제 -->
@@ -926,10 +959,10 @@
                 <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc" open>
-                    <summary>할인 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <summary>할인/쿠폰<i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
-                      <div class="pay-row"><span class="lbl">쿠폰 적용</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
-                      <div class="pay-row"><span class="lbl">마일리지 사용</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
+                      <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">마일리지 할인</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
                     </div>
                   </details>
                 </li>
@@ -952,7 +985,7 @@
                   <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                   <li class="pay-row is-toggle">
                     <details class="pay-etc" open>
-                      <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                      <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
                         <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
                         <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
@@ -974,10 +1007,9 @@
                 <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
                 <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
                 <li class="pay-row"><span class="lbl">국제운송료<span class="tooltip-wrap" tabindex="0"><span class="tooltip-icon" aria-label="국제운송료 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span><span class="tooltip-box"><span class="tooltip-grid"><span>무게</span><span>2.5kg</span><span>국제운임</span><span>2,600엔</span></span></span></span></span><span class="val" data-pay-kind="base">2,600엔</span></li>
-                <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc" open>
-                    <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                       <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
@@ -1327,12 +1359,12 @@
       <section class="receipt-paper" aria-label="결제영수증">
         <dl class="receipt-list">
           <div class="receipt-row"><dt>주문 번호</dt><dd id="receiptOrderNo">BJP0194792054</dd></div>
-          <div class="receipt-row"><dt>구매자</dt><dd>박*식</dd></div>
+          <div class="receipt-row"><dt>구매자</dt><dd>홍*동</dd></div>
           <div class="receipt-row"><dt>구매 상품</dt><dd id="receiptProductName">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</dd></div>
           <div class="receipt-row receipt-total"><dt>합계(원)</dt><dd><span id="receiptTotalWon">35,927</span> 원 <i class="fa-solid fa-circle-check" aria-hidden="true"></i></dd></div>
           <div class="receipt-row"><dt>결제수단</dt><dd>신용카드</dd></div>
-          <div class="receipt-row"><dt>결제수단번호</dt><dd>402596******6561</dd></div>
-          <div class="receipt-row"><dt>거래일시</dt><dd id="receiptPaidAt">2025.12.08 | 10:22:01</dd></div>
+          <div class="receipt-row"><dt>결제수단번호</dt><dd>123456******7890</dd></div>
+          <div class="receipt-row"><dt>거래일시</dt><dd id="receiptPaidAt">2026.06.30 | 10:22:01</dd></div>
         </dl>
         <dl class="receipt-list receipt-company">
           <div class="receipt-row"><dt>상호</dt><dd>비드바이코리아</dd></div>
@@ -1552,6 +1584,37 @@ function setupCarePlusToggle() {
 
     render();
   });
+}
+
+function closePaymentReceipt(event) {
+  if (event && event.target !== event.currentTarget) return;
+  const modal = document.getElementById('paymentReceiptModal');
+  if (modal) modal.classList.remove('open');
+}
+
+function openPaymentReceipt(trigger) {
+  updatePaymentTotals();
+  const card = trigger.closest('[data-payment-card]');
+  const modal = document.getElementById('paymentReceiptModal');
+  if (!card || !modal) return;
+
+  const orderMatch = document.body.textContent.match(/BJP\d+/);
+  const orderNo = orderMatch ? orderMatch[0] : 'BJP0194792054';
+  const productName = document.querySelector('.order-item__name-ko')?.textContent.trim() || '주문 상품';
+  const totalWon = card.querySelector('[data-pay-total]')?.textContent.replace('원', '').trim() || '0';
+  const paidDate = trigger.textContent.match(/\d{4}-\d{2}-\d{2}/)?.[0] || '2025-12-08';
+  const paidTime = card.dataset.paymentCard === 'primary' ? '10:22:01' : '15:55:23';
+
+  const orderEl = document.getElementById('receiptOrderNo');
+  const productEl = document.getElementById('receiptProductName');
+  const totalEl = document.getElementById('receiptTotalWon');
+  const paidAtEl = document.getElementById('receiptPaidAt');
+  if (orderEl) orderEl.textContent = orderNo;
+  if (productEl) productEl.textContent = productName;
+  if (totalEl) totalEl.textContent = totalWon;
+  if (paidAtEl) paidAtEl.textContent = `${paidDate.replaceAll('-', '.')} | ${paidTime}`;
+
+  modal.classList.add('open');
 }
 
 updatePaymentTotals();
