@@ -102,9 +102,12 @@
     main { width: min(calc(100vw - 40px), var(--page-w)); margin: 0 auto; padding-bottom: 56px; }
 
     /* ── Category bar ── */
-    .category-bar { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
-    .category-bar-title { color: var(--rose); font-size: 20px; font-weight: 900; }
+    .category-bar { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; padding: 8px 0; border-bottom: 1px solid var(--line); color: #6f7785; font-size: 13px; font-weight: 700; text-align: center; }
+    .category-bar-title { color: var(--rose); font-size: 13px; font-weight: 900; }
     .category-bar-label { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .category-crumb { color: #4b5563; white-space: nowrap; }
+    .category-crumb.current { color: #111827; font-weight: 900; }
+    .category-crumb-sep { color: #a4acb8; font-size: 11px; }
     .category-bar-select { height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; }
     .category-bar-arrow { color: var(--muted); font-size: 11px; }
     .category-bar .is-hidden { display: none !important; }
@@ -130,9 +133,14 @@
     .filter-submit { width: 100%; height: 46px; margin-top: 4px; border: 0; border-radius: 5px; background: var(--rose); color: #fff; font-size: 14px; font-weight: 900; }
 
     /* ── Result header ── */
-    .result-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #111; }
+    .result-header { display: grid; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #111; }
+    .result-current { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .current-category-name { color: #111827; font-size: 24px; font-weight: 900; line-height: 1.2; }
+    .result-divider { width: 1px; height: 18px; background: var(--line); }
+    .result-meta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .result-title { margin: 0; color: #111827; font-size: 17px; font-weight: 900; line-height: 1.25; }
     .result-title .red { color: red; font-weight: 900; }
+    .result-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
     .sort-select { width: 112px; height: 30px; padding: 0 28px 0 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: #1f497a; font-size: 12px; font-weight: 900; }
 
     /* ── Product grid ── */
@@ -288,22 +296,49 @@
 
   <main>
     <div class="category-bar">
-      <strong class="category-bar-title">장난감, 게임</strong>
-      <span class="category-bar-label">하위 카테고리</span>
-      <select class="category-bar-select" aria-label="하위 카테고리 선택 1" data-category-level="1">
-        <option value="">선택하세요</option>
+      <strong class="category-bar-title">일본야후경매</strong>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select" aria-label="1차 카테고리" data-category-level="1" data-breadcrumb-select>
+        <option selected>앤틱, 컬렉션</option>
+        <option>패션</option>
+        <option>가전, AV, 카메라</option>
+        <option>장난감, 게임</option>
       </select>
-      <i class="fas fa-chevron-right category-bar-arrow is-hidden" aria-hidden="true" data-category-arrow="2"></i>
-      <select class="category-bar-select is-hidden" aria-label="하위 카테고리 선택 2" data-category-level="2">
-        <option value="">선택하세요</option>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select" aria-label="2차 카테고리" data-category-level="2" data-breadcrumb-select>
+        <option selected>공예품</option>
+        <option>회화</option>
+        <option>서예</option>
+        <option>조각</option>
       </select>
-      <i class="fas fa-chevron-right category-bar-arrow is-hidden" aria-hidden="true" data-category-arrow="3"></i>
-      <select class="category-bar-select is-hidden" aria-label="하위 카테고리 선택 3" data-category-level="3">
-        <option value="">선택하세요</option>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select" aria-label="3차 카테고리" data-category-level="3" data-breadcrumb-select>
+        <option selected>도자기</option>
+        <option>목공예</option>
+        <option>금속공예</option>
+        <option>유리공예</option>
       </select>
-      <button class="category-bar-keyword-btn" type="button" id="categoryKeywordBtn" onclick="toggleCategoryKeyword(this)">
-        <i class="fa-regular fa-star" aria-hidden="true"></i> 관심키워드 등록
-      </button>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select" aria-label="4차 카테고리" data-breadcrumb-select>
+        <option selected>중국, 한반도</option>
+        <option>일본</option>
+        <option>서양</option>
+        <option>동남아시아</option>
+      </select>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select" aria-label="5차 카테고리" data-breadcrumb-select>
+        <option selected>골동품도자기일반</option>
+        <option>청자</option>
+        <option>백자</option>
+        <option>분청사기</option>
+      </select>
+      <span class="category-crumb-sep">›</span>
+      <select class="category-bar-select current" aria-label="6차 카테고리" data-current-category-label data-breadcrumb-select>
+        <option selected>염부</option>
+        <option>도자기병</option>
+        <option>접시</option>
+        <option>화병</option>
+      </select>
     </div>
 
     <div class="content-layout">
@@ -353,16 +388,27 @@
     <!-- 오른쪽: 컨텐츠 영역 -->
     <div class="content-area">
       <div class="result-header">
-        <h1 class="result-title">전체 <span class="red">4,788,005</span> 건</h1>
-        <select class="sort-select" aria-label="정렬">
-          <option>인기상품순</option>
-          <option>마감임박순</option>
-          <option>낮은가격순</option>
-          <option>높은가격순</option>
-          <option>입찰수높은순</option>
-          <option>입찰수낮은순</option>
-          <option>신상품순</option>
-        </select>
+        <div class="result-current">
+          <strong class="current-category-name" data-current-category-heading>염부</strong>
+          <span class="result-divider" aria-hidden="true"></span>
+          <button class="category-bar-keyword-btn" type="button" id="categoryKeywordBtn" onclick="toggleCategoryKeyword(this)">
+            <i class="fa-regular fa-star" aria-hidden="true"></i> 관심키워드 등록
+          </button>
+        </div>
+        <div class="result-meta-row">
+          <h1 class="result-title">전체 <span class="red">12,340</span> 건</h1>
+          <div class="result-actions">
+          <select class="sort-select" aria-label="정렬">
+            <option>인기상품순</option>
+            <option>마감임박순</option>
+            <option>낮은가격순</option>
+            <option>높은가격순</option>
+            <option>입찰수높은순</option>
+            <option>입찰수낮은순</option>
+            <option>신상품순</option>
+          </select>
+          </div>
+        </div>
       </div>
 
       <div class="product-grid">
@@ -443,143 +489,90 @@
       thumb.classList.add("has-photo");
     });
 
-    // ── URL 파라미터로 전달된 카테고리 반영 ──
-    const productStores = [
-      { name: "야후경매", price: "¥ 2,500", auction: true },
-      { name: "라쿠마", price: "¥ 1,800", auction: false },
-      { name: "야후 쇼핑", price: "¥ 2,499", auction: false },
-      { name: "이베이", price: "$ 21.79", auction: true, flag: "us" }
-    ];
-    const auctionTimes = ["30분", "2시간", "8시간", "1일", "2일"];
+    const breadcrumbSelects = Array.from(document.querySelectorAll("[data-breadcrumb-select]"));
+    const categoryBarTitleEl = document.querySelector(".category-bar-title");
+    const resultCountEl = document.querySelector(".result-title .red");
+    const currentCategoryLabelEl = document.querySelector("[data-current-category-label]");
+    const currentCategoryHeadingEl = document.querySelector("[data-current-category-heading]");
+    const baseResultCount = 12340;
 
-    document.querySelectorAll(".product-card").forEach((card, index) => {
-      const store = productStores[index % productStores.length];
-      const badge = card.querySelector(".site-badge");
-      if (badge) {
-        const icon = store.flag === "us"
-          ? '<span class="site-flag-us" aria-hidden="true"></span>'
-          : '<span class="site-dot" aria-hidden="true"></span>';
-        badge.innerHTML = icon + store.name;
-      }
+    function formatCount(value) {
+      return Math.max(0, Math.floor(value)).toLocaleString("ko-KR");
+    }
 
-      const price = card.querySelector(".price");
-      if (price) price.textContent = store.price;
+    function updateCurrentCategory() {
+      const visibleSelects = breadcrumbSelects.filter(select => !select.classList.contains("is-hidden"));
+      const lastSelect = visibleSelects[visibleSelects.length - 1] || breadcrumbSelects[breadcrumbSelects.length - 1];
+      const currentName = lastSelect?.value || "염부";
+      if (currentCategoryHeadingEl) currentCategoryHeadingEl.textContent = currentName;
+    }
 
-      const priceRow = card.querySelector(".price-row");
-      if (priceRow && !priceRow.querySelector(".auction-meta")) {
-        const meta = document.createElement("div");
-        meta.className = "auction-meta";
-        meta.innerHTML = store.auction
-          ? '<span>' + auctionTimes[index % auctionTimes.length] + '</span><span class="bids">(' + (((index * 13) % 99) + 1) + ' Bids)</span>'
-          : '<span></span><span></span>';
-        priceRow.append(meta);
-      }
+    function updateResultCount() {
+      if (!resultCountEl) return;
+      let count = baseResultCount;
+      const visibleSelects = breadcrumbSelects.filter(select => !select.classList.contains("is-hidden"));
+      visibleSelects.forEach((select, index) => {
+        count *= 0.86 - Math.min(index, 5) * 0.08 + (select.selectedIndex % 3) * 0.015;
+      });
+      resultCountEl.textContent = formatCount(count);
+      updateCurrentCategory();
+    }
 
-      const heart = card.querySelector(".heart");
-      if (heart) {
-        heart.setAttribute("aria-pressed", "false");
-        heart.addEventListener("click", event => {
-          event.preventDefault();
-          event.stopPropagation();
-          const active = heart.classList.toggle("active");
-          heart.setAttribute("aria-pressed", String(active));
-          heart.innerHTML = '<i class="' + (active ? "fa-solid" : "fa-regular") + ' fa-heart" aria-hidden="true"></i>';
-        });
-      }
+    breadcrumbSelects.forEach(select => {
+      select.addEventListener("change", updateResultCount);
     });
 
     const urlParams = new URLSearchParams(window.location.search);
+    const requestedStore = urlParams.get("store");
     const requestedCategory = urlParams.get("category");
-    if (requestedCategory) {
-      document.querySelector(".category-bar-title").textContent = requestedCategory;
-    }
+    const requestedPath = urlParams.get("path");
 
-    // ── Store chips ──
-    document.querySelectorAll(".store-chip").forEach(chip => {
-      chip.addEventListener("click", e => {
-        e.preventDefault();
-        document.querySelectorAll(".store-chip").forEach(c => { c.classList.remove("active"); c.removeAttribute("aria-current"); });
-        chip.classList.add("active");
-        chip.setAttribute("aria-current", "page");
-      });
-    });
-
-    // ── 하위 카테고리 드롭다운(최대 3단계, 선택시 다음 단계가 화살표로 이어짐) ──
-    const categoryTree = {
-      "피규어": {
-        "특수 촬영": ["로봇 영웅", "가면라이더", "울트라맨"],
-        "애니메이션": ["원피스", "나루토", "드래곤볼"],
-        "게임 캐릭터": ["포켓몬", "젤다", "마리오"]
-      },
-      "프라모델": {
-        "건프라": ["MG", "RG", "HG"],
-        "자동차": ["미니카", "다이캐스트", "슈퍼카"]
-      },
-      "RC카/드론": {},
-      "보드게임": {},
-      "비디오게임": {},
-      "트레이딩카드": {},
-      "퍼즐": {}
-    };
-
-    const categorySelects = {
-      1: document.querySelector('[data-category-level="1"]'),
-      2: document.querySelector('[data-category-level="2"]'),
-      3: document.querySelector('[data-category-level="3"]')
-    };
-    const categoryArrows = {
-      2: document.querySelector('[data-category-arrow="2"]'),
-      3: document.querySelector('[data-category-arrow="3"]')
-    };
-
-    Object.keys(categoryTree).forEach(name => {
-      const opt = document.createElement("option");
-      opt.textContent = name;
-      categorySelects[1].append(opt);
-    });
-
-    function resetCategorySelect(select) {
-      select.innerHTML = '<option value="">선택하세요</option>';
-    }
-
-    function hideCategoryLevel(level) {
-      resetCategorySelect(categorySelects[level]);
-      categorySelects[level].classList.add("is-hidden");
-      categoryArrows[level].classList.add("is-hidden");
-    }
-
-    function showCategoryLevel(level, options) {
-      resetCategorySelect(categorySelects[level]);
-      options.forEach(name => {
-        const opt = document.createElement("option");
-        opt.textContent = name;
-        categorySelects[level].append(opt);
-      });
-      categorySelects[level].classList.remove("is-hidden");
-      categoryArrows[level].classList.remove("is-hidden");
-    }
-
-    categorySelects[1].addEventListener("change", () => {
-      hideCategoryLevel(3);
-      const children = categoryTree[categorySelects[1].value];
-      const childNames = children ? Object.keys(children) : [];
-      if (childNames.length) {
-        showCategoryLevel(2, childNames);
-      } else {
-        hideCategoryLevel(2);
+    function setSelectValue(select, value) {
+      if (!select || !value) return;
+      const option = Array.from(select.options).find(opt => opt.textContent === value || opt.value === value);
+      if (option) {
+        select.value = option.value;
+        return;
       }
-    });
+      const newOption = new Option(value, value, true, true);
+      select.add(newOption);
+      select.value = value;
+    }
 
-    categorySelects[2].addEventListener("change", () => {
-      const parent = categoryTree[categorySelects[1].value] || {};
-      const children = parent[categorySelects[2].value];
-      if (children && children.length) {
-        showCategoryLevel(3, children);
-      } else {
-        hideCategoryLevel(3);
+    function applyCategoryPath(pathItems) {
+      if (!pathItems.length) return;
+      breadcrumbSelects.forEach((select, index) => {
+        const separator = select.previousElementSibling;
+        const hasPathValue = index < pathItems.length;
+        select.classList.toggle("is-hidden", !hasPathValue);
+        if (separator?.classList.contains("category-crumb-sep")) {
+          separator.classList.toggle("is-hidden", !hasPathValue);
+        }
+        if (hasPathValue) setSelectValue(select, pathItems[index]);
+      });
+      if (currentCategoryHeadingEl) {
+        currentCategoryHeadingEl.textContent = pathItems[pathItems.length - 1];
       }
-    });
+    }
 
+    if (requestedStore) {
+      if (categoryBarTitleEl) categoryBarTitleEl.textContent = requestedStore;
+      document.querySelectorAll(".store-chip").forEach(chip => {
+        const storeName = chip.dataset.storeName || chip.textContent.trim();
+        const isActive = storeName.replace(/\s/g, "") === requestedStore.replace(/\s/g, "");
+        chip.classList.toggle("active", isActive);
+        if (isActive) chip.setAttribute("aria-current", "page");
+        else chip.removeAttribute("aria-current");
+      });
+    }
+
+    const pathItems = (requestedPath || requestedCategory || "")
+      .split(">")
+      .map(item => item.trim())
+      .filter(Boolean);
+    applyCategoryPath(pathItems);
+
+    updateResultCount();
     // ── 관심키워드 등록 버튼 ──
     function toggleCategoryKeyword(el) {
       el.classList.toggle("active");

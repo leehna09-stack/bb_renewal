@@ -326,7 +326,7 @@
     </div>
     <div class="rebid-modal-body">
       <div class="rebid-row">
-        <label class="rebid-label" for="rebidAmountInput">비딩금액</label>
+        <label class="rebid-label" for="rebidAmountInput">입찰금액</label>
         <div class="rebid-input-wrap">
           <input type="number" class="rebid-input" id="rebidAmountInput" min="1" step="100">
           <span class="rebid-unit">엔</span>
@@ -341,7 +341,7 @@
       </div>
       <div class="rebid-modal-actions">
         <button class="rebid-btn-cancel" type="button" onclick="closeRebidModal()">취소</button>
-        <button class="rebid-btn-confirm" type="button" onclick="submitRebid()"><i class="fas fa-gavel"></i> 입찰하기</button>
+        <button class="rebid-btn-confirm" type="button" onclick="submitRebid()">입찰하기</button>
       </div>
     </div>
   </div>
@@ -414,7 +414,7 @@ function submitRebid() {
   const qty = Number(document.getElementById('rebidQtyInput').value);
 
   if (!amount || amount <= 0) {
-    alert('비딩금액을 올바르게 입력해 주세요.');
+    alert('입찰금액을 올바르게 입력해 주세요.');
     return;
   }
   if (!qty || qty <= 0) {

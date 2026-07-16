@@ -1341,10 +1341,23 @@
     .bnh-spacer { flex: 1; }
     .btn-bundle-pay {
       height: 34px; padding: 0 18px; border: 0; border-radius: 5px;
-      background: var(--navy); color: #fff;
+      border: 1px solid #1675cf; background: #fff; color: #1675cf;
       font-size: 13px; font-weight: 800; white-space: nowrap; cursor: pointer;
+      outline: 0; -webkit-tap-highlight-color: transparent;
     }
-    .btn-bundle-pay:hover { background: #122E56; }
+    .btn-bundle-pay a,
+    .btn-bundle-pay a:link,
+    .btn-bundle-pay a:visited,
+    .btn-bundle-pay a:hover,
+    .btn-bundle-pay a:active,
+    .btn-bundle-pay a:focus {
+      color: inherit;
+      text-decoration: none;
+      outline: 0;
+      box-shadow: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
     /* 묶음 아이템 내 소스·ID 텍스트 */
     .tr-prod-src { font-size: 11px; color: #999; margin-bottom: 4px; }
 
@@ -2369,7 +2382,7 @@
                 <span class="bnh-meta"><span class="bnh-ml">총상품가격</span><span class="bnh-mv">￥57,000</span></span>
                 <span class="bnh-meta"><span class="bnh-ml">결제금액</span><span class="bnh-mv">—</span></span>
                 <span class="bnh-spacer"></span>
-                <button class="btn-bundle-pay" type="button">묶음 2건 결제하기</button>
+                <button class="btn-bundle-pay" type="button"><a href="web_bill_2nd.html">묶음 2건 결제하기</a></button>
               </div>
               <div class="trade-row">
                 <div class="tr-product">

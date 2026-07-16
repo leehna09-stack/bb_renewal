@@ -21,7 +21,9 @@
 
   /* ── 페이지 레이아웃 ── */
   .page-wrap { max-width: 1220px; margin: 0 auto; padding: 30px 20px 60px; }
-  .page-title { font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid #1A3C6E; }
+  .page-title { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid #1A3C6E; }
+  .page-back-link { width: 28px; height: 28px; border: 1px solid #D8DCE3; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #1A3C6E; font-size: 13px; text-decoration: none; }
+  .page-back-link:hover { border-color: #1A3C6E; background: #F5F7FA; }
 
   /* 2단 그리드 */
   .bill-layout { display: grid; grid-template-columns: 7fr 3fr; gap: 28px; align-items: start; }
@@ -244,7 +246,10 @@
 </aside>
 
 <div class="page-wrap">
-  <div class="page-title">1차 결제</div>
+  <div class="page-title">
+    <a class="page-back-link" href="web_bill_1st.html" aria-label="1차 결제 이전 화면으로 이동"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+    <span>1차 결제</span>
+  </div>
 
   <div class="bill-layout">
 

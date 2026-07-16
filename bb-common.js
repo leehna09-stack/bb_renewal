@@ -222,14 +222,16 @@
 
   function storeCategoryHTML(flag, label, href, open) {
     var groups = STORE_CATEGORIES[label] || [];
-    var flatCats = [];
-    groups.forEach(function (g) {
-      flatCats.push(g.title);
-      flatCats = flatCats.concat(g.subs);
-    });
-    var linksHtml = flatCats.map(function (cat) {
-      var catHref = CATEGORY_MAIN_PAGE + '?store=' + encodeURIComponent(label) + '&category=' + encodeURIComponent(cat);
-      return '<a class="bbd-store-cat" href="' + catHref + '">' + cat + '</a>';
+    var linksHtml = groups.map(function (group) {
+      var groupPath = group.title;
+      var groupHref = CATEGORY_MAIN_PAGE + '?store=' + encodeURIComponent(label) + '&category=' + encodeURIComponent(group.title) + '&path=' + encodeURIComponent(groupPath);
+      var groupLink = '<a class="bbd-store-cat" href="' + groupHref + '">' + group.title + '</a>';
+      var subLinks = group.subs.map(function (cat) {
+        var catPath = group.title + '>' + cat;
+        var catHref = CATEGORY_MAIN_PAGE + '?store=' + encodeURIComponent(label) + '&category=' + encodeURIComponent(cat) + '&path=' + encodeURIComponent(catPath);
+        return '<a class="bbd-store-cat" href="' + catHref + '">' + cat + '</a>';
+      }).join('');
+      return groupLink + subLinks;
     }).join('');
     return (
       '<div class="bbd-cat-group' + (open ? ' is-open' : '') + '">' +

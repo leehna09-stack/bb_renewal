@@ -409,6 +409,7 @@
       line-height: 1.4;
     }
     .order-title b { font-weight: 900; }
+    .order-title__left { display: flex; align-items: center; gap: 12px; }
     .order-title__sub {
       font-size: 12px; font-weight: 600; color: #666;
       border: 0; background: none; padding: 0; cursor: pointer;
@@ -484,7 +485,8 @@
     .order__stack > section:nth-of-type(2) { order: 1; grid-column: 1 / -1; }
     .order__stack > section:nth-of-type(3) { order: 2; grid-column: 1 / -1; }
     .order__stack > section:nth-of-type(4) { order: 4; grid-column: 1 / -1; }
-    .order__stack > .inquiry-wrap { order: 5; grid-column: 1 / -1; }
+    .order__stack > section:nth-of-type(5) { order: 5; grid-column: 1 / -1; }
+    .order__stack > .inquiry-wrap { order: 6; grid-column: 1 / -1; }
     .order__stack > section:nth-of-type(2),
     .order__stack > section:nth-of-type(3) {
       display: flex;
@@ -515,6 +517,40 @@
     .pay-badge.first  { color: var(--navy); }
     .pay-badge.second { color: var(--navy); }
     .pay-card__date { font-size: 12px; color: #999; font-family: 'Roboto', sans-serif; }
+    .pay-card__receipt { border: 0; background: none; padding: 0; color: #777; font: inherit; font-size: 12px; cursor: pointer; }
+    .pay-card__receipt:hover { color: var(--navy); text-decoration: underline; }
+
+    .receipt-modal-card { width: min(506px, calc(100vw - 24px)); border-radius: 8px; }
+    .receipt-modal-body { max-height: 88vh; overflow: auto; padding: 28px 30px; background: #fafafa; color: #111; }
+    .receipt-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .receipt-head h2 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 0; }
+    .receipt-actions { display: inline-flex; align-items: center; gap: 10px; }
+    .receipt-icon-btn { border: 0; background: none; color: #555; font-size: 24px; cursor: pointer; line-height: 1; }
+    .receipt-icon-btn:hover { color: var(--navy); }
+    .receipt-tools { display: grid; grid-template-columns: 176px 1fr 30px; gap: 12px; margin-bottom: 24px; }
+    .receipt-tools select,
+    .receipt-tools input { height: 32px; border: 1px solid #c8ccd3; border-radius: 4px; background: #fff; padding: 0 10px; font-size: 14px; }
+    .receipt-send { display: grid; place-items: center; width: 30px; height: 30px; border: 0; background: #333943; color: #fff; font-size: 14px; cursor: pointer; }
+    .receipt-paper { padding: 30px 26px; border-radius: 6px; background: #fff; box-shadow: 0 5px 18px rgba(0, 0, 0, .08); }
+    .receipt-list { display: grid; gap: 8px; margin: 0; }
+    .receipt-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start; font-size: 15px; line-height: 1.35; }
+    .receipt-row dt { color: #111; font-weight: 500; }
+    .receipt-row dd { margin: 0; text-align: right; font-weight: 800; color: #111; word-break: keep-all; }
+    .receipt-row.receipt-total { margin: 14px 0; padding: 14px 0; border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9; color: #005bc4; }
+    .receipt-row.receipt-total dt,
+    .receipt-row.receipt-total dd { color: #005bc4; }
+    .receipt-company { margin-top: 14px; padding-top: 12px; border-top: 1px solid #d9d9d9; }
+    .receipt-note { margin: 16px 0 20px; color: #666; font-size: 12px; }
+    .receipt-nice { color: #a5a5a5; font-size: 20px; font-weight: 900; letter-spacing: 0; }
+    .receipt-footer { margin-top: 10px; color: #555; font-size: 11px; line-height: 1.7; }
+    .receipt-footer strong { display: block; margin-bottom: 6px; color: #333; font-size: 12px; }
+    @media (max-width: 560px) {
+      .receipt-modal-body { padding: 22px 18px; }
+      .receipt-tools { grid-template-columns: 1fr; }
+      .receipt-send { width: 100%; }
+      .receipt-paper { padding: 24px 18px; }
+      .receipt-row { grid-template-columns: 82px 1fr; font-size: 13px; }
+    }
 
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
@@ -550,16 +586,20 @@
     }
     .pay-total .lbl { font-size: 16px; font-weight: 800; color: var(--navy); }
     .pay-total .val { font-size: 16px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
+    .pay-total .val-group { display: grid; justify-items: end; gap: 2px; }
+    .pay-total .calc-sm { font-size: 12px; font-weight: 600; color: rgba(28, 28, 28, .6); font-family: 'Roboto', monospace; }
 
     .pay-grandtotal {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: #fbf7f5 ;
+      padding: 18px 22px; margin-top: 16px; border-radius: 12px; background: #fcebee;
     }
     .pay-grandtotal__label { display: grid; gap: 3px; }
-    .pay-grandtotal .lbl { font-size: 18px; font-weight: 800; color: #000000; }
+    .pay-grandtotal .lbl { font-size: 16px; font-weight: 800; color: #000000; }
     .pay-grandtotal .calc { font-size: 14px; font-weight: 600; color: rgba(28, 28, 28, 0.75); }
-    .pay-grandtotal .val { font-size: 18px; font-weight: 800; color: #000; font-family: 'Roboto', monospace; }
-    .payment-switch { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
+    .pay-grandtotal .val-group { display: grid; justify-items: end; gap: 2px; }
+    .pay-grandtotal .val { font-size: 20px; font-weight: 800; color: var(--rose); font-family: 'Roboto', monospace; }
+    .pay-grandtotal .val-sm { font-size: 13px; font-weight: 600; color: rgba(232, 56, 90, 0.7); font-family: 'Roboto', monospace; }
+    .payment-switch { display: inline-flex; align-items: center; gap: 8px; }
     .payment-switch__label { min-width: 72px; text-align: center; color: #555; font-size: 14px; font-weight: 800; }
     .payment-switch__btn {
       width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%;
@@ -779,6 +819,28 @@
     .memo-type-customer { background: #f5f5f5; color: #555; }
     .memo-empty { font-size: 13px; color: #aaa; text-align: center; padding: 20px 0; }
 
+    /* 관리자 메모 */
+    .admin-memo-box { display: grid; gap: 20px; padding: 22px 24px; }
+    .admin-memo-day { display: grid; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid #f1f2f4; }
+    .admin-memo-day:last-child { padding-bottom: 0; border-bottom: 0; }
+    .admin-memo-date {
+      display: inline-flex; align-items: center; width: fit-content;
+      min-height: 24px; padding: 0 10px; border-radius: 4px;
+      font-size: 13px; font-weight: 700; font-family: 'Roboto', sans-serif;
+    }
+    .admin-memo-entry {
+      padding: 2px 0 0 14px; border-left: 3px solid #f1f2f4;
+    }
+    .admin-memo-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 8px;
+      font-size: 13px; font-weight: 700; color: var(--navy);
+    }
+    .admin-memo-head time { color: #999; font-weight: 600; font-family: 'Roboto', sans-serif; }
+    .admin-memo-content { font-size: 13px; line-height: 1.85; color: #333; }
+    .admin-memo-content p { margin: 0 0 4px; }
+    .admin-memo-content .admin-memo-highlight { margin-top: 16px; font-weight: 700; color: #222; }
+
     /* 문의 버튼 */
     .inquiry-wrap { display: flex; justify-content: center; gap: 24px; margin-top: 6px; }
     .inquiry-btn {
@@ -926,7 +988,7 @@
       <div class="order-page-head">
         <h2 class="order-page-head__title">주문상세정보</h2>
         <div class="order-page-head__row">
-          <h3 class="order-page-head__sub">경매주문상품 정보</h3>
+          <h3 class="order-page-head__sub">주문상품 정보</h3>
           <button type="button" class="order-page-head__link" onclick="openBidHistoryModal()"><span style="font-size:14px">본 입찰내역 조회</span></button>
         </div>
       </div>
@@ -988,19 +1050,22 @@
         <!-- 주문결제정보 (1차/2차 좌우 2열) -->
         <section>
           <h3 class="order-title">
-            <b>주문결제정보</b>
-            <span class="payment-switch" data-payment-switch>
-              <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
-              <span class="payment-switch__label" data-payment-switch-label>현지배송</span>
-              <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
+            <span class="order-title__left">
+              <b>주문결제정보</b>
+              <span class="payment-switch" data-payment-switch>
+                <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
+                <span class="payment-switch__label" data-payment-switch-label>현지배송</span>
+                <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
+              </span>
             </span>
+            <span class="info-chip">¥ 환율 9.3원/엔</span>
           </h3>
           <div class="pay-2col">
             <!-- 1차 결제 -->
             <div class="pay-card" data-payment-card="primary">
               <div class="pay-card__head">
                 <span class="pay-badge first">1차 결제비용</span>
-                <span class="pay-card__date">2025-12-08 결제완료</span>
+                <button class="pay-card__date pay-card__receipt" type="button" onclick="openPaymentReceipt(this)">2025-12-08 결제완료</button>
               </div>
               <ul class="pay-rows">
                 <li class="pay-row"><span class="lbl">물품가</span><span class="val" data-pay-kind="base">4,300엔</span></li>
@@ -1017,7 +1082,7 @@
                 </li>
               </ul>
               <div class="pay-foot">
-                <div class="pay-total"><span class="lbl">1차 합계</span><span class="val" data-pay-total>3,862엔</span></div>
+                <div class="pay-total"><span class="lbl">1차 합계</span><span class="val-group"><span class="val" data-pay-total data-pay-currency="krw">35,927원</span><span class="calc-sm" data-pay-total-calc>3,862엔</span></span></div>
               </div>
             </div>
 
@@ -1026,7 +1091,7 @@
               <div class="pay-card" data-payment-card="secondary" data-payment-variant="일본내배송">
                 <div class="pay-card__head">
                   <span class="pay-badge second">2차 결제비용</span>
-                  <span class="pay-card__date">2025-12-14 결제완료</span>
+                  <button class="pay-card__date pay-card__receipt" type="button" onclick="openPaymentReceipt(this)">2025-12-14 결제완료</button>
                 </div>
                 <ul class="pay-rows">
                   <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
@@ -1034,7 +1099,7 @@
                   <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                   <li class="pay-row is-toggle">
                     <details class="pay-etc" open>
-                      <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                      <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                       <div class="pay-etc__inner">
                         <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                         <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
@@ -1044,22 +1109,23 @@
                   </li>
                 </ul>
                 <div class="pay-foot">
-                  <div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>6,798엔</span></div>
+                  <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total data-pay-currency="krw">63,221원</span><span class="calc-sm" data-pay-total-calc>6,798엔</span></span></div>
                 </div>
               </div>
 
               <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
               <div class="pay-card__head">
                 <span class="pay-badge second">2차 결제비용</span>
-                <span class="pay-card__date">2025-12-14 결제완료</span>
+                <button class="pay-card__date pay-card__receipt" type="button" onclick="openPaymentReceipt(this)">2025-12-14 결제완료</button>
               </div>
               <ul class="pay-rows">
                 <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
                 <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
                 <li class="pay-row"><span class="lbl">국제운송료</span><span class="val" data-pay-kind="base">6,500엔</span></li>
+                <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
                 <li class="pay-row is-toggle">
                   <details class="pay-etc" open>
-                    <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <summary>추가비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
                     <div class="pay-etc__inner">
                       <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                       <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
@@ -1069,7 +1135,7 @@
                 </li>
               </ul>
               <div class="pay-foot">
-                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>10,798엔</span></div>
+                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total data-pay-currency="krw">100,421원</span><span class="calc-sm" data-pay-total-calc>10,798엔</span></span></div>
               </div>
               </div>
             </div>
@@ -1079,9 +1145,11 @@
           <div class="pay-grandtotal">
             <span class="pay-grandtotal__label">
               <span class="lbl">총 결제금액 (1차 + 2차)</span>
-              <span class="calc" data-pay-grand-calc>총 10,660엔 * 환율 9.3원/엔</span>
             </span>
-            <span class="val" data-pay-grand-total>99,138원</span>
+            <span class="val-group">
+              <span class="val" data-pay-grand-total>99,138원</span>
+              <span class="val-sm" data-pay-grand-yen>10,660엔</span>
+            </span>
           </div>
 
           <div class="shipping-fee-compare" aria-label="배송방법별 국제운송료">
@@ -1285,6 +1353,49 @@
           </div>
         </section>
 
+        <!-- 관리자 메모 -->
+        <section id="admin-memo">
+          <h3 class="order-title"><b>관리자 메모</b></h3>
+          <article class="order-list-box admin-memo-box">
+            <div class="admin-memo-day">
+              <div class="admin-memo-date">2026-06-30</div>
+              <div class="admin-memo-entry">
+                <div class="admin-memo-head">
+                  <time datetime="2026-06-30T10:22:23">10:22:23</time>
+                </div>
+                <div class="admin-memo-content">
+                  <p>안녕하세요.<br>
+                  낙찰받으신 후 12시간이 경과하였습니다.<br>
+                  출품자에게 일방적인 낙찰취소를 당할수 있는 가능성이 있어 알려드립니다.<br>
+                  만약 낙찰취소되시면 보증금 환수 및 등급포인트가 차감되시오니<br>
+                  빠른 결제처리를 부탁드립니다.<br>
+                  감사합니다.</p>
+                </div>
+              </div>
+            </div>
+            <div class="admin-memo-day">
+              <div class="admin-memo-date">2026-06-26</div>
+              <div class="admin-memo-entry">
+                <div class="admin-memo-head">
+                  <time datetime="2026-06-26T15:55:23">15:55:23</time>
+                </div>
+                <div class="admin-memo-content">
+                  <p>안녕하세요, 고객님.<br>
+                  구매신청 감사합니다.<br>
+                  가격변동 및 품절 등 있을 경우에는 관리자메모로 안내 드리도록 하겠습니다.<br>
+                  구매완료되면 "결제완료" 에서 "주문완료" 로 상태 변경 됩니다.</p><br>
+                  <p>[청약 철회에 대한 안내]</p>
+                  <p>실제 주문완료 이후에는 구매대행계약의 청약철회를 할 수 없습니다.<br>
+                  다만, 판매자가 환불에 동의한 경우 고객님의 비용부담으로 반품, 환불 절차를 대행합니다. (메루카리/라쿠마/페이페이프리마 제외)<br>
+                  이 경우 대행 수수료는 환불 대상이 아닙니다.</p>
+                  <p>또한 부피, 무게 등의 차이로 인한 송료 차액은 2차 결제 시 실제 금액으로 정산 될 수 있는 점 참고 바랍니다.<br>
+                  감사합니다.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
         <!-- 주문 메모 내역 -->
         <section id="user-memo">
           <h3 class="order-title"><b>사용자 메모 내역</b></h3>
@@ -1299,7 +1410,7 @@
               <li class="msg agent">
                 <div class="msg-head">
                   <span class="msg-label">답변</span>
-                  <span class="msg-who">비드바이 cs팀</span>
+                  <span class="msg-who">관리자</span>
                   <span class="msg-date">2025-12-10 11:20</span>
                 </div>
                 <div class="msg-bubble">
@@ -1325,7 +1436,7 @@
               <li class="msg agent">
                 <div class="msg-head">
                   <span class="msg-label">답변</span>
-                  <span class="msg-who">비드바이 cs팀</span>
+                  <span class="msg-who">관리자</span>
                   <span class="msg-date">2025-12-10 11:24</span>
                 </div>
                 <div class="msg-bubble">
@@ -1361,8 +1472,56 @@
       </div><!-- /order__stack -->
 
     </main>
-  </div><!-- /stage -->
+</div><!-- /stage -->
 </div><!-- /page -->
+
+<div class="confirm-modal" id="paymentReceiptModal" onclick="closePaymentReceipt(event)">
+  <div class="confirm-modal-card receipt-modal-card" onclick="event.stopPropagation()">
+    <div class="receipt-modal-body">
+      <div class="receipt-head">
+        <h2>거래확인서</h2>
+        <div class="receipt-actions">
+          <button class="receipt-icon-btn" type="button" onclick="window.print()" aria-label="거래확인서 인쇄"><i class="fa-solid fa-print" aria-hidden="true"></i></button>
+          <button class="receipt-icon-btn" type="button" onclick="closePaymentReceipt()" aria-label="닫기">&times;</button>
+        </div>
+      </div>
+      <div class="receipt-tools">
+        <select aria-label="거래확인서 상태">
+          <option>승인</option>
+        </select>
+        <input type="email" value="km****@paran.com" aria-label="이메일">
+        <button class="receipt-send" type="button" aria-label="이메일 발송"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+      <section class="receipt-paper" aria-label="결제영수증">
+        <dl class="receipt-list">
+          <div class="receipt-row"><dt>주문 번호</dt><dd id="receiptOrderNo">BJP0194792054</dd></div>
+          <div class="receipt-row"><dt>구매자</dt><dd>박*식</dd></div>
+          <div class="receipt-row"><dt>구매 상품</dt><dd id="receiptProductName">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</dd></div>
+          <div class="receipt-row receipt-total"><dt>합계(원)</dt><dd><span id="receiptTotalWon">35,927</span> 원 <i class="fa-solid fa-circle-check" aria-hidden="true"></i></dd></div>
+          <div class="receipt-row"><dt>결제수단</dt><dd>신용카드</dd></div>
+          <div class="receipt-row"><dt>결제수단번호</dt><dd>402596******6561</dd></div>
+          <div class="receipt-row"><dt>거래일시</dt><dd id="receiptPaidAt">2025.12.08 | 10:22:01</dd></div>
+        </dl>
+        <dl class="receipt-list receipt-company">
+          <div class="receipt-row"><dt>상호</dt><dd>비드바이코리아</dd></div>
+          <div class="receipt-row"><dt>대표자명</dt><dd>예창민</dd></div>
+          <div class="receipt-row"><dt>사업자등록 번호</dt><dd>107-87-03406</dd></div>
+          <div class="receipt-row"><dt>전화번호</dt><dd>1544-5224</dd></div>
+          <div class="receipt-row"><dt>사업장주소</dt><dd>서울특별시 영등포구 경인로 775<br>1동 1506호 (문래동3가, 에이스하이테크시티)</dd></div>
+          <div class="receipt-row"><dt>URL주소</dt><dd>www.bidbuy.co.kr</dd></div>
+        </dl>
+      </section>
+      <p class="receipt-note">· 본 거래확인서는 세금계산서 대용으로 사용할 수 없습니다.</p>
+      <div class="receipt-nice">NICEPAY</div>
+      <div class="receipt-footer">
+        <strong>결제대행사</strong>
+        나이스정보통신(주) | 대표자: 김승현 | 사업자번호: 220-81-15770 | 전화: 1661-0808 |<br>
+        주소: 서울특별시 영등포구 은행로 17 (나이스그룹 1사옥) 나이스정보통신(주) |<br>
+        https://www.nicepay.co.kr
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="confirm-modal" id="bidHistoryModal" onclick="closeBidHistoryModal(event)">
   <div class="confirm-modal-card bid-history-modal-card" onclick="event.stopPropagation()">
@@ -1488,17 +1647,25 @@ function updatePaymentTotals() {
     const extra = sum('extra');
     const cardTotal = card.dataset.paymentCard === 'primary' ? base - discount : base + extra;
     const totalEl = card.querySelector('[data-pay-total]');
+    const totalCalcEl = card.querySelector('[data-pay-total-calc]');
 
     if (card.dataset.paymentCard === 'primary') primaryTotal = cardTotal;
     if (card.dataset.paymentCard === 'secondary') secondaryTotal = cardTotal;
-    if (totalEl) totalEl.textContent = totalEl.dataset.payCurrency === 'krw'
-      ? formatPaymentWon(cardTotal)
-      : formatPaymentYen(cardTotal);
+    if (totalEl) {
+      if (totalCalcEl) {
+        totalEl.textContent = formatPaymentWon(cardTotal);
+        totalCalcEl.textContent = formatPaymentYen(cardTotal);
+      } else {
+        totalEl.textContent = totalEl.dataset.payCurrency === 'krw'
+          ? formatPaymentWon(cardTotal)
+          : formatPaymentYen(cardTotal);
+      }
+    }
   });
 
   const grandTotal = primaryTotal + secondaryTotal;
-  document.querySelectorAll('[data-pay-grand-calc]').forEach(el => {
-    el.textContent = `총 ${formatPaymentYen(grandTotal)} * 환율 9.3원/엔`;
+  document.querySelectorAll('[data-pay-grand-yen]').forEach(el => {
+    el.textContent = formatPaymentYen(grandTotal);
   });
   document.querySelectorAll('[data-pay-grand-total]').forEach(el => {
     el.textContent = formatPaymentWon(grandTotal);
@@ -1553,6 +1720,37 @@ function setupCarePlusToggle() {
 
     render();
   });
+}
+
+function closePaymentReceipt(event) {
+  if (event && event.target !== event.currentTarget) return;
+  const modal = document.getElementById('paymentReceiptModal');
+  if (modal) modal.classList.remove('open');
+}
+
+function openPaymentReceipt(trigger) {
+  updatePaymentTotals();
+  const card = trigger.closest('[data-payment-card]');
+  const modal = document.getElementById('paymentReceiptModal');
+  if (!card || !modal) return;
+
+  const orderMatch = document.body.textContent.match(/BJP\d+/);
+  const orderNo = orderMatch ? orderMatch[0] : 'BJP0194792054';
+  const productName = document.querySelector('.order-item__name-ko')?.textContent.trim() || '주문 상품';
+  const totalWon = card.querySelector('[data-pay-total]')?.textContent.replace('원', '').trim() || '0';
+  const paidDate = trigger.textContent.match(/\d{4}-\d{2}-\d{2}/)?.[0] || '2025-12-08';
+  const paidTime = card.dataset.paymentCard === 'primary' ? '10:22:01' : '15:55:23';
+
+  const orderEl = document.getElementById('receiptOrderNo');
+  const productEl = document.getElementById('receiptProductName');
+  const totalEl = document.getElementById('receiptTotalWon');
+  const paidAtEl = document.getElementById('receiptPaidAt');
+  if (orderEl) orderEl.textContent = orderNo;
+  if (productEl) productEl.textContent = productName;
+  if (totalEl) totalEl.textContent = totalWon;
+  if (paidAtEl) paidAtEl.textContent = `${paidDate.replaceAll('-', '.')} | ${paidTime}`;
+
+  modal.classList.add('open');
 }
 
 updatePaymentTotals();
