@@ -748,6 +748,11 @@
     min-width: 36px;
   }
   .option-toggle-text.active { color: #3AAD4E; }
+  .packing-choice-list { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 2px; }
+  .packing-choice { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 10px; border: 1px solid #d6dee9; border-radius: 5px; background: #fff; color: #28344d; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: border-color .15s, background .15s; }
+  .packing-choice input { width: 14px; height: 14px; margin: 0; accent-color: #1A3C6E; flex: 0 0 auto; }
+  .packing-choice:has(input:checked) { border-color: #1A3C6E; background: #f7faff; }
+  .packing-choice span { overflow: hidden; text-overflow: ellipsis; }
 
   /* 사진 촬영 카드 */
   .photo-option-wrap {
@@ -1108,17 +1113,12 @@
     <tbody>
       <tr>
         <th>
-          <span class="paid-option-name">안심 케어 플러스</span>
-          <span class="paid-option-price">+ 1,000엔</span>
+          <div class="packing-choice-list" aria-label="안심 케어 옵션 선택">
+            <label class="packing-choice"><input type="checkbox" name="careOption" value="carePlus" data-paid-option-yen="1000"><span>안심 케어 플러스</span></label>
+            <label class="packing-choice"><input type="checkbox" name="careOption" value="care" data-paid-option-yen="200"><span>안심 케어</span></label>
+          </div>
         </th>
         <td class="paid-option-choice">
-          <div class="care-plus-control">
-            <label class="option-toggle-label care-plus-toggle">
-              <input type="checkbox" class="option-chk" data-paid-option-yen="1000" aria-label="안심 케어 플러스 신청">
-              <span class="option-toggle-track"><span class="option-toggle-thumb"></span></span>
-              <span class="option-toggle-text">미신청</span>
-            </label>
-          </div>
           <div class="paid-option-desc">
             <p style="font-size:14px;"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>  국제배송중 파손에 대비한 선택 옵션입니다.</p>
             <ul>
@@ -1394,12 +1394,12 @@
 
   window.syncCarePlusAvailability = () => {
     const carePlusTable = document.querySelector('.care-plus-table');
-    const carePlusChk = carePlusTable?.querySelector('input.option-chk');
+    const carePlusInputs = carePlusTable?.querySelectorAll('input[name="careOption"]');
 
-    if (!carePlusTable || !carePlusChk) return;
+    if (!carePlusTable || !carePlusInputs?.length) return;
 
     carePlusTable.classList.remove('is-disabled');
-    carePlusChk.disabled = false;
+    carePlusInputs.forEach((input) => { input.disabled = false; });
   };
 
   (() => {
@@ -1433,16 +1433,14 @@
 
 
   (() => {
-    document.querySelectorAll('.care-plus-toggle .option-chk').forEach((input) => {
-      const label = input.closest('.care-plus-toggle');
-      const text = label?.querySelector('.option-toggle-text');
-      const sync = () => {
-        const checked = input.checked;
-        if (text) text.textContent = checked ? '신청' : '미신청';
-        text?.classList.toggle('active', checked);
-      };
-      input.addEventListener('change', sync);
-      sync();
+    document.querySelectorAll('input[name="careOption"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          document.querySelectorAll('input[name="careOption"]').forEach((other) => {
+            if (other !== input) other.checked = false;
+          });
+        }
+      });
     });
   })();
 
@@ -1559,10 +1557,9 @@
       if (rowWait) rowWait.classList.toggle('selected', Boolean(cbkWait?.checked));
 
       const carePlusTable = document.querySelector('.care-plus-table');
-      const carePlusChk = carePlusTable?.querySelector('input.option-chk');
-      if (isJapanLocal && carePlusChk) {
-        carePlusChk.checked = false;
-        carePlusChk.dispatchEvent(new Event('change', { bubbles: true }));
+      const carePlusInputs = carePlusTable?.querySelectorAll('input[name="careOption"]');
+      if (isJapanLocal && carePlusInputs?.length) {
+        carePlusInputs.forEach((input) => { input.checked = false; });
       }
       if (carePlusTable) carePlusTable.hidden = isJapanLocal;
       window.syncCarePlusAvailability?.();
