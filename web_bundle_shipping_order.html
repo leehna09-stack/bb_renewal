@@ -375,16 +375,16 @@
     .ship-compare-table.method-select-table tbody tr.selectable:hover { background-color: #f4f7ff; }
     .ship-compare-table.method-select-table tbody tr.selectable.selected { background-color: #eef5ff; box-shadow: inset 4px 0 0 var(--navy); }
     .ship-compare-table.method-select-table .method-checkbox { width: 16px; height: 16px; accent-color: var(--navy); flex-shrink: 0; }
-    .ship-compare-table.method-select-table .method-name { width: 190px; }
+    .ship-compare-table.method-select-table .method-name { width: 230px; min-width: 230px; max-width: 230px; }
     .ship-compare-table.method-select-table .method-name label { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%; cursor: pointer; }
     .ship-compare-table .method-desc { font-size: 12px; line-height: 1.8; color: #444; text-align: left; }
 
     /* ── 유료옵션 테이블 ── */
     .paid-option-table { border-collapse: collapse; width: 100%; margin-bottom: 28px; }
-    .paid-option-table th { width: 190px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; text-align: left; vertical-align: top; border: 1px solid #dde1e7; }
+    .paid-option-table th { width: 230px; min-width: 230px; max-width: 230px; padding: 28px 20px; background: #f5f7fa; color: #444; font-size: 13px; font-weight: 500; line-height: 1.5; text-align: left; vertical-align: top; border: 1px solid #dde1e7; }
     .paid-option-table td { padding: 22px 18px; vertical-align: top; border: 1px solid #dde1e7; }
     .paid-option-table tr + tr th, .paid-option-table tr + tr td { border-top: 2px solid #dde1e7; }
-    .paid-option-common-note { margin: -4px 0 12px; padding: 10px 12px; border: 1px solid rgba(232,56,90,0.18); border-radius: 6px; background: #fff8fa; color: var(--rose); font-size: 12px; font-weight: 700; line-height: 1.5; }
+    .paid-option-common-note { margin: 2px 0 12px; padding: 10px 12px; border: 1px solid rgba(232,56,90,0.18); background: #fff8fa; color: var(--rose); font-size: 12px; font-weight: 700; line-height: 1.5; }
     .paid-option-name { display: block; margin-bottom: 5px; color: #555; font-weight: 700; }
     .paid-option-meta { display: grid; gap: 2px; color: #777; font-size: 12px; font-weight: 400; line-height: 1.45; }
     .paid-option-price { color: var(--rose); font-family: inherit; font-weight: 700; }
@@ -707,7 +707,7 @@
               <div class="packing-choice-list" aria-label="포장 옵션 선택">
                 <label class="packing-choice"><input type="checkbox" name="packingOption" value="arrival"><span>현지도착상태 그대로 발송</span></label>
                 <label class="packing-choice"><input type="checkbox" name="packingOption" value="basic"><span>기본포장</span></label>
-                <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료 서비스)</span></label>
+                <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료)</span></label>
               </div>
             </th>
             <td class="paid-option-choice">

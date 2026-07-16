@@ -453,7 +453,7 @@
 
     .bundle-head, .bundle-row {
       display: grid;
-      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 126px 104px;
+      grid-template-columns: 92px 84px minmax(0, 1fr) 72px 126px;
       align-items: center;
     }
 
@@ -468,6 +468,14 @@
     }
 
     .bundle-head > div { padding: 8px 6px; line-height: 1.4; white-space: nowrap; }
+    .bundle-head > div:nth-child(4),
+    .bundle-head > div:nth-child(5),
+    .bundle-row > div:nth-child(4),
+    .bundle-row > div:nth-child(5) { border-left: 1px solid var(--line-soft); align-self: stretch; }
+    .bundle-head > div:nth-child(4),
+    .bundle-head > div:nth-child(5),
+    .bundle-row > div:nth-child(4) { display: flex; align-items: center; justify-content: center; }
+    .bundle-row > div:nth-child(5) { align-content: center; }
 
     .bundle-row {
       min-height: 96px;
@@ -482,7 +490,6 @@
     .bundle-row:hover { background: #fffafb; }
 
     .bundle-row > div { padding: 12px 6px; }
-    .group-card .bundle-row > div:nth-child(6) { visibility: hidden; }
 
     .row-status { font-weight: 800; color: #2b2f37; white-space: nowrap; }
     .row-status.hot { color: var(--rose); }
@@ -934,7 +941,6 @@
                     <li><b>신청일</b><span>2024-06-08</span></li>
                     <li><b>대표주문번호</b><span>BJP0194791461</span></li>
                     <li><b>묶음상품</b><span>4건</span></li>
-                    <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
                   </ul>
                   <div class="group-utils">
                     <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
@@ -945,8 +951,7 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가(상품가)<br>예상 수입신고금액</div>
-                  <div>부피/무게</div>
+                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
                 </div>
                 <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
                 <div class="bundle-row">
@@ -962,7 +967,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -977,9 +981,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -994,9 +995,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1011,9 +1009,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
               </article>
 
@@ -1024,7 +1019,6 @@
                     <li><b>신청일</b><span>2024-06-08</span></li>
                     <li><b>대표주문번호</b><span>BJP0194791462</span></li>
                     <li><b>묶음상품</b><span>4건</span></li>
-                    <li><b>2차 결제금액</b><span class="hot">￦450,000</span></li>
                   </ul>
                   <div class="group-utils">
                     <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
@@ -1035,8 +1029,7 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가(상품가)<br>예상 수입신고금액</div>
-                  <div>부피/무게</div>
+                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
                 </div>
                 <div class="group-volume"><strong>총 4kg</strong><span>0.24㎥</span></div>
                 <div class="bundle-row">
@@ -1052,7 +1045,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1067,9 +1059,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1084,9 +1073,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1101,9 +1087,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
               </article>
 
@@ -1114,7 +1097,6 @@
                     <li><b>신청일</b><span>2024-06-09</span></li>
                     <li><b>대표주문번호</b><span>BJP0194791464</span></li>
                     <li><b>묶음상품</b><span>3건</span></li>
-                    <li><b>2차 결제금액</b><span>-</span></li>
                   </ul>
                   <div class="group-utils">
                     <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
@@ -1125,8 +1107,7 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가(상품가)<br>예상 수입신고금액</div>
-                  <div>부피/무게</div>
+                  <div>낙찰가<br>예상 수입신고금액(원화)</div>
                 </div>
                 <div class="group-volume"><strong>-</strong></div>
                 <div class="bundle-row">
@@ -1142,7 +1123,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦18,000</b><span>￦18,000</span></div>
-                  <div></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1157,7 +1137,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦27,000</b><span>￦27,000</span></div>
-                  <div></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1172,7 +1151,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦16,000</b><span>￦16,000</span></div>
-                  <div></div>
                 </div>
               </article>
             </div>
@@ -1191,7 +1169,6 @@
                     <li><b>신청일</b><span>2024-06-08</span></li>
                     <li><b>대표주문번호</b><span>BUS0194791463</span></li>
                     <li><b>묶음상품</b><span>2건</span></li>
-                    <li><b>2차 결제금액</b><span class="hot">￦220,000</span></li>
                   </ul>
                   <div class="group-utils">
                     <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
@@ -1202,8 +1179,7 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가(상품가)<br>예상 수입신고금액</div>
-                  <div>부피/무게</div>
+                  <div>낙찰가합<br>예상 수입신고금액(원화)</div>
                 </div>
                 <div class="group-volume"><strong>총 2kg</strong><span>0.12㎥</span></div>
                 <div class="bundle-row">
@@ -1219,7 +1195,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>￦34,000</div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status">현지도착</div>
@@ -1234,9 +1209,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦34,000</b><span>￦34,000</span></div>
-                  <div>
-                    <label class="check"><input type="checkbox" aria-label="주문 선택"><span class="box"></span></label>
-                  </div>
                 </div>
               </article>
             </div>
@@ -1255,7 +1227,6 @@
                     <li><b>신청일</b><span>2024-06-09</span></li>
                     <li><b>대표주문번호</b><span>BUK0194791465</span></li>
                     <li><b>묶음상품</b><span>2건</span></li>
-                    <li><b>2차 결제금액</b><span>-</span></li>
                   </ul>
                   <div class="group-utils">
                     <label class="check"><input type="checkbox" class="group-check" aria-label="묶음 선택"><span class="box"></span></label>
@@ -1266,8 +1237,7 @@
                   <div>주문일자</div>
                   <div style="text-align:left;">상품정보</div>
                   <div>수취인</div>
-                  <div>낙찰가(상품가)<br>예상 수입신고금액</div>
-                  <div>부피/무게</div>
+                  <div>낙찰가합<br>예상 수입신고금액(원화)</div>
                 </div>
                 <div class="group-volume"><strong>-</strong></div>
                 <div class="bundle-row">
@@ -1283,7 +1253,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦42,000</b><span>￦42,000</span></div>
-                  <div></div>
                 </div>
                 <div class="bundle-row">
                   <div class="row-status hot">1차 결제완료</div>
@@ -1298,7 +1267,6 @@
                   </div>
                   <div>박비드</div>
                   <div class="row-price"><b>￦23,000</b><span>￦23,000</span></div>
-                  <div></div>
                 </div>
               </article>
             </div>

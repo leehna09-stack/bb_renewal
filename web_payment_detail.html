@@ -883,7 +883,7 @@
         <div class="order-item__platform">
           <span class="flag jp" role="img" aria-label="일본"></span>
           <span>야후경매</span>
-          <span>BJP0194792054</span>
+          <span>a12345678901</span>
         </div>
         <a href="#" class="order-item__name">
           <span class="order-item__name-ko">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</span>
@@ -898,7 +898,7 @@
           <div class="order-item__details">
             <dl class="order-item__meta-list">
               <dt>주문번호</dt>
-              <dd><strong>BJP0194792054</strong></dd>
+              <dd><strong>a12345678901</strong></dd>
               <dt>주문옵션</dt>
               <dd>OOOOOOO</dd>
               <dt>주문수량</dt>
@@ -912,7 +912,7 @@
           <aside class="order-status-card">
             <div class="order-status-card__head">
               <p>현재상태: 현지도착</p>
-              <p>주문번호: BJP0194792054</p>
+              <p>주문번호: a12345678901</p>
             </div>
             <dl class="order-status-card__list">
               <dt>현재상태</dt>
@@ -1358,7 +1358,7 @@
       </div>
       <section class="receipt-paper" aria-label="결제영수증">
         <dl class="receipt-list">
-          <div class="receipt-row"><dt>주문 번호</dt><dd id="receiptOrderNo">BJP0194792054</dd></div>
+          <div class="receipt-row"><dt>주문 번호</dt><dd id="receiptOrderNo">a12345678901</dd></div>
           <div class="receipt-row"><dt>구매자</dt><dd>홍*동</dd></div>
           <div class="receipt-row"><dt>구매 상품</dt><dd id="receiptProductName">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</dd></div>
           <div class="receipt-row receipt-total"><dt>합계(원)</dt><dd><span id="receiptTotalWon">35,927</span> 원 <i class="fa-solid fa-circle-check" aria-hidden="true"></i></dd></div>
@@ -1599,7 +1599,7 @@ function openPaymentReceipt(trigger) {
   if (!card || !modal) return;
 
   const orderMatch = document.body.textContent.match(/BJP\d+/);
-  const orderNo = orderMatch ? orderMatch[0] : 'BJP0194792054';
+  const orderNo = orderMatch ? orderMatch[0] : 'a12345678901';
   const productName = document.querySelector('.order-item__name-ko')?.textContent.trim() || '주문 상품';
   const totalWon = card.querySelector('[data-pay-total]')?.textContent.replace('원', '').trim() || '0';
   const paidDate = trigger.textContent.match(/\d{4}-\d{2}-\d{2}/)?.[0] || '2025-12-08';

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -426,7 +426,9 @@
     flex-shrink: 0;
   }
   .ship-compare-table.method-select-table .method-name {
-    width: 190px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
   }
   .ship-compare-table.method-select-table .method-name label {
     display: inline-flex;
@@ -749,7 +751,7 @@
   }
   .option-toggle-text.active { color: #3AAD4E; }
   .packing-choice-list { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 2px; }
-  .packing-choice { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 10px; border: 1px solid #d6dee9; border-radius: 5px; background: #fff; color: #28344d; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: border-color .15s, background .15s; }
+  .packing-choice { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 10px; border: 1px solid #d6dee9; border-radius: 5px; background: #fff; color: #28344d; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: border-color .15s, background .15s; }
   .packing-choice input { width: 14px; height: 14px; margin: 0; accent-color: #1A3C6E; flex: 0 0 auto; }
   .packing-choice:has(input:checked) { border-color: #1A3C6E; background: #f7faff; }
   .packing-choice span { overflow: hidden; text-overflow: ellipsis; }
@@ -813,7 +815,9 @@
   .guide-price { font-family: 'Roboto', sans-serif; font-weight: 700; color: #1A3C6E; }
 
   .paid-option-table th {
-    width: 190px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
     padding: 28px 20px;
     background: #f3f6fa;
     color: #222;
@@ -829,6 +833,31 @@
   .paid-option-table tr + tr th,
   .paid-option-table tr + tr td {
     border-top: 2px solid #dde1e7;
+  }
+  .packing-option-table thead th {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    padding: 10px 12px;
+    background: #f5f7fa;
+    color: #444;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .packing-option-table,
+  .packing-option-table th,
+  .packing-option-table td {
+    border: 1px solid #dde1e7;
+  }
+  .packing-option-table th,
+  .packing-option-table td {
+    border-top-width: 1px;
+  }
+  .packing-option-table tbody th {
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
   }
   .paid-option-name {
     display: block;
@@ -907,6 +936,22 @@
   .paid-option-detail.care-guide-detail::before {
     content: none;
   }
+  .paid-option-detail.packing-cost-detail {
+    height: 30px;
+    margin-top: 8px;
+    padding: 0 12px;
+    border: 1px solid #1A3C6E;
+    border-radius: 5px;
+    background: #fff;
+    color: #1A3C6E;
+    font-family: Pretendard, 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .paid-option-detail.packing-cost-detail::before {
+    content: none;
+  }
 
   .modal-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.45); opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; z-index: 1000; }
   .modal-overlay.is-open { opacity: 1; visibility: visible; }
@@ -917,6 +962,18 @@
   .modal-body { max-height: 70vh; overflow-y: auto; padding: 20px; font-size: 13px; line-height: 1.8; color: #333; }
   .modal-body ul { margin: 12px 0 0; padding-left: 20px; list-style: disc outside; }
   .modal-body li { margin-bottom: 10px; }
+  .packing-modal { width: min(1120px,100%); }
+  .packing-modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 8px; }
+  .packing-unit { margin: 0; text-align: left; color: #333; font-size: 13px; font-weight: 700; }
+  .packing-table-wrap { overflow-x: auto; }
+  .packing-cost-table { width: 100%; min-width: 980px; border-collapse: collapse; border: 1px solid #d7dce3; color: #5f6770; font-size: 13px; text-align: center; }
+  .packing-cost-table + .packing-cost-table { margin-top: 30px; }
+  .packing-cost-table th, .packing-cost-table td { border: 1px solid #e7e7e7; padding: 7px 8px; line-height: 1.35; vertical-align: middle; white-space: nowrap; }
+  .packing-cost-table thead th { background: #f4f4f4; font-weight: 700; }
+  .packing-cost-table .thick-right { border-right: 1px solid #d7dce3; }
+  .packing-cost-table .thick-bottom { border-bottom: 1px solid #d7dce3; }
+  .packing-cost-table .tier-note { display: block; color: #888; font-size: 11px; font-weight: 400; margin-top: 2px; }
+  .packing-note { margin: 10px 0 0; color: #888; font-size: 12px; line-height: 1.6; }
   /* ── CTA 버튼 ── */
   .btn-area {
     display: flex;
@@ -1025,7 +1082,7 @@
        국제배송 및 배송형태 선택
   ───────────────────────────────────── -->
   <div class="section">
-    <div class="section-title">국제배송 및 배송형태<span class="required">*</span></div>
+    <div class="section-title">국제 배송방법 선택<span class="required">*</span></div>
 
     <!-- 선택옵션 박스 -->
      
@@ -1078,6 +1135,7 @@
       </tbody>
     </table>
   </div>
+      <div class="section-title">배송형태 및 포장방법 선택<span class="required">*</span></div>
   <table class="ship-compare-table method-select-table">
       <thead>
         <tr>
@@ -1109,32 +1167,30 @@
         </tr>
       </tbody>
     </table>
-  <table class="care-table paid-option-table care-plus-table">
+  <table class="care-table paid-option-table packing-option-table">
+    <thead>
+      <tr>
+        <th colspan="2">포장 옵션</th>
+      </tr>
+    </thead>
     <tbody>
       <tr>
         <th>
-          <div class="packing-choice-list" aria-label="안심 케어 옵션 선택">
-            <label class="packing-choice"><input type="checkbox" name="careOption" value="carePlus" data-paid-option-yen="1000"><span>안심 케어 플러스</span></label>
-            <label class="packing-choice"><input type="checkbox" name="careOption" value="care" data-paid-option-yen="200"><span>안심 케어</span></label>
+          <div class="packing-choice-list" aria-label="포장 옵션 선택">
+            <label class="packing-choice"><input type="checkbox" name="packingOption" value="arrival"><span>현지도착상태 그대로 발송</span></label>
+            <label class="packing-choice"><input type="checkbox" name="packingOption" value="basic"><span>기본포장</span></label>
+            <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료 서비스)</span></label>
           </div>
         </th>
         <td class="paid-option-choice">
           <div class="paid-option-desc">
-            <p style="font-size:14px;"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>  국제배송중 파손에 대비한 선택 옵션입니다.</p>
+            <p><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong class="bold-red">깨지기 쉬운 물품</strong>의 경우 튼튼 포장 옵션을 선택해 주세요.</p>
             <ul>
-             <li>신청 건에 한하여 파손시 <STRONG>최대 50만 원 한도 내 지원</STRONG>해드리며,<STRONG> 파손 방지를 위한 튼튼포장이 포함</STRONG>됩니다.</li>
-             <li>지원 범위에는 <STRONG>물품가 + 국제 운송료 + 수입신고 시 발생한 세금</STRONG>이 포함됩니다.</li>
-             <li>해당 서비스 신청 건은 <STRONG>개별배송으로만 진행</STRONG>되며, 서비스 비용은 <STRONG>2차 결제시 청구</STRONG>됩니다.</li>
+              <li>튼튼 포장 비용은 품목에 따라 500엔~3,000엔까지 적용됩니다.</li>
+              <li>자세한 품목별 비용은 하단의 [튼튼 포장 비용 안내]를 참고해 주세요.</li>
+              <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
             </ul>
-            <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
-            <ul>
-              <li><strong class="bold-red">파손 지원 불가 품목</strong>은 안심케어플러스 신청 여부와 관계없이 <strong class="bold-red">지원 대상에서 제외</strong>됩니다.</li>
-              <li><strong class="bold-red">신청 전 신청 가능 품목을 반드시 확인해 주세요.</strong></li>
-              <li>현지 입고 후 불가 품목으로 확인될 경우, <strong class="bold-red">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
-              <li>튼튼 포장비가 500엔을 초과하는 경우, 초과 금액은  <strong class="bold-red">2차 결제 시 별도 청구됩니다.</strong></li>
-            </ul>
-            <button class="paid-option-detail damage-detail" type="button">파손지원 불가 품목 보기</button>
-            <button class="paid-option-detail care-guide-detail" type="button" onclick="window.location.href='web_cs_damage.html#care'">안심케어 서비스 안내</button>
+            <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장 비용 안내</button>
           </div>
         </td>
       </tr>
@@ -1319,6 +1375,71 @@
     </div>
   </div>
 </div>
+<!-- 튼튼 포장 참고표 모달 -->
+<div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
+  <div class="modal packing-modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장 비용 안내</h2>
+      <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="packing-modal-meta"><p class="packing-unit">단위 : 엔(円)</p></div>
+      <div class="packing-table-wrap">
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">주요 상품<br>(1개 기준)</th>
+              <th class="thick-bottom">턴테이블</th>
+              <th class="thick-bottom">앰프, CD플레이어</th>
+              <th class="thick-bottom">휠 또는<br>휠 붙은 타이어</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">악기 기타</th>
+              <th class="thick-bottom">중형 스피커 1쌍</th>
+              <th class="thick-bottom">대형 스피커 1쌍</th>
+              <th class="thick-bottom">범퍼</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">도자기</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">포장비</th>
+              <td>1,000</td><td>500</td><td>1,000</td><td>1,000</td><td>500</td><td>1,000</td><td>2,000</td><td>1,500</td><td>500</td><td>500</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">묶음 배송시</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">골프채</th>
+              <th class="thick-bottom">휠</th>
+              <th class="thick-bottom">도자기</th>
+              <th class="thick-bottom" rowspan="2">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
+            <tr>
+              <th class="thick-right thick-bottom">수량</th>
+              <th class="thick-bottom">2~5병 / 6~10병</th>
+              <th class="thick-bottom">2~10개</th>
+              <th class="thick-bottom">1~3개/4~6개/7~10개</th>
+              <th class="thick-bottom">2개 초과당</th>
+              <th class="thick-bottom">2개 이상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">총<br>포장비용</th>
+              <td>1,000/1,500</td><td>1,500</td><td>500/1,000/1,500</td><td>1,000엔씩 추가</td><td>1,000<span class="tier-note">(박스 추가시 +500)</span></td><td>2,000~3,000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.<br>※ 팔레트 포장 비용은 1장당 5,000엔이며 팔레트 무게 약 11kg이 국제운송료에 포함되어 청구됩니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   function bbOpenDrawer() {
     document.getElementById('bbDrawer')?.classList.add('open');
@@ -1433,6 +1554,18 @@
 
 
   (() => {
+    document.querySelectorAll('input[name="packingOption"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          document.querySelectorAll('input[name="packingOption"]').forEach((other) => {
+            if (other !== input) other.checked = false;
+          });
+        }
+      });
+    });
+  })();
+
+  (() => {
     document.querySelectorAll('input[name="careOption"]').forEach((input) => {
       input.addEventListener('change', () => {
         if (input.checked) {
@@ -1452,6 +1585,19 @@
     const show = () => { modal.hidden = false; modal.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
     const hide = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; requestAnimationFrame(() => { if (!modal.classList.contains('is-open')) modal.hidden = true; }); };
     btns.forEach((btn) => btn.addEventListener('click', show));
+    close.addEventListener('click', hide);
+    modal.addEventListener('click', (event) => { if (event.target === modal) hide(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) hide(); });
+  })();
+
+  (() => {
+    const btn = document.querySelector('.packing-cost-detail');
+    const modal = document.getElementById('packingCostModal');
+    const close = document.getElementById('packingCostModalClose');
+    if (!btn || !modal || !close) return;
+    const show = () => { modal.hidden = false; modal.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
+    const hide = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; requestAnimationFrame(() => { if (!modal.classList.contains('is-open')) modal.hidden = true; }); };
+    btn.addEventListener('click', show);
     close.addEventListener('click', hide);
     modal.addEventListener('click', (event) => { if (event.target === modal) hide(); });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) hide(); });
