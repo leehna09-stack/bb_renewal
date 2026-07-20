@@ -19,6 +19,9 @@
       --head: var(--warm);
       --rose: #e8385a;
       --rose-h: #c42f4c;
+      --tp: #1a1a2e;
+      --ts: #666680;
+      --border: #e0e4eb;
       --warm: #fbf7f5;
       --sidebar-w: 231px;
       --main-w: 925px;
@@ -67,9 +70,7 @@
 
     .channel-bar {
       background: #fff;
-      border-bottom: 1px solid var(--line);
       padding: 14px 0;
-      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
     }
 
     .channel-inner {
@@ -82,12 +83,11 @@
     }
 
     .channel-icons {
-      display: flex;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-      flex: 1;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 16px;
+      width: min(calc(100vw - 60px), 900px);
+      margin: 0 auto;
     }
 
     .channel-icons::-webkit-scrollbar {
@@ -115,7 +115,7 @@
       height: 56px;
       border-radius: 50%;
       background: #fff;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,17 +142,31 @@
       font-size: 16px;
       line-height: 1;
     }
+    .channel-bar .ch-circle-logo .flag {
+      width: auto;
+      height: auto;
+      display: inline;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+      vertical-align: baseline;
+    }
+    .channel-bar .ch-circle-logo .flag::before {
+      content: none;
+    }
 
     .ch-circle-logo .brand {
       font-size: 8px;
       font-weight: 700;
-      color: #1a1a2e;
+      color: var(--tp);
       white-space: nowrap;
     }
 
     .ch-label {
       font-size: 11px;
-      color: var(--muted);
+      color: var(--ts);
       font-weight: 500;
       white-space: nowrap;
     }
@@ -571,9 +585,9 @@
     .order-table th {
       height: 36px;
       background: #fafafa;
-      color: #111;
+      color: #5a5e66;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
     .order-table th:last-child,
     .order-table td:last-child { border-right: 0; }
@@ -622,13 +636,14 @@
     .order-table td.product-info,
     .order-table td.memo-product { text-align: left; vertical-align: top; }
     .pay-btn {
-      min-width: 64px;
-      height: 20px;
+      min-width: 70px;
+      height: 30px;
       border: 0;
+      border-radius: 5px;
       background: var(--rose);
       color: #fff;
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 13px;
+      font-weight: 700;
     }
     .pay-btn:hover { background: var(--blue-dark); }
     .memo-btn,

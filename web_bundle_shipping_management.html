@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -341,7 +341,7 @@
       justify-content: center;
       gap: 7px;
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       white-space: nowrap;
     }
@@ -388,7 +388,7 @@
 
     .bundle-head, .bundle-row {
       display: grid;
-      grid-template-columns: 92px 84px minmax(0, 1fr) 64px 120px 52px;
+      grid-template-columns: 92px 84px 84px minmax(0, 1fr) 64px 120px 52px;
       align-items: center;
     }
 
@@ -397,12 +397,14 @@
       background: var(--warm);
       border-bottom: 1px solid var(--line);
       color: #5a5e66;
-      font-size: 11px;
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 700;
       text-align: center;
     }
 
-    .bundle-head > div { padding: 8px 6px; line-height: 1.4; }
+    .bundle-head > div { padding: 8px 6px; line-height: 1.4; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .bundle-head > div:nth-child(n+2),
+    .bundle-row > div:nth-child(n+2) { border-left: 1px solid var(--line-soft); align-self: stretch; }
 
     .bundle-row {
       min-height: 96px;
@@ -416,19 +418,22 @@
     .bundle-row:last-child { border-bottom: 0; }
     .bundle-row:hover { background: #fffafb; }
 
-    .bundle-row > div { padding: 12px 6px; }
+    .bundle-row > div { padding: 12px 6px; display: flex; align-items: center; justify-content: center; }
 
     .row-status { font-weight: 800; color: #2b2f37; white-space: nowrap; }
     .row-status.hot { color: var(--rose); }
     .row-date { color: #59606d; }
 
+    .row-thumb { padding: 12px 4px !important; }
+
     .row-product {
-      display: flex;
+      justify-content: flex-start !important;
+      text-align: left !important;
       align-items: center;
-      gap: 12px;
-      text-align: left;
       min-width: 0;
     }
+
+    .row-price { display: flex !important; flex-direction: column !important; gap: 3px; }
 
     .thumb {
       width: 64px;
@@ -937,7 +942,8 @@
               <div class="bundle-head">
                 <div>주문상태</div>
                 <div>주문일자</div>
-                <div style="text-align:left;">상품정보</div>
+                <div>이미지</div>
+                <div>상품정보</div>
                 <div>수취인</div>
                 <div>상품가<br>예상 수입신고금액</div>
                 <div>선택</div> 
@@ -946,8 +952,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-06</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - f1230346230</span><span class="product-market-badge">안심케어플러스</span></div>
                     <a href="web_auction.html" class="product-name">Nintendo Switch OLED 본체 화이트 Joy-Con 세트 미사용 보관품</a>
@@ -964,8 +970,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-07</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - k9912048731</div>
                     <a href="web_auction.html" class="product-name">SONY WH-1000XM5 블랙 노이즈캔슬링 헤드폰 박스 포함</a>
@@ -982,8 +988,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-08</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - m4085721196</div>
                     <a href="web_auction.html" class="product-name">PORTER TANKER 숄더백 세이지 그린 빈티지 상태 양호</a>
@@ -1000,8 +1006,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-09</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - r7603912845</span><span class="product-market-badge">안심케어플러스</span></div>
                     <a href="web_auction.html" class="product-name">BANDAI METAL BUILD 건담 아스트레이 레드프레임 피규어</a>
@@ -1018,8 +1024,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-10</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - p2358196042</div>
                     <a href="web_auction.html" class="product-name">Canon EF 50mm F1.4 USM 단렌즈 후드 포함 정상 작동</a>
@@ -1036,8 +1042,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-11</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - c6841209375</div>
                     <a href="web_auction.html" class="product-name">Snow Peak 티타늄 머그 450ml 2개 세트 캠핑 용품</a>
@@ -1054,8 +1060,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-12</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - n5729401836</span><span class="product-market-badge">안심케어플러스</span></div>
                     <a href="web_auction.html" class="product-name">SEIKO Prospex 다이버 워치 솔라 충전식 SBDJ 모델</a>
@@ -1072,8 +1078,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-13</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - h3186502749</div>
                     <a href="web_auction.html" class="product-name">Apple Magic Keyboard JIS 배열 화이트 중고품 상태 양호</a>
@@ -1090,8 +1096,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-14</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - t9027356814</div>
                     <a href="web_auction.html" class="product-name">YAMAHA AG03 MK2 오디오 인터페이스 화이트 방송 장비</a>
@@ -1108,8 +1114,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-15</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - b1468095237</div>
                     <a href="web_auction.html" class="product-name">MUJI 스테인리스 유닛 선반 소형 파츠 포함 세트</a>
@@ -1126,8 +1132,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-16</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - d8054123960</div>
                     <a href="web_auction.html" class="product-name">Panasonic 나노케어 헤어드라이어 EH-NA0J 딥네이비</a>
@@ -1144,8 +1150,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-17</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag jp" role="img" aria-label="일본"></span>야후경매 - w6275081943</span><span class="product-market-badge">안심케어플러스</span></div>
                     <a href="web_auction.html" class="product-name">Pokemon Card 게임 스칼렛 바이올렛 프로모 카드 묶음</a>
@@ -1193,7 +1199,8 @@
               <div class="bundle-head">
                 <div>주문상태</div>
                 <div>주문일자</div>
-                <div style="text-align:left;">상품정보</div>
+                <div>이미지</div>
+                <div>상품정보</div>
                 <div>수취인</div>
                 <div>상품가<br>예상 수입신고금액</div>
                 <div>선택</div>
@@ -1202,8 +1209,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-06</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                     <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
@@ -1220,8 +1227,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-06</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                     <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
@@ -1238,8 +1245,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-06</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                     <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
@@ -1256,8 +1263,8 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-06</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag us" role="img" aria-label="미국"></span>이베이 - vintage_usa</div>
                     <a href="web_auction.html" class="product-name">Vintage Levi's 501 Denim Jacket 1980s Made in USA Size L</a>
@@ -1305,7 +1312,8 @@
               <div class="bundle-head">
                 <div>주문상태</div>
                 <div>주문일자</div>
-                <div style="text-align:left;">상품정보</div>
+                <div>이미지</div>
+                <div>상품정보</div>
                 <div>수취인</div>
                 <div>상품가<br>예상 수입신고금액</div>
                 <div>선택</div>
@@ -1314,8 +1322,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-08</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 602948173506</div>
                     <a href="web_auction.html" class="product-name">Vintage Burberry Check Scarf Made in England Classic Nova Pattern</a>
@@ -1332,10 +1340,10 @@
               <div class="bundle-row">
                 <div class="row-status hot">1차 결제완료</div>
                 <div class="row-date">2023-06-09</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
-                    <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 918274650382</span><span class="product-market-badge">안심케어플러스</span></div>
+                    <div class="product-market product-market--with-badge"><span class="product-market-text"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 918274650382</span></div>
                     <a href="web_auction.html" class="product-name">Royal Doulton Tea Cup and Saucer Pair Fine Bone China Set</a>
                     <div class="product-price">47.00 파운드</div>
                   </div>
@@ -1350,8 +1358,8 @@
               <div class="bundle-row">
                 <div class="row-status">현지도착</div>
                 <div class="row-date">2023-06-10</div>
+                <div class="row-thumb"><a href="web_auction.html" class="thumb" aria-label="상품 보기"></a></div>
                 <div class="row-product">
-                  <a href="web_auction.html" class="thumb" aria-label="상품 보기"></a>
                   <div class="product-info">
                     <div class="product-market"><span class="flag uk" role="img" aria-label="영국"></span>이베이 UK - 475839206184</div>
                     <a href="web_auction.html" class="product-name">Barbour Bedale Wax Jacket Olive Green Size 38 Made in England</a>

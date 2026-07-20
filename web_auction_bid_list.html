@@ -59,137 +59,74 @@
     .notice-bar b {
       color: var(--rose);
     }
-    .channel-bar {
-      background: #fff;
+    /* 스토어 배지 */
+    .store-strip {
       padding: 14px 0;
-      font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+      background: #fff;
+      width: 100vw;
     }
-    .channel-inner {
-      max-width: 1440px;
+    .store-list {
+      width: min(calc(100vw - 60px), 900px);
       margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 16px;
     }
-    .channel-icons {
-      display: flex;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-      flex: 1;
-      justify-content: center;
-    }
-    .channel-icons::-webkit-scrollbar {
-      display: none;
-    }
-    .ch-icon-item {
+    .store-chip {
+      position: relative;
+      color: #666680;
+      text-align: center;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      min-width: 80px;
+      padding: 4px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      padding: 4px 14px;
-      cursor: pointer;
-      min-width: 80px;
-      flex-shrink: 0;
-      transition: opacity 0.15s;
+      transition: opacity .15s;
     }
-    .ch-icon-item:hover {
-      opacity: 0.8;
-    }
-    .ch-circle {
+    .store-chip:hover { opacity: .8; }
+    .store-chip.active { color: #666680; }
+    .store-badge {
+      position: relative;
       width: 56px;
       height: 56px;
+      margin: 0 auto;
+      border: 1px solid #E0E4EB;
       border-radius: 50%;
       background: #fff;
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-      transition: box-shadow 0.15s;
-    }
-    .ch-icon-item:hover .ch-circle {
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
-    }
-    .ch-circle-logo {
-      width: 38px;
-      height: 38px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 1px;
+      color: #1A1A2E;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.1;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      transition: box-shadow .15s;
     }
-    .ch-circle-logo .flag {
+    .store-badge .flag {
       font-size: 16px;
       line-height: 1;
     }
-    .ch-circle-logo .brand {
+    .store-badge .brand {
       font-size: 8px;
       font-weight: 700;
       color: #1a1a2e;
       white-space: nowrap;
     }
-    .ch-label {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    /* 스토어 배지 */
-    .store-strip {
-      padding: 16px 0 24px;
-      background: #fff;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-    }
-    .store-strip::-webkit-scrollbar { display: none; }
-    .store-list {
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 6px 4px;
-      box-sizing: border-box;
-    }
-    .store-chip {
-      color: var(--text);
-      text-align: center;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 800;
-      flex: 0 0 92px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: color .2s;
-    }
-    .store-chip.active { color: var(--rose); }
-    .store-badge {
-      position: relative;
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 8px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      color: var(--text);
-      font-size: 11px;
-      font-weight: 900;
-      line-height: 1.1;
-      overflow: hidden;
+    .store-chip:hover .store-badge {
+      box-shadow: 0 4px 14px rgba(0,0,0,.13);
     }
     .store-chip.active .store-badge {
-      border-color: var(--rose);
-      box-shadow: 0 0 0 2px var(--rose);
+      border-color: #E0E4EB;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      transform: none;
     }
     .store-yahoo { color: #e43e2e; transform: rotate(-42deg); font-size: 11px; }
     .store-mercari {
@@ -435,7 +372,6 @@
       justify-content: space-between;
       gap: 16px;
       margin: 14px 0 8px;
-      border-bottom: 1px solid var(--line);
     }
     .bid-toolbar {
       display: flex;
@@ -451,8 +387,8 @@
       border-radius: 6px;
       background: #fff;
       color: var(--text);
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 12px;
+      font-weight: 700;
     }
     .bid-filter-group {
       display: flex;
@@ -519,21 +455,32 @@
     .bid-row {
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 16px 18px;
       background: #fff;
+      overflow: hidden;
     }
     .bid-row-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
+      min-height: 42px;
+      padding: 8px 18px;
+      background: #FBF7F5;
+      border-bottom: 1px solid #DED8D4;
+    }
+    .bid-status {
       font-size: 12px;
       font-weight: 700;
+      color: #3d4452;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .bid-status { display: inline-flex; align-items: center; gap: 6px; color: #1f2530; }
-    .bid-status .dot { width: 7px; height: 7px; border-radius: 50%; background: #2fba57; flex: 0 0 auto; }
-    .bid-oid { color: #9aa3b2; }
-    .bid-body { display: flex; align-items: center; gap: 16px; }
+    .bid-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; display: inline-block; }
+    .bid-oid { font-size: 11px; color: #999; }
+    .bid-row[data-status="auction-bid"] .bid-status { color: var(--navy); }
+    .bid-row[data-status="successful-bid"] .bid-status { color: var(--navy); }
+    .bid-row[data-status="failed-bid"] .bid-status { color: #aaa; }
+    .bid-body { display: flex; align-items: center; gap: 16px; padding: 16px 18px; }
     .bid-product { display: flex; align-items: center; gap: 14px; flex: 1.6; min-width: 0; }
     .bid-thumb {
       width: 72px;
@@ -544,6 +491,7 @@
       overflow: hidden;
     }
     .bid-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bid-title-wrap { min-width: 0; }
     .bid-title {
       color: #1f2530;
       font-size: 13px;
@@ -554,10 +502,11 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .bid-title-origin { display: block; margin-top: 3px; color: #999; font-size: 11px; font-weight: 400; }
     .bid-meta { flex: 1; display: grid; gap: 6px; min-width: 0; }
     .bid-meta-row { display: flex; gap: 8px; font-size: 12px; }
-    .bid-meta-row .ml { flex: 0 0 78px; color: #9aa3b2; font-weight: 700; }
-    .bid-meta-row .mv { color: #33363d; font-weight: 700; }
+    .bid-meta-row .ml { flex: 0 0 78px; color: #9aa3b2;font-size: 12px; font-weight: 700; }
+    .bid-meta-row .mv { color: #33363d; font-size: 12px;font-weight: 700; }
     .bidder-status-win { color: var(--rose) !important; }
     .bid-actions { display: grid; gap: 8px; flex: 0 0 auto; }
     .btn-view, .btn-rebid {
@@ -589,59 +538,41 @@
 <body>
   <div class="notice-bar">누적 거래 2백만건 거래금액 2200억 <b>비드바이의 25년 기록</b>으로 증명합니다</div>
 
-  <div class="channel-bar">
-    <div class="channel-inner">
-      <div class="channel-icons">
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag">JP</span><span class="brand" style="color:#E60026;font-size:9px;font-weight:900">YAHOO!</span></div>
-          </div>
-          <span class="ch-label">야후 옥션</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:18px;color:#19ce60;font-weight:900">M</span></div>
-          </div>
-          <span class="ch-label">메루카리</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:14px;color:#BF0000;font-weight:900">楽天</span></div>
-          </div>
-          <span class="ch-label">일본 라쿠텐</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:12px;color:#BF0000;font-weight:700">Rakuten</span></div>
-          </div>
-          <span class="ch-label">일본 라쿠마</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div>
-          </div>
-          <span class="ch-label">야후 쇼핑</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div>
-          </div>
-          <span class="ch-label">일본 아마존</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag">US</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div>
-          </div>
-          <span class="ch-label">미국 이베이</span>
-        </div>
-        <div class="ch-icon-item" onclick="location.href='web_sub_main.html'">
-          <div class="ch-circle">
-            <div class="ch-circle-logo"><span class="flag">UK</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div>
-          </div>
-          <span class="ch-label">영국 이베이</span>
-        </div>
-      </div>
-    </div>
+  <div class="store-strip">
+    <nav class="store-list" aria-label="스토어 바로가기">
+      <a class="store-chip active" href="web_sub_main.html" data-store-name="야후 옥션" data-best-title="야후옥션 베스트" aria-current="page">
+        <div class="store-badge"><span class="flag">JP</span><span class="brand" style="color:#E60026;font-size:9px;font-weight:900">YAHOO!</span></div>
+        <strong>야후 옥션</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="메루카리" data-best-title="메루카리 베스트">
+        <div class="store-badge"><span class="flag" style="font-size:18px;color:#19ce60;font-weight:900">M</span></div>
+        <strong>메루카리</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="일본 라쿠텐" data-best-title="라쿠텐 베스트">
+        <div class="store-badge"><span class="flag" style="font-size:14px;color:#BF0000;font-weight:900">楽天</span></div>
+        <strong>일본 라쿠텐</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="일본 라쿠마" data-best-title="라쿠마 베스트">
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#BF0000;font-weight:700">Rakuten</span></div>
+        <strong>일본 라쿠마</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="야후 쇼핑" data-best-title="야후쇼핑 베스트">
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div>
+        <strong>야후 쇼핑</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="일본 아마존" data-best-title="아마존재팬 베스트">
+        <div class="store-badge"><span class="flag" style="font-size:12px;color:#FF9900;font-weight:900">amazon</span></div>
+        <strong>일본 아마존</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="미국 이베이" data-best-title="미국 이베이 베스트">
+        <div class="store-badge"><span class="flag">US</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div>
+        <strong>미국 이베이</strong>
+      </a>
+      <a class="store-chip" href="web_sub_main.html" data-store-name="영국 이베이" data-best-title="영국 이베이 베스트">
+        <div class="store-badge"><span class="flag">UK</span><span class="brand" style="font-size:9px;font-weight:700;color:#E53238">eBay</span></div>
+        <strong>영국 이베이</strong>
+      </a>
+    </nav>
   </div>
 
   <div class="mypage-shell">
@@ -825,25 +756,26 @@
         <div class="bid-list" data-bid-panel="bidding" id="biddingList"></div>
 
         <div class="bid-list" data-bid-panel="failed" id="failedList" style="display:none">
-          <article class="bid-row" data-market="JP">
+          <article class="bid-row" data-market="JP" data-status="failed-bid">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true" style="background:#9aa3b2"></span>유찰</span>
+              <span class="bid-status">유찰</span>
               <span class="bid-oid">야후경매 · a2024032210</span>
             </div>
             <div class="bid-body">
               <div class="bid-product">
                 <div class="bid-thumb"><img src="https://images.unsplash.com/photo-1585011664466-b7bbf827d51d?auto=format&fit=crop&w=200&q=80" alt="닌텐도 스위치 게임 카트리지"></div>
-                <p class="bid-title">닌텐도 스위치 게임 카트리지 젤다의 전설 왕국의 눈물</p>
+                <div class="bid-title-wrap">
+                  <p class="bid-title">닌텐도 스위치 게임 카트리지 젤다의 전설 왕국의 눈물</p>
+                  <span class="bid-title-origin">ニンテンドースイッチ ゲームカートリッジ ゼルダの伝説 王国の涙</span>
+                </div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / ￥4,500</span></div>
                 <div class="bid-meta-row"><span class="ml">종료일시</span><span class="mv">2024.03.22 21:00</span></div>
                 <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">2024.03.22 20:59</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">낙찰가/입찰수</span><span class="mv">￥6,200 / 3명</span></div>
-                <div class="bid-meta-row"><span class="ml">결과</span><span class="mv">유찰</span></div>
-                <div class="bid-meta-row"><span class="ml">입찰예약가</span><span class="mv">타 회원</span></div>
+               <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / 4,500 엔</span></div>
+                <div class="bid-meta-row"><span class="ml">낙찰가/입찰수</span><span class="mv">6,200 엔 / 3명</span></div>
               </div>
               <div class="bid-actions">
                 <button class="btn-view" type="button" onclick="location.href='web_payment_detail.html'">조회</button>
@@ -870,18 +802,18 @@
     });
 
     const biddingItems = [
-      { market: "US", site: "EBAY", code: "375604375357", title: "Transformers G1 G2 Go Bots Collector Case Bumblebee Skywarp Blurr Bl", image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=200&q=80", bid: "$13", reserve: "$18", hoursLeft: 0.5 },
-      { market: "US", site: "EBAY", code: "297323435868", title: "Mario Kart 64 Toy Biz Mario & Wario With Kart And Projectile", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=200&q=80", bid: "$24", reserve: "$31", hoursLeft: 0.9 },
-      { market: "UK", site: "EBAY UK", code: "UK9081745521", title: "Vintage Barbour Wax Jacket Made in England Navy Size M", image: "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=200&q=80", bid: "GBP 42", reserve: "GBP 55", hoursLeft: 2.5 },
-      { market: "JP", site: "Yahoo JP", code: "j1102849304", title: "Nintendo Switch Pokemon Scarlet Violet Double Pack Japan", image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=200&q=80", bid: "JPY 6,800", reserve: "JPY 8,200", hoursLeft: 5.2 },
-      { market: "US", site: "EBAY", code: "126908552032", title: "Apple iPod Classic 7th Generation 160GB Silver Working", image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=200&q=80", bid: "$86", reserve: "$102", hoursLeft: 8 },
-      { market: "JP", site: "Yahoo JP", code: "r1150092841", title: "Seiko Prospex Diver Automatic Watch Used Japan Limited", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80", bid: "JPY 18,500", reserve: "JPY 22,000", hoursLeft: 12 },
-      { market: "UK", site: "EBAY UK", code: "UK7742198306", title: "The Beatles Original Vinyl LP Collection UK Pressing", image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=200&q=80", bid: "GBP 68", reserve: "GBP 81", hoursLeft: 18 },
-      { market: "JP", site: "Mercari JP", code: "m83920147562", title: "Studio Ghibli Totoro Plush Set Original Japan", image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=200&q=80", bid: "JPY 4,200", reserve: "JPY 5,000", hoursLeft: 23 },
-      { market: "US", site: "EBAY", code: "404912875620", title: "Sony Walkman WM-FX Vintage Cassette Player Tested", image: "https://images.unsplash.com/photo-1558584673-c834fb1cc3ca?auto=format&fit=crop&w=200&q=80", bid: "$57", reserve: "$70", hoursLeft: 31 },
-      { market: "UK", site: "EBAY UK", code: "UK5529081774", title: "Burberry Nova Check Scarf Lambswool Classic Beige", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=200&q=80", bid: "GBP 35", reserve: "GBP 44", hoursLeft: 44 },
-      { market: "JP", site: "Rakuten JP", code: "rak2026071501", title: "Canon EF 50mm F1.8 STM Lens Excellent Condition", image: "https://images.unsplash.com/photo-1500634245200-e5245c7574ef?auto=format&fit=crop&w=200&q=80", bid: "JPY 9,900", reserve: "JPY 12,000", hoursLeft: 67 },
-      { market: "US", site: "EBAY", code: "995120774412", title: "LEGO Star Wars Retired Minifigure Lot Collector Set", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=200&q=80", bid: "$112", reserve: "$135", hoursLeft: 86 }
+      { market: "US", site: "EBAY", code: "375604375357", title: "Transformers G1 G2 Go Bots Collector Case Bumblebee Skywarp Blurr Bl", image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=200&q=80", bid: "13.00 달러", reserve: "18.00 달러", hoursLeft: 0.5 },
+      { market: "US", site: "EBAY", code: "297323435868", title: "Mario Kart 64 Toy Biz Mario & Wario With Kart And Projectile", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=200&q=80", bid: "24.00 달러", reserve: "31.00 달러", hoursLeft: 0.9 },
+      { market: "UK", site: "EBAY UK", code: "UK9081745521", title: "Vintage Barbour Wax Jacket Made in England Navy Size M", image: "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=200&q=80", bid: "42.00 파운드", reserve: "55.00 파운드", hoursLeft: 2.5 },
+      { market: "JP", site: "Yahoo JP", code: "j1102849304", title: "Nintendo Switch Pokemon Scarlet Violet Double Pack Japan", origin: "ニンテンドースイッチ ポケットモンスター スカーレット・バイオレット ダブルパック 日本版", image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=200&q=80", bid: "6,800 엔", reserve: "8,200 엔", hoursLeft: 5.2 },
+      { market: "US", site: "EBAY", code: "126908552032", title: "Apple iPod Classic 7th Generation 160GB Silver Working", image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=200&q=80", bid: "86.00 달러", reserve: "102.00 달러", hoursLeft: 8 },
+      { market: "JP", site: "Yahoo JP", code: "r1150092841", title: "Seiko Prospex Diver Automatic Watch Used Japan Limited", origin: "セイコー プロスペックス ダイバー 自動巻き 中古 日本限定", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80", bid: "18,500 엔", reserve: "22,000 엔", hoursLeft: 12 },
+      { market: "UK", site: "EBAY UK", code: "UK7742198306", title: "The Beatles Original Vinyl LP Collection UK Pressing", image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=200&q=80", bid: "68.00 파운드", reserve: "81.00 파운드", hoursLeft: 18 },
+      { market: "JP", site: "Mercari JP", code: "m83920147562", title: "Studio Ghibli Totoro Plush Set Original Japan", origin: "スタジオジブリ トトロ ぬいぐるみセット オリジナル 日本製", image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=200&q=80", bid: "4,200 엔", reserve: "5,000 엔", hoursLeft: 23 },
+      { market: "US", site: "EBAY", code: "404912875620", title: "Sony Walkman WM-FX Vintage Cassette Player Tested", image: "https://images.unsplash.com/photo-1558584673-c834fb1cc3ca?auto=format&fit=crop&w=200&q=80", bid: "57.00 달러", reserve: "70.00 달러", hoursLeft: 31 },
+      { market: "UK", site: "EBAY UK", code: "UK5529081774", title: "Burberry Nova Check Scarf Lambswool Classic Beige", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=200&q=80", bid: "35.00 파운드", reserve: "44.00 파운드", hoursLeft: 44 },
+      { market: "JP", site: "Rakuten JP", code: "rak2026071501", title: "Canon EF 50mm F1.8 STM Lens Excellent Condition", origin: "キヤノン EF 50mm F1.8 STM レンズ 美品", image: "https://images.unsplash.com/photo-1500634245200-e5245c7574ef?auto=format&fit=crop&w=200&q=80", bid: "9,900 엔", reserve: "12,000 엔", hoursLeft: 67 },
+      { market: "US", site: "EBAY", code: "995120774412", title: "LEGO Star Wars Retired Minifigure Lot Collector Set", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=200&q=80", bid: "112.00 달러", reserve: "135.00 달러", hoursLeft: 86 }
     ];
 
     function pad2(value) {
@@ -902,9 +834,9 @@
       const days = Math.floor(totalMinutes / 1440);
       const hours = Math.floor((totalMinutes % 1440) / 60);
       const minutes = totalMinutes % 60;
-      if (days > 0) return `${days}일 ${hours}시간 ${minutes}분 남음`;
-      if (hours > 0) return `${hours}시간 ${minutes}분 남음`;
-      return `${minutes}분 남음`;
+      if (days > 0) return `${days}일 ${hours}시간 ${minutes}분`;
+      if (hours > 0) return `${hours}시간 ${minutes}분`;
+      return `${minutes}분`;
     }
 
     function getFilteredBiddingItems() {
@@ -935,24 +867,26 @@
       list.innerHTML = filteredItems.map((item) => {
         const originalIndex = biddingItems.indexOf(item);
         return `
-          <article class="bid-row" data-bid-index="${originalIndex}">
+          <article class="bid-row" data-bid-index="${originalIndex}" data-status="auction-bid">
             <div class="bid-row-head">
-              <span class="bid-status"><span class="dot" aria-hidden="true"></span>입찰중</span>
+              <span class="bid-status">입찰중 · 종료 ${formatTimeLeft(item.hoursLeft)} 전</span>
               <span class="bid-oid">${item.site} · ${item.code}</span>
             </div>
             <div class="bid-body">
               <div class="bid-product">
                 <div class="bid-thumb"><img src="${item.image}" alt=""></div>
-                <p class="bid-title">[${item.market}] ${item.title}</p>
+                <div class="bid-title-wrap">
+                  <p class="bid-title">[${item.market}] ${item.title}</p>
+                  ${item.origin ? `<span class="bid-title-origin">${item.origin}</span>` : ""}
+                </div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">입찰금액</span><span class="mv">1개 / ${item.bid}</span></div>
+                <div class="bid-meta-row"><span class="ml">입찰금액/수량</span><span class="mv">1개 / ${item.bid}</span></div>
                 <div class="bid-meta-row"><span class="ml">종료일시</span><span class="mv">${futureDateFromHours(item.hoursLeft)}</span></div>
                 <div class="bid-meta-row"><span class="ml">예약시간</span><span class="mv">${futureDateFromHours(Math.max(0.25, item.hoursLeft - 0.1))}</span></div>
               </div>
               <div class="bid-meta">
-                <div class="bid-meta-row"><span class="ml">현재가/입찰수</span><span class="mv" data-current-price>-</span></div>
-                <div class="bid-meta-row"><span class="ml">남은시간</span><span class="mv">${formatTimeLeft(item.hoursLeft)}</span></div>
+                <div class="bid-meta-row"><span class="ml">현재가격/입찰수</span><span class="mv" data-current-price>-</span></div>
                 <div class="bid-meta-row"><span class="ml">입찰예약가</span><span class="mv">${item.reserve}</span></div>
                 <div class="bid-meta-row"><span class="ml">최고입찰여부</span><span class="mv" data-bidder-status>-</span></div>
               </div>
@@ -978,14 +912,24 @@
           const index = Number(row.dataset.bidIndex || 0);
           const currentPrice = row.querySelector("[data-current-price]");
           const bidderStatus = row.querySelector("[data-bidder-status]");
-          const bidCount = 2 + ((index * 3) % 18);
-          const currentText = biddingItems[index]?.bid || "-";
-          if (currentPrice) currentPrice.textContent = `${currentText} / ${bidCount}명`;
-          if (bidderStatus) {
-            const isWinning = index % 3 === 0;
-            bidderStatus.textContent = isWinning ? "최고입찰자 입니다" : "최고 입찰자가 아닙니다.";
-            bidderStatus.classList.toggle("bidder-status-win", isWinning);
-          }
+          const spinnerMarkup = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+
+          if (button.disabled) return;
+          button.disabled = true;
+          if (currentPrice) currentPrice.innerHTML = spinnerMarkup;
+          if (bidderStatus) bidderStatus.innerHTML = spinnerMarkup;
+
+          setTimeout(() => {
+            const bidCount = 2 + ((index * 3) % 18);
+            const currentText = biddingItems[index]?.bid || "-";
+            if (currentPrice) currentPrice.textContent = `${currentText} / ${bidCount}건`;
+            if (bidderStatus) {
+              const isWinning = index % 3 === 0;
+              bidderStatus.textContent = isWinning ? "최고입찰자 입니다" : "최고 입찰자가 아닙니다.";
+              bidderStatus.classList.toggle("bidder-status-win", isWinning);
+            }
+            button.disabled = false;
+          }, 700);
         });
       });
     }

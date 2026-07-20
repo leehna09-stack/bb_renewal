@@ -107,13 +107,42 @@
     .category-bar-label { color: var(--muted); font-size: 13px; font-weight: 700; }
     .category-crumb { color: #4b5563; white-space: nowrap; }
     .category-crumb.current { color: #111827; font-weight: 900; }
-    .category-crumb-sep { color: #a4acb8; font-size: 11px; }
-    .category-bar-select { height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; }
-    .category-bar-arrow { color: var(--muted); font-size: 11px; }
+    .category-crumb-sep { color: #a4acb8; font-size: 12px; }
+    .category-bar-select {
+      height: 36px;
+      padding: 0 34px 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111827' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .category-bar-arrow { padding: 0 4px; color: var(--muted); font-size: 11px; }
     .category-bar .is-hidden { display: none !important; }
     .category-bar-keyword-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; white-space: nowrap; transition: border-color .15s, color .15s, background .15s; }
     .category-bar-keyword-btn:hover { border-color: var(--rose); color: var(--rose); }
     .category-bar-keyword-btn.active { border-color: var(--rose); background: #fff5f7; color: var(--rose); }
+
+    .category-bar-item { display: contents; }
+    .cat-reset-btn {
+      width: 20px; height: 20px; padding: 0;
+      border: 0; border-radius: 50%;
+      background: #e5e7eb; color: #6b7280;
+      font-size: 11px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .15s, color .15s;
+    }
+    .cat-reset-btn { display: none; }
+    .cat-reset-btn:hover { background: var(--rose); color: #fff; }
+    .category-bar-item.is-hidden { display: none; }
+    .category-bar-item.is-last .cat-reset-btn { display: inline-flex; }
 
     /* ── Filter panel ── */
     .filter-panel { padding: 20px; border: 1px solid #e2e2e2; border-radius: 10px; background: #fff; }
@@ -172,6 +201,24 @@
     .page-btn { min-width: 32px; height: 32px; padding: 0 6px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font-size: 13px; font-weight: 700; }
     .page-btn.active { border-color: var(--rose); background: var(--rose); color: #fff; }
     .page-btn.page-next, .page-btn.page-last { color: var(--muted); font-weight: 800; }
+
+    /* ── Footer ── */
+    footer { background: #1A1A2E; color: rgba(255,255,255,.6); padding: 32px 0; margin-top: 40px; }
+    .ft-inner { width: min(calc(100vw - 60px), var(--page-w)); margin: 0 auto; }
+    .ft-top { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .ft-logo { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .ft-desc { font-size: 12px; line-height: 1.8; max-width: 340px; }
+    .ft-links { display: flex; flex-direction: column; gap: 8px; }
+    .ft-links-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.85); margin-bottom: 4px; }
+    .ft-links a { font-size: 12px; color: rgba(255,255,255,.5); text-decoration: none; }
+    .ft-links a:hover { color: rgba(255,255,255,.9); }
+    .ft-bottom { font-size: 11px; line-height: 1.8; }
+
+    @media (max-width: 768px) {
+      .ft-inner { width: calc(100vw - 32px); }
+      .ft-top { flex-direction: column; gap: 24px; }
+      .ft-desc { max-width: none; }
+    }
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
@@ -297,48 +344,66 @@
   <main>
     <div class="category-bar">
       <strong class="category-bar-title">일본야후경매</strong>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select" aria-label="1차 카테고리" data-category-level="1" data-breadcrumb-select>
-        <option selected>앤틱, 컬렉션</option>
-        <option>패션</option>
-        <option>가전, AV, 카메라</option>
-        <option>장난감, 게임</option>
-      </select>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select" aria-label="2차 카테고리" data-category-level="2" data-breadcrumb-select>
-        <option selected>공예품</option>
-        <option>회화</option>
-        <option>서예</option>
-        <option>조각</option>
-      </select>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select" aria-label="3차 카테고리" data-category-level="3" data-breadcrumb-select>
-        <option selected>도자기</option>
-        <option>목공예</option>
-        <option>금속공예</option>
-        <option>유리공예</option>
-      </select>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select" aria-label="4차 카테고리" data-breadcrumb-select>
-        <option selected>중국, 한반도</option>
-        <option>일본</option>
-        <option>서양</option>
-        <option>동남아시아</option>
-      </select>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select" aria-label="5차 카테고리" data-breadcrumb-select>
-        <option selected>골동품도자기일반</option>
-        <option>청자</option>
-        <option>백자</option>
-        <option>분청사기</option>
-      </select>
-      <span class="category-crumb-sep">›</span>
-      <select class="category-bar-select current" aria-label="6차 카테고리" data-current-category-label data-breadcrumb-select>
-        <option selected>염부</option>
-        <option>도자기병</option>
-        <option>접시</option>
-        <option>화병</option>
-      </select>
+      <span class="category-bar-item" data-cat-item="0">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select" aria-label="1차 카테고리" data-category-level="1" data-breadcrumb-select>
+          <option selected>앤틱, 컬렉션</option>
+          <option>패션</option>
+          <option>가전, AV, 카메라</option>
+          <option>장난감, 게임</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="1차 카테고리 취소" data-cat-reset="0">×</button>
+      </span>
+      <span class="category-bar-item" data-cat-item="1">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select" aria-label="2차 카테고리" data-category-level="2" data-breadcrumb-select>
+          <option selected>공예품</option>
+          <option>회화</option>
+          <option>서예</option>
+          <option>조각</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="2차 카테고리 취소" data-cat-reset="1">×</button>
+      </span>
+      <span class="category-bar-item" data-cat-item="2">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select" aria-label="3차 카테고리" data-category-level="3" data-breadcrumb-select>
+          <option selected>도자기</option>
+          <option>목공예</option>
+          <option>금속공예</option>
+          <option>유리공예</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="3차 카테고리 취소" data-cat-reset="2">×</button>
+      </span>
+      <span class="category-bar-item" data-cat-item="3">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select" aria-label="4차 카테고리" data-breadcrumb-select>
+          <option selected>중국, 한반도</option>
+          <option>일본</option>
+          <option>서양</option>
+          <option>동남아시아</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="4차 카테고리 취소" data-cat-reset="3">×</button>
+      </span>
+      <span class="category-bar-item" data-cat-item="4">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select" aria-label="5차 카테고리" data-breadcrumb-select>
+          <option selected>골동품도자기일반</option>
+          <option>청자</option>
+          <option>백자</option>
+          <option>분청사기</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="5차 카테고리 취소" data-cat-reset="4">×</button>
+      </span>
+      <span class="category-bar-item" data-cat-item="5">
+        <span class="category-crumb-sep">›</span>
+        <select class="category-bar-select current" aria-label="6차 카테고리" data-current-category-label data-breadcrumb-select>
+          <option selected>염부</option>
+          <option>도자기병</option>
+          <option>접시</option>
+          <option>화병</option>
+        </select>
+        <button class="cat-reset-btn" type="button" aria-label="6차 카테고리 취소" data-cat-reset="5">×</button>
+      </span>
     </div>
 
     <div class="content-layout">
@@ -500,9 +565,15 @@
       return Math.max(0, Math.floor(value)).toLocaleString("ko-KR");
     }
 
+    function isSelectVisible(select) {
+      return !select.closest(".category-bar-item")?.classList.contains("is-hidden");
+    }
+
     function updateCurrentCategory() {
-      const visibleSelects = breadcrumbSelects.filter(select => !select.classList.contains("is-hidden"));
-      const lastSelect = visibleSelects[visibleSelects.length - 1] || breadcrumbSelects[breadcrumbSelects.length - 1];
+      const visibleSelects = breadcrumbSelects.filter(isSelectVisible);
+      const lastSelect = [...visibleSelects].reverse().find(select => !select.options[select.selectedIndex]?.disabled)
+        || visibleSelects[visibleSelects.length - 1]
+        || breadcrumbSelects[breadcrumbSelects.length - 1];
       const currentName = lastSelect?.value || "염부";
       if (currentCategoryHeadingEl) currentCategoryHeadingEl.textContent = currentName;
     }
@@ -510,7 +581,7 @@
     function updateResultCount() {
       if (!resultCountEl) return;
       let count = baseResultCount;
-      const visibleSelects = breadcrumbSelects.filter(select => !select.classList.contains("is-hidden"));
+      const visibleSelects = breadcrumbSelects.filter(isSelectVisible);
       visibleSelects.forEach((select, index) => {
         count *= 0.86 - Math.min(index, 5) * 0.08 + (select.selectedIndex % 3) * 0.015;
       });
@@ -518,9 +589,82 @@
       updateCurrentCategory();
     }
 
-    breadcrumbSelects.forEach(select => {
-      select.addEventListener("change", updateResultCount);
+    const catItems = Array.from(document.querySelectorAll(".category-bar-item"));
+
+    function updateLastMarker() {
+      const visibleItems = catItems.filter(item => !item.classList.contains("is-hidden"));
+      catItems.forEach(item => item.classList.remove("is-last"));
+      if (visibleItems.length) visibleItems[visibleItems.length - 1].classList.add("is-last");
+    }
+
+    const childCategoryOptionsByTopIndex = [
+      ["공예품", "회화", "서예", "조각"],
+      ["여성 패션", "남성 패션", "가방", "신발", "액세서리"],
+      ["카메라", "렌즈", "오디오", "영상기기", "휴대용 플레이어"],
+      ["피규어", "프라모델", "비디오게임", "보드게임", "트레이딩 카드"]
+    ];
+    const defaultLowerCategoryOptions = breadcrumbSelects.map(select =>
+      Array.from(select.options).map(option => option.textContent)
+    );
+
+    function resetSelectOptions(select, options) {
+      if (!select) return;
+      select.replaceChildren(new Option("전체", "", true, true));
+      select.options[0].disabled = true;
+      options.forEach(label => select.add(new Option(label, label)));
+    }
+
+    function setCategoryItemVisible(index, visible) {
+      catItems[index]?.classList.toggle("is-hidden", !visible);
+    }
+
+    function resetAndHideLowerCategories(startIndex) {
+      for (let index = startIndex; index < breadcrumbSelects.length; index += 1) {
+        resetSelectOptions(breadcrumbSelects[index], defaultLowerCategoryOptions[index] || []);
+        setCategoryItemVisible(index, false);
+      }
+    }
+
+    function handlePrimaryCategoryChange() {
+      resetSelectOptions(breadcrumbSelects[1], childCategoryOptionsByTopIndex[breadcrumbSelects[0].selectedIndex] || []);
+      setCategoryItemVisible(0, true);
+      setCategoryItemVisible(1, true);
+      resetAndHideLowerCategories(2);
+      updateLastMarker();
+      updateResultCount();
+    }
+
+    function handleCategoryChange(select, index) {
+      if (index === 0) {
+        handlePrimaryCategoryChange();
+        return;
+      }
+      const hasValue = !!select.value && !select.options[select.selectedIndex]?.disabled;
+      resetAndHideLowerCategories(index + 1);
+      if (hasValue && index + 1 < breadcrumbSelects.length) {
+        resetSelectOptions(breadcrumbSelects[index + 1], defaultLowerCategoryOptions[index + 1] || []);
+        setCategoryItemVisible(index + 1, true);
+      }
+      updateLastMarker();
+      updateResultCount();
+    }
+
+    breadcrumbSelects.forEach((select, index) => {
+      select.addEventListener("change", () => {
+        handleCategoryChange(select, index);
+      });
     });
+
+    document.querySelectorAll("[data-cat-reset]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const level = parseInt(btn.dataset.catReset);
+        catItems[level].classList.add("is-hidden");
+        updateLastMarker();
+        updateResultCount();
+      });
+    });
+
+    updateLastMarker();
 
     const urlParams = new URLSearchParams(window.location.search);
     const requestedStore = urlParams.get("store");
@@ -542,14 +686,12 @@
     function applyCategoryPath(pathItems) {
       if (!pathItems.length) return;
       breadcrumbSelects.forEach((select, index) => {
-        const separator = select.previousElementSibling;
+        const item = select.closest(".category-bar-item");
         const hasPathValue = index < pathItems.length;
-        select.classList.toggle("is-hidden", !hasPathValue);
-        if (separator?.classList.contains("category-crumb-sep")) {
-          separator.classList.toggle("is-hidden", !hasPathValue);
-        }
+        item?.classList.toggle("is-hidden", !hasPathValue);
         if (hasPathValue) setSelectValue(select, pathItems[index]);
       });
+      updateLastMarker();
       if (currentCategoryHeadingEl) {
         currentCategoryHeadingEl.textContent = pathItems[pathItems.length - 1];
       }

@@ -187,7 +187,11 @@
     .product-card:hover .product-name { text-decoration: underline; text-underline-offset: 2px; }
     .product-thumb { position: relative; width: 100%; aspect-ratio: 1 / 1; background: var(--thumb); overflow: hidden; }
     .product-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .heart { position: absolute; right: 10px; bottom: 10px; z-index: 2; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: #fff; color: var(--brand); font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 5px rgba(0,0,0,.18); transition: background .16s, color .16s, transform .16s; }
+    .thumb-actions { position: absolute; left: 12px; right: 12px; bottom: 10px; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .thumb-action,
+    .heart { width: 34px; height: 34px; padding: 0; border: 1px solid #e0e3e8; border-radius: 50%; background: rgba(255,255,255,.96); color: #9aa1ad; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: none; transition: border-color .16s, background .16s, color .16s, transform .16s; }
+    .thumb-action:hover,
+    .heart:hover { border-color: #c9ced7; background: #fff; color: var(--brand); }
     .heart.active { background: var(--brand); color: #fff; transform: scale(1.04); }
     .site-badge { width: calc(100% - 24px); display: inline-flex; align-items: center; gap: 6px; margin: 10px 12px 0; padding: 5px 10px; border: 1px solid var(--line); border-radius: 4px; color: #333; font-size: 12px; font-weight: 700; }
     .site-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); flex: 0 0 auto; }
@@ -197,7 +201,8 @@
     .price-row { display: block; margin: 12px 14px 16px; }
     .price { color: #111; font-size: 17px; font-weight: 800; font-family: 'Roboto', sans-serif; }
     .auction-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 14px; color: #7c8490; font-size: 12px; font-weight: 600; }
-    .bids { color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .auction-meta > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bids { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; }
 
     /* More / footer */
     .more-row { height: 36px; margin-top: 28px; border: 1px dashed #d7d1cc; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #8d93a1; font-size: 12px; font-weight: 800; }
@@ -819,7 +824,21 @@
       { name: "야후 쇼핑", price: "¥ 2,499", auction: false },
       { name: "이베이", price: "$ 21.79", auction: true, flag: "us" }
     ];
-    const auctionTimes = ["30분", "2시간", "8시간", "1일", "2일"];
+    const auctionCloseOffsets = [30, 120, 480, 1440, 2880];
+
+    function formatRemainingTime(offsetMinutes) {
+      if (offsetMinutes >= 1440) return Math.floor(offsetMinutes / 1440) + "일";
+      if (offsetMinutes >= 60) return Math.floor(offsetMinutes / 60) + "시간";
+      return Math.max(1, Math.round(offsetMinutes)) + "분";
+    }
+
+    function formatAuctionCloseTime(offsetMinutes) {
+      const d = new Date(Date.now() + offsetMinutes * 60000);
+      const pad = n => String(n).padStart(2, "0");
+      const dateStr = d.getFullYear() + "." + pad(d.getMonth() + 1) + "." + pad(d.getDate());
+      const timeStr = pad(d.getHours()) + ":" + pad(d.getMinutes());
+      return dateStr + " " + timeStr + " (" + formatRemainingTime(offsetMinutes) + ")";
+    }
 
     function renderStoreBadge(badge, store) {
       const icon = store.flag === "us"
@@ -842,12 +861,41 @@
           const meta = document.createElement("div");
           meta.className = "auction-meta";
           meta.innerHTML = store.auction
-            ? '<span>' + auctionTimes[index % auctionTimes.length] + '</span><span class="bids">(' + (((index * 13) % 99) + 1) + ' Bids)</span>'
+            ? '<span>' + formatAuctionCloseTime(auctionCloseOffsets[index % auctionCloseOffsets.length]) + '</span><span class="bids">(' + (((index * 13) % 99) + 1) + ' Bids)</span>'
             : '<span></span><span></span>';
           priceRow.append(meta);
         }
 
+        const thumb = card.querySelector(".product-thumb");
         const heart = card.querySelector(".heart");
+        if (thumb && heart && !thumb.querySelector(".thumb-actions")) {
+          const actions = document.createElement("div");
+          actions.className = "thumb-actions";
+          actions.innerHTML =
+            '<button class="thumb-action" type="button" aria-label="상품 간편 보기" title="상품 간편 보기"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>' +
+            '<button class="thumb-action" type="button" aria-label="새창으로 보기" title="새창으로 보기"><i class="fa-regular fa-window-restore" aria-hidden="true"></i></button>' +
+            '<button class="thumb-action" type="button" aria-label="원문페이지보기" title="원문페이지보기"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>';
+          actions.append(heart);
+          thumb.append(actions);
+
+          const actionButtons = actions.querySelectorAll(".thumb-action");
+          actionButtons[0].addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.href = "web_auction.html";
+          });
+          actionButtons[1].addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open("web_auction.html", "_blank");
+          });
+          actionButtons[2].addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open("https://auctions.yahoo.co.jp/", "_blank");
+          });
+        }
+
         if (heart && !heart.dataset.bound) {
           heart.dataset.bound = "true";
           heart.setAttribute("aria-pressed", "false");
