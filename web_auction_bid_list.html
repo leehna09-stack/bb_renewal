@@ -377,18 +377,33 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 6px;
-      margin-bottom: 4px;
+      gap: 8px;
+      margin: 0 0 4px auto;
+      flex-wrap: wrap;
     }
     .bid-count-select {
       height: 28px;
+      min-width: 100px;
       padding: 0 24px 0 12px;
       border: 1px solid var(--line);
       border-radius: 6px;
       background: #fff;
       color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
       font-size: 12px;
       font-weight: 700;
+      font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1;
+      letter-spacing: 0;
+      white-space: nowrap;
+      position: relative;
+    }
+    .bid-count-select:focus-visible {
+      outline: 2px solid rgba(37, 99, 235, 0.22);
+      outline-offset: 2px;
     }
     .bid-filter-group {
       display: flex;
@@ -657,7 +672,7 @@
             <a href="web_qna_form.html">1:1 문의하기</a>
           </div>
         </div>
-        <div class="nav-section biz-convert-section">
+        <div class="nav-section biz-convert-section"style="display: none;"
           <a href="web_biz.html" class="biz-convert-link">
             <span class="biz-convert-inner">
               <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
