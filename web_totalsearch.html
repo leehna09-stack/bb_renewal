@@ -425,8 +425,18 @@
       line-height: 13px;
     }
 
+    .result-copy-row {
+      width: min(calc(100vw - 40px), var(--page-w));
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .result-copy {
-      margin:0px 0 20px;
+      margin: 0;
       color: var(--ink);
       font-size: 20px;
       font-weight: 700;
@@ -436,6 +446,35 @@
     .result-copy .red {
       color: var(--rose);
       font-weight: 800;
+    }
+
+    .favorite-keyword-btn {
+      height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--rose);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--rose);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .16s, color .16s, border-color .16s;
+    }
+
+    .favorite-keyword-btn.is-active {
+      background: var(--rose);
+      color: #fff;
+    }
+
+    .favorite-keyword-btn:disabled {
+      border-color: var(--line);
+      color: var(--muted);
+      background: #f6f6f6;
+      cursor: default;
     }
 
     .category-grid {
@@ -1014,7 +1053,13 @@
         </a>
       </nav>
     </div>
-<p class="result-copy" data-result-copy><span class="red">'나이키 박스'</span>에 대한 검색결과 입니다.</p>
+<div class="result-copy-row">
+  <p class="result-copy" data-result-copy><span class="red">'나이키 박스'</span>에 대한 검색결과 입니다.</p>
+  <button class="favorite-keyword-btn" type="button" data-favorite-keyword aria-pressed="false">
+    <i class="fa-regular fa-star" aria-hidden="true"></i>
+    <span>관심키워드 등록</span>
+  </button>
+</div>
 
     <main class="search-page">
       <div class="search-layout">
@@ -1162,11 +1207,41 @@
     const globalSearch = document.querySelector("[data-global-search]");
     const keywordList = document.querySelector("[data-keyword-list]");
     const resultCopy = document.querySelector("[data-result-copy]");
+    const favoriteKeywordBtn = document.querySelector("[data-favorite-keyword]");
     const searchParams = new URLSearchParams(window.location.search);
     const initialQuery = searchParams.get("q") || "";
     let keywords = initialQuery.trim()
       ? initialQuery.trim().split(/\s+/).filter(Boolean)
       : ["나이키", "박스"];
+    const FAVORITE_KEYWORDS_KEY = "bidbuy.favoriteKeywords";
+
+    function getCurrentKeywordText() {
+      return keywords.join(" ").trim().replace(/\s+/g, " ");
+    }
+
+    function readFavoriteKeywords() {
+      try {
+        return JSON.parse(localStorage.getItem(FAVORITE_KEYWORDS_KEY) || "[]");
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function writeFavoriteKeywords(items) {
+      localStorage.setItem(FAVORITE_KEYWORDS_KEY, JSON.stringify(items));
+    }
+
+    function updateFavoriteKeywordButton() {
+      if (!favoriteKeywordBtn) return;
+      const currentKeyword = getCurrentKeywordText();
+      const favorites = readFavoriteKeywords();
+      const isActive = currentKeyword && favorites.includes(currentKeyword);
+      favoriteKeywordBtn.disabled = !currentKeyword;
+      favoriteKeywordBtn.classList.toggle("is-active", Boolean(isActive));
+      favoriteKeywordBtn.setAttribute("aria-pressed", String(Boolean(isActive)));
+      favoriteKeywordBtn.querySelector("i").className = isActive ? "fa-solid fa-star" : "fa-regular fa-star";
+      favoriteKeywordBtn.querySelector("span").textContent = isActive ? "관심키워드 등록됨" : "관심키워드 등록";
+    }
 
     const productPhotoUrls = [
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=520&q=80",
@@ -1491,6 +1566,7 @@
       });
 
       updateResultCopy();
+      updateFavoriteKeywordButton();
     }
 
     keywordList.addEventListener("click", (event) => {
@@ -1519,6 +1595,19 @@
       window.history.replaceState(null, "", nextUrl);
       renderKeywords();
       input.value = "";
+    });
+
+    favoriteKeywordBtn?.addEventListener("click", () => {
+      const currentKeyword = getCurrentKeywordText();
+      if (!currentKeyword) return;
+
+      const favorites = readFavoriteKeywords();
+      const nextFavorites = favorites.includes(currentKeyword)
+        ? favorites.filter(item => item !== currentKeyword)
+        : [...favorites, currentKeyword];
+
+      writeFavoriteKeywords(nextFavorites);
+      updateFavoriteKeywordButton();
     });
 
     renderKeywords();
