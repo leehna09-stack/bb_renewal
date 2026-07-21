@@ -628,7 +628,7 @@
           button.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
-            if (actionIndex === 0) window.location.href = "web_auction.html";
+            if (actionIndex === 0) window.openQuickView(window.collectQuickViewDataFromCard(card));
             if (actionIndex === 1) window.open("web_auction.html", "_blank");
             if (actionIndex === 2) window.open("https://auctions.yahoo.co.jp/", "_blank");
           });
@@ -903,6 +903,7 @@
     });
   </script>
 <script src="bb-common.js"></script>
+<script src="bb-quickview.js"></script>
 <script src="bb-search-modal.js"></script>
 </body>
 </html>

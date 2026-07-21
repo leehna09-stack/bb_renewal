@@ -199,16 +199,17 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .market-info-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:#fff;color:#697386;border-radius:4px;display:grid;place-items:center;z-index:2}
 .market-info-body{display:grid;grid-template-columns:1fr;gap:20px;padding:14px}
 .office-grid{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:0}
-.office-card{min-height:112px;padding:18px 18px 16px 24px;border:0;display:flex;align-items:center;gap:12px}
+.office-card{min-height:92px;padding:10px 12px 8px 10px;border:0;display:flex;align-items:center;gap:8px}
 .office-card:nth-child(2n){border-right:0}
 .office-card:nth-last-child(-n+2){border-bottom:0}
-.office-status{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#e5e7eb;color:#fff;font-size:12px;font-weight:800}
-.office-status.is-open{background:#2f8df3}
+.office-status{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#d8c7cc;color:#7d6068;font-size:12px;font-weight:600}
+.office-status.is-open{background:#E8385A;color:#fff}
 .office-info{min-width:0}
-.office-country{font-size:13px;font-weight:800;color:#111827;margin-bottom:4px}
-.office-country .flag{font-size:16px;margin-right:5px}
-.office-branch{font-size:12px;color:#4b5563}
-.office-time{font-family:Roboto,Arial,sans-serif;font-size:12px;color:#1d74ff;white-space:nowrap}
+.office-country{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#111827;margin-bottom:4px}
+.office-country .flag{width:18px;height:13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.office-country .flag img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.office-branch{font-size:13px;color:#4b5563}
+.office-time{font-family:pretendard,Arial,sans-serif;font-size:13px;color:#1d74ff;white-space:nowrap}
 
 @media (max-width:720px){
   .market-info-body{grid-template-columns:1fr}
@@ -830,7 +831,7 @@ button.user-menu-item{
     <div class="sc-item"><div class="sc-icon si2"><i class="fas fa-heart"></i></div><span class="sc-lbl">관심상품</span></div>
     <div class="sc-item"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
     <div class="sc-item"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
-    <div class="sc-item" role="button" tabindex="0" onclick="openMarketInfoPopup()" onkeydown="handleShortcutKey(event, openMarketInfoPopup)"><div class="sc-icon si5"><i class="fas fa-thumbs-up"></i></div><span class="sc-lbl">환율·운영정보</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openMarketInfoPopup()" onkeydown="handleShortcutKey(event, openMarketInfoPopup)"><div class="sc-icon si5"><i class="fas fa-thumbs-up"></i></div><span class="sc-lbl">국가별 운영정보</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="handleShortcutKey(event, openConvenienceToolsPopup)"><div class="sc-icon si6"><i class="fas fa-toolbox"></i></div><span class="sc-lbl">편의도구</span></div>
     <div class="sc-item" onclick="location.href='web_mileage.html'" style="cursor:pointer"><div class="sc-icon si7"><i class="fas fa-ticket"></i></div><span class="sc-lbl">마일리지/쿠폰</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openbidbuycsPopup()" onkeydown="handleShortcutKey(event, openbidbuycsPopup)"><div class="sc-icon si8"><i class="fas fa-clipboard-list"></i></div><span class="sc-lbl">자주하는질문</span></div>
@@ -1115,7 +1116,7 @@ button.user-menu-item{
         <div class="office-card" data-office-timezone="Asia/Seoul">
           <div class="office-status">업무중</div>
           <div class="office-info">
-            <div class="office-country"><span class="flag">🇰🇷</span>Korea</div>
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_kor.png" alt="Korea"></span>Korea</div>
             <div class="office-branch">서울 사무소</div>
             <div class="office-time">-</div>
           </div>
@@ -1123,7 +1124,7 @@ button.user-menu-item{
         <div class="office-card" data-office-timezone="Asia/Tokyo">
           <div class="office-status">업무중</div>
           <div class="office-info">
-            <div class="office-country"><span class="flag">🇯🇵</span>Japan</div>
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_jp.png" alt="Japan"></span>Japan</div>
             <div class="office-branch">오사카 사무소</div>
             <div class="office-time">-</div>
           </div>
@@ -1131,7 +1132,7 @@ button.user-menu-item{
         <div class="office-card" data-office-timezone="America/Los_Angeles">
           <div class="office-status">업무중</div>
           <div class="office-info">
-            <div class="office-country"><span class="flag">🇺🇸</span>USA</div>
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_usa.png" alt="USA"></span>USA</div>
             <div class="office-branch">캘리포니아 사무소</div>
             <div class="office-time">-</div>
           </div>
@@ -1139,7 +1140,7 @@ button.user-menu-item{
         <div class="office-card" data-office-timezone="Europe/London">
           <div class="office-status">업무중</div>
           <div class="office-info">
-            <div class="office-country"><span class="flag">🇬🇧</span>UK</div>
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_uk.png" alt="UK"></span>UK</div>
             <div class="office-branch">런던 사무소</div>
             <div class="office-time">-</div>
           </div>

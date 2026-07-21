@@ -1350,7 +1350,7 @@
       quickView.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        window.location.href = "web_auction.html";
+        window.openQuickView(window.collectQuickViewDataFromCard(article));
       });
       newWindow.addEventListener("click", (event) => {
         event.preventDefault();
@@ -1613,6 +1613,7 @@
     renderKeywords();
   </script>
 <script src="bb-common.js"></script>
+<script src="bb-quickview.js"></script>
 <script src="bb-search-modal.js"></script>
 </body>
 </html>

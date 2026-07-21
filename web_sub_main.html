@@ -884,7 +884,7 @@
           actionButtons[0].addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
-            window.location.href = "web_auction.html";
+            window.openQuickView(window.collectQuickViewDataFromCard(card));
           });
           actionButtons[1].addEventListener("click", event => {
             event.preventDefault();
@@ -1046,5 +1046,6 @@
     }
   </script>
 <script src="bb-common.js"></script>
+<script src="bb-quickview.js"></script>
 </body>
 </html>
