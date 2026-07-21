@@ -187,16 +187,16 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .seller-stats{display:none}
 .seller-rating-label{display:none}
 .seller-stars{color:var(--amber);font-size:11px;letter-spacing:-1px}
-.seller-badge{background:#EDF7F0;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
-.btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
+.seller-badge{background:#EDF7F0;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px}
+.btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:7px 14px;border-radius:5px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
 .btn-seller:hover{border-color:var(--navy);color:var(--navy)}
 .seller-rating-cell{display:flex;align-items:center;gap:8px}
-.rating-view-btn{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--ts);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;background:#fff;cursor:pointer;text-decoration:none;transition:all .15s}
+.rating-view-btn{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;color:var(--ts);border:1.5px solid var(--border);border-radius:5px;padding:4px 10px;background:#fff;cursor:pointer;text-decoration:none;transition:all .15s}
 .rating-view-btn:hover{border-color:var(--navy);color:var(--navy)}
 
 /* 우측: 상품 정보 */
 .item-info-area{}
-.item-platform-tag{display:inline-flex;align-items:center;gap:6px;background:#FFF5F7;border:1px solid #FCCDD6;color:var(--rose);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.item-platform-tag{display:inline-flex;align-items:center;gap:6px;background:#FFF5F7;border:1px solid #FCCDD6;color:var(--rose);font-size:11px;font-weight:700;padding:4px 12px;border-radius:5px;margin-bottom:10px}
 .item-platform-tag i{font-size:10px}
 .item-title{font-size:19px;font-weight:700;color:var(--tp);line-height:1.5;margin-bottom:5px}
 .item-title-jp{font-size:12px;color:var(--tm);margin-bottom:14px;line-height:1.5}
@@ -365,7 +365,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-status-card--lose .bid-status-icon{background:#FFD8E0;color:var(--rose)}
 .bid-status-card--reserve .bid-status-icon{background:#DDE5FF;color:#5B7AE0}
 .bid-status-card--none .bid-status-icon{background:#E8EBF0;color:var(--ts)}
-.bid-status-badge-pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;flex-shrink:0}
+.bid-status-badge-pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;flex-shrink:0}
 .badge-win{background:#D1F5DC;color:var(--green)}
 .badge-lose{background:#FFD8E0;color:var(--rose)}
 .badge-reserve{background:#DDE5FF;color:#5B7AE0}
@@ -397,13 +397,17 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-hist-btn--primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .bid-hist-btn--primary:hover{background:#15336080;border-color:#153360}
 .bid-hist-table{width:100%;border-collapse:collapse;font-size:12px}
-.bid-hist-table th{padding:8px 6px;text-align:left;font-size:11px;font-weight:700;color:var(--ts);border-bottom:2px solid var(--border);background:#FAFBFC}
-.bid-hist-table td{padding:10px 6px;border-bottom:1px solid #F0F2F5;vertical-align:top}
+.bid-hist-table th{padding:5px 6px;text-align:left;font-size:12px;font-weight:700;color:var(--ts);border-bottom:2px solid var(--border);background:#FAFBFC}
+.bid-hist-table td{padding:5px 6px;border-bottom:1px solid #F0F2F5;vertical-align:top}
 .bid-hist-table tr:last-child td{border-bottom:none}
-.bid-status-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700}
-.bid-status-reserve{background:transparent;color:#5B7AE0;padding:0;border-radius:0}
-.bid-status-win{background:#F0FBF2;color:var(--green)}
-.bid-status-lose{background:#FFF0F3;color:var(--rose)}
+.bid-history-modal-card .bid-hist-table{border:0;background:transparent}
+.bid-history-modal-card .bid-hist-table th{background:transparent;border-bottom:1px solid #eef0f3}
+.bid-history-modal-card .bid-hist-table td{border-bottom:1px solid #f6f7f9}
+.bid-history-modal-card .bid-hist-table tr:last-child td{border-bottom:0}
+.bid-status-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.bid-status-reserve{background:transparent;color:#5B7AE0;padding:0;border-radius:0;font-size:12px;}
+.bid-status-win{background:#F0FBF2;color:var(--green);font-size:12px;}
+.bid-status-lose{background:#FFF0F3;color:var(--rose);font-size:12px;}
 
 /* ── 경매 비딩 패널 ── */
 .item-info-area{display:flex;flex-direction:column;height:100%;min-height:0}
@@ -494,6 +498,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-count-link{align-self:flex-start;border:none;background:none;padding:0;color:var(--navy);font:inherit;font-weight:700;text-align:left;text-decoration:underline;cursor:pointer}
 .bid-history-modal-card{width:min(560px,calc(100vw - 32px))}
 .bid-history-modal-card .confirm-modal-body{max-height:70vh;overflow:auto}
+.bid-history-modal-card .confirm-modal-body{padding-top:0}
 .bp-badge{font-size:11px;font-weight:600;color:var(--navy);background:#EEF2F9;border:1px solid #C5D0E6;padding:2px 3px;border-radius:5px;cursor:help}
 .bp-yahoobadge{font-size:11px;font-weight:600;color:var(--navy);background:#EEF2F9;border:1px solid var(--rose);padding:2px 3px;border-radius:5px;cursor:help}
 
@@ -1615,32 +1620,28 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 <div class="confirm-modal" id="bidHistoryModal" onclick="closeBidHistoryModal(event)">
   <div class="confirm-modal-card bid-history-modal-card" onclick="event.stopPropagation()">
     <div class="confirm-modal-head">
-      <strong>입찰내역</strong>
+      <strong>이전 입찰내역</strong>
       <button class="confirm-modal-close" type="button" onclick="closeBidHistoryModal()">&times;</button>
     </div>
     <div class="confirm-modal-body">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
-        <button class="bid-hist-btn" type="button"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
-        <button class="bid-hist-btn bid-hist-btn--primary" type="button" onclick="location.href='web_auction_order.html'"><i class="fa-solid fa-gavel"></i> 재입찰하기</button>
-      </div>
       <table class="bid-hist-table">
         <thead>
           <tr><th>입찰일시</th><th>입찰가</th><th>상태</th></tr>
         </thead>
         <tbody id="bidHistoryBody">
           <tr>
-            <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
-            <td><span style="font-size:11px;color:var(--ts)">옵션명옵션선명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+            <td class="roboto" style="color:var(--ts);font-size:12px">2024.05.10<br>17:13:48</td>
+            <td><span style="font-size:12px;color:var(--ts)">옵션명옵션선명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
             <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
           </tr>
           <tr>
-            <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
-            <td><span style="font-size:11px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+            <td class="roboto" style="color:var(--ts);font-size:12px">2024.05.10<br>17:13:48</td>
+            <td><span style="font-size:12px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
             <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
           </tr>
           <tr>
-            <td class="roboto" style="color:var(--ts);font-size:11px">2024.05.10<br>17:13:48</td>
-            <td><span style="font-size:11px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
+            <td class="roboto" style="color:var(--ts);font-size:12px">2024.05.10<br>17:13:48</td>
+            <td><span style="font-size:12px;color:var(--ts)">옵션명<br>1개 | </span><span class="roboto" style="font-weight:700">300엔</span></td>
             <td><span class="bid-status-badge bid-status-reserve">예약입찰</span></td>
           </tr>
         </tbody>
