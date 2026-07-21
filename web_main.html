@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -264,13 +264,23 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .live-card:hover{box-shadow:0 5px 18px rgba(0,0,0,.08)}
 .live-thumb{position:relative;width:100%;aspect-ratio:1;background:#F2F3F5;overflow:hidden}
 .live-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.live-fav{position:absolute;right:10px;bottom:10px;width:28px;height:28px;border-radius:50%;border:1px solid #F4C8D0;background:#fff;color:var(--rose);display:grid;place-items:center;font-size:13px}
+.live-actions{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px}
+.live-action,
+.live-fav{width:34px;height:34px;padding:0;border:1px solid #e0e3e8;border-radius:50%;background:rgba(255,255,255,.96);color:#9aa1ad;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;box-shadow:none;transition:border-color .16s,background .16s,color .16s,transform .16s}
+.live-action:hover,
+.live-fav:hover{border-color:#c9ced7;background:#fff;color:var(--rose)}
+.live-fav.active{background:var(--rose);color:#fff;transform:scale(1.04)}
 .live-info{padding:10px 12px 12px}
 .live-source{height:24px;border:1px solid #EEEFF3;border-radius:4px;display:flex;align-items:center;gap:6px;padding:0 8px;color:#6B7280;font-size:10px;margin-bottom:8px}
 .live-source::before{content:"";width:7px;height:7px;border-radius:50%;background:#E60026}
 .live-name{min-height:34px;color:#111827;font-size:12px;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.live-price-line{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;min-width:0;margin-top:8px}
 .live-price{margin-top:8px;color:#111827;font-size:17px;font-weight:900;font-family:'Roboto',sans-serif}
-.live-meta{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:#8B94A3;font-size:10px}
+.live-price-line .live-price{margin-top:0}
+.live-buy-now{flex:0 0 auto;margin:0 0 2px;color:#111;font-size:12px;font-weight:600;white-space:nowrap}
+.live-buy-now strong{font-family:'Roboto',sans-serif;font-weight:600}
+.live-meta{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:#8B94A3;font-size:12px;font-weight:600}
+.live-meta span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ? ═ 카테고리 BEST ? ═ */
 .best-sec{background:#fff;padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -851,18 +861,18 @@ button.user-menu-item{
   <div class="section" style="padding:0">
     <div class="sec-hd"><h2 class="sec-title">실시간 베스트</h2><span class="sec-meta">2026-04-30 20:00 업데이트</span></div>
     <div class="live-best-grid">
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-1/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">シチズン クォーツ 腕時計 メンズ 文字盤</div><div class="live-price">¥ 3,030</div><div class="live-meta"><span>2026-04-30 19:38:26</span><span>10 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-2/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">TISSOT ティソ PR100 P350/450 クォーツ</div><div class="live-price">¥ 1,100</div><div class="live-meta"><span>2026-04-30 18:27:54</span><span>2 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-3/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 腕時計 メンズ デジアナ アラーム</div><div class="live-price">¥ 5,000</div><div class="live-meta"><span>2026-04-30 19:09:09</span><span>0 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-4/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN CLUB LA MER 自動巻き</div><div class="live-price">¥ 21</div><div class="live-meta"><span>2026-04-30 20:05:22</span><span>3 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-5/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">SEIKO QUARTZ 腕時計 ゴールド 稼働品</div><div class="live-price">¥ 2,222</div><div class="live-meta"><span>2026-05-01 21:50:44</span><span>1 Bid</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-6/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 腕時計 2730-274822 セット</div><div class="live-price">¥ 19,800</div><div class="live-meta"><span>2026-04-30 21:49:58</span><span>0 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-7/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">美品 シチズン 腕時計 エコドライブ</div><div class="live-price">¥ 10,450</div><div class="live-meta"><span>2026-04-30 23:58:13</span><span>2 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-8/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">EL2001 CITIZEN ランキング クォーツ</div><div class="live-price">¥ 2,610</div><div class="live-meta"><span>2026-05-01 21:18:01</span><span>0 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-9/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">腕時計 CITIZEN XC エコドライブ</div><div class="live-price">¥ 520</div><div class="live-meta"><span>2026-04-30 19:34:24</span><span>3 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-10/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN 7連 ベルト ブレスレット</div><div class="live-price">¥ 3,750</div><div class="live-meta"><span>2026-05-04 20:20:21</span><span>4 Bids</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-11/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">シチズン A15803 シャルマン 手巻き</div><div class="live-price">¥ 4,000</div><div class="live-meta"><span>2026-05-03 21:06:23</span><span>1 Bid</span></div></div></div>
-      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-12/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">Yahoo Auction</div><div class="live-name">CITIZEN シチズン 自動巻き 腕時計</div><div class="live-price">¥ 4,310</div><div class="live-meta"><span>2026-04-30 18:50:05</span><span>33 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-1/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">シチズン クォーツ 腕時計 メンズ 文字盤</div><div class="live-price">3,030엔</div><div class="live-meta"><span>2026-04-30 19:38:26</span><span>10 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-2/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">TISSOT ティソ PR100 P350/450 クォーツ</div><div class="live-price">1,100엔</div><div class="live-meta"><span>2026-04-30 18:27:54</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-3/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 腕時計 メンズ デジアナ アラーム</div><div class="live-price">5,000엔</div><div class="live-meta"><span>2026-04-30 19:09:09</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-4/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN CLUB LA MER 自動巻き</div><div class="live-price">21엔</div><div class="live-meta"><span>2026-04-30 20:05:22</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-5/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">SEIKO QUARTZ 腕時計 ゴールド 稼働品</div><div class="live-price">2,222엔</div><div class="live-meta"><span>2026-05-01 21:50:44</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-6/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 腕時計 2730-274822 セット</div><div class="live-price">19,800엔</div><div class="live-meta"><span>2026-04-30 21:49:58</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-7/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">美品 シチズン 腕時計 エコドライブ</div><div class="live-price">10,450엔</div><div class="live-meta"><span>2026-04-30 23:58:13</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-8/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">EL2001 CITIZEN ランキング クォーツ</div><div class="live-price">2,610엔</div><div class="live-meta"><span>2026-05-01 21:18:01</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-9/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">腕時計 CITIZEN XC エコドライブ</div><div class="live-price">520엔</div><div class="live-meta"><span>2026-04-30 19:34:24</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-10/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 7連 ベルト ブレスレット</div><div class="live-price">3,750엔</div><div class="live-meta"><span>2026-05-04 20:20:21</span><span>4 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-11/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">シチズン A15803 シャルマン 手巻き</div><div class="live-price">4,000엔</div><div class="live-meta"><span>2026-05-03 21:06:23</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-12/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN シチズン 自動巻き 腕時計</div><div class="live-price">4,310엔</div><div class="live-meta"><span>2026-04-30 18:50:05</span><span>33 Bids</span></div></div></div>
     </div>
   </div>
 </div>
@@ -872,8 +882,8 @@ button.user-menu-item{
   <div class="sec-hd"><h2 class="sec-title">비드바이 고객후기</h2><a href="#" class="sec-more">더보기 <i class="fas fa-chevron-right"></i></a></div>
   <div class="rv-grid">
     <div class="rv-card"><div class="rv-top"><span class="rv-badge">미국 이베이</span><span class="rv-time">24시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv1/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">일본 H&M 구매 체험, 빠르고 편했어요</div><div class="rv-text">처음 이용했는데 과정이 간단해서 원하는 상품을 편하게 구매했어요.</div><div class="rv-item">낙찰가 USD 23.70 · Nike Air Max 90</div></div>
-    <div class="rv-card"><div class="rv-top"><span class="rv-badge">야후 옥션</span><span class="rv-time">14시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv2/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">간단하게 좋은 상품 구매했어요</div><div class="rv-text">담당자님이 꼼꼼하게 처리해 주셔서 정말 만족했습니다.</div><div class="rv-item">낙찰가 ¥45,000 · LV 18 네버풀</div></div>
-    <div class="rv-card"><div class="rv-top"><span class="rv-badge mc">메루카리</span><span class="rv-time">2시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv3/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">주문한 상품이 안전하게 도착했어요</div><div class="rv-text">배송 계산 비용도 예상과 거의 맞아서 안심하고 받을 수 있었어요.</div><div class="rv-item">¥3,200 · Supreme 박스로고 티셔츠</div></div>
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge">야후 옥션</span><span class="rv-time">14시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv2/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">간단하게 좋은 상품 구매했어요</div><div class="rv-text">담당자님이 꼼꼼하게 처리해 주셔서 정말 만족했습니다.</div><div class="rv-item">낙찰가 45,000엔 · LV 18 네버풀</div></div>
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge mc">메루카리</span><span class="rv-time">2시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv3/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">주문한 상품이 안전하게 도착했어요</div><div class="rv-text">배송 계산 비용도 예상과 거의 맞아서 안심하고 받을 수 있었어요.</div><div class="rv-item">3,200엔 · Supreme 박스로고 티셔츠</div></div>
     <div class="rv-card"><div class="rv-top"><span class="rv-badge">영국 이베이</span><span class="rv-time">4시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv4/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">배송 매니징까지 만족했습니다</div><div class="rv-text">영국 이베이는 처음이었는데 CS 응대가 빠르고 친절해서 좋았어요.</div><div class="rv-item">£185 · Seiko Prospex 시계</div></div>
   </div>
 </div>
@@ -1393,6 +1403,91 @@ mainSearchForm?.addEventListener('submit', event => {
   const targetUrl = new URL('web_totalsearch.html', window.location.href);
   targetUrl.searchParams.set('q', query);
   window.location.assign(targetUrl.toString());
+});
+
+const liveAuctionCloseOffsets = [30, 120, 480, 780, 1440, 2880];
+
+function formatLiveYenText(value) {
+  const numeric = String(value).replace(/[^\d]/g, "");
+  return (Number(numeric) || 0).toLocaleString("ko-KR") + "엔";
+}
+
+function formatLiveRemainingTime(offsetMinutes) {
+  if (offsetMinutes >= 1440) return Math.floor(offsetMinutes / 1440) + "일";
+  if (offsetMinutes >= 60) return Math.floor(offsetMinutes / 60) + "시간";
+  return Math.max(1, Math.round(offsetMinutes)) + "분";
+}
+
+function formatLiveAuctionCloseTime(offsetMinutes) {
+  const d = new Date(Date.now() + offsetMinutes * 60000);
+  const pad = n => String(n).padStart(2, "0");
+  const dateStr = d.getFullYear() + "." + pad(d.getMonth() + 1) + "." + pad(d.getDate());
+  const timeStr = pad(d.getHours()) + ":" + pad(d.getMinutes());
+  return dateStr + " " + timeStr + " (" + formatLiveRemainingTime(offsetMinutes) + ")";
+}
+
+document.querySelectorAll(".live-card").forEach((card, index) => {
+  const price = card.querySelector(".live-price");
+  const basePrice = price ? Number(price.textContent.replace(/[^\d]/g, "")) || 1650 : 1650;
+  if (price) price.textContent = formatLiveYenText(basePrice);
+
+  if (price && !card.querySelector(".live-price-line")) {
+    const priceLine = document.createElement("div");
+    priceLine.className = "live-price-line";
+    price.parentNode.insertBefore(priceLine, price);
+    priceLine.append(price);
+  }
+  const priceLine = card.querySelector(".live-price-line");
+  const showBuyNow = Math.random() < 0.45;
+  if (priceLine && showBuyNow && !priceLine.querySelector(".live-buy-now")) {
+    const buyNow = document.createElement("div");
+    buyNow.className = "live-buy-now";
+    const buyNowPrice = basePrice + 500 + ((index * 370) % 4200);
+    buyNow.innerHTML = '(즉시낙찰 <strong>' + formatLiveYenText(buyNowPrice) + '</strong>)';
+    priceLine.append(buyNow);
+  }
+
+  const meta = card.querySelector(".live-meta");
+  if (meta) {
+    meta.innerHTML = '<span>' + formatLiveAuctionCloseTime(liveAuctionCloseOffsets[index % liveAuctionCloseOffsets.length]) + '</span><span>(' + (((index * 13) % 99) + 1) + 'bids)</span>';
+  }
+
+  const thumb = card.querySelector(".live-thumb");
+  const oldFav = card.querySelector(".live-fav");
+  if (thumb && !thumb.querySelector(".live-actions")) {
+    oldFav?.remove();
+    const actions = document.createElement("div");
+    actions.className = "live-actions";
+    actions.innerHTML =
+      '<button class="live-action" type="button" aria-label="상품 간편 보기" title="상품 간편 보기"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>' +
+      '<button class="live-action" type="button" aria-label="새창으로 보기" title="새창으로 보기"><i class="fa-regular fa-window-restore" aria-hidden="true"></i></button>' +
+      '<button class="live-action" type="button" aria-label="원문페이지보기" title="원문페이지보기"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>' +
+      '<button class="live-fav" type="button" aria-label="관심상품" title="관심상품" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>';
+    thumb.append(actions);
+
+    actions.querySelectorAll(".live-action").forEach((button, actionIndex) => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (actionIndex === 0) window.location.href = "web_auction.html";
+        if (actionIndex === 1) window.open("web_auction.html", "_blank");
+        if (actionIndex === 2) window.open("https://auctions.yahoo.co.jp/", "_blank");
+      });
+    });
+
+    const fav = actions.querySelector(".live-fav");
+    fav?.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      fav.classList.toggle("active");
+      fav.setAttribute("aria-pressed", String(fav.classList.contains("active")));
+    });
+  }
+
+  card.addEventListener("click", event => {
+    if (event.target.closest("button, a")) return;
+    window.location.href = "web_auction.html";
+  });
 });
 </script>
 <script src="bb-common.js"></script>

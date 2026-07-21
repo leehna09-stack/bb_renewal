@@ -1312,11 +1312,19 @@
       background: #fff;
     }
 
+    .bundle-group-wrap {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
     .order-card.bundle-group-start {
       position: relative;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-color: var(--line-soft);
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid var(--line-soft);
     }
 
     .trade-table.status-filtered .order-card.bundle-group-start {
@@ -1325,9 +1333,9 @@
 
     .order-card.bundle-group-end {
       margin-top: -10px;
+      border: 0;
       border-top: 0;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
+      border-radius: 0;
     }
 
     /* 묶음배송 헤더 바 */
@@ -1352,15 +1360,17 @@
     .bnh-mv { font-size: 12px; font-weight: 800; color: var(--navy); }
     .bnh-spacer { flex: 1; }
     .btn-bundle-pay {
-      height: 34px; padding: 0 18px; border: 0; border-radius: 5px;
-      border: 1px solid #1675cf; background: #fff; color: #1675cf;
+      height: 34px; padding: 0 18px; border: 1px solid #1675cf; border-radius: 5px;
+      background: #fff; color: #1675cf;
       font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer;
       outline: 0; -webkit-tap-highlight-color: transparent;
     }
-    .btn-bundle-pay:hover { background: #1675cf; color: #fff; }
+    .btn-bundle-pay:hover {
+      background: #1675cf;
+      color: #fff;
+    }
     .bundle-group-end .trade-row .tr-pay { display: none; }
 
-    .bundle-group-wrap { position: relative; }
     .bundle-group-pay {
       position: absolute;
       top: 43px;
@@ -1371,6 +1381,7 @@
       align-items: center;
       justify-content: center;
       background: #fff;
+      border-left: 1px solid var(--line-soft);
     }
 
     /* 묶음 아이템 내 소스·ID 텍스트 */

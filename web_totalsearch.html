@@ -429,13 +429,13 @@
       margin:0px 0 20px;
       color: var(--ink);
       font-size: 20px;
-      font-weight: 800;
+      font-weight: 700;
       text-align: center;
     }
 
     .result-copy .red {
       color: var(--rose);
-      font-weight: 900;
+      font-weight: 800;
     }
 
     .category-grid {
@@ -470,7 +470,7 @@
       margin: 0 0 18px;
       color: var(--ink);
       font-size: 19px;
-      font-weight: 900;
+      font-weight: 800;
     }
 
     .filter-block {
@@ -675,6 +675,8 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 24px 16px;
     }
+    .reveal-grid-wrap { position: relative; overflow: hidden; transition: max-height .28s ease; }
+    .reveal-grid-wrap.is-collapsed::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 150px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 76%); }
 
     .product-card {
       position: relative;
@@ -718,27 +720,11 @@
       object-fit: cover;
     }
 
-    .heart {
-      position: absolute;
-      right: 11px;
-      bottom: 11px;
-      z-index: 2;
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      background: #fff;
-      color: var(--rose);
-      font-size: 15px;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 1px 5px rgba(0,0,0,.18);
-      transition: background .16s, color .16s, transform .16s;
-    }
-
+    .thumb-actions { position: absolute; left: 12px; right: 12px; bottom: 10px; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .thumb-action,
+    .heart { width: 34px; height: 34px; padding: 0; border: 1px solid #e0e3e8; border-radius: 50%; background: rgba(255,255,255,.96); color: #9aa1ad; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: none; transition: border-color .16s, background .16s, color .16s, transform .16s; }
+    .thumb-action:hover,
+    .heart:hover { border-color: #c9ced7; background: #fff; color: var(--rose); }
     .heart.active { background: var(--rose); color: #fff; transform: scale(1.04); }
 
     .site-badge {
@@ -785,6 +771,8 @@
       margin: 12px 14px 16px;
     }
 
+    .price-line { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; min-width: 0; }
+
     .price {
       color: #111;
       font-size: 17px;
@@ -792,11 +780,17 @@
       font-family: 'Roboto', sans-serif;
     }
 
+    .buy-now-price { flex: 0 0 auto; margin: 0 0 2px; color: #111; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .buy-now-price strong { font-family: 'Roboto', sans-serif; font-weight: 600; }
     .auction-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 14px; color: #7c8490; font-size: 12px; font-weight: 600; }
+    .auction-meta > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .bids { color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; }
 
     .more-footer {
-      padding: 32px 0;
+      position: relative;
+      z-index: 2;
+      margin-top: -18px;
+      padding: 0 0 32px;
       background: #fff;
     }
 
@@ -808,7 +802,7 @@
       padding: 0;
       border: 1px dashed var(--line);
       border-radius: 5px;
-      background: transparent;
+      background: rgba(255,255,255,.94);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -816,6 +810,7 @@
       color: var(--secondary);
       font-size: 12px;
       font-weight: 700;
+      cursor: pointer;
     }
 
     .search-layout .result-section {
@@ -1204,12 +1199,31 @@
     ];
 
     const PRODUCT_CARD_STORES = [
-      { name: "야후경매", flag: "jp", price: "¥ 2,500", auction: true },
-      { name: "라쿠마", flag: "jp", price: "¥ 1,800", auction: false },
-      { name: "야후 쇼핑", flag: "jp", price: "¥ 2,499", auction: false },
+      { name: "야후경매", flag: "jp", price: "2,500엔", auction: true },
+      { name: "라쿠마", flag: "jp", price: "1,800엔", auction: false },
+      { name: "야후 쇼핑", flag: "jp", price: "2,499엔", auction: false },
       { name: "이베이", flag: "us", price: "$ 21.79", auction: true }
     ];
-    const AUCTION_TIMES = ["30분", "2시간", "8시간", "1일", "2일"];
+    const AUCTION_TIME_OFFSETS = [30, 120, 480, 780, 1440, 2880];
+
+    function formatYenText(value) {
+      const numeric = String(value).replace(/[^\d]/g, "");
+      return (Number(numeric) || 0).toLocaleString("ko-KR") + "엔";
+    }
+
+    function formatRemainingTime(offsetMinutes) {
+      if (offsetMinutes >= 1440) return Math.floor(offsetMinutes / 1440) + "일";
+      if (offsetMinutes >= 60) return Math.floor(offsetMinutes / 60) + "시간";
+      return Math.max(1, Math.round(offsetMinutes)) + "분";
+    }
+
+    function formatAuctionCloseTime(offsetMinutes) {
+      const d = new Date(Date.now() + offsetMinutes * 60000);
+      const pad = n => String(n).padStart(2, "0");
+      const dateStr = d.getFullYear() + "." + pad(d.getMonth() + 1) + "." + pad(d.getDate());
+      const timeStr = pad(d.getHours()) + ":" + pad(d.getMinutes());
+      return dateStr + " " + timeStr + " (" + formatRemainingTime(offsetMinutes) + ")";
+    }
 
     function createProductCard(index) {
       const article = document.createElement("article");
@@ -1238,7 +1252,43 @@
         heart.setAttribute("aria-pressed", String(active));
         heart.innerHTML = '<i class="' + (active ? "fa-solid" : "fa-regular") + ' fa-heart" aria-hidden="true"></i>';
       });
-      thumb.append(heart);
+      const actions = document.createElement("div");
+      actions.className = "thumb-actions";
+      const quickView = document.createElement("button");
+      quickView.className = "thumb-action";
+      quickView.type = "button";
+      quickView.setAttribute("aria-label", "상품 간편 보기");
+      quickView.title = "상품 간편 보기";
+      quickView.innerHTML = '<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>';
+      const newWindow = document.createElement("button");
+      newWindow.className = "thumb-action";
+      newWindow.type = "button";
+      newWindow.setAttribute("aria-label", "새창으로 보기");
+      newWindow.title = "새창으로 보기";
+      newWindow.innerHTML = '<i class="fa-regular fa-window-restore" aria-hidden="true"></i>';
+      const originalPage = document.createElement("button");
+      originalPage.className = "thumb-action";
+      originalPage.type = "button";
+      originalPage.setAttribute("aria-label", "원문페이지보기");
+      originalPage.title = "원문페이지보기";
+      originalPage.innerHTML = '<i class="fa-solid fa-globe" aria-hidden="true"></i>';
+      quickView.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.href = "web_auction.html";
+      });
+      newWindow.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open("web_auction.html", "_blank");
+      });
+      originalPage.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open("https://auctions.yahoo.co.jp/", "_blank");
+      });
+      actions.append(quickView, newWindow, originalPage, heart);
+      thumb.append(actions);
 
       const site = PRODUCT_CARD_STORES[index % PRODUCT_CARD_STORES.length];
       const badge = document.createElement("div");
@@ -1254,27 +1304,29 @@
 
       const priceRow = document.createElement("div");
       priceRow.className = "price-row";
+      const priceLine = document.createElement("div");
+      priceLine.className = "price-line";
       const price = document.createElement("strong");
       price.className = "price";
-      price.textContent = site.flag === "us" ? "$ 175.00" : "¥ 1,650";
-      priceRow.append(price);
-      if (site.flag === "us") {
-        const bids = document.createElement("span");
-        bids.className = "bids";
-        bids.textContent = "(0 Bids)";
-        priceRow.append(bids);
-      }
-
       price.textContent = site.price;
-      priceRow.querySelectorAll(".bids").forEach(el => el.remove());
+      priceLine.append(price);
+      if (site.flag !== "us" && Math.random() < 0.45) {
+        const buyNow = document.createElement("div");
+        buyNow.className = "buy-now-price";
+        const basePrice = Number(site.price.replace(/[^\d]/g, "")) || 1650;
+        const buyNowPrice = basePrice + 500 + ((index * 370) % 4200);
+        buyNow.innerHTML = '(즉시낙찰 <strong>' + formatYenText(buyNowPrice) + '</strong>)';
+        priceLine.append(buyNow);
+      }
+      priceRow.append(priceLine);
       const meta = document.createElement("div");
       meta.className = "auction-meta";
       if (site.auction) {
         const time = document.createElement("span");
-        time.textContent = AUCTION_TIMES[index % AUCTION_TIMES.length];
+        time.textContent = formatAuctionCloseTime(AUCTION_TIME_OFFSETS[index % AUCTION_TIME_OFFSETS.length]);
         const bids = document.createElement("span");
         bids.className = "bids";
-        bids.textContent = "(" + (((index * 13) % 99) + 1) + " Bids)";
+        bids.textContent = "(" + (((index * 13) % 99) + 1) + "bids)";
         meta.append(time, bids);
       } else {
         meta.append(document.createElement("span"), document.createElement("span"));
@@ -1300,8 +1352,48 @@
 
       if (renderedCount >= MAX_ITEMS) {
         stopInfiniteScroll();
-        moreFooter.style.display = "none";
       }
+    }
+
+    function setupRevealGrid(grid, trigger, footer, options = {}) {
+      if (!grid || !trigger || grid.dataset.revealReady) return;
+      grid.dataset.revealReady = "true";
+
+      const wrap = document.createElement("div");
+      wrap.className = "reveal-grid-wrap";
+      grid.parentNode.insertBefore(wrap, grid);
+      wrap.append(grid);
+
+      const rowsPerStep = options.rowsPerStep || 2;
+      let visibleRows = options.initialRows || 2;
+
+      function getColumnCount() {
+        const columns = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean);
+        return Math.max(1, columns.length);
+      }
+
+      function applyHeight() {
+        const cards = Array.from(grid.querySelectorAll(".product-card"));
+        const columns = getColumnCount();
+        const totalRows = Math.ceil(cards.length / columns);
+        const first = cards[0];
+        if (!first) return;
+        const rowGap = parseFloat(getComputedStyle(grid).rowGap) || 0;
+        const rowHeight = first.getBoundingClientRect().height;
+        const fullHeight = (rowHeight * visibleRows) + (rowGap * Math.max(0, visibleRows - 1));
+        const hasMore = visibleRows < totalRows;
+        wrap.style.maxHeight = hasMore ? (fullHeight + Math.min(92, rowHeight * .45)) + "px" : "none";
+        wrap.classList.toggle("is-collapsed", hasMore);
+        if (footer) footer.hidden = !hasMore;
+      }
+
+      trigger.addEventListener("click", () => {
+        visibleRows += rowsPerStep;
+        applyHeight();
+      });
+
+      window.addEventListener("resize", applyHeight);
+      requestAnimationFrame(applyHeight);
     }
 
     function checkInfiniteScroll() {
@@ -1324,13 +1416,8 @@
       window.removeEventListener("resize", checkInfiniteScroll);
     }
 
-    moreBtn.addEventListener("click", () => {
-      appendCards(PAGE_SIZE);
-      moreBtn.style.display = "none";
-      if (renderedCount < MAX_ITEMS) startInfiniteScroll();
-    });
-
-    appendCards(PAGE_SIZE);
+    appendCards(MAX_ITEMS);
+    setupRevealGrid(productGrid, moreBtn, moreFooter);
 
     // 스토어 바로가기 클릭 이벤트 (멀티 선택 토글)
     storeChips.forEach(chip => {
