@@ -26,13 +26,13 @@ button,select{cursor:pointer}
 
 /* ══ 헤더 (mobile_totalsearch 이식) ══ */
 .header{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #d9e0e9;box-shadow:0 1px 0 rgba(32,36,43,.04)}
-.header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 14px 12px;min-height:56px}
+.header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:1px;min-height:56px;}
 .brand-area{display:flex;align-items:center;gap:10px;min-width:0}
 .menu-button{width:34px;height:34px;border-radius:5px;border:0;background:transparent;padding:0;display:grid;place-items:center;flex-shrink:0}
 .menu-lines{width:18px;display:grid;gap:4px}
 .menu-lines span{height:2px;border-radius:999px;background:#1f2530}
-.logo-link{display:inline-flex;align-items:center;width:76px;line-height:0}
-.logo-link img{width:100%;height:auto;display:block}
+.logo-link{display:inline-flex;align-items:center;width:76px;line-height:0;}
+.logo-link img{width:100%;height:auto;display:block;}
 .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px}
 .btn-login{min-width:66px;height:32px;padding:0 14px;border:0;border-radius:5px;color:#fff;font-size:11px;font-weight:900;background:var(--brand);font-family:inherit}
 .icon-btn{width:34px;height:34px;border-radius:5px;background:none;border:0;color:#333;display:flex;align-items:center;justify-content:center;position:relative;padding:0}
@@ -220,11 +220,11 @@ button,select{cursor:pointer}
       <option>1주일</option>
       <option>1년</option>
     </select>
-    <select class="dd-select" id="statusFilterSelect" aria-label="진행 단계">
-      <option value="" data-status="">전체 단계</option>
-      <option value="auction-bid" data-status="auction-bid">입찰중</option>
-      <option value="payment-wait" data-status="first-payment-wait,second-payment-wait">결제대기</option>
-      <option value="international-shipping" data-status="international-shipping">국제배송</option>
+    <select class="dd-select" aria-label="진행 단계">
+      <option>전체 단계</option>
+      <option>입찰중</option>
+      <option>결제대기</option>
+      <option>국제배송</option>
     </select>
   </div>
 </div>
@@ -394,28 +394,6 @@ document.querySelectorAll('.tab-group .tab').forEach((tab) => {
     tab.classList.add('active');
   });
 });
-
-const statusFilterSelect = document.getElementById('statusFilterSelect');
-const tradeRows = document.querySelectorAll('.trade-row[data-status]');
-
-function applyStatusFilter(value) {
-  const option = statusFilterSelect.querySelector(`option[value="${value}"]`);
-  const statusList = (option?.dataset.status || '').split(',').filter(Boolean);
-  tradeRows.forEach((row) => {
-    const matches = !statusList.length || statusList.includes(row.dataset.status);
-    row.style.display = matches ? '' : 'none';
-  });
-}
-
-statusFilterSelect?.addEventListener('change', () => {
-  applyStatusFilter(statusFilterSelect.value);
-});
-
-const initialStatus = new URLSearchParams(location.search).get('status') || '';
-if (statusFilterSelect && statusFilterSelect.querySelector(`option[value="${initialStatus}"]`)) {
-  statusFilterSelect.value = initialStatus;
-}
-applyStatusFilter(statusFilterSelect ? statusFilterSelect.value : '');
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>

@@ -15,25 +15,15 @@
     --text-main:#111; --text-sub:#666; --text-hint:#999;
   }
   html, body { width:100%; max-width:390px; margin:0 auto; background:var(--bg); overflow-x:hidden; }
-  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:100px; padding-bottom:80px; }
-
-  /* 상태바 */
-  .phone-status-bar { display:flex; align-items:center; justify-content:space-between; height:44px; padding:0 24px; background:#fff; color:#0A0A0A; font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif; font-size:15px; font-weight:700; letter-spacing:-.2px; position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; z-index:201; }
-  .psb-time { font-variant-numeric:tabular-nums; }
-  .psb-icons { display:flex; align-items:center; gap:6px; font-size:14px; color:#0A0A0A; }
-  .psb-icons i { line-height:1; }
-  .psb-battery { display:flex; align-items:center; gap:2px; }
-  .psb-battery-body { width:22px; height:11px; border:1.3px solid #0A0A0A; border-radius:3px; padding:1.5px; position:relative; }
-  .psb-battery-body::after { content:''; position:absolute; right:-3.5px; top:50%; transform:translateY(-50%); width:2px; height:4px; background:#0A0A0A; border-radius:0 1px 1px 0; }
-  .psb-battery-fill { width:80%; height:100%; background:#0A0A0A; border-radius:1px; }
+  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
 
   /* ? 바 */
-  .app-header { position:fixed; top:44px; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
-  .app-header-top { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px; padding:1px 14px 12px; min-height:56px; }
+  .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
+  .app-header-top { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:1px; min-height:56px; }
   .app-brand-area { display:flex; align-items:center; gap:10px; min-width:0; }
   .hb { width:34px; height:34px; border-radius:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:0; background:none; border:none; cursor:pointer; }
   .hb span { display:block; width:18px; height:2px; background:#242836; border-radius:999px; }
-  .app-logo { display:flex; align-items:center; width:76px; max-width:24vw; }
+  .app-logo { display:inline-flex; align-items:center; width:76px;line-height:0;}
   .app-logo img { display:block; width:100%; height:auto; }
   .app-header-right { margin-left:0; display:flex; gap:4px; align-items:center; justify-self:end; }
   .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:5px; font-size:11px; font-weight:900; cursor:pointer; font-family:inherit; }
@@ -307,15 +297,6 @@
 </style>
 </head>
 <body>
-
-<div class="phone-status-bar" aria-hidden="true">
-  <div class="psb-time" id="psbTime">9:41</div>
-  <div class="psb-icons">
-    <i class="fas fa-signal"></i>
-    <i class="fas fa-wifi"></i>
-    <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
-  </div>
-</div>
 
 <div class="app-header">
   <div class="app-header-top">
@@ -955,18 +936,6 @@ document.getElementById('btnApprove')?.addEventListener('click', (e) => {
 });
 </script>
 <script src="bb-common-mobile.js"></script>
-<script>
-(function(){
-  function updateStatusBarTime(){
-    var el = document.getElementById('psbTime');
-    if (!el) return;
-    var now = new Date();
-    el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-  }
-  updateStatusBarTime();
-  setInterval(updateStatusBarTime, 1000 * 15);
-})();
-</script>
 </body>
 </html>
 

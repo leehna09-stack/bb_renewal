@@ -527,7 +527,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 
 /* ⑤ 액션 버튼 */
 .bp-action-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-.bp-btn-bid{background:#111;color:#fff;border:none;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.bp-btn-bid{background:#E8385A;color:#fff;border:none;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .bp-btn-bid:hover{background:#2d2d3e}
 .bp-btn-wish{background:#fff;color:#111;border:1.5px solid #111;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .bp-btn-wish:hover{background:#111;color:#fff}
@@ -670,6 +670,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .bid-check-card p{margin:0}
 .bid-check-sub{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)}
 .desc-collapse{position:relative;max-height:260px;overflow:hidden}
+.desc-collapse.expanded{max-height:none}
 .desc-collapse:not(.expanded)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;background:linear-gradient(rgba(255,255,255,0),#fff)}
 .desc-more-btn{width:100%;height:42px;margin-top:8px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--ts);font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
 .desc-more-btn:hover{border-color:var(--navy);color:var(--navy)}
@@ -700,25 +701,63 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .qa-section-title{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:14px}
 .qa-history-empty{border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;font-size:13px;color:var(--tm);background:#fff}
 .qa-history-list{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:28px}
-.qa-history-item{display:grid;grid-template-columns:100px 1fr auto auto;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid #F0F2F5}
+.qa-history-item{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid #F0F2F5}
 .qa-history-item:last-child{border-bottom:none}
 .qa-history-num{font-size:13px;font-weight:700;color:var(--tp)}
 .qa-history-text{font-size:13px;color:var(--tp)}
 .qa-history-date{font-size:12px;color:var(--tm);white-space:nowrap;font-family:'Roboto',sans-serif}
-.qa-history-badge{padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid;white-space:nowrap}
+.qa-history-badge{padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid;white-space:nowrap;justify-self:end}
 .qa-badge-wait{background:#F5F7FF;color:#5B7AE0;border-color:#C5D0F5}
 .qa-badge-confirm{background:#FFF8E8;color:#C47F00;border-color:#FFD980}
 .qa-badge-view{background:#F0FBF2;color:var(--green);border-color:#B8ECC4}
+.qa-badge-done{background:#F0FBF2;color:var(--green);border-color:#B8ECC4}
+
+.seller-qna-table{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden}
+.seller-qna-row-head{display:grid;grid-template-columns:48px 120px 1fr 90px 70px;gap:12px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--tp);border-bottom:1px solid var(--border);background:#FAFBFC}
+.seller-qna-row-head span:nth-child(4),.seller-qna-row-head span:nth-child(5){text-align:right}
+.seller-qna-group{border-bottom:1px solid #F0F2F5}
+.seller-qna-group:last-child{border-bottom:none}
+.seller-qna-row{display:grid;grid-template-columns:48px 120px 1fr 90px 70px;gap:12px;align-items:center;padding:14px 20px;white-space:nowrap}
+.seller-qna-num{font-size:13px;color:var(--ts)}
+.seller-qna-itemid{font-size:13px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;font-family:'Roboto',sans-serif}
+.seller-qna-text{font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.seller-qna-user{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tp);font-weight:600}
+.seller-qna-new{display:inline-block;padding:2px 7px;border-radius:4px;background:#E8384F;color:#fff;font-size:10px;font-weight:700;letter-spacing:.3px}
+.seller-qna-count{color:var(--tm);font-weight:400}
+.seller-qna-date{font-size:12px;color:var(--tm);text-align:right;font-family:'Roboto',sans-serif;white-space:nowrap}
+.seller-qna-status{font-size:13px;color:var(--tp);text-align:right;white-space:nowrap;justify-self:end}
+button.seller-qna-status{border:0;background:none;font-family:inherit;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.seller-qna-status i{font-size:10px;transition:transform .2s}
+button.seller-qna-status[aria-expanded="true"] i{transform:rotate(180deg)}
+.seller-qna-status-done{color:var(--green)}
+.seller-qna-status-wait{color:#5B7AE0}
+.seller-qna-question{padding:0 20px 14px 20px;font-size:13px;color:var(--ts)}
+.seller-qna-answer{display:none;gap:8px;padding:12px 20px;background:#F7F9FC;border-top:1px dashed var(--border);font-size:12px;color:var(--ts);line-height:1.6}
+.seller-qna-answer.open{display:flex}
+.seller-qna-answer i{color:var(--navy);margin-top:2px}
+.seller-qna-ask-btn{border:0;background:#5B9BD5;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:pretendard;padding:8px 16px;border-radius:5px}
+.seller-qna-ask-btn:hover{opacity:.9}
+
+.public-qna-table{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden}
+.public-qna-row-head{display:grid;grid-template-columns:1fr 140px;gap:12px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--tp);border-bottom:1px solid var(--border);background:#FAFBFC}
+.public-qna-row-head span:nth-child(2){text-align:center}
+.public-qna-row{display:grid;grid-template-columns:1fr 140px;gap:12px;align-items:center;padding:14px 20px;border-bottom:1px solid #F0F2F5}
+.public-qna-row:last-child{border-bottom:none}
+.public-qna-content{font-size:13px;color:var(--ts);line-height:1.6;display:flex;gap:8px}
+.public-qna-icon{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-top:1px}
+.public-qna-icon-q{background:#5B7AE0}
+.public-qna-icon-a{background:var(--navy)}
+.public-qna-date{font-size:12px;color:var(--tm);text-align:center;font-family:'Roboto',sans-serif;white-space:nowrap}
 .qa-form-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px}
 .qa-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .qa-form-label{font-size:12px;font-weight:600;color:var(--ts);margin-bottom:6px}
-.qa-form-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:inherit;outline:none;box-sizing:border-box;color:var(--tp);transition:border-color .2s}
+.qa-form-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:pretendard;outline:none;box-sizing:border-box;color:var(--tp);transition:border-color .2s}
 .qa-form-input:focus{border-color:var(--navy)}
-.qa-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;resize:vertical;min-height:100px;outline:none;transition:border-color .2s;box-sizing:border-box}
+.qa-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:pretendard;resize:vertical;min-height:100px;outline:none;transition:border-color .2s;box-sizing:border-box}
 .qa-textarea:focus{border-color:var(--navy)}
 .qa-form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
-.qa-btn-cancel{padding:10px 28px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:14px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
-.qa-btn-submit{padding:10px 28px;border-radius:5px;border:none;background:#5B9BD5;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.qa-btn-cancel{padding:10px 28px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:14px;font-weight:600;color:var(--ts);cursor:pointer;font-family:pretendard}
+.qa-btn-submit{padding:10px 28px;border-radius:5px;border:none;background:#5B9BD5;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:pretendard}
 
 /* 우측 사이드 (판매자 상품) */
 .related-area{}
@@ -1261,8 +1300,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     <div class="tab-area">
       <div class="tab-header">
         <button class="tab-btn active" onclick="switchTab(this,'desc')">상품 설명</button>
-        <button class="tab-btn" onclick="switchTab(this,'qa')">판매자 Q&amp;A</button>
-        <button class="tab-btn" onclick="switchTab(this,'related')">관련상품</button>
+        <button class="tab-btn" onclick="scrollToSection(this,'sellerInquirySection')">출품자 문의와 답변</button>
+        <button class="tab-btn" onclick="scrollToSection(this,'relatedProductsSection')">관련상품</button>
       </div>
 
       <!-- 상품 설명 -->
@@ -1328,22 +1367,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
         <button class="desc-more-btn" type="button" onclick="toggleAuctionDescription(this)" aria-expanded="false">상품설명 더보기 <i class="fa-solid fa-chevron-down"></i></button>
 
         <div class="desc-qa-stack">
-          <section>
-            <div class="desc-qa-head">
-              <div class="desc-qa-title">출품자 공개 질문&amp;답변</div>
-              <button class="desc-qa-link" type="button">답변 완료보기 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></button>
-            </div>
-            <div class="desc-empty-card">등록된 공개 질문&amp;답변이 없습니다.</div>
-          </section>
-
-          <section>
-            <div class="desc-qa-head">
-              <div class="desc-qa-title">나의 문의 내역</div>
-            </div>
-            <div class="desc-empty-card">등록된 질문이 없습니다.</div>
-          </section>
-
-          <section>
+          <section id="sellerInquirySection">
             <div class="desc-qa-head">
               <div class="desc-qa-title">출품자 문의하기</div>
             </div>
@@ -1352,124 +1376,72 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
               <textarea class="qa-textarea" placeholder="질문은 한글로 작성해 주세요. 상품 상태, 구성품, 배송 조건 등 구매에 직접 관련된 내용만 문의할 수 있습니다."></textarea>
               <p class="desc-question-help">질문은 출품자에게 번역되어 전달되며, 답변이 등록되면 마이페이지에서 확인할 수 있습니다.<br>개인정보, 가격 흥정, 직거래 요청 등은 등록할 수 없습니다.</p>
               <div class="qa-form-actions">
-                <button class="qa-btn-cancel" type="button">취소</button>
-                <button class="qa-btn-submit" type="button">문의 신청</button>
+                <button class="qa-btn-submit" type="button">문의하기</button>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">나의 출품자 문의 내역</div>
+            </div>
+            <div class="seller-qna-table">
+              <div class="seller-qna-row-head">
+                <span>번호</span>
+                <span>물품아이디</span>
+                <span>질문내용</span>
+                <span>질문일자</span>
+                <span>상태</span>
+              </div>
+              <div class="seller-qna-group">
+                <div class="seller-qna-row">
+                  <span class="seller-qna-num">1</span>
+                  <span class="seller-qna-itemid">o1214957318</span>
+                  <span class="seller-qna-text" title="AFS 기능이 있나요?">AFS 기능이 있나요?</span>
+                  <span class="seller-qna-date">09:20</span>
+                  <span class="seller-qna-status seller-qna-status-done">질문완료</span>
+                </div>
+                <div class="seller-qna-answer open"><i class="fa-solid fa-reply"></i><span>요청하신 질문을 출품자에게 대신 질문하였습니다.<br>출품자 답변은 수시로 직접 확인을 부탁드립니다.</span></div>
+              </div>
+              <div class="seller-qna-group">
+                <div class="seller-qna-row">
+                  <span class="seller-qna-num">2</span>
+                  <span class="seller-qna-itemid">o1214957318</span>
+                  <span class="seller-qna-text" title="AFS 기능이 있나요?">AFS 기능이 있나요?</span>
+                  <span class="seller-qna-date">07-02</span>
+                  <span class="seller-qna-status seller-qna-status-wait">대기</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">출품자 공개 질문&amp;답변</div>
+              <button class="seller-qna-ask-btn" type="button" onclick="window.open('https://auctions.yahoo.co.jp/jp/show/qanda?aID=k1237084128','_blank')">답변 원문보기</button>
+            </div>
+            <div class="public-qna-table">
+              <div class="public-qna-row-head">
+                <span>내용</span>
+                 <span>등록일</span>
+              </div>
+              <div class="public-qna-row">
+                <div class="public-qna-content"><span class="public-qna-icon public-qna-icon-q">Q</span>신세를 지겠습니다. 본상품 개수 1으로 있습니다만, 4개로 1세트의 의미로 1대 분의 입찰이라고 판단하고 있습니다. 틀림없습니까? 다른 출품자로 트럭이 있었던 것으로 만약을 위해 (들)들을 따릅니다. 잘 부탁합니다.</div>
+                <span class="public-qna-date">2026-07-15 10:49</span>
+              </div>
+              <div class="public-qna-row">
+                <div class="public-qna-content"><span class="public-qna-icon public-qna-icon-a">A</span>말씀 대로, 화상의 4개로 1세트입니다. 안심해 주세요. 잘 부탁합니다.</div>
+                <span class="public-qna-date">2026-07-15 23:17</span>
               </div>
             </div>
           </section>
         </div>
       </div>
 
-      <!-- Q&A -->
-      <div class="tab-content" id="tab-qa">
-        <div class="qa-section-title">나의 문의 내역</div>
-        <div class="qa-history-list" style="margin-bottom:28px">
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-wait">출품자 답변 대기</button>
-          </div>
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-confirm">출품자 답변 확인</button>
-          </div>
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-view">출품자 답변 보기</button>
-          </div>
-        </div>
-
-        <div class="qa-section-title">출품자 문의하기</div>
-        <div class="qa-form-card">
-          <div class="qa-form-row">
-            <div>
-              <div class="qa-form-label">출품자 아이디</div>
-              <input class="qa-form-input" type="text" value="exans1500" readonly>
-            </div>
-            <div>
-              <div class="qa-form-label">상품 코드</div>
-              <input class="qa-form-input" type="text" value="j1232333613" readonly>
-            </div>
-          </div>
-          <div class="qa-form-label">문의 작성</div>
-          <textarea class="qa-textarea" placeholder="문의 내용 입력 (200자 이내)"></textarea>
-          <div class="qa-form-actions">
-            <button class="qa-btn-cancel">취소</button>
-            <button class="qa-btn-submit">문의 신청</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 관련상품 -->
-      <div class="tab-content" id="tab-related">
-        <div class="related-all-section">
-          <div class="section-header">
-            <div class="section-title">관련 상품</div>
-            <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
-          </div>
-          <div class="product-grid">
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">BTS 공식 앨범 Proof Standard edition</div>
-          <div class="product-price roboto">2,800엔</div>
-          <span class="product-price-krw">약 26,040원</span>
-          <div><span class="product-sold">판매완료</span></div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">BTS RM 솔로 앨범 Indigo</div>
-          <div class="product-price roboto">1,699엔</div>
-          <span class="product-price-krw">약 15,800원</span>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">BTS JUNGKOOK 솔로앨범 Golden</div>
-          <div class="product-price roboto">5,844엔</div>
-          <span class="product-price-krw">약 54,349원</span>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">BTS 포토카드 전체 세트 39종</div>
-          <div class="product-price roboto">1,500엔</div>
-          <span class="product-price-krw">약 13,950원</span>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">TXT 7th YEAR 앨범 weverse 버전</div>
-          <div class="product-price roboto">3,099엔</div>
-          <span class="product-price-krw">약 28,820원</span>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-        <div class="product-info">
-          <div class="product-name">뉴진스 BLACKPINK 앨범 랜덤 포카</div>
-          <div class="product-price roboto">4,100엔</div>
-          <span class="product-price-krw">약 38,130원</span>
-        </div>
-      </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <div class="related-all-section">
+  <div class="related-all-section" id="relatedProductsSection">
     <div class="section-header">
       <div class="section-title">관련 상품</div>
       <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
@@ -1804,6 +1776,19 @@ function switchTab(btn, id){
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
+}
+
+function scrollToSection(btn, sectionId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(sectionId)?.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function toggleSellerQnaAnswer(btn){
+  const answer = btn.closest('.seller-qna-group')?.querySelector('.seller-qna-answer');
+  if(!answer) return;
+  const expanded = answer.classList.toggle('open');
+  btn.setAttribute('aria-expanded', String(expanded));
 }
 
 function toggleItemSpecifics(btn){

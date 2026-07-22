@@ -35,7 +35,7 @@
   // mobile_main.html의 드로어 스타일을 그대로 주입한다. (색상 변수는
   // 페이지별 :root 정의 여부와 무관하게 동작하도록 fallback 값을 둔다.)
   var STATUS_CSS = [
-    '.phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}',
+    '.phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:25px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}',
     '.psb-time{font-variant-numeric:tabular-nums}',
     '.psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}',
     '.psb-icons i{line-height:1}',
@@ -156,7 +156,7 @@
   function injectPhoneStatusBar() {
     if (document.querySelector('.phone-status-bar')) return;
 
-    var header = document.querySelector('.app-header, .header, .topbar');
+    var header = document.querySelector('.app-header, .header, .topbar, .m-header');
     if (header) {
       header.insertAdjacentHTML('beforebegin', phoneStatusHTML());
       return;

@@ -28,13 +28,13 @@
 
     /* ── 앱 헤더 ── */
     header{position:sticky;top:0;z-index:80;background:#fff;border-bottom:1px solid #d9e0e9;box-shadow:0 1px 0 rgba(32,36,43,.04)}
-    .topbar{padding:10px 14px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px}
+    .topbar{padding:1px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;min-height:56px;}
     .brand-area{display:flex;align-items:center;gap:10px;min-width:0}
     .menu-button{width:34px;height:34px;border:0;border-radius:5px;background:transparent;padding:0;display:grid;place-items:center}
     .menu-lines{width:18px;display:grid;gap:4px}
     .menu-lines span{height:2px;border-radius:999px;background:#101827}
-    .logo-link{display:inline-flex;align-items:center;width:76px;max-width:24vw;line-height:0}
-    .logo-link img{width:100%;height:auto;display:block}
+    .logo-link{display:inline-flex;align-items:center;width:76px;line-height:0;}
+    .logo-link img{width:100%;height:auto;display:block;}
     .user-tools{grid-column:2;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
     .guest-tools,.member-tools{display:flex;align-items:center;gap:4px}
     body.is-logged-in .is-guest-only{display:none!important}
@@ -403,7 +403,7 @@
       <div class="pd-row"><span class="k">현지도착일</span><span class="v mono">2025-12-09 10:15</span></div>
       <div class="pd-row"><span class="k">국제 배송일</span><span class="v mono">2025-12-14</span></div>
       <div class="pd-row"><span class="k">묶음상태</span><span class="v">묶음배송 <button class="row-btn" type="button">묶음 해제</button></span></div>
-      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" data-care-plus-toggle data-care-active="true" style="color:var(--rose);font-weight:800"><span data-care-plus-status>신청</span> <button data-care-plus-button class="row-btn" type="button">신청 해제</button></span></div>
+      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" style="color:var(--rose);font-weight:800">신청 <button class="row-btn" type="button">해제</button></span></div>
     </article>
   </section>
 
@@ -539,31 +539,8 @@ function setupPaymentSwitch() {
   render();
 }
 
-function setupCarePlusToggle() {
-  document.querySelectorAll('[data-care-plus-toggle]').forEach(row => {
-    const status = row.querySelector('[data-care-plus-status]');
-    const button = row.querySelector('[data-care-plus-button]');
-    if (!status || !button) return;
-
-    const render = () => {
-      const isActive = row.dataset.careActive === 'true';
-      status.textContent = isActive ? '신청' : '미신청';
-      row.style.color = isActive ? 'var(--rose)' : '#999';
-      button.textContent = isActive ? '신청 해제' : '신청';
-    };
-
-    button.addEventListener('click', () => {
-      row.dataset.careActive = row.dataset.careActive === 'true' ? 'false' : 'true';
-      render();
-    });
-
-    render();
-  });
-}
-
 updatePaymentTotals();
 setupPaymentSwitch();
-setupCarePlusToggle();
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>

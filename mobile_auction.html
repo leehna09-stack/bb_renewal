@@ -20,25 +20,15 @@ a{text-decoration:none;color:inherit}
 .roboto{font-family:'Roboto',sans-serif}
 
 /* ── 헤더 (메인 동일 구조) ── */
-/* ── 상태바 ── */
-.phone-topbar{position:sticky;top:0;z-index:200;background:#fff}
-.phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}
-.psb-time{font-variant-numeric:tabular-nums}
-.psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}
-.psb-icons i{line-height:1}
-.psb-battery{display:flex;align-items:center;gap:2px}
-.psb-battery-body{width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;padding:1.5px;position:relative}
-.psb-battery-body::after{content:'';position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0}
-.psb-battery-fill{width:80%;height:100%;background:#0A0A0A;border-radius:1px}
-
-.app-header{background:#fff;border-bottom:1px solid var(--border)}
-.app-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:1px 14px 12px}
-.m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
+.m-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.m-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:1px;min-height:56px;}
+.m-brand-area{display:flex;align-items:center;gap:10px;min-width:0}
 .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
 .m-back-btn:hover{background:var(--bg)}
 .hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
 .hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
-.m-logo{display:flex;align-items:center}
+.m-logo{display:inline-flex;align-items:center;width:76px;line-height:0;}
+.m-logo img{width:100%;height:auto;display:block;}
 .m-logo-text{font-size:17px;font-weight:900;color:var(--rose);letter-spacing:-0.5px}
 .m-logo-text span{color:var(--tp)}
 .m-header-right{display:flex;gap:4px;align-items:center;justify-self:end}
@@ -147,10 +137,10 @@ a{text-decoration:none;color:inherit}
 .bid-hist-btn:hover{border-color:var(--navy);color:var(--navy)}
 .bid-hist-btn--primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .bid-hist-table{width:100%;border-collapse:collapse;font-size:12px}
-.bid-hist-table th{padding:8px 6px;text-align:left;font-size:11px;font-weight:700;color:var(--ts);border-bottom:2px solid var(--border);background:#FAFBFC}
+.bid-hist-table th{padding:8px 6px;text-align:left;font-size:12x;font-weight:700;color:var(--ts);border-bottom:2px solid var(--border);background:#FAFBFC}
 .bid-hist-table td{padding:10px 6px;border-bottom:1px solid #F0F2F5;vertical-align:top}
 .bid-hist-table tr:last-child td{border-bottom:none}
-.bid-status-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700}
+.bid-status-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700}
 .bid-status-reserve{background:transparent;color:#5B7AE0;padding:0;border-radius:0}
 
 /* ── 입찰 탭 ── */
@@ -206,6 +196,7 @@ a{text-decoration:none;color:inherit}
 .m-buynow-price-val .unit{font-size:14px}
 
 /* ── 아코디언 섹션 ── */
+.bid-check-points{display:flex;flex-wrap:wrap;gap:5px 5px;margin-bottom:10px;color:var(--rose);font-size:11px;font-weight:700}
 .m-acc-section{background:#fff;border-bottom:1px solid var(--border)}
 .m-acc-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:none;background:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:var(--tp)}
 .m-acc-trigger i.icon{color:var(--rose);margin-right:6px;font-size:13px}
@@ -376,23 +367,13 @@ a{text-decoration:none;color:inherit}
 </head>
 <body>
 
-<div class="phone-topbar">
-  <div class="phone-status-bar" aria-hidden="true">
-    <div class="psb-time" id="psbTime">9:41</div>
-    <div class="psb-icons">
-      <i class="fas fa-signal"></i>
-      <i class="fas fa-wifi"></i>
-      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
-    </div>
-  </div>
-
 <!-- ── 헤더 ── -->
-<header class="app-header">
-  <div class="app-header-top">
+<header class="m-header">
+  <div class="m-header-top">
     <div class="m-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
-        <img src="Bidbuy logo.png" alt="BidBuy Korea" style="height:22px;width:auto;display:block">
+        <img src="Bidbuy logo.png" alt="BidBuy Korea">
       </a>
     </div>
 
@@ -417,7 +398,6 @@ a{text-decoration:none;color:inherit}
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 </header>
-</div>
 
 <!-- ── 플랫폼 뱃지 + 관심 ── -->
 <div class="m-platform-bar">
@@ -669,34 +649,34 @@ a{text-decoration:none;color:inherit}
 <!-- ── 주의사항 ── -->
 <div class="m-acc-section" id="macc-notice">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-notice')">
-    <span><i class="fa-solid fa-triangle-exclamation icon"></i>주의사항</span>
+    <span><i class="fa-regular fa-circle-check"></i> 입찰 전 꼭 확인해주세요.</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
-  <div class="m-acc-body">
-    <div class="m-acc-notice-item">입찰 후 취소는 불가합니다. 신중하게 입찰해 주세요.</div>
-    <div class="m-acc-notice-item">낙찰 후 결제를 완료하지 않으면 페널티가 부여됩니다.</div>
-    <div class="m-acc-notice-item">해외 경매 특성상 상품 상태는 출품자 설명을 기준으로 합니다.</div>
-    <div class="m-acc-notice-item">관세 및 부가세는 수령 시 별도 부과될 수 있습니다.</div>
-    <div class="m-acc-notice-item">경매 종료 후 낙찰 여부는 마이페이지에서 확인하세요.</div>
-  </div>
+    <div class="m-trans-notice">
+     <div class="bid-check-points"> 
+       <span>1. 정크/가품 여부 확인 불가</span>
+       <span>2. 정크(JUNK) 상품 주의</span>
+       <span>3. 반품 가능 여부 확인</span>
+    </div> 
+      <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
+      <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
+      <div>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 입찰을 부탁드립니다.</div>
+      <div class="m-trans-notice-warn">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.
+        <strong style="color: #d62f54;">번역 오류로 인한 피해는 비드바이가 보장하지 않습니다.</strong>
+        <br>항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.
+      </div>
+    </div>
 </div>
 
 <!-- ── 상품 설명 ── -->
 <div class="m-acc-section open" id="macc-desc">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-desc')">
-    <span><i class="fa-solid fa-align-left icon"></i>상품 설명</span>
+    <span>상품 설명(번역)</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
-    <div class="m-trans-notice">
-      <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
-      <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
-      <div>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 입찰을 부탁드립니다.</div>
-      <div class="m-trans-notice-warn">번역페이지는 참고용으로만 보시기 바랍니다. 번역 오류로 인한 피해는 비드바이가 보장하지 않습니다. 이해가 안 가시는 부분은 꼭 비드바이에 문의 바랍니다.</div>
-    </div>
     <div class="m-desc-block">
-      <h4>상품 설명 (번역)</h4>
-      <p>Whirlpool의 RPG 게임 Relirium -레릴룸- 의 사운드트랙 음원 DL버전입니다. 초회 봉입 특전 DLC 시리얼 코드 포함 미사용 상태입니다.</p>
+         <p>Whirlpool의 RPG 게임 Relirium -레릴룸- 의 사운드트랙 음원 DL버전입니다. 초회 봉입 특전 DLC 시리얼 코드 포함 미사용 상태입니다.</p>
       <p>코드 미사용 확인 완료. 안전하게 포장하여 발송합니다. 즉시구매 가능합니다.</p>
       <div class="m-desc-tags">
         <span class="m-desc-tag">#Relirium</span>
@@ -706,20 +686,6 @@ a{text-decoration:none;color:inherit}
         <span class="m-desc-tag">#サウンドトラック</span>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- ── 낙찰 안내 ── -->
-<div class="m-acc-section" id="macc-guide">
-  <button class="m-acc-trigger" onclick="toggleMAcc('macc-guide')">
-    <span><i class="fa-solid fa-circle-info icon"></i>낙찰 안내</span>
-    <i class="fa-solid fa-chevron-down chevron"></i>
-  </button>
-  <div class="m-acc-body">
-    <div class="m-acc-notice-item">낙찰 확정 후 24시간 이내에 1차 결제를 진행해 주세요.</div>
-    <div class="m-acc-notice-item">상품 도착 후 현지 운송료·세금 등 2차 결제가 진행됩니다.</div>
-    <div class="m-acc-notice-item">낙찰가 기준 대행 수수료 10%가 부과됩니다. (최소 150엔)</div>
-    <div class="m-acc-notice-item">국제 배송 중 파손·분실 시 보험 처리 안내를 드립니다.</div>
   </div>
 </div>
 
@@ -855,14 +821,10 @@ a{text-decoration:none;color:inherit}
 <div class="confirm-modal" id="bidHistoryModal" onclick="closeBidHistoryModal(event)">
   <div class="confirm-modal-card bid-history-modal-card" onclick="event.stopPropagation()">
     <div class="confirm-modal-head">
-      <strong>입찰내역</strong>
+      <strong>이전 입찰내역</strong>
       <button class="confirm-modal-close" type="button" onclick="closeBidHistoryModal()">&times;</button>
     </div>
     <div class="confirm-modal-body">
-      <div class="bid-hist-actions">
-        <button class="bid-hist-btn" type="button"><i class="fa-solid fa-rotate-right"></i> 새로고침</button>
-        <button class="bid-hist-btn bid-hist-btn--primary" type="button" onclick="location.href='mobile_auction_order.html'"><i class="fa-solid fa-gavel"></i> 재입찰하기</button>
-      </div>
       <table class="bid-hist-table">
         <thead>
           <tr><th>입찰일시</th><th>입찰가</th><th>상태</th></tr>
@@ -1076,17 +1038,5 @@ function toggleMWish(btn){
 })();
 </script>
 <script src="bb-common-mobile.js"></script>
-<script>
-(function(){
-  function updateStatusBarTime(){
-    var el = document.getElementById('psbTime');
-    if (!el) return;
-    var now = new Date();
-    el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-  }
-  updateStatusBarTime();
-  setInterval(updateStatusBarTime, 1000 * 15);
-})();
-</script>
 </body>
 </html>
