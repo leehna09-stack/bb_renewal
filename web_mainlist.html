@@ -3271,6 +3271,14 @@
 
     updateStatusDropdown(activeStatus);
 
+    const initialStatus = new URLSearchParams(location.search).get("status");
+    if (initialStatus) {
+      const initialOption = document.querySelector(`.status-filter-option[data-status="${initialStatus}"]`);
+      if (initialOption) {
+        setStatusFilter(initialStatus, initialOption.dataset.label, true);
+      }
+    }
+
     let drawerLoggedIn = true;
 
     function renderDrawerState() {

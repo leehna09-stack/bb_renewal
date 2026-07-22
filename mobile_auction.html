@@ -20,8 +20,19 @@ a{text-decoration:none;color:inherit}
 .roboto{font-family:'Roboto',sans-serif}
 
 /* ── 헤더 (메인 동일 구조) ── */
-.m-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
-.m-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:10px 14px 8px}
+/* ── 상태바 ── */
+.phone-topbar{position:sticky;top:0;z-index:200;background:#fff}
+.phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}
+.psb-time{font-variant-numeric:tabular-nums}
+.psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}
+.psb-icons i{line-height:1}
+.psb-battery{display:flex;align-items:center;gap:2px}
+.psb-battery-body{width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;padding:1.5px;position:relative}
+.psb-battery-body::after{content:'';position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0}
+.psb-battery-fill{width:80%;height:100%;background:#0A0A0A;border-radius:1px}
+
+.app-header{background:#fff;border-bottom:1px solid var(--border)}
+.app-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:1px 14px 12px}
 .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
 .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
 .m-back-btn:hover{background:var(--bg)}
@@ -205,7 +216,7 @@ a{text-decoration:none;color:inherit}
 .m-acc-notice-item{display:flex;gap:8px;margin-bottom:6px}
 .m-acc-notice-item::before{content:'·';color:var(--rose);font-weight:700;flex-shrink:0}
 
-/* ── 출품자 정보 ── */
+/* ── 판매자 정보 ── */
 .m-seller-section{background:#fff;padding:16px;border-bottom:8px solid var(--bg)}
 .m-seller-title{font-size:12px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
 .m-seller-row{display:flex;align-items:center;gap:12px}
@@ -299,7 +310,7 @@ a{text-decoration:none;color:inherit}
 .m-title-action-btn i{font-size:11px}
 .m-title-action-btn:hover{border-color:var(--navy);color:var(--navy)}
 
-/* ── 현지배송비 지역 네비 ── */
+/* ── 현지운송료 지역 네비 ── */
 .m-shipping-nav{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .m-shipping-nav-btn{width:20px;height:20px;border-radius:50%;border:1.5px solid #D0D5DE;background:#fff;color:var(--ts);font-size:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
 .m-shipping-nav-btn:hover{border-color:var(--navy);color:var(--navy)}
@@ -365,9 +376,19 @@ a{text-decoration:none;color:inherit}
 </head>
 <body>
 
+<div class="phone-topbar">
+  <div class="phone-status-bar" aria-hidden="true">
+    <div class="psb-time" id="psbTime">9:41</div>
+    <div class="psb-icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+    </div>
+  </div>
+
 <!-- ── 헤더 ── -->
-<header class="m-header">
-  <div class="m-header-top">
+<header class="app-header">
+  <div class="app-header-top">
     <div class="m-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
@@ -396,6 +417,7 @@ a{text-decoration:none;color:inherit}
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 </header>
+</div>
 
 <!-- ── 플랫폼 뱃지 + 관심 ── -->
 <div class="m-platform-bar">
@@ -507,7 +529,7 @@ a{text-decoration:none;color:inherit}
 <!-- mobile auction detail info -->
 <div class="m-price-section">
   <div class="m-price-row">
-    <span class="m-price-label">물품아이디</span>
+    <span class="m-price-label">&#44221;&#47588;&#49345;&#54408; ID</span>
     <div style="display:flex;align-items:center;gap:8px">
       <span class="m-price-val roboto" style="color:var(--navy)">j1232333613</span>
       <span class="m-badge">&#51312;&#44592;&#51333;&#47308;</span>
@@ -558,12 +580,12 @@ a{text-decoration:none;color:inherit}
       <!-- 경매 입찰 폼 -->
       <div id="mform-auction">
         <div class="m-form-row">
-          <label class="m-form-label">입찰금액</label>
+          <label class="m-form-label">비딩금액</label>
           <div class="m-bid-amount-row">
             <input type="number" class="m-input" id="mBidAmountInput" value="1500" min="1500" step="100" oninput="updateMKrw(this.value)" style="flex:1">
             <span class="m-bid-krw" id="mBidKrw">₩13,950</span>
           </div>
-          <div class="m-input-hint">다음 입찰금액은 <strong>1,500엔</strong> 이상</div>
+          <div class="m-input-hint">다음 비딩금액은 <strong>1,500엔</strong> 이상</div>
         </div>
         <div class="m-form-row">
           <label class="m-form-label">수량</label>
@@ -749,7 +771,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 출품자 정보 ── -->
+<!-- ── 판매자 정보 ── -->
 <div class="m-seller-section">
   <div class="m-seller-title">출품자 정보</div>
   <div class="m-seller-row">
@@ -941,7 +963,7 @@ function moveGallery(dir){
   setMainImg((galleryIdx + dir + GALLERY_SEEDS.length) % GALLERY_SEEDS.length);
 }
 
-// ── 현지배송비 지역 전환 ──
+// ── 현지운송료 지역 전환 ──
 const M_SHIPPING = ['400엔 (도쿄 기준)','550엔 (오사카 기준)','480엔 (나고야 기준)','350엔 (사이타마 기준)'];
 let mShippingIdx = 0;
 function moveMShipping(dir){
@@ -968,7 +990,7 @@ function closeAppraisalModal(event){
   document.getElementById('appraisalModal')?.classList.remove('open');
 }
 
-// ── 입찰금액 원화 환산 ──
+// ── 비딩금액 원화 환산 ──
 const M_RATE = 9.3;
 function updateMKrw(val){
   const n = parseInt(val) || 0;
@@ -1054,5 +1076,17 @@ function toggleMWish(btn){
 })();
 </script>
 <script src="bb-common-mobile.js"></script>
+<script>
+(function(){
+  function updateStatusBarTime(){
+    var el = document.getElementById('psbTime');
+    if (!el) return;
+    var now = new Date();
+    el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  }
+  updateStatusBarTime();
+  setInterval(updateStatusBarTime, 1000 * 15);
+})();
+</script>
 </body>
 </html>

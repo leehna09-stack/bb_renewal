@@ -46,8 +46,19 @@
     a { text-decoration: none; color: inherit; }
 
     /* ── 헤더 (메인 동일 구조) ── */
-    .m-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
-    .m-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:10px 14px 8px}
+    /* ── 상태바 ── */
+    .phone-topbar{position:sticky;top:0;z-index:200;background:#fff}
+    .phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}
+    .psb-time{font-variant-numeric:tabular-nums}
+    .psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}
+    .psb-icons i{line-height:1}
+    .psb-battery{display:flex;align-items:center;gap:2px}
+    .psb-battery-body{width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;padding:1.5px;position:relative}
+    .psb-battery-body::after{content:'';position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0}
+    .psb-battery-fill{width:80%;height:100%;background:#0A0A0A;border-radius:1px}
+
+    .app-header{background:#fff;border-bottom:1px solid var(--border)}
+    .app-header-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:1px 14px 12px}
     .m-brand-area{display:flex;align-items:center;gap:8px;min-width:0}
     .m-back-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:17px;cursor:pointer;flex-shrink:0;border-radius:5px}
     .m-back-btn:hover{background:var(--bg)}
@@ -133,7 +144,7 @@
     .thumb-item.active, .thumb-item:hover { border-color: var(--rose); }
     .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* ── 판매자 카드 ── */
+    /* ── 출품자 카드 ── */
     .seller-card {
       margin: 0 16px 0;
       padding: 14px 16px;
@@ -266,9 +277,19 @@
 </head>
 <body>
 
+<div class="phone-topbar">
+  <div class="phone-status-bar" aria-hidden="true">
+    <div class="psb-time" id="psbTime">9:41</div>
+    <div class="psb-icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+    </div>
+  </div>
+
 <!-- 헤더 -->
-<header class="m-header">
-  <div class="m-header-top">
+<header class="app-header">
+  <div class="app-header-top">
     <div class="m-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
@@ -289,6 +310,7 @@
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 </header>
+</div>
 
 <nav class="channel-tabs" aria-label="쇼핑 채널">
     <button class="ch-tab" type="button">야후옥션</button>
@@ -340,7 +362,7 @@
   </div>
 </div>
 
-<!-- 판매자 카드 -->
+<!-- 출품자 카드 -->
 <div style="padding:0 16px 12px;background:var(--white);border-bottom:1px solid var(--border)">
   <div class="seller-card" style="margin:0">
     <div class="seller-avatar">YS</div>
@@ -555,5 +577,17 @@ function closeModal(id, event) {
 updateCosts();
 </script>
 <script src="bb-common-mobile.js"></script>
+<script>
+(function(){
+  function updateStatusBarTime(){
+    var el = document.getElementById('psbTime');
+    if (!el) return;
+    var now = new Date();
+    el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  }
+  updateStatusBarTime();
+  setInterval(updateStatusBarTime, 1000 * 15);
+})();
+</script>
 </body>
 </html>

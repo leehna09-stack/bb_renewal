@@ -44,14 +44,30 @@
     button { cursor: pointer; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── 헤더 (mobile_auction 이식) ── */
-    .m-header{
-      background:var(--white); border-bottom:1px solid var(--border);
-      position:sticky; top:0; z-index:100;
+    /* ── 상태바 ── */
+    .phone-topbar{ position:sticky; top:0; z-index:100; background:#fff; }
+    .phone-status-bar{
+      display:flex; align-items:center; justify-content:space-between;
+      height:44px; padding:0 24px;
+      background:#fff; color:#0A0A0A;
+      font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;
+      font-size:15px; font-weight:700; letter-spacing:-.2px;
     }
-    .m-header-top{
+    .psb-time{ font-variant-numeric:tabular-nums; }
+    .psb-icons{ display:flex; align-items:center; gap:6px; font-size:14px; color:#0A0A0A; }
+    .psb-icons i{ line-height:1; }
+    .psb-battery{ display:flex; align-items:center; gap:2px; }
+    .psb-battery-body{ width:22px; height:11px; border:1.3px solid #0A0A0A; border-radius:3px; padding:1.5px; position:relative; }
+    .psb-battery-body::after{ content:''; position:absolute; right:-3.5px; top:50%; transform:translateY(-50%); width:2px; height:4px; background:#0A0A0A; border-radius:0 1px 1px 0; }
+    .psb-battery-fill{ width:80%; height:100%; background:#0A0A0A; border-radius:1px; }
+
+    /* ── 헤더 (mobile_auction 이식) ── */
+    .app-header{
+      background:var(--white); border-bottom:1px solid var(--border);
+    }
+    .app-header-top{
       display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px;
-      padding:10px 14px 8px;
+      padding:1px 14px 12px;
     }
     .m-brand-area{display:flex; align-items:center; gap:8px; min-width:0}
     .hb{width:34px;height:34px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;background:none;border:none;cursor:pointer;flex-shrink:0}
@@ -176,9 +192,19 @@
 </head>
 <body>
 
+<div class="phone-topbar">
+  <div class="phone-status-bar" aria-hidden="true">
+    <div class="psb-time" id="psbTime">9:41</div>
+    <div class="psb-icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+    </div>
+  </div>
+
 <!-- 헤더 -->
-<header class="m-header">
-  <div class="m-header-top">
+<header class="app-header">
+  <div class="app-header-top">
     <div class="m-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
       <a class="m-logo" href="mobile_main.html" aria-label="BidBuy 홈">
@@ -203,6 +229,7 @@
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 </header>
+</div>
 
 <div class="stage">
   <div class="page-head">
@@ -309,5 +336,17 @@ function shareBidItem() {
 }
 </script>
 <script src="bb-common-mobile.js"></script>
+<script>
+(function(){
+  function updateStatusBarTime(){
+    var el = document.getElementById('psbTime');
+    if (!el) return;
+    var now = new Date();
+    el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  }
+  updateStatusBarTime();
+  setInterval(updateStatusBarTime, 1000 * 15);
+})();
+</script>
 </body>
 </html>

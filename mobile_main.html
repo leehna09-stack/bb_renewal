@@ -53,7 +53,31 @@ body{
   margin:0 auto;
   background:#fff;
   position:relative;
-  overflow:hidden;
+}
+.phone-topbar{position:sticky;top:0;z-index:95;background:#fff}
+.phone-status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  height:30px;padding:0 24px;
+  background:#fff;color:#0A0A0A;
+  font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;
+  font-size:15px;font-weight:700;letter-spacing:-.2px;
+}
+.psb-time{font-variant-numeric:tabular-nums}
+.psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}
+.psb-icons i{line-height:1}
+.psb-battery{
+  display:flex;align-items:center;gap:2px;
+}
+.psb-battery-body{
+  width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;
+  padding:1.5px;position:relative;
+}
+.psb-battery-body::after{
+  content:'';position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);
+  width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0;
+}
+.psb-battery-fill{
+  width:80%;height:100%;background:#0A0A0A;border-radius:1px;
 }
 .phone-notch{ display:none; }
 .notch-island{
@@ -65,21 +89,19 @@ body{
 .app-body{
   background:var(--bg);
   width:100%;
-  overflow-x:hidden;
   touch-action:pan-y;
 }
 .app-body::-webkit-scrollbar{display:none}
 .app-header{
   background:#fff;
   border-bottom:1px solid #D9E0E9;
-  position:sticky;top:0;z-index:80;
   box-shadow:0 1px 0 rgba(32,36,43,.04);
 }
 .app-header-top{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   align-items:center;gap:8px;
-  padding:10px 14px 12px;
+  padding:1px 14px 12px;
 }
 .app-brand-area{
   display:flex;align-items:center;gap:10px;min-width:0;
@@ -605,6 +627,42 @@ button.user-menu-item{
 .user-menu-link.danger{color:#8f949f;}
 .user-menu-item.logout{margin-top:6px;border-top:1px solid #e5e7eb;color:#9aa3b2;font-weight:700;}
 .user-menu-item.logout .emoji{font-size:15px;}
+
+.market-info-overlay{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(17,24,39,.46)}
+.market-info-overlay.open{display:flex}
+.market-info-popup{position:relative;width:min(340px,calc(100vw - 32px));max-height:calc(100vh - 64px);overflow-y:auto;background:#f5f7fa;border-radius:12px;box-shadow:0 18px 48px rgba(15,23,42,.22)}
+.market-info-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:#fff;color:#697386;border-radius:5px;display:grid;place-items:center;z-index:2}
+.market-info-body{padding:14px}
+.office-grid{display:grid;grid-template-columns:1fr;background:#fff;border-radius:8px;overflow:hidden}
+.office-card{min-height:78px;padding:12px;border-bottom:1px solid #eef0f3;display:flex;align-items:center;gap:10px}
+.office-card:last-child{border-bottom:0}
+.office-status{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#d8c7cc;color:#7d6068;font-size:11px;font-weight:600}
+.office-status.is-open{background:var(--tp);color:#fff}
+.office-info{min-width:0}
+.office-country{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#111827;margin-bottom:4px}
+.office-country .flag{width:18px;height:13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.office-country .flag img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.office-branch{font-size:12px;color:#4b5563}
+.office-time{font-family:pretendard,Arial,sans-serif;font-size:12px;color:#1d74ff;white-space:nowrap}
+.convenience-overlay{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(17,24,39,.46)}
+.convenience-overlay.open{display:flex}
+.convenience-popup{position:relative;width:min(340px,calc(100vw - 32px));max-height:calc(100vh - 64px);overflow-y:auto;background:#fff;border-radius:12px;box-shadow:0 18px 48px rgba(15,23,42,.22)}
+.convenience-head{height:50px;padding:0 48px 0 18px;border-bottom:1px solid var(--border);display:flex;align-items:center}
+.convenience-title{font-size:15px;font-weight:900;color:#111827}
+.convenience-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border:0;background:#F5F7FA;color:#697386;border-radius:5px;display:grid;place-items:center}
+.convenience-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);background:#fbfcfd}
+.convenience-tab{min-height:46px;padding:8px 8px;border:0;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:transparent;color:#5D6675;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;word-break:keep-all;line-height:1.25}
+.convenience-tab:nth-child(2){border-right:0}
+.convenience-tab:nth-child(-n+2){border-bottom:1px solid var(--border)}
+.convenience-tab:last-child{border-right:0;border-bottom:0}
+.convenience-tab:nth-last-child(2):nth-child(odd){border-bottom:0}
+.convenience-tab.active{background:#fff;color:var(--tp)}
+.convenience-tab.active{box-shadow:inset 0 -3px 0 var(--tp)}
+.convenience-body{padding:18px 18px 20px;min-height:150px;background:#fff}
+.convenience-panel{display:none}
+.convenience-panel.active{display:block}
+.convenience-panel-title{font-size:14px;font-weight:900;color:#111827;margin-bottom:8px}
+.convenience-panel-desc{font-size:12px;color:#6B7280;line-height:1.6}
 </style>
 </head>
 <body>
@@ -621,7 +679,17 @@ button.user-menu-item{
 
   <div class="app-body">
 
-    <div class="app-header">
+    <div class="phone-topbar">
+      <div class="phone-status-bar" aria-hidden="true">
+        <div class="psb-time" id="psbTime">9:41</div>
+        <div class="psb-icons">
+          <i class="fas fa-signal"></i>
+          <i class="fas fa-wifi"></i>
+          <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+        </div>
+      </div>
+
+      <div class="app-header">
       <div class="app-header-top">
         <div class="app-brand-area">
           <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
@@ -655,6 +723,7 @@ button.user-menu-item{
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html'">미국이베이</button>
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html'">영국이베이</button>
         </nav>
+      </div>
       </div>
     </div>
 
@@ -709,15 +778,15 @@ button.user-menu-item{
 
     <div class="shortcut-wrap">
       <div class="shortcut-grid">
- <div class="sc-item"><div class="sc-circle si-1"><i class="fas fa-calculator"></i></div><span class="sc-label">예상 세금계산기</span></div>
-        <div class="sc-item"><div class="sc-circle si-2"><i class="fas fa-heart"></i></div><span class="sc-label">관심상품</span></div>
-        <a class="sc-item" href="mobile_mypage.html"><div class="sc-circle si-3"><i class="fas fa-gavel"></i></div><span class="sc-label">나의 경매</span></a>
-        <div class="sc-item"><div class="sc-circle si-4"><i class="fas fa-boxes-stacked"></i></div><span class="sc-label">배송신청/변경</span></div>
-        <div class="sc-item"><div class="sc-circle si-5"><i class="fas fa-thumbs-up"></i></div><span class="sc-label">추천 카테고리</span></div>
-        <a class="sc-item" href="mobile_grade.html"><div class="sc-circle si-6"><i class="fas fa-gift"></i></div><span class="sc-label">등급 혜택</span></a>
+ <a class="sc-item" href="https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do" target="_blank" rel="noopener"><div class="sc-circle si-1"><i class="fas fa-calculator"></i></div><span class="sc-label">예상 세금계산기</span></a>
+        <a class="sc-item" href="https://www.bidbuy.co.kr/mypage/order/wishlist" target="_blank" rel="noopener"><div class="sc-circle si-2"><i class="fas fa-heart"></i></div><span class="sc-label">관심상품</span></a>
+        <a class="sc-item" href="mobile_auction_bid_list.html"><div class="sc-circle si-3"><i class="fas fa-gavel"></i></div><span class="sc-label">나의 경매</span></a>
+        <a class="sc-item" href="mobile_bundle_shipping_management.html"><div class="sc-circle si-4"><i class="fas fa-boxes-stacked"></i></div><span class="sc-label">배송 신청 관리</span></a>
+        <div class="sc-item" role="button" tabindex="0" onclick="openMarketInfoPopup()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMarketInfoPopup();}"><div class="sc-circle si-5"><i class="fas fa-thumbs-up"></i></div><span class="sc-label">국가별 운영정보</span></div>
+        <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openConvenienceToolsPopup();}"><div class="sc-circle si-6"><i class="fas fa-toolbox"></i></div><span class="sc-label">편의도구</span></div>
         <a class="sc-item" href="mobile_mileage.html"><div class="sc-circle si-7"><i class="fas fa-ticket"></i></div><span class="sc-label">마일리지/쿠폰</span></a>
-        <div class="sc-item"><div class="sc-circle si-8"><i class="fas fa-clipboard-list"></i></div><span class="sc-label">이용가이드</span></div>
-        <div class="sc-item"><div class="sc-circle si-9"><i class="fas fa-truck-fast"></i></div><span class="sc-label">배송조회</span></div>
+        <a class="sc-item" href="https://www.bidbuy.co.kr/cs" target="_blank" rel="noopener"><div class="sc-circle si-8"><i class="fas fa-clipboard-list"></i></div><span class="sc-label">자주하는질문</span></a>
+        <a class="sc-item" href="mobile_mainlist.html?status=international-shipping"><div class="sc-circle si-9"><i class="fas fa-truck-fast"></i></div><span class="sc-label">배송조회</span></a>
         <div class="sc-item"><div class="sc-circle si-10"><i class="fas fa-comments"></i></div><span class="sc-label">커뮤니티</span></div>
       </div>
     </div>
@@ -956,6 +1025,76 @@ button.user-menu-item{
 </div>
 </div>
 
+<div class="market-info-overlay" id="marketInfoPopup" aria-hidden="true" onclick="closeMarketInfoPopup(event)">
+  <div class="market-info-popup" role="dialog" aria-modal="true" aria-label="국가별 운영정보">
+    <button class="market-info-close" type="button" aria-label="닫기" onclick="closeMarketInfoPopup()"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <div class="market-info-body">
+      <div class="office-grid" aria-label="나라별 근무시간">
+        <div class="office-card" data-office-timezone="Asia/Seoul">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_kor.png" alt="Korea"></span>Korea</div>
+            <div class="office-branch">서울 사무소</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Asia/Tokyo">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_jp.png" alt="Japan"></span>Japan</div>
+            <div class="office-branch">오사카 사무소</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="America/Los_Angeles">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_usa.png" alt="USA"></span>USA</div>
+            <div class="office-branch">캘리포니아 사무소</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Europe/London">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_uk.png" alt="UK"></span>UK</div>
+            <div class="office-branch">런던 사무소</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="convenience-overlay" id="convenienceToolsPopup" aria-hidden="true" onclick="closeConvenienceToolsPopup(event)">
+  <div class="convenience-popup" role="dialog" aria-modal="true" aria-label="편의도구">
+    <div class="convenience-head">
+      <div class="convenience-title">편의도구</div>
+    </div>
+    <button class="convenience-close" type="button" aria-label="닫기" onclick="closeConvenienceToolsPopup()"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <div class="convenience-tabs" role="tablist" aria-label="편의도구 탭">
+      <button class="convenience-tab" type="button" onclick="goPersonalCustomsCode()">개인통관고유부호</button>
+      <button class="convenience-tab active" type="button" role="tab" aria-selected="true" aria-controls="conveniencePanelUnit" onclick="switchConvenienceTab(this,'conveniencePanelUnit')">단위변환</button>
+      <button class="convenience-tab" type="button" role="tab" aria-selected="false" aria-controls="conveniencePanelSize" onclick="switchConvenienceTab(this,'conveniencePanelSize')">해외 사이즈표</button>
+      <button class="convenience-tab" type="button" role="tab" aria-selected="false" aria-controls="conveniencePanelEms" onclick="switchConvenienceTab(this,'conveniencePanelEms')">EMS 발송 제한 품목</button>
+    </div>
+    <div class="convenience-body">
+      <div class="convenience-panel active" id="conveniencePanelUnit" role="tabpanel">
+        <div class="convenience-panel-title">단위변환</div>
+        <p class="convenience-panel-desc">무게, 길이, 부피 등 해외 상품 정보 확인에 필요한 단위 변환 도구 영역입니다.</p>
+      </div>
+      <div class="convenience-panel" id="conveniencePanelSize" role="tabpanel">
+        <div class="convenience-panel-title">해외 사이즈표</div>
+        <p class="convenience-panel-desc">국가별 의류, 신발 사이즈 비교표를 확인하는 영역입니다.</p>
+      </div>
+      <div class="convenience-panel" id="conveniencePanelEms" role="tabpanel">
+        <div class="convenience-panel-title">EMS 발송 제한 품목</div>
+        <p class="convenience-panel-desc">국제 배송 시 발송이 제한되거나 금지되는 품목 안내 영역입니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="bb-common-mobile.js"></script>
 <script>
 // openDrawer/closeDrawer/openUserDrawer/closeUserDrawer/toggleLogin now
@@ -1019,9 +1158,112 @@ function init() {
   bindBestCards();
   bindMainBanner();
   goMbSlide(0);
+  updateStatusBarTime();
 }
 
+function updateStatusBarTime() {
+  const el = document.getElementById('psbTime');
+  if (!el) return;
+  const now = new Date();
+  const hour = String(now.getHours()).padStart(2, '0');
+  const minute = String(now.getMinutes()).padStart(2, '0');
+  el.textContent = `${hour}:${minute}`;
+}
+setInterval(updateStatusBarTime, 1000 * 15);
+
 window.addEventListener('load', init);
+
+function openMarketInfoPopup(){
+  const popup = document.getElementById('marketInfoPopup');
+  if (!popup) return;
+  updateMarketInfo();
+  popup.classList.add('open');
+  popup.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeMarketInfoPopup(event){
+  const popup = document.getElementById('marketInfoPopup');
+  if (!popup) return;
+  if (event && event.target !== popup) return;
+  popup.classList.remove('open');
+  popup.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function getZonedParts(date, timeZone){
+  return Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year:'2-digit',
+    month:'2-digit',
+    day:'2-digit',
+    weekday:'short',
+    hour:'2-digit',
+    minute:'2-digit',
+    second:'2-digit',
+    hour12:true,
+  }).formatToParts(date).map(part => [part.type, part.value]));
+}
+function formatOfficeTime(date, timeZone){
+  const parts = getZonedParts(date, timeZone);
+  return `${parts.year}.${parts.month}.${parts.day} ${parts.dayPeriod.toLowerCase()} ${parts.hour}:${parts.minute}:${parts.second}`;
+}
+function isOfficeOpen(date, timeZone){
+  const parts = getZonedParts(date, timeZone);
+  const weekday = parts.weekday;
+  let hour = Number(parts.hour);
+  if (parts.dayPeriod === 'PM' && hour !== 12) hour += 12;
+  if (parts.dayPeriod === 'AM' && hour === 12) hour = 0;
+  const isWeekday = !['Sat','Sun'].includes(weekday);
+  return isWeekday && hour >= 9 && hour < 18;
+}
+function updateMarketInfo(){
+  const now = new Date();
+  document.querySelectorAll('.office-card[data-office-timezone]').forEach(card => {
+    const timeZone = card.dataset.officeTimezone;
+    const open = isOfficeOpen(now, timeZone);
+    const status = card.querySelector('.office-status');
+    const time = card.querySelector('.office-time');
+    if (status) {
+      status.textContent = open ? '업무중' : '업무종료';
+      status.classList.toggle('is-open', open);
+    }
+    if (time) time.textContent = formatOfficeTime(now, timeZone);
+  });
+}
+setInterval(updateMarketInfo, 1000);
+updateMarketInfo();
+function openConvenienceToolsPopup(){
+  const popup = document.getElementById('convenienceToolsPopup');
+  if (!popup) return;
+  popup.classList.add('open');
+  popup.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeConvenienceToolsPopup(event){
+  const popup = document.getElementById('convenienceToolsPopup');
+  if (!popup) return;
+  if (event && event.target !== popup) return;
+  popup.classList.remove('open');
+  popup.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function switchConvenienceTab(tab, panelId){
+  document.querySelectorAll('.convenience-tab[role="tab"]').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.convenience-panel').forEach(panel => panel.classList.remove('active'));
+  tab.classList.add('active');
+  tab.setAttribute('aria-selected', 'true');
+  document.getElementById(panelId)?.classList.add('active');
+}
+function goPersonalCustomsCode(){
+  window.location.href = 'https://unipass.customs.go.kr/per/persIndex.do';
+}
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  if (document.getElementById('marketInfoPopup')?.classList.contains('open')) closeMarketInfoPopup();
+  if (document.getElementById('convenienceToolsPopup')?.classList.contains('open')) closeConvenienceToolsPopup();
+});
 </script>
 </body>
 </html>

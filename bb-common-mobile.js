@@ -12,6 +12,7 @@
   'use strict';
 
   var LOGIN_KEY = 'bb_logged_in';
+  var SHELL_MODE = document.currentScript?.getAttribute('data-bb-mobile-shell') || 'full';
 
   function isLoggedIn() {
     return localStorage.getItem(LOGIN_KEY) === '1';
@@ -33,6 +34,17 @@
   // 정의하지 않아도 <script src="bb-common-mobile.js">만 포함하면 동작하도록
   // mobile_main.html의 드로어 스타일을 그대로 주입한다. (색상 변수는
   // 페이지별 :root 정의 여부와 무관하게 동작하도록 fallback 값을 둔다.)
+  var STATUS_CSS = [
+    '.phone-status-bar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 24px;background:#fff;color:#0A0A0A;font-family:-apple-system,BlinkMacSystemFont,Pretendard,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px}',
+    '.psb-time{font-variant-numeric:tabular-nums}',
+    '.psb-icons{display:flex;align-items:center;gap:6px;font-size:14px;color:#0A0A0A}',
+    '.psb-icons i{line-height:1}',
+    '.psb-battery{display:flex;align-items:center;gap:2px}',
+    '.psb-battery-body{width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;padding:1.5px;position:relative}',
+    '.psb-battery-body::after{content:"";position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0}',
+    '.psb-battery-fill{display:block;width:80%;height:100%;background:#0A0A0A;border-radius:1px}'
+  ].join('\n');
+
   var DRAWER_CSS = [
     '.drawer-ov{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:5000;pointer-events:none;transition:background .3s}',
     '.drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}',
@@ -111,12 +123,52 @@
     '.bbu-menu-item.logout{margin-top:4px;border-top:1px solid #eee;color:#9aa3b2;font-weight:700}'
   ].join('\n');
 
+  function injectStatusStyles() {
+    if (document.getElementById('bb-mobile-status-style')) return;
+    var style = document.createElement('style');
+    style.id = 'bb-mobile-status-style';
+    style.textContent = STATUS_CSS;
+    document.head.appendChild(style);
+  }
+
   function injectStyles() {
+    injectStatusStyles();
     if (document.getElementById('bb-mobile-drawer-style')) return;
     var style = document.createElement('style');
     style.id = 'bb-mobile-drawer-style';
     style.textContent = DRAWER_CSS;
     document.head.appendChild(style);
+  }
+
+  function phoneStatusHTML() {
+    return (
+      '<div class="phone-status-bar" aria-hidden="true">' +
+        '<span class="psb-time">9:41</span>' +
+        '<div class="psb-icons">' +
+          '<i class="fas fa-signal"></i>' +
+          '<i class="fas fa-wifi"></i>' +
+          '<span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function injectPhoneStatusBar() {
+    if (document.querySelector('.phone-status-bar')) return;
+
+    var header = document.querySelector('.app-header, .header, .topbar');
+    if (header) {
+      header.insertAdjacentHTML('beforebegin', phoneStatusHTML());
+      return;
+    }
+
+    var shell = document.querySelector('.phone, .mobile-shell, .page-shell, .app-shell, .page, .mobile-page');
+    if (shell) {
+      shell.insertAdjacentHTML('afterbegin', phoneStatusHTML());
+      return;
+    }
+
+    document.body.insertAdjacentHTML('afterbegin', phoneStatusHTML());
   }
 
   var STORE_CATEGORIES = {
@@ -287,7 +339,15 @@
 
   function render() {
     removeNonMainNotice();
+
+    if (SHELL_MODE === 'status-only') {
+      injectStatusStyles();
+      injectPhoneStatusBar();
+      return;
+    }
+
     injectStyles();
+    injectPhoneStatusBar();
 
     var drawerOv = ensureNode('drawerOv', 'div', 'drawer-ov');
     var drawer = ensureNode('drawer', 'div', 'drawer');

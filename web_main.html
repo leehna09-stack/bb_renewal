@@ -828,14 +828,14 @@ button.user-menu-item{
 <div class="sc-bar">
   <div class="sc-inner">
     <div class="sc-item" role="button" tabindex="0" onclick="openCustomsTaxPopup()" onkeydown="handleShortcutKey(event, openCustomsTaxPopup)"><div class="sc-icon si1"><i class="fas fa-table-cells-large"></i></div><span class="sc-lbl">예상 세금계산기</span></div>
-    <div class="sc-item"><div class="sc-icon si2"><i class="fas fa-heart"></i></div><span class="sc-lbl">관심상품</span></div>
-    <div class="sc-item"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
-    <div class="sc-item"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openWishlistPopup()" onkeydown="handleShortcutKey(event, openWishlistPopup)"><div class="sc-icon si2"><i class="fas fa-heart"></i></div><span class="sc-lbl">관심상품</span></div>
+    <div class="sc-item" onclick="location.href='web_auction_bid_list.html'" style="cursor:pointer"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
+    <div class="sc-item" onclick="location.href='web_bundle_shipping_management.html'" style="cursor:pointer"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openMarketInfoPopup()" onkeydown="handleShortcutKey(event, openMarketInfoPopup)"><div class="sc-icon si5"><i class="fas fa-thumbs-up"></i></div><span class="sc-lbl">국가별 운영정보</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="handleShortcutKey(event, openConvenienceToolsPopup)"><div class="sc-icon si6"><i class="fas fa-toolbox"></i></div><span class="sc-lbl">편의도구</span></div>
     <div class="sc-item" onclick="location.href='web_mileage.html'" style="cursor:pointer"><div class="sc-icon si7"><i class="fas fa-ticket"></i></div><span class="sc-lbl">마일리지/쿠폰</span></div>
     <div class="sc-item" role="button" tabindex="0" onclick="openbidbuycsPopup()" onkeydown="handleShortcutKey(event, openbidbuycsPopup)"><div class="sc-icon si8"><i class="fas fa-clipboard-list"></i></div><span class="sc-lbl">자주하는질문</span></div>
-    <div class="sc-item"><div class="sc-icon si9"><i class="fas fa-plane-departure"></i></div><span class="sc-lbl">배송조회</span></div>
+    <div class="sc-item" onclick="location.href='web_mainlist.html?status=international-shipping'" style="cursor:pointer"><div class="sc-icon si9"><i class="fas fa-plane-departure"></i></div><span class="sc-lbl">배송조회</span></div>
     <div class="sc-item"><div class="sc-icon si10"><i class="fas fa-users"></i></div><span class="sc-lbl">커뮤니티</span></div>
   </div>
 </div>
@@ -1278,6 +1278,10 @@ function openbidbuynoticePopup(){
 function openaccountPopup(){
   const url = 'https://www.bidbuy.co.kr/mypage/account';
   window.open(url, 'account', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+}
+function openWishlistPopup(){
+  const url = 'https://www.bidbuy.co.kr/mypage/order/wishlist';
+  window.open(url, 'wishlist', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
 }
 function openMarketInfoPopup(){
   const popup = document.getElementById('marketInfoPopup');
