@@ -343,7 +343,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 
 /* ── 상단/하단 구분 ── */
 
-/* ── 출품자 다른 상품 (상단 우측 패널) ── */
+/* ── 판매자 다른 상품 (상단 우측 패널) ── */
 .seller-other{margin-top:16px}
 .seller-other-title{font-size:13px;font-weight:700;color:var(--tp);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .seller-other-title span{display:flex;align-items:center;gap:6px}
@@ -369,19 +369,8 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .seller-other-panel-body{padding:16px 20px}
 .seller-other-panel .seller-other-grid{grid-template-columns:repeat(6,1fr);gap:12px}
 .detail-section{max-width:1440px;margin:0 auto;padding:32px 24px 0}
-/* 상품 상세정보 패널 (경매 스타일) */
-.spec-info-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.spec-info-head{padding:13px 20px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:8px;background:#FAFBFC}
-.spec-info-head i{color:var(--ts);font-size:12px}
-.spec-info-body{padding:4px 20px 16px}
-.spec-info-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.spec-info-col{min-width:0}
-.spec-info-col+.spec-info-col{border-left:1px solid var(--border);padding-left:24px;margin-left:24px}
-.spec-info-table{width:100%;border-collapse:collapse;font-size:13px}
-.spec-info-table tr{border-bottom:1px solid #F0F2F5}
-.spec-info-table tr:last-child{border-bottom:none}
-.spec-info-table th{width:130px;padding:9px 8px 9px 0;font-weight:600;color:var(--ts);text-align:left;vertical-align:top}
-.spec-info-table td{padding:9px 8px;color:var(--tp)}
+.buy-check-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--tp);font-size:15px;font-weight:800}
+.buy-check-title i{color:var(--ts);font-size:14px}
 
 /* 탭 */
 .tab-area{}
@@ -406,32 +395,46 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .spec-table th{width:36%;background:#FAFBFC;padding:10px 14px;font-weight:600;color:var(--ts);text-align:left}
 .spec-table td{padding:10px 14px;color:var(--tp)}
 
-/* Q&A */
+/* Q&A (경매대행과 동일 구성) */
 .qa-section-title{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:14px}
-.qa-history-empty{border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;font-size:13px;color:var(--tm);background:#fff}
-.qa-history-list{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:28px}
-.qa-history-item{display:grid;grid-template-columns:100px 1fr auto auto;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid #F0F2F5}
-.qa-history-item:last-child{border-bottom:none}
-.qa-history-num{font-size:13px;font-weight:700;color:var(--tp)}
-.qa-history-text{font-size:13px;color:var(--tp)}
-.qa-history-date{font-size:12px;color:var(--tm);white-space:nowrap;font-family:'Roboto',sans-serif}
-.qa-history-badge{padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid;white-space:nowrap}
-.qa-badge-wait{background:#F5F7FF;color:#5B7AE0;border-color:#C5D0F5}
-.qa-badge-confirm{background:#FFF8E8;color:#C47F00;border-color:#FFD980}
-.qa-badge-view{background:#F0FBF2;color:var(--green);border-color:#B8ECC4}
-.qa-form-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px}
-.qa-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.qa-form-label{font-size:12px;font-weight:600;color:var(--ts);margin-bottom:6px}
-.qa-form-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:inherit;outline:none;box-sizing:border-box;color:var(--tp);transition:border-color .2s}
-.qa-form-input:focus{border-color:var(--navy)}
+.desc-qa-stack{display:flex;flex-direction:column;gap:22px}
+.desc-qa-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;margin-bottom:10px}
+.desc-qa-title{font-size:15px;font-weight:800;color:var(--tp)}
+.desc-question-card{border:1px solid var(--border);border-radius:10px;background:#fff;padding:20px}
+.desc-question-title{font-size:12px;font-weight:800;color:var(--tp);margin-bottom:8px}
+.desc-question-help{margin:8px 0 0;color:var(--tm);font-size:11px;line-height:1.7}
 .qa-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;resize:vertical;min-height:100px;outline:none;transition:border-color .2s;box-sizing:border-box}
 .qa-textarea:focus{border-color:var(--navy)}
 .qa-form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
-.qa-btn-cancel{padding:10px 28px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:14px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
 .qa-btn-submit{padding:10px 28px;border-radius:5px;border:none;background:#5B9BD5;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
-.qa-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:18px;align-items:start}
-.qa-side .seller-other{margin-top:0}
-.qa-side .seller-other-grid{grid-template-columns:1fr}
+.seller-qna-table{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden}
+.seller-qna-row-head{display:grid;grid-template-columns:48px 120px 1fr 90px 70px;gap:12px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--tp);border-bottom:1px solid var(--border);background:#FAFBFC}
+.seller-qna-row-head span:nth-child(4),.seller-qna-row-head span:nth-child(5){text-align:right}
+.seller-qna-group{border-bottom:1px solid #F0F2F5}
+.seller-qna-group:last-child{border-bottom:none}
+.seller-qna-row{display:grid;grid-template-columns:48px 120px 1fr 90px 70px;gap:12px;align-items:center;padding:14px 20px;white-space:nowrap}
+.seller-qna-num{font-size:13px;color:var(--ts)}
+.seller-qna-itemid{font-size:13px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;font-family:'Roboto',sans-serif}
+.seller-qna-text{font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.seller-qna-date{font-size:12px;color:var(--tm);text-align:right;font-family:'Roboto',sans-serif;white-space:nowrap}
+.seller-qna-status{font-size:13px;color:var(--tp);text-align:right;white-space:nowrap;justify-self:end}
+.seller-qna-status-done{color:var(--green)}
+.seller-qna-status-wait{color:#5B7AE0}
+.seller-qna-answer{display:none;gap:8px;padding:12px 20px;background:#F7F9FC;border-top:1px dashed var(--border);font-size:12px;color:var(--ts);line-height:1.6}
+.seller-qna-answer.open{display:flex}
+.seller-qna-answer i{color:var(--navy);margin-top:2px}
+.scmt-table{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden}
+.scmt-head{display:grid;grid-template-columns:1fr 200px 140px;gap:12px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--tp);border-bottom:1px solid var(--border);background:#FAFBFC}
+.scmt-head span:nth-child(2),.scmt-head span:nth-child(3){text-align:center}
+.scmt-row{display:grid;grid-template-columns:1fr 200px 140px;gap:12px;align-items:center;padding:16px 20px;border-bottom:1px solid #F0F2F5}
+.scmt-row:last-child{border-bottom:none}
+.scmt-content{font-size:13px;color:var(--tp);line-height:1.6}
+.scmt-author{display:flex;align-items:center;gap:8px;justify-content:center}
+.scmt-avatar{width:28px;height:28px;border-radius:50%;background:#EEF0F3;display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:12px;flex-shrink:0;overflow:hidden}
+.scmt-author-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.scmt-author-name{font-size:12px;font-weight:700;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scmt-author-badge{font-size:11px;color:var(--rose);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scmt-date{font-size:12px;color:var(--tm);text-align:center;font-family:'Roboto',sans-serif;white-space:nowrap}
 
 /* 우측 사이드 (판매자 상품) */
 .related-area{}
@@ -446,7 +449,7 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .related-price{font-family:'Roboto',sans-serif;font-size:13px;font-weight:700;color:var(--tp)}
 .related-price-krw{font-size:10px;color:var(--ts)}
 
-/* 연관 상품 섹션 */
+/* 관련 상품 섹션 */
 .related-all-section{max-width:1440px;margin:0 auto;padding:32px 24px 40px}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .section-title{font-size:17px;font-weight:700;color:var(--tp)}
@@ -617,7 +620,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 <!-- 상품 메인 영역 -->
 <div class="item-wrapper">
 
-  <!-- 좌(4): 이미지 갤러리 + 출품자 정보 + 출품자 다른 상품 -->
+  <!-- 좌(4): 이미지 갤러리 + 판매자 정보 + 판매자 다른 상품 -->
   <div class="gallery-area">
     <div class="gallery-main" id="galleryMain" onclick="openLightbox()" style="cursor:zoom-in">
       <img class="gallery-main-img" id="galleryMainImg" src="https://picsum.photos/seed/bts1/600/600" alt="상품 이미지">
@@ -635,7 +638,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       <button class="gallery-nav" type="button" onclick="lbNext();event.stopPropagation()" aria-label="다음 이미지"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
-    <!-- 출품자 정보 -->
+    <!-- 판매자 정보 -->
     <div class="seller-card">
       <div class="seller-info">
         <div class="seller-name">ダゴニャン</div>
@@ -646,7 +649,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
                     <button class="btn-seller-rating" type="button" onclick="location.href='https://jp.mercari.com/'">평가보기</button>
 
         </div>
-      <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심출품자</button>
+      <button class="btn-seller" type="button"><i class="fa-regular fa-heart"></i> 관심판매자</button>
       </div>
     </div>
 
@@ -681,7 +684,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
               <table class="local-delivery-table">
                 <tr><th>카테고리</th><td>핸드메이드·수예 &gt; 가방 &gt; 토트 백</td></tr>
                 <tr><th>상품 상태</th><td>신품, 미사용</td></tr>
-                <tr><th>배송료 부담</th><td>배송비 포함 (출품자 부담)</td></tr>
+                <tr><th>배송료 부담</th><td>배송비 포함 (판매자 부담)</td></tr>
                 <tr><th>배송 방법</th><td>유유 메르카리 항공편</td></tr>
                 <tr><th>발송지역</th><td>사이타마현</td></tr>
                 <tr><th>발송까지의 일수</th><td>2~3일에 발송</td></tr>
@@ -754,11 +757,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   </div>
 </div>
 
-<!-- 출품자의 다른 상품 (구분선 위 독립 섹션) -->
+<!-- 판매자의 다른 상품 (구분선 위 독립 섹션) -->
 <div class="seller-other-panel">
   <div class="seller-other-panel-card">
     <div class="seller-other-panel-head">
-      <span><i class="fa-solid fa-box-open"></i> 출품자의 다른 상품</span>
+      <span><i class="fa-solid fa-box-open"></i>판매자의 다른 상품</span>
       <span class="seller-other-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:9px"></i></span>
     </div>
     <div class="seller-other-panel-body">
@@ -774,35 +777,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   </div>
 </div>
 
-<!-- 상품 상세정보 독립 패널 -->
-<div class="seller-other-panel" style="padding-top:16px">
-  <div class="spec-info-card">
-    <div class="spec-info-head">
-      <i class="fa-solid fa-list-ul"></i> 상품 상세정보
-    </div>
-    <div class="spec-info-body">
-      <div class="spec-info-split">
-        <div class="spec-info-col">
-          <table class="spec-info-table">
-            <tr><th>카테고리</th><td>탤런트 상품 &gt; K-POP</td></tr>
-            <tr><th>상품 상태</th><td><span style="color:var(--green);font-weight:700">신품·미개봉 (新品·未使用)</span></td></tr>
-            <tr><th>브랜드</th><td>HYBE / BIGHIT MUSIC</td></tr>
-            <tr><th>발매년도</th><td class="roboto">2024</td></tr>
-          </table>
-        </div>
-        <div class="spec-info-col">
-          <table class="spec-info-table">
-            <tr><th>판매 플랫폼</th><td>🇯🇵 메루카리 (Mercari Japan)</td></tr>
-            <tr><th>배송 방법</th><td>라쿠텐라쿠마팩 / 직거래 가능</td></tr>
-            <tr><th>배송비 부담</th><td>판매자 부담</td></tr>
-            <tr><th>출품일</th><td class="roboto">2024년 11월</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- 상단/하단 구분 -->
 <div class="bottom-area">
 
@@ -810,14 +784,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
   <div class="detail-section">
     <div class="tab-area">
       <div class="tab-header">
-        <button class="tab-btn active" onclick="switchTab(this,'desc')">상품 설명</button>
-        <button class="tab-btn" onclick="switchTab(this,'qa')">판매자 Q&amp;A</button>
-        <button class="tab-btn" onclick="switchTab(this,'review')">관련 상품</button>
+        <button class="tab-btn active" onclick="switchTab(this,'desc')">상품 상세정보</button>
+        <button class="tab-btn" onclick="scrollToSection(this,'sellerQnaSection')">판매자 질문과 답변</button>
+        <button class="tab-btn" onclick="scrollToSection(this,'relatedProductsSection')">관련 상품</button>
       </div>
 
       <!-- 상품 설명 -->
       <div class="tab-content active" id="tab-desc">
         <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:12px;line-height:2;color:var(--ts);margin-bottom:12px">
+      <div class="buy-check-title"><i class="fa-regular fa-circle-check"></i> 구매 전 꼭 확인해주세요.</div>
           <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
           <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리 대상 제품입니다.</div>
           <div>– 메루카리는 일반 쇼핑몰이 아니라 중고장터 앱입니다. 따라서 구매취소가 일반 쇼핑몰보다 더 까다롭습니다. 이에 1차결제완료후 고객님 사정에 의한 청약철회가 불가한 점 안내드립니다.</div>
@@ -838,71 +813,84 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             <span class="desc-tag">#ダゴニャン</span>
           </div>
         </div>
-      </div>
 
-      <!-- Q&A -->
-      <div class="tab-content" id="tab-qa">
-        <div class="qa-section-title">나의 문의 내역</div>
-        <div class="qa-history-list" style="margin-bottom:28px">
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-wait">출품자 답변 대기</button>
-          </div>
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-confirm">출품자 답변 확인</button>
-          </div>
-          <div class="qa-history-item">
-            <span class="qa-history-num">13번 질문</span>
-            <span class="qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-            <span class="qa-history-date">2024-05-35</span>
-            <button class="qa-history-badge qa-badge-view">출품자 답변 보기</button>
-          </div>
-        </div>
-
-        <div class="qa-section-title">판매자 문의하기</div>
-        <div class="qa-form-card">
-          <div class="qa-form-row">
-            <div>
-              <div class="qa-form-label">판매자 아이디</div>
-              <input class="qa-form-input" type="text" value="다고냥" readonly>
+        <div class="desc-qa-stack" id="sellerQnaSection">
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">판매자 문의하기</div>
             </div>
-            <div>
-              <div class="qa-form-label">상품 코드</div>
-              <input class="qa-form-input" type="text" value="sanrio-n-2605-019488" readonly>
+            <div class="desc-question-card">
+              <div class="desc-question-title">문의 작성</div>
+              <textarea class="qa-textarea" placeholder="질문은 한글로 작성 부탁드립니다. 저희 일본 담당자가 일본어로 번역하여 질문하게 됩니다.
+질문내용에 대한 답변확인은 하단의 ‘판매자 질문과 답변’을 통하여 확인하시면 됩니다."></textarea>
+              <div class="qa-form-actions">
+                <button class="qa-btn-submit" type="button">문의하기</button>
+              </div>
             </div>
-          </div>
-          <div class="qa-form-label">문의 작성</div>
-          <textarea class="qa-textarea" placeholder="문의 내용 입력 (200자 이내)"></textarea>
-          <div class="qa-form-actions">
-            <button class="qa-btn-cancel">취소</button>
-            <button class="qa-btn-submit">문의 신청</button>
-          </div>
+          </section>
+
+          <section>
+            <div class="desc-qa-head">
+              <div class="desc-qa-title">판매자 질문과 답변</div>
+            </div>
+            <div class="scmt-table">
+              <div class="scmt-head">
+                <span>내용</span>
+                <span>작성자</span>
+                <span>등록일</span>
+              </div>
+              <div class="scmt-row">
+                <div class="scmt-content">만나서 반갑습니다, 댓글 남겨주셔서 감사합니다☆<br>새로 출품했으니 번거로우시겠지만 잘 부탁드립니다☆</div>
+                <div class="scmt-author">
+                  <div class="scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                  <div class="scmt-author-info">
+                    <span class="scmt-author-name">다고냥</span>
+                  </div>
+                </div>
+                <span class="scmt-date">2024-10-11 22:55:35</span>
+              </div>
+              <div class="scmt-row">
+                <div class="scmt-content">만나서 반갑습니다.<br>다른 옵션으로 변경 후 구입 희망합니다. 잘 부탁드립니다(*_*)</div>
+                <div class="scmt-author">
+                  <div class="scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                  <div class="scmt-author-info">
+                    <span class="scmt-author-name">BIDBUY 공식어카운트</span>
+                  </div>
+                </div>
+                <span class="scmt-date">2024-10-11 22:54:32</span>
+              </div>
+              <div class="scmt-row">
+                <div class="scmt-content">고마워요^^<br>지금은 재고가 있으니 구입 시에 또 말씀해 주시면 좋겠습니다^^♡</div>
+                <div class="scmt-author">
+                  <div class="scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                  <div class="scmt-author-info">
+                    <span class="scmt-author-name">다고냥</span>
+                  </div>
+                </div>
+                <span class="scmt-date">2024-09-17 17:50:04</span>
+              </div>
+              <div class="scmt-row">
+                <div class="scmt-content">답변해 주셔서 감사합니다.<br>구입하고 싶습니다만, 직거래는 가능할까요?</div>
+                <div class="scmt-author">
+                  <div class="scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                  <div class="scmt-author-info">
+                    <span class="scmt-author-name">부린</span>
+                  </div>
+                </div>
+                <span class="scmt-date">2024-09-17 17:41:50</span>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
-      <!-- 관련 상품 탭 -->
-      <div class="tab-content" id="tab-review">
-        <div class="related-grid" style="grid-template-columns:repeat(6,1fr);gap:12px">
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 포토카드 세트</div><div class="related-price roboto">1,500엔</div><div class="related-price-krw">약 13,950원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">BTS 7주년 공식 굿즈</div><div class="related-price roboto">3,200엔</div><div class="related-price-krw">약 29,760원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">TXT weverse album</div><div class="related-price roboto">4,500엔</div><div class="related-price-krw">약 41,850원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">IVE 포토북 신품</div><div class="related-price roboto">2,500엔</div><div class="related-price-krw">약 23,250원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">stray kids 한정판</div><div class="related-price roboto">6,000엔</div><div class="related-price-krw">약 55,800원</div></div></div>
-          <div class="related-card"><div class="related-thumb"><i class="fa-regular fa-image"></i></div><div class="related-info"><div class="related-name">세븐틴 FML 앨범</div><div class="related-price roboto">4,200엔</div><div class="related-price-krw">약 39,060원</div></div></div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- 연관 상품 (하단 전체 너비) -->
-  <div class="related-all-section">
+  <!-- 관련 상품 (하단 전체 너비) -->
+  <div class="related-all-section" id="relatedProductsSection">
     <div class="section-header">
-      <div class="section-title">관련 상품</div>
+      <div class="section-title">관련상품</div>
       <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
     </div>
     <div class="product-grid">
@@ -1057,6 +1045,12 @@ function switchTab(btn, id){
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
+}
+
+function scrollToSection(btn, sectionId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(sectionId)?.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // 찜하기 토글

@@ -167,6 +167,9 @@ a{text-decoration:none;color:inherit}
 .m-acc-section.open .m-acc-trigger i.chevron{transform:rotate(180deg)}
 .m-acc-body{display:none;padding:0 16px 16px;font-size:13px;color:var(--ts);line-height:1.8}
 .m-acc-section.open .m-acc-body{display:block}
+.buy-check-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--tp);font-size:15px;font-weight:800}
+.buy-check-title i{color:var(--ts);font-size:14px}
+.m-acc-trigger .buy-check-title{margin-bottom:0}
 .m-acc-notice-item{display:flex;gap:8px;margin-bottom:6px}
 .m-acc-notice-item::before{content:'·';color:var(--rose);font-weight:700;flex-shrink:0}
 .m-spec-table{width:100%;border-collapse:collapse;font-size:12px}
@@ -177,14 +180,11 @@ a{text-decoration:none;color:inherit}
 .m-seller-section{background:#fff;padding:16px;border-bottom:8px solid var(--bg)}
 .m-seller-title{font-size:12px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
 .m-seller-row{display:flex;align-items:center;gap:12px}
-.m-seller-avatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#bf0000,#f7a0a0);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0;font-family:'Roboto',sans-serif}
 .m-seller-info{flex:1}
 .m-seller-id{font-size:14px;font-weight:700;color:var(--navy)}
-.m-seller-stats{font-size:11px;color:var(--ts);margin-top:2px}
 .m-seller-stars{color:var(--amber);font-size:11px;margin-right:3px}
-.m-seller-btn{border:1.5px solid var(--border);border-radius:5px;padding:7px 14px;background:#fff;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;white-space:nowrap}
 
-/* ── 연관 상품 ── */
+/* ── 관련상품 ── */
 .m-related-section{background:#fff;border-bottom:8px solid var(--bg)}
 .m-related-header{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between}
 .m-related-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
@@ -365,21 +365,21 @@ a{text-decoration:none;color:inherit}
 <!-- ── 주의사항 ── -->
 <div class="m-acc-section" id="macc-notice">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-notice')">
-    <span><i class="fa-solid fa-triangle-exclamation icon"></i>주의사항</span>
+    <span class="buy-check-title"><i class="fa-regular fa-circle-check"></i> 구매 전 꼭 확인해주세요.</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
-    <div class="m-acc-notice-item">구매 신청 후 취소는 불가합니다. 신중하게 신청해 주세요.</div>
-    <div class="m-acc-notice-item">현지 스토어 사정에 따라 품절 시 전액 환불 처리됩니다.</div>
-    <div class="m-acc-notice-item">$150 초과 상품은 통관 시 관세 및 부가세가 부과됩니다.</div>
-    <div class="m-acc-notice-item">전자제품은 국내 A/S가 제한될 수 있습니다.</div>
+    <div class="m-acc-notice-item">이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
+    <div class="m-acc-notice-item">이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
+    <div class="m-acc-notice-item">통관 가능여부는 회원이 미리 관세청에 확인하신 후 구매신청을 부탁드립니다.</div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.<br>번역 오류로 인한 피해는 비드바이가 보장하지 않습니다. 항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.</div>
   </div>
 </div>
 
 <!-- ── 상품 스펙 ── -->
 <div class="m-acc-section open" id="macc-desc">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-desc')">
-    <span><i class="fa-solid fa-align-left icon"></i>상품 상세</span>
+    <span>상품 상세정보</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
@@ -394,44 +394,20 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 구매 상세정보 ── -->
-<div class="m-acc-section" id="macc-purchaseinfo">
-  <button class="m-acc-trigger" onclick="toggleMAcc('macc-purchaseinfo')">
-    <span><i class="fa-solid fa-list-ul icon"></i>구매 상세정보</span>
-    <i class="fa-solid fa-chevron-down chevron"></i>
-  </button>
-  <div class="m-acc-body">
-    <table class="m-spec-info-table">
-      <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
-      <tr><th>카테고리</th><td>카메라 &gt; 렌즈 &gt; 줌렌즈</td></tr>
-      <tr><th>브랜드</th><td>SONY (소니)</td></tr>
-      <tr><th>상품유형</th><td><span style="color:var(--green);font-weight:700">신상품</span></td></tr>
-      <tr><th>배송안내</th><td>무료운송, 발송까지 1~2일 소요</td></tr>
-      <tr><th>발송지역</th><td>효고현 (兵庫県)</td></tr>
-      <tr><th>현지배송료 부담</th><td>판매자 부담 (무료)</td></tr>
-      <tr><th>반품가능여부</th><td>반품불가</td></tr>
-      <tr><th>통관 안내</th><td>통관 가능여부는 관세청에 사전 확인 바랍니다.</td></tr>
-    </table>
-  </div>
-</div>
-
 <!-- ── 스토어 정보 ── -->
 <div class="m-seller-section">
   <div class="m-seller-title">스토어 정보</div>
   <div class="m-seller-row">
-    <div class="m-seller-avatar">R</div>
     <div class="m-seller-info">
       <div class="m-seller-id">카메라노키타무라 (Rakuten)</div>
-      <div class="m-seller-stats"><span class="m-seller-stars">★★★★★</span> 4.8 · 리뷰 12,408건 · 공식 인증 스토어</div>
     </div>
-    <button class="m-seller-btn">스토어 보기</button>
   </div>
 </div>
 
 <!-- ── 판매자의 다른 상품 ── -->
 <div class="m-related-section">
   <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-box-open"></i> 판매자의 다른 상품</div>
+    <div class="m-related-title">판매자의 다른 상품</div>
     <span class="m-related-more">전체보기</span>
   </div>
   <div class="m-related-grid">
@@ -441,10 +417,10 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 연관 상품 ── -->
+<!-- ── 관련상품 ── -->
 <div class="m-related-section">
   <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-layer-group"></i> 연관 상품</div>
+    <div class="m-related-title">관련상품</div>
     <span class="m-related-more">더보기</span>
   </div>
   <div class="m-related-grid">

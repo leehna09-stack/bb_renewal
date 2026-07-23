@@ -151,22 +151,36 @@ a{text-decoration:none;color:inherit}
 .m-title-action-btn.active{border-color:var(--amber);color:var(--amber)}
 
 /* ── Q&A ── */
-.m-qa-history{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:14px}
-.m-qa-history-item{padding:12px 14px;border-bottom:1px solid #F0F2F5;display:flex;flex-direction:column;gap:5px}
-.m-qa-history-item:last-child{border-bottom:none}
-.m-qa-history-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--tm)}
-.m-qa-history-text{font-size:12px;color:var(--tp);line-height:1.5}
-.m-qa-badge{align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;border:1.2px solid}
-.m-qa-badge-wait{background:#F5F7FF;color:#5B7AE0;border-color:#C5D0F5}
-.m-qa-badge-confirm{background:#FFF8E8;color:#C47F00;border-color:#FFD980}
-.m-qa-badge-view{background:#F0FBF2;color:var(--green);border-color:#B8ECC4}
 .m-qa-form-label{font-size:12px;font-weight:700;color:var(--ts);margin:10px 0 6px}
-.m-qa-form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
-.m-qa-form-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 10px;font-size:12px;font-family:inherit;background:#FAFBFC;color:var(--ts)}
 .m-qa-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;resize:vertical;min-height:80px;outline:none}
-.m-qa-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.m-qa-btn-cancel{padding:10px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
-.m-qa-btn-submit{padding:10px;border-radius:8px;border:none;background:#5B9BD5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.m-qa-actions{display:flex;justify-content:flex-end;margin-top:10px}
+.m-qa-btn-submit{padding:10px 20px;border-radius:8px;border:none;background:#5B9BD5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+/* 나의 문의 내역 (경매대행과 동일 구성) */
+.m-myqna-table{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.m-myqna-head{display:grid;grid-template-columns:20px 80px 1fr 42px 42px;gap:6px;padding:8px 10px;font-size:10px;font-weight:700;color:var(--tp);background:#FAFBFC;border-bottom:1px solid var(--border)}
+.m-myqna-head span:nth-child(4),.m-myqna-head span:nth-child(5){text-align:center}
+.m-myqna-group{border-bottom:1px solid #F0F2F5}
+.m-myqna-group:last-child{border-bottom:none}
+.m-myqna-row{display:grid;grid-template-columns:20px 80px 1fr 42px 42px;gap:6px;align-items:center;padding:10px;white-space:nowrap}
+.m-myqna-num{font-size:11px;color:var(--ts)}
+.m-myqna-itemid{font-size:11px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;font-family:'Roboto',sans-serif}
+.m-myqna-text{font-size:11px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.m-myqna-date{font-size:10px;color:var(--tm);text-align:center;font-family:'Roboto',sans-serif}
+.m-myqna-status{font-size:11px;text-align:center}
+.m-myqna-status-done{color:var(--green)}
+.m-myqna-status-wait{color:#5B7AE0}
+.m-myqna-answer{display:flex;gap:6px;padding:10px 12px;background:#F7F9FC;border-top:1px dashed var(--border);font-size:11px;color:var(--ts);line-height:1.6}
+.m-myqna-answer i{color:var(--navy);margin-top:2px;font-size:11px}
+.m-scmt-table{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden}
+.m-scmt-row{padding:12px 14px;border-bottom:1px solid #F0F2F5}
+.m-scmt-row:last-child{border-bottom:none}
+.m-scmt-content{font-size:12px;color:var(--tp);line-height:1.6;margin-bottom:8px}
+.m-scmt-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.m-scmt-author{display:flex;align-items:center;gap:6px;min-width:0}
+.m-scmt-avatar{width:22px;height:22px;border-radius:50%;background:#EEF0F3;display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:11px;flex-shrink:0}
+.m-scmt-author-info{display:flex;flex-direction:column;gap:1px;min-width:0}
+.m-scmt-author-name{font-size:11px;font-weight:700;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-scmt-date{font-size:10px;color:var(--tm);font-family:'Roboto',sans-serif;white-space:nowrap;flex-shrink:0}
 
 /* ── 아코디언 ── */
 .m-acc-section{background:#fff;border-bottom:1px solid var(--border)}
@@ -176,6 +190,9 @@ a{text-decoration:none;color:inherit}
 .m-acc-section.open .m-acc-trigger i.chevron{transform:rotate(180deg)}
 .m-acc-body{display:none;padding:0 16px 16px;font-size:13px;color:var(--ts);line-height:1.8}
 .m-acc-section.open .m-acc-body{display:block}
+.buy-check-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--tp);font-size:15px;font-weight:800}
+.buy-check-title i{color:var(--ts);font-size:14px}
+.m-acc-trigger .buy-check-title{margin-bottom:0}
 .m-acc-notice-item{display:flex;gap:8px;margin-bottom:6px}
 .m-acc-notice-item::before{content:'·';color:var(--rose);font-weight:700;flex-shrink:0}
 .m-desc-jp{background:#F5F7FA;border-left:3px solid var(--border);padding:10px 12px;margin-top:12px;font-size:12px;color:var(--tm);line-height:1.8;border-radius:0 6px 6px 0}
@@ -193,7 +210,7 @@ a{text-decoration:none;color:inherit}
 .m-seller-stars{color:var(--amber);font-size:11px;margin-right:3px}
 .m-seller-btn{border:1.5px solid var(--border);border-radius:5px;padding:7px 14px;background:#fff;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;white-space:nowrap}
 
-/* ── 연관 상품 ── */
+/* ── 관련 상품 ── */
 .m-related-section{background:#fff;border-bottom:8px solid var(--bg)}
 .m-related-header{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between}
 .m-related-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
@@ -298,21 +315,6 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-<!-- ── 상품 상태 ── -->
-<div class="m-info-section">
-  <div class="m-info-header">상품 정보</div>
-  <div class="m-info-grid">
-    <div class="m-info-item"><span class="m-info-label">카테고리</span><span class="m-info-val" style="font-size:12px;font-weight:400">핸드메이드·수예 &gt; 가방 &gt; 토트 백</span></div>
-    <div class="m-info-item"><span class="m-info-label">상품 상태</span><span class="m-info-val">신품, 미사용</span></div>
-    <div class="m-info-item"><span class="m-info-label">배송료 부담</span><span class="m-info-val" style="font-size:12px;font-weight:400">배송비 포함 (출품자 부담)</span></div>
-    <div class="m-info-item"><span class="m-info-label">배송 방법</span><span class="m-info-val" style="font-size:12px;font-weight:400">유유 메르카리 항공편</span></div>
-    <div class="m-info-item"><span class="m-info-label">현지 배송비</span><span class="m-info-val">무료 (출품자 부담)</span></div>
-    <div class="m-info-item"><span class="m-info-label">발송 지역</span><span class="m-info-val">사이타마현</span></div>
-    <div class="m-info-item"><span class="m-info-label">발송까지의 일수</span><span class="m-info-val">2~3일에 발송</span></div>
-    <div class="m-info-item"><span class="m-info-label">갱신일</span><span class="m-info-val roboto" style="font-size:12px">2026-06-09 16:27</span></div>
-  </div>
-</div>
-
 <!-- ── 구매 신청 / 예상비용 ── -->
 <div class="m-buy-section">
   <div class="m-buy-tabs">
@@ -353,7 +355,7 @@ a{text-decoration:none;color:inherit}
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 판매가격</span><span class="m-cost-val">(5,500엔) ₩51,150</span></div>
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행수수료</span><span class="m-cost-val">(550엔) ₩5,115</span></div>
     <div class="m-cost-subtitle">2차 결제 비용</div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지운송료</span><span class="m-cost-val"><span class="m-cost-defer">무료 (출품자 부담)</span></span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지운송료</span><span class="m-cost-val"><span class="m-cost-defer">무료 (판매자 부담)</span></span></div>
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지세금</span><span class="m-cost-val">(0엔) ₩0</span></div>
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 국제운송료</span><span class="m-cost-val">(1,800엔) ₩16,740</span></div>
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 기타비용</span><span class="m-cost-val">(300엔) ₩2,790</span></div>
@@ -374,21 +376,23 @@ a{text-decoration:none;color:inherit}
 <!-- ── 주의사항 ── -->
 <div class="m-acc-section" id="macc-notice">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-notice')">
-    <span><i class="fa-solid fa-triangle-exclamation icon"></i>주의사항</span>
+    <span class="buy-check-title"><i class="fa-regular fa-circle-check"></i> 구매 전 꼭 확인해주세요.</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
-    <div class="m-acc-notice-item">구매 신청 후 취소는 불가합니다. 신중하게 신청해 주세요.</div>
-    <div class="m-acc-notice-item">중고 플랫폼 특성상 출품자 사정으로 거래가 취소될 수 있습니다.</div>
-    <div class="m-acc-notice-item">상품 상태는 출품자 설명을 기준으로 합니다.</div>
-    <div class="m-acc-notice-item">관세 및 부가세는 수령 시 별도 부과될 수 있습니다.</div>
+    <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
+    <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리 대상 제품입니다.</div>
+    <div>– 메루카리는 일반 쇼핑몰이 아니라 중고장터 앱입니다. 따라서 구매취소가 일반 쇼핑몰보다 더 까다롭습니다. 이에 1차결제완료후 고객님 사정에 의한 청약철회가 불가한 점 안내드립니다.</div>
+    <div>– 메루카리는 개인 대 개인 거래로 판매자 사정에 의한 품절 및 거래취소가 발생할 수 있습니다. 이 경우, 결제하신 금액 전액 환불로 처리됩니다.</div>
+    <div style="color:var(--rose);font-weight:600">– 메루카리는 중고거래로 인해 인수 후, 클레임 일체 불가합니다.</div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--tm)">다소 번역이 매끄럽지 못한 부분이 있으니, 번역페이지는 참고용으로만 보시기를 부탁드립니다.<br>번역 오류로 인한 피해는 비드바이가 보장하지 않습니다. 항상 원문을 확인하시고, 이해가 안 가시는 부분은 꼭 비드바이에 문의바랍니다.</div>
   </div>
 </div>
 
-<!-- ── 상품 설명 ── -->
+<!-- ── 상품 상세정보 ── -->
 <div class="m-acc-section open" id="macc-desc">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-desc')">
-    <span><i class="fa-solid fa-align-left icon"></i>상품 설명</span>
+    <span>상품 상세정보</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
@@ -405,7 +409,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- ── 판매자 ── -->
 <div class="m-seller-section">
-  <div class="m-seller-title">출품자 정보</div>
+  <div class="m-seller-title">판매자 정보</div>
   <div class="m-seller-row">
     <div class="m-seller-info">
       <div class="m-seller-id">ダゴニャン</div>
@@ -419,10 +423,10 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 출품자의 다른 상품 ── -->
+<!-- ── 판매자의 다른 상품 ── -->
 <div class="m-related-section">
   <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-box-open"></i> 출품자의 다른 상품</div>
+    <div class="m-related-title">판매자의 다른 상품</div>
     <span class="m-related-more">전체보기</span>
   </div>
   <div class="m-related-grid">
@@ -435,7 +439,7 @@ a{text-decoration:none;color:inherit}
 <!-- ── 상품 상세정보 ── -->
 <div class="m-acc-section" id="macc-purchaseinfo">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-purchaseinfo')">
-    <span><i class="fa-solid fa-list-ul icon"></i>상품 상세정보</span>
+    <span>상품 상세정보</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
@@ -452,47 +456,78 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 판매자 Q&A ── -->
+<!-- ── 판매자 질문과 답변 ── -->
 <div class="m-acc-section" id="macc-qa">
   <button class="m-acc-trigger" onclick="toggleMAcc('macc-qa')">
-    <span><i class="fa-solid fa-comments icon"></i>판매자 Q&amp;A</span>
+    <span>판매자 질문과 답변</span>
     <i class="fa-solid fa-chevron-down chevron"></i>
   </button>
   <div class="m-acc-body">
-    <div class="m-qa-history">
-      <div class="m-qa-history-item">
-        <div class="m-qa-history-top"><span>13번 질문</span><span>2024-05-25</span></div>
-        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
-        <button class="m-qa-badge m-qa-badge-wait" type="button">출품자 답변 대기</button>
-      </div>
-      <div class="m-qa-history-item">
-        <div class="m-qa-history-top"><span>12번 질문</span><span>2024-05-20</span></div>
-        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
-        <button class="m-qa-badge m-qa-badge-confirm" type="button">출품자 답변 확인</button>
-      </div>
-      <div class="m-qa-history-item">
-        <div class="m-qa-history-top"><span>11번 질문</span><span>2024-05-14</span></div>
-        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
-        <button class="m-qa-badge m-qa-badge-view" type="button">출품자 답변 보기</button>
-      </div>
-    </div>
     <div class="m-qa-form-label" style="margin-top:0">판매자 문의하기</div>
-    <div class="m-qa-form-row">
-      <input class="m-qa-form-input" type="text" value="다고냥" readonly>
-      <input class="m-qa-form-input" type="text" value="sanrio-n-2605-019488" readonly>
-    </div>
-    <textarea class="m-qa-textarea" placeholder="문의 내용 입력 (200자 이내)"></textarea>
+    <textarea class="m-qa-textarea" placeholder="질문은 한글로 작성 부탁드립니다. 저희 일본 담당자가 일본어로 번역하여 질문하게 됩니다.
+질문내용에 대한 답변확인은 하단의 ‘판매자 질문과 답변’을 통하여 확인하시면 됩니다."></textarea>
     <div class="m-qa-actions">
-      <button class="m-qa-btn-cancel" type="button">취소</button>
-      <button class="m-qa-btn-submit" type="button">문의 신청</button>
+      <button class="m-qa-btn-submit" type="button">문의하기</button>
+    </div>
+
+    <div class="m-qa-form-label">판매자 질문과 답변</div>
+    <div class="m-scmt-table">
+      <div class="m-scmt-row">
+        <div class="m-scmt-content">만나서 반갑습니다, 댓글 남겨주셔서 감사합니다☆<br>새로 출품했으니 번거로우시겠지만 잘 부탁드립니다☆</div>
+        <div class="m-scmt-foot">
+          <div class="m-scmt-author">
+            <div class="m-scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+            <div class="m-scmt-author-info">
+              <span class="m-scmt-author-name">다고냥</span>
+            </div>
+          </div>
+          <span class="m-scmt-date">2024-10-11 22:55</span>
+        </div>
+      </div>
+      <div class="m-scmt-row">
+        <div class="m-scmt-content">만나서 반갑습니다.<br>다른 옵션으로 변경 후 구입 희망합니다. 잘 부탁드립니다(*_*)</div>
+        <div class="m-scmt-foot">
+          <div class="m-scmt-author">
+            <div class="m-scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+            <div class="m-scmt-author-info">
+              <span class="m-scmt-author-name">비드바이 공식어카운트</span>
+            </div>
+          </div>
+          <span class="m-scmt-date">2024-10-11 22:54</span>
+        </div>
+      </div>
+      <div class="m-scmt-row">
+        <div class="m-scmt-content">고마워요^^<br>지금은 재고가 있으니 구입 시에 또 말씀해 주시면 좋겠습니다^^♡</div>
+        <div class="m-scmt-foot">
+          <div class="m-scmt-author">
+            <div class="m-scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+            <div class="m-scmt-author-info">
+              <span class="m-scmt-author-name">다고냥</span>
+            </div>
+          </div>
+          <span class="m-scmt-date">2024-09-17 17:50</span>
+        </div>
+      </div>
+      <div class="m-scmt-row">
+        <div class="m-scmt-content">답변해 주셔서 감사합니다.<br>구입하고 싶습니다만, 직거래는 가능할까요?</div>
+        <div class="m-scmt-foot">
+          <div class="m-scmt-author">
+            <div class="m-scmt-avatar"><i class="fa-regular fa-circle-user"></i></div>
+            <div class="m-scmt-author-info">
+              <span class="m-scmt-author-name">부린</span>
+            </div>
+          </div>
+          <span class="m-scmt-date">2024-09-17 17:41</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ── 연관 상품 ── -->
+<!-- ── 관련 상품 ── -->
 <div class="m-related-section">
   <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-layer-group"></i> 연관 상품</div>
+    <div class="m-related-title">관련상품</div>
     <span class="m-related-more">더보기</span>
   </div>
   <div class="m-related-grid">

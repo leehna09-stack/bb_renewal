@@ -98,12 +98,9 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .lightbox-close:hover{background:rgba(255,255,255,.3)}
 
 /* 판매자 카드 */
-.seller-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:auto;margin-bottom:16px}
-.seller-card-top{display:flex;align-items:center;gap:12px}
-.seller-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FFD0DC,#FF8FAD);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
-.seller-name{font-size:14px;font-weight:700;color:var(--tp);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.btn-seller{background:#fff;border:1.5px solid var(--border);color:var(--ts);font-size:12px;font-weight:600;padding:7px 14px;border-radius:5px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0;margin-left:auto}
-.btn-seller:hover,.btn-seller.active{border-color:var(--rose);color:var(--rose)}
+.seller-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;margin-top:auto;margin-bottom:16px}
+.seller-card-label{font-size:12px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em}
+.seller-name{font-size:14px;font-weight:700;color:var(--tp);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ── 주문 패널 (좌: 주문폼 / 우: 비용계산) ── */
 .item-info-area{display:flex;flex-direction:column;height:100%;min-height:0}
@@ -223,7 +220,10 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .tab-btn.active{color:var(--rose);border-bottom-color:var(--rose)}
 .tab-btn:hover:not(.active){color:var(--tp)}
 .tab-content{display:none}
+.related-all-section{max-width:1440px;margin:0 auto;padding:32px 24px 40px}
 .tab-content.active{display:block}
+.buy-check-title{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--tp);font-size:15px;font-weight:800}
+.buy-check-title i{color:var(--ts);font-size:14px}
 .desc-block{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;font-size:13px;line-height:1.8;color:var(--ts)}
 .desc-block h4{font-size:13px;font-weight:700;color:var(--tp);margin-bottom:8px}
 .desc-block p{margin-bottom:10px}
@@ -394,11 +394,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     </div>
 
     <div class="seller-card">
-      <div class="seller-card-top">
-        <div class="seller-avatar">J</div>
-        <span class="seller-name">Jon0653</span>
-        <button class="btn-seller" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-heart"></i> 관심 판매자</button>
-      </div>
+      <div class="seller-card-label">스토어 정보</div>
+      <div class="seller-name">Jon0653</div>
     </div>
   </div>
 
@@ -538,7 +535,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
 
   <div class="info-panel-card seller-other-panel">
     <div class="info-panel-header">
-      <span><i class="fa-solid fa-box-open"></i> 판매자의 다른 상품</span>
+      <span><i class="fa-solid fa-box-open"></i>판매자의 다른 상품</span>
       <span class="seller-other-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></span>
     </div>
     <div class="info-panel-body" style="padding:16px 20px">
@@ -552,46 +549,20 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       </div>
     </div>
   </div>
-
-  <div class="info-panel-card">
-    <div class="info-panel-header"><i class="fa-solid fa-list-ul"></i> 구매 상세정보</div>
-    <div class="info-panel-body" style="padding:16px 20px">
-      <div class="acc-info-split">
-        <div class="acc-info-col">
-          <table class="acc-info-table">
-            <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
-            <tr><th>카테고리</th><td>카메라 &gt; 렌즈 &gt; 줌렌즈</td></tr>
-            <tr><th>브랜드</th><td>SONY (소니)</td></tr>
-            <tr><th>상품유형</th><td><span style="color:var(--green);font-weight:700">신상품</span></td></tr>
-            <tr><th>기간 및 수량</th><td>상시판매, <span class="roboto">2</span>개</td></tr>
-          </table>
-        </div>
-        <div class="acc-info-col">
-          <table class="acc-info-table">
-            <tr><th>배송안내</th><td>무료운송, 발송까지 1~2일 소요</td></tr>
-            <tr><th>발송지역</th><td>효고현 (兵庫県)</td></tr>
-            <tr><th>현지배송료 부담</th><td>판매자 부담 (무료)</td></tr>
-            <tr><th>반품가능여부</th><td>반품불가</td></tr>
-            <tr><th>통관 안내</th><td>통관 가능여부는 관세청에 사전 확인 바랍니다.</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <!-- 하단: 상세 탭 -->
 <div class="bottom-area">
   <div class="detail-section">
     <div class="tab-header">
-      <button class="tab-btn active" onclick="switchTab(this,'desc')">구매상세정보</button>
-      <button class="tab-btn" onclick="switchTab(this,'related')">연관아이템</button>
+      <button class="tab-btn active" onclick="switchTab(this,'desc')">상품 상세정보</button>
+      <button class="tab-btn" onclick="scrollToSection(this,'relatedProductsSection')">관련상품</button>
     </div>
 
-    <!-- 구매상세정보 -->
+    <!-- 상품 상세정보 -->
     <div class="tab-content active" id="tab-desc">
       <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:12px;line-height:2;color:var(--ts);margin-bottom:12px">
+        <div class="buy-check-title"><i class="fa-regular fa-circle-check"></i> 구매 전 꼭 확인해주세요.</div>
         <div>– 이 제품은 구매대행을 통하여 유통되는 제품입니다.</div>
         <div>– 이 제품은 ［전기용품 및 생활용품 안전관리법］에 따른 안전관리대상 제품입니다.</div>
         <div>– 통관 가능여부는 회원이 미리 관세청에 확인하신 후 구매신청을 부탁드립니다.</div>
@@ -616,64 +587,64 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
       </div>
     </div>
 
-    <!-- 연관아이템 -->
-    <div class="tab-content" id="tab-related">
-      <div class="section-header">
-        <div class="section-title">연관 아이템</div>
-        <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
-      </div>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 FE 20-70mm F4 G 신품</div>
-            <div class="product-price roboto">¥158,000</div>
-            <span class="product-price-krw">약 1,437,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 FE 16-25mm F2.8 G</div>
-            <div class="product-price roboto">¥168,000</div>
-            <span class="product-price-krw">약 1,528,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">탐론 17-28mm F2.8 소니 E마운트</div>
-            <div class="product-price roboto">¥89,800</div>
-            <span class="product-price-krw">약 817,180원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">시그마 16-28mm F2.8 DG DN</div>
-            <div class="product-price roboto">¥94,500</div>
-            <span class="product-price-krw">약 859,950원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">소니 a7IV 바디 신품</div>
-            <div class="product-price roboto">¥298,000</div>
-            <span class="product-price-krw">약 2,711,800원</span>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
-          <div class="product-info">
-            <div class="product-name">렌즈 보호필터 72mm PRO1D</div>
-            <div class="product-price roboto">¥3,980</div>
-            <span class="product-price-krw">약 36,218원</span>
-          </div>
-        </div>
+  </div>
+</div>
+
+<!-- 관련상품 (하단 전체 너비) -->
+<div class="related-all-section" id="relatedProductsSection">
+  <div class="section-header">
+    <div class="section-title">관련상품</div>
+    <div class="section-more">전체보기 <i class="fa-solid fa-chevron-right" style="font-size:10px"></i></div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">소니 FE 20-70mm F4 G 신품</div>
+        <div class="product-price roboto">¥158,000</div>
+        <span class="product-price-krw">약 1,437,800원</span>
       </div>
     </div>
-
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">소니 FE 16-25mm F2.8 G</div>
+        <div class="product-price roboto">¥168,000</div>
+        <span class="product-price-krw">약 1,528,800원</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">탐론 17-28mm F2.8 소니 E마운트</div>
+        <div class="product-price roboto">¥89,800</div>
+        <span class="product-price-krw">약 817,180원</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">시그마 16-28mm F2.8 DG DN</div>
+        <div class="product-price roboto">¥94,500</div>
+        <span class="product-price-krw">약 859,950원</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">소니 a7IV 바디 신품</div>
+        <div class="product-price roboto">¥298,000</div>
+        <span class="product-price-krw">약 2,711,800원</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><div class="product-thumb-inner"><i class="fa-regular fa-image"></i></div></div>
+      <div class="product-info">
+        <div class="product-name">렌즈 보호필터 72mm PRO1D</div>
+        <div class="product-price roboto">¥3,980</div>
+        <span class="product-price-krw">약 36,218원</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -789,6 +760,13 @@ function switchTab(btn, id) {
   btn.classList.add('active');
   document.querySelectorAll('.tab-content').forEach(function (c) { c.classList.remove('active'); });
   document.getElementById('tab-' + id).classList.add('active');
+}
+
+function scrollToSection(btn, sectionId) {
+  document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var el = document.getElementById(sectionId);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // 모달
