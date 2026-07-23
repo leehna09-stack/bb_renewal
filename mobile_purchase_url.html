@@ -83,23 +83,22 @@
     .breadcrumb a { color: var(--navy); }
     .breadcrumb i { font-size: 8px; color: var(--tm); }
 
-    /* ── 페이지 타이틀 ── */
-    .page-title-bar {
-      background: var(--white);
-      padding: 14px 16px 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    .page-title { font-size: 17px; font-weight: 900; color: var(--tp); margin: 0 0 2px; }
-    .page-subtitle { font-size: 12px; color: var(--ts); margin: 0; }
-    .title-action-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-    .title-btn {
+    /* ── 페이지 타이틀 (경매대행과 동일 구조) ── */
+    .m-title-area { background: var(--white); padding: 12px 16px 14px; border-bottom: 1px solid var(--border); }
+    .m-title-ko { font-size: 15px; font-weight: 700; color: var(--tp); line-height: 1.5; margin-bottom: 4px; }
+    .m-title-jp { font-size: 11px; color: var(--tm); line-height: 1.5; }
+    .m-title-actions { display: flex; gap: 6px; padding: 10px 16px; background: var(--white); overflow-x: auto; scrollbar-width: none; }
+    .m-title-actions::-webkit-scrollbar { display: none; }
+    .m-title-action-btn {
       display: flex; align-items: center; gap: 5px;
-      padding: 6px 12px; border: 1px solid var(--border);
+      padding: 6px 12px; border: 1.5px solid var(--border);
       border-radius: 5px; background: var(--white);
-      font-size: 11px; font-weight: 600; color: var(--ts);
+      font-size: 12px; font-weight: 600; color: var(--ts);
+      cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0;
     }
-    .title-btn i { font-size: 11px; }
-    .title-btn.active { border-color: var(--rose); color: var(--rose); }
+    .m-title-action-btn i { font-size: 11px; }
+    .m-title-action-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .m-title-action-btn.active { border-color: var(--rose); color: var(--rose); }
 
     /* ── 이미지 갤러리 ── */
     .gallery-section { background: var(--white); padding: 16px 16px 0; }
@@ -135,12 +134,12 @@
     .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ── 메인 콘텐츠 ── */
-    .main-content { padding: 12px 16px 100px; display: flex; flex-direction: column; gap: 12px; }
+    .main-content { padding: 12px 16px 100px; display: flex; flex-direction: column; gap: 0px; }
 
     /* 상품 정보 카드 */
     .info-card {
       background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden;
+      border-radius: 0px; overflow: hidden;
     }
     .card-header {
       padding: 12px 16px; border-bottom: 1px solid var(--border);
@@ -298,14 +297,14 @@
 </div>
 
 <!-- 페이지 타이틀 -->
-<div class="page-title-bar">
-  <h1 class="page-title">URL 직접입력 구매대행</h1>
-  <p class="page-subtitle">검색한 URL의 상품 정보와 옵션을 직접 입력해 구매신청을 진행합니다.</p>
-  <div class="title-action-row">
-    <button class="title-btn" type="button"><i class="fa-solid fa-language"></i> 원문 페이지</button>
-    <button class="title-btn" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-star"></i> 관심키워드</button>
-    <button class="title-btn" type="button"><i class="fa-solid fa-share-nodes"></i> 공유하기</button>
-  </div>
+<div class="m-title-area">
+  <div class="m-title-ko">URL 직접입력 구매대행</div>
+  <div class="m-title-jp">검색한 URL의 상품 정보와 옵션을 직접 입력해 구매신청을 진행합니다.</div>
+</div>
+<div class="m-title-actions">
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-language"></i> 원문 페이지</button>
+  <button class="m-title-action-btn" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-star"></i> 관심물품</button>
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-share-nodes"></i> 공유하기</button>
 </div>
 
 <!-- 이미지 갤러리 -->

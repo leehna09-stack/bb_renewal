@@ -135,8 +135,11 @@ a{text-decoration:none;color:inherit}
 .m-spec-info-table{width:100%;border-collapse:collapse;font-size:12px}
 .m-spec-info-table th{width:96px;text-align:left;padding:7px 0;color:var(--tm);font-weight:600;vertical-align:top}
 .m-spec-info-table td{padding:7px 0;color:var(--tp)}
-.m-title-actions{display:flex;gap:6px;padding:0 16px 12px;background:#fff;flex-wrap:wrap}
-.m-title-action-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:11px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
+.m-title-actions{display:flex;gap:6px;padding:10px 16px;background:#fff;overflow-x:auto;scrollbar-width:none}
+.m-title-actions::-webkit-scrollbar{display:none}
+.m-title-action-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border:1.5px solid var(--border);border-radius:5px;background:#fff;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.m-title-action-btn i{font-size:11px}
+.m-title-action-btn:hover{border-color:var(--navy);color:var(--navy)}
 .m-title-action-btn.active{border-color:var(--amber);color:var(--amber)}
 .m-order-request-wrap{position:relative}
 .m-order-request-count{position:absolute;right:12px;bottom:8px;font-size:10px;color:var(--tm);pointer-events:none;background:#fff;padding-left:4px}
@@ -251,7 +254,7 @@ a{text-decoration:none;color:inherit}
 </div>
 <div class="m-title-actions">
   <button class="m-title-action-btn" type="button"><i class="fa-solid fa-language"></i> 원문 페이지</button>
-  <button class="m-title-action-btn" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-star"></i> 관심키워드</button>
+  <button class="m-title-action-btn" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-star"></i> 관심물품</button>
   <button class="m-title-action-btn" type="button"><i class="fa-solid fa-share-nodes"></i> 공유하기</button>
 </div>
 
@@ -281,7 +284,7 @@ a{text-decoration:none;color:inherit}
 <div class="m-price-section">
   <div class="m-price-original roboto">148,500엔</div>
   <div class="m-price-current roboto"><span class="sale">8%</span>136,000<span class="unit">엔</span></div>
-  <div class="m-price-krw">약 ₩1,264,800 (환율 9.3원/엔)</div>
+  <div class="m-price-krw">약 ₩1,264,800</div>
   <div class="m-state-badges">
     <span class="m-badge">신품·미사용</span>
     <span class="m-badge">재고 있음</span>
