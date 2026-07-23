@@ -139,6 +139,14 @@
     .item-meta { display: grid; gap: 3px; color: var(--ts); font-size: 12px; }
     .item-meta b { color: var(--ts); font-weight: 800; margin-right: 6px; }
     .item-meta .seller-good { color: var(--navy); font-weight: 700; }
+    .seller-eval { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; vertical-align: middle; font-size: 11px; color: var(--tp); }
+    .seller-eval__item { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+    .seller-eval__item i { font-size: 12px; line-height: 1; }
+    .seller-eval__item.good i { color: #19bfb4; }
+    .seller-eval__item.bad i { color: #f26a21; }
+    .seller-eval__count.good { color: #0070c9; }
+    .seller-eval__count.bad { color: #e8382f; }
+    .seller-eval__divider { width: 1px; height: 12px; background: #d8d8d8; }
 
     .item-btns {
       display: flex; gap: 6px; flex-wrap: wrap;
@@ -172,6 +180,33 @@
     }
     .notes li { display: flex; gap: 6px; }
     .notes li::before { content: '·'; color: var(--rose); font-weight: 900; flex-shrink: 0; }
+
+    /* ── 예약 재입찰 팝업 ── */
+    .rebid-modal { position: fixed; inset: 0; background: rgba(17,24,39,.45); display: none; align-items: center; justify-content: center; z-index: 500; padding: 16px; }
+    .rebid-modal.open { display: flex; }
+    .rebid-modal-card { width: min(400px, 100%); background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.18); overflow: hidden; max-height: 90vh; overflow-y: auto; }
+    .rebid-modal-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .rebid-modal-head strong { font-size: 15px; color: var(--ink); }
+    .rebid-modal-close { border: none; background: none; font-size: 18px; color: var(--tm); cursor: pointer; }
+    .rebid-modal-body { padding: 20px; }
+    .rebid-row { display: grid; grid-template-columns: 72px minmax(0,1fr); align-items: center; gap: 12px; margin-bottom: 14px; }
+    .rebid-row:last-of-type { margin-bottom: 20px; }
+    .rebid-label { font-size: 13px; font-weight: 800; color: var(--ts); }
+    .rebid-input-wrap { display: flex; align-items: center; gap: 8px; height: 42px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--white); padding: 0 12px; }
+    .rebid-input-wrap:focus-within { border-color: var(--navy); }
+    .rebid-input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: var(--ink); font-family: inherit; font-size: 14px; font-weight: 800; }
+    .rebid-unit { font-size: 12px; font-weight: 700; color: var(--ts); }
+    .reserve-select { width: 100%; height: 42px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--white); color: var(--ink); font-family: inherit; font-size: 13px; font-weight: 700; padding: 0 12px; outline: none; }
+    .reserve-select:focus { border-color: var(--navy); }
+    .reserve-date-wrap { display: flex; align-items: center; gap: 8px; }
+    .reserve-date { flex: 1; min-width: 0; height: 42px; padding: 0 10px; border: 1.5px solid var(--border); border-radius: 8px; background: #FAFBFC; display: flex; align-items: center; gap: 6px; color: var(--ink); font-size: 12px; font-weight: 900; white-space: nowrap; overflow: hidden; }
+    .reserve-date-offset { color: var(--ts); font-size: 11px; font-weight: 700; }
+    .reserve-date-edit { flex: 0 0 auto; width: 42px; height: 42px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--white); color: var(--navy); font-size: 15px; display: grid; place-items: center; }
+    .reserve-date-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .rebid-modal-actions { display: flex; justify-content: center; gap: 8px; padding-top: 6px; }
+    .rebid-btn-cancel, .rebid-btn-confirm { flex: 1; height: 44px; border-radius: 5px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .rebid-btn-cancel { background: var(--white); color: var(--ts); border: 1px solid var(--border); }
+    .rebid-btn-confirm { background: var(--navy); color: #fff; border: none; }
   </style>
 </head>
 <body>
@@ -226,12 +261,11 @@
 
   <!-- 입찰 결과 -->
   <div class="result-box">
-    <div class="result-row"><b>예약입찰금액</b><span class="val amount" id="rsAmount">¥ 1,300 <span class="sub">(약 ₩12,090)</span></span></div>
-    <div class="result-row"><b>예약입찰 수량</b><span class="val" id="rsQty">1개</span></div>
-    <div class="result-row"><b>예약일시</b><span class="val" id="rsReserveAt">입찰종료 1시간 전</span></div>
-    <div class="result-row"><b>경매낙찰정보</b><span class="val" id="rsOpen">공개</span></div>
+    <div class="result-row"><b>예약입찰금액</b><span class="val amount" id="rsAmount">1,300 엔 (천삼백 엔)</span></div>
+    <div class="result-row qty-result-row"><b>예약입찰 수량</b><span class="val" id="rsQty">1개</span></div>
+    <div class="result-row"><b>예약일시</b><span class="val" id="rsReserveAt">2026-06-14 11:12:12 <br><span class="sub">(종료 1시간 전)</span></span></div>
     <div class="result-row"><b>예약 신청시각</b><span class="val" id="rsBidTime">2026-06-15 00:00:00</span></div>
-    <div class="result-row"><b>경매 종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
+    <div class="result-row"><b>경매 종료시간</b><span class="val" id="rsEndTime">2026-06-14 12:12:12</span></div>
   </div>
   <p class="pay-notice">예약입찰은 설정한 예약일시에 자동으로 입찰 요청됩니다. 낙찰 시 <b>24시간 내 낙찰금액의 1차 결제</b>를 진행해 주세요.</p>
 
@@ -244,14 +278,14 @@
     <div class="item-info">
       <p class="item-name">소니 렌즈 신품미사용! FE PZ 16-35mm F4 G SELP1635G</p>
       <div class="item-meta">
-        <span><b>물품아이디</b>v1135509199 (옵션명)</span>
-        <span><b>출품자</b>bookoff2014 <span class="seller-good">(평가 1,372,983 · 98%)</span></span>
+        <span><b>물품아이디</b>v1135509199</span>
+        <span><b>출품자</b>bookoff2014 <span class="seller-eval"><span class="seller-eval__item good"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i><span>좋은평가</span> <span class="seller-eval__count good">1,071</span></span><span class="seller-eval__divider" aria-hidden="true"></span><span class="seller-eval__item bad"><i class="fa-solid fa-thumbs-down" aria-hidden="true"></i><span>나쁜평가</span> <span class="seller-eval__count bad">6</span></span></span></span>
         <span><b>예약신청일시</b><span id="bidTime">2026-06-15 00:00:00</span></span>
       </div>
     </div>
   </div>
   <div class="item-btns">
-    <button class="item-action-btn primary" type="button" onclick="location.href='mobile_auction reserve order.html'">예약 재입찰 <i class="fas fa-rotate-right"></i></button>
+    <button class="item-action-btn primary" type="button" onclick="openReserveRebidModal()">예약 재입찰하기 <i class="fas fa-rotate-right"></i></button>
     <button class="item-action-btn" type="button" onclick="location.href='mobile_auction.html'">상세보기 <i class="fas fa-magnifying-glass"></i></button>
     <button class="item-action-btn" type="button" onclick="shareBidItem()">공유하기 <i class="fas fa-share-nodes"></i></button>
   </div>
@@ -271,6 +305,57 @@
 
 </div>
 
+<div class="rebid-modal" id="reserveRebidModal" onclick="closeReserveRebidModal(event)">
+  <div class="rebid-modal-card" onclick="event.stopPropagation()">
+    <div class="rebid-modal-head">
+      <strong>예약 재입찰하기</strong>
+      <button class="rebid-modal-close" type="button" onclick="closeReserveRebidModal()">&times;</button>
+    </div>
+    <div class="rebid-modal-body">
+      <div class="rebid-row">
+        <label class="rebid-label" for="reserveRebidAmountInput">입찰금액</label>
+        <div class="rebid-input-wrap">
+          <input type="number" class="rebid-input" id="reserveRebidAmountInput" min="1" step="100">
+          <span class="rebid-unit">엔</span>
+        </div>
+      </div>
+      <div class="rebid-row">
+        <label class="rebid-label" for="reserveRebidQtyInput">수량</label>
+        <div class="rebid-input-wrap">
+          <input type="number" class="rebid-input" id="reserveRebidQtyInput" min="1" step="1">
+          <span class="rebid-unit">개</span>
+        </div>
+      </div>
+      <div class="rebid-row">
+        <label class="rebid-label" for="reserveRebidOffsetSelect">예약시점</label>
+        <select class="reserve-select" id="reserveRebidOffsetSelect" onchange="updateReserveRebidDate()">
+          <option value="30">종료 30초 전</option>
+          <option value="60">종료 1분 전</option>
+          <option value="300">종료 5분 전</option>
+          <option value="600">종료 10분 전</option>
+          <option value="1800">종료 30분 전</option>
+          <option value="3600" selected>종료 1시간 전</option>
+        </select>
+      </div>
+      <div class="rebid-row">
+        <span class="rebid-label">예약일시</span>
+        <div class="reserve-date-wrap">
+          <div class="reserve-date">
+            <span id="reserveRebidDate">2026-06-10 21:34:00</span>
+            <span class="reserve-date-offset" id="reserveRebidOffsetLabel">(종료 1시간 전)</span>
+          </div>
+          <button class="reserve-date-edit" type="button" onclick="openReserveRebidDatePicker()" aria-label="예약일시 직접 지정"><i class="fa-regular fa-calendar" aria-hidden="true"></i></button>
+          <input class="reserve-date-input" type="datetime-local" id="reserveRebidDateInput" step="1" onchange="applyReserveRebidManualDate()">
+        </div>
+      </div>
+      <div class="rebid-modal-actions">
+        <button class="rebid-btn-cancel" type="button" onclick="closeReserveRebidModal()">취소</button>
+        <button class="rebid-btn-confirm" type="button" onclick="submitReserveRebid()">예약 입찰하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function doMLogin(){
   document.getElementById('m-guest-area').style.display = 'none';
@@ -280,18 +365,47 @@ function doMLogin(){
   const p = new URLSearchParams(location.search);
   const bid = parseInt(p.get('bid') || '', 10);
   const qty = p.get('qty');
-  const open = p.get('open');
   const reserveAt = p.get('reserveAt');
-  const KRW_RATE = 9.3;
+  const reserveOffset = p.get('reserveOffset');
+
+  function formatBidYen(value) {
+    const amount = Number(value) || 0;
+    return amount.toLocaleString('ko-KR') + ' 엔 (' + numberToKorean(amount) + ' 엔)';
+  }
+
+  function numberToKorean(value) {
+    const amount = Number(value) || 0;
+    if (amount === 0) return '영';
+    const digitNames = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+    const smallUnits = ['', '십', '백', '천'];
+    const bigUnits = ['', '만', '억'];
+    const readGroup = group => {
+      let text = '';
+      const digits = String(group).padStart(4, '0').split('').map(Number);
+      digits.forEach((digit, index) => {
+        if (!digit) return;
+        const unitIndex = 3 - index;
+        text += (digit === 1 && unitIndex > 0 ? '' : digitNames[digit]) + smallUnits[unitIndex];
+      });
+      return text;
+    };
+    const groups = [];
+    let rest = amount;
+    while (rest > 0) {
+      groups.push(rest % 10000);
+      rest = Math.floor(rest / 10000);
+    }
+    return groups.map((group, index) => group ? readGroup(group) + bigUnits[index] : '').reverse().join('');
+  }
 
   if (bid > 0) {
-    const krw = Math.round(bid * KRW_RATE).toLocaleString('ko-KR');
-    document.getElementById('rsAmount').innerHTML =
-      '¥ ' + bid.toLocaleString('ko-KR') + ' <span class="sub">(약 ₩' + krw + ')</span>';
+    document.getElementById('rsAmount').textContent = formatBidYen(bid);
   }
   if (qty) document.getElementById('rsQty').textContent = qty + '개';
-  if (open) document.getElementById('rsOpen').textContent = open;
-  if (reserveAt) document.getElementById('rsReserveAt').textContent = reserveAt;
+  if (reserveAt) {
+    document.getElementById('rsReserveAt').innerHTML =
+      reserveAt + (reserveOffset ? ' <span class="sub">(' + reserveOffset + ')</span>' : '');
+  }
 
   const now = new Date();
   const pad = n => String(n).padStart(2, '0');
@@ -306,6 +420,149 @@ function shareBidItem() {
   const shareData = { title: 'Bidbuy 입찰 물품', text: '소니 렌즈 신품미사용! FE PZ 16-35mm F4 G SELP1635G', url: location.href };
   if (navigator.share) { navigator.share(shareData); return; }
   navigator.clipboard?.writeText(location.href);
+}
+
+/* 예약 재입찰 팝업 */
+let reserveRebidDateManuallyEdited = false;
+
+function padDatePart(value) {
+  return String(value).padStart(2, '0');
+}
+
+function formatDateTime(date) {
+  return date.getFullYear() + '-' + padDatePart(date.getMonth() + 1) + '-' + padDatePart(date.getDate())
+    + ' ' + padDatePart(date.getHours()) + ':' + padDatePart(date.getMinutes()) + ':' + padDatePart(date.getSeconds());
+}
+
+function formatDateTimeLocal(date) {
+  return date.getFullYear() + '-' + padDatePart(date.getMonth() + 1) + '-' + padDatePart(date.getDate())
+    + 'T' + padDatePart(date.getHours()) + ':' + padDatePart(date.getMinutes()) + ':' + padDatePart(date.getSeconds());
+}
+
+function getReserveAuctionEndDate() {
+  const text = document.getElementById('rsEndTime')?.textContent.trim() || '2026-06-14 12:12:12';
+  const match = text.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/);
+  if (!match) return new Date(2026, 5, 14, 12, 12, 12);
+  return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]), Number(match[4]), Number(match[5]), Number(match[6]));
+}
+
+function parseReserveRebidDate() {
+  const text = document.getElementById('reserveRebidDate')?.textContent.trim() || '';
+  const match = text.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/);
+  if (!match) return getReserveAuctionEndDate();
+  return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]), Number(match[4]), Number(match[5]), Number(match[6]));
+}
+
+function formatReserveOffsetLabel(reserveDate, auctionEnd) {
+  const diffSeconds = Math.max(0, Math.round((auctionEnd.getTime() - reserveDate.getTime()) / 1000));
+  const hours = Math.floor(diffSeconds / 3600);
+  const minutes = Math.floor((diffSeconds % 3600) / 60);
+  const seconds = diffSeconds % 60;
+  const parts = [];
+  if (hours) parts.push(hours + '시간');
+  if (minutes) parts.push(minutes + '분');
+  if (!hours && !minutes) parts.push(seconds + '초');
+  return '종료 ' + parts.join(' ') + ' 전';
+}
+
+function updateReserveRebidOffsetLabel(reserveDate) {
+  const label = document.getElementById('reserveRebidOffsetLabel');
+  if (!label) return;
+  label.textContent = '(' + formatReserveOffsetLabel(reserveDate, getReserveAuctionEndDate()) + ')';
+}
+
+function updateReserveRebidDate() {
+  const select = document.getElementById('reserveRebidOffsetSelect');
+  const dateEl = document.getElementById('reserveRebidDate');
+  if (!select || !dateEl) return '';
+  reserveRebidDateManuallyEdited = false;
+  const offsetSeconds = Number(select.value || 3600);
+  const reserveDate = new Date(getReserveAuctionEndDate().getTime() - offsetSeconds * 1000);
+  const formatted = formatDateTime(reserveDate);
+  dateEl.textContent = formatted;
+  updateReserveRebidOffsetLabel(reserveDate);
+  return formatted;
+}
+
+function parseCurrentReserveBidAmount() {
+  const text = document.getElementById('rsAmount')?.textContent || '';
+  const match = text.match(/([\d,]+)/);
+  return match ? Number(match[1].replace(/,/g, '')) : 0;
+}
+
+function parseCurrentReserveBidQty() {
+  const text = document.getElementById('rsQty')?.textContent || '';
+  const match = text.match(/(\d+)/);
+  return match ? Number(match[1]) : 1;
+}
+
+function openReserveRebidModal() {
+  document.getElementById('reserveRebidAmountInput').value = parseCurrentReserveBidAmount();
+  document.getElementById('reserveRebidQtyInput').value = parseCurrentReserveBidQty();
+  updateReserveRebidDate();
+  document.getElementById('reserveRebidModal')?.classList.add('open');
+}
+
+function closeReserveRebidModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('reserveRebidModal')?.classList.remove('open');
+}
+
+function openReserveRebidDatePicker() {
+  const input = document.getElementById('reserveRebidDateInput');
+  if (!input) return;
+  const current = parseReserveRebidDate();
+  const end = getReserveAuctionEndDate();
+  input.value = formatDateTimeLocal(current);
+  input.max = formatDateTimeLocal(end);
+  input.focus();
+  if (input.showPicker) input.showPicker();
+  else input.click();
+}
+
+function applyReserveRebidManualDate() {
+  const input = document.getElementById('reserveRebidDateInput');
+  if (!input?.value) return;
+  const selected = new Date(input.value);
+  const end = getReserveAuctionEndDate();
+  if (Number.isNaN(selected.getTime())) return;
+  if (selected.getTime() > end.getTime()) {
+    alert('예약일시는 경매 종료시간을 넘을 수 없습니다.');
+    updateReserveRebidDate();
+    return;
+  }
+  document.getElementById('reserveRebidDate').textContent = formatDateTime(selected);
+  updateReserveRebidOffsetLabel(selected);
+  reserveRebidDateManuallyEdited = true;
+}
+
+function submitReserveRebid() {
+  const amount = Number(document.getElementById('reserveRebidAmountInput').value);
+  const qty = Number(document.getElementById('reserveRebidQtyInput').value);
+  const select = document.getElementById('reserveRebidOffsetSelect');
+
+  if (!amount || amount <= 0) {
+    alert('입찰금액을 올바르게 입력해 주세요.');
+    return;
+  }
+  if (!qty || qty <= 0) {
+    alert('수량을 올바르게 입력해 주세요.');
+    return;
+  }
+
+  const reserveAt = reserveRebidDateManuallyEdited
+    ? document.getElementById('reserveRebidDate').textContent.trim()
+    : updateReserveRebidDate();
+  const reserveOffset = reserveRebidDateManuallyEdited
+    ? formatReserveOffsetLabel(parseReserveRebidDate(), getReserveAuctionEndDate())
+    : (select?.options[select.selectedIndex]?.textContent.trim() || '');
+  const params = new URLSearchParams({
+    bid: String(amount),
+    qty: String(qty),
+    reserveOffset,
+    reserveAt
+  });
+  window.location.href = 'mobile_auction_reserve_order.html?' + params.toString();
 }
 </script>
 <script src="bb-common-mobile.js"></script>

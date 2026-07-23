@@ -113,7 +113,7 @@ a{text-decoration:none;color:inherit}
 .m-input:focus{border-color:var(--navy)}
 .m-qty-btn{width:44px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:18px;font-weight:700;cursor:pointer;flex-shrink:0}
 .m-qty-input{flex:1;text-align:center}
-.m-textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:13px;font-family:inherit;outline:none;resize:none;height:70px}
+.m-textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 10px;font-size:13px;font-family:inherit;outline:none;resize:none;height:70px}
 .m-textarea:focus{border-color:var(--navy)}
 .m-form-select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;background:#fff;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999BAA'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .m-cost-select-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
@@ -128,6 +128,33 @@ a{text-decoration:none;color:inherit}
 .m-cost-total-label{font-size:13px;font-weight:700}
 .m-cost-total-val{font-size:18px;font-weight:700;color:var(--rose);font-family:'Roboto',sans-serif}
 .m-btn-notice{font-size:11px;color:var(--tm);padding:10px 16px 12px;background:#FAFBFC;line-height:1.6;border-top:1px solid var(--border)}
+.m-cost-subtitle{font-size:12px;font-weight:700;color:var(--tp);margin:10px 0 4px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.m-cost-subtitle:first-child{margin-top:0}
+
+/* ── 구매 상세정보 / 판매자 다른상품 (웹 동기화) ── */
+.m-spec-info-table{width:100%;border-collapse:collapse;font-size:12px}
+.m-spec-info-table th{width:96px;text-align:left;padding:7px 0;color:var(--tm);font-weight:600;vertical-align:top}
+.m-spec-info-table td{padding:7px 0;color:var(--tp)}
+.m-title-actions{display:flex;gap:6px;padding:0 16px 12px;background:#fff;flex-wrap:wrap}
+.m-title-action-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:11px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
+.m-title-action-btn.active{border-color:var(--amber);color:var(--amber)}
+.m-order-request-wrap{position:relative}
+.m-order-request-count{position:absolute;right:12px;bottom:8px;font-size:10px;color:var(--tm);pointer-events:none;background:#fff;padding-left:4px}
+
+/* ── 확인 모달 ── */
+.m-confirm-modal{position:fixed;inset:0;background:rgba(17,24,39,.5);display:none;align-items:flex-end;justify-content:center;z-index:900}
+.m-confirm-modal.open{display:flex}
+.m-confirm-modal-card{width:100%;max-width:480px;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,.18);overflow:hidden}
+.m-confirm-modal-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.m-confirm-modal-head strong{font-size:15px;color:var(--tp)}
+.m-confirm-modal-close{border:none;background:none;font-size:18px;color:var(--tm);cursor:pointer}
+.m-confirm-modal-body{padding:18px}
+.m-confirm-amount-box{background:#FAFBFC;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;text-align:center}
+.m-confirm-amount-main{font-size:14px;font-weight:700;color:var(--tp);line-height:1.6}
+.m-confirm-amount-sub{margin-top:4px;font-size:12px;color:var(--ts)}
+.m-confirm-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.m-confirm-btn-line{background:#fff;color:var(--ts);border:1.5px solid var(--border);border-radius:8px;padding:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.m-confirm-btn-main{background:var(--tp);color:#fff;border:none;border-radius:8px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 
 /* ── 아코디언 ── */
 .m-acc-section{background:#fff;border-bottom:1px solid var(--border)}
@@ -169,14 +196,14 @@ a{text-decoration:none;color:inherit}
 .m-rel-price{font-size:13px;font-weight:700;font-family:'Roboto',sans-serif}
 .m-rel-krw{font-size:10px;color:var(--ts)}
 
-/* ── 하단 고정 바 ── */
-.m-sticky-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid var(--border);display:grid;grid-template-columns:64px 1fr 1.3fr;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.1)}
-.m-sticky-wish{background:#fff;border:none;border-right:1px solid var(--border);padding:14px 0;font-size:18px;color:var(--ts);cursor:pointer}
-.m-sticky-cart{background:#fff;color:var(--tp);border:none;border-right:1px solid var(--border);padding:16px 8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
-.m-sticky-buy{background:var(--rose);color:#fff;border:none;padding:16px 8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+/* ── 구매 버튼 (경매대행 실시간입찰/예약입찰 버튼과 동일 스타일) ── */
+.m-buy-btn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);margin-top:0px}
+.m-btn-cart{background:#fff;color:var(--tp);border:none;padding:15px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.m-btn-buy{background:var(--rose);color:#fff;border:none;border-left:1px solid var(--border);padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.m-btn-buy:hover{background:var(--rose-h)}
 
 /* ── 푸터 ── */
-.m-footer{background:var(--tp);color:#fff;padding:24px 16px 90px}
+.m-footer{background:var(--tp);color:#fff;padding:24px 16px 32px}
 .m-footer-logo{font-size:20px;font-weight:900;color:var(--rose);margin-bottom:12px}
 .m-footer-logo span{color:#fff}
 .m-footer-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:14px}
@@ -222,6 +249,11 @@ a{text-decoration:none;color:inherit}
   <div class="m-title-ko">소니 렌즈 신품미사용! FE PZ 16-35mm F4 G SELP1635G</div>
   <div class="m-title-jp">ソニー レンズ 新品未使用! FE PZ 16-35mm F4 G SELP1635G</div>
 </div>
+<div class="m-title-actions">
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-language"></i> 원문 페이지</button>
+  <button class="m-title-action-btn" type="button" onclick="this.classList.toggle('active')"><i class="fa-regular fa-star"></i> 관심키워드</button>
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-share-nodes"></i> 공유하기</button>
+</div>
 
 <!-- ── 갤러리 ── -->
 <div class="m-gallery">
@@ -247,9 +279,9 @@ a{text-decoration:none;color:inherit}
 
 <!-- ── 가격 ── -->
 <div class="m-price-section">
-  <div class="m-price-original">¥148,500</div>
-  <div class="m-price-current roboto"><span class="sale">8%</span>¥136,000<span class="unit">円</span></div>
-  <div class="m-price-krw">≈ ₩1,264,800 (환율 9.3원/¥)</div>
+  <div class="m-price-original roboto">148,500엔</div>
+  <div class="m-price-current roboto"><span class="sale">8%</span>136,000<span class="unit">엔</span></div>
+  <div class="m-price-krw">약 ₩1,264,800 (환율 9.3원/엔)</div>
   <div class="m-state-badges">
     <span class="m-badge">신품·미사용</span>
     <span class="m-badge">재고 있음</span>
@@ -292,8 +324,11 @@ a{text-decoration:none;color:inherit}
       </div>
     </div>
     <div class="m-form-row">
-      <label class="m-form-label">옵션메모</label>
-      <textarea class="m-textarea" placeholder="색상 및 사이즈, 기타 옵션사항을 기재 바랍니다"></textarea>
+      <label class="m-form-label">주문 요청사항</label>
+      <div class="m-order-request-wrap">
+        <textarea class="m-textarea is-guide" id="orderRequest" maxlength="20">주문에 필요한 요청사항을 입력해주세요.</textarea>
+        <span class="m-order-request-count" id="orderRequestCount">0/20</span>
+      </div>
     </div>
   </div>
 
@@ -302,18 +337,25 @@ a{text-decoration:none;color:inherit}
       <select class="m-form-select"><option value="">국제운송 선택</option><option>EMS</option><option>항공</option><option>선박</option></select>
       <select class="m-form-select"><option value="">무게 선택</option><option>1kg</option><option>2kg</option><option>3kg</option></select>
     </div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 상품가격</span><span class="m-cost-val">(¥136,000) ₩1,264,800</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 국제 운송료</span><span class="m-cost-val">(¥3,200) ₩29,760</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지 운송료</span><span class="m-cost-val"><span class="m-cost-defer">무료</span></span></div>
+    <div class="m-cost-subtitle">1차 결제 비용</div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 상품가격</span><span class="m-cost-val">(136,000엔) ₩1,264,800</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행 수수료</span><span class="m-cost-val">(13,600엔) ₩126,480</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 송금 수수료</span><span class="m-cost-val">(300엔) ₩2,790</span></div>
+    <div class="m-cost-subtitle">2차 결제 비용</div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 국제 운송료</span><span class="m-cost-val">(3,200엔) ₩29,760</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지 운송료</span><span class="m-cost-val"><span class="m-cost-defer">2차 결제 시 청구</span></span></div>
     <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 관·부가세</span><span class="m-cost-val"><span class="m-cost-defer">$150 초과 — 수령 시 부과</span></span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행 수수료</span><span class="m-cost-val">(¥13,600) ₩126,480</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 송금 수수료</span><span class="m-cost-val">(¥300) ₩2,790</span></div>
     <div class="m-cost-total">
       <span class="m-cost-total-label">예상 구매대행 구입가</span>
       <span class="m-cost-total-val">₩1,360,590</span>
     </div>
   </div>
 
+  <!-- 구매 버튼 -->
+  <div class="m-buy-btn-wrap">
+    <button class="m-btn-cart" type="button" onclick="openMModal('mCartModal')"><i class="fa-solid fa-cart-shopping"></i> 장바구니</button>
+    <button class="m-btn-buy" type="button" onclick="openMModal('mBuyModal')"><i class="fa-solid fa-bag-shopping"></i> 바로구매</button>
+  </div>
   <p class="m-btn-notice">스토어 구매대행은 현지 재고 상황에 따라 품절·가격 변동이 있을 수 있습니다. 고액 상품은 관·부가세 부과 대상입니다.</p>
 </div>
 
@@ -349,6 +391,27 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
+<!-- ── 구매 상세정보 ── -->
+<div class="m-acc-section" id="macc-purchaseinfo">
+  <button class="m-acc-trigger" onclick="toggleMAcc('macc-purchaseinfo')">
+    <span><i class="fa-solid fa-list-ul icon"></i>구매 상세정보</span>
+    <i class="fa-solid fa-chevron-down chevron"></i>
+  </button>
+  <div class="m-acc-body">
+    <table class="m-spec-info-table">
+      <tr><th>물품아이디</th><td class="roboto" style="color:var(--navy)">1135509199</td></tr>
+      <tr><th>카테고리</th><td>카메라 &gt; 렌즈 &gt; 줌렌즈</td></tr>
+      <tr><th>브랜드</th><td>SONY (소니)</td></tr>
+      <tr><th>상품유형</th><td><span style="color:var(--green);font-weight:700">신상품</span></td></tr>
+      <tr><th>배송안내</th><td>무료운송, 발송까지 1~2일 소요</td></tr>
+      <tr><th>발송지역</th><td>효고현 (兵庫県)</td></tr>
+      <tr><th>현지배송료 부담</th><td>판매자 부담 (무료)</td></tr>
+      <tr><th>반품가능여부</th><td>반품불가</td></tr>
+      <tr><th>통관 안내</th><td>통관 가능여부는 관세청에 사전 확인 바랍니다.</td></tr>
+    </table>
+  </div>
+</div>
+
 <!-- ── 스토어 정보 ── -->
 <div class="m-seller-section">
   <div class="m-seller-title">스토어 정보</div>
@@ -362,6 +425,19 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
+<!-- ── 판매자의 다른 상품 ── -->
+<div class="m-related-section">
+  <div class="m-related-header">
+    <div class="m-related-title"><i class="fa-solid fa-box-open"></i> 판매자의 다른 상품</div>
+    <span class="m-related-more">전체보기</span>
+  </div>
+  <div class="m-related-grid">
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">닌텐도 욧시 탱크 물총</div><div class="m-rel-price roboto">10,000엔</div><div class="m-rel-krw">약 91,000원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">소니 미러리스 바디 캡</div><div class="m-rel-price roboto">3,200엔</div><div class="m-rel-krw">약 29,120원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">FE 24-70mm F2.8 GM II</div><div class="m-rel-price roboto">248,000엔</div><div class="m-rel-krw">약 2,256,800원</div></div></div>
+  </div>
+</div>
+
 <!-- ── 연관 상품 ── -->
 <div class="m-related-section">
   <div class="m-related-header">
@@ -369,9 +445,9 @@ a{text-decoration:none;color:inherit}
     <span class="m-related-more">더보기</span>
   </div>
   <div class="m-related-grid">
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">SEL2470GM2 신품</div><div class="m-rel-price">¥248,000</div><div class="m-rel-krw">₩2,306,400</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">변환 필터 72mm</div><div class="m-rel-price">¥4,800</div><div class="m-rel-krw">₩44,640</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">소니 A7IV 바디</div><div class="m-rel-price">¥298,000</div><div class="m-rel-krw">₩2,771,400</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">SEL2470GM2 신품</div><div class="m-rel-price roboto">248,000엔</div><div class="m-rel-krw">₩2,306,400</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">변환 필터 72mm</div><div class="m-rel-price roboto">4,800엔</div><div class="m-rel-krw">₩44,640</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">소니 A7IV 바디</div><div class="m-rel-price roboto">298,000엔</div><div class="m-rel-krw">₩2,771,400</div></div></div>
   </div>
 </div>
 
@@ -384,13 +460,82 @@ a{text-decoration:none;color:inherit}
   <div class="m-footer-copy">© 2026 BidBuy Korea. All rights reserved.<br>해외 경매·구매대행 서비스</div>
 </footer>
 
-<!-- ── 하단 고정 바 ── -->
-<div class="m-sticky-bar">
-  <button class="m-sticky-wish" type="button" aria-label="관심상품"><i class="fa-regular fa-heart"></i></button>
-  <button class="m-sticky-cart" type="button"><i class="fa-solid fa-cart-shopping"></i> 장바구니</button>
-  <button class="m-sticky-buy" type="button" onclick="location.href='mobile_bill_1st.html'"><i class="fa-solid fa-bag-shopping"></i> 구매 신청하기</button>
+<!-- MODAL :: 장바구니 담기 -->
+<div class="m-confirm-modal" id="mCartModal" onclick="closeMModal('mCartModal',event)">
+  <div class="m-confirm-modal-card" onclick="event.stopPropagation()">
+    <div class="m-confirm-modal-head">
+      <strong>장바구니 담기</strong>
+      <button class="m-confirm-modal-close" type="button" onclick="closeMModal('mCartModal')">&times;</button>
+    </div>
+    <div class="m-confirm-modal-body">
+      <div class="m-confirm-amount-box">
+        <div class="m-confirm-amount-main">해당 구매대행 상품이<br>장바구니에 추가 되었습니다.</div>
+        <div class="m-confirm-amount-sub">장바구니 이동 후 결제 또는 계속쇼핑 할 수 있습니다.</div>
+      </div>
+      <div class="m-confirm-modal-actions">
+        <button class="m-confirm-btn-line" type="button" onclick="closeMModal('mCartModal')">계속쇼핑</button>
+        <button class="m-confirm-btn-main" type="button"><i class="fa-solid fa-cart-shopping" style="margin-right:6px"></i>장바구니 이동</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- MODAL :: 구매신청완료 -->
+<div class="m-confirm-modal" id="mBuyModal" onclick="closeMModal('mBuyModal',event)">
+  <div class="m-confirm-modal-card" onclick="event.stopPropagation()">
+    <div class="m-confirm-modal-head">
+      <strong>구매신청완료</strong>
+      <button class="m-confirm-modal-close" type="button" onclick="closeMModal('mBuyModal')">&times;</button>
+    </div>
+    <div class="m-confirm-modal-body">
+      <div class="m-confirm-amount-box">
+        <div class="m-confirm-amount-main">구매대행 신청이 완료 되었습니다.</div>
+        <div class="m-confirm-amount-sub">마이페이지 주문내역에서 확인 가능합니다.</div>
+      </div>
+      <div class="m-confirm-modal-actions">
+        <button class="m-confirm-btn-line" type="button" onclick="closeMModal('mBuyModal')">계속쇼핑</button>
+        <button class="m-confirm-btn-main" type="button" onclick="location.href='mobile_mypage.html'">주문내역 확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openMModal(id){ document.getElementById(id).classList.add('open'); }
+function closeMModal(id,event){
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById(id).classList.remove('open');
+}
+
+var orderRequestGuide = '주문에 필요한 요청사항을 입력해주세요.';
+var orderRequest = document.getElementById('orderRequest');
+var orderRequestCount = document.getElementById('orderRequestCount');
+function getOrderRequestLength(){
+  if (!orderRequest || orderRequest.classList.contains('is-guide')) return 0;
+  return orderRequest.value.length;
+}
+function updateOrderRequestCount(){
+  if (orderRequestCount) orderRequestCount.textContent = getOrderRequestLength() + '/20';
+}
+if (orderRequest) {
+  orderRequest.addEventListener('focus', function(){
+    if (orderRequest.classList.contains('is-guide')) {
+      orderRequest.value = '';
+      orderRequest.classList.remove('is-guide');
+    }
+    updateOrderRequestCount();
+  });
+  orderRequest.addEventListener('blur', function(){
+    if (!orderRequest.value.trim()) {
+      orderRequest.value = orderRequestGuide;
+      orderRequest.classList.add('is-guide');
+    }
+    updateOrderRequestCount();
+  });
+  orderRequest.addEventListener('input', updateOrderRequestCount);
+  updateOrderRequestCount();
+}
+</script>
 <script>
 function doMLogin(){
   document.getElementById('m-guest-area').style.display = 'none';
@@ -419,13 +564,6 @@ function stepQty(d){
   input.value = Math.max(1, (parseInt(input.value,10)||1) + d);
 }
 function toggleMAcc(id){ document.getElementById(id).classList.toggle('open'); }
-function toggleMWish(btn){
-  btn.classList.toggle('active');
-  const icon = btn.querySelector('i');
-  const active = btn.classList.contains('active');
-  icon.className = active ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
-  btn.querySelector('strong').textContent = active ? '9' : '8';
-}
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>

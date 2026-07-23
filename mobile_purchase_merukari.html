@@ -126,6 +126,44 @@ a{text-decoration:none;color:inherit}
 .m-cost-total-label{font-size:13px;font-weight:700}
 .m-cost-total-val{font-size:18px;font-weight:700;color:var(--rose);font-family:'Roboto',sans-serif}
 .m-btn-notice{font-size:11px;color:var(--tm);padding:10px 16px 12px;background:#FAFBFC;line-height:1.6;border-top:1px solid var(--border)}
+.m-cost-subtitle{font-size:12px;font-weight:700;color:var(--tp);margin:10px 0 4px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.m-cost-subtitle:first-child{margin-top:0}
+
+/* ── 판매자 평가 뱃지 (웹 동기화) ── */
+.m-seller-eval{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.m-seller-eval-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--ts)}
+.m-seller-eval-item i.good{color:var(--green)}
+.m-seller-eval-item i.bad{color:var(--tm)}
+.m-seller-eval-item b{color:var(--tp);font-family:'Roboto',sans-serif}
+.m-seller-eval-btn{border:1px solid var(--border);border-radius:5px;padding:3px 9px;background:#fff;font-size:10px;font-weight:700;color:var(--navy);cursor:pointer;font-family:inherit}
+
+/* ── 상세정보 테이블 ── */
+.m-spec-info-table{width:100%;border-collapse:collapse;font-size:12px}
+.m-spec-info-table th{width:96px;text-align:left;padding:7px 0;color:var(--tm);font-weight:600;vertical-align:top}
+.m-spec-info-table td{padding:7px 0;color:var(--tp)}
+
+/* ── 타이틀 액션 ── */
+.m-title-actions{display:flex;gap:6px;padding:0 16px 12px;background:#fff;flex-wrap:wrap}
+.m-title-action-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:11px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
+.m-title-action-btn.active{border-color:var(--amber);color:var(--amber)}
+
+/* ── Q&A ── */
+.m-qa-history{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:14px}
+.m-qa-history-item{padding:12px 14px;border-bottom:1px solid #F0F2F5;display:flex;flex-direction:column;gap:5px}
+.m-qa-history-item:last-child{border-bottom:none}
+.m-qa-history-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--tm)}
+.m-qa-history-text{font-size:12px;color:var(--tp);line-height:1.5}
+.m-qa-badge{align-self:flex-start;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;border:1.2px solid}
+.m-qa-badge-wait{background:#F5F7FF;color:#5B7AE0;border-color:#C5D0F5}
+.m-qa-badge-confirm{background:#FFF8E8;color:#C47F00;border-color:#FFD980}
+.m-qa-badge-view{background:#F0FBF2;color:var(--green);border-color:#B8ECC4}
+.m-qa-form-label{font-size:12px;font-weight:700;color:var(--ts);margin:10px 0 6px}
+.m-qa-form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+.m-qa-form-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 10px;font-size:12px;font-family:inherit;background:#FAFBFC;color:var(--ts)}
+.m-qa-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;resize:vertical;min-height:80px;outline:none}
+.m-qa-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.m-qa-btn-cancel{padding:10px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
+.m-qa-btn-submit{padding:10px;border-radius:8px;border:none;background:#5B9BD5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 
 /* ── 아코디언 ── */
 .m-acc-section{background:#fff;border-bottom:1px solid var(--border)}
@@ -146,9 +184,9 @@ a{text-decoration:none;color:inherit}
 .m-seller-title{font-size:12px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
 .m-seller-row{display:flex;align-items:center;gap:12px}
 .m-seller-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#FCE0E9,#F5B8CC);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.m-seller-info{flex:1}
-.m-seller-id{font-size:14px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif}
-.m-seller-stats{font-size:11px;color:var(--ts);margin-top:2px}
+.m-seller-info{flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.m-seller-id{font-size:14px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif;white-space:nowrap}
+.m-seller-stats{font-size:11px;color:var(--ts);white-space:nowrap}
 .m-seller-stars{color:var(--amber);font-size:11px;margin-right:3px}
 .m-seller-btn{border:1.5px solid var(--border);border-radius:5px;padding:7px 14px;background:#fff;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;white-space:nowrap}
 
@@ -167,14 +205,14 @@ a{text-decoration:none;color:inherit}
 .m-rel-price{font-size:13px;font-weight:700;font-family:'Roboto',sans-serif}
 .m-rel-krw{font-size:10px;color:var(--ts)}
 
-/* ── 하단 고정 바 ── */
-.m-sticky-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid var(--border);display:grid;grid-template-columns:64px 1fr 1.3fr;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.1)}
-.m-sticky-wish{background:#fff;border:none;border-right:1px solid var(--border);padding:14px 0;font-size:18px;color:var(--ts);cursor:pointer}
-.m-sticky-cart{background:#fff;color:var(--tp);border:none;border-right:1px solid var(--border);padding:16px 8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
-.m-sticky-buy{background:var(--rose);color:#fff;border:none;padding:16px 8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+/* ── 구매 버튼 (경매대행 실시간입찰/예약입찰 버튼과 동일 스타일) ── */
+.m-buy-btn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);margin-top:0px}
+.m-btn-cart{background:#fff;color:var(--tp);border:none;padding:15px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.m-btn-buy{background:var(--rose);color:#fff;border:none;border-left:1px solid var(--border);padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.m-btn-buy:hover{background:var(--rose-h)}
 
 /* ── 푸터 ── */
-.m-footer{background:var(--tp);color:#fff;padding:24px 16px 90px}
+.m-footer{background:var(--tp);color:#fff;padding:24px 16px 32px}
 .m-footer-logo{font-size:20px;font-weight:900;color:var(--rose);margin-bottom:12px}
 .m-footer-logo span{color:#fff}
 .m-footer-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:14px}
@@ -220,6 +258,11 @@ a{text-decoration:none;color:inherit}
   <div class="m-title-ko">BTS 7TH YEAR weverse album 신품 미개봉 다고냥</div>
   <div class="m-title-jp">BTS 7TH YEAR weverse アルバム 新品未開封</div>
 </div>
+<div class="m-title-actions">
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-language"></i> 원문 페이지</button>
+  <button class="m-title-action-btn" type="button" onclick="toggleKwWish(this)"><i class="fa-regular fa-star"></i> 관심키워드</button>
+  <button class="m-title-action-btn" type="button"><i class="fa-solid fa-share-nodes"></i> 공유하기</button>
+</div>
 
 <!-- ── 갤러리 ── -->
 <div class="m-gallery">
@@ -248,31 +291,22 @@ a{text-decoration:none;color:inherit}
     <div style="display:flex;align-items:center;gap:8px">
       <div class="m-price-main">
         <div><span class="m-price-current roboto">5,500엔</span></div>
-        <div class="m-price-tax">원화 환산 <span>₩51,150</span> (환율 9.3원/엔)</div>
       </div>
-      <span class="m-badge sale">판매중</span>
     </div>
   </div>
-  <div class="m-price-row">
-    <span class="m-price-label">상품 상태</span>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="m-price-val">신품·미개봉</span>
-    </div>
-  </div>
-  <div class="m-price-row">
-    <span class="m-price-label">현지운송료</span>
-    <span class="m-price-val roboto">무료 <span style="font-size:11px;color:var(--ts);font-weight:400">(출품자 부담)</span></span>
-  </div>
-</div>
 
 <!-- ── 상품 상태 ── -->
 <div class="m-info-section">
   <div class="m-info-header">상품 정보</div>
   <div class="m-info-grid">
+    <div class="m-info-item"><span class="m-info-label">카테고리</span><span class="m-info-val" style="font-size:12px;font-weight:400">핸드메이드·수예 &gt; 가방 &gt; 토트 백</span></div>
     <div class="m-info-item"><span class="m-info-label">상품 상태</span><span class="m-info-val">신품, 미사용</span></div>
-    <div class="m-info-item"><span class="m-info-label">배송 출발</span><span class="m-info-val">1~2일 내 발송</span></div>
+    <div class="m-info-item"><span class="m-info-label">배송료 부담</span><span class="m-info-val" style="font-size:12px;font-weight:400">배송비 포함 (출품자 부담)</span></div>
+    <div class="m-info-item"><span class="m-info-label">배송 방법</span><span class="m-info-val" style="font-size:12px;font-weight:400">유유 메르카리 항공편</span></div>
     <div class="m-info-item"><span class="m-info-label">현지 배송비</span><span class="m-info-val">무료 (출품자 부담)</span></div>
-    <div class="m-info-item"><span class="m-info-label">발송 지역</span><span class="m-info-val">도쿄도</span></div>
+    <div class="m-info-item"><span class="m-info-label">발송 지역</span><span class="m-info-val">사이타마현</span></div>
+    <div class="m-info-item"><span class="m-info-label">발송까지의 일수</span><span class="m-info-val">2~3일에 발송</span></div>
+    <div class="m-info-item"><span class="m-info-label">갱신일</span><span class="m-info-val roboto" style="font-size:12px">2026-06-09 16:27</span></div>
   </div>
 </div>
 
@@ -293,6 +327,15 @@ a{text-decoration:none;color:inherit}
       </div>
     </div>
     <div class="m-form-row">
+      <label class="m-form-label">포장 옵션</label>
+      <select class="m-form-select">
+        <option value="">옵션을 선택하세요</option>
+        <option value="as-is">현지 도착상태 그대로 발송</option>
+        <option value="basic">기본 포장</option>
+        <option value="gift">튼튼 포장(유료 서비스)</option>
+      </select>
+    </div>
+    <div class="m-form-row">
       <label class="m-form-label">옵션메모</label>
       <textarea class="m-textarea" placeholder="색상 및 사이즈, 기타 옵션사항을 기재 바랍니다"></textarea>
     </div>
@@ -303,17 +346,25 @@ a{text-decoration:none;color:inherit}
       <select class="m-form-select"><option value="">국제운송 선택</option><option>EMS</option><option>항공</option><option>선박</option></select>
       <select class="m-form-select"><option value="">무게 선택</option><option>0.5kg</option><option>1kg</option><option>2kg</option></select>
     </div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 상품가격</span><span class="m-cost-val">(5,500엔) ₩51,150</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 국제 운송료</span><span class="m-cost-val">(1,800엔) ₩16,740</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지 운송료</span><span class="m-cost-val"><span class="m-cost-defer">무료 (출품자 부담)</span></span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행 수수료</span><span class="m-cost-val">(550엔) ₩5,115</span></div>
-    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 송금 수수료</span><span class="m-cost-val">(300엔) ₩2,790</span></div>
+    <div class="m-cost-subtitle">1차 결제 비용</div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 판매가격</span><span class="m-cost-val">(5,500엔) ₩51,150</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 대행수수료</span><span class="m-cost-val">(550엔) ₩5,115</span></div>
+    <div class="m-cost-subtitle">2차 결제 비용</div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지운송료</span><span class="m-cost-val"><span class="m-cost-defer">무료 (출품자 부담)</span></span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 현지세금</span><span class="m-cost-val">(0엔) ₩0</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 국제운송료</span><span class="m-cost-val">(1,800엔) ₩16,740</span></div>
+    <div class="m-cost-row"><span class="m-cost-label"><span class="m-cost-sign">+</span> 기타비용</span><span class="m-cost-val">(300엔) ₩2,790</span></div>
     <div class="m-cost-total">
       <span class="m-cost-total-label">예상 구매대행 구입가</span>
       <span class="m-cost-total-val">₩73,237</span>
     </div>
   </div>
 
+  <!-- 구매 버튼 -->
+  <div class="m-buy-btn-wrap">
+    <button class="m-btn-cart" type="button"><i class="fa-solid fa-cart-shopping"></i> 장바구니</button>
+    <button class="m-btn-buy" type="button" onclick="location.href='mobile_bill_1st.html'"><i class="fa-solid fa-bag-shopping"></i> 바로구매</button>
+  </div>
   <p class="m-btn-notice">메루카리는 일본 현지 중고거래 플랫폼으로, 구매 신청 후 품절될 수 있습니다. 신청 전 고객센터를 통해 재고 문의를 권장합니다.</p>
 </div>
 
@@ -353,12 +404,85 @@ a{text-decoration:none;color:inherit}
 <div class="m-seller-section">
   <div class="m-seller-title">출품자 정보</div>
   <div class="m-seller-row">
-    <div class="m-seller-avatar">🐱</div>
     <div class="m-seller-info">
-      <div class="m-seller-id">다고냥 (tagonyan)</div>
-      <div class="m-seller-stats"><span class="m-seller-stars">★★★★★</span> 4.9 · 거래 562건 · 본인확인 완료</div>
+      <div class="m-seller-id">ダゴニャン</div>
+      <div class="m-seller-stats">판매자평가</div>
+      <div class="m-seller-eval">
+        <span class="m-seller-eval-item"><i class="fa-solid fa-thumbs-up good"></i> Good : <b>2,283</b></span>
+        <span class="m-seller-eval-item"><i class="fa-solid fa-thumbs-down bad"></i> Bad : <b>0</b></span>
+        <button class="m-seller-eval-btn" type="button" onclick="location.href='https://jp.mercari.com/'">평가보기</button>
+      </div>
     </div>
-    <button class="m-seller-btn">다른 상품</button>
+  </div>
+</div>
+
+<!-- ── 출품자의 다른 상품 ── -->
+<div class="m-related-section">
+  <div class="m-related-header">
+    <div class="m-related-title"><i class="fa-solid fa-box-open"></i> 출품자의 다른 상품</div>
+    <span class="m-related-more">전체보기</span>
+  </div>
+  <div class="m-related-grid">
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">ENHYPEN 정규 앨범 미개봉</div><div class="m-rel-price">3,000엔</div><div class="m-rel-krw">약 27,900원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">세븐틴 FML 앨범 세트</div><div class="m-rel-price">4,200엔</div><div class="m-rel-krw">약 39,060원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">stray kids 앨범 한정판</div><div class="m-rel-price">6,000엔</div><div class="m-rel-krw">약 55,800원</div></div></div>
+  </div>
+</div>
+
+<!-- ── 상품 상세정보 ── -->
+<div class="m-acc-section" id="macc-purchaseinfo">
+  <button class="m-acc-trigger" onclick="toggleMAcc('macc-purchaseinfo')">
+    <span><i class="fa-solid fa-list-ul icon"></i>상품 상세정보</span>
+    <i class="fa-solid fa-chevron-down chevron"></i>
+  </button>
+  <div class="m-acc-body">
+    <table class="m-spec-info-table">
+      <tr><th>카테고리</th><td>탤런트 상품 &gt; K-POP</td></tr>
+      <tr><th>상품 상태</th><td><span style="color:var(--green);font-weight:700">신품·미개봉 (新品·未使用)</span></td></tr>
+      <tr><th>브랜드</th><td>HYBE / BIGHIT MUSIC</td></tr>
+      <tr><th>발매년도</th><td class="roboto">2024</td></tr>
+      <tr><th>판매 플랫폼</th><td>🇯🇵 메루카리 (Mercari Japan)</td></tr>
+      <tr><th>배송 방법</th><td>라쿠텐라쿠마팩 / 직거래 가능</td></tr>
+      <tr><th>배송비 부담</th><td>판매자 부담</td></tr>
+      <tr><th>출품일</th><td class="roboto">2024년 11월</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ── 판매자 Q&A ── -->
+<div class="m-acc-section" id="macc-qa">
+  <button class="m-acc-trigger" onclick="toggleMAcc('macc-qa')">
+    <span><i class="fa-solid fa-comments icon"></i>판매자 Q&amp;A</span>
+    <i class="fa-solid fa-chevron-down chevron"></i>
+  </button>
+  <div class="m-acc-body">
+    <div class="m-qa-history">
+      <div class="m-qa-history-item">
+        <div class="m-qa-history-top"><span>13번 질문</span><span>2024-05-25</span></div>
+        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
+        <button class="m-qa-badge m-qa-badge-wait" type="button">출품자 답변 대기</button>
+      </div>
+      <div class="m-qa-history-item">
+        <div class="m-qa-history-top"><span>12번 질문</span><span>2024-05-20</span></div>
+        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
+        <button class="m-qa-badge m-qa-badge-confirm" type="button">출품자 답변 확인</button>
+      </div>
+      <div class="m-qa-history-item">
+        <div class="m-qa-history-top"><span>11번 질문</span><span>2024-05-14</span></div>
+        <div class="m-qa-history-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</div>
+        <button class="m-qa-badge m-qa-badge-view" type="button">출품자 답변 보기</button>
+      </div>
+    </div>
+    <div class="m-qa-form-label" style="margin-top:0">판매자 문의하기</div>
+    <div class="m-qa-form-row">
+      <input class="m-qa-form-input" type="text" value="다고냥" readonly>
+      <input class="m-qa-form-input" type="text" value="sanrio-n-2605-019488" readonly>
+    </div>
+    <textarea class="m-qa-textarea" placeholder="문의 내용 입력 (200자 이내)"></textarea>
+    <div class="m-qa-actions">
+      <button class="m-qa-btn-cancel" type="button">취소</button>
+      <button class="m-qa-btn-submit" type="button">문의 신청</button>
+    </div>
   </div>
 </div>
 
@@ -369,9 +493,12 @@ a{text-decoration:none;color:inherit}
     <span class="m-related-more">더보기</span>
   </div>
   <div class="m-related-grid">
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">BTS 포토카드 세트</div><div class="m-rel-price">2,200엔</div><div class="m-rel-krw">₩20,460</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">weverse 한정 굿즈</div><div class="m-rel-price">3,800엔</div><div class="m-rel-krw">₩35,340</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">BTS 앨범 미개봉</div><div class="m-rel-price">4,500엔</div><div class="m-rel-krw">₩41,850</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">BTS 포토카드 세트</div><div class="m-rel-price">1,500엔</div><div class="m-rel-krw">약 13,950원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">BTS 7주년 공식 굿즈</div><div class="m-rel-price">3,200엔</div><div class="m-rel-krw">약 29,760원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">TXT weverse album</div><div class="m-rel-price">4,500엔</div><div class="m-rel-krw">약 41,850원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">IVE 포토북 신품</div><div class="m-rel-price">2,500엔</div><div class="m-rel-krw">약 23,250원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">stray kids 한정판</div><div class="m-rel-price">6,000엔</div><div class="m-rel-krw">약 55,800원</div></div></div>
+    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><i class="fa-regular fa-image"></i></div></div><div class="m-rel-info"><div class="m-rel-name">세븐틴 FML 앨범</div><div class="m-rel-price">4,200엔</div><div class="m-rel-krw">약 39,060원</div></div></div>
   </div>
 </div>
 
@@ -383,13 +510,6 @@ a{text-decoration:none;color:inherit}
   </div>
   <div class="m-footer-copy">© 2026 BidBuy Korea. All rights reserved.<br>해외 경매·구매대행 서비스</div>
 </footer>
-
-<!-- ── 하단 고정 바 ── -->
-<div class="m-sticky-bar">
-  <button class="m-sticky-wish" type="button" aria-label="관심상품"><i class="fa-regular fa-heart"></i></button>
-  <button class="m-sticky-cart" type="button"><i class="fa-solid fa-cart-shopping"></i> 장바구니</button>
-  <button class="m-sticky-buy" type="button" onclick="location.href='mobile_bill_1st.html'"><i class="fa-solid fa-bag-shopping"></i> 구매 신청하기</button>
-</div>
 
 <script>
 function doMLogin(){
@@ -419,13 +539,6 @@ function stepQty(d){
   input.value = Math.max(1, (parseInt(input.value,10)||1) + d);
 }
 function toggleMAcc(id){ document.getElementById(id).classList.toggle('open'); }
-function toggleMWish(btn){
-  btn.classList.toggle('active');
-  const icon = btn.querySelector('i');
-  const active = btn.classList.contains('active');
-  icon.className = active ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
-  btn.querySelector('strong').textContent = active ? '13' : '12';
-}
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>

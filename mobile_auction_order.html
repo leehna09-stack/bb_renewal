@@ -115,6 +115,14 @@
     .item-summary-row .val { color: var(--tp); }
     .item-summary-row .val strong { color: var(--rose); font-weight: 900; }
     .item-summary-row .val .krw { color: var(--ts); font-weight: 500; font-size: 12px; }
+    .seller-eval { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12px; color: var(--tp); flex-wrap: wrap; }
+    .seller-eval__item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .seller-eval__item i { font-size: 13px; line-height: 1; }
+    .seller-eval__item.good i { color: #19bfb4; }
+    .seller-eval__item.bad i { color: #f26a21; }
+    .seller-eval__count.good { color: #0070c9; }
+    .seller-eval__count.bad { color: #e8382f; }
+    .seller-eval__divider { width: 1px; height: 14px; background: #d8d8d8; }
 
     /* ── 섹션 공통 ── */
     .sec { margin-bottom: 28px; }
@@ -195,6 +203,26 @@
     .big-btn.primary { border: 1px solid var(--rose); background: var(--rose); color: #fff; }
     .big-btn.primary:hover { background: var(--rose-h); }
     .big-btn.primary:disabled { border-color: #e8c9d1; background: #e8c9d1; cursor: not-allowed; }
+
+    .confirm-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; background: rgba(17, 24, 39, .45); padding: 20px; }
+    .confirm-modal.open { display: flex; }
+    .confirm-modal-card { width: min(400px, 100%); background: var(--white); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.18); overflow: hidden; }
+    .confirm-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .confirm-modal-head strong { color: var(--tp); font-size: 15px; font-weight: 900; }
+    .confirm-modal-close { border: 0; background: none; color: var(--tm); font-size: 20px; line-height: 1; }
+    .confirm-modal-body { padding: 20px; }
+    .confirm-amount-box { background: var(--bg-warm); border: 1px solid var(--border-soft); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+    .confirm-modal .confirm-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+    .confirm-modal .confirm-row:first-child { padding-top: 0; }
+    .confirm-modal .confirm-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .confirm-modal .confirm-row span { color: var(--ts); font-size: 12px; font-weight: 700; }
+    .confirm-modal .confirm-row strong { color: var(--tp); font-family: Roboto, sans-serif; font-size: 15px; font-weight: 900; }
+    .confirm-modal .confirm-row strong.amount { color: var(--rose); font-size: 18px; }
+    .confirm-note { margin: 0 0 18px; color: var(--rose); font-size: 12px; font-weight: 800; line-height: 1.7; }
+    .confirm-actions { display: flex; justify-content: flex-end; gap: 8px; }
+    .confirm-btn { height: 40px; padding: 0 18px; border-radius: 5px; font-size: 13px; font-weight: 800; }
+    .confirm-btn.line { border: 1px solid var(--border); background: var(--white); color: var(--ts); }
+    .confirm-btn.primary { border: 1px solid var(--rose); background: var(--rose); color: #fff; }
   </style>
 </head>
 <body>
@@ -243,7 +271,10 @@
   <!-- 물품 요약 -->
   <div class="item-summary">
     <div class="item-summary-row"><b>물품아이디 (옵션)</b><span class="val">v1135509199 (옵션명)</span></div>
-    <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong>¥1,200</strong> <span class="krw">(₩11,160)</span></span></div>
+    <div class="item-summary-row"><b>출품자</b><span class="val">bookoff2014
+      <div class="seller-eval"><span class="seller-eval__item good"><i class="fa-solid fa-thumbs-up" aria-hidden="true"></i><span>좋은평가</span> <span class="seller-eval__count good">1,071</span></span><span class="seller-eval__divider" aria-hidden="true"></span><span class="seller-eval__item bad"><i class="fa-solid fa-thumbs-down" aria-hidden="true"></i><span>나쁜평가</span> <span class="seller-eval__count bad">6</span></span></div>
+    </span></div>
+    <div class="item-summary-row"><b>현재 입찰가</b><span class="val"><strong id="curBidVal">1,200 엔 (천이백 엔)</strong></span></div>
     <div class="item-summary-row"><b>종료시간</b><span class="val">2026-06-14 12:12:12</span></div>
   </div>
 
@@ -251,8 +282,9 @@
   <section class="sec" aria-labelledby="sec1-title">
     <h3 class="sec-title" id="sec1-title"><span class="sec-no">01</span> 입찰내용 확인</h3>
     <div class="confirm-box">
-      <div class="confirm-row"><b>입찰금액</b><span class="val amount" id="cfAmount">¥ 1,300 <span class="sub">(천삼백 엔 · 약 ₩12,090)</span></span></div>
+      <div class="confirm-row"><b>입찰금액</b><span class="val amount" id="cfAmount">1,300 엔 (천삼백 엔)</span></div>
       <div class="confirm-row"><b>입찰 수량</b><span class="val" id="cfQty">1개</span></div>
+      <div class="confirm-row"><b>포장옵션</b><span class="val" id="cfPacking">선택 안함</span></div>
     </div>
     <p class="confirm-warn">
       최고 입찰자로 낙찰된 후에는 <b>낙찰 취소가 불가능</b>합니다.<br>
@@ -286,27 +318,85 @@
   </div>
 </div>
 
+<div class="confirm-modal" id="finalBidModal" onclick="closeFinalBidModal(event)">
+  <div class="confirm-modal-card" onclick="event.stopPropagation()">
+    <div class="confirm-modal-head">
+      <strong>입찰 내용 최종 확인</strong>
+      <button class="confirm-modal-close" type="button" onclick="closeFinalBidModal()">&times;</button>
+    </div>
+    <div class="confirm-modal-body">
+      <div class="confirm-amount-box">
+        <div class="confirm-row">
+          <span>입찰 금액</span>
+          <strong class="amount" id="modalBidAmount">1,300 엔 (천삼백 엔)</strong>
+        </div>
+        <div class="confirm-row">
+          <span>수량</span>
+          <strong id="modalBidQty">1개</strong>
+        </div>
+        <div class="confirm-row">
+          <span>포장옵션</span>
+          <strong id="modalBidPacking">선택 안함</strong>
+        </div>
+      </div>
+      <p class="confirm-note">입찰이 반영된 이후에는 입찰취소가 불가능합니다.
+        <br>금액과 수량을 다시 확인하신 후 진행해 주세요.</p>
+      <div class="confirm-actions">
+        <button class="confirm-btn line" type="button" onclick="closeFinalBidModal()">취소</button>
+        <button class="confirm-btn primary" type="button" onclick="confirmFinalBid()">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function doMLogin(){
   document.getElementById('m-guest-area').style.display = 'none';
   document.getElementById('m-user-area').style.display = '';
 }
-const CONFIRMED_BID = 1300;
-const CONFIRMED_QTY = 1;
-const KRW_RATE = 9.3;
+const ORDER_PARAMS = new URLSearchParams(location.search);
+const CONFIRMED_BID = Number(ORDER_PARAMS.get('bid') || 1300);
+const CONFIRMED_QTY = Number(ORDER_PARAMS.get('qty') || 1);
+const CONFIRMED_PACKING = ORDER_PARAMS.get('packing') || '선택 안함';
 
-(function () {
-  const p = new URLSearchParams(location.search);
-  const bid = parseInt(p.get('bid') || '', 10);
-  const qty = parseInt(p.get('qty') || '', 10);
+function formatBidYen(value) {
+  const amount = Number(value) || 0;
+  return amount.toLocaleString('ko-KR') + ' 엔 (' + numberToKorean(amount) + ' 엔)';
+}
 
-  if (bid > 0) {
-    const krw = Math.round(bid * KRW_RATE).toLocaleString('ko-KR');
-    document.getElementById('cfAmount').innerHTML =
-      '¥ ' + bid.toLocaleString('ko-KR') + ' <span class="sub">(약 ₩' + krw + ')</span>';
+function numberToKorean(value) {
+  const amount = Number(value) || 0;
+  if (amount === 0) return '영';
+  const digitNames = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+  const smallUnits = ['', '십', '백', '천'];
+  const bigUnits = ['', '만', '억'];
+  const readGroup = group => {
+    let text = '';
+    const digits = String(group).padStart(4, '0').split('').map(Number);
+    digits.forEach((digit, index) => {
+      if (!digit) return;
+      const unitIndex = 3 - index;
+      text += (digit === 1 && unitIndex > 0 ? '' : digitNames[digit]) + smallUnits[unitIndex];
+    });
+    return text;
+  };
+  const groups = [];
+  let rest = amount;
+  while (rest > 0) {
+    groups.push(rest % 10000);
+    rest = Math.floor(rest / 10000);
   }
-  if (qty > 0) document.getElementById('cfQty').textContent = qty + '개';
-})();
+  return groups.map((group, index) => group ? readGroup(group) + bigUnits[index] : '').reverse().join('');
+}
+
+function updateConfirmedValues() {
+  const cfAmount = document.getElementById('cfAmount');
+  const cfQty = document.getElementById('cfQty');
+  const cfPacking = document.getElementById('cfPacking');
+  if (cfAmount) cfAmount.textContent = formatBidYen(CONFIRMED_BID);
+  if (cfQty) cfQty.textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  if (cfPacking) cfPacking.textContent = CONFIRMED_PACKING;
+}
 
 function updateState() {
   const agreed = document.getElementById('agreeChk').checked;
@@ -316,9 +406,22 @@ function updateState() {
 }
 
 function submitBid() {
-  location.href = 'mobile_auction_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY;
+  document.getElementById('modalBidAmount').textContent = formatBidYen(CONFIRMED_BID);
+  document.getElementById('modalBidQty').textContent = CONFIRMED_QTY.toLocaleString('ko-KR') + '개';
+  document.getElementById('modalBidPacking').textContent = CONFIRMED_PACKING;
+  document.getElementById('finalBidModal').classList.add('open');
 }
 
+function closeFinalBidModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('finalBidModal').classList.remove('open');
+}
+
+function confirmFinalBid() {
+  location.href = 'mobile_auction_complete.html?bid=' + CONFIRMED_BID + '&qty=' + CONFIRMED_QTY + '&packing=' + encodeURIComponent(CONFIRMED_PACKING);
+}
+
+updateConfirmedValues();
 updateState();
 </script>
 <script src="bb-common-mobile.js"></script>

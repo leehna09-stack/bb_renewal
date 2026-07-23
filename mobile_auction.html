@@ -183,8 +183,7 @@ a{text-decoration:none;color:inherit}
 
 /* ── 입찰 버튼 ── */
 .m-bid-btn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
-.m-btn-bid{background:var(--tp);color:#fff;border:none;padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
-.m-btn-bid:hover{background:#2d2d3e}
+.m-btn-bid{background:#E8385A;color:#fff;border:none;padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
 .m-btn-bid.amber{background:var(--amber)}
 .m-btn-reserve{background:#fff;color:var(--tp);border:none;border-left:1px solid var(--border);padding:15px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
 .m-btn-notice{font-size:11px;color:var(--tm);padding:10px 16px 12px;background:#FAFBFC;line-height:1.6;border-bottom:1px solid var(--border)}
@@ -222,7 +221,7 @@ a{text-decoration:none;color:inherit}
 .m-related-section{background:#fff;border-bottom:8px solid var(--bg)}
 .m-related-header{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between}
 .m-related-title{font-size:14px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:6px}
-.m-related-title i{color:var(--rose);font-size:13px}
+.m-related-title i{color:var(--tp);font-size:13px}
 .m-related-more{font-size:12px;color:var(--navy);font-weight:600}
 .m-related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 16px}
 .m-rel-card{background:#FAFBFC;border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer}
@@ -339,20 +338,37 @@ a{text-decoration:none;color:inherit}
 .m-desc-tag{background:#F5F7FA;border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--ts)}
 
 /* ── 출품자 Q&A ── */
-.m-qna-section{background:#fff;border-bottom:8px solid var(--bg)}
-.m-qna-header{padding:16px 16px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.m-qna-section{background:#fff;}
+.m-qna-header{padding:16px 16px 12px;display:flex;align-items:center;justify-content:space-between}
 .m-qna-title{font-size:14px;font-weight:700;color:var(--tp);display:flex;align-items:center;gap:6px}
 .m-qna-title i{color:var(--ts);font-size:12px}
 .m-qna-sub-title{font-size:12px;font-weight:700;color:var(--ts);padding:14px 16px 8px}
 /* 나의 문의 내역 */
-.m-qna-hist-item{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid #F0F2F5}
-.m-qna-hist-item:last-child{border-bottom:none}
-.m-qna-hist-num{font-size:12px;font-weight:700;color:var(--ts);flex-shrink:0;width:52px}
-.m-qna-hist-text{font-size:12px;color:var(--tp);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.m-qna-hist-badge{padding:5px 10px;border-radius:999px;font-size:10px;font-weight:600;border:1.5px solid;white-space:nowrap;flex-shrink:0;cursor:pointer;background:none;font-family:inherit}
-.m-qna-badge-wait{color:#5B7AE0;border-color:#C5D0F5;background:#F5F7FF}
-.m-qna-badge-confirm{color:#C47F00;border-color:#FFD980;background:#FFF8E8}
-.m-qna-badge-view{color:var(--green);border-color:#B8ECC4;background:#F0FBF2}
+.m-myqna-table{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:0 16px 4px}
+.m-myqna-head{display:grid;grid-template-columns:20px 80px 1fr 42px 42px;gap:6px;padding:8px 10px;font-size:10px;font-weight:700;color:var(--tp);background:#FAFBFC;border-bottom:1px solid var(--border)}
+.m-myqna-head span:nth-child(4),.m-myqna-head span:nth-child(5){text-align:center}
+.m-myqna-group{border-bottom:1px solid #F0F2F5}
+.m-myqna-group:last-child{border-bottom:none}
+.m-myqna-row{display:grid;grid-template-columns:20px 80px 1fr 42px 42px;gap:6px;align-items:center;padding:10px;white-space:nowrap}
+.m-myqna-num{font-size:11px;color:var(--ts)}
+.m-myqna-itemid{font-size:11px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;font-family:'Roboto',sans-serif}
+.m-myqna-text{font-size:11px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.m-myqna-date{font-size:10px;color:var(--tm);text-align:center;font-family:'Roboto',sans-serif}
+.m-myqna-status{font-size:11px;text-align:center}
+.m-myqna-status-done{color:var(--green)}
+.m-myqna-status-wait{color:#5B7AE0}
+.m-myqna-answer{display:flex;gap:6px;padding:10px 12px;background:#F7F9FC;border-top:1px dashed var(--border);font-size:11px;color:var(--ts);line-height:1.6}
+.m-myqna-answer i{color:var(--navy);margin-top:2px;font-size:11px}
+/* 출품자 공개 질문&답변 */
+.m-pubqna-ask-btn{border:0;background:#5B9BD5;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;padding:6px 12px;border-radius:6px}
+.m-pubqna-list{margin:0 16px 4px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.m-pubqna-row{padding:12px;border-bottom:1px solid #F0F2F5}
+.m-pubqna-row:last-child{border-bottom:none}
+.m-pubqna-content{display:flex;gap:6px;font-size:12px;color:var(--ts);line-height:1.6}
+.m-pubqna-icon{flex-shrink:0;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-top:1px}
+.m-pubqna-icon-q{background:#5B7AE0}
+.m-pubqna-icon-a{background:var(--navy)}
+.m-pubqna-date{font-size:10px;color:var(--tm);margin-top:4px;margin-left:22px;font-family:'Roboto',sans-serif}
 /* 문의 폼 */
 .m-qna-form{padding:14px 16px 16px}
 .m-qna-form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
@@ -363,6 +379,8 @@ a{text-decoration:none;color:inherit}
 .m-qna-form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
 .m-qna-btn-cancel{padding:9px 20px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit}
 .m-qna-btn-submit{padding:9px 20px;border-radius:5px;border:none;background:#5B9BD5;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.m-question-help{margin:8px 0 0;color:var(--tm);font-size:11px;line-height:1.7}
+
 </style>
 </head>
 <body>
@@ -692,47 +710,61 @@ a{text-decoration:none;color:inherit}
 <!-- ── 출품자 Q&A ── -->
 <div class="m-qna-section">
   <div class="m-qna-header">
-    <div class="m-qna-title"><i class="fa-solid fa-comments"></i> 출품자 Q&amp;A</div>
-  </div>
-
-  <!-- 나의 문의 내역 -->
-  <div class="m-qna-sub-title">나의 문의 내역</div>
-  <div>
-    <div class="m-qna-hist-item">
-      <span class="m-qna-hist-num">13번 질문</span>
-      <span class="m-qna-hist-text">일반적으로 결제 대금을 받은 후 영업일 기준 1~2일 이내에 배송인가요?</span>
-      <button class="m-qna-hist-badge m-qna-badge-wait" onclick="location.href='#'">답변 대기</button>
-    </div>
-    <div class="m-qna-hist-item">
-      <span class="m-qna-hist-num">12번 질문</span>
-      <span class="m-qna-hist-text">코드 미사용 여부 재확인 부탁드립니다. 박스 외관 상태도 궁금합니다.</span>
-      <button class="m-qna-hist-badge m-qna-badge-confirm" onclick="location.href='#'">답변 확인</button>
-    </div>
-    <div class="m-qna-hist-item">
-      <span class="m-qna-hist-num">11번 질문</span>
-      <span class="m-qna-hist-text">발송은 어느 택배사 이용하시나요?</span>
-      <button class="m-qna-hist-badge m-qna-badge-view" onclick="location.href='#'">답변 보기</button>
-    </div>
+    <div class="m-qna-title"><i class="fa-solid fa-comments"></i> 출품자 질문과답변</div>
   </div>
 
   <!-- 출품자 문의하기 폼 -->
-  <div class="m-qna-sub-title" style="padding-top:16px;border-top:1px solid var(--border)">출품자 문의하기</div>
+  <div class="m-qna-sub-title">출품자 문의하기</div>
   <div class="m-qna-form">
-    <div class="m-qna-form-row">
-      <div>
-        <div class="m-qna-form-label">출품자 아이디</div>
-        <input class="m-qna-form-input" type="text" value="exans1500" readonly>
+
+    <div class="m-qna-form-label">문의 작성</div>
+    <textarea class="m-qna-textarea" placeholder="질문은 한글로 작성해 주세요. 상품 상태, 구성품, 배송 조건 등 구매에 직접 관련된 내용만 문의할 수 있습니다."></textarea>
+    <p class="m-question-help">질문은 출품자에게 번역되어 전달되며, 답변이 등록되면 마이페이지에서 확인할 수 있습니다.<br>개인정보, 직거래 요청 등은 등록할 수 없습니다.</p>
+    <div class="m-qna-form-actions">
+      <button class="m-qna-btn-submit">문의하기</button>
+    </div>
+  </div>
+
+  <!-- 나의 문의 내역 -->
+  <div class="m-qna-sub-title" style="padding-top:16px;border-top:1px solid var(--border)">나의 문의 내역</div>
+  <div class="m-myqna-table">
+    <div class="m-myqna-head">
+      <span>번호</span><span>물품아이디</span><span>질문내용</span><span>일자</span><span>상태</span>
+    </div>
+    <div class="m-myqna-group">
+      <div class="m-myqna-row">
+        <span class="m-myqna-num">1</span>
+        <span class="m-myqna-itemid">o1214957318</span>
+        <span class="m-myqna-text" title="AFS 기능이 있나요?">AFS 기능이 있나요?</span>
+        <span class="m-myqna-date">09:20</span>
+        <span class="m-myqna-status m-myqna-status-done">질문완료</span>
       </div>
-      <div>
-        <div class="m-qna-form-label">상품 코드</div>
-        <input class="m-qna-form-input" type="text" value="j1232333613" readonly>
+      <div class="m-myqna-answer"><i class="fa-solid fa-reply"></i><span>요청하신 질문을 출품자에게 대신 질문하였습니다.<br>출품자 답변은 수시로 직접 확인을 부탁드립니다.</span></div>
+    </div>
+    <div class="m-myqna-group">
+      <div class="m-myqna-row">
+        <span class="m-myqna-num">2</span>
+        <span class="m-myqna-itemid">o1214957318</span>
+        <span class="m-myqna-text" title="AFS 기능이 있나요?">AFS 기능이 있나요?</span>
+        <span class="m-myqna-date">07-02</span>
+        <span class="m-myqna-status m-myqna-status-wait">대기</span>
       </div>
     </div>
-    <div class="m-qna-form-label">문의 작성</div>
-    <textarea class="m-qna-textarea" placeholder="문의 내용 입력 (200자 이내)"></textarea>
-    <div class="m-qna-form-actions">
-      <button class="m-qna-btn-cancel">취소</button>
-      <button class="m-qna-btn-submit">문의 신청</button>
+  </div>
+
+  <!-- 출품자 공개 질문&답변 -->
+  <div class="m-qna-sub-title" style="padding-top:16px;display:flex;align-items:center;justify-content:space-between">
+    <span>출품자 공개 질문&amp;답변</span>
+    <button class="m-pubqna-ask-btn" type="button" onclick="window.open('https://auctions.yahoo.co.jp/jp/show/qanda?aID=k1237084128','_blank')">답변 원문보기</button>
+  </div>
+  <div class="m-pubqna-list">
+    <div class="m-pubqna-row">
+      <div class="m-pubqna-content"><span class="m-pubqna-icon m-pubqna-icon-q">Q</span><span>신세를 지겠습니다. 본상품 개수 1으로 있습니다만, 4개로 1세트의 의미로 1대 분의 입찰이라고 판단하고 있습니다. 틀림없습니까? 다른 출품자로 트럭이 있었던 것으로 만약을 위해 (들)들을 따릅니다. 잘 부탁합니다.</span></div>
+      <div class="m-pubqna-date">2026-07-15 10:49</div>
+    </div>
+    <div class="m-pubqna-row">
+      <div class="m-pubqna-content"><span class="m-pubqna-icon m-pubqna-icon-a">A</span><span>말씀 대로, 화상의 4개로 1세트입니다. 안심해 주세요. 잘 부탁합니다.</span></div>
+      <div class="m-pubqna-date">2026-07-15 23:17</div>
     </div>
   </div>
 </div>
@@ -773,23 +805,10 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<!-- ── 관련 상품 ── -->
-<div class="m-related-section">
-  <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-heart"></i> 나의 관심 상품</div>
-    <span class="m-related-more">더보기</span>
-  </div>
-  <div class="m-related-grid">
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><img src="https://picsum.photos/seed/rel1/200/200" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div></div><div class="m-rel-info"><div class="m-rel-name">관심상품 타이틀</div><div class="m-rel-price">1,200엔</div><div class="m-rel-krw">₩11,160</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><img src="https://picsum.photos/seed/rel2/200/200" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div></div><div class="m-rel-info"><div class="m-rel-name">관심상품 타이틀</div><div class="m-rel-price">3,500엔</div><div class="m-rel-krw">₩32,550</div></div></div>
-    <div class="m-rel-card"><div class="m-rel-thumb"><div class="m-rel-thumb-inner"><img src="https://picsum.photos/seed/rel3/200/200" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></div></div><div class="m-rel-info"><div class="m-rel-name">관심상품 타이틀</div><div class="m-rel-price">900엔</div><div class="m-rel-krw">₩8,370</div></div></div>
-  </div>
-</div>
-
-<!-- ── 연관 상품 리스트 ── -->
+<!-- ── 관련 상품 리스트 ── -->
 <div class="m-assoc-section">
   <div class="m-related-header">
-    <div class="m-related-title"><i class="fa-solid fa-layer-group"></i> 연관 상품</div>
+    <div class="m-related-title">관련상품</div>
     <span class="m-related-more">더보기</span>
   </div>
   <div class="m-assoc-item">

@@ -246,10 +246,22 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .order-form-grid{display:flex;flex-direction:column;flex:1}
 .order-info-col{padding:16px 20px 16px;flex:1;display:flex;flex-direction:column}
 .order-input-col{padding:16px 20px 20px}
-.order-topbar{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--border);background:#fff;justify-content:space-between}
 .btn-wish-reg{display:flex;align-items:center;gap:6px;padding:8px 16px;border:1.5px solid var(--border);border-radius:5px;background:#fff;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .btn-wish-reg:hover{border-color:var(--rose);color:var(--rose)}
 .btn-wish-reg.active{border-color:var(--rose);color:var(--rose)}
+/* 판매가격 (구매대행 스토어 페이지와 통일) */
+.bp-price-section{padding:8px 20px;border-bottom:1px solid var(--border)}
+.bp-price-row{display:flex;align-items:baseline;gap:14px;padding:8px 0;border-bottom:1px solid #F0F2F5;min-width:0}
+.bp-price-row:last-child{border-bottom:none}
+.bp-price-label{font-size:13px;color:var(--ts);width:76px;flex-shrink:0;white-space:nowrap}
+.bp-price-val{font-size:14px;font-weight:600;color:var(--tp)}
+.bp-price-row--main{align-items:flex-start}
+.bp-price-main-wrap{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bp-current-price{font-size:26px;font-weight:700;color:var(--tp);line-height:1}
+.bp-current-unit{font-size:16px;font-weight:700;margin-left:2px}
+.bp-price-sub{display:flex;align-items:baseline;gap:4px}
+.bp-tax-label{font-size:11px;color:var(--ts)}
+.bp-tax-val{font-size:13px;font-weight:700;color:var(--rose)}
 .product-id-pill{display:inline-flex;align-items:center;justify-content:center;min-width:94px;padding:6px 14px;border-radius:999px;background:#6B6F78;color:#fff;font-size:12px;font-weight:700}
 .product-id-text{font-family:'Roboto',sans-serif;font-size:13px;color:var(--ts)}
 .pinfo-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:0}
@@ -282,8 +294,8 @@ header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top
 .purchase-mini-btn.alt{background:#1BC8E8}
 .qty-select{max-width:220px}
 .purchase-cta-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-.btn-buy{background:#111;color:#fff;border:none;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s}
-.btn-buy:hover{background:#2d2d3e}
+.btn-buy{background:var(--rose);color:#fff;border:none;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s}
+.btn-buy:hover{background:var(--rose-h)}
 .btn-line{background:#fff;color:#111;border:1.5px solid #111;padding:14px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
 .btn-line:hover{background:#f5f5f5}
 
@@ -647,24 +659,26 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
     <!-- 주문 패널: 경매 정보 + 입찰 폼 + 하단 예상 구매대행 비용 -->
     <div class="order-panel">
       <div class="order-form-area">
-        <div class="order-topbar">
-          <div class="bp-info-price-main">
-            <span class="bp-info-label">판매가격</span>
-            <div class="bp-info-price-line">
-              <span class="bp-info-val roboto" style="font-size:20px;font-weight:700">5,500엔</span>
-              <span class="bp-info-subtext" style="font-size:13px;line-height:1.2">≈ ₩51,150 (환율 9.3원/엔)</span>
+        <div class="bp-price-section bp-price-section--top">
+          <div class="bp-price-row bp-price-row--main">
+            <span class="bp-price-label">판매가격</span>
+            <div class="bp-price-main-wrap">
+              <span class="bp-current-price roboto">5,500<span class="bp-current-unit">엔</span></span>
+              <div class="bp-price-sub">
+                <span class="bp-tax-label">(약</span>
+                <span class="bp-tax-val roboto">￦51,150)</span>
+              </div>
             </div>
+            <button class="btn-wish-reg" id="wishRegBtn" onclick="toggleWishReg(this)" style="margin-left:auto">
+              <i class="fa-regular fa-heart"></i> 관심 상품
+            </button>
           </div>
-          <button class="btn-wish-reg" id="wishRegBtn" onclick="toggleWishReg(this)">
-            <i class="fa-regular fa-heart"></i> 관심 상품
-          </button>
         </div>
 
         <div class="order-form-grid">
           <div class="order-info-col">
             <div class="local-delivery-box">
               <table class="local-delivery-table">
-                <tr><th>현지운송료</th><td><span class="roboto">660円</span></td></tr>
                 <tr><th>카테고리</th><td>핸드메이드·수예 &gt; 가방 &gt; 토트 백</td></tr>
                 <tr><th>상품 상태</th><td>신품, 미사용</td></tr>
                 <tr><th>배송료 부담</th><td>배송비 포함 (출품자 부담)</td></tr>
@@ -688,8 +702,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
             </div>
             <!-- 액션 버튼: 경매 입찰하기/예약입찰하기와 동일 위치 -->
             <div class="purchase-cta-row" style="margin-top:auto">
-              <button class="btn-buy" type="button" onclick="window.location.href='web_bill_1st.html'"><i class="fa-solid fa-bag-shopping"></i> 바로구매</button>
               <button class="btn-line" type="button"><i class="fa-solid fa-cart-plus"></i> 장바구니</button>
+              <button class="btn-buy" type="button" onclick="window.location.href='web_bill_1st.html'"><i class="fa-solid fa-bag-shopping"></i> 바로구매</button>
             </div>
           </div>
 
