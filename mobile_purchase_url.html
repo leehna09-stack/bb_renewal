@@ -87,21 +87,21 @@
     .m-title-area { background: var(--white); padding: 12px 16px 14px; border-bottom: 1px solid var(--border); }
     .m-title-ko { font-size: 15px; font-weight: 700; color: var(--tp); line-height: 1.5; margin-bottom: 4px; }
     .m-title-jp { font-size: 11px; color: var(--tm); line-height: 1.5; }
-    .m-title-actions { display: flex; justify-content: center; gap: 6px; padding: 10px 16px; background: var(--white); overflow-x: auto; scrollbar-width: none; }
+    .m-title-actions { display: flex; gap: 6px; padding: 10px 16px 5px; background: var(--white); scrollbar-width: none; }
     .m-title-actions::-webkit-scrollbar { display: none; }
     .m-title-action-btn {
-      display: flex; align-items: center; gap: 5px;
-      padding: 6px 12px; border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      min-width: 0; flex: 1 1 0; padding: 6px 4px; border: 1.5px solid var(--border);
       border-radius: 5px; background: var(--white);
       font-size: 12px; font-weight: 600; color: var(--ts);
-      cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0;
+      cursor: pointer; font-family: inherit; white-space: nowrap;
     }
     .m-title-action-btn i { font-size: 11px; }
     .m-title-action-btn:hover { border-color: var(--navy); color: var(--navy); }
     .m-title-action-btn.active { border-color: var(--rose); color: var(--rose); }
 
     /* ── 이미지 갤러리 ── */
-    .gallery-section { background: var(--white); padding: 16px 16px 0; }
+    .gallery-section { background: var(--white); padding: 8px 16px 0; }
     .gallery-main {
       width: 100%; aspect-ratio: 1;
       background: var(--bg-warm2); border-radius: 10px;

@@ -287,7 +287,7 @@
         userMenuLink('fa-gavel', '나의 경매', 'web_mypage.html') +
         userMenuLink('fa-bag-shopping', '구매대행 내역', 'web_mypage.html') +
         userMenuLink('fa-box-archive', '묶음 배송 관리', 'web_bundle_shipping_management.html') +
-        userMenuLink('fa-heart', '관심 물품', '#') +
+        userMenuLink('fa-heart', '관심 물품', 'web_favorites.html?tab=auction') +
         userMenuLink('fa-gear', '회원 정보 설정', '#') +
         '<button class="bbu-menu-item logout" type="button" onclick="toggleLogin();closeUserDrawer()"><span class="bbu-menu-icon"><i class="fas fa-right-from-bracket" aria-hidden="true"></i></span><span>로그아웃</span></button>' +
       '</nav>'

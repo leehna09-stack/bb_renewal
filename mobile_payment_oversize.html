@@ -139,10 +139,28 @@
     .pay-total{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:8px;background:#f0f4fb;border-top:2px solid var(--navy)}
     .pay-total .lbl{font-size:14px;font-weight:800;color:var(--navy)}
     .pay-total .val{font-size:14px;font-weight:800;color:#000;font-family:Roboto,monospace}
+    .pay-total .val-group{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}
+    .pay-total .calc-sm{font-size:11px;font-weight:600;color:#888;font-family:Roboto,monospace}
+    .pay-rate-note{margin-bottom:8px;font-size:11px;font-weight:600;color:#888;text-align:right}
     .pay-grandtotal{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:12px;background:var(--navy);margin-top:4px}
     .pay-grandtotal .lbl{font-size:14px;font-weight:800;color:#fff}
-    .pay-grandtotal .calc{display:block;font-size:11px;font-weight:500;color:rgba(255,255,255,.75);margin-top:2px}
+    .pay-grandtotal .val-group{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}
     .pay-grandtotal .val{font-size:16px;font-weight:800;color:#fff;font-family:Roboto,monospace}
+    .pay-grandtotal .val-sm{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);font-family:Roboto,monospace}
+    .pay-tooltip{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;margin-left:5px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--navy);font-size:9px;vertical-align:-2px}
+
+    /* 관리자 메모 */
+    .admin-memo-day{padding:12px 0;border-bottom:1px solid var(--line-soft)}
+    .admin-memo-day:first-child{padding-top:0}
+    .admin-memo-day:last-child{border-bottom:0;padding-bottom:0}
+    .admin-memo-date{font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px}
+    .admin-memo-entry{padding:10px 12px;border-radius:8px;background:var(--warm);margin-bottom:8px}
+    .admin-memo-entry:last-child{margin-bottom:0}
+    .admin-memo-head time{font-size:10px;font-weight:700;color:var(--faint);font-family:Roboto,sans-serif}
+    .admin-memo-content{margin-top:5px;font-size:12px;line-height:1.7;color:#444}
+    .admin-memo-content p{margin:0 0 6px}
+    .admin-memo-content p:last-child{margin-bottom:0}
+    .admin-memo-highlight{font-weight:800;color:var(--navy)}
     .payment-title-row{display:flex;align-items:center;gap:10px}
     .payment-switch{display:inline-flex;align-items:center;gap:6px;margin-left:auto}
     .payment-switch__label{min-width:56px;text-align:center;color:#555;font-size:12px;font-weight:800}
@@ -279,14 +297,22 @@
   <div class="pd-order-date">오버사이즈 안내 · 주문일 2024-04-05</div>
 
   <section class="pd-sec">
-    <h3 class="pd-title">경매주문상품정보 <button type="button" class="pd-sub">본 입찰내역</button></h3>
+    <h3 class="pd-title">경매주문상품정보 <button type="button" class="pd-sub">본 입찰내역 조회</button></h3>
     <article class="pd-item">
       <div class="pd-item__img"><i class="far fa-image" aria-hidden="true"></i></div>
       <div class="pd-item__body">
-        <div class="pd-item__platform"><span class="platform-dot" style="width:10px;height:10px;border-radius:50%;background:var(--rose);display:inline-block"></span> 야후경매</div>
+        <div class="pd-item__platform"><span class="platform-dot" style="width:10px;height:10px;border-radius:50%;background:var(--rose);display:inline-block"></span> <b>야후경매</b> <span style="color:var(--tm)">물품아이디 : k12345678901</span></div>
         <a href="#" class="pd-item__name">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</a>
-        <div class="pd-item__meta"><span><b>낙찰가</b>￥46,000</span><span><b>수량</b>1개</span></div>
+        <div style="font-size:11px;color:var(--tm);line-height:1.5;margin-bottom:6px">父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ ピスタチオサンド 10 アソート ラングドシャ チョコレート</div>
+        <div class="pd-item__meta"><span><b>낙찰가</b>￥ 46,000</span><span><b>주문수량</b>1개</span><span><b>주문옵션</b>OOOOOOO</span></div>
       </div>
+    </article>
+    <article class="pd-list" style="margin-top:10px">
+      <div class="pd-row"><span class="k">진행단계</span><span class="v" style="font-weight:800">현지도착</span></div>
+      <div class="pd-row"><span class="k">입찰일자</span><span class="v mono">2024-04-04 12:12:32</span></div>
+      <div class="pd-row"><span class="k">낙찰일자</span><span class="v mono">2024-04-05 12:00:00</span></div>
+      <div class="pd-row"><span class="k">낙찰상품</span><span class="v">비공개 <button class="row-btn" type="button">공개로 변경</button></span></div>
+      <div class="pd-row"><span class="k">총 결제금액</span><span class="v mono">₩42,000</span></div>
     </article>
   </section>
 
@@ -299,6 +325,8 @@
         <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음">&gt;</button>
       </span>
     </h3>
+    <div class="pay-rate-note">¥ 환율 9.3원/엔</div>
+
     <div class="pay-card" data-payment-card="primary">
       <div class="pay-card__head">
         <span class="pay-badge first">1차 결제비용</span>
@@ -309,15 +337,15 @@
         <li class="pay-row"><span class="lbl">대행수수료</span><span class="val" data-pay-kind="base">860엔</span></li>
         <li class="pay-row is-toggle">
           <details class="pay-etc" open>
-            <summary>할인 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+            <summary>할인/쿠폰 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
             <div class="pay-etc__inner">
-              <div class="pay-row"><span class="lbl">쿠폰 적용</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
-              <div class="pay-row"><span class="lbl">마일리지 사용</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
+              <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
+              <div class="pay-row"><span class="lbl">마일리지 할인</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
             </div>
           </details>
         </li>
       </ul>
-      <div class="pay-foot"><div class="pay-total"><span class="lbl">1차 합계</span><span class="val" data-pay-total>3,862엔</span></div></div>
+      <div class="pay-foot"><div class="pay-total"><span class="lbl">1차 합계</span><span class="val-group"><span class="val" data-pay-total>35,917원</span><span class="calc-sm" data-pay-total-calc>3,862엔</span></span></div></div>
     </div>
 
     <div data-payment-secondary-stack>
@@ -331,15 +359,15 @@
           <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
           <li class="pay-row is-toggle">
             <details class="pay-etc" open>
-              <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+              <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
               <div class="pay-etc__inner">
-                <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
-                <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
+                <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
               </div>
             </details>
           </li>
         </ul>
-        <div class="pay-foot"><div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>6,500엔</span></div></div>
+        <div class="pay-foot"><div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>65,100원</span><span class="calc-sm" data-pay-total-calc>7,000엔</span></span></div></div>
       </div>
       <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
         <div class="pay-card__head">
@@ -349,43 +377,47 @@
         <ul class="pay-rows">
           <li class="pay-row"><span class="lbl">현지세금</span><span class="val" data-pay-kind="base">—</span></li>
           <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
-          <li class="pay-row"><span class="lbl">국제운송료</span><span class="val" data-pay-kind="base">10,900엔</span></li>
+          <li class="pay-row"><span class="lbl">국제운송료<span class="pay-tooltip" title="무게 2.5kg · 국제운임 2,600엔"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span></span><span class="val" data-pay-kind="base">2,600엔</span></li>
           <li class="pay-row is-toggle">
             <details class="pay-etc" open>
-              <summary>기타 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
+              <summary>추가 비용 <i class="fas fa-chevron-down chev" aria-hidden="true"></i></summary>
               <div class="pay-etc__inner">
                 <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
                 <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                <div class="pay-row"><span class="lbl">기타 수수료</span><span class="val fee" data-pay-kind="extra">+ 298엔</span></div>
               </div>
             </details>
           </li>
         </ul>
-        <div class="pay-foot"><div class="pay-total"><span class="lbl">2차 합계</span><span class="val" data-pay-total>14,900엔</span></div></div>
+        <div class="pay-foot"><div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>64,151원</span><span class="calc-sm" data-pay-total-calc>6,898엔</span></span></div></div>
       </div>
     </div>
 
     <div class="pay-grandtotal">
-      <span class="pd-order-label" style="color:rgba(255,255,255,.8)">
-        <span class="lbl">총 결제금액 (1차 + 2차)</span>
-        <span class="calc" data-pay-grand-calc>총 10,362엔 * 환율 9.3원/엔</span>
+      <span class="lbl">총 결제금액 (1차 + 2차)</span>
+      <span class="val-group">
+        <span class="val" data-pay-grand-total>101,017원</span>
+        <span class="val-sm" data-pay-grand-yen>10,862엔</span>
       </span>
-      <span class="val" data-pay-grand-total>96,367원</span>
     </div>
 
     <!-- 오버사이즈 배송비 비교 -->
     <div class="oversize-box" style="margin-top:14px">
       <div class="oversize-notice">
         <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-        <span>오버사이즈 또는 EMS 사이즈 기준 초과로 안내받으신 경우, 배송방법별 국제운송료를 확인 후 변경 원하시는 배송 방법을 회신 부탁드립니다.</span>
+        <span>오버사이즈 또는 EMS 사이즈 기준 초과로 안내받으신 경우, 배송방법별 국제운송료를 확인 후 변경 원하시는 배송 방법 회신을 부탁드립니다.</span>
       </div>
       <div class="oversize-dims">
-        <span><b>중량무게</b> 15Kg</span>
-        <span><b>사이즈</b> 2cm x 2cm x 2cm</span>
+        <span><b>중량무게</b> <span id="ovWeight" data-weight="15">15</span>Kg</span>
+        <span><b>사이즈</b> <span id="ovW" data-size="2">2</span>cm x <span id="ovD" data-size="2">2</span>cm x <span id="ovH" data-size="2">2</span>cm = <span id="ovVol">0</span>Kg</span>
+      </div>
+      <div class="oversize-dims" style="border-bottom:1px solid #cfcfcf">
+        <span><b>배송방법별 국제 운송료</b></span>
       </div>
       <div class="oversize-table-wrap">
         <table class="oversize-table">
           <thead><tr><th>EMS</th><th>비바항공특송</th><th>선편특송</th></tr></thead>
-          <tbody><tr><td>14,600 엔<br>(15Kg)</td><td class="is-lowest">10,900 엔<br>(15Kg)</td><td>6,000 엔<br>(15Kg)</td></tr></tbody>
+          <tbody><tr><td id="ovPriceEms">14,600 엔<br>(15Kg)</td><td class="is-lowest" id="ovPriceBiba">10,900 엔<br>(15Kg)</td><td id="ovPriceSun">6,000 엔<br>(15Kg)</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -403,46 +435,131 @@
       <div class="pd-row"><span class="k">현지도착일</span><span class="v mono">2025-12-09 10:15</span></div>
       <div class="pd-row"><span class="k">국제 배송일</span><span class="v mono">2025-12-14</span></div>
       <div class="pd-row"><span class="k">묶음상태</span><span class="v">묶음배송 <button class="row-btn" type="button">묶음 해제</button></span></div>
-      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" style="color:var(--rose);font-weight:800">신청 <button class="row-btn" type="button">해제</button></span></div>
+      <div class="pd-row"><span class="k">안심케어플러스</span><span class="v" style="color:var(--rose);font-weight:800">신청 <button class="row-btn" type="button">신청 해제</button></span></div>
     </article>
   </section>
 
   <section class="pd-sec">
-    <h3 class="pd-title">묶음배송 구성 상품 <span style="color:var(--rose);font-size:12px;font-weight:700">10건</span></h3>
+    <h3 class="pd-title">묶음배송 구성 상품 <span style="color:var(--rose);font-size:12px;font-weight:700">10건</span> <a class="pd-sub" href="mobile_bundle_shipping_management_2.html">묶음배송관리</a></h3>
     <article class="pd-list">
       <div class="pd-bundle">
         <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
         <div class="pd-bundle__body">
-          <p class="pd-bundle__name">ホンダ XR 100 モタード 純正</p>
-          <div class="pd-bundle__meta">3,100엔 · 37,200원</div>
+          <p class="pd-bundle__name">[YAHOO] k19410009001 ホンダ XR 100 モタード 純正</p>
+          <div class="pd-bundle__meta">3,100엔 · 37,200원 · 2026-06-29</div>
         </div>
         <span class="pd-tag done">현지도착</span>
       </div>
       <div class="pd-bundle">
         <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
         <div class="pd-bundle__body">
-          <p class="pd-bundle__name">ホンダ エイプ XR100 フロント</p>
-          <div class="pd-bundle__meta">1,200엔 · 14,400원</div>
+          <p class="pd-bundle__name">[YAHOO] k19410009002 ホンダ エイプ XR100 フロント</p>
+          <div class="pd-bundle__meta">1,200엔 · 14,400원 · 2026-06-28</div>
         </div>
         <span class="pd-tag done">현지도착</span>
       </div>
       <div class="pd-bundle">
         <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
         <div class="pd-bundle__body">
-          <p class="pd-bundle__name">カワサキ Z900 タンクパッド</p>
-          <div class="pd-bundle__meta">780엔 · 9,360원</div>
+          <p class="pd-bundle__name">[YAHOO] k19410009003 ホンダ 純正 ウインカー 部品</p>
+          <div class="pd-bundle__meta">900엔 · 10,800원 · 2026-06-28</div>
+        </div>
+        <span class="pd-tag done">현지도착</span>
+      </div>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009004 スズキ GSX-R 純正ミラー セット</p>
+          <div class="pd-bundle__meta">2,500엔 · 30,000원 · 2026-06-27</div>
+        </div>
+        <span class="pd-tag done">현지도착</span>
+      </div>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009005 カワサキ Z900 タンクパッド</p>
+          <div class="pd-bundle__meta">780엔 · 9,360원 · 2026-06-26</div>
         </div>
         <span class="pd-tag">1차 결제완료</span>
       </div>
       <div class="pd-bundle">
         <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
         <div class="pd-bundle__body">
-          <p class="pd-bundle__name">ホンダ CBR600RR フェンダーレス</p>
-          <div class="pd-bundle__meta">4,200엔 · 50,400원</div>
+          <p class="pd-bundle__name">[YAHOO] k19410009006 ヤマハ MT-07 レバーセット</p>
+          <div class="pd-bundle__meta">1,560엔 · 18,720원 · 2026-06-26</div>
+        </div>
+        <span class="pd-tag">1차 결제완료</span>
+      </div>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009007 ホンダ CBR600RR フェンダーレス</p>
+          <div class="pd-bundle__meta">4,200엔 · 50,400원 · 2026-06-25</div>
         </div>
         <span class="pd-tag">1차 결제대기</span>
       </div>
-      <a href="mobile_bundle_shipping_management_2.html" style="display:block;text-align:center;margin-top:10px;font-size:12px;font-weight:700;color:var(--navy);text-decoration:underline">묶음배송관리 전체보기 (10건)</a>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009008 スズキ バンディット グリップ ペア</p>
+          <div class="pd-bundle__meta">650엔 · 7,800원 · 2026-06-25</div>
+        </div>
+        <span class="pd-tag">1차 결제대기</span>
+      </div>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009009 カワサキ Ninja ZX-6R スクリーン</p>
+          <div class="pd-bundle__meta">3,300엔 · 39,600원 · 2026-06-24</div>
+        </div>
+        <span class="pd-tag done">현지도착</span>
+      </div>
+      <div class="pd-bundle">
+        <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
+        <div class="pd-bundle__body">
+          <p class="pd-bundle__name">[YAHOO] k19410009010 ヤマハ YZF-R1 チェーンスライダー</p>
+          <div class="pd-bundle__meta">1,900엔 · 22,800원 · 2026-06-24</div>
+        </div>
+        <span class="pd-tag done">현지도착</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="pd-sec" id="admin-memo">
+    <h3 class="pd-title">관리자 메모</h3>
+    <article class="pd-list">
+      <div class="admin-memo-day">
+        <div class="admin-memo-date">2026-06-30</div>
+        <div class="admin-memo-entry">
+          <div class="admin-memo-head"><time datetime="2026-06-30T10:22:23">10:22:23</time></div>
+          <div class="admin-memo-content">
+            <p>안녕하세요.<br>
+            낙찰받으신 후 12시간이 경과하였습니다.<br>
+            출품자에게 일방적인 낙찰취소를 당할수 있는 가능성이 있어 알려드립니다.<br>
+            만약 낙찰취소되시면 보증금 환수 및 등급포인트가 차감되시오니<br>
+            빠른 결제처리를 부탁드립니다.<br>
+            감사합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-memo-day">
+        <div class="admin-memo-date">2026-06-26</div>
+        <div class="admin-memo-entry">
+          <div class="admin-memo-head"><time datetime="2026-06-26T15:55:23">15:55:23</time></div>
+          <div class="admin-memo-content">
+            <p>안녕하세요, 고객님.<br>
+            구매신청 감사합니다.<br>
+            가격변동 및 품절 등 있을 경우에는 관리자메모로 안내 드리도록 하겠습니다.<br>
+            구매완료되면 "결제완료" 에서 "주문완료" 로 상태 변경 됩니다.</p>
+            <p class="admin-memo-highlight">[청약 철회에 대한 안내]</p>
+            <p>실제 주문완료 이후에는 구매대행계약의 청약철회를 할 수 없습니다.<br>
+            다만, 판매자가 환불에 동의한 경우 고객님의 비용부담으로 반품, 환불 절차를 대행합니다. (메루카리/라쿠마/페이페이프리마 제외)<br>
+            이 경우 대행 수수료는 환불 대상이 아닙니다.</p>
+            <p>또한 부피, 무게 등의 차이로 인한 송료 차액은 2차 결제 시 실제 금액으로 정산 될 수 있는 점 참고 바랍니다.<br>
+            감사합니다.</p>
+          </div>
+        </div>
+      </div>
     </article>
   </section>
 
@@ -457,14 +574,36 @@
         <li class="msg agent">
           <div class="msg-head">
             <span class="msg-label">답변</span>
-            <span class="msg-who">비드바이 cs팀</span>
+            <span class="msg-who">관리자</span>
             <span class="msg-date">2025-12-10 11:20</span>
           </div>
           <div class="msg-bubble">
             <p>안녕하세요, 고객님.</p>
             <p>해당건 포장이 완료 되었습니다만, EMS배송가능 사이즈를 초과 하여 배송이 불가합니다.</p>
-            <p>배송 가능한 방법으로는 [비바항공특송]과 [비드바이선편특송]이 있습니다.</p>
-            <p>검토 후 변경 원하시는 배송방법으로 회신 주시길 바랍니다.</p>
+            <p>배송 가능한 배송방법으로는 [비바항공특송]과 [비드바이선편특송]이 있습니다.</p>
+            <p>검토 후 변경원하시는 배송방법으로 회신 주시길 바랍니다.</p>
+            <p><a href="https://www.bidbuy.co.kr/cs/guide/shipping" target="_blank" rel="noopener">https://www.bidbuy.co.kr/cs/guide/shipping</a> 국제배송 요금표</p>
+            <p>감사합니다.</p>
+          </div>
+        </li>
+        <li class="msg customer">
+          <div class="msg-head">
+            <span class="msg-label">문의</span>
+            <span class="msg-who">홍길동</span>
+            <span class="msg-date">2025-12-10 13:42</span>
+          </div>
+          <div class="msg-bubble"><p>안내 확인했습니다. EMS로 변경 부탁드립니다.</p></div>
+        </li>
+        <li class="msg agent">
+          <div class="msg-head">
+            <span class="msg-label">답변</span>
+            <span class="msg-who">관리자</span>
+            <span class="msg-date">2025-12-10 11:24</span>
+          </div>
+          <div class="msg-bubble">
+            <p>해당건 포장이 완료 되었습니다만,</p>
+            <p>저중량제품으로 확인되어 더욱 저렴하고 빠른 비바항공특송으로 진행하시는것을 추천드리고자 연락드립니다.</p>
+            <p>배송 방법 변경을 원하시는 경우에는 2차 결제를 하지 마시고 변경을 원하신다는 메모 남겨 주시길 바랍니다.</p>
           </div>
         </li>
         <li class="msg customer">
@@ -508,12 +647,14 @@ function updatePaymentTotals() {
     const base = sum('base'), discount = sum('discount'), extra = sum('extra');
     const cardTotal = card.dataset.paymentCard === 'primary' ? base - discount : base + extra;
     const totalEl = card.querySelector('[data-pay-total]');
+    const calcEl = card.querySelector('[data-pay-total-calc]');
     if (card.dataset.paymentCard === 'primary') primaryTotal = cardTotal;
     if (card.dataset.paymentCard === 'secondary') secondaryTotal = cardTotal;
-    if (totalEl) totalEl.textContent = formatPaymentYen(cardTotal);
+    if (totalEl) totalEl.textContent = formatPaymentWon(cardTotal);
+    if (calcEl) calcEl.textContent = formatPaymentYen(cardTotal);
   });
   const grandTotal = primaryTotal + secondaryTotal;
-  document.querySelectorAll('[data-pay-grand-calc]').forEach(el => { el.textContent = `총 ${formatPaymentYen(grandTotal)} * 환율 9.3원/엔`; });
+  document.querySelectorAll('[data-pay-grand-yen]').forEach(el => { el.textContent = formatPaymentYen(grandTotal); });
   document.querySelectorAll('[data-pay-grand-total]').forEach(el => { el.textContent = formatPaymentWon(grandTotal); });
 }
 
