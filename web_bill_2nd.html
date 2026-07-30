@@ -694,6 +694,17 @@
   .fee-row-total { background: #f0f4fb; border-top: 2px solid #1A3C6E !important; padding: 16px 18px; }
   .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
   .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
+  /* VIP 등급혜택 적용 */
+  .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
+  .panel-earn-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 10px; border-bottom: 1px solid #eef0f4; }
+  .panel-earn-label { font-size: 13px; font-weight: 700; color: #555; }
+  .panel-earn-max { font-size: 12px; font-weight: 700; color: #1A3C6E; }
+  .panel-earn-body { padding: 10px 18px 12px; }
+  .benefit-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 0; font-size: 12px; }
+  .benefit-row-lbl { display: flex; align-items: center; gap: 6px; color: #3AAD4E; font-weight: 600; }
+  .benefit-row-val { font-family: 'Roboto', sans-serif; color: #a9aeb8; font-weight: 500; white-space: nowrap; text-decoration: line-through; }
+  .grade-badge-free { display: inline-flex; align-items: center; height: 16px; padding: 0 6px; border-radius: 3px; background: #eaf7ed; color: #3AAD4E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 10px; font-weight: 700; }
+  .benefit-note { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.65; }
   .fee-row-toggle { cursor: pointer; }
   .fee-row-toggle .fee-row-label { display: inline-flex; align-items: center; gap: 6px; }
   .fee-toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 0; background: transparent; color: #7b8490; cursor: pointer; padding: 0; }
@@ -950,11 +961,22 @@
             </div>
           </td>
         </tr>
+        <tr>
+          <th>현금영수증 발급</th>
+          <td>
+            <div style="font-size:12px; color:#664400; margin-bottom:8px; line-height:1.6;">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다.
+              <br> 현금영수증을 발급 받으시겠습니까?</div>
+            <div style="display:flex; gap:18px;">
+              <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="yes" style="accent-color:#1A3C6E;"> 예</label>
+              <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="no" checked style="accent-color:#1A3C6E;"> 아니오</label>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- ── 관·부가세 안내 + 현금영수증 발급 통합 배너 ── -->
+  <!-- ── 관·부가세 안내 ── -->
   <div style="background:#FFF8EC; border-left:3px solid #F5A623; border-radius:0 4px 4px 0; padding:14px 16px; margin-bottom:24px; font-size:13px; line-height:1.75; color:#664400;">
     <div style="display:flex; align-items:flex-start; gap:8px;">
       <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
@@ -965,18 +987,6 @@
 <br>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
 <br>※ 사업자 통관 = 사업자 판매 목적 수입은 물품가와 무관하게 일반통관이 적용
         <br><a href="#" style="font-size:12px; color:#C47D00; text-decoration:none; margin-top:2px; display:inline-block;">이용가이드 자세히 보기 ›</a>
-      </div>
-    </div>
-    <hr style="border:none; border-top:1px dashed rgba(122,85,0,.28); margin:12px 0;">
-    <div style="display:flex; align-items:flex-start; gap:8px;">
-      <span style="color:#D4891A; font-size:15px; flex-shrink:0; margin-top:1px;">&#9888;</span>
-      <div>
-        <strong style="color:#7A5500; display:block; margin-bottom:4px;">현금영수증 발급</strong>
-        <div style="font-size:12px; color:#664400; margin-bottom:8px; line-height:1.6;">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
-        <div style="display:flex; gap:18px;">
-          <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="yes" style="accent-color:#1A3C6E;"> 예</label>
-          <label style="display:inline-flex; align-items:center; gap:5px; font-size:13px; cursor:pointer; color:#664400;"><input type="radio" name="receipt" value="no" checked style="accent-color:#1A3C6E;"> 아니오</label>
-        </div>
       </div>
     </div>
   </div>
@@ -1063,9 +1073,28 @@
         <span class="fee-row-label">총 결제금액</span>
         <span class="fee-row-val" id="panelTotal">100,915원</span>
       </div>
+
+      <!-- VIP 등급혜택 적용 -->
+      <div class="panel-earn">
+        <div class="panel-earn-head">
+          <span class="panel-earn-label">VIP 등급혜택 적용</span>
+          <span class="panel-earn-max">최대 <span id="gradeBenefitTotal">700</span>엔</span>
+        </div>
+        <div class="panel-earn-body">
+          <div class="benefit-row">
+            <span class="benefit-row-lbl">안심케어 <span class="grade-badge-free">무료</span></span>
+            <span class="benefit-row-val" id="gradeBenefitCare">200엔</span>
+          </div>
+          <div class="benefit-row">
+            <span class="benefit-row-lbl">묶음배송 10건 <span class="grade-badge-free">무료</span></span>
+            <span class="benefit-row-val" id="gradeBenefitBundle">500엔</span>
+          </div>
+          <p class="benefit-note">※ 등급 혜택은 결제 시 자동 적용됩니다.</p>
+        </div>
+      </div>
       <div class="btn-area">
-        <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제취소</button>
-        <button class="btn btn-primary">신청하기</button>
+        <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제 취소</button>
+        <button class="btn btn-primary">결제 승인</button>
       </div>
     </div>
   </div>
@@ -1400,6 +1429,14 @@
       if (panelSubtotal) panelSubtotal.textContent = `${fmt(totalYen)} 엔`;
       const panelTotal = document.getElementById('panelTotal');
       if (panelTotal) panelTotal.textContent = `${fmt(totalWon)}원`;
+
+      // VIP 등급혜택 — 무료 제공 항목 합계
+      const gradeCareYen   = 200;
+      const gradeBundleYen = 500;
+      const el = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+      el('gradeBenefitCare',   `${fmt(gradeCareYen)}엔`);
+      el('gradeBenefitBundle', `${fmt(gradeBundleYen)}엔`);
+      el('gradeBenefitTotal',  fmt(gradeCareYen + gradeBundleYen));
     };
 
     renderPaymentSummary();

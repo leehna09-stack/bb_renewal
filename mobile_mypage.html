@@ -1893,6 +1893,12 @@
   
     .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
     .member-tier-icon i { line-height:1; }
+
+    /* ── 상단 여백 통일 (mobile_mainlist 기준) ── */
+    .topbar { row-gap: 0; padding: 0; }
+    .topbar .brand-area,
+    .topbar .user-tools { min-height: 56px; }
+    .topbar .search { margin: 0 14px 10px; }
   </style>
 </head>
 <body class="is-logged-out">
@@ -1934,14 +1940,6 @@
         </div>
       </div>
     </div>
-    <nav class="mobile-channel-tabs" aria-label="경매 채널">
-      <button class="active" type="button">야후옥션</button>
-      <button type="button">메루카리</button>
-      <button type="button">라쿠텐</button>
-      <button type="button">라쿠마</button>
-      <button type="button">미국이베이</button>
-      <button type="button">영국이베이</button>
-    </nav>
   </header>
 
   <div class="stage">
@@ -2170,13 +2168,6 @@
 
   document.querySelector(".search")?.addEventListener("submit", event => {
     event.preventDefault();
-  });
-
-  document.querySelectorAll(".mobile-channel-tabs button").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".mobile-channel-tabs button").forEach(item => item.classList.remove("active"));
-      tab.classList.add("active");
-    });
   });
 
   document.querySelectorAll(".user-menu-trigger").forEach(triggerButton => {

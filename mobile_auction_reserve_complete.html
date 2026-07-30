@@ -62,17 +62,12 @@
     .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
     .m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
     .m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#F5A623);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
-    .m-header-search{display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;margin:0 14px 10px}
-    .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
-    .m-header-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 8px 0 8px;color:#333;font-size:13px;font-family:inherit}
-    .m-header-search input::placeholder{color:#99A2B0}
-    .m-header-search button{width:40px;height:100%;border:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
-    .m-header-search button i{font-size:13px}
 
     /* ── 콘텐츠 ── */
     .stage { padding: 18px 16px 80px; background: var(--white); min-height: 100vh; }
 
-    .page-head { margin: 0 0 18px; }
+    .page-head { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; }
+    .page-back { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid #d7dee8; background: #fff; color: var(--navy); font-size: 14px; border-radius: 50%; }
     .page-head h2 { margin: 0; color: var(--tp); font-size: 20px; font-weight: 900; }
 
     /* 단계 */
@@ -233,14 +228,11 @@
       <button class="m-user-avatar" onclick="alert('마이페이지')" aria-label="회원 메뉴">한</button>
     </div>
   </div>
-  <div class="m-header-search">
-    <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
-    <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
-  </div>
 </header>
 
 <div class="stage">
   <div class="page-head">
+    <button class="page-back" type="button" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
     <h2>예약 입찰하기</h2>
   </div>
 

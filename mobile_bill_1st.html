@@ -15,10 +15,11 @@
     --text-main:#111; --text-sub:#666; --text-hint:#999;
   }
   html, body { width:100%; max-width:390px; margin:0 auto; background:var(--bg); overflow-x:hidden; }
-  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
+  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:81px; padding-bottom:80px; }
 
   /* 앱바 */
   .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
+  .app-header .phone-status-bar { border-bottom:0; }
   .app-header-top { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:1px; min-height:56px; }
   .app-brand-area { display:flex; align-items:center; gap:10px; min-width:0; }
   .hb { width:34px; height:34px; border-radius:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:0; background:none; border:none; cursor:pointer; }
@@ -108,6 +109,31 @@
   .option-body ul { margin:0; padding-left:18px; }
   .option-body li { margin-bottom:3px; }
   .paid-option-detail { height:30px; padding:0 12px; border:1px solid var(--navy); border-radius:4px; background:#fff; color:var(--navy); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:12px; font-weight:700; cursor:pointer; }
+  /* 선택형 옵션(체크박스) */
+  .option-header-choice { display:block; }
+  .option-notice-toggle { display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; padding:0; border:0; background:none; color:#444; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:12px; line-height:1.8; text-align:left; cursor:pointer; }
+  .option-notice-arrow { flex:0 0 auto; color:#8B95A1; font-size:11px; transition:transform .18s ease; }
+  .option-notice-toggle[aria-expanded="true"] .option-notice-arrow { transform:rotate(180deg); }
+  .option-notice-detail { margin-top:8px; }
+  .option-notice-detail.is-collapsed { display:none; }
+  .packing-choice-list { display:grid; grid-template-columns:1fr; gap:8px; }
+  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:800; cursor:pointer; }
+  .packing-choice input { width:14px; height:14px; margin:0; accent-color:var(--navy); flex:0 0 auto; }
+  .packing-choice:has(input:checked) { border-color:var(--navy); background:#f7faff; }
+  /* 튼튼 포장 비용 안내 모달 */
+  .packing-modal .modal-body { padding:16px; }
+  .packing-modal-meta { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+  .packing-unit { margin:0; font-size:12px; font-weight:700; color:#333; }
+  .packing-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .packing-cost-table { width:100%; min-width:720px; border-collapse:collapse; border:1px solid #d7dce3; color:#5f6770; font-size:11px; text-align:center; }
+  .packing-cost-table + .packing-cost-table { margin-top:18px; }
+  .packing-cost-table th,
+  .packing-cost-table td { border:1px solid #e7e7e7; padding:6px 7px; line-height:1.35; vertical-align:middle; white-space:nowrap; }
+  .packing-cost-table thead th { background:#f4f4f4; font-weight:700; }
+  .packing-cost-table .thick-right { border-right:1px solid #d7dce3; }
+  .packing-cost-table .thick-bottom { border-bottom:1px solid #d7dce3; }
+  .packing-cost-table .tier-note { display:block; color:#888; font-size:10px; font-weight:400; margin-top:2px; }
+  .packing-note { margin:10px 0 0; color:#888; font-size:11px; line-height:1.6; }
   .toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; }
   .toggle-track { width:44px; height:24px; background:#ccc; border-radius:12px; position:relative; transition:background .2s; cursor:pointer; }
   .toggle-track.on { background:var(--green); }
@@ -187,6 +213,15 @@
 <body>
 
 <div class="app-header">
+  <!-- 모바일 상태바(시간/네트워크/배터리) : 항상 최상단 -->
+  <div class="phone-status-bar" aria-hidden="true">
+    <span class="psb-time">9:41</span>
+    <div class="psb-icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+    </div>
+  </div>
   <div class="app-header-top">
     <div class="app-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
@@ -225,7 +260,7 @@
 
 <!-- 국제배송 -->
 <div class="card">
-  <div class="card-title">국제배송 및 배송형태 <span class="req">*필수</span></div>
+  <div class="card-title">국제 배송방법 선택 <span class="req">*필수</span></div>
   <div class="field-label">배송방법</div>
   <select class="select-full" id="shippingMethodSelect">
    <optgroup label="국제배송">
@@ -246,7 +281,12 @@
     <span class="ship-info-label">배송기간</span>
     <div class="ship-days" id="shipDays">3 ~ 5일</div>
   </div>
-  <div class="field-label" style="margin-top:16px;">배송형태</div>
+</div>
+
+<!-- 배송형태 및 포장방법 -->
+<div class="card">
+  <div class="card-title">배송형태 및 포장방법 선택 <span class="req">*필수</span></div>
+  <div class="field-label">배송형태</div>
   <table class="method-select-table">
     <tbody>
       <tr class="selectable selected" id="row-individual" tabindex="0">
@@ -270,32 +310,29 @@
     </tbody>
   </table>
   
+  <div class="field-label" style="margin-top:16px;">포장 옵션</div>
   <div class="option-item">
-    <div class="option-header">
-      <div class="option-header-left">
-        <div class="option-name">안심 케어 플러스</div>
-        <div class="option-price">+ 1,000엔</div>
-      </div>
-      <div class="toggle-wrap">
-        <div class="toggle-track" id="careTrack" onclick="toggleCare()"><div class="toggle-thumb"></div></div>
-        <span class="toggle-text" id="careText">미신청</span>
+    <div class="option-header option-header-choice">
+      <div class="packing-choice-list" aria-label="포장 옵션 선택">
+        <label class="packing-choice"><input type="checkbox" name="packingOption" value="arrival"><span>현지도착상태 그대로 발송</span></label>
+        <label class="packing-choice"><input type="checkbox" name="packingOption" value="basic"><span>기본포장</span></label>
+        <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료 서비스)</span></label>
       </div>
     </div>
-    <div class="option-body is-collapsed" id="careOptionBody">
-      <p><i class="fa-solid fa-circle-info" aria-hidden="true"></i> 상품을 더욱 안전하게 받아보실 수 있도록 <strong>튼튼 포장비와 파손 보상</strong>을 함께 제공하는 유료 서비스입니다.</p>
-      <ul>
-        <li>가입 건에 한해 파손시, <strong>최대 50만 원 한도 내에서 보상</strong>이 적용되며, 튼튼 포장비는 <strong>최대 500엔 한도 내에서 제공</strong>됩니다.</li>
-        <li>보상 범위에는 <strong>낙찰가 또는 구매가, 국제 운송료, 수입신고 시 발생한 세금</strong>이 포함됩니다.</li>
-        <li>해당 서비스 가입 건은 <strong>개별배송으로만 진행</strong>되며, 서비스 비용은 <strong>2차 결제시 청구</strong>됩니다.</li>
-      </ul>
-      <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</strong></p>
-      <ul>
-        <li><strong style="color:var(--red);">파손보상 불가 품목</strong>은 안심 케어 가입이 제한됩니다.</li>
-        <li>현지 입고 후 불가 품목으로 확인될 경우, <strong style="color:var(--red);">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
-        <li>튼튼 포장비가 500엔을 초과하는 경우, 초과 금액은 <strong style="color:var(--red);">2차 결제 시 별도 청구됩니다.</strong></li>
-      </ul>
-      <div style="margin-top:8px;">
-        <button class="paid-option-detail damage-detail" type="button">파손보상 불가 품목 보기</button>
+    <div class="option-body">
+      <button class="option-notice-toggle" type="button" id="packingNoticeToggle" aria-expanded="false" aria-controls="packingNoticeDetail">
+        <span><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong style="color:var(--red);">깨지기 쉬운 물품</strong>의 경우 튼튼 포장 옵션을 선택해 주세요.</span>
+        <i class="fa-solid fa-chevron-down option-notice-arrow" aria-hidden="true"></i>
+      </button>
+      <div class="option-notice-detail is-collapsed" id="packingNoticeDetail">
+        <ul>
+          <li>튼튼 포장 비용은 품목에 따라 500엔~3,000엔까지 적용됩니다.</li>
+          <li>자세한 품목별 비용은 하단의 [튼튼 포장 비용 안내]를 참고해 주세요.</li>
+          <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
+        </ul>
+        <div style="margin-top:8px;">
+          <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장 비용 안내</button>
+        </div>
       </div>
     </div>
   </div>
@@ -370,12 +407,12 @@
 <div class="modal-overlay" id="damageModal" role="dialog" aria-modal="true" aria-labelledby="damageModalTitle" hidden>
   <div class="modal">
     <div class="modal-header">
-      <h2 class="modal-title" id="damageModalTitle">보상불가 품목 안내</h2>
+      <h2 class="modal-title" id="damageModalTitle">지원불가 품목 안내</h2>
       <button class="modal-close" type="button" id="damageModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="modal-body">
       <ul>
-        <li>주류 병 파손은 보상 가능하나, <strong>코르크 손상 또는 누액</strong>은 <strong style="color: red;">보상 불가합니다.</strong></li>
+        <li>주류 병 파손은 지원 가능하나, <strong>코르크 손상 또는 누액</strong>은 <strong style="color: red;">지원 불가합니다.</strong></li>
         <li>턴테이블 및 턴테이블 부품(톤암, 카트리지, 더스트 커버 등)</li>
         <li>열변형된 LP</li>
         <li>전용 하드케이스에 포장되지 않은 악기류</li>
@@ -390,9 +427,91 @@
     </div>
   </div>
 </div>
+
+<!-- 튼튼 포장 비용 안내 모달 -->
+<div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
+  <div class="modal packing-modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장 비용 안내</h2>
+      <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="packing-modal-meta">
+        <p class="packing-unit">단위 : 엔(円)</p>
+      </div>
+      <div class="packing-table-wrap">
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">주요 상품<br>(1개 기준)</th>
+              <th class="thick-bottom">턴테이블</th>
+              <th class="thick-bottom">앰프, CD플레이어</th>
+              <th class="thick-bottom">휠 또는<br>휠 붙은 타이어</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">악기 기타</th>
+              <th class="thick-bottom">중형 스피커 1쌍</th>
+              <th class="thick-bottom">대형 스피커 1쌍</th>
+              <th class="thick-bottom">범퍼</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">도자기</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">포장비</th>
+              <td>1,000</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>1,000</td>
+              <td>500</td>
+              <td>1,000</td>
+              <td>2,000</td>
+              <td>1,500</td>
+              <td>500</td>
+              <td>500</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="packing-cost-table">
+          <thead>
+            <tr>
+              <th class="thick-right thick-bottom">묶음 배송시</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">골프채</th>
+              <th class="thick-bottom">휠</th>
+              <th class="thick-bottom">도자기</th>
+              <th class="thick-bottom" rowspan="2">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
+            <tr>
+              <th class="thick-right thick-bottom">수량</th>
+              <th class="thick-bottom">2~5병 / 6~10병</th>
+              <th class="thick-bottom">2~10개</th>
+              <th class="thick-bottom">1~3개/4~6개/7~10개</th>
+              <th class="thick-bottom">2개 초과당</th>
+              <th class="thick-bottom">2개 이상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="thick-right">총<br>포장비용</th>
+              <td>1,000/1,500</td>
+              <td>1,500</td>
+              <td>500/1,000/1,500</td>
+              <td>1,000엔씩 추가</td>
+              <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
+              <td>2,000~3,000</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.<br>※ 팔레트 포장 비용은 1장당 5,000엔이며 팔레트 무게 약 11kg이 국제운송료에 포함되어 청구됩니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="bottom-cta">
-  <button class="cta-btn cta-cancel">결제취소</button>
-  <button class="cta-btn cta-approve" id="btnApprove" onclick="location.href='mobile_bill_1st_2.html'">결제승인</button>
+  <button class="cta-btn cta-cancel">결제 취소</button>
+  <button class="cta-btn cta-approve" id="btnApprove" onclick="location.href='mobile_bill_1st_2.html'">다음 단계</button>
 </div>
 
 
@@ -467,11 +586,6 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
     const rowWait = document.getElementById('row-wait');
     const cbIndividual = rowIndividual?.querySelector('.method-checkbox');
     const cbWait = rowWait?.querySelector('.method-checkbox');
-    const careTrack = document.getElementById('careTrack');
-    const careText = document.getElementById('careText');
-    const careOptionBody = document.getElementById('careOptionBody');
-    const careWrap = careTrack?.closest('.option-item');
-
     const wasIndividualChecked = Boolean(cbIndividual?.checked);
     const wasWaitChecked = Boolean(cbWait?.checked);
 
@@ -482,15 +596,9 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
       // 배송대기 자동 선택
       if (rowWait) rowWait.classList.add('selected');
       if (cbWait) { cbWait.checked = true; }
-      // 안심케어플러스 그레이 + 선택 불가, 미신청으로 초기화
-      if (careWrap) { careWrap.style.opacity = '0.4'; careWrap.style.pointerEvents = 'none'; }
-      if (careTrack) careTrack.classList.remove('on');
-      if (careText) { careText.textContent = '미신청'; careText.classList.remove('on'); }
-      if (careOptionBody) careOptionBody.classList.add('is-collapsed');
     } else {
       if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; }
       if (cbIndividual) { cbIndividual.disabled = false; }
-      if (careWrap) { careWrap.style.opacity = ''; careWrap.style.pointerEvents = ''; }
     }
     if (cbIndividual) { cbIndividual.checked = wasIndividualChecked; cbIndividual.disabled = false; }
     if (cbWait) { cbWait.checked = wasWaitChecked; cbWait.disabled = false; }
@@ -498,31 +606,37 @@ document.querySelectorAll('.login-btn-sm').forEach(button => {
     if (!cbIndividual?.checked && !cbWait?.checked && cbIndividual) cbIndividual.checked = true;
     if (rowIndividual) { rowIndividual.style.opacity = ''; rowIndividual.style.pointerEvents = ''; rowIndividual.classList.toggle('selected', Boolean(cbIndividual?.checked)); }
     if (rowWait) rowWait.classList.toggle('selected', Boolean(cbWait?.checked));
-    if (careWrap) {
-      careWrap.hidden = isJapanLocal;
-      careWrap.style.opacity = '';
-      careWrap.style.pointerEvents = '';
-    }
   });
   document.getElementById('shippingMethodSelect')?.dispatchEvent(new Event('change'));
 
 
-function toggleCare() {
-  const t = document.getElementById('careTrack');
-  const s = document.getElementById('careText');
-  const body = document.getElementById('careOptionBody');
-  if (!t || !s) return;
-  t.classList.toggle('on');
-  const isOn = t.classList.contains('on');
-  s.textContent = isOn ? '신청' : '미신청';
-  s.classList.toggle('on', isOn);
-  body?.classList.toggle('is-collapsed', !isOn);
-}
+/* 포장 옵션 — 하나만 선택 */
+document.querySelectorAll('input[name="packingOption"]').forEach((input) => {
+  input.addEventListener('change', () => {
+    if (input.checked) {
+      document.querySelectorAll('input[name="packingOption"]').forEach((other) => {
+        if (other !== input) other.checked = false;
+      });
+    }
+  });
+});
 
+/* 포장 옵션 안내 접기/펼치기 */
 (() => {
-  const detailButton = document.querySelector('.damage-detail');
-  const modal = document.getElementById('damageModal');
-  const modalClose = document.getElementById('damageModalClose');
+  const toggle = document.getElementById('packingNoticeToggle');
+  const detail = document.getElementById('packingNoticeDetail');
+  if (!toggle || !detail) return;
+  toggle.addEventListener('click', () => {
+    const isOpen = detail.classList.toggle('is-collapsed') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+})();
+
+/* 모달 (파손지원 불가 품목 / 튼튼 포장 비용) */
+const bindModal = (btnSelector, modalId, closeId) => {
+  const detailButton = document.querySelector(btnSelector);
+  const modal = document.getElementById(modalId);
+  const modalClose = document.getElementById(closeId);
   if (!detailButton || !modal || !modalClose) return;
   const showModal = () => { modal.hidden = false; modal.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
   const hideModal = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; requestAnimationFrame(() => { if (!modal.classList.contains('is-open')) modal.hidden = true; }); };
@@ -530,7 +644,9 @@ function toggleCare() {
   modalClose.addEventListener('click', hideModal);
   modal.addEventListener('click', (event) => { if (event.target === modal) hideModal(); });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) hideModal(); });
-})();
+};
+bindModal('.damage-detail', 'damageModal', 'damageModalClose');
+bindModal('.packing-cost-detail', 'packingCostModal', 'packingCostModalClose');
   /* 배송형태 테이블 */
   (() => {
     const rows = Array.from(document.querySelectorAll('.method-select-table tbody tr.selectable'));

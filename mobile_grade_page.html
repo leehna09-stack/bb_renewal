@@ -129,7 +129,7 @@
 
   <div class="page-title-bar">
     <h1>MY 등급</h1>
-    <p>마이페이지 · MY혜택 · MY 등급</p>
+    <p>등급별 혜택을 확인하고 다음 등급을 목표로 거래를 이어가세요.</p>
   </div>
 
   <div class="hero-card">
@@ -172,19 +172,17 @@
 
   <!-- Standard -->
   <div class="benefit-card" id="bp-std" style="display:none">
-    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-std)">Standard</div><div class="bc-cond">월 0~4건</div></div>
+    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-std)">Standard</div><div class="bc-cond">월 0~4건 이상</div></div>
     <div class="bc-body">
-      <div class="bc-divider">마일리지</div>
-      <div class="bc-row"><span class="bc-label">월간 지급</span><span class="bc-val">5,000원</span></div>
-      <div class="bc-row"><span class="bc-label">거래 적립</span><span class="bc-val">2%</span></div>
-      <div class="bc-divider">배송</div>
+      <div class="bc-divider">마일리지 혜택</div>
+      <div class="bc-row"><span class="bc-label">월간 마일리지</span><span class="bc-val">5,000원</span></div>
+      <div class="bc-row"><span class="bc-label">거래 적립률</span><span class="bc-val">2%</span></div>
+      <div class="bc-divider">배송 혜택</div>
       <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val">30일</span></div>
-      <div class="bc-row"><span class="bc-label">묶음 비용</span><span class="bc-val" style="font-size:13px">건당 ¥100 (6건~)</span></div>
-      <div class="bc-row"><span class="bc-label">EMS·비바특송</span><span class="bc-val muted">—</span></div>
-      <div class="bc-divider">쿠폰 · CS</div>
-      <div class="bc-row"><span class="bc-label">생일 쿠폰</span><span class="bc-val">5,000원</span></div>
-      <div class="bc-row"><span class="bc-label">VIP 전담 CS</span><span class="bc-val muted">—</span></div>
-      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val muted">—</span></div>
+      <div class="bc-row"><span class="bc-label">묶음 배송 비용</span><span class="bc-val" style="font-size:13px">건당 ¥100 (6건~)</span></div>
+      <div class="bc-row"><span class="bc-label">국제운임 할인율</span><span class="bc-val muted">-</span></div>
+      <div class="bc-divider">생일 혜택</div>
+      <div class="bc-row"><span class="bc-label">비바항공 국제운임 쿠폰</span><span class="bc-val" style="color:var(--grade-std)">5,000원 * 1장</span></div>
     </div>
   </div>
 
@@ -193,62 +191,61 @@
     <div class="bc-head current">
       <div class="bc-current-label">현재 등급</div>
       <div class="bc-grade" style="color:var(--grade-pre)">Premium</div>
-      <div class="bc-cond">월 5건 또는 50만원 ↑</div>
+      <div class="bc-cond">월 5건 이상 또는 50만원 이상</div>
     </div>
     <div class="bc-body">
-      <div class="bc-divider">마일리지</div>
-      <div class="bc-row"><span class="bc-label">월간 지급</span><span class="bc-val pre">10,000원</span></div>
-      <div class="bc-row"><span class="bc-label">거래 적립</span><span class="bc-val pre">5%</span></div>
-      <div class="bc-divider">배송</div>
+      <div class="bc-divider">마일리지 혜택</div>
+      <div class="bc-row"><span class="bc-label">월간 마일리지</span><span class="bc-val pre">10,000원</span></div>
+      <div class="bc-row"><span class="bc-label">거래 적립률</span><span class="bc-val pre">5%</span></div>
+      <div class="bc-divider">배송 혜택</div>
       <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val">30일</span></div>
-      <div class="bc-row"><span class="bc-label">묶음 비용</span><span class="bc-val" style="font-size:13px">건당 ¥100 (6건~)</span></div>
-      <div class="bc-row"><span class="bc-label">EMS·비바특송</span><span class="bc-val pre">3% 할인</span></div>
-      <div class="bc-divider">쿠폰 · CS</div>
-      <div class="bc-row"><span class="bc-label">생일 쿠폰</span><span class="bc-val">10,000원</span></div>
-      <div class="bc-row"><span class="bc-label">VIP 전담 CS</span><span class="bc-val muted">—</span></div>
-      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val muted">—</span></div>
+      <div class="bc-row"><span class="bc-label">묶음 배송 비용</span><span class="bc-val" style="font-size:13px">건당 ¥100 (6건~)</span></div>
+      <div class="bc-row"><span class="bc-label">국제운임 할인율</span><span class="bc-val pre">비바항공 5% 할인</span></div>
+      <div class="bc-divider">생일 혜택</div>
+      <div class="bc-row"><span class="bc-label">비바항공 국제운임 쿠폰</span><span class="bc-val" style="color:var(--grade-pre)">5,000원 * 2장</span></div>
     </div>
   </div>
 
   <!-- VIP -->
   <div class="benefit-card" id="bp-vip" style="display:none">
-    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-vip)">VIP</div><div class="bc-cond">월 10건 또는 150만원 ↑</div></div>
+    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-vip)">VIP</div><div class="bc-cond">월 10건 이상 또는 150만원 이상</div></div>
     <div class="bc-body">
-      <div class="bc-divider">마일리지</div>
-      <div class="bc-row"><span class="bc-label">월간 지급</span><span class="bc-val vip">20,000원</span></div>
-      <div class="bc-row"><span class="bc-label">거래 적립</span><span class="bc-val vip">8%</span></div>
-      <div class="bc-divider">배송</div>
-      <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val">60일</span></div>
-      <div class="bc-row"><span class="bc-label">묶음 비용</span><span class="bc-val vip" style="font-size:13px">건당 ¥50 (4건~)</span></div>
-      <div class="bc-row"><span class="bc-label">EMS·비바특송</span><span class="bc-val vip">5% 할인</span></div>
-      <div class="bc-divider">쿠폰 · CS</div>
-      <div class="bc-row"><span class="bc-label">생일 쿠폰</span><span class="bc-val">20,000원</span></div>
-      <div class="bc-row"><span class="bc-label">VIP 전담 CS</span><span class="bc-val vip">전용 라인</span></div>
-      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val muted">—</span></div>
+      <div class="bc-divider">마일리지 혜택</div>
+      <div class="bc-row"><span class="bc-label">월간 마일리지</span><span class="bc-val vip">20,000원</span></div>
+      <div class="bc-row"><span class="bc-label">거래 적립률</span><span class="bc-val vip">10%</span></div>
+      <div class="bc-divider">배송 혜택</div>
+      <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val vip">45일</span></div>
+      <div class="bc-row"><span class="bc-label">묶음 배송 비용</span><span class="bc-val vip">무료 (최대 10건)</span></div>
+      <div class="bc-row"><span class="bc-label">국제운임 할인율</span><span class="bc-val vip" style="font-size:13px">EMS,비바항공 10% 할인</span></div>
+      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val vip">무료 적용</span></div>
+      <div class="bc-divider">생일 혜택</div>
+      <div class="bc-row"><span class="bc-label">비바항공 국제운임 쿠폰</span><span class="bc-val vip">5,000원 * 3장</span></div>
     </div>
   </div>
 
   <!-- Prestige -->
   <div class="benefit-card" id="bp-prs" style="display:none">
-    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-prs)">Prestige</div><div class="bc-cond">월 30건 또는 1,000만원 ↑</div></div>
+    <div class="bc-head"><div class="bc-grade" style="color:var(--grade-prs)"><i class="fas fa-crown" aria-hidden="true"></i> Prestige</div><div class="bc-cond">월 30건 이상 또는 1,000만원 이상</div></div>
     <div class="bc-body">
-      <div class="bc-divider">마일리지</div>
-      <div class="bc-row"><span class="bc-label">월간 지급</span><span class="bc-val prs">50,000원</span></div>
-      <div class="bc-row"><span class="bc-label">거래 적립</span><span class="bc-val prs">12%</span></div>
-      <div class="bc-divider">배송</div>
-      <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val">90일</span></div>
-      <div class="bc-row"><span class="bc-label">묶음 비용</span><span class="bc-val prs">무료</span></div>
-      <div class="bc-row"><span class="bc-label">EMS·비바특송</span><span class="bc-val prs">10% 할인</span></div>
-      <div class="bc-divider">쿠폰 · CS</div>
-      <div class="bc-row"><span class="bc-label">생일 쿠폰</span><span class="bc-val">50,000원</span></div>
-      <div class="bc-row"><span class="bc-label">VIP 전담 CS</span><span class="bc-val prs">전용 라인</span></div>
-      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val prs">제공</span></div>
+      <div class="bc-divider">마일리지 혜택</div>
+      <div class="bc-row"><span class="bc-label">월간 마일리지</span><span class="bc-val prs">30,000원</span></div>
+      <div class="bc-row"><span class="bc-label">거래 적립률</span><span class="bc-val prs">15%</span></div>
+      <div class="bc-divider">배송 혜택</div>
+      <div class="bc-row"><span class="bc-label">무료 보관</span><span class="bc-val" style="color:var(--grade-prs)">45일</span></div>
+      <div class="bc-row"><span class="bc-label">묶음배송 비용</span><span class="bc-val" style="color:var(--grade-prs)">무료 (최대 10건)</span></div>
+      <div class="bc-row"><span class="bc-label">국제운임 할인율</span><span class="bc-val" style="font-size:13px;color:var(--grade-prs)">EMS,비바항공 10% + 선편 5%</span></div>
+      <div class="bc-row"><span class="bc-label">안심 플랜</span><span class="bc-val" style="color:var(--grade-prs)">무료 적용</span></div>
+      <div class="bc-divider">생일 혜택</div>
+      <div class="bc-row"><span class="bc-label">비바항공 국제운임 쿠폰</span><span class="bc-val" style="color:var(--grade-prs)">5,000원 * 4장</span></div>
+      <div class="bc-divider">Prestige 전용</div>
+      <div class="bc-row"><span class="bc-label">연간 추가 마일리지</span><span class="bc-val prs">30,000원 지급</span></div>
+      <div class="bc-row"><span class="bc-label"><i class="fas fa-gift" aria-hidden="true"></i> Prestige 전용 Gift 제공</span></div>
     </div>
   </div>
 
   <div class="downgrade-notice">
         <p>월 거래 금액 기준은 1차결제 합산을 의미하며, 2차결제 비용은 포함되지 않습니다.</p>
-        <p>거래 기준 만족 시 다음달 1일 승급, 2개월 연속 미달 시 1단계 강등됩니다.</p>
+        <p>거래 기준 만족 시 다음달 1일 승급, 2개월 연속 미달 시 1단계 강등</p>
         <p>Prestige 등급은 3개월 기준 미달 시 VIP로 강등 (3개월 100건 / 3,000만원 유지)</p>
         <p>거래 기준은 거래건수 또는 거래금액 중 하나만 충족하면 됩니다.</p>
   </div>

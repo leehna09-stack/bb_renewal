@@ -15,10 +15,11 @@
     --text-main:#111; --text-sub:#666; --text-hint:#999;
   }
   html, body { width:100%; max-width:390px; margin:0 auto; background:var(--bg); overflow-x:hidden; }
-  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:56px; padding-bottom:80px; }
+  body { font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:14px; color:var(--text-main); padding-top:81px; padding-bottom:80px; }
 
   /* ? 바 */
   .app-header { position:fixed; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:390px; background:#fff; border-bottom:1px solid #D9E0E9; box-shadow:0 1px 0 rgba(32,36,43,.04); z-index:200; }
+  .app-header .phone-status-bar { border-bottom:0; }
   .app-header-top { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:1px; min-height:56px; }
   .app-brand-area { display:flex; align-items:center; gap:10px; min-width:0; }
   .hb { width:34px; height:34px; border-radius:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:0; background:none; border:none; cursor:pointer; }
@@ -90,7 +91,21 @@
   /* ? 료 ? 션 */
   .option-item { border:1px solid var(--border); border-radius:8px; overflow:hidden; }
   .option-item + .option-item { margin-top:10px; }
-  .option-common-note { margin: -2px 0 12px; padding:10px 12px; border:1px solid rgba(232,56,90,.18); border-radius:6px; background:#FFF8FA; color:var(--red); font-size:12px; font-weight:700; line-height:1.55; }
+  .option-common-note { margin:12px 0 0; padding:10px 12px; border:1px solid rgba(232,56,90,.18); border-radius:6px; background:#FFF8FA; color:var(--red); font-size:12px; font-weight:700; line-height:1.55; }
+  /* 선택형 옵션(체크박스) */
+  .option-header-choice { display:block; }
+  .packing-choice-list { display:grid; grid-template-columns:1fr; gap:8px; }
+  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:800; cursor:pointer; }
+  .packing-choice input { width:14px; height:14px; margin:0; accent-color:var(--navy); flex:0 0 auto; }
+  .packing-choice:has(input:checked) { border-color:var(--navy); background:#f7faff; }
+  .option-notice-toggle { display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; padding:0; border:0; background:none; color:#444; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:12px; line-height:1.8; text-align:left; cursor:pointer; }
+  .option-notice-arrow { flex:0 0 auto; color:#8B95A1; font-size:11px; transition:transform .18s ease; }
+  .option-notice-toggle[aria-expanded="true"] .option-notice-arrow { transform:rotate(180deg); }
+  .option-notice-detail { margin-top:8px; }
+  .option-notice-detail.is-collapsed { display:none; }
+  .care-desc.is-hidden { display:none; }
+  .option-detail-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .paid-option-detail.care-guide-detail { border-color:var(--red); color:var(--red); }
   .option-header { display:flex; align-items:center; justify-content:space-between; padding:14px; background:#F8F9FA; border-bottom:1px solid var(--border); }
   .option-header-left { flex:1; }
   .option-name { font-size:14px; font-weight:600; color:#222; margin-bottom:3px; }
@@ -156,26 +171,22 @@
   .pay-section { background:var(--card); margin-bottom:8px; }
   .pay-section-title { font-size:14px; font-weight:700; color:var(--navy); padding:16px 16px 0; display:flex; align-items:center; gap:4px; }
   .pay-section-title .req { color:var(--red); font-size:13px; }
-  /* 구매 혜택 패널 */
-  .benefit-panel { border:none; border-radius:0; overflow:hidden; margin-top:4px; }
-  .benefit-panel-head { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; background:#f8fafd; }
-  .benefit-panel-label { font-size:13px; font-weight:700; color:#333; }
-  .benefit-panel-max { font-size:13px; font-weight:700; color:var(--navy); }
-  .benefit-panel-max em { font-style:normal; color:var(--red); }
-  .benefit-body { padding:10px 14px 13px; }
-  .benefit-row { display:flex; align-items:center; justify-content:space-between; padding:5px 0; font-size:13px; }
+  /* 구매 혜택: 마일리지 적립 예정 (web_bill 기준) */
+  .panel-earn { border-top:1px solid #dde1e7; background:#f8fafd; }
+  .panel-earn-head { display:flex; align-items:center; justify-content:space-between; padding:10px 16px 8px; border-bottom:1px solid #eef0f4; }
+  .panel-earn-label { font-size:12px; font-weight:700; color:#555; }
+  .panel-earn-max { font-size:12px; font-weight:700; color:var(--navy); }
+  .panel-earn-max em { font-style:normal; color:var(--red); }
+  .panel-earn-body { padding:8px 16px 12px; }
+  .benefit-row { display:flex; align-items:center; justify-content:space-between; padding:3px 0; font-size:12px; }
   .benefit-row-lbl { color:#333; font-weight:600; display:flex; align-items:center; gap:5px; }
   .benefit-row-val { color:#333; font-weight:600; white-space:nowrap; }
-  .benefit-sub { display:flex; align-items:center; justify-content:space-between; padding:3px 0 3px 12px; font-size:12px; }
+  .benefit-sub { display:flex; align-items:center; justify-content:space-between; padding:2px 0 2px 12px; font-size:12px; }
   .benefit-sub-lbl { color:#666; display:flex; align-items:center; gap:5px; }
   .benefit-sub-val { color:#444; }
-  .member-badge { display:inline-flex; width:30px; align-items:center; height:17px; padding:0 5px; border-radius:3px; background:var(--navy); color:#fff; font-size:10px; font-weight:700; }
-  .benefit-event-badge { display:inline-flex; width:30px; align-items:center; height:17px; padding:0 5px; border-radius:3px; background:var(--red); color:#fff; font-size:10px; font-weight:700; }
-  .benefit-help { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; border:1px solid #bbb; color:#888; font-size:10px; font-weight:700; cursor:help; flex-shrink:0; }
-  .benefit-divider { border:none; border-top:1px solid #f0f0f0; margin:7px 0; }
-  .benefit-note { font-size:11px; color:#888; margin-top:5px; line-height:1.65; }
+  .benefit-note { font-size:11px; color:#888; margin-top:6px; line-height:1.65; }
   /* 적립률 뱃지 */
-  .earn-rate-total { font-size:10px; font-weight:700; color:var(--navy); background:#e8eef8; padding:1px 6px; border-radius:3px; margin-left:3px; }
+  .earn-rate-total { font-size:10px; font-weight:700; color:var(--navy); background:#e8eef8; padding:1px 6px; border-radius:3px; margin-left:4px; }
   .earn-badge { display:inline-flex; align-items:center; height:16px; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
   .earn-badge-base { background:#e8eef8; color:var(--navy); }
   .earn-badge-vip  { background:#fff0f3; color:var(--red); }
@@ -228,10 +239,10 @@
 
   /* 결제방법 버튼??*/
   .pay-method-wrap { padding:14px 16px; border-bottom:1px solid var(--border); }
-  .pay-method-label { font-size:13px; font-weight:500; color:#333; margin-bottom:5px; }
+  .pay-method-label { font-size:13px; font-weight:500; color:#333; margin-bottom:10px; }
   .pay-method-label .req { color:var(--red); }
-  .pay-method-btn-group { display:flex; gap:10px;  }
-  .pay-method-btn {height: 60px; flex:1; padding:5px 0; font-size:16px; font-weight:500; font-family:Pretendard,'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:8px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
+  .pay-method-btn-group { display:flex; gap:8px; }
+  .pay-method-btn { flex:1; padding:12px 0; font-size:13px; font-weight:500; font-family:Pretendard,'Noto Sans KR',sans-serif; border:1px solid #ccc; border-radius:5px; background:#fff; color:#444; cursor:pointer; text-align:center; transition:background .15s,border-color .15s,color .15s; }
   .pay-method-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:700; }
   .pay-method-wrap.is-required {
     background:#FFF8F0;
@@ -244,6 +255,12 @@
     border-color:#E8385A;
     box-shadow:0 0 0 2px rgba(232,56,90,.12);
   }
+  .pay-receipt-wrap { padding:14px 16px; border-bottom:1px solid var(--border); }
+  .pay-receipt-title { font-size:13px; font-weight:500; color:#333; margin-bottom:6px; }
+  .pay-receipt-notice { font-size:12px; line-height:1.6; color:var(--text-sub); margin-bottom:8px; }
+  .pay-receipt-radio-group { display:flex; gap:18px; }
+  .pay-receipt-radio { display:inline-flex; align-items:center; gap:5px; font-size:13px; color:#444; cursor:pointer; }
+  .pay-receipt-radio input { accent-color:var(--navy); width:14px; height:14px; }
 
   /* ? 인 ??*/
   .disc-pay-row { background:#FFF8F0; border-top:1px solid #f5c88a; border-bottom:1px solid #f5c88a; padding:12px 16px; }
@@ -299,6 +316,15 @@
 <body>
 
 <div class="app-header">
+  <!-- 모바일 상태바(시간/네트워크/배터리) : 항상 최상단 -->
+  <div class="phone-status-bar" aria-hidden="true">
+    <span class="psb-time">9:41</span>
+    <div class="psb-icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <span class="psb-battery"><span class="psb-battery-body"><span class="psb-battery-fill"></span></span></span>
+    </div>
+  </div>
   <div class="app-header-top">
     <div class="app-brand-area">
       <button class="hb" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>
@@ -318,28 +344,57 @@
 
 <!-- 유료 옵션 선택 -->
 <div class="card">
-  <div class="card-title">선택 옵션 서비스</div>
-  <div class="option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
+  <div class="card-title">선택 옵션</div>
   <div class="option-item">
-    <div class="option-header">
-      <div class="option-header-left">
-        <div class="option-name">튼튼 포장비</div>
-      </div>
-      <div class="toggle-wrap">
-        <div class="toggle-track" id="packingTrack" onclick="togglePacking()"><div class="toggle-thumb"></div></div>
-        <span class="toggle-text" id="packingText">미신청</span>
+    <div class="option-header option-header-choice">
+      <div class="packing-choice-list" aria-label="안심 케어 옵션 선택">
+        <label class="packing-choice"><input type="checkbox" name="careOption" value="carePlus" data-paid-option-yen="1000"><span>안심 케어 플러스(1,000엔)</span></label>
+        <label class="packing-choice"><input type="checkbox" name="careOption" value="care" data-paid-option-yen="200"><span>안심 케어(200엔)</span></label>
       </div>
     </div>
-    <div class="option-body is-collapsed" id="packingOptionBody">
-      <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 깨지기 쉬운 물품은 안전 포장 옵션을 선택해 주세요.</strong></p>
-      <ul>
-        <li>신청 시 파손 위험을 줄이기 위한 튼튼 포장이 진행됩니다.</li>
-        <li>튼튼 포장비는 기본 500엔이며, 품목에 따라 추가 비용이 발생할 수 있습니다.</li>
-        <li>품목별 포장 비용은 하단의 [튼튼 포장비 안내]를 참고해 주세요.</li>
-        <li>대형 상품 및 팔레트 포장이 필요한 경우 별도 안내 후 추가 비용이 발생할 수 있습니다.</li>
-      </ul>
-      <div style="margin-top:8px;">
-        <button class="paid-option-detail packing-cost-detail" type="button">튼튼 포장비 안내</button>
+    <div class="option-body" id="careOptionBody">
+      <button class="option-notice-toggle" type="button" id="careNoticeToggle" aria-expanded="false" aria-controls="careNoticeDetail">
+        <span><strong><i class="fa-solid fa-circle-info" aria-hidden="true"></i> 국제배송중 파손에 대비한 선택 옵션입니다.</strong></span>
+        <i class="fa-solid fa-chevron-down option-notice-arrow" aria-hidden="true"></i>
+      </button>
+      <div class="option-notice-detail is-collapsed" id="careNoticeDetail">
+        <!-- 안심 케어 플러스 설명 (기본) -->
+        <div class="care-desc" data-care-desc="carePlus">
+          <ul>
+            <li>신청 건에 한하여 파손시 <strong>최대 50만 원 한도 내 지원</strong>해드리며, <strong>파손 방지를 위한 튼튼포장이 포함</strong>됩니다.</li>
+            <li>지원 범위에는 <strong>물품가 + 국제 운송료 + 수입신고 시 발생한 세금</strong>이 포함됩니다.</li>
+            <li>해당 서비스 신청 건은 <strong>개별배송으로만 진행</strong>되며, 서비스 비용은 <strong>2차 결제시 청구</strong>됩니다.</li>
+          </ul>
+          <div class="option-caution">
+            <div class="option-caution-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</div>
+            <ul>
+              <li><strong style="color:var(--red);">파손 지원 불가 품목</strong>은 안심케어플러스 신청 여부와 관계없이 <strong style="color:var(--red);">지원 대상에서 제외</strong>됩니다.</li>
+              <li><strong style="color:var(--red);">신청 전 신청 가능 품목을 반드시 확인해 주세요.</strong></li>
+              <li>현지 입고 후 불가 품목으로 확인될 경우, <strong style="color:var(--red);">별도 안내 후 서비스가 취소될 수 있습니다.</strong></li>
+              <li>튼튼 포장비가 500엔을 초과하는 경우, 초과 금액은 <strong style="color:var(--red);">2차 결제 시 별도 청구됩니다.</strong></li>
+            </ul>
+          </div>
+        </div>
+        <!-- 안심 케어 설명 -->
+        <div class="care-desc is-hidden" data-care-desc="care">
+          <ul>
+            <li>신청 송장 건에 한하여 파손시 <strong>최대 20만 원 한도 내 지원</strong>해드립니다.</li>
+            <li>선택한 송장 건의 <strong>물품 총액을 기준</strong>으로 지원됩니다.</li>
+            <li>서비스 비용은 <strong>2차 결제시 청구</strong>됩니다.</li>
+          </ul>
+          <div class="option-caution">
+            <div class="option-caution-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 주의사항</div>
+            <ul>
+              <li><strong style="color:var(--red);">파손 지원 불가 품목</strong>은 안심 케어를 신청하더라도 <strong style="color:var(--red);">지원이 불가</strong>하므로, 신청 전 반드시 확인해 주세요.</li>
+              <li>전체 물품중 파손 지원 불가 품목이 포함된 경우, <strong style="color:var(--red);">해당 품목을 제외하고 지원이 적용됩니다.</strong></li>
+              <li>미신청시 파손 물품에 대해 <strong style="color:var(--red);">지원이 일체 불가</strong>합니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="option-detail-btns">
+        <button class="paid-option-detail damage-detail" type="button">파손지원 불가 품목 보기</button>
+        <button class="paid-option-detail care-guide-detail" type="button" onclick="location.href='mobile_cs_damage.html#care'">안심케어 서비스 안내</button>
       </div>
     </div>
   </div>
@@ -357,13 +412,14 @@
       </select>
     </div>
     <div class="option-body is-collapsed" id="photoOptionBody">
-      <p><strong><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 상품 입고 후 요청 상품의 사진을 촬영해 안내드리는 유료 서비스입니다.</strong></p>
+      <p><strong><i class="fa-solid fa-circle-info" aria-hidden="true"></i> 상품 입고 후 상품의 사진을 촬영해 안내드리는 옵션입니다.</strong></p>
       <ul>
-        <li>해당 서비스 신청 시 미신청 건보다 처리 시간이 다소 소요될 수 있습니다.</li>
+        <li>해당 서비스 신청 시 <strong style="color:var(--red);">미신청 건보다 진행 시간이 더 소요될 수 있습니다.</strong></li>
         <li>상품 상태, 수량, 촬영 범위에 따라 담당자 안내 또는 추가 청구가 필요할 수 있습니다.</li>
       </ul>
     </div>
   </div>
+  <div class="option-common-note">선택한 유료 옵션 금액은 즉시 결제되지 않으며, 2차 결제 시 청구됩니다.</div>
 </div>
 
 <div class="pay-section">
@@ -398,7 +454,7 @@
 <div class="fee-summary">
   <div class="fee-summary-title"><span>1차 결제 비용</span><span class="fee-rate">적용 환율 9.6원</span></div>
   <div class="fee-row"><span class="fee-row-label"> 상품가</span><span class="fee-row-val">1,200 엔</span></div>
-  <div class="fee-row"><span class="fee-row-label"> 구매수수료</span><span class="fee-row-val">800 엔</span></div>
+  <div class="fee-row"><span class="fee-row-label"> 대행수수료</span><span class="fee-row-val">800 엔</span></div>
   <div class="fee-row"><span class="fee-row-label"> 일본배송비</span><span class="fee-row-val">0 엔</span></div>
   <div class="fee-row fee-mileage-row">
     <div class="fee-mileage-main">
@@ -427,40 +483,31 @@
     <span class="fee-row-label">총 결제금액</span>
     <span class="fee-row-val" id="mobCellTotal">16,608원</span>
   </div>
-</div>
 
-<!-- 구매 혜택 -->
-<div class="pay-section" style="padding:14px 16px 16px;">
-  <div class="benefit-panel">
-    <!-- 헤더: 마일리지 적립 예정 + 최대 합계 -->
-    <div class="benefit-panel-head">
-      <span class="benefit-panel-label">마일리지 적립 예정</span>
-      <span class="benefit-panel-max">최대 <em><span id="mobEarnGrandTotal">1,636</span>원</em></span>
+  <!-- 구매 혜택: 마일리지 적립 예정 -->
+  <div class="panel-earn">
+    <div class="panel-earn-head">
+      <span class="panel-earn-label">마일리지 적립 예정</span>
+      <span class="panel-earn-max">최대 <em><span id="mobEarnGrandTotal">1,636</span>원</em></span>
     </div>
-    <div class="benefit-body">
-      <!-- 구매수수료 적립 -->
+    <div class="panel-earn-body">
       <div class="benefit-row">
-        <span class="benefit-row-lbl">
-          구매수수료 적립 <span class="earn-rate-total">10%</span>
-        </span>
+        <span class="benefit-row-lbl">대행수수료 적립 <span class="earn-rate-total">10%</span></span>
         <span class="benefit-row-val">총 <span id="mobEarnFeeTotal">768</span>원</span>
       </div>
       <div class="benefit-sub">
-        <span class="benefit-sub-lbl">
-          기본 적립 <span class="earn-badge earn-badge-base">2%</span>
-        </span>
+        <span class="benefit-sub-lbl">기본 적립 <span class="earn-badge earn-badge-base">2%</span></span>
         <span class="benefit-sub-val"><span id="mobEarnFeeWon">154</span>원</span>
       </div>
       <div class="benefit-sub">
-        <span class="benefit-sub-lbl">
-          VIP 추가 적립 <span class="earn-badge earn-badge-vip">+8%</span>
-        </span>
+        <span class="benefit-sub-lbl">VIP 추가 적립 <span class="earn-badge earn-badge-vip">+8%</span></span>
         <span class="benefit-sub-val"><span id="mobEarnEventWon">614</span>원</span>
       </div>
-      <p class="benefit-note" style="margin-top:8px;">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
+      <p class="benefit-note">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
     </div>
   </div>
 </div>
+
 <!-- 결제정보 확인 -->
 <div class="pay-section">
   <div class="pay-section-title" style="padding-bottom:14px;">결제정보 확인 <span class="req">*</span></div>
@@ -469,9 +516,20 @@
   <div class="pay-method-wrap">
     <div class="pay-method-btn-group">
       <button type="button" class="pay-method-btn" id="btnCard" onclick="selectPayMethod('card')">카드결제</button>
-      <button type="button" class="pay-method-btn" id="btnBank" onclick="selectPayMethod('bank')">무통장입금<br>(가상계좌)</button>
+      <button type="button" class="pay-method-btn" id="btnBank" onclick="selectPayMethod('bank')">무통장입금(가상계좌)</button>
     </div>
   </div>
+
+  <!-- 현금영수증 발급 -->
+  <div class="pay-receipt-wrap">
+  <div class="pay-receipt-title">현금영수증 발급</div>
+  <div class="pay-receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
+  <div class="pay-receipt-radio-group">
+    <label class="pay-receipt-radio"><input type="radio" name="receipt" value="yes"> 예</label>
+    <label class="pay-receipt-radio"><input type="radio" name="receipt" value="no" checked> 아니오</label>
+  </div>
+</div>
+
   <!-- 관부가세 배너 -->
 <div class="banner-tax">
   <span class="banner-tax-title"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> <strong>관·부가세 안내</strong></span>
@@ -480,13 +538,6 @@
 <br>※ 물품가액 = 물품가 + 현지세금 + 현지배송비 (국제운임·보험료 제외)
 <br>※ 사업자 통관 = 사업자 판매 목적 수입은 물품가와 무관하게 일반통관이 적용
   <br><a href="#">이용가이드 자세히 보기 ›</a>
-  <hr class="banner-tax-divider">
-  <div class="banner-receipt-title">[현금영수증 발급]</div>
-  <div class="banner-receipt-notice">현금영수증 소득공제 혜택을 위해 본 거래 정보를 국세청에 통보합니다. 현금영수증을 발급 받으시겠습니까?</div>
-  <div class="banner-receipt-radio-group">
-    <label class="banner-receipt-radio"><input type="radio" name="receipt" value="yes"> 예</label>
-    <label class="banner-receipt-radio"><input type="radio" name="receipt" value="no" checked> 아니오</label>
-  </div>
 </div>
 
 <!-- 정액권 --숨김상태>
@@ -500,8 +551,8 @@
 
 <!-- 하단 CTA -->
 <div class="bottom-cta">
-  <button class="cta-btn cta-cancel" onclick="history.back()">결제취소</button>
-  <button class="cta-btn cta-approve" id="btnApprove">결제확인</button>
+  <button class="cta-btn cta-cancel" onclick="history.back()">결제 취소</button>
+  <button class="cta-btn cta-approve" id="btnApprove">결제 승인</button>
 </div>
 
 <div class="modal-overlay" id="damageModal" role="dialog" aria-modal="true" aria-labelledby="damageModalTitle" hidden>
@@ -531,7 +582,7 @@
 <div class="modal-overlay" id="packingCostModal" role="dialog" aria-modal="true" aria-labelledby="packingCostModalTitle" hidden>
   <div class="modal packing-modal">
     <div class="modal-header">
-      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장비 안내</h2>
+      <h2 class="modal-title" id="packingCostModalTitle">튼튼 포장 비용 안내</h2>
       <button class="modal-close" type="button" id="packingCostModalClose" aria-label="팝업 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="modal-body">
@@ -542,10 +593,10 @@
         <table class="packing-cost-table">
           <thead>
             <tr>
-              <th class="thick-right thick-bottom">주요 상품 (1개 기준)</th>
+              <th class="thick-right thick-bottom">주요 상품<br>(1개 기준)</th>
               <th class="thick-bottom">턴테이블</th>
               <th class="thick-bottom">앰프, CD플레이어</th>
-              <th class="thick-bottom">휠 붙은 타이어</th>
+              <th class="thick-bottom">휠 또는<br>휠 붙은 타이어</th>
               <th class="thick-bottom">낚시대</th>
               <th class="thick-bottom">악기 기타</th>
               <th class="thick-bottom">중형 스피커 1쌍</th>
@@ -560,7 +611,7 @@
               <th class="thick-right">포장비</th>
               <td>1,000</td>
               <td>500</td>
-              <td>500</td>
+              <td>1,000</td>
               <td>1,000</td>
               <td>500</td>
               <td>1,000</td>
@@ -574,28 +625,36 @@
         <table class="packing-cost-table">
           <thead>
             <tr>
-              <th class="thick-right thick-bottom">구분</th>
-              <th class="thick-bottom">술 (1병/2~5병/6~10병)</th>
-              <th class="thick-bottom">낚시대 (2~10개)</th>
-              <th class="thick-bottom">골프채 (1~4/5~8/9~12개)</th>
-              <th class="thick-bottom">휠 (1~2/3~4/5~6개)</th>
-              <th class="thick-bottom">도자기 다수 (2개↑)</th>
-              <th class="thick-bottom">고정 요금 없는 상품 중 200CM↑ / 조립 장난감 / 포장 커스텀 요청</th>
+              <th class="thick-right thick-bottom">묶음 배송시</th>
+              <th class="thick-bottom">술</th>
+              <th class="thick-bottom">낚시대</th>
+              <th class="thick-bottom">골프채</th>
+              <th class="thick-bottom">휠</th>
+              <th class="thick-bottom">도자기</th>
+              <th class="thick-bottom" rowspan="2">세변의 합이 200CM 초과<br>조립 장난감 / 포장 커스텀 요청</th>
+            </tr>
+            <tr>
+              <th class="thick-right thick-bottom">수량</th>
+              <th class="thick-bottom">2~5병 / 6~10병</th>
+              <th class="thick-bottom">2~10개</th>
+              <th class="thick-bottom">1~3개/4~6개/7~10개</th>
+              <th class="thick-bottom">2개 초과당</th>
+              <th class="thick-bottom">2개 이상</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th class="thick-right">포장비</th>
-              <td>500/1,000/1,500</td>
+              <th class="thick-right">총<br>포장비용</th>
+              <td>1,000/1,500</td>
               <td>1,500</td>
               <td>500/1,000/1,500</td>
-              <td>1,000/2,000/3,000</td>
-              <td>1,000<span class="tier-note">(+박스당 500)</span></td>
+              <td>1,000엔씩 추가</td>
+              <td>1,000<span class="tier-note">(박스 추가시 +500)</span></td>
               <td>2,000~3,000</td>
             </tr>
           </tbody>
         </table>
-        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 누적(총) 금액입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기 다수는 2개 이상 기준 1,000엔이며, 포장 시 박스가 추가로 필요한 경우에 한해 박스 1개당 500엔이 추가됩니다.</p>
+        <p class="packing-note">※ 술·골프채·휠은 표시된 수량 구간 순서대로 총 포장비용입니다. (예: 술 3병 = 1,000엔, 골프채 6개 = 1,000엔, 휠 2개 = 1,000엔, 휠 4개 = 2,000엔)<br>※ 도자기는 2개 이상 묶음시 1,000엔이며, 박스가 추가로 필요한 경우 박스 1개당 500엔이 추가됩니다.<br>※ 팔레트 포장 비용은 1장당 5,000엔이며 팔레트 무게 약 11kg이 국제운송료에 포함되어 청구됩니다.</p>
       </div>
     </div>
   </div>
@@ -783,17 +842,39 @@ function clearAllMileage() {
 /* mileageMaxRadio onclick?  HTML? 서 직접 처리 */
 
 /* ? ?  ? 심케???  ? ? ?  */
-function togglePacking() {
-  const t = document.getElementById('packingTrack');
-  const s = document.getElementById('packingText');
-  const body = document.getElementById('packingOptionBody');
-  t.classList.toggle('on');
-  const isOn = t.classList.contains('on');
-  s.textContent = isOn ? '신청' : '미신청';
-  s.classList.toggle('on', isOn);
-  body?.classList.toggle('is-collapsed', !isOn);
-  render();
+/* 안심 케어 안내 접기/펼치기 */
+(() => {
+  const toggle = document.getElementById('careNoticeToggle');
+  const detail = document.getElementById('careNoticeDetail');
+  if (!toggle || !detail) return;
+  toggle.addEventListener('click', () => {
+    const isOpen = detail.classList.toggle('is-collapsed') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+})();
+
+/* 안심 케어 옵션 — 하나만 선택 + 선택에 따른 설명 전환 */
+function syncCareDesc() {
+  const selected = document.querySelector('input[name="careOption"]:checked');
+  /* 미선택 시에는 안심 케어 플러스 설명을 기본 노출 */
+  const target = selected?.value === 'care' ? 'care' : 'carePlus';
+  document.querySelectorAll('.care-desc').forEach((desc) => {
+    desc.classList.toggle('is-hidden', desc.dataset.careDesc !== target);
+  });
 }
+
+document.querySelectorAll('input[name="careOption"]').forEach((input) => {
+  input.addEventListener('change', () => {
+    if (input.checked) {
+      document.querySelectorAll('input[name="careOption"]').forEach((other) => {
+        if (other !== input) other.checked = false;
+      });
+    }
+    syncCareDesc();
+    render();
+  });
+});
+syncCareDesc();
 
 document.getElementById('photoOptionSelect')?.addEventListener('change', (event) => {
   const isSelected = event.currentTarget.value !== '0';
@@ -860,7 +941,7 @@ function selectPayMethod(method) {
 
 /* ? ?  결제? 인 ? ?  */
 (() => {
-  const detailButton = document.querySelector('.paid-option-detail:not(.packing-cost-detail)');
+  const detailButton = document.querySelector('.damage-detail');
   const modal = document.getElementById('damageModal');
   const modalClose = document.getElementById('damageModalClose');
   if (!detailButton || !modal || !modalClose) return;
@@ -938,4 +1019,3 @@ document.getElementById('btnApprove')?.addEventListener('click', (e) => {
 <script src="bb-common-mobile.js"></script>
 </body>
 </html>
-

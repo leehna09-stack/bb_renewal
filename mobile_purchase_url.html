@@ -60,7 +60,7 @@
     .m-header-right{display:flex;gap:4px;align-items:center;justify-self:end}
     .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
     .m-icon-btn:hover{background:var(--bg)}
-    .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
+    .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:5cqw;display:flex;align-items:center;justify-content:center;padding:0 2px}
     .m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
     .m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
     .m-header-search{grid-column:1/-1;display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;color:var(--tm)}
@@ -69,8 +69,6 @@
     .m-header-search input::placeholder{color:#99A2B0}
     .m-header-search button{width:40px;height:100%;border:0;background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
     .m-header-search button i{font-size:13px;}
-    .channel-tabs { display: flex; overflow-x: auto; scrollbar-width: none; border-top: 1px solid #E6DDDA; padding: 0 14px; }
-    .channel-tabs::-webkit-scrollbar { display: none; }
     .ch-tab { padding: 9px 12px 10px; font-size: 11px; font-weight: 700; color: #707070; white-space: nowrap; cursor: pointer; border: 0; border-bottom: 2px solid transparent; background: transparent; flex-shrink: 0; font-family: inherit; }
     .ch-tab.active { color: var(--rose); border-bottom-color: var(--rose); }
 
@@ -272,26 +270,13 @@
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 </header>
-
-<nav class="channel-tabs" aria-label="쇼핑 채널">
-    <button class="ch-tab" type="button">야후옥션</button>
-    <button class="ch-tab" type="button">메루카리</button>
-    <button class="ch-tab" type="button">일본 라쿠텐</button>
-    <button class="ch-tab" type="button">일본 라쿠마</button>
-    <button class="ch-tab active" type="button">야후쇼핑</button>
-    <button class="ch-tab" type="button">일본 아마존</button>
-    <button class="ch-tab" type="button">미국 이베이</button>
-    <button class="ch-tab" type="button">영국 이베이</button>
-  </nav>
 </div>
 
 <!-- 브레드크럼 -->
 <div class="breadcrumb">
   <a href="mobile_main.html">홈</a>
   <i class="fa-solid fa-chevron-right"></i>
-  <a href="#">야후쇼핑</a>
-  <i class="fa-solid fa-chevron-right"></i>
-  <a href="#">구매대행</a>
+  <span>구매대행</span>
   <i class="fa-solid fa-chevron-right"></i>
   <span>URL 직접입력</span>
 </div>

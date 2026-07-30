@@ -251,39 +251,44 @@
     .panel-head .total { color: var(--muted); font-size: 12px; font-weight: 600; }
     .panel-head .total b { color: var(--rose); font-weight: 800; }
 
-    /* ── 국가 서브탭 ── */
+    /* ── 국가 필터 (버튼형) ── */
     .country-tabs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin: 0 0 -1px;
-      border: 1px solid var(--line);
-      border-radius: 12px 12px 0 0;
-      overflow: hidden;
-      background: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
     }
     .country-tab {
-      height: 44px;
-      border: 0;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: var(--bg-soft);
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff;
       color: var(--muted);
       font-size: 13px;
       font-weight: 600;
     }
-    .country-tab:last-child { border-right: 0; }
-    .country-tab.active {
-      background: #fff;
-      border-bottom-color: #fff;
-      color: var(--rose);
-      font-weight: 800;
+    .country-tab:hover { border-color: var(--rose); color: var(--rose); }
+    .country-tab span {
+      color: var(--faint);
+      font-size: 12px;
+      font-weight: 700;
     }
-    .country-tabs + .fav-table-wrap { border-radius: 0 0 12px 12px; }
+    .country-tab.active {
+      border-color: var(--rose);
+      background: var(--rose);
+      color: #fff;
+      font-weight: 700;
+    }
+    .country-tab.active span { color: rgba(255,255,255,.82); }
 
     .fav-table-wrap {
       overflow-x: auto;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 5px;
       background: #fff;
     }
     .fav-table {
@@ -336,7 +341,7 @@
       margin: 2px 3px;
       padding: 3px 9px;
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 5px;
       background: var(--bg-soft);
       font-size: 11px;
       font-weight: 600;
@@ -347,7 +352,7 @@
       display: inline-grid;
       place-items: center;
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 5px;
       background: #fff;
       color: var(--faint);
       font-size: 10px;
@@ -390,7 +395,7 @@
       display: grid;
       place-items: center;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 5px;
       background: var(--bg-soft);
       color: var(--faint);
       font-size: 16px;
@@ -417,11 +422,108 @@
     .end-date.done b { color: var(--faint); }
     .reg-date { color: var(--muted); }
 
+    /* 바로가기 */
+    .sc-title { font-weight: 600; }
+    .sc-url {
+      color: var(--muted);
+      font-size: 12px;
+      word-break: break-all;
+    }
+    .sc-url a:hover { color: var(--rose); text-decoration: underline; }
+
+    /* ── 경매현황 (중첩 표 + 조회) ── */
+    .fav-table td.bs-cell { padding: 0; }
+    .bid-status {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 86px;
+      align-items: stretch;
+    }
+    .bs-rows { display: grid; min-width: 0; }
+    .bs-row {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      align-items: center;
+      min-height: 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    .bs-row:last-child { border-bottom: 0; }
+    .bs-lb {
+      align-self: stretch;
+      display: grid;
+      place-items: center;
+      border-right: 1px solid var(--line);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .bs-val {
+      padding: 6px 10px;
+      text-align: center;
+      color: var(--faint);
+      font-size: 12px;
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .bs-val.is-loaded { color: var(--ink); font-weight: 800; }
+    .bs-val.is-loading { color: var(--faint); }
+    .bs-val.is-loading i { font-size: 13px; }
+    .bs-end { color: #33363d; font-weight: 700; }
+    .bs-end b { display: block; color:#33363d; font-size: 11px; font-weight: 700; }
+    .ended .bs-end b { color: var(--faint); }
+    /* 조회 · 입찰: 아이콘 박스 + 하단 라벨, 같은 세로 중심 */
+    .icon-act {
+      width: 58px;
+      display: grid;
+      justify-items: center;
+      gap: 5px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .refresh-btn { align-self: center; justify-self: center; }
+    .bid-btn { margin: 0 auto; }
+    .ia-box {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .ia-box.is-fill {
+      border-color: #1675cf;
+      background: #1675cf;
+      color: #fff;
+      font-size: 15px;
+    }
+    .ia-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .icon-act:hover .ia-box { border-color: var(--rose); color: var(--rose); }
+    .icon-act:hover .ia-box.is-fill { background: var(--rose-h); border-color: var(--rose-h); color: #fff; }
+    .icon-act:hover .ia-label { color: var(--rose); }
+    .icon-act:disabled { cursor: default; }
+    .icon-act:disabled .ia-box,
+    .icon-act:disabled:hover .ia-box {
+      border-color: var(--line);
+      background: var(--bg-soft);
+      color: var(--faint);
+    }
+    .icon-act:disabled .ia-label,
+    .icon-act:disabled:hover .ia-label { color: var(--faint); }
+
     .act-col { display: grid; gap: 5px; justify-items: stretch; }
     .act-btn {
       height: 28px;
       border: 1px solid var(--line);
-      border-radius: 6px;
+      border-radius: 5px;
       background: #fff;
       color: var(--muted);
       font-size: 12px;
@@ -459,11 +561,11 @@
       height: 32px;
       padding: 0 14px;
       border: 0;
-      border-radius: 6px;
+      border-radius: 5px;
       background: #4a4f5a;
       color: #fff;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 600;
     }
     .bulk-del:hover { background: #333844; }
     .bulk-del.ghost {
@@ -485,7 +587,7 @@
       width: 36px;
       height: 36px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 5px;
       background: #fff;
       color: var(--ink);
       font-size: 13px;
@@ -500,7 +602,7 @@
       min-width: 54px;
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
     }
 
@@ -561,6 +663,7 @@
             <a href="web_favorites.html?tab=auction">경매 관심물품</a>
             <a href="web_favorites.html?tab=purchase">구매 관심물품</a>
             <a href="web_favorites.html?tab=keyword">관심 키워드</a>
+            <a href="web_favorites.html?tab=shortcut">바로가기</a>
           </div>
         </div>
         <div class="nav-section">
@@ -611,6 +714,7 @@
         <button class="fav-tab" type="button" role="tab" data-tab="auction" aria-selected="false">경매 관심물품 <span class="cnt" data-cnt="auction">0</span></button>
         <button class="fav-tab" type="button" role="tab" data-tab="purchase" aria-selected="false">구매 관심물품 <span class="cnt" data-cnt="purchase">0</span></button>
         <button class="fav-tab" type="button" role="tab" data-tab="keyword" aria-selected="false">관심 키워드 <span class="cnt" data-cnt="keyword">0</span></button>
+        <button class="fav-tab" type="button" role="tab" data-tab="shortcut" aria-selected="false">바로가기 <span class="cnt" data-cnt="shortcut">0</span></button>
       </div>
 
       <!-- ── 관심 출품자 ── -->
@@ -682,7 +786,6 @@
         </div>
         <div class="panel-foot">
           <button class="bulk-del" type="button" data-bulk>선택삭제</button>
-          <span class="foot-hint">관심 출품자로 등록하면 새 출품 알림을 받을 수 있습니다.</span>
         </div>
         <div class="pager" aria-label="페이지 이동">
           <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left"></i></button>
@@ -697,158 +800,192 @@
           <h2><i class="fa-solid fa-location-dot" aria-hidden="true"></i>경매 관심물품 목록</h2>
           <span class="total">전체 <b data-total>0</b>건</span>
         </div>
-        <div class="country-tabs" role="tablist" aria-label="국가 필터">
-          <button class="country-tab active" type="button" data-country="all">전체<span data-country-cnt="all">(0건)</span></button>
-          <button class="country-tab" type="button" data-country="jp">일본<span data-country-cnt="jp">(0건)</span></button>
-          <button class="country-tab" type="button" data-country="us">미국<span data-country-cnt="us">(0건)</span></button>
-          <button class="country-tab" type="button" data-country="uk">영국<span data-country-cnt="uk">(0건)</span></button>
+        <div class="country-tabs" role="group" aria-label="국가 필터">
+          <button class="country-tab active" type="button" data-country="all">전체<span data-country-cnt="all">0</span></button>
+          <button class="country-tab" type="button" data-country="jp">일본<span data-country-cnt="jp">0</span></button>
+          <button class="country-tab" type="button" data-country="us">미국<span data-country-cnt="us">0</span></button>
+          <button class="country-tab" type="button" data-country="uk">영국<span data-country-cnt="uk">0</span></button>
         </div>
         <div class="fav-table-wrap">
           <table class="fav-table">
             <colgroup>
-              <col style="width: 56px">
-              <col style="width: 70px">
+              <col style="width: 48px">
+              <col style="width: 60px">
               <col>
-              <col style="width: 130px">
-              <col style="width: 160px">
-              <col style="width: 96px">
+              <col style="width: 330px">
+              <col style="width: 78px">
             </colgroup>
             <thead>
               <tr>
                 <th><input class="chk" type="checkbox" data-all aria-label="전체 선택"></th>
                 <th>국가</th>
                 <th>상품정보</th>
-                <th>가격/입찰수</th>
-                <th>종료일시</th>
+                <th>경매현황</th>
                 <th>입찰</th>
               </tr>
             </thead>
             <tbody>
-              <tr data-country="jp">
+              <tr data-country="jp" data-price="2,728 엔" data-bids="1 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>YAHOO</b> · v1237304150</span>
+                      <span class="item-src">[YAHOO] v1237304150</span>
                       <a class="item-name" href="web_auction.html">RKGOD 특가! ONKYO/서라운드 시스템/PR-155/SWA-155/D-L1X 5개/스탠드 2대 부착/정크</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">2,728 엔<small class="bid-cnt">입찰 1건</small></td>
-                <td class="end-date">2026.07.28 23:23<b>12시간 48분 남음</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn primary" type="button" onclick="location.href='web_auction_order.html'">입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.07.28 23:23:08<b>(11시간 25분)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" onclick="location.href='web_auction.html'" aria-label="입찰하기"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
-              <tr data-country="jp">
+              <tr data-country="jp" data-price="12,500 엔" data-bids="6 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>YAHOO</b> · m1108822451</span>
+                      <span class="item-src">[YAHOO] m1108822451</span>
                       <a class="item-name" href="web_auction.html">MIROCK TOY マッシブアタック ソフビ フィギュア 未開封 限定カラー</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">12,500 엔<small class="bid-cnt">입찰 6건</small></td>
-                <td class="end-date">2026.08.02 21:30<b>5일 남음</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn primary" type="button" onclick="location.href='web_auction_order.html'">입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.08.02 21:30:00<b>(5일 남음)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" onclick="location.href='web_auction.html'" aria-label="입찰하기"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
-              <tr data-country="jp">
+              <tr data-country="jp" data-price="8,800 엔" data-bids="22 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>YAHOO</b> · k9922034112</span>
+                      <span class="item-src">[YAHOO] k9922034112</span>
                       <a class="item-name" href="web_auction.html">ポケモンカードゲーム 拡張パック BOX シュリンク付き</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">8,800 엔<small class="bid-cnt">입찰 22건</small></td>
-                <td class="end-date">2026.07.29 22:15<b>1일 남음</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn primary" type="button" onclick="location.href='web_auction_order.html'">입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.07.29 22:15:00<b>(1일 남음)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" onclick="location.href='web_auction.html'" aria-label="입찰하기"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
-              <tr data-country="us">
+              <tr data-country="us" data-price="$320.00" data-bids="14 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag us" aria-label="미국"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>EBAY US</b> · 3856201947</span>
+                      <span class="item-src">[EBAY US] 3856201947</span>
                       <a class="item-name" href="web_auction.html">Nike Air Jordan 1 Retro High OG Chicago Size 9 Deadstock</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">$320.00<small class="bid-cnt">입찰 14건</small></td>
-                <td class="end-date">2026.08.05 03:10<b>7일 남음</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn primary" type="button" onclick="location.href='web_auction_order.html'">입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.08.05 03:10:00<b>(7일 남음)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" onclick="location.href='web_auction.html'" aria-label="입찰하기"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
-              <tr data-country="uk">
+              <tr data-country="uk" data-price="£145.00" data-bids="3 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag uk" aria-label="영국"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>EBAY UK</b> · 2244109887</span>
+                      <span class="item-src">[EBAY UK] 2244109887</span>
                       <a class="item-name" href="web_auction.html">Barbour Bedale Wax Jacket Sage Green Size 38</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">£145.00<small class="bid-cnt">입찰 3건</small></td>
-                <td class="end-date">2026.07.30 19:00<b>2일 남음</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn primary" type="button" onclick="location.href='web_auction_order.html'">입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.07.30 19:00:00<b>(2일 남음)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" onclick="location.href='web_auction.html'" aria-label="입찰하기"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
-              <tr class="ended" data-country="jp" data-ended="1">
+              <tr class="ended" data-country="jp" data-ended="1" data-price="6,400 엔" data-bids="0 건">
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
                 <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>YAHOO</b> · x8811223344</span>
+                      <span class="item-src">[YAHOO] x8811223344</span>
                       <a class="item-name" href="web_auction.html">無印良品 ステンレスユニットシェルフ 追加棚セット</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">6,400 엔<small class="bid-cnt">입찰 0건</small></td>
-                <td class="end-date done">2026.07.20 21:00<b>종료됨</b></td>
-                <td>
-                  <span class="act-col">
-                    <button class="act-btn" type="button" onclick="location.href='web_auction.html'">조회</button>
-                    <button class="act-btn" type="button" disabled>입찰</button>
-                  </span>
+                <td class="bs-cell">
+                  <div class="bid-status">
+                    <div class="bs-rows">
+                      <div class="bs-row"><span class="bs-lb">가격</span><span class="bs-val" data-field="price">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">입찰수</span><span class="bs-val" data-field="bids">조회버튼을 클릭하세요.</span></div>
+                      <div class="bs-row"><span class="bs-lb">종료일시</span><span class="bs-val bs-end">2026.07.20 21:00:00<b>(종료됨)</b></span></div>
+                    </div>
+                    <button class="icon-act refresh-btn" type="button" data-refresh aria-label="경매현황 조회">
+                      <span class="ia-box"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i></span>
+                      <span class="ia-label">조회</span>
+                    </button>
+                  </div>
                 </td>
+                <td><button class="icon-act bid-btn" type="button" disabled aria-label="입찰 종료"><span class="ia-box is-fill"><i class="fa-solid fa-check" aria-hidden="true"></i></span><span class="ia-label">입찰</span></button></td>
               </tr>
             </tbody>
           </table>
@@ -860,7 +997,6 @@
         <div class="panel-foot">
           <button class="bulk-del" type="button" data-bulk>선택삭제</button>
           <button class="bulk-del ghost" type="button" data-bulk-ended>종료 물품삭제</button>
-          <span class="foot-hint">마감 임박 시 알림으로 안내해 드립니다.</span>
         </div>
         <div class="pager" aria-label="페이지 이동">
           <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left"></i></button>
@@ -879,7 +1015,6 @@
           <table class="fav-table">
             <colgroup>
               <col style="width: 56px">
-              <col style="width: 70px">
               <col>
               <col style="width: 130px">
               <col style="width: 160px">
@@ -888,7 +1023,6 @@
             <thead>
               <tr>
                 <th><input class="chk" type="checkbox" data-all aria-label="전체 선택"></th>
-                <th>국가</th>
                 <th>상품정보</th>
                 <th>가격</th>
                 <th>등록일</th>
@@ -896,9 +1030,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-country="jp">
+              <tr>
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
-                <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
@@ -908,13 +1041,12 @@
                     </span>
                   </span>
                 </td>
-                <td class="price">10,000 엔<small>약 95,000원</small></td>
+                <td class="price">10,000 엔</td>
                 <td class="reg-date">2026-07-28 10:34:17</td>
                 <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
               </tr>
-              <tr data-country="jp">
+              <tr>
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
-                <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
@@ -924,13 +1056,12 @@
                     </span>
                   </span>
                 </td>
-                <td class="price">5,200 엔<small>약 49,400원</small></td>
+                <td class="price">5,200 엔</td>
                 <td class="reg-date">2025-10-22 08:04:16</td>
                 <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
               </tr>
-              <tr data-country="jp">
+              <tr>
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
-                <td><span class="flag jp" aria-label="일본"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
@@ -940,39 +1071,37 @@
                     </span>
                   </span>
                 </td>
-                <td class="price">6,400 엔<small>약 60,700원</small></td>
+                <td class="price">6,400 엔</td>
                 <td class="reg-date">2026-06-11 19:22:05</td>
                 <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
               </tr>
-              <tr data-country="us">
+              <tr>
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
-                <td><span class="flag us" aria-label="미국"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>아마존US</b></span>
-                      <a class="item-name" href="web_purchase_url.html">Apple AirPods Pro 2nd Generation MagSafe Charging Case</a>
+                      <span class="item-src"><b>야후쇼핑</b></span>
+                      <a class="item-name" href="web_purchase_store.html">Nintendo Switch Joy-Con パステルカラー セット 新品</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">$189.00<small>약 261,400원</small></td>
+                <td class="price">9,980 엔</td>
                 <td class="reg-date">2026-05-30 09:12:44</td>
                 <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
               </tr>
-              <tr data-country="uk">
+              <tr>
                 <td><input class="chk" type="checkbox" aria-label="선택"></td>
-                <td><span class="flag uk" aria-label="영국"></span></td>
                 <td class="al">
                   <span class="item-cell">
                     <span class="item-thumb"><i class="fa-regular fa-image"></i></span>
                     <span class="item-info">
-                      <span class="item-src"><b>아소스</b></span>
-                      <a class="item-name" href="web_purchase_url.html">Dr. Martens 1460 Smooth Leather Boots UK 7</a>
+                      <span class="item-src"><b>아마존재팬</b></span>
+                      <a class="item-name" href="web_purchase_url.html">いきもの大図鑑アドバンス モトイカブトトカゲ 全6種セット</a>
                     </span>
                   </span>
                 </td>
-                <td class="price">£129.00<small>약 226,200원</small></td>
+                <td class="price">4,300 엔</td>
                 <td class="reg-date">2026-04-18 14:05:31</td>
                 <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
               </tr>
@@ -985,7 +1114,6 @@
         </div>
         <div class="panel-foot">
           <button class="bulk-del" type="button" data-bulk>선택삭제</button>
-          <span class="foot-hint">관심물품에서 바로 구매신청을 진행할 수 있습니다.</span>
         </div>
         <div class="pager" aria-label="페이지 이동">
           <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left"></i></button>
@@ -1063,7 +1191,71 @@
         </div>
         <div class="panel-foot">
           <button class="bulk-del" type="button" data-bulk>선택삭제</button>
-          <span class="foot-hint">등록한 키워드의 신규 출품을 자동으로 알려드립니다.</span>
+        </div>
+        <div class="pager" aria-label="페이지 이동">
+          <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left"></i></button>
+          <span class="pager-info" data-page-info>1 / 1</span>
+          <button class="pager-btn" type="button" data-page-next aria-label="다음 페이지"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </section>
+
+      <!-- ── 바로가기 ── -->
+      <section class="fav-panel" data-panel="shortcut" role="tabpanel" hidden>
+        <div class="panel-head">
+          <h2><i class="fa-solid fa-location-dot" aria-hidden="true"></i>바로가기 목록</h2>
+          <span class="total">전체 <b data-total>0</b>건</span>
+        </div>
+        <div class="fav-table-wrap">
+          <table class="fav-table">
+            <colgroup>
+              <col style="width: 56px">
+              <col style="width: 300px">
+              <col>
+              <col style="width: 80px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th><input class="chk" type="checkbox" data-all aria-label="전체 선택"></th>
+                <th>제목</th>
+                <th>링크 URL</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="chk" type="checkbox" aria-label="선택"></td>
+                <td class="sc-title al">책 / 서적 - 커피는 맥심</td>
+                <td class="sc-url al"><a href="#">www.bidbuy.co.kr/auctions/usa/listings.asp?item_gb=all&amp;orderby=...</a></td>
+                <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
+              </tr>
+              <tr>
+                <td><input class="chk" type="checkbox" aria-label="선택"></td>
+                <td class="sc-title al">고객센터 - 회원 서비스 이용안내</td>
+                <td class="sc-url al"><a href="#">www.bidbuy.co.kr/cs/guide_customer.asp?</a></td>
+                <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
+              </tr>
+              <tr>
+                <td><input class="chk" type="checkbox" aria-label="선택"></td>
+                <td class="sc-title al">야후경매 - 피규어 신착</td>
+                <td class="sc-url al"><a href="#">www.bidbuy.co.kr/auctions/japan/listings.asp?cate=figure&amp;sort=new</a></td>
+                <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
+              </tr>
+              <tr>
+                <td><input class="chk" type="checkbox" aria-label="선택"></td>
+                <td class="sc-title al">배송비 계산기</td>
+                <td class="sc-url al"><a href="#">www.bidbuy.co.kr/guide/ship_calculator.asp</a></td>
+                <td><button class="del-btn" type="button" aria-label="삭제"><i class="fa-solid fa-xmark"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="list-empty" hidden>
+            <i class="fa-solid fa-link"></i>
+            등록된 바로가기가 없습니다.
+          </div>
+        </div>
+        <div class="panel-foot">
+          <button class="bulk-del" type="button" data-bulk>선택 삭제</button>
+          <span class="foot-hint">자주 찾는 목록 페이지를 저장해 두고 바로 이동할 수 있습니다.</span>
         </div>
         <div class="pager" aria-label="페이지 이동">
           <button class="pager-btn" type="button" data-page-prev aria-label="이전 페이지"><i class="fa-solid fa-chevron-left"></i></button>
@@ -1128,7 +1320,7 @@
         panel.querySelectorAll('[data-country-cnt]').forEach((el) => {
           const c = el.dataset.countryCnt;
           const n = c === 'all' ? all.length : all.filter((row) => row.dataset.country === c).length;
-          el.textContent = '(' + n + '건)';
+          el.textContent = n;
         });
 
         syncAllCheck(panel);
@@ -1194,6 +1386,31 @@
             render(key);
           });
         }
+
+        // 조회 버튼: 가격·입찰수를 로딩 후 불러온다.
+        panel.querySelectorAll('[data-refresh]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const row = btn.closest('tr');
+            const fields = [
+              [row.querySelector('[data-field="price"]'), row.dataset.price],
+              [row.querySelector('[data-field="bids"]'), row.dataset.bids]
+            ];
+            btn.disabled = true;
+            fields.forEach(([el]) => {
+              el.classList.remove('is-loaded');
+              el.classList.add('is-loading');
+              el.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+            });
+            setTimeout(() => {
+              fields.forEach(([el, value]) => {
+                el.classList.remove('is-loading');
+                el.classList.add('is-loaded');
+                el.textContent = value;
+              });
+              btn.disabled = false;
+            }, 900);
+          });
+        });
 
         panel.querySelectorAll('.country-tab').forEach((tab) => {
           tab.addEventListener('click', () => {

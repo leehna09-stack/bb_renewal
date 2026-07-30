@@ -42,7 +42,9 @@
     '.psb-battery{display:flex;align-items:center;gap:2px}',
     '.psb-battery-body{width:22px;height:11px;border:1.3px solid #0A0A0A;border-radius:3px;padding:1.5px;position:relative}',
     '.psb-battery-body::after{content:"";position:absolute;right:-3.5px;top:50%;transform:translateY(-50%);width:2px;height:4px;background:#0A0A0A;border-radius:0 1px 1px 0}',
-    '.psb-battery-fill{display:block;width:80%;height:100%;background:#0A0A0A;border-radius:1px}'
+    '.psb-battery-fill{display:block;width:80%;height:100%;background:#0A0A0A;border-radius:1px}',
+    // 스크롤해도 시간/네트워크/배터리 바는 항상 최상단에 붙어 있는다.
+    '.phone-status-bar.is-pinned{position:sticky;top:0;z-index:1000}'
   ].join('\n');
 
   var DRAWER_CSS = [
@@ -169,6 +171,35 @@
     }
 
     document.body.insertAdjacentHTML('afterbegin', phoneStatusHTML());
+  }
+
+  // fixed/absolute 조상이 있으면 별도 스크롤 문맥이라 상태바 높이를 더할 필요가 없다.
+  function hasPositionedAncestor(el) {
+    for (var p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      var pos = getComputedStyle(p).position;
+      if (pos === 'fixed' || pos === 'absolute') return true;
+    }
+    return false;
+  }
+
+  // 상태바를 최상단에 고정하고, 그만큼 기존 sticky 헤더/탭의 top 을 밀어준다.
+  function pinPhoneStatusBar() {
+    var bar = document.querySelector('.phone-status-bar');
+    if (!bar || bar.classList.contains('is-pinned')) return;
+
+    // 이미 fixed 헤더(.app-header) 안에 들어 있는 페이지는 그대로 고정 상태다.
+    if (hasPositionedAncestor(bar)) return;
+
+    bar.classList.add('is-pinned');
+    var offset = Math.round(bar.getBoundingClientRect().height) || 25;
+
+    Array.prototype.forEach.call(document.body.querySelectorAll('*'), function (el) {
+      if (el === bar || bar.contains(el)) return;
+      var cs = getComputedStyle(el);
+      if (cs.position !== 'sticky' || cs.top === 'auto') return;
+      if (hasPositionedAncestor(el)) return;
+      el.style.top = (parseFloat(cs.top) || 0) + offset + 'px';
+    });
   }
 
   var STORE_CATEGORIES = {
@@ -343,11 +374,13 @@
     if (SHELL_MODE === 'status-only') {
       injectStatusStyles();
       injectPhoneStatusBar();
+      pinPhoneStatusBar();
       return;
     }
 
     injectStyles();
     injectPhoneStatusBar();
+    pinPhoneStatusBar();
 
     var drawerOv = ensureNode('drawerOv', 'div', 'drawer-ov');
     var drawer = ensureNode('drawer', 'div', 'drawer');
