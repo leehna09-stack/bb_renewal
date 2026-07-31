@@ -846,6 +846,168 @@
       100% { transform: rotate(360deg) scale(1); }
     }
 
+    .roulette-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(30, 24, 12, 0.55);
+    }
+
+    .roulette-modal-overlay[hidden] {
+      display: none;
+    }
+
+    .roulette-modal {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      padding: 26px 20px 28px;
+      border-radius: 18px;
+      background: #fffdf5;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .roulette-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border: 0;
+      background: transparent;
+      color: #aaa18f;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .roulette-modal h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 900;
+      color: #3a3226;
+    }
+
+    .roulette-modal-desc {
+      margin: 0 0 18px;
+      font-size: 12px;
+      color: #9f8b4c;
+    }
+
+    .roulette-wheel-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 20px;
+    }
+
+    .roulette-pointer {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      z-index: 2;
+      width: 0;
+      height: 0;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 18px solid #d94f4f;
+    }
+
+    .roulette-wheel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 0 0 2px #d9c98d;
+      background: conic-gradient(#ef6f6c 0deg 72deg, #ffd166 72deg 144deg, #4d96ff 144deg 216deg, #06d6a0 216deg 288deg, #c77dff 288deg 360deg);
+      transition: transform 4s cubic-bezier(0.15, 0.65, 0.15, 1);
+    }
+
+    .roulette-wheel-labels {
+      position: absolute;
+      inset: 0;
+    }
+
+    .roulette-wheel-labels span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 58px;
+      margin-left: -29px;
+      transform-origin: 29px 0;
+      transform: rotate(calc(72deg * var(--i) + 36deg)) translate(0, -74px);
+    }
+
+    .roulette-wheel-labels span b {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #3a3226;
+      text-align: center;
+      white-space: normal;
+      transform: rotate(calc(-72deg * var(--i) - 36deg));
+    }
+
+    .roulette-wheel-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 2;
+      width: 26px;
+      height: 26px;
+      margin: -13px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 2px #d9c98d;
+    }
+
+    .roulette-start-btn {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      border-radius: 10px;
+      background: #3a3226;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .roulette-start-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .roulette-result {
+      margin: 14px 0 0;
+      font-size: 14px;
+      font-weight: 900;
+      color: #d94f4f;
+    }
+
+    .roulette-result[hidden] {
+      display: none;
+    }
+
+    .roulette-note {
+      margin: 6px 0 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9f8b4c;
+    }
+
+    .roulette-note[hidden] {
+      display: none;
+    }
+
     .fold-bar {
       height: 36px;
       border: 1px dashed var(--line);
@@ -3294,7 +3456,7 @@
               <button class="history-tab active" type="button" role="tab" aria-selected="true" data-filter="all">전체</button>
               <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="earn">적립</button>
               <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="use">사용</button>
-              <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="expire">소멸</button>
+              <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="expire">유효기간 만료</button>
             </div>
           </div>
 
@@ -3328,10 +3490,10 @@
               <div class="history-amount minus" role="cell">-500원</div>
             </div>
 
-            <div class="history-row" role="row" data-type="expire" data-detail="expire" tabindex="0" aria-label="마일리지 소멸 상세 보기">
+            <div class="history-row" role="row" data-type="expire" data-detail="expire" tabindex="0" aria-label="마일리지 유효기간 만료 상세 보기">
               <div class="history-date" role="cell">2024-04-01</div>
               <div class="history-type" role="cell">
-                <span class="history-kind">소멸</span>
+                <span class="history-kind">유효기간 만료</span>
               </div>
               <div class="history-desc" role="cell">
                 <span class="history-meta">유효기간 만료분 자동 차감</span>
@@ -3359,6 +3521,30 @@
         <button class="mileage-popup-ok" type="button">확인</button>
       </div>
     </div>
+
+    <div class="roulette-modal-overlay" hidden>
+      <div class="roulette-modal" role="dialog" aria-modal="true" aria-labelledby="roulette-modal-title">
+        <button class="roulette-modal-close" type="button" aria-label="닫기">×</button>
+        <h3 id="roulette-modal-title">보너스 룰렛</h3>
+        <p class="roulette-modal-desc">START 버튼을 누르면 룰렛이 돌아갑니다!</p>
+        <div class="roulette-wheel-wrap">
+          <div class="roulette-pointer"></div>
+          <div class="roulette-wheel">
+            <div class="roulette-wheel-labels">
+              <span style="--i:0"><b>꽝</b></span>
+              <span style="--i:1"><b>항공운임쿠폰<br>2천원</b></span>
+              <span style="--i:2"><b>항공운임쿠폰<br>3천원</b></span>
+              <span style="--i:3"><b>마일리지<br>5천원</b></span>
+              <span style="--i:4"><b>메가<br>더블커피</b></span>
+            </div>
+            <div class="roulette-wheel-center"></div>
+          </div>
+        </div>
+        <button class="roulette-start-btn" type="button">START</button>
+        <p class="roulette-result" hidden></p>
+        <p class="roulette-note" hidden>익월 첫째 주에 순차 지급됩니다.</p>
+      </div>
+    </div>
   </div>
 
   <aside class="user-drawer" aria-label="회원 메뉴" aria-hidden="true">
@@ -3370,7 +3556,7 @@
           <span class="user-vip-chip">PREMIUM</span>
         </div>
       </div>
-      <p class="user-vip-copy">VIP까지 ₩23,000 또는 2건</p>
+      <p class="user-vip-copy">프리미엄까지 ₩23,000 또는 2건</p>
       <div class="user-vip-bar"><span style="width:84%"></span></div>
       <div class="user-asset-box">
         <div><span>마일리지</span><strong>4,500원</strong></div>
@@ -3539,7 +3725,70 @@
         button.classList.remove("is-spinning");
         void button.offsetWidth;
         button.classList.add("is-spinning");
+        openRouletteModal();
       });
+    });
+
+    const rouletteModalOverlay = document.querySelector(".roulette-modal-overlay");
+    const rouletteModalClose = document.querySelector(".roulette-modal-close");
+    const rouletteWheel = document.querySelector(".roulette-wheel");
+    const rouletteStartBtn = document.querySelector(".roulette-start-btn");
+    const rouletteResult = document.querySelector(".roulette-result");
+    const rouletteNote = document.querySelector(".roulette-note");
+    const roulettePrizes = ["꽝", "항공운임쿠폰 2천원", "항공운임쿠폰 3천원", "마일리지 5천원", "메가 더블커피"];
+    let rouletteRotation = 0;
+    let rouletteSpinning = false;
+    let rouletteFinished = false;
+
+    function openRouletteModal() {
+      if (!rouletteModalOverlay) return;
+      rouletteFinished = false;
+      rouletteResult.hidden = true;
+      rouletteResult.textContent = "";
+      rouletteNote.hidden = true;
+      rouletteStartBtn.disabled = false;
+      rouletteStartBtn.textContent = "START";
+      rouletteModalOverlay.hidden = false;
+    }
+
+    function closeRouletteModal() {
+      if (!rouletteModalOverlay) return;
+      rouletteModalOverlay.hidden = true;
+    }
+
+    rouletteModalClose?.addEventListener("click", closeRouletteModal);
+    rouletteModalOverlay?.addEventListener("click", (event) => {
+      if (event.target === rouletteModalOverlay) closeRouletteModal();
+    });
+
+    rouletteStartBtn?.addEventListener("click", () => {
+      if (rouletteFinished) {
+        closeRouletteModal();
+        return;
+      }
+      if (rouletteSpinning || !rouletteWheel) return;
+      rouletteSpinning = true;
+      rouletteStartBtn.disabled = true;
+      rouletteResult.hidden = true;
+      rouletteNote.hidden = true;
+
+      const prizeIndex = Math.floor(Math.random() * roulettePrizes.length);
+      const sliceAngle = 360 / roulettePrizes.length;
+      const targetCenter = prizeIndex * sliceAngle + sliceAngle / 2;
+      const currentMod = ((rouletteRotation % 360) + 360) % 360;
+      const delta = ((360 - targetCenter - currentMod) % 360 + 360) % 360;
+      rouletteRotation += 360 * 5 + delta;
+      rouletteWheel.style.transform = `rotate(${rouletteRotation}deg)`;
+
+      setTimeout(() => {
+        rouletteSpinning = false;
+        rouletteFinished = true;
+        rouletteStartBtn.disabled = false;
+        rouletteStartBtn.textContent = "닫기";
+        rouletteResult.hidden = false;
+        rouletteResult.textContent = `🎉 ${roulettePrizes[prizeIndex]} 당첨!`;
+        rouletteNote.hidden = roulettePrizes[prizeIndex] !== "메가 더블커피";
+      }, 4000);
     });
 
     const historyTabs = document.querySelectorAll(".history-tab");
@@ -3644,7 +3893,7 @@
     const mileagePopupData = {
       "earn-purchase": {
         title: "구매 마일리지 적립",
-        badge: "VIP 10%",
+        badge: "프리미엄 5%",
         summary: {
           label: "마일리지",
           amount: "+14,425원",
