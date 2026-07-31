@@ -1470,10 +1470,16 @@
 
     .mileage-popup-list-name {
       min-width: 0;
-      overflow: hidden;
       color: #303743;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      white-space: normal;
+    }
+
+    .mileage-popup-list-note {
+      display: block;
+      margin-top: 4px;
+      color: #7b8493;
+      font-size: 12px;
+      line-height: 1.4;
     }
 
     .mileage-popup-list-amount {
@@ -3390,9 +3396,9 @@
                 <span>
                   적립 예정 마일리지
                 </span>
-                <strong>+ 25,594<small>원</small></strong>
+                <strong>25,594<small>원</small></strong>
               </div>
-              <div class="balance-box">
+              <div class="balance-box" role="button" tabindex="0" data-summary-detail="monthly-use" aria-label="이번달 사용 마일리지 상세 보기">
                 <span>이번달 사용 마일리지</span>
                 <strong>9,800<small>원</small></strong>
               </div>
@@ -3793,7 +3799,7 @@
 
     const historyTabs = document.querySelectorAll(".history-tab");
     const historyRows = document.querySelectorAll(".history-row");
-    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip]");
+    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip], .balance-box[data-summary-detail]");
 
     function closeSummaryTooltips(exceptCard) {
       summaryTooltipCards.forEach((card) => {
@@ -3811,21 +3817,38 @@
         const label = card.querySelector("span")?.textContent?.trim();
         let detail;
         
-        // 팝업 내용 구성 - 적립 예정 마일리지는 구매 마일리지 적립과 동일한 형식
+        // 팝업 내용 구성 - 적립 예정 마일리지
         if (label === "적립 예정 마일리지") {
           detail = {
-            title: "적립 예정 마일리지",
-            badge: "예정",
+            title: "적립예정 마일리지",
             summary: {
-              label: "마일리지",
-              amount: "+ 25,594원",
-              period: "2026.07.01~2026.08.01"
+              label: "총 적립 예정",
+              amount: "25,594원",
+              periodLabel: "적립 예정일",
+              period: "2026.05.01"
             },
             list: [
-              { date: "04.01", name: "소니 헤드폰 블랙", amount: "6,200원" },
-              { date: "04.17", name: "애플 아이폰 화이트", amount: "5,800원" },
-              { date: "04.20", name: "캐논 렌즈 50mm", amount: "5,200원" },
-              { date: "04.27", name: "시마노 릴 3000번", amount: "8,394원" }
+              { date: "04.01", name: "JP123456789", amount: "6,200원" },
+              { date: "04.17", name: "BJP123456789", amount: "5,800원" },
+              { date: "04.20", name: "US123456789", amount: "5,200원" },
+              { date: "04.27", name: "BUS123456789", amount: "8,394원" }
+            ]
+          };
+        } else if (label === "이번달 사용 마일리지") {
+          detail = {
+            title: "마일리지 사용 내역",
+            subtitle: "4월 사용 마일리지 합산",
+            summary: {
+              label: "사용 마일리지",
+              amount: "-9,800원",
+              periodLabel: "사용 기간",
+              period: "2024.04.01~2024.04.30"
+            },
+            list: [
+              { date: "04.05", name: "JP123456789", amount: "-2,000원" },
+              { date: "04.12", name: "BJP123456789", amount: "-3,300원" },
+              { date: "04.18", name: "US123456789", amount: "-1,500원" },
+              { date: "04.25", name: "BUS123456789", amount: "-3,000원" }
             ]
           };
         } else {
@@ -3928,14 +3951,13 @@
       },
       expire: {
         title: "마일리지 소멸 내역",
-        groups: [
-          [
-            { label: "적립날짜", value: "2027-02-28" },
-            { label: "유효기간", value: "2027-03-28" }
-          ],
-          [
-            { label: "소멸 금액", value: "20,000원" }
-          ]
+        summary: {
+          label: "소멸 마일리지",
+          amount: "-20,000원"
+        },
+        list: [
+          { date: "04.01", name: "월간 마일리지 유효기간 만료", note: "2026.03.31 23:59 까지", amount: "-20,000원" },
+          { date: "04.01", name: "이벤트 마일리지 유효기간 만료", amount: "-5,000원" }
         ]
       },
       "earn-monthly": {
@@ -4028,19 +4050,23 @@
         amountEl.append(coinEl, amountTextEl);
         amountRowEl.append(amountLabelEl, amountEl);
 
-        const periodRowEl = document.createElement("div");
-        periodRowEl.className = "mileage-popup-summary-row";
+        summaryEl.appendChild(amountRowEl);
 
-        const periodLabelEl = document.createElement("span");
-        periodLabelEl.className = "mileage-popup-summary-label";
-        periodLabelEl.textContent = "유효기간";
+        if (detail.summary.period) {
+          const periodRowEl = document.createElement("div");
+          periodRowEl.className = "mileage-popup-summary-row";
 
-        const periodValueEl = document.createElement("span");
-        periodValueEl.className = "mileage-popup-summary-value";
-        periodValueEl.textContent = detail.summary.period;
+          const periodLabelEl = document.createElement("span");
+          periodLabelEl.className = "mileage-popup-summary-label";
+          periodLabelEl.textContent = detail.summary.periodLabel || "유효기간";
 
-        periodRowEl.append(periodLabelEl, periodValueEl);
-        summaryEl.append(amountRowEl, periodRowEl);
+          const periodValueEl = document.createElement("span");
+          periodValueEl.className = "mileage-popup-summary-value";
+          periodValueEl.textContent = detail.summary.period;
+
+          periodRowEl.append(periodLabelEl, periodValueEl);
+          summaryEl.appendChild(periodRowEl);
+        }
         mileagePopupContent.appendChild(summaryEl);
 
         const dividerEl = document.createElement("div");
@@ -4061,6 +4087,12 @@
           const nameEl = document.createElement("span");
           nameEl.className = "mileage-popup-list-name";
           nameEl.textContent = item.name;
+          if (item.note) {
+            const noteEl = document.createElement("span");
+            noteEl.className = "mileage-popup-list-note";
+            noteEl.textContent = item.note;
+            nameEl.appendChild(noteEl);
+          }
 
           const amountItemEl = document.createElement("strong");
           amountItemEl.className = "mileage-popup-list-amount";

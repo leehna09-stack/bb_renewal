@@ -285,6 +285,11 @@
     .packing-choice input { width: 14px; height: 14px; margin: 0; accent-color: var(--navy); flex: 0 0 auto; }
     .option-check-label input[type="checkbox"] { width: 16px; height: 16px; margin: 0; accent-color: var(--navy); flex: 0 0 auto; }
     .packing-choice:has(input:checked) { border-color: var(--navy); background: #f7faff; }
+    .care-grade-badge { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+    .care-grade-badge-text { display: none; align-items: center; gap: 5px; color: #1a9e5c; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .care-grade-badge-text i { color: #1a9e5c; font-size: 11px; }
+    .care-grade-badge:not(.is-blank) .care-grade-badge-text { display: inline-flex; }
+    .care-scenario-btn { width: 22px; height: 22px; padding: 0; border: 1px solid #d9d2c7; border-radius: 4px; background: #fff; color: #8a5a00; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; cursor: pointer; flex: 0 0 auto; }
     .packing-choice span,
     .option-check-label span { overflow: hidden; text-overflow: ellipsis; }
     .care-plus-control { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -631,7 +636,12 @@
             <th>
               <div class="packing-choice-list" aria-label="안심 케어 옵션 선택">
                 <label class="packing-choice"><input type="checkbox" name="careOption" value="carePlus" data-paid-option-yen="1000"><span>안심 케어 플러스 (1,000엔)</span></label>
-                <label class="packing-choice"><input type="checkbox" name="careOption" value="care" data-paid-option-yen="200"><span>안심 케어 (200엔)</span></label>
+                <label class="packing-choice"><input type="checkbox" name="careOption" value="care" data-paid-option-yen="200" checked><span>안심 케어 (200엔)</span></label>
+              </div>
+              <div class="care-grade-badge" data-scenario="2">
+                <button type="button" class="care-scenario-btn" data-dir="-1" aria-label="이전 예시 보기"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                <span class="care-grade-badge-text"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><b></b></span>
+                <button type="button" class="care-scenario-btn" data-dir="1" aria-label="다음 예시 보기"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
               </div>
             </th>
             <td class="paid-option-choice">
@@ -1047,6 +1057,26 @@
     });
   });
   window.syncCareDesc();
+
+  (function() {
+    var badge = document.querySelector('.care-grade-badge');
+    if (!badge) return;
+    var labels = ['VIP등급은 무료 적용🎉', 'Prestige등급은 무료 적용🎉', ''];
+    var textEl = badge.querySelector('.care-grade-badge-text b');
+    var renderBadge = function() {
+      var i = Number(badge.dataset.scenario || 0);
+      textEl.textContent = labels[i];
+      badge.classList.toggle('is-blank', labels[i] === '');
+    };
+    badge.querySelectorAll('.care-scenario-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var i = ((Number(badge.dataset.scenario || 0) + Number(btn.dataset.dir)) % labels.length + labels.length) % labels.length;
+        badge.dataset.scenario = i;
+        renderBadge();
+      });
+    });
+    renderBadge();
+  })();
 
   // ── 튼튼 포장비 안내 모달 ──
   (function() {

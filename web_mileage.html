@@ -1830,10 +1830,16 @@
 
     .mileage-popup-list-name {
       min-width: 0;
-      overflow: hidden;
       color: var(--tp);
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      white-space: normal;
+    }
+
+    .mileage-popup-list-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--ts);
+      font-size: 12px;
+      line-height: 1.4;
     }
 
     .mileage-popup-list-amount {
@@ -2007,15 +2013,15 @@
                 <span>
                   적립 예정 마일리지
                 </span>
-                <strong>+ 25,594<small>원</small></strong>
+                <strong>25,594<small>원</small></strong>
               </div>
-              <div class="balance-box">
+              <div class="balance-box" role="button" tabindex="0" data-summary-detail="monthly-use" aria-label="이번달 사용 마일리지 상세 보기">
                 <span>이번달 사용 마일리지</span>
                 <strong>9,800<small>원</small></strong>
               </div>
-              <div class="balance-box" role="button" tabindex="0" data-tooltip-position="bottom" data-summary-tooltip="• 적립 마일리지는 적립일로부터 3개월 후 소멸됩니다.&#10;• 유효기간이 빠른 마일리지부터 사용됩니다.&#10;• 월간 마일리지는 지급월 말일 23:59:59에 소멸됩니다." aria-label="소멸 예정 마일리지 안내 보기">
+              <div class="balance-box" role="button" tabindex="0" data-tooltip-position="bottom" data-summary-tooltip="• 적립 마일리지는 적립일로부터 3개월 후 소멸됩니다.&#10;• 유효기간이 빠른 마일리지부터 사용됩니다.&#10;• 월간 마일리지는 지급월 말일 23:59:59에 소멸됩니다." aria-label="다음달 소멸 예정 마일리지 안내 보기">
                 <span>
-                  소멸 예정 마일리지
+                  다음달 소멸 예정 마일리지
                 </span>
                 <strong class="muted">9,800<small>원</small></strong>
               </div>
@@ -2073,7 +2079,7 @@
               <button class="history-tab active" type="button" role="tab" aria-selected="true" data-filter="all">전체</button>
               <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="earn">적립</button>
               <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="use">사용</button>
-              <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="expire">유효기간 만료</button>
+              <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="expire">소멸</button>
             </div>
           </div>
 
@@ -2089,13 +2095,13 @@
               <div class="history-date" role="cell">2024-04-01</div>
               <div class="history-type" role="cell"><span class="type-chip earn">적립</span></div>
               <div class="history-desc" role="cell">
-                <strong class="history-kind">4월 거래 마일리지 적립</strong>
+                <strong class="history-kind">4월 적립 마일리지</strong>
               </div>
               <div class="history-amount" role="cell">+14,425원</div>
             </div>
 
             <div class="history-row" role="row" data-type="use" data-detail="use-purchase" tabindex="0" aria-label="마일리지 사용 상세 보기">
-              <div class="history-date" role="cell">2024-04-15</div>
+              <div class="history-date" role="cell">2024-02-28</div>
               <div class="history-type" role="cell"><span class="type-chip use">사용</span></div>
               <div class="history-desc" role="cell">
                 <strong class="history-kind">주문번호 JP123456789 차감</strong>
@@ -2105,7 +2111,7 @@
 
             <div class="history-row" role="row" data-type="expire" data-detail="expire" tabindex="0" aria-label="마일리지 유효기간 만료 상세 보기">
               <div class="history-date" role="cell">2024-05-01</div>
-              <div class="history-type" role="cell"><span class="type-chip expire">유효기간 만료</span></div>
+              <div class="history-type" role="cell"><span class="type-chip expire">소멸</span></div>
               <div class="history-desc" role="cell">
                 <strong class="history-kind">유효기간 만료</strong>
               </div>
@@ -2116,7 +2122,7 @@
               <div class="history-date" role="cell">2024-04-01</div>
               <div class="history-type" role="cell"><span class="type-chip earn">적립</span></div>
               <div class="history-desc" role="cell">
-                <strong class="history-kind">월간 등급 혜택 마일리지</strong>
+                <strong class="history-kind">월간 마일리지</strong>
               </div>
               <div class="history-amount" role="cell">+9,800원</div>
             </div>
@@ -2132,7 +2138,7 @@
 
             <div class="history-row" role="row" data-type="expire" data-detail="expire" tabindex="0" aria-label="마일리지 유효기간 만료 상세 보기">
               <div class="history-date" role="cell">2024-03-20</div>
-              <div class="history-type" role="cell"><span class="type-chip expire">유효기간 만료</span></div>
+              <div class="history-type" role="cell"><span class="type-chip expire">소멸</span></div>
               <div class="history-desc" role="cell">
                 <strong class="history-kind">유효기간 만료</strong>
               </div>
@@ -2500,7 +2506,7 @@
 
     const historyTabs = document.querySelectorAll(".history-tab");
     const historyRows = document.querySelectorAll(".history-row");
-    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip]");
+    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip], .balance-box[data-summary-detail]");
 
     function closeSummaryTooltips(exceptCard) {
       summaryTooltipCards.forEach((card) => {
@@ -2518,20 +2524,38 @@
         const label = card.querySelector("span")?.textContent?.trim();
         let detail;
 
-        // 팝업 내용 구성 - 적립 예정 마일리지는 구매 마일리지 적립과 동일한 형식
+        // 팝업 내용 구성 - 적립 예정 마일리지
         if (label === "적립 예정 마일리지") {
           detail = {
-            title: "적립 예정 마일리지",
+            title: "적립예정 마일리지",
             summary: {
-              label: "마일리지",
-              amount: "+ 25,594원",
-              period: "2026.07.01~2026.09.30"
+              label: "총 적립 예정",
+              amount: "25,594원",
+              periodLabel: "적립 예정일",
+              period: "2026.05.01"
             },
             list: [
               { date: "04.01", name: "JP123456789", amount: "6,200원" },
               { date: "04.17", name: "BJP123456789", amount: "5,800원" },
               { date: "04.20", name: "US123456789", amount: "5,200원" },
               { date: "04.27", name: "BUS123456789", amount: "8,394원" }
+            ]
+          };
+        } else if (label === "이번달 사용 마일리지") {
+          detail = {
+            title: "마일리지 사용 내역",
+            subtitle: "4월 사용 마일리지 합산",
+            summary: {
+              label: "사용 마일리지",
+              amount: "-9,800원",
+              periodLabel: "사용 기간",
+              period: "2024.04.01~2024.04.30"
+            },
+            list: [
+              { date: "04.05", name: "JP123456789", amount: "-2,000원" },
+              { date: "04.12", name: "BJP123456789", amount: "-3,300원" },
+              { date: "04.18", name: "US123456789", amount: "-1,500원" },
+              { date: "04.25", name: "BUS123456789", amount: "-3,000원" }
             ]
           };
         } else {
@@ -2598,7 +2622,7 @@
 
     const mileagePopupData = {
       "earn-purchase": {
-        title: "구매 마일리지 적립",
+        title: "적립 마일리지",
         badge: "Premium 5%",
         summary: {
           label: "마일리지",
@@ -2619,7 +2643,7 @@
           label: "사용 마일리지",
           amount: "-12,000원",
           periodLabel: "주문일자",
-          period: "2027.02.28"
+          period: "2024.02.28"
         },
         list: [
           { date: "02.28", name: "반지 링 여성용 실버 금속 알레르기 방지 액세서리 여름용 심플 메일편 무료배송", amount: "-12,000원" }
@@ -2629,25 +2653,24 @@
         title: "마일리지 소멸 내역",
         summary: {
           label: "소멸 마일리지",
-          amount: "-20,000원",
+          amount: "-20,000원"
         },
         list: [
-          { date: "04.01", name: "월간 마일리지 유효기간 만료", amount: "-20,000원" },
-          { date: "04.01", name: "이벤트 마일리지 유효기간 만료", amount: "-5,000원" }
+          { date: "04.01", name: "월간 마일리지", note: "2026.03.31 23:59 까지", amount: "-20,000원" },
+          { date: "04.01", name: "가족의달 이벤트 마일리지", note: "2026.03.31 23:59 까지", amount: "-5,000원" }
 
         ]
       },
       "earn-monthly": {
         title: "월간 마일리지 적립",
-        badge: "월간",
         subtitle: "월간 등급 혜택 마일리지",
         summary: {
           label: "마일리지",
-          amount: "+9,800원",
-          period: "2024.03.28~2024.06.26"
+          amount: "+10,000원",
+          period: "~2024.04.30 23:59 까지"
         },
         list: [
-          { date: "03.28", name: "월간 등급 혜택 마일리지", amount: "9,800원" }
+          { date: "04.01", name: "월간 마일리지", amount: "10,000원" }
         ]
       },
       "earn-event": {
@@ -2656,7 +2679,7 @@
         summary: {
           label: "마일리지",
           amount: "+500원",
-          period: "2026.09.01~2026.09.30"
+          period: "~2026.09.30 23:59까지"
         },
         list: [
           { date: "09.01", name: "리뉴얼 오픈 이벤트", amount: "500원" }
@@ -2726,19 +2749,23 @@
         amountEl.append(coinEl, amountTextEl);
         amountRowEl.append(amountLabelEl, amountEl);
 
-        const periodRowEl = document.createElement("div");
-        periodRowEl.className = "mileage-popup-summary-row";
+        summaryEl.appendChild(amountRowEl);
 
-        const periodLabelEl = document.createElement("span");
-        periodLabelEl.className = "mileage-popup-summary-label";
-        periodLabelEl.textContent = detail.summary.periodLabel || "유효기간";
+        if (detail.summary.period) {
+          const periodRowEl = document.createElement("div");
+          periodRowEl.className = "mileage-popup-summary-row";
 
-        const periodValueEl = document.createElement("span");
-        periodValueEl.className = "mileage-popup-summary-value";
-        periodValueEl.textContent = detail.summary.period;
+          const periodLabelEl = document.createElement("span");
+          periodLabelEl.className = "mileage-popup-summary-label";
+          periodLabelEl.textContent = detail.summary.periodLabel || "유효기간";
 
-        periodRowEl.append(periodLabelEl, periodValueEl);
-        summaryEl.append(amountRowEl, periodRowEl);
+          const periodValueEl = document.createElement("span");
+          periodValueEl.className = "mileage-popup-summary-value";
+          periodValueEl.textContent = detail.summary.period;
+
+          periodRowEl.append(periodLabelEl, periodValueEl);
+          summaryEl.appendChild(periodRowEl);
+        }
         mileagePopupContent.appendChild(summaryEl);
 
         const dividerEl = document.createElement("div");
@@ -2759,6 +2786,12 @@
           const nameEl = document.createElement("span");
           nameEl.className = "mileage-popup-list-name";
           nameEl.textContent = item.name;
+          if (item.note) {
+            const noteEl = document.createElement("span");
+            noteEl.className = "mileage-popup-list-note";
+            noteEl.textContent = item.note;
+            nameEl.appendChild(noteEl);
+          }
 
           const amountItemEl = document.createElement("strong");
           amountItemEl.className = "mileage-popup-list-amount";
