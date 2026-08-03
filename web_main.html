@@ -167,7 +167,7 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 
 /* ? ═ 멤버??배너 ? ═ */
-.member-bar{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0}
+.member-bar{background:#fff;padding:16px 0}
 .member-inner{max-width:1060px;margin:0 auto;padding:0;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
 .mb-lbl{font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
 .mb-sub{font-size:12px;color:var(--ts);flex-shrink:0}
@@ -179,6 +179,29 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .mb-tier-desc{font-size:11px;color:var(--tm);line-height:1.5;margin-top:2px}
 .mb-detail-btn{background:var(--rose);color:#fff;border:none;padding:9px 20px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:auto;flex-shrink:0}
 .mb-detail-btn:hover{background:var(--rose-h)}
+
+/* ? ═ 전환 배너(멤버십 ??공지사항) ? ═ */
+.hero-banner{position:relative;background:#fff;border-top:0px solid var(--border);border-bottom:1px solid var(--border);padding-bottom:26px}
+.hb-slide{display:none;height:100px;overflow:hidden;animation:hbFade .35s ease}
+.hb-slide.active{display:block}
+@keyframes hbFade{from{opacity:0}to{opacity:1}}
+.mb-slide .member-bar{height:100px;padding:0;display:flex;align-items:center}
+.notice-slide .notice-banner-inner{max-width:1060px;margin:0 auto;padding:10px 10px 0}
+.notice-slide .nb-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1px}
+.notice-slide .nb-title{font-size:15px;font-weight:700}
+.notice-slide .nb-more{font-size:12px;color:var(--tm)}
+.nb-viewport{height:56px;overflow-y:auto;scrollbar-width:none;cursor:grab}
+.nb-viewport::-webkit-scrollbar{display:none}
+.nb-viewport:active{cursor:grabbing}
+.ntk-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;cursor:pointer}
+.ntk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ntk-dot.ntk-jp{background:var(--rose)}
+.ntk-dot.ntk-kr{background:#1d74ff}
+.ntk-tag{flex-shrink:0;font-size:11px;font-weight:700;color:#374151;background:#F1F3F5;border-radius:4px;padding:2px 6px}
+.ntk-row .notice-txt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;gap:6px}
+.hb-dot{width:6px;height:6px;padding:0;border:none;border-radius:50%;background:var(--border);cursor:pointer}
+.hb-dot.active{background:var(--rose);width:16px;border-radius:4px}
 
 /* ? ═ 바로가 ?? ═ */
 .sc-bar{background:#fff;border-bottom:1px solid var(--border);padding: 14px 0}
@@ -314,7 +337,7 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .rv-item{font-size:11px;color:var(--tm);margin-top:8px}
 
 /* ? ═ 공 ?+CS ? ═ */
-.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .info-card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;min-width:0}
 .info-title{font-size:15px;font-weight:700;margin-bottom:14px}
 .notice-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F5F7FA;font-size:13px;cursor:pointer}
@@ -810,17 +833,54 @@ button.user-menu-item{
 </div>
 
 
-<!-- 멤버??배너 -->
-<div class="member-bar">
-  <div class="member-inner">
-    <span class="mb-lbl">등급별 마일리지 제도 오픈!</span>
-    <span class="mb-sub">모든 거래에 자동 적립, 등급이 올라갈수록 혜택도 커집니다</span>
-    <div class="mb-tiers">
-      <div class="mb-tier"><div class="mb-tier-name">Standard</div><div class="mb-tier-desc">마일리지 2% 적립<br>무료보관 30일</div></div>
-      <div class="mb-tier"><div class="mb-tier-name" style="color:var(--amber)">Premium</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 1만원</div></div>
-      <div class="mb-tier"><div class="mb-tier-name" style="color:var(--rose)">VIP</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 2만원</div></div>
+<!-- 전환 배너: 멤버십 등급 ??공지사항 -->
+<div class="hero-banner" id="heroBanner">
+  <div class="hb-slide mb-slide active">
+    <div class="member-bar">
+      <div class="member-inner">
+        <span class="mb-lbl">등급별 마일리지 제도 오픈!</span>
+        <span class="mb-sub">모든 거래에 자동 적립, 등급이 올라갈수록 혜택도 커집니다</span>
+        <div class="mb-tiers">
+          <div class="mb-tier"><div class="mb-tier-name">Standard</div><div class="mb-tier-desc">마일리지 2% 적립<br>무료보관 30일</div></div>
+          <div class="mb-tier"><div class="mb-tier-name" style="color:var(--amber)">Premium</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 1만원</div></div>
+          <div class="mb-tier"><div class="mb-tier-name" style="color:var(--rose)">VIP</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 2만원</div></div>
+        </div>
+        <a class="mb-detail-btn" href="web_grade_page.html">상세보기</a>
+      </div>
     </div>
-    <a class="mb-detail-btn" href="web_grade_page.html">상세보기</a>
+  </div>
+  <div class="hb-slide notice-slide">
+    <div class="notice-banner-inner">
+      <div class="nb-head"><h3 class="nb-title">공지사항</h3><a href="#" class="nb-more">더보기</a></div>
+      <div class="nb-viewport" id="nbViewport">
+        <div class="nb-track" id="nbTrack">
+          <div class="ntk-row"><span class="ntk-dot ntk-jp"></span><span class="ntk-tag">일본</span><span class="notice-txt">● 일본-8월 출하 및 공휴일 안내 ●</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 관세청 개인통관고유부호 검증 강화 시행 일정 변경 안내 (수정)</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[미국/영국] 관련 특송 공통사항입니다.</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[수입식품안전관리특별법] 사전 수입신고 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 2026년 8월 카드사별 무이자 및 부분무이자 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">개인정보 처리방침 변경 안내 공지입니다.</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 본인인증 완료 이벤트 쿠폰 미지급 관련 공지</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 일시적인 사이트 접속 장애 및 정상화 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 중국 태풍 짱마로 인한 인천세관 작업지연 관련 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] NICE 개인통관고유부호 유효성 검증 서비스 도입 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-jp"></span><span class="ntk-tag">일본</span><span class="notice-txt">● 일본-8월 출하 및 공휴일 안내 ●</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 관세청 개인통관고유부호 검증 강화 시행 일정 변경 안내 (수정)</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[미국/영국] 관련 특송 공통사항입니다.</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[수입식품안전관리특별법] 사전 수입신고 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 2026년 8월 카드사별 무이자 및 부분무이자 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">개인정보 처리방침 변경 안내 공지입니다.</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 본인인증 완료 이벤트 쿠폰 미지급 관련 공지</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 일시적인 사이트 접속 장애 및 정상화 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 중국 태풍 짱마로 인한 인천세관 작업지연 관련 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] NICE 개인통관고유부호 유효성 검증 서비스 도입 안내</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hb-dots">
+    <button class="hb-dot active" type="button" onclick="hbGoTo(0)" aria-label="멤버십 배너 보기"></button>
+    <button class="hb-dot" type="button" onclick="hbGoTo(1)" aria-label="공지사항 배너 보기"></button>
   </div>
 </div>
 
@@ -892,12 +952,6 @@ button.user-menu-item{
 <!-- 공지+CS -->
 <div class="section" style="padding-top:0">
   <div class="info-grid">
-    <div class="info-card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h3 class="info-title" style="margin-bottom:0">공지사항</h3><a href="#" style="font-size:12px;color:var(--tm)">더보기</a></div>
-      <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 5월 골든위크 기간 항공 배송 일정 변경<sup class="new-n" aria-label="새 공지">N</sup></span><span class="notice-date">26.04.14</span></div>
-      <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 2026년 4월 공휴일로 인한 마감 시간 및 출고 안내</span><span class="notice-date">26.03.27</span></div>
-      <div class="notice-row"><span style="font-size:14px"><i class="fas fa-bullhorn"></i></span><span class="notice-txt">일본(JP) 센터 쇼와의 날(4/29) 휴무에 따른 배송 스케줄 안내</span><span class="notice-date">26.03.25</span></div>
-    </div>
     <div class="info-card">
       <div class="rate-title">고시환율</div>
       <p class="rate-desc">관세청에서 관/부가세 계산시 적용되는 환율로 주 단위로 고시되며,<br>매주 금요일에 다음 주 (월~토) 적용 환율을 고시합니다.</p>
@@ -1277,6 +1331,45 @@ function openbidbuynoticePopup(){
   const url = 'https://www.bidbuy.co.kr/cs/notice';
   window.open(url, 'bidbuynotice', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
 }
+
+/* 전환 배너: 멤버십 등급 ??공지사항 (하단 인디케이터로 수동 전환) */
+(function(){
+  const banner = document.getElementById('heroBanner');
+  if(!banner) return;
+  const slides = banner.querySelectorAll('.hb-slide');
+  const dots = banner.querySelectorAll('.hb-dot');
+  window.hbGoTo = function(i){
+    slides.forEach((s,n)=>s.classList.toggle('active', n===i));
+    dots.forEach((d,n)=>d.classList.toggle('active', n===i));
+  };
+})();
+
+/* 공지사항 리스트: 자동 롤링 + 수동 스크롤(드래그/휠 시 일시정지 후 재개) */
+(function(){
+  const vp = document.getElementById('nbViewport');
+  const track = document.getElementById('nbTrack');
+  if(!vp || !track) return;
+  let paused = false, resumeTimer = null;
+  function pause(){
+    paused = true;
+    clearTimeout(resumeTimer);
+  }
+  function scheduleResume(){
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(()=>{ paused = false; }, 2500);
+  }
+  ['wheel','touchstart','mousedown'].forEach(evt=>vp.addEventListener(evt, pause, {passive:true}));
+  ['wheel','touchend','mouseup','touchmove'].forEach(evt=>vp.addEventListener(evt, scheduleResume, {passive:true}));
+  vp.addEventListener('mouseenter', pause);
+  vp.addEventListener('mouseleave', scheduleResume);
+
+  setInterval(function(){
+    if(paused) return;
+    const half = track.scrollHeight / 2;
+    vp.scrollTop += 1;
+    if(vp.scrollTop >= half) vp.scrollTop -= half;
+  }, 40);
+})();
 function openaccountPopup(){
   const url = 'https://www.bidbuy.co.kr/mypage/account';
   window.open(url, 'account', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');

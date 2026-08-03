@@ -462,8 +462,8 @@
     }
 
     .top-overview {
-      min-height: 236px;
-      margin-bottom: 39px;
+      min-height: 190px;
+      margin-bottom: 30px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 428px;
       align-items: stretch;
@@ -473,22 +473,30 @@
     .hero-card {
       display: grid;
       grid-template-columns: 1fr;
+      align-content: start;
+      align-items: start;
       gap: 0;
       min-height: 0;
-      padding: 27px 28px 30px;
+      padding: 16px 20px 14px;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       background: #fff;
     }
 
     .hero-title {
-      margin-bottom: 16px;
+      margin-bottom: 4px;
       color: #333;
       font-size: 16px;
       font-weight: 800;
       line-height: 1.25;
     }
-.hero-sub{font-size:14px;color:var(--text-secondary);margin-bottom:4px;line-height:1.5}
+
+    .hero-sub{
+      font-size:14px;
+      color:var(--text-secondary);
+      margin-bottom:2px;
+      line-height:1.5
+    }
 
     .hero-left {
       display: flex;
@@ -496,20 +504,20 @@
       justify-content: space-between;
       gap: 24px;
       box-shadow: inset 0 -1px 0 var(--line);
-      padding-bottom: 9px;
+      padding-bottom: 6px;
     }
 
     .hero-label {
       color: #333;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .hero-amount {
       margin: 0;
       color: #25272d;
       font-size: 20px;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: 0;
       line-height: 1;
       white-space: nowrap;
@@ -522,20 +530,21 @@
     }
 
     .hero-period {
-      margin-top: 12px;
+      margin-top: 0;
+      margin-bottom: 12px;
       color: #9aa0ad;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
     }
 
     .hero-detail {
-      padding-top: 8px;
+      padding-top: 25px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px 34px;
+      gap: 8px 34px;
     }
 
     .hero-item {
@@ -549,39 +558,47 @@
 
     .hi-label {
       color: #333;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
       white-space: nowrap;
     }
 
     .hi-val {
       color: #9aa0ad;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       white-space: nowrap;
     }
 
     .grade-status-card {
       align-self: stretch;
-      padding: 17px 18px 15px;
+      padding: 16px 20px 14px;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       background: #fff;
     }
 
     .grade-status-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
 
     .grade-status-head h2 {
       color: #1f2937;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .grade-status-date {
+      margin-top: 0;
+      color: #9aa0ad;
+      font-size: 12px;
+      font-weight: 500;
     }
 
     .grade-badge {
@@ -601,7 +618,7 @@
     }
 
     .grade-progress-row {
-      margin-bottom: 19px;
+      margin-bottom: 8px;
     }
 
     .grade-progress-labels {
@@ -610,7 +627,7 @@
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 4px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       line-height: 1.25;
     }
@@ -646,6 +663,7 @@
     }
 
     .grade-progress-hint {
+      margin-top: 25px;
       margin-bottom: 0;
       color: #6f7480;
       font-size: 13px;
@@ -653,8 +671,8 @@
     }
 
     .grade-progress-hint b {
-      color: #20242b;
-      font-weight: 900;
+      color: #E8385A;
+      font-weight: 800;
     }
 
     .grade-criteria {
@@ -983,25 +1001,26 @@
 
       <section class="top-overview" aria-label="등급 요약">
         <div class="hero-card">
-          <h2 class="hero-title">홍길동님이 받은 프리미엄 혜택</h2>
+          <h2 class="hero-title">홍길동님이 받은 혜택</h2>
+          <p class="hero-period" id="heroPeriod">2026.06.01 ~ 현재(2026.08.03)</p>
           <div class="hero-left">
             <p class="hero-sub">총 누적 혜택</p>
-            <p class="hero-amount">177,000<span>원</span></p>
+            <p class="hero-amount">70,500<span>원</span></p>
           </div>
-          <p class="hero-period">2023.12.01 ~ 현재</p>
           <div class="hero-detail">
             <div class="hero-grid">
-              <div class="hero-item"><p class="hi-label">적립 마일리지</p><p class="hi-val">89,500원</p></div>
-              <div class="hero-item"><p class="hi-label">묶음 배송비 할인</p><p class="hi-val">28,500원</p></div>
-              <div class="hero-item"><p class="hi-label">월간 마일리지</p><p class="hi-val">17,000원</p></div>
-              <div class="hero-item"><p class="hi-label">국제 운송료 할인</p><p class="hi-val">42,000원</p></div>
+              <div class="hero-item"><p class="hi-label">대행수수료 할인</p><p class="hi-val">28,500원</p></div>
+              <div class="hero-item"><p class="hi-label">국제운송료 할인</p><p class="hi-val">42,000원</p></div>
             </div>
           </div>
         </div>
 
         <div class="grade-status-card">
           <div class="grade-status-head">
-            <h2>현재 등급</h2>
+            <div>
+              <h2>현재 등급</h2>
+              <p class="grade-status-date">2026.08.01 기준</p>
+            </div>
             <span class="grade-badge">Premium</span>
           </div>
           <div class="grade-progress-row">
@@ -1010,7 +1029,6 @@
               <span class="next">VIP</span>
             </div>
             <div class="grade-progress-track"><div class="grade-progress-fill" style="width:42%;"></div></div>
-            <p class="grade-renewal-date">갱신일 2026.06.01</p>
           </div>
           <p class="grade-progress-hint">VIP까지 <b>5건</b> 또는 <b>₩850,000</b> 더 구매하면 다음달 VIP 승급 확정!</p>
         </div>
@@ -1229,6 +1247,15 @@
     }
 
     renderMenuDrawerState();
+
+    (function () {
+      const periodEl = document.getElementById("heroPeriod");
+      if (!periodEl) return;
+      const fmt = (d) => `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+      const start = new Date(2026, 5, 1);
+      const today = new Date();
+      periodEl.textContent = `${fmt(start)} ~ 현재(${fmt(today)})`;
+    })();
   </script>
 <script src="bb-common.js"></script>
 </body>
