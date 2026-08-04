@@ -59,7 +59,7 @@
     '.bbd-uname{font-size:15px;font-weight:700;color:#1A1A2E}',
     '.bbd-ugrade{font-size:11px;color:#666680;margin-top:2px}',
     '.bbd-guest-card{padding:14px 16px 16px;background:#FFF8F5;border-bottom:1px solid #E5E7EB}',
-    '.bbd-guest-title{font-size:16px;font-weight:800;color:#111827;margin-bottom:4px}',
+    '.bbd-guest-title{font-size:16px;font-weight:700;color:#111827;margin-bottom:4px}',
     '.bbd-guest-copy{font-size:12px;color:#6B7280;line-height:1.45;margin-bottom:12px}',
     '.bbd-login-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}',
     '.bbd-action-btn{height:36px;border-radius:5px;border:1px solid #E8385A;background:#E8385A;color:#fff;font-size:12px;font-weight:800;font-family:inherit;cursor:pointer}',
@@ -73,10 +73,10 @@
     '.bbd-quick-item,.bbd-cat-item,.bbd-guide-item{min-height:56px;display:flex;align-items:center;gap:14px;padding:8px 16px 8px 24px;color:#111827;cursor:pointer;text-decoration:none}',
     '.bbd-quick-icon,.bbd-guide-icon{width:22px;display:flex;align-items:center;justify-content:center;color:#000;font-size:16px;flex-shrink:0}',
     '.bbd-quick-text,.bbd-guide-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}',
-    '.bbd-quick-label,.bbd-guide-label{font-size:15px;color:#111827;font-weight:800;line-height:1.2}',
+    '.bbd-quick-label,.bbd-guide-label{font-size:15px;color:#111827;font-weight:700;line-height:1.2}',
     '.bbd-quick-desc,.bbd-guide-desc{font-size:11px;color:#8B94A3;font-weight:500;line-height:1.25}',
-    '.bbd-cat-flag{width:20px;flex-shrink:0;color:#000;font-size:12px;font-weight:900;text-align:left}',
-    '.bbd-cat-label{flex:1;color:#111827;font-size:15px;font-weight:800}',
+    '.bbd-cat-flag{width:20px;flex-shrink:0;color:#000;font-size:12px;font-weight:700;text-align:left}',
+    '.bbd-cat-label{flex:1;color:#111827;font-size:15px;font-weight:700}',
     '.bbd-cat-arrow{font-size:12px;color:#999BAA}',
     '.bbd-cat-group{border-bottom:1px solid #F0F2F5}',
     '.bbd-cat-group:last-child{border-bottom:none}',
@@ -92,10 +92,10 @@
     '.bbd-link-grid{display:grid;grid-template-columns:repeat(2,1fr);row-gap:14px;column-gap:24px;padding:14px 16px}',
     '.bbd-link-grid a{font-size:14px;color:#666680;text-decoration:none}',
     '.bbd-cs-card{margin:22px 26px 34px;padding:18px 14px;background:#fcfcfd;text-align:center}',
-    '.bbd-cs-tel{color:#1A3C6E;font-family:Roboto,sans-serif;font-size:26px;font-weight:900}',
+    '.bbd-cs-tel{color:#1A3C6E;font-family:Roboto,sans-serif;font-size:26px;font-weight:700}',
     '.bbd-cs-time{margin:8px 0 16px;color:#7b8494;font-size:11px}',
     '.bbd-cs-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}',
-    '.bbd-cs-actions button{height:34px;border:1px solid #d9e0e9;border-radius:5px;background:#fff;color:#1f2530;font-size:12px;font-weight:900;font-family:inherit}',
+    '.bbd-cs-actions button{height:34px;border:1px solid #d9e0e9;border-radius:5px;background:#fff;color:#1f2530;font-size:12px;font-weight:700;font-family:inherit}',
     '.bbd-cs-actions button:first-child{border-color:#E8385A;background:#E8385A;color:#fff}',
     '.user-drawer-ov{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:5002;pointer-events:none;transition:background .3s}',
     '.user-drawer-ov.open{background:rgba(0,0,0,.45);pointer-events:all}',
@@ -103,20 +103,27 @@
     '.user-drawer::-webkit-scrollbar{display:none}',
     '.user-drawer.open{transform:translateX(0);visibility:visible;pointer-events:auto;transition:transform .28s cubic-bezier(.4,0,.2,1)}',
     '.bbu-head{padding:20px 16px 24px;background:transparent;display:flex;align-items:center;gap:12px}',
-    '.bbu-avatar{width:50px;height:50px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FFE0CA,#FFD4B8);color:#111827;font-size:15px;font-weight:900}',
+    '.bbu-avatar{width:50px;height:50px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:20px;font-weight:800;box-shadow:0 8px 18px rgba(17,24,39,.14)}',
+    '.bbu-avatar i{line-height:1}',
+    '.bbu-avatar.standard,.m-user-avatar.standard,.user-avatar-sm.standard{background:linear-gradient(135deg,#5F7EA6,#29496E)}',
+    '.bbu-avatar.premium,.m-user-avatar.premium,.user-avatar-sm.premium{background:linear-gradient(135deg,#F5A623,#E8385A)}',
+    '.bbu-avatar.vip,.m-user-avatar.vip,.user-avatar-sm.vip{background:linear-gradient(135deg,#8B5CF6,#1A3C6E)}',
+    '.bbu-avatar.prestige,.m-user-avatar.prestige,.user-avatar-sm.prestige{background:linear-gradient(135deg,#111827,#B58A44)}',
+    '.m-user-avatar,.user-avatar-sm{display:grid;place-items:center;color:#fff}',
+    '.m-user-avatar i,.user-avatar-sm i{line-height:1}',
     '.bbu-head-text{display:flex;flex-direction:column;gap:2px;min-width:0}',
-    '.bbu-name{color:#111827;font-size:16px;font-weight:900}',
-    '.bbu-role{color:var(--rose,#E8385A);font-size:12px;font-weight:800}',
+    '.bbu-name{color:#111827;font-size:16px;font-weight:700}',
+    '.bbu-role{color:var(--rose,#E8385A);font-size:12px;font-weight:700}',
     '.bbu-asset-box{display:grid;grid-template-columns:1fr 1fr;margin:-14px 16px 0;border:1px solid #D9E0E9;border-radius:10px;background:#fff;overflow:hidden;box-shadow:none;position:relative;z-index:1}',
     '.bbu-asset-box div{padding:11px 14px;text-align:center}',
     '.bbu-asset-box div+div{border-left:1px solid #d9e0e9}',
     '.bbu-asset-box span{display:block;color:#a4acb8;font-size:10px;font-weight:700}',
-    '.bbu-asset-box strong{display:block;margin-top:2px;color:#151b29;font-size:17px;font-weight:900}',
+    '.bbu-asset-box strong{display:block;margin-top:2px;color:#151b29;font-size:17px;font-weight:700}',
     '.bbu-grade-note{margin:16px 16px 18px;color:#8B94A3;font-size:12px;font-weight:600;text-align:left}',
     '.bbu-status-grid{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:0px solid #DDE3EB;border-bottom:1px solid #DDE3EB;background:#fff}',
     '.bbu-status-grid div{min-height:64px;display:grid;place-items:center;align-content:center;gap:4px;text-align:center}',
     '.bbu-status-grid div+div{border-left:1px solid #e5e7eb}',
-    '.bbu-status-grid strong{color:#151b29;font-family:Roboto,sans-serif;font-size:22px;line-height:1;font-weight:900}',
+    '.bbu-status-grid strong{color:#151b29;font-family:Roboto,sans-serif;font-size:22px;line-height:1;font-weight:700}',
     '.bbu-status-grid span{color:#9aa3b2;font-size:10px;font-weight:700}',
     '.bbu-menu-list{padding:8px 0 10px;border-top:0;background:#fff}',
     '.bbu-menu-item{min-height:46px;width:100%;padding:0 18px;display:flex;align-items:center;gap:14px;color:#1A1A2E;font-size:14px;font-weight:700;border:0;background:#fff;text-align:left;text-decoration:none;font-family:inherit;cursor:pointer}',
@@ -329,7 +336,7 @@
 
   function rightDrawerHTML() {
     return (
-      '<div class="bbu-head"><div class="bbu-avatar">홍길</div><div class="bbu-head-text"><strong class="bbu-name">홍길동님</strong><span class="bbu-role">PREMIUM 회원</span></div></div>' +
+      '<div class="bbu-head"><div class="bbu-avatar premium" aria-label="PREMIUM 등급"><i class="fas fa-gem" aria-hidden="true"></i></div><div class="bbu-head-text"><strong class="bbu-name">홍길동님</strong><span class="bbu-role">PREMIUM 회원</span></div></div>' +
       '<div class="bbu-asset-box"><div><span>마일리지</span><strong>4,500원</strong></div><div><span>예치금</span><strong>29,870원</strong></div></div>' +
       '<p class="bbu-grade-note">일반회원까지 80% 남음</p>' +
       '<div class="bbu-status-grid"><div><strong>3</strong><span>입찰 진행 중</span></div><div><strong>1</strong><span>1차 결제 대기</span></div><div><strong>0</strong><span>2차 결제 대기</span></div></div>' +
@@ -360,7 +367,12 @@
   // 페이지마다 onclick이 없거나("," alert 같은 미구현 placeholder여도) 여기서
   // 무조건 실제 동작으로 덮어써서 모든 페이지에서 동일하게 열리도록 한다.
   function bindAvatarTrigger() {
-    document.querySelectorAll('[aria-label="회원 메뉴"]').forEach(function (btn) {
+    document.querySelectorAll('[aria-label="회원 메뉴"], [aria-label="PREMIUM 등급 회원 메뉴"]').forEach(function (btn) {
+      if (btn.classList.contains('m-user-avatar') || btn.classList.contains('user-avatar-sm')) {
+        btn.classList.add('premium');
+        btn.setAttribute('aria-label', 'PREMIUM 등급 회원 메뉴');
+        btn.innerHTML = '<i class="fas fa-gem" aria-hidden="true"></i>';
+      }
       btn.onclick = function (e) {
         e.preventDefault();
         openUserDrawer();

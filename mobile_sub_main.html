@@ -872,7 +872,10 @@ function catRenderLevel(items, depth) {
     if (hasChildren) {
       btn.classList.add('has-children');
       btn.innerHTML = `<span style="display:flex;align-items:center;gap:10px;"><span></span>${item}</span><svg class="cat-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>`;
-      btn.onclick = () => toggleCat(btn, item);
+      btn.onclick = () => {
+        if (depth === 0) catDrillDown(item, depth);
+        else toggleCat(btn, item);
+      };
       btn.querySelector('.cat-arrow').onclick = (e) => { e.stopPropagation(); catDrillDown(item, depth); };
     } else {
       btn.innerHTML = `<span style="display:flex;align-items:center;gap:10px;"><span></span>${item}</span>`;
