@@ -36,7 +36,7 @@ button,select{cursor:pointer}
 .logo-link{display:inline-flex;align-items:center;width:76px;line-height:0;}
 .logo-link img{width:100%;height:auto;display:block;}
 .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px}
-.btn-login{min-width:66px;height:32px;padding:0 14px;border:0;border-radius:5px;color:#fff;font-size:11px;font-weight:900;background:var(--brand);font-family:inherit}
+.btn-login{min-width:66px;height:32px;padding:0 14px;border:0;border-radius:5px;color:#fff;font-size:11px;font-weight:700;background:var(--brand);font-family:inherit}
 .icon-btn{width:34px;height:34px;border-radius:5px;background:none;border:0;color:#333;display:flex;align-items:center;justify-content:center;position:relative;padding:0}
 .icon-btn i{font-size:19px;line-height:19px}
 .i-badge{position:absolute;top:3px;right:2px;min-width:13px;height:13px;padding:0 2px;border-radius:7px;background:var(--brand);color:#fff;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center}
@@ -101,7 +101,7 @@ button,select{cursor:pointer}
 .card-info{padding:9px 11px 12px}
 .card-name{font-size:12px;color:var(--tp);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-bottom:6px;min-height:35px}
 .card-price-row{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-bottom:2px}
-.card-price{font-size:15px;font-weight:800;color:var(--tp);font-family:'Roboto',sans-serif;white-space:nowrap}
+.card-price{font-size:15px;font-weight:700;color:var(--tp);font-family:'Roboto',sans-serif;white-space:nowrap}
 .card-bids{font-size:10px;color:var(--tm);font-family:'Roboto',sans-serif;white-space:nowrap}
 .card-buyout{font-size:11px;color:var(--ts);margin-bottom:4px}
 .card-time{font-size:10px;color:var(--tm)}
@@ -125,7 +125,7 @@ button,select{cursor:pointer}
 .filter-tabs{display:flex;gap:22px;padding:0 16px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
 .filter-tabs::-webkit-scrollbar{display:none}
 .filter-tab{position:relative;flex:0 0 auto;height:43px;color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;background:none;border:none}
-.filter-tab.active{color:var(--brand);font-weight:800}
+.filter-tab.active{color:var(--brand);font-weight:700}
 .filter-tab.active::after{content:"";position:absolute;right:0;bottom:0;left:0;height:2px;background:var(--brand)}
 .filter-panel{display:none;padding:12px 0 8px}
 .filter-panel.active{display:block}
@@ -713,7 +713,10 @@ function catRenderLevel(items, depth) {
         <span class="cat-check-icon"></span>${item}
       </span>
       <svg class="cat-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>`;
-      btn.onclick = () => toggleCat(btn, item);
+      btn.onclick = () => {
+        if (depth === 0) catDrillDown(item, depth);
+        else toggleCat(btn, item);
+      };
       btn.querySelector('.cat-arrow').onclick = (event) => {
         event.stopPropagation();
         catDrillDown(item, depth);

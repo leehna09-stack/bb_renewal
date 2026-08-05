@@ -186,14 +186,13 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .hb-slide.active{display:block}
 @keyframes hbFade{from{opacity:0}to{opacity:1}}
 .mb-slide .member-bar{height:100px;padding:0;display:flex;align-items:center}
-.notice-slide .notice-banner-inner{max-width:1060px;margin:0 auto;padding:10px 10px 0}
-.notice-slide .nb-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1px}
-.notice-slide .nb-title{font-size:15px;font-weight:700}
-.notice-slide .nb-more{font-size:12px;color:var(--tm)}
-.nb-viewport{height:56px;overflow-y:auto;scrollbar-width:none;cursor:grab}
+.notice-slide .notice-banner-inner{position:relative;max-width:1060px;margin:0 auto;padding:10px 10px 0}
+.notice-slide .nb-more{position:absolute;right:10px;top:10px;z-index:2;font-size:12px;color:var(--tm);font-weight:700;display:inline-flex;align-items:center;gap:4px;background:#fff;padding-left:14px}
+.notice-slide .nb-more:hover{color:var(--rose)}
+.nb-viewport{height:78px;overflow-y:auto;scrollbar-width:none;cursor:grab;padding-right:76px}
 .nb-viewport::-webkit-scrollbar{display:none}
 .nb-viewport:active{cursor:grabbing}
-.ntk-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;cursor:pointer}
+.ntk-row{display:flex;align-items:center;gap:8px;height:26px;padding:0;font-size:13px;cursor:pointer}
 .ntk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .ntk-dot.ntk-jp{background:var(--rose)}
 .ntk-dot.ntk-kr{background:#1d74ff}
@@ -225,13 +224,12 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .office-card{min-height:92px;padding:10px 12px 8px 10px;border:0;display:flex;align-items:center;gap:8px}
 .office-card:nth-child(2n){border-right:0}
 .office-card:nth-last-child(-n+2){border-bottom:0}
-.office-status{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#d8c7cc;color:#7d6068;font-size:12px;font-weight:600}
+.office-status{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#d9dee6;color:#fff;font-size:12px;font-weight:600}
 .office-status.is-open{background:#E8385A;color:#fff}
 .office-info{min-width:0}
-.office-country{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#111827;margin-bottom:4px}
+.office-country{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#111827;margin-bottom:4px}
 .office-country .flag{width:18px;height:13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
 .office-country .flag img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
-.office-branch{font-size:13px;color:#4b5563}
 .office-time{font-family:pretendard,Arial,sans-serif;font-size:13px;color:#1d74ff;white-space:nowrap}
 
 @media (max-width:720px){
@@ -337,9 +335,9 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .rv-item{font-size:11px;color:var(--tm);margin-top:8px}
 
 /* ? ═ 공 ?+CS ? ═ */
-.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .info-card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;min-width:0}
-.info-title{font-size:15px;font-weight:700;margin-bottom:14px}
+.info-title{font-size:14px;font-weight:700;margin-bottom:14px}
 .notice-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F5F7FA;font-size:13px;cursor:pointer}
 .notice-row:last-child{border-bottom:none}
 .notice-txt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -363,6 +361,11 @@ k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
 .cs-btns{display:flex;gap:8px;margin-top:14px}
 .cs-btn{flex:1;padding:9px;border-radius:5px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .1s}
 .cs-btn:hover{background:var(--bg)}
+.info-card .office-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px;background:transparent}
+.info-card .office-card{min-height:48px;padding:0;border:0}
+.info-card .office-status{width:42px;height:42px;font-size:11px}
+.info-card .office-country{font-size:12px;margin-bottom:1px}
+.info-card .office-time{font-size:12px}
 
 /* ? ═ 앱 다운로드 ? ═ */
 .app-dl{background:#fff;border-top:1px solid var(--border);padding:16px 0}
@@ -851,7 +854,7 @@ button.user-menu-item{
   </div>
   <div class="hb-slide notice-slide">
     <div class="notice-banner-inner">
-      <div class="nb-head"><h3 class="nb-title">공지사항</h3><a href="#" class="nb-more">더보기</a></div>
+      <a href="#" class="nb-more" onclick="openbidbuynoticePopup();return false;">더보기</a>
       <div class="nb-viewport" id="nbViewport">
         <div class="nb-track" id="nbTrack">
           <div class="ntk-row"><span class="ntk-dot ntk-jp"></span><span class="ntk-tag">일본</span><span class="notice-txt">● 일본-8월 출하 및 공휴일 안내 ●</span></div>
@@ -976,6 +979,39 @@ button.user-menu-item{
       <div class="cs-shortcuts">
         <a class="cs-shortcut" href="https://www.bidbuy.co.kr/cs">전화문의전 클릭 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
         <a class="cs-shortcut" href="web_qna_form.html">1:1문의 바로가기 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="info-card" id="marketInfoSection">
+      <h3 class="info-title">국가별 운영정보</h3>
+      <div class="office-grid" aria-label="나라별 근무시간">
+        <div class="office-card" data-office-timezone="Asia/Seoul">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_kor.png" alt="Korea"></span>서울</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Asia/Tokyo">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_jp.png" alt="Japan"></span>오사카</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="America/Los_Angeles">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_usa.png" alt="USA"></span>캘리포니아</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Europe/London">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_uk.png" alt="UK"></span>런던</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1164,47 +1200,6 @@ button.user-menu-item{
   </nav>
 </div>
 
-<div class="market-info-overlay" id="marketInfoPopup" aria-hidden="true" onclick="closeMarketInfoPopup(event)">
-  <div class="market-info-popup" role="dialog" aria-modal="true" aria-label="환율정보 및 나라별 근무시간">
-    <button class="market-info-close" type="button" aria-label="닫기" onclick="closeMarketInfoPopup()"><i class="fas fa-times" aria-hidden="true"></i></button>
-    <div class="market-info-body">
-      <div class="office-grid" aria-label="나라별 근무시간">
-        <div class="office-card" data-office-timezone="Asia/Seoul">
-          <div class="office-status">업무중</div>
-          <div class="office-info">
-            <div class="office-country"><span class="flag"><img src="../images/icon/country_kor.png" alt="Korea"></span>Korea</div>
-            <div class="office-branch">서울 사무소</div>
-            <div class="office-time">-</div>
-          </div>
-        </div>
-        <div class="office-card" data-office-timezone="Asia/Tokyo">
-          <div class="office-status">업무중</div>
-          <div class="office-info">
-            <div class="office-country"><span class="flag"><img src="../images/icon/country_jp.png" alt="Japan"></span>Japan</div>
-            <div class="office-branch">오사카 사무소</div>
-            <div class="office-time">-</div>
-          </div>
-        </div>
-        <div class="office-card" data-office-timezone="America/Los_Angeles">
-          <div class="office-status">업무중</div>
-          <div class="office-info">
-            <div class="office-country"><span class="flag"><img src="../images/icon/country_usa.png" alt="USA"></span>USA</div>
-            <div class="office-branch">캘리포니아 사무소</div>
-            <div class="office-time">-</div>
-          </div>
-        </div>
-        <div class="office-card" data-office-timezone="Europe/London">
-          <div class="office-status">업무중</div>
-          <div class="office-info">
-            <div class="office-country"><span class="flag"><img src="../images/icon/country_uk.png" alt="UK"></span>UK</div>
-            <div class="office-branch">런던 사무소</div>
-            <div class="office-time">-</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="convenience-overlay" id="convenienceToolsPopup" aria-hidden="true" onclick="closeConvenienceToolsPopup(event)">
   <div class="convenience-popup" role="dialog" aria-modal="true" aria-label="편의도구">
     <div class="convenience-head">
@@ -1332,16 +1327,38 @@ function openbidbuynoticePopup(){
   window.open(url, 'bidbuynotice', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
 }
 
-/* 전환 배너: 멤버십 등급 ??공지사항 (하단 인디케이터로 수동 전환) */
+/* 전환 배너: 멤버십 등급 / 공지사항 자동 전환 */
 (function(){
   const banner = document.getElementById('heroBanner');
   if(!banner) return;
   const slides = banner.querySelectorAll('.hb-slide');
   const dots = banner.querySelectorAll('.hb-dot');
+  if(!slides.length) return;
+  let current = 0;
+  let timer = null;
+  const delay = 5500;
+  function goTo(i){
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s,n)=>s.classList.toggle('active', n===current));
+    dots.forEach((d,n)=>d.classList.toggle('active', n===current));
+  }
+  function stop(){
+    clearInterval(timer);
+    timer = null;
+  }
+  function play(){
+    stop();
+    timer = setInterval(()=>goTo(current + 1), delay);
+  }
   window.hbGoTo = function(i){
-    slides.forEach((s,n)=>s.classList.toggle('active', n===i));
-    dots.forEach((d,n)=>d.classList.toggle('active', n===i));
+    goTo(i);
+    play();
   };
+  banner.addEventListener('mouseenter', stop);
+  banner.addEventListener('mouseleave', play);
+  banner.addEventListener('focusin', stop);
+  banner.addEventListener('focusout', play);
+  play();
 })();
 
 /* 공지사항 리스트: 자동 롤링 + 수동 스크롤(드래그/휠 시 일시정지 후 재개) */
@@ -1368,7 +1385,7 @@ function openbidbuynoticePopup(){
     const half = track.scrollHeight / 2;
     vp.scrollTop += 1;
     if(vp.scrollTop >= half) vp.scrollTop -= half;
-  }, 40);
+  }, 77);
 })();
 function openaccountPopup(){
   const url = 'https://www.bidbuy.co.kr/mypage/account';
@@ -1379,12 +1396,9 @@ function openWishlistPopup(){
   window.open(url, 'wishlist', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
 }
 function openMarketInfoPopup(){
-  const popup = document.getElementById('marketInfoPopup');
-  if (!popup) return;
+  const section = document.getElementById('marketInfoSection');
   updateMarketInfo();
-  popup.classList.add('open');
-  popup.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 function closeMarketInfoPopup(event){
   const popup = document.getElementById('marketInfoPopup');
@@ -1442,7 +1456,7 @@ function getZonedParts(date, timeZone){
 }
 function formatOfficeTime(date, timeZone){
   const parts = getZonedParts(date, timeZone);
-  return `${parts.year}.${parts.month}.${parts.day} ${parts.dayPeriod.toLowerCase()} ${parts.hour}:${parts.minute}:${parts.second}`;
+  return `${parts.year}.${parts.month}.${parts.day} ${parts.dayPeriod.toLowerCase()} ${parts.hour}:${parts.minute}`;
 }
 function isOfficeOpen(date, timeZone){
   const parts = getZonedParts(date, timeZone);
@@ -1461,7 +1475,7 @@ function updateMarketInfo(){
     const status = card.querySelector('.office-status');
     const time = card.querySelector('.office-time');
     if (status) {
-      status.textContent = open ? '업무중' : '업무종료';
+      status.textContent = open ? '업무중' : '종료';
       status.classList.toggle('is-open', open);
     }
     if (time) time.textContent = formatOfficeTime(now, timeZone);

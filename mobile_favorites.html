@@ -44,7 +44,7 @@
     .m-header-right{display:flex; gap:4px; align-items:center; justify-self:end}
     .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
     .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
-    .m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
+    .m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
     .m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#F5A623);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
     .m-header-search{display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;margin:0 14px 10px}
     .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
@@ -59,7 +59,7 @@
       padding:16px 16px 12px;
       background:var(--white);
     }
-    .page-title-bar h2{margin:0; font-size:17px; font-weight:900; color:var(--tp); display:flex; align-items:center; gap:8px}
+    .page-title-bar h2{margin:0; font-size:17px; font-weight:700; color:var(--tp); display:flex; align-items:center; gap:8px}
     .page-title-bar h2 i{color:var(--rose); font-size:15px}
 
     /* ── 메인 탭 ── */
@@ -77,7 +77,7 @@
     .fav-tab .cnt{
       display:inline-flex; align-items:center; justify-content:center;
       min-width:16px; height:16px; padding:0 3px; border-radius:999px;
-      background:var(--bg); color:var(--ts); font-size:11px; font-weight:800;
+      background:var(--bg); color:var(--ts); font-size:11px; font-weight:700;
     }
     .fav-tab.active{color:var(--rose); border-bottom-color:var(--rose)}
     .fav-tab.active .cnt{background:rgba(232,56,90,.1); color:var(--rose)}
@@ -99,7 +99,7 @@
       background:var(--white); color:var(--ts);
       font-size:12px; font-weight:700;
     }
-    .country-tab span{color:var(--tm); font-size:11px; font-weight:800}
+    .country-tab span{color:var(--tm); font-size:11px; font-weight:700}
     .country-tab.active{border-color:var(--rose); background:var(--rose); color:#fff}
     .country-tab.active span{color:rgba(255,255,255,.82)}
 
@@ -112,7 +112,7 @@
     .list-bar label{display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:var(--ts)}
     .chk{width:16px; height:16px; accent-color:var(--rose); cursor:pointer; flex-shrink:0}
     .list-bar .total{font-size:12px; color:var(--tm); font-weight:600}
-    .list-bar .total b{color:var(--rose); font-weight:800}
+    .list-bar .total b{color:var(--rose); font-weight:700}
 
     /* ── 카드 목록 ── */
     .fav-list{background:var(--white)}
@@ -133,7 +133,7 @@
     }
     .item-src{font-size:11px; color:var(--tm); font-weight:600; font-family:'Roboto',sans-serif}
     .item-id{font-size:11px; color:var(--tm); font-family:'Roboto',sans-serif}
-    .fav-name{font-size:14px; font-weight:800; color:var(--tp); word-break:break-all}
+    .fav-name{font-size:14px; font-weight:700; color:var(--tp); word-break:break-all}
     .fav-memo{font-size:12px; color:var(--tm); line-height:1.45}
     .del-btn{
       width:26px; height:26px; flex-shrink:0;
@@ -177,10 +177,10 @@
       overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
     }
     .item-meta{display:flex; align-items:flex-end; justify-content:space-between; gap:8px; margin-top:2px}
-    .item-price{font-size:14px; font-weight:900; color:var(--tp)}
+    .item-price{font-size:14px; font-weight:700; color:var(--tp)}
     .item-price small{display:block; font-size:11px; font-weight:600; color:var(--tm)}
     .item-end{text-align:right; font-size:11px; color:var(--tm)}
-    .item-end b{display:block; color:var(--rose); font-size:11px; font-weight:800}
+    .item-end b{display:block; color:var(--rose); font-size:11px; font-weight:700}
     .item-end.done b{color:var(--tm)}
     /* ── 경매현황 (조회 로딩) ── */
     .bid-status{
@@ -202,9 +202,9 @@
       padding:5px 6px; text-align:center;
       color:var(--tm); font-size:11px; font-weight:600; word-break:break-all;
     }
-    .bs-val.is-loaded{color:var(--tp); font-size:13px; font-weight:900}
+    .bs-val.is-loaded{color:var(--tp); font-size:13px; font-weight:700}
     .bs-end{color:var(--navy); font-size:10.5px; font-weight:700; white-space:nowrap; word-break:keep-all}
-    .bs-end b{display:block; color:var(--rose); font-size:11px; font-weight:800}
+    .bs-end b{display:block; color:var(--rose); font-size:11px; font-weight:700}
     .ended .bs-end b{color:var(--tm)}
 
     /* 조회 · 입찰 (아이콘 박스 + 라벨) */
@@ -214,7 +214,7 @@
       display:inline-flex; align-items:center; justify-content:center; gap:6px;
       border:1px solid var(--border); border-radius:5px;
       background:var(--white); color:var(--tp);
-      font-size:13px; font-weight:800;
+      font-size:13px; font-weight:700;
     }
     .ia-box{
       width:22px; height:22px; flex:0 0 auto;
@@ -229,7 +229,7 @@
     .bid-btn:disabled .ia-box.is-fill{border-color:var(--border); background:var(--border); color:var(--white)}
 
     /* 바로가기 */
-    .sc-title{font-size:14px; font-weight:800; color:var(--tp); line-height:1.4}
+    .sc-title{font-size:14px; font-weight:700; color:var(--tp); line-height:1.4}
     .sc-url{font-size:11px; color:var(--tm); word-break:break-all; line-height:1.45}
 
     .item-acts{display:flex; gap:6px; margin-top:8px}

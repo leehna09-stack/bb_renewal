@@ -27,7 +27,7 @@
   .app-logo { display:inline-flex; align-items:center; width:76px;line-height:0;}
   .app-logo img { display:block; width:100%; height:auto; }
   .app-header-right { margin-left:0; display:flex; gap:4px; align-items:center; justify-self:end; }
-  .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:5px; font-size:11px; font-weight:900; cursor:pointer; font-family:inherit; }
+  .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:5px; font-size:11px; font-weight:700; cursor:pointer; font-family:inherit; }
   .icon-btn { width:34px; height:34px; border-radius:5px; background:none; border:none; cursor:pointer; color:#333; display:flex; align-items:center; justify-content:center; position:relative; padding:0; }
   .icon-btn i { font-size:19px; line-height:19px; }
   .i-badge { position:absolute; top:3px; right:2px; background:var(--red); color:#fff; font-size:7px; font-weight:700; min-width:13px; height:13px; border-radius:7px; display:flex; align-items:center; justify-content:center; padding:0 2px; }
@@ -47,6 +47,10 @@
   .fee-row-label-control { display:inline-flex; align-items:center; gap:7px; }
   .fee-row-val { display:inline-flex; align-items:center; gap:8px; font-family:'Roboto',sans-serif; font-size:13px; font-weight:500; color:var(--text-main); }
   .fee-row-val.undecided { color:var(--text-hint); font-size:12px; }
+  .tax-toggle { display:inline-flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+  .tax-toggle-btn { border:none; background:#fff; color:#888; font-size:11px; font-weight:600; padding:3px 7px; cursor:pointer; font-family:Pretendard,'Noto Sans KR',sans-serif; }
+  .tax-toggle-btn + .tax-toggle-btn { border-left:1px solid var(--border); }
+  .tax-toggle-btn.is-active { background:var(--navy); color:#fff; }
   .fee-action-btn { padding:5px 9px; border:1px solid var(--navy); border-radius:5px; background:#fff; color:var(--navy); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:11px; font-weight:500; line-height:1.2; cursor:pointer; white-space:nowrap; }
   .fee-action-btn.active { background:#d0d0d0; border-color:#aaa; color:#666; }
   .fee-help { position:relative; display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border:1px solid #B8C1CF; border-radius:50%; color:#8B95A1; font-family:'Roboto',sans-serif; font-size:10px; font-weight:700; line-height:1; }
@@ -95,7 +99,7 @@
   /* 선택형 옵션(체크박스) */
   .option-header-choice { display:block; }
   .packing-choice-list { display:grid; grid-template-columns:1fr; gap:8px; }
-  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:800; cursor:pointer; }
+  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:700; cursor:pointer; }
   .packing-choice input { width:14px; height:14px; margin:0; accent-color:var(--navy); flex:0 0 auto; }
   .packing-choice:has(input:checked) { border-color:var(--navy); background:#f7faff; }
   .care-option-col { display:flex; flex-direction:column; gap:4px; }
@@ -415,7 +419,7 @@
     <div class="option-header">
       <div class="option-header-left">
         <div class="option-name">사진 촬영서비스</div>
-        <div class="option-price">기본 300엔 / 3장<br>+ 1장 100엔</div>
+        <div class="option-price">기본 300엔/3달러/3파운드 최대 3장<br>+ 1장 100엔</div>
       </div>
       <select class="photo-option-select" id="photoOptionSelect" aria-label="사진 촬영서비스 신청 수량">
         <option value="0">신청안함</option>
@@ -468,6 +472,16 @@
   <div class="fee-summary-title"><span>1차 결제 비용</span><span class="fee-rate">적용 환율 9.6원</span></div>
   <div class="fee-row"><span class="fee-row-label"> 상품가</span><span class="fee-row-val">1,200 엔</span></div>
   <div class="fee-row"><span class="fee-row-label"> 대행수수료</span><span class="fee-row-val">800 엔</span></div>
+  <div class="fee-row">
+    <span class="fee-row-label"> 소비세</span>
+    <span class="fee-row-val">
+      <span class="tax-toggle" id="mobTaxToggle" role="group" aria-label="소비세 기준 전환">
+        <button type="button" class="tax-toggle-btn is-active" data-tax-mode="taxed">상품가 10%</button>
+        <button type="button" class="tax-toggle-btn" data-tax-mode="exempt">0엔</button>
+      </span>
+      <span id="mobTaxVal">120 엔</span>
+    </span>
+  </div>
   <div class="fee-row"><span class="fee-row-label"> 일본배송비</span><span class="fee-row-val">0 엔</span></div>
   <div class="fee-row fee-mileage-row">
     <div class="fee-mileage-main">
@@ -693,10 +707,21 @@ const AGENCY_BASE = Number.isFinite(storedAgencyBase) && storedAgencyBase > 0 ? 
 const BASE_YEN   = 1500; /* ? 품가+? 금? 수 ???*/
 const DEP_AVAIL  = 3961;
 const MILE_AVAIL = 58961;
+const PRODUCT_YEN = 1200;
 
 let mileageDiscYen= 0;
 let selectedPayMethod = '';
 let mileageMaxSelected = false;
+let taxMode = 'taxed'; // 'taxed'(상품가 10%) | 'exempt'(0엔)
+const taxYen = () => taxMode === 'taxed' ? Math.round(PRODUCT_YEN * 0.1) : 0;
+
+document.querySelectorAll('#mobTaxToggle .tax-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    taxMode = btn.dataset.taxMode;
+    document.querySelectorAll('#mobTaxToggle .tax-toggle-btn').forEach(b => b.classList.toggle('is-active', b === btn));
+    render();
+  });
+});
 
 /* ? ?  마일리 ? ? 도 계산 ? ?  */
 function getMileageLimit() {
@@ -707,8 +732,10 @@ function getMileageLimit() {
 /* ? ?  ? 약 ? 더 ? ?  */
 function render() {
   const totalDisc = mileageDiscYen;
-  const totalYen  = BASE_YEN + AGENCY_BASE - totalDisc;
+  const totalYen  = BASE_YEN + AGENCY_BASE + taxYen() - totalDisc;
   const totalWon  = Math.round(totalYen * RATE);
+  const mobTaxVal = document.getElementById('mobTaxVal');
+  if (mobTaxVal) mobTaxVal.textContent = fmt(taxYen()) + ' 엔';
   const depWon    = Number(String(document.getElementById('depInp').value).replace(/[^\d]/g,'')) || 0;
   const payWon    = Math.max(totalWon - depWon, 0);
   const discountedAgencyYen = Math.max(AGENCY_BASE - mileageDiscYen, 0);

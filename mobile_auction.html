@@ -29,13 +29,13 @@ a{text-decoration:none;color:inherit}
 .hb span{display:block;width:18px;height:2px;background:var(--tp);border-radius:999px}
 .m-logo{display:inline-flex;align-items:center;width:76px;line-height:0;}
 .m-logo img{width:100%;height:auto;display:block;}
-.m-logo-text{font-size:17px;font-weight:900;color:var(--rose);letter-spacing:-0.5px}
+.m-logo-text{font-size:17px;font-weight:700;color:var(--rose);letter-spacing:-0.5px}
 .m-logo-text span{color:var(--tp)}
 .m-header-right{display:flex;gap:4px;align-items:center;justify-self:end}
 .m-icon-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--tp);font-size:16px;border-radius:5px;cursor:pointer;position:relative}
 .m-icon-btn:hover{background:var(--bg)}
 .m-icon-btn .badge{position:absolute;top:3px;right:2px;background:var(--rose);color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}
-.m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
+.m-login-btn{min-width:62px;height:30px;background:var(--rose);color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
 .m-user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;flex-shrink:0}
 .m-header-search{display:flex;align-items:center;height:38px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden;margin:0 14px 10px}
 .m-header-search::before{content:"";width:15px;height:15px;margin-left:12px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b95a5' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16.5 16.5 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
@@ -260,7 +260,7 @@ a{text-decoration:none;color:inherit}
 
 /* ── 푸터 ── */
 .m-footer{background:var(--tp);color:#fff;padding:24px 16px 90px}
-.m-footer-logo{font-size:20px;font-weight:900;color:var(--rose);margin-bottom:12px}
+.m-footer-logo{font-size:20px;font-weight:700;color:var(--rose);margin-bottom:12px}
 .m-footer-logo span{color:#fff}
 .m-footer-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:14px}
 .m-footer-links a{font-size:12px;color:rgba(255,255,255,.6)}
@@ -279,7 +279,7 @@ a{text-decoration:none;color:inherit}
 .m-bid-state--reserve .m-bid-state-icon{background:#DDE5FF;color:#5B7AE0}
 .m-bid-state--none .m-bid-state-icon{background:#E8EBF0;color:var(--ts)}
 .m-bid-state-body{flex:1;min-width:0}
-.m-bid-state-title{font-size:12px;font-weight:800;line-height:1.2}
+.m-bid-state-title{font-size:12px;font-weight:700;line-height:1.2}
 .m-bid-state--win .m-bid-state-title{color:#1A8A3A}
 .m-bid-state--lose .m-bid-state-title{color:#C0294A}
 .m-bid-state--reserve .m-bid-state-title{color:#3D5BC8}
@@ -594,7 +594,7 @@ a{text-decoration:none;color:inherit}
           </div>
         </div>
         <div class="m-form-row">
-          <label class="m-form-label">포장 옵션</label>
+          <label class="m-form-label">포장 방법</label>
           <select class="m-form-select">
             <option value="">옵션을 선택하세요</option>
             <option>현지 도착 상태 그대로 발송</option>
@@ -912,8 +912,8 @@ function doMLogin(){
 const M_BID_STATES = [
   {cls:'win',  icon:'fa-crown',         title:'고객님은 현재 최고입찰자입니다!', sub:'상한 입찰가 <strong>1,600엔</strong>'},
   {cls:'lose', icon:'fa-face-sad-tear', title:'고객님은 현재 최고입찰자가 아닙니다.', sub:'현재 최고가 16,800엔'},
-  {cls:'reserve', icon:'fa-clock',      title:'예약 입찰 완료', sub:'예약 입찰가 <strong style="font-weight:800">16,800엔</strong>'},
-  {cls:'none', icon:'fa-gavel',         title:'아직 입찰하지 않은 상품입니다', sub:'<strong style="font-weight:800">실시간 입찰하기</strong> 버튼을 통해 입찰에 도전해보세요'},
+  {cls:'reserve', icon:'fa-clock',      title:'예약 입찰 완료', sub:'예약 입찰가 <strong style="font-weight:700">16,800엔</strong>'},
+  {cls:'none', icon:'fa-gavel',         title:'아직 입찰하지 않은 상품입니다', sub:'<strong style="font-weight:700">실시간 입찰하기</strong> 버튼을 통해 입찰에 도전해보세요'},
 ];
 let mBidStateIdx = 0;
 function moveMBidState(dir){

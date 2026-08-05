@@ -27,7 +27,7 @@
   .app-logo { display:inline-flex; align-items:center; width:76px;line-height:0;}
   .app-logo img { display:block; width:100%; height:auto; }
   .app-header-right { margin-left:0; display:flex; gap:4px; align-items:center; justify-self:end; }
-  .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:5px; font-size:11px; font-weight:900; cursor:pointer; font-family:inherit; }
+  .login-btn-sm { min-width:66px; height:32px; background:var(--red); color:#fff; border:none; padding:0 14px; border-radius:5px; font-size:11px; font-weight:700; cursor:pointer; font-family:inherit; }
   .icon-btn { width:34px; height:34px; border-radius:5px; background:none; border:none; cursor:pointer; color:#333; display:flex; align-items:center; justify-content:center; position:relative; padding:0; }
   .icon-btn i { font-size:19px; line-height:19px; }
   .i-badge { position:absolute; top:3px; right:2px; background:var(--red); color:#fff; font-size:7px; font-weight:700; min-width:13px; height:13px; border-radius:7px; display:flex; align-items:center; justify-content:center; padding:0 2px; }
@@ -117,7 +117,7 @@
   .option-notice-detail { margin-top:8px; }
   .option-notice-detail.is-collapsed { display:none; }
   .packing-choice-list { display:grid; grid-template-columns:1fr; gap:8px; }
-  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:800; cursor:pointer; }
+  .packing-choice { display:flex; align-items:center; gap:8px; min-height:36px; padding:0 10px; border:1px solid #d6dee9; border-radius:5px; background:#fff; color:#28344d; font-size:12px; font-weight:700; cursor:pointer; }
   .packing-choice input { width:14px; height:14px; margin:0; accent-color:var(--navy); flex:0 0 auto; }
   .packing-choice:has(input:checked) { border-color:var(--navy); background:#f7faff; }
   /* 튼튼 포장 비용 안내 모달 */
@@ -285,7 +285,7 @@
 
 <!-- 배송형태 및 포장방법 -->
 <div class="card">
-  <div class="card-title">배송형태 및 포장방법 선택 <span class="req">*필수</span></div>
+  <div class="card-title">배송형태 및 포장 방법 선택 <span class="req">*필수</span></div>
   <div class="field-label">배송형태</div>
   <table class="method-select-table">
     <tbody>
@@ -310,10 +310,10 @@
     </tbody>
   </table>
   
-  <div class="field-label" style="margin-top:16px;">포장 옵션</div>
+  <div class="field-label" style="margin-top:16px;">포장 방법</div>
   <div class="option-item">
     <div class="option-header option-header-choice">
-      <div class="packing-choice-list" aria-label="포장 옵션 선택">
+      <div class="packing-choice-list" aria-label="포장 방법 선택">
         <label class="packing-choice"><input type="checkbox" name="packingOption" value="arrival"><span>현지도착상태 그대로 발송</span></label>
         <label class="packing-choice"><input type="checkbox" name="packingOption" value="basic"><span>기본포장</span></label>
         <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료 서비스)</span></label>

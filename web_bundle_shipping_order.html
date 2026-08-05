@@ -124,44 +124,23 @@
 
     /* 주문 컨텍스트 헤더 */
     .order-ctx {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 16px 22px;
       margin-bottom: 24px;
       background: #fff;
     }
-    .order-ctx-user { display: flex; align-items: center; gap: 10px; }
-    .order-ctx-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: #ffe7ef; color: var(--rose);
-      display: grid; place-items: center;
-      font-size: 16px; font-weight: 900; flex-shrink: 0;
-    }
-    .order-ctx-name { font-size: 15px; font-weight: 900; color: #1f242d; }
-    .order-ctx-grade {
-      display: inline-flex; align-items: center;
-      margin-left: 7px;
-      padding: 2px 9px; border-radius: 999px;
-      background: #7b5ea7; color: #fff;
-      font-size: 11px; font-weight: 800;
-    }
     .order-ctx-stats {
-      display: flex; align-items: center; gap: 0;
+      display: block;
+      font-size: 15px;
+      font-weight: 800;
+      color: #1f242d;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .order-ctx-stat {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 0 22px;
-      border-right: 1px solid var(--line-soft);
-    }
-    .order-ctx-stat:last-child { border-right: none; padding-right: 0; }
-    .order-ctx-stat:first-child { padding-left: 0; }
-    .oct-label { font-size: 11px; color: #888; margin-bottom: 3px; white-space: nowrap; }
-    .oct-value { font-size: 15px; font-weight: 900; color: #1f242d; white-space: nowrap; }
-    .oct-value.accent { color: var(--rose); }
+    .order-ctx-stats .accent { color: var(--rose); }
+    .order-ctx-divider { color: #888; margin: 0 9px; font-weight: 500; }
 
     /* 섹션 타이틀 */
     .section-title {
@@ -592,16 +571,7 @@
       <!-- 주문 컨텍스트 헤더 -->
       <div class="order-ctx">
 
-        <div class="order-ctx-stats">
-          <div class="order-ctx-stat">
-            <span class="oct-label">묶음</span>
-            <span class="oct-value accent">2 건</span>
-          </div>
-          <div class="order-ctx-stat">
-            <span class="oct-label">상품금액 합계</span>
-            <span class="oct-value">64,070 원</span>
-          </div>
-        </div>
+        <div class="order-ctx-stats">묶음배송 <span class="accent">2건</span><span class="order-ctx-divider">|</span>상품금액 합계 <span>64,070원</span></div>
       </div>
 
       <!-- 섹션: 국제배송 및 배송형태 선택 -->
@@ -706,7 +676,7 @@
         <tbody>
           <tr>
             <th>
-              <div class="packing-choice-list" aria-label="포장 옵션 선택">
+              <div class="packing-choice-list" aria-label="포장 방법 선택">
                 <label class="packing-choice"><input type="checkbox" name="packingOption" value="arrival"><span>현지도착상태 그대로 발송</span></label>
                 <label class="packing-choice"><input type="checkbox" name="packingOption" value="basic"><span>기본포장</span></label>
                 <label class="packing-choice"><input type="checkbox" name="packingOption" value="strong" data-paid-option-yen="500"><span>튼튼 포장(유료)</span></label>

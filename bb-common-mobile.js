@@ -55,20 +55,20 @@
     '.drawer.open{transform:translateX(0);visibility:visible;pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1)}',
     '.bbd-head{display:flex;align-items:center;justify-content:space-between;min-height:58px;padding:12px 16px;border-bottom:1px solid #ECEFF3;background:#fff}',
     '.bbd-user-mini{display:flex;align-items:center;gap:10px}',
-    '.bbd-uav{width:38px;height:38px;border-radius:50%;background:#FFE7EF;color:#E8385A;display:grid;place-items:center;font-size:18px;font-weight:800}',
+    '.bbd-uav{width:38px;height:38px;border-radius:50%;background:#FFE7EF;color:#E8385A;display:grid;place-items:center;font-size:18px;font-weight:700}',
     '.bbd-uname{font-size:15px;font-weight:700;color:#1A1A2E}',
     '.bbd-ugrade{font-size:11px;color:#666680;margin-top:2px}',
     '.bbd-guest-card{padding:14px 16px 16px;background:#FFF8F5;border-bottom:1px solid #E5E7EB}',
     '.bbd-guest-title{font-size:16px;font-weight:700;color:#111827;margin-bottom:4px}',
     '.bbd-guest-copy{font-size:12px;color:#6B7280;line-height:1.45;margin-bottom:12px}',
     '.bbd-login-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}',
-    '.bbd-action-btn{height:36px;border-radius:5px;border:1px solid #E8385A;background:#E8385A;color:#fff;font-size:12px;font-weight:800;font-family:inherit;cursor:pointer}',
+    '.bbd-action-btn{height:36px;border-radius:5px;border:1px solid #E8385A;background:#E8385A;color:#fff;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer}',
     '.bbd-action-btn.secondary{background:#fff;color:#4B5563;border-color:#D9E0E9}',
-    '.bbd-close{width:32px;height:32px;border:0;border-radius:50%;background:#F7F8FA;color:#111827;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:inherit}',
+    '.bbd-close{width:32px;height:32px;border:0;border-radius:50%;background:#F7F8FA;color:#111827;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:inherit}',
     '.bbd-close:hover{background:#EEF1F5}',
     '.bbd-sec{padding:0;border-bottom:1px solid #ECEFF3;background:#fff}',
     '.bbd-sec:last-child{border-bottom:none}',
-    '.bbd-sec-title{height:38px;padding:0 16px;display:flex;align-items:center;background:#F5F6F8;color:#7D8796;font-size:12px;font-weight:800}',
+    '.bbd-sec-title{height:38px;padding:0 16px;display:flex;align-items:center;background:#F5F6F8;color:#7D8796;font-size:12px;font-weight:700}',
     '.bbd-quick,.bbd-cat-list,.bbd-guide-list{display:flex;flex-direction:column;padding:6px 0}',
     '.bbd-quick-item,.bbd-cat-item,.bbd-guide-item{min-height:56px;display:flex;align-items:center;gap:14px;padding:8px 16px 8px 24px;color:#111827;cursor:pointer;text-decoration:none}',
     '.bbd-quick-icon,.bbd-guide-icon{width:22px;display:flex;align-items:center;justify-content:center;color:#000;font-size:16px;flex-shrink:0}',
@@ -103,7 +103,7 @@
     '.user-drawer::-webkit-scrollbar{display:none}',
     '.user-drawer.open{transform:translateX(0);visibility:visible;pointer-events:auto;transition:transform .28s cubic-bezier(.4,0,.2,1)}',
     '.bbu-head{padding:20px 16px 24px;background:transparent;display:flex;align-items:center;gap:12px}',
-    '.bbu-avatar{width:50px;height:50px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:20px;font-weight:800;box-shadow:0 8px 18px rgba(17,24,39,.14)}',
+    '.bbu-avatar{width:50px;height:50px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:20px;font-weight:700;box-shadow:0 8px 18px rgba(17,24,39,.14)}',
     '.bbu-avatar i{line-height:1}',
     '.bbu-avatar.standard,.m-user-avatar.standard,.user-avatar-sm.standard{background:linear-gradient(135deg,#5F7EA6,#29496E)}',
     '.bbu-avatar.premium,.m-user-avatar.premium,.user-avatar-sm.premium{background:linear-gradient(135deg,#F5A623,#E8385A)}',
@@ -132,6 +132,32 @@
     '.bbu-menu-item.logout{margin-top:4px;border-top:1px solid #eee;color:#9aa3b2;font-weight:700}'
   ].join('\n');
 
+  // 상단 헤더(햄버거+로고+검색창+알림/장바구니/회원 아이콘). web의 bb-common.js와
+  // 동일하게, 각 페이지가 직접 작성해둔 헤더 마크업(.topbar/.app-header/.m-header/
+  // <header> 등 제각각인 구버전 구조)을 런타임에 지우고 이 공통 마크업으로 교체한다.
+  // 기존 페이지들이 fixed 헤더용으로 잡아둔 body padding-top은 sticky 헤더로
+  // 통일되면서 더 이상 필요 없으므로 함께 초기화한다.
+  var HEADER_CSS = [
+    'body{padding-top:0 !important}',
+    'header.topbar{display:block;background:#fff;border-bottom:1px solid #D9E0E9;padding:10px 16px 12px;position:sticky;top:0;left:auto;right:auto;bottom:auto;transform:none;width:auto;max-width:none;z-index:900;box-shadow:0 1px 0 rgba(32,36,43,.04)}',
+    'header.topbar .topbar-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px;margin-bottom:10px}',
+    'header.topbar .brand-area{display:flex;align-items:center;gap:10px;min-width:0}',
+    'header.topbar .menu-button{width:34px;height:34px;border-radius:5px;border:0;background:transparent;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0}',
+    'header.topbar .menu-button span{display:block;width:18px;height:2px;background:#242836;border-radius:999px}',
+    'header.topbar .logo-link{display:inline-flex;align-items:center;width:76px;line-height:0;flex-shrink:0}',
+    'header.topbar .logo-link img{display:block;width:100%;height:auto}',
+    'header.topbar .topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-shrink:0}',
+    'header.topbar .login-btn-sm{min-width:66px;height:32px;background:#E8385A;color:#fff;border:none;padding:0 14px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}',
+    'header.topbar .icon-btn{width:34px;height:34px;border-radius:5px;background:none;border:none;cursor:pointer;color:#333;display:flex;align-items:center;justify-content:center;position:relative;padding:0}',
+    'header.topbar .icon-btn i{font-size:19px;line-height:19px}',
+    'header.topbar .i-badge{position:absolute;top:3px;right:2px;background:#E8385A;color:#fff;font-size:7px;font-weight:700;min-width:13px;height:13px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 2px}',
+    'header.topbar .topbar-search{display:flex;align-items:center;height:40px;background:#F4EEEA;border:1px solid #E6DDDA;border-radius:10px;overflow:hidden}',
+    'header.topbar .topbar-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;padding:0 12px;font-size:13px;font-family:inherit;color:#333}',
+    'header.topbar .topbar-search input::placeholder{color:#99A2B0}',
+    'header.topbar .topbar-search button{width:42px;height:100%;border:0;background:#E8385A;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}',
+    'header.topbar .topbar-search button i{font-size:14px}'
+  ].join('\n');
+
   function injectStatusStyles() {
     if (document.getElementById('bb-mobile-status-style')) return;
     var style = document.createElement('style');
@@ -140,8 +166,17 @@
     document.head.appendChild(style);
   }
 
+  function injectHeaderStyles() {
+    if (document.getElementById('bb-mobile-header-style')) return;
+    var style = document.createElement('style');
+    style.id = 'bb-mobile-header-style';
+    style.textContent = HEADER_CSS;
+    document.head.appendChild(style);
+  }
+
   function injectStyles() {
     injectStatusStyles();
+    injectHeaderStyles();
     if (document.getElementById('bb-mobile-drawer-style')) return;
     var style = document.createElement('style');
     style.id = 'bb-mobile-drawer-style';
@@ -352,6 +387,71 @@
     );
   }
 
+  function headerHTML() {
+    var actions = isLoggedIn()
+      ? '<div class="topbar-actions" id="userArea">' +
+          '<button class="icon-btn" type="button" aria-label="알림"><i class="fa-regular fa-bell" aria-hidden="true"></i><span class="i-badge">3</span></button>' +
+          '<button class="icon-btn" type="button" aria-label="장바구니"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>' +
+          '<button class="user-avatar-sm premium" type="button" aria-label="PREMIUM 등급 회원 메뉴" onclick="openUserDrawer()"><i class="fa-solid fa-gem" aria-hidden="true"></i></button>' +
+        '</div>'
+      : '<div class="topbar-actions" id="guestArea">' +
+          '<button class="login-btn-sm" type="button" onclick="toggleLogin()">로그인</button>' +
+        '</div>';
+
+    return (
+      '<div class="topbar-row">' +
+        '<div class="brand-area">' +
+          '<button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false" onclick="openDrawer()"><span></span><span></span><span></span></button>' +
+          '<a class="logo-link" href="mobile_main.html" aria-label="Bidbuy 홈"><img src="Bidbuy logo.png" alt="Bidbuy World Auction Agency"></a>' +
+        '</div>' +
+        actions +
+      '</div>' +
+      '<form class="topbar-search" role="search" action="mobile_totalsearch.html" method="get">' +
+        '<input type="search" name="q" placeholder="키워드 또는 구매신청을 원하시는 URL을 입력해주세요" aria-label="검색어 입력">' +
+        '<button type="submit" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></button>' +
+      '</form>'
+    );
+  }
+
+  // 페이지마다 제각각인 구버전 헤더(.topbar/.app-header/.m-header/<header class="header">
+  // 등)를 지우고 공통 헤더로 교체한다. mobile_main.html처럼 헤더 안에 채널탭 같은
+  // 페이지 고유 콘텐츠가 중첩된 경우 그 부분만 떼어내 새 헤더 뒤로 옮겨 보존한다.
+  function injectHeader() {
+    var oldHeaders = Array.prototype.slice
+      .call(document.querySelectorAll('header, .topbar, .app-header, .m-header'))
+      .filter(function (el) { return el.id !== 'bbmHeader'; });
+
+    var preserved = [];
+    oldHeaders.forEach(function (el) {
+      el.querySelectorAll('.slide-fade-wrap').forEach(function (node) { preserved.push(node); });
+    });
+
+    var header = document.getElementById('bbmHeader');
+    if (!header) {
+      header = document.createElement('header');
+      header.id = 'bbmHeader';
+    }
+    header.className = 'topbar';
+
+    var anchor = oldHeaders[0] || null;
+    if (anchor) {
+      anchor.parentNode.insertBefore(header, anchor);
+    } else if (!header.parentNode) {
+      var shell = document.querySelector('.phone, .mobile-shell, .page-shell, .app-shell, .page, .mobile-page') || document.body;
+      shell.insertBefore(header, shell.firstChild);
+    }
+
+    var insertAfter = header;
+    preserved.forEach(function (node) {
+      header.parentNode.insertBefore(node, insertAfter.nextSibling);
+      insertAfter = node;
+    });
+
+    oldHeaders.forEach(function (el) { if (el !== header) el.remove(); });
+
+    header.innerHTML = headerHTML();
+  }
+
   function ensureNode(id, tag, className) {
     var node = document.getElementById(id);
     if (!node) {
@@ -391,6 +491,7 @@
     }
 
     injectStyles();
+    injectHeader();
     injectPhoneStatusBar();
     pinPhoneStatusBar();
 

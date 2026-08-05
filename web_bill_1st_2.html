@@ -54,6 +54,10 @@
   .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
   .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
   .val-undecided { color: #aaa; font-size: 12px; }
+  .tax-toggle { display: inline-flex; border: 1px solid #dde1e7; border-radius: 4px; overflow: hidden; }
+  .tax-toggle-btn { border: none; background: #fff; color: #888; font-size: 11px; font-weight: 600; padding: 3px 7px; cursor: pointer; font-family: Pretendard, 'Noto Sans KR', sans-serif; }
+  .tax-toggle-btn + .tax-toggle-btn { border-left: 1px solid #dde1e7; }
+  .tax-toggle-btn.is-active { background: #1A3C6E; color: #fff; }
   .panel-action-btn { height: 26px; padding: 0 10px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-action-btn:hover { background: #1A3C6E; color: #fff; }
   .panel-action-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
@@ -109,7 +113,7 @@
   .dep-apply-btn.is-active { border: none; color: #fff; background: #cfd3d8; }
   /* ── 마일리지 모바일형 UI ── */
   .mob-mile-wrap { display: flex; flex-direction: column; gap: 10px; max-width: 100%; }
-  .mob-mile-top { display: grid; grid-template-columns: 104px minmax(0,1fr) 64px; align-items: center; gap: 8px; position: relative; }
+  .mob-mile-top { display: grid; grid-template-columns: 104px minmax(0,1fr) 20px 64px; align-items: center; gap: 8px; position: relative; }
   .mob-mile-label { font-size: 14px; color: #222; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
   .mob-mile-max-btn { width: 64px; height: 28px; padding: 0 5px; border: 1px solid #bfc6d4; border-radius: 5px; background: #eef2ff; color: #111; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
   .mob-mile-max-btn.is-active { background: #d6d9df; border-color: #b6bac2; color: #666; }
@@ -117,7 +121,7 @@
   .mob-mile-summary strong { font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 800; color: #111; }
   .mob-mile-summary-divider { color: #c3c8d0; font-weight: 700; }
   .mob-mile-note { font-size: 12px; color: #888; line-height: 1.6; text-align: right; }
-  .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; position:absolute; right:72px; top:50%; transform:translateY(-50%); width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
+  .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
   .mob-mile-clear-btn.show { display: inline-flex; }
   .mob-mile-input-wrap { display:flex; align-items:center; gap:1px; }
   .mob-mile-input-row { display:flex; align-items:center; width:100%; height: 25px; padding: 0 16px; border:1px solid #e1e5eb; border-radius:5px; background:#fff; }
@@ -126,12 +130,11 @@
   .mob-mile-inp.over { color:#E8385A; }
   .mob-mile-inp-unit { display:none; }
   @media (max-width: 520px) {
-    .mob-mile-top { grid-template-columns: 40px minmax(0,1fr) 60px; gap: 6px; }
+    .mob-mile-top { grid-template-columns: 40px minmax(0,1fr) 20px 60px; gap: 6px; }
     .mob-mile-label { font-size: 14px; }
     .mob-mile-max-btn { width: 60px; height: 28px; font-size: 11px; }
     .mob-mile-input-row { height: 25px; padding: 0 12px; }
     .mob-mile-inp { font-size: 13px; }
-    .mob-mile-clear-btn { right: 66px; }
     .mob-mile-summary { font-size: 12px; gap: 6px; }
     .mob-mile-summary strong { font-size: 12px; }
     .mob-mile-note { font-size: 11px; }
@@ -330,7 +333,7 @@
               <th>
                 <span class="paid-option-name">사진 촬영서비스</span>
                 <span class="paid-option-meta">
-                  <span class="paid-option-price">기본 300엔 / 3장</span>
+                  <span class="paid-option-price">기본 300엔/3달러/3파운드 최대 3장</span>
                   <span class="paid-option-price">+ 1장 100엔</span>
                 </span>
               </th>
@@ -458,7 +461,13 @@
         </div>
         <div class="fee-row">
           <span class="fee-row-label">소비세</span>
-          <span class="fee-row-val val-undecided">(미정)</span>
+          <span style="display:flex; align-items:center; gap:6px;">
+            <span class="tax-toggle" id="panelTaxToggle" role="group" aria-label="소비세 기준 전환">
+              <button type="button" class="tax-toggle-btn is-active" data-tax-mode="taxed">상품가 10%</button>
+              <button type="button" class="tax-toggle-btn" data-tax-mode="exempt">0엔</button>
+            </span>
+            <span class="fee-row-val" id="panelTaxVal">120 엔</span>
+          </span>
         </div>
         <div class="fee-row">
           <span class="fee-row-label">현지배송료</span>
@@ -481,8 +490,8 @@
                 <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
               </div>
               <span class="mob-mile-inp-unit">원</span>
-              <button class="mob-mile-max-btn" id="mileageMaxBtn" type="button">최대사용</button>
               <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
+              <button class="mob-mile-max-btn" id="mileageMaxBtn" type="button">최대사용</button>
             </div>
             <div class="mob-mile-summary">
               <span>사용 한도 <strong id="usableMileage">3,840</strong>원</span>
@@ -661,15 +670,28 @@
   const rate=()=>Number(sessionStorage.getItem('bb_rate')||9.6);
   const agencyBase=()=>Number(sessionStorage.getItem('bb_agency_base')||800);
 
+  const PRODUCT_YEN=1200;
+  let taxMode='taxed'; // 'taxed'(상품가 10%) | 'exempt'(0엔)
+  const taxYen=()=>taxMode==='taxed'?Math.round(PRODUCT_YEN*0.1):0;
+
+  document.querySelectorAll('#panelTaxToggle .tax-toggle-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      taxMode=btn.dataset.taxMode;
+      document.querySelectorAll('#panelTaxToggle .tax-toggle-btn').forEach(b=>b.classList.toggle('is-active',b===btn));
+      window.renderPaymentSummary?.();
+    });
+  });
+
   window.renderPaymentSummary=function(){
     const mileageDisc=Number(sessionStorage.getItem('bb_mileage_discount')||0);
-    const baseYen=1200+800+0;
+    const baseYen=PRODUCT_YEN+800+taxYen();
     const subtotalYen=Math.max(baseYen-mileageDisc,0);
     const r=rate();
     const totalWon=Math.floor(subtotalYen*r);
 
     document.getElementById('panelSubtotal').textContent=formatWon(subtotalYen)+' 엔';
     document.getElementById('panelRate').textContent=r;
+    const taxValEl=document.getElementById('panelTaxVal');if(taxValEl)taxValEl.textContent=formatWon(taxYen())+' 엔';
 
     const baseWon=Math.floor(baseYen*r);
     const depWon=parseWon(document.getElementById('depositInput')?.value||0);
