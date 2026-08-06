@@ -56,24 +56,11 @@ button,select{cursor:pointer}
 .ch-tab.active small{color:var(--rose)}
 
 /* ── 결과 헤더 ── */
-.result-header{padding:14px 16px 6px;background:#fff}
+.result-header{padding:14px 16px 8px;background:#fff}
 .result-title{font-size:15px;font-weight:700}
 .result-title b{color:var(--rose)}
-.result-count{font-size:12px;color:var(--ts);margin-top:2px}
+.result-count{font-size:12px;color:var(--ts);margin:0}
 .result-count b{color:var(--tp);font-family:'Roboto',sans-serif}
-
-/* ══════════════════════════════
-   필터 칩 (mobile_sub main 이식)
-══════════════════════════════ */
-.cat-section{background:#fff;padding:5px 10px;}
-.cat-controls{display:flex;align-items:center;gap:8px;width:100%;overflow-x:auto;overflow-y:hidden;padding:0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
-.cat-controls::-webkit-scrollbar{display:none}
-.cat-chip{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto;height:32px;min-width:76px;padding:0 10px;border:1px solid #d8dce2;border-radius:5px;background:#fff;color:var(--muted);font-size:12px;font-weight:600;line-height:1;white-space:nowrap;scroll-snap-align:start}
-.cat-chip.active{border-color:var(--brand);color:var(--brand);font-weight:700}
-.cat-chip.has-dot::after{content:"";width:7px;height:7px;border:3px solid #d8dce2;border-radius:50%;background:#eef1f5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
-.cat-chip.has-arrow::after{content:"";width:7px;height:7px;margin-top:0;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.72}
-.cat-chip.has-dot[aria-expanded="true"]::after{background:var(--brand);border-color:#ffe1e8}
-.cat-chip.cat-selected,.cat-chip.has-filter{background:#fff0f3;border-color:var(--brand);color:var(--brand);font-weight:700}
 
 /* 카테고리 결과 헤더 */
 .cat-result-header{display:flex;align-items:center;gap:8px;padding:8px 14px;background:#fff8f9;border-bottom:1px solid #ffd6de}
@@ -83,7 +70,8 @@ button,select{cursor:pointer}
 .cat-result-clear{flex-shrink:0;font-size:11px;color:var(--muted);text-decoration:underline;padding:0;background:none;border:none}
 
 /* ── 정렬·필터 바 ── */
-.filter-bar{display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:10px 10px;background:#fff;border-bottom:1px solid var(--border)}
+.filter-bar{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 15px;background:#fff;border-bottom:1px solid var(--border)}
+.filter-bar .result-count{margin-right:auto;flex:1;min-width:0}
 .sort-select{width:118px;height:32px;padding:0 26px 0 10px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--ts);font-size:12px;font-weight:700;font-family:inherit;outline:none;appearance:none;text-align:left;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999BAA'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
 .btn-filter{display:flex;align-items:center;gap:6px;height:32px;padding:0 13px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--ts);font-size:12px;font-weight:700;font-family:inherit}
 .btn-filter i{font-size:12px}
@@ -198,32 +186,18 @@ button,select{cursor:pointer}
 <!-- ── 결과 헤더 ── -->
 <div class="result-header">
   <div class="result-title">"<b>버즈 라이트이어</b>" 검색 결과</div>
-  <div class="result-count">전체 <b>128</b>건</div>
-</div>
-
-<!-- ── 필터 칩 (바텀시트 연동) ── -->
-<div class="cat-section">
-  <div class="cat-controls" aria-label="필터 탭 선택">
-    <button class="cat-chip has-dot" id="marketFilterButton" type="button" onclick="openFilterSheetFromCat('store')">스토어 검색</button>
-    <button class="cat-chip has-arrow" id="categoryChip" data-filter-chip="category" type="button" onclick="openFilterSheetFromCat('category')">카테고리</button>
-    <button class="cat-chip has-arrow" data-filter-chip="price" type="button" onclick="openFilterSheetFromCat('price')">가격</button>
-    <button class="cat-chip has-arrow" data-filter-chip="brand" type="button" onclick="openFilterSheetFromCat('brand')">브랜드</button>
-    <button class="cat-chip has-arrow" data-filter-chip="type" type="button" onclick="openFilterSheetFromCat('type')">유형</button>
-    <button class="cat-chip has-arrow" data-filter-chip="benefit" type="button" onclick="openFilterSheetFromCat('benefit')">혜택</button>
-    <button class="cat-chip has-arrow" data-filter-chip="packing" type="button" onclick="openFilterSheetFromCat('packing')">포장타입</button>
-    <button class="cat-chip has-arrow" data-filter-chip="delivery" type="button" onclick="openFilterSheetFromCat('delivery')">배송</button>
-  </div>
 </div>
 
 <!-- 카테고리 필터 결과 헤더 (선택 시 노출) -->
 <div class="cat-result-header" id="catResultHeader" style="display:none;">
   <div class="cat-result-tags" id="catResultTags"></div>
-  <button class="cat-result-clear" type="button" onclick="clearCatFilter()">전체해제</button>
+  <button class="cat-result-clear" type="button" onclick="clearAllFilters()">전체해제</button>
 </div>
 
 <!-- ── 정렬·필터 바 ── -->
 <div class="filter-bar">
-  <button class="btn-filter" id="btnFilter" type="button" onclick="openSheet()">
+  <div class="result-count">전체 <b>128</b>건</div>
+  <button class="btn-filter" id="btnFilter" type="button" onclick="openFilterSheetFromCat('store')">
     <i class="fa-solid fa-filter" aria-hidden="true"></i> 필터
   </button>
   <select class="sort-select" aria-label="정렬">
@@ -367,19 +341,31 @@ button,select{cursor:pointer}
   </div>
 
   <div class="filter-tabs" role="tablist" aria-label="필터 탭">
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="store" onclick="switchFilterTab('store')">스토어</button>
-    <button class="filter-tab active" type="button" role="tab" data-filter-tab="category" onclick="switchFilterTab('category')">카테고리</button>
+    <button class="filter-tab active" type="button" role="tab" data-filter-tab="store" onclick="switchFilterTab('store')">스토어</button>
+    <button class="filter-tab" type="button" role="tab" data-filter-tab="category" onclick="switchFilterTab('category')">카테고리</button>
     <button class="filter-tab" type="button" role="tab" data-filter-tab="price" onclick="switchFilterTab('price')">가격</button>
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="brand" onclick="switchFilterTab('brand')">브랜드</button>
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="type" onclick="switchFilterTab('type')">유형</button>
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="benefit" onclick="switchFilterTab('benefit')">혜택</button>
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="packing" onclick="switchFilterTab('packing')">포장타입</button>
-    <button class="filter-tab" type="button" role="tab" data-filter-tab="delivery" onclick="switchFilterTab('delivery')">배송</button>
+    <button class="filter-tab" type="button" role="tab" data-filter-tab="condition" onclick="switchFilterTab('condition')">상품상태</button>
+    <button class="filter-tab" type="button" role="tab" data-filter-tab="shipping" onclick="switchFilterTab('shipping')">배송/판매</button>
+    <button class="filter-tab" type="button" role="tab" data-filter-tab="etc" onclick="switchFilterTab('etc')">기타</button>
   </div>
 
   <div class="sheet-body">
 
-    <div class="filter-panel active" data-filter-panel="category">
+    <div class="filter-panel active" data-filter-panel="store">
+      <div class="sheet-btn-group" data-market-group>
+        <button class="sheet-opt active" type="button" data-market-all onclick="selectAllMarkets()" aria-pressed="true">전체 스토어</button>
+        <button class="sheet-opt" type="button" data-market="yahoo" onclick="selectMarketOpt(this)" aria-pressed="false">야후 옥션</button>
+        <button class="sheet-opt" type="button" data-market="mercari" onclick="selectMarketOpt(this)" aria-pressed="false">메루카리</button>
+        <button class="sheet-opt" type="button" data-market="rakuten" onclick="selectMarketOpt(this)" aria-pressed="false">일본 라쿠텐</button>
+        <button class="sheet-opt" type="button" data-market="rakuma" onclick="selectMarketOpt(this)" aria-pressed="false">일본 라쿠마</button>
+        <button class="sheet-opt" type="button" data-market="yahoo-shopping" onclick="selectMarketOpt(this)" aria-pressed="false">야후 쇼핑</button>
+        <button class="sheet-opt" type="button" data-market="amazon-jp" onclick="selectMarketOpt(this)" aria-pressed="false">일본 아마존</button>
+        <button class="sheet-opt" type="button" data-market="ebay-us" onclick="selectMarketOpt(this)" aria-pressed="false">미국 이베이</button>
+        <button class="sheet-opt" type="button" data-market="ebay-uk" onclick="selectMarketOpt(this)" aria-pressed="false">영국 이베이</button>
+      </div>
+    </div>
+
+    <div class="filter-panel" data-filter-panel="category">
       <div class="cat-breadcrumb" id="catBreadcrumb" style="display:none;">
         <button class="cat-back-btn" type="button" onclick="catGoBack()">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
@@ -410,25 +396,7 @@ button,select{cursor:pointer}
       </div>
     </div>
 
-    <div class="filter-panel" data-filter-panel="brand">
-      <div class="filter-check-list">
-        <button class="filter-check" type="button" onclick="toggleCheck(this)">Nike</button>
-        <button class="filter-check" type="button" onclick="toggleCheck(this)">Apple</button>
-        <button class="filter-check" type="button" onclick="toggleCheck(this)">Sony</button>
-        <button class="filter-check" type="button" onclick="toggleCheck(this)">Canon</button>
-      </div>
-    </div>
-
-    <div class="filter-panel" data-filter-panel="type">
-      <div class="sheet-btn-group" data-group="trade">
-        <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">경매</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">구매</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">즉시낙찰</button>
-      </div>
-    </div>
-
-    <div class="filter-panel" data-filter-panel="benefit">
+    <div class="filter-panel" data-filter-panel="condition">
       <div class="sheet-btn-group" data-group="cond">
         <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
         <button class="sheet-opt" type="button" onclick="selectOpt(this)">신품</button>
@@ -438,35 +406,45 @@ button,select{cursor:pointer}
       </div>
     </div>
 
-    <div class="filter-panel" data-filter-panel="packing">
-      <div class="sheet-btn-group" data-group="packing">
-        <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">박스 포함</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">미개봉</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">구성품 포함</button>
+    <div class="filter-panel" data-filter-panel="shipping">
+      <div class="sheet-section">
+        <div class="sheet-section-label">거래방식</div>
+        <div class="sheet-btn-group" data-group="trade">
+          <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">경매</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">구매</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">즉시낙찰</button>
+        </div>
+      </div>
+      <div class="sheet-section">
+        <div class="sheet-section-label">배송</div>
+        <div class="sheet-btn-group" data-group="ship">
+          <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">무료배송</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">국내배송</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">해외배송</button>
+        </div>
       </div>
     </div>
 
-    <div class="filter-panel" data-filter-panel="delivery">
-      <div class="sheet-btn-group" data-group="ship">
-        <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">무료배송</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">국내배송</button>
-        <button class="sheet-opt" type="button" onclick="selectOpt(this)">해외배송</button>
+    <div class="filter-panel" data-filter-panel="etc">
+      <div class="sheet-section">
+        <div class="sheet-section-label">브랜드</div>
+        <div class="filter-check-list">
+          <button class="filter-check" type="button" onclick="toggleCheck(this)">Nike</button>
+          <button class="filter-check" type="button" onclick="toggleCheck(this)">Apple</button>
+          <button class="filter-check" type="button" onclick="toggleCheck(this)">Sony</button>
+          <button class="filter-check" type="button" onclick="toggleCheck(this)">Canon</button>
+        </div>
       </div>
-    </div>
-
-    <div class="filter-panel" data-filter-panel="store">
-      <div class="sheet-btn-group" data-market-group>
-        <button class="sheet-opt active" type="button" data-market-all onclick="selectAllMarkets()" aria-pressed="true">전체 스토어</button>
-        <button class="sheet-opt" type="button" data-market="yahoo" onclick="selectMarketOpt(this)" aria-pressed="false">야후 옥션</button>
-        <button class="sheet-opt" type="button" data-market="mercari" onclick="selectMarketOpt(this)" aria-pressed="false">메루카리</button>
-        <button class="sheet-opt" type="button" data-market="rakuten" onclick="selectMarketOpt(this)" aria-pressed="false">일본 라쿠텐</button>
-        <button class="sheet-opt" type="button" data-market="rakuma" onclick="selectMarketOpt(this)" aria-pressed="false">일본 라쿠마</button>
-        <button class="sheet-opt" type="button" data-market="yahoo-shopping" onclick="selectMarketOpt(this)" aria-pressed="false">야후 쇼핑</button>
-        <button class="sheet-opt" type="button" data-market="amazon-jp" onclick="selectMarketOpt(this)" aria-pressed="false">일본 아마존</button>
-        <button class="sheet-opt" type="button" data-market="ebay-us" onclick="selectMarketOpt(this)" aria-pressed="false">미국 이베이</button>
-        <button class="sheet-opt" type="button" data-market="ebay-uk" onclick="selectMarketOpt(this)" aria-pressed="false">영국 이베이</button>
+      <div class="sheet-section">
+        <div class="sheet-section-label">포장타입</div>
+        <div class="sheet-btn-group" data-group="packing">
+          <button class="sheet-opt active" type="button" onclick="selectOpt(this)">전체</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">박스 포함</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">미개봉</button>
+          <button class="sheet-opt" type="button" onclick="selectOpt(this)">구성품 포함</button>
+        </div>
       </div>
     </div>
 
@@ -507,7 +485,6 @@ function closeSheet() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('filterSheet').classList.remove('open');
   document.getElementById('filterSheet').setAttribute('aria-hidden', 'true');
-  document.getElementById('marketFilterButton')?.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
 function closeAllSheets() { closeSheet(); }
@@ -524,10 +501,9 @@ function switchFilterTab(tabName) {
   if (tabName === 'category') initCatPanel();
 }
 
-function openFilterSheetFromCat(tabName = 'category') {
+function openFilterSheetFromCat(tabName = 'store') {
   switchFilterTab(tabName);
   openSheet();
-  document.getElementById('marketFilterButton')?.setAttribute('aria-expanded', tabName === 'store' ? 'true' : 'false');
 }
 
 const MARKET_LABELS = {
@@ -556,19 +532,7 @@ function syncAllMarketState() {
 }
 
 function syncMarketButtonLabel() {
-  const button = document.getElementById('marketFilterButton');
-  const selected = getSelectedMarkets();
-  if (!button) return;
   syncAllMarketState();
-  if (selected.length === 0) {
-    button.textContent = '스토어 검색';
-    button.classList.remove('active');
-    button.classList.remove('has-filter');
-    return;
-  }
-  button.textContent = selected.length === 1 ? MARKET_LABELS[selected[0]] : `스토어 ${selected.length}개`;
-  button.classList.add('active');
-  button.classList.add('has-filter');
 }
 
 function selectAllMarkets() {
@@ -809,7 +773,7 @@ function selectOpt(el) {
 function updateBadge() {
   const activeState = {
     category: selectedCats.size > 0,
-    brand: document.querySelectorAll('[data-filter-panel="brand"] .filter-check.active').length > 0,
+    brand: document.querySelectorAll('.filter-check.active').length > 0,
     price: false,
     type: false,
     benefit: false,
@@ -822,7 +786,7 @@ function updateBadge() {
     const active = g.querySelector('.sheet-opt.active');
     const chipName = groupToChip[g.dataset.group];
     if (chipName) {
-      activeState[chipName] = Boolean(active && active.textContent.trim() !== '전체');
+      activeState[chipName] = Boolean(active && active !== g.querySelector('.sheet-opt'));
     }
   });
 
@@ -835,9 +799,6 @@ function updateBadge() {
   const btn = document.getElementById('btnFilter');
   const hasFilter = Object.values(activeState).some(Boolean) || hasMarketFilter;
   btn.classList.toggle('has-filter', hasFilter);
-  Object.entries(activeState).forEach(([name, isActive]) => {
-    document.querySelector(`[data-filter-chip="${name}"]`)?.classList.toggle('has-filter', isActive);
-  });
 }
 
 function resetSheet() {
@@ -862,22 +823,36 @@ function resetSheet() {
 
 function applyFilter() {
   updateBadge();
+  renderCatResultHeader();
   closeSheet();
 
-  if (selectedCats.size > 0) {
-    const chip = document.getElementById('categoryChip');
-    if (chip) {
-      chip.classList.add('cat-selected');
-      chip.childNodes[0].textContent = '카테고리';
-    }
-    renderCatResultHeader();
+  if (getActiveFilterTags().length > 0) {
     setTimeout(() => {
       const section = document.getElementById('productSection');
       if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 150);
-  } else {
-    resetCatChip();
   }
+}
+
+function getActiveFilterTags() {
+  const tags = [];
+  selectedCats.forEach(name => tags.push({ type: 'category', label: name }));
+  getSelectedMarkets().forEach(key => tags.push({ type: 'market', label: MARKET_LABELS[key] || key }));
+
+  const mn = parseInt(document.getElementById('mInputMin').value.replace(/,/g,'')) || 0;
+  const mx = parseInt(document.getElementById('mInputMax').value.replace(/,/g,'')) || 1000000;
+  if (mn > 0 || mx < 1000000) tags.push({ type: 'price', label: `${fmt(mn)} ~ ${fmt(mx)}` });
+
+  document.querySelectorAll('.filter-check.active').forEach(button => {
+    tags.push({ type: 'check', label: button.textContent.trim() });
+  });
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const active = group.querySelector('.sheet-opt.active');
+    if (active && active !== group.querySelector('.sheet-opt')) {
+      tags.push({ type: group.dataset.group, label: active.textContent.trim() });
+    }
+  });
+  return tags;
 }
 
 function renderCatResultHeader() {
@@ -885,10 +860,19 @@ function renderCatResultHeader() {
   const tags = document.getElementById('catResultTags');
   if (!header || !tags) return;
   tags.innerHTML = '';
-  selectedCats.forEach(name => {
+  const activeTags = getActiveFilterTags();
+  if (activeTags.length === 0) {
+    header.style.display = 'none';
+    return;
+  }
+  activeTags.forEach(tagInfo => {
     const tag = document.createElement('span');
     tag.className = 'cat-result-tag';
-    tag.innerHTML = `${name}<button type="button" onclick="removeCatFilter('${name}')" aria-label="${name} 해제">×</button>`;
+    if (tagInfo.type === 'category') {
+      tag.innerHTML = `${tagInfo.label}<button type="button" onclick="removeCatFilter('${tagInfo.label}')" aria-label="${tagInfo.label} 해제">×</button>`;
+    } else {
+      tag.textContent = tagInfo.label;
+    }
     tags.appendChild(tag);
   });
   header.style.display = 'flex';
@@ -907,16 +891,16 @@ function removeCatFilter(name) {
 function clearCatFilter() {
   selectedCats.clear();
   updateBadge();
-  resetCatChip();
+  renderCatResultHeader();
   initCatPanel();
 }
 
+function clearAllFilters() {
+  resetSheet();
+  closeSheet();
+}
+
 function resetCatChip() {
-  const chip = document.getElementById('categoryChip');
-  if (chip) {
-    chip.classList.remove('cat-selected');
-    chip.childNodes[0].textContent = '카테고리';
-  }
   const header = document.getElementById('catResultHeader');
   if (header) header.style.display = 'none';
 }

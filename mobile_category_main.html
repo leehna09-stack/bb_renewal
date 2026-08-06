@@ -115,6 +115,8 @@ button,select{cursor:pointer}
 
 /* ── 상품 그리드 ── */
 .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 8px}
+.product-grid.is-refreshing .product-card{opacity:.35;transform:translateY(6px);transition:opacity .16s ease,transform .16s ease}
+.product-grid .product-card{transition:opacity .22s ease,transform .22s ease}
 .product-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer}
 .card-thumb{width:100%;padding-top:100%;background:#EBEBEB;position:relative}
 .card-thumb-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:26px;overflow:hidden}
@@ -715,9 +717,28 @@ updateResultCount();
 
 /* ── 상품 이미지 ── */
 const catSeeds = ['cat1','cat2','cat3','cat4','cat5','cat6'];
-document.querySelectorAll('.card-thumb-inner').forEach((el, i) => {
-  el.innerHTML = `<img src="https://picsum.photos/seed/${catSeeds[i] || 'item' + i}/300/300" alt="상품이미지">`;
-});
+let sortPreviewTick = 0;
+function setCategoryPreviewImages(seedPrefix = 'cat') {
+  document.querySelectorAll('.card-thumb-inner').forEach((el, i) => {
+    const seed = catSeeds[i] || `${seedPrefix}-${sortPreviewTick}-${i}`;
+    el.innerHTML = `<img src="https://picsum.photos/seed/${seedPrefix}-${seed}-${sortPreviewTick}/300/300" alt="상품이미지">`;
+  });
+}
+function shuffleCategoryProductPreview() {
+  const grid = document.getElementById('productSection');
+  if (!grid) return;
+  sortPreviewTick += 1;
+  grid.classList.add('is-refreshing');
+  setTimeout(() => {
+    Array.from(grid.children)
+      .sort(() => Math.random() - 0.5)
+      .forEach(card => grid.appendChild(card));
+    setCategoryPreviewImages('sort-cat');
+    requestAnimationFrame(() => grid.classList.remove('is-refreshing'));
+  }, 160);
+}
+setCategoryPreviewImages();
+document.querySelector('.sort-select')?.addEventListener('change', shuffleCategoryProductPreview);
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>
