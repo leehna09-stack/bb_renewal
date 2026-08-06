@@ -58,6 +58,7 @@ a { text-decoration: none; color: inherit; }
 /* ── 스토어 바로가기 (검색 채널 탭) ── */
 .channel-tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 8px;-webkit-overflow-scrolling:touch;background:#fff}
 .channel-tabs::-webkit-scrollbar{display:none}
+.store-shortcuts{border-bottom:1px solid var(--border)}
 .ch-tab{padding:10px 12px 11px;font-size:12px;font-weight:700;color:#707070;white-space:nowrap;cursor:pointer;border:0;border-bottom:2px solid transparent;background:transparent;flex-shrink:0;font-family:inherit}
 .ch-tab.active{color:var(--rose);border-bottom-color:var(--rose)}
 .ch-tab small{font-weight:600;color:var(--tm);font-size:11px;margin-left:2px;font-family:'Roboto',sans-serif}
@@ -86,12 +87,10 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 8px;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: visible;
   padding: 0 10px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
 }
 .cat-controls::-webkit-scrollbar { display: none; }
 .cat-chip {
@@ -140,35 +139,6 @@ a { text-decoration: none; color: inherit; }
   border-color: #ffe1e8;
 }
 
-/* 카테고리 결과 헤더 */
-.cat-result-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: #fff8f9;
-  border-bottom: 1px solid #ffd6de;
-}
-.cat-result-tags { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
-.cat-result-tag {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 3px 10px;
-  background: #fff; border: 1px solid var(--rose); border-radius: 999px;
-  font-size: 11px; color: var(--rose); font-weight: 600;
-}
-.cat-result-tag button { display: flex; align-items: center; color: var(--rose); opacity: .7; padding: 0; font-size: 13px; line-height: 1; }
-.cat-result-clear { flex-shrink: 0; font-size: 11px; color: var(--ts); text-decoration: underline; padding: 0; cursor: pointer; }
-
-/* ── 정렬·필터 바 ── */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 10px 10px;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-}
 .sort-controls {
   display: contents;
 }
@@ -211,6 +181,8 @@ a { text-decoration: none; color: inherit; }
 .product-section { background: #fff; padding: 12px 16px 40px; }
 .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .product-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; }
+.product-grid.is-refreshing .product-card { opacity: .35; transform: translateY(6px); transition: opacity .16s ease, transform .16s ease; }
+.product-grid .product-card { transition: opacity .22s ease, transform .22s ease; }
 .card-thumb { width: 100%; padding-top: 100%; background: #EBEBEB; position: relative; }
 .card-thumb-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--tm); font-size: 26px; overflow: hidden; }
 .card-thumb-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -432,17 +404,18 @@ a { text-decoration: none; color: inherit; }
     <input type="text" placeholder="키워드 또는 URL을 입력하세요." aria-label="검색어 입력">
     <button type="button" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
-  <nav class="channel-tabs" aria-label="스토어 바로가기">
-    <button class="ch-tab active" type="button" data-store-name="야후 옥션">야후옥션</button>
-    <button class="ch-tab" type="button" data-store-name="메루카리">메루카리</button>
-    <button class="ch-tab" type="button" data-store-name="라쿠텐">일본라쿠텐</button>
-    <button class="ch-tab" type="button" data-store-name="라쿠마">일본라쿠마</button>
-    <button class="ch-tab" type="button" data-store-name="야후 쇼핑">야후쇼핑</button>
-    <button class="ch-tab" type="button" data-store-name="일본 아마존">일본아마존</button>
-    <button class="ch-tab" type="button" data-store-name="영국 이베이">영국이베이</button>
-    <button class="ch-tab" type="button" data-store-name="미국 이베이">미국이베이</button>
-  </nav>
 </header>
+
+<nav class="channel-tabs store-shortcuts" aria-label="스토어 바로가기">
+  <button class="ch-tab active" type="button" data-store-name="야후 옥션">야후옥션</button>
+  <button class="ch-tab" type="button" data-store-name="메루카리">메루카리</button>
+  <button class="ch-tab" type="button" data-store-name="라쿠텐">일본라쿠텐</button>
+  <button class="ch-tab" type="button" data-store-name="라쿠마">일본라쿠마</button>
+  <button class="ch-tab" type="button" data-store-name="야후 쇼핑">야후쇼핑</button>
+  <button class="ch-tab" type="button" data-store-name="일본 아마존">일본아마존</button>
+  <button class="ch-tab" type="button" data-store-name="영국 이베이">영국이베이</button>
+  <button class="ch-tab" type="button" data-store-name="미국 이베이">미국이베이</button>
+</nav>
 
 <!-- ── 스토어 베스트 헤더 ── -->
 <div class="store-header">
@@ -454,39 +427,22 @@ a { text-decoration: none; color: inherit; }
 <!-- ── 카테고리 칩 슬라이드 ── -->
 <div class="cat-section">
   <div class="cat-controls" aria-label="필터 탭 선택">
-    <button class="cat-chip has-dot" id="marketFilterButton" type="button" onclick="openFilterSheetFromCat('store')">전체 검색</button>
     <button class="cat-chip has-arrow" id="categoryChip" data-filter-chip="category" type="button" onclick="openFilterSheetFromCat('category')">카테고리</button>
-    <button class="cat-chip has-arrow" data-filter-chip="price" type="button" onclick="openFilterSheetFromCat('price')">가격</button>
-    <button class="cat-chip has-arrow" data-filter-chip="brand" type="button" onclick="openFilterSheetFromCat('brand')">브랜드</button>
-    <button class="cat-chip has-arrow" data-filter-chip="type" type="button" onclick="openFilterSheetFromCat('type')">유형</button>
-    <button class="cat-chip has-arrow" data-filter-chip="benefit" type="button" onclick="openFilterSheetFromCat('benefit')">혜택</button>
-    <button class="cat-chip has-arrow" data-filter-chip="packing" type="button" onclick="openFilterSheetFromCat('packing')">포장타입</button>
-    <button class="cat-chip has-arrow" data-filter-chip="delivery" type="button" onclick="openFilterSheetFromCat('delivery')">배송</button>
-  </div>
-</div>
-
-<!-- ── 정렬 + 필터 바 ── -->
-<div class="filter-bar">
     <button class="btn-filter" id="btnFilter" type="button" onclick="openSheet()">
-    <i class="fa-solid fa-filter" aria-hidden="true"></i> 필터
-  </button>
-  <div class="sort-controls">
-    <select class="sort-select" aria-label="정렬">
-      <option>인기상품순</option>
+      <i class="fa-solid fa-filter" aria-hidden="true"></i> 필터
+    </button>
+    <div class="sort-controls">
+      <select class="sort-select" aria-label="정렬">
+      <option>인기순</option>
       <option>마감임박순</option>
       <option>낮은가격순</option>
       <option>높은가격순</option>
       <option>입찰수높은순</option>
       <option>입찰수낮은순</option>
       <option>신상품순</option>
-    </select>
+      </select>
+    </div>
   </div>
-</div>
-
-<!-- ── 카테고리 필터 결과 헤더 (선택 시 노출) ── -->
-<div class="cat-result-header" id="catResultHeader" style="display:none;">
-  <div class="cat-result-tags" id="catResultTags"></div>
-  <button class="cat-result-clear" type="button" onclick="clearCatFilter()">전체해제</button>
 </div>
 
 <!-- ── 상품 그리드 ── -->
@@ -971,43 +927,54 @@ function resetSheet() {
   updateTrack(); updateBadge();
 }
 
-function applyFilter() {
-  updateBadge();
-  closeSheet();
-  if (selectedCats.size > 0) {
-    renderCatResultHeader();
-    document.getElementById('categoryChip')?.classList.add('cat-selected');
-    setTimeout(() => document.getElementById('productSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
-  } else { resetCatChip(); }
+function applyCurrentCategoryPath() {
+  if (selectedCats.size > 0 || catStack.length === 0) return;
+  const current = catStack[catStack.length - 1]?.label;
+  if (current) selectedCats.add(current);
 }
 
-function renderCatResultHeader() {
-  const header = document.getElementById('catResultHeader');
-  const tags   = document.getElementById('catResultTags');
-  if (!header || !tags) return;
-  tags.innerHTML = '';
-  selectedCats.forEach(name => {
-    const tag = document.createElement('span');
-    tag.className = 'cat-result-tag';
-    tag.innerHTML = `${name}<button type="button" onclick="removeCatFilter('${name}')" aria-label="${name} 해제">×</button>`;
-    tags.appendChild(tag);
+function getSelectedCategoryPath() {
+  const selected = Array.from(selectedCats);
+  const current = selected[selected.length - 1];
+  const path = catStack.map(item => item.label);
+  if (current && path[path.length - 1] !== current) path.push(current);
+  return path.filter(Boolean);
+}
+
+function goCategoryMainFromSub() {
+  const path = getSelectedCategoryPath();
+  if (path.length === 0) return false;
+  const activeStore = document.querySelector('.ch-tab.active');
+  const storeName = activeStore?.dataset.storeName || document.getElementById('storeNameTitle')?.textContent?.trim() || '';
+  const topCategory = path[0];
+  const lastCategory = path[path.length - 1];
+  const params = new URLSearchParams({
+    store: storeName,
+    category: topCategory,
+    path: path.join(' > '),
+    selected: lastCategory
   });
-  header.style.display = 'flex';
+  location.href = `mobile_category_main.html?${params.toString()}`;
+  return true;
+}
+
+function applyFilter() {
+  applyCurrentCategoryPath();
+  updateBadge();
+  if (goCategoryMainFromSub()) return;
+  closeSheet();
 }
 
 function removeCatFilter(name) {
   selectedCats.delete(name);
   updateBadge();
   if (selectedCats.size === 0) { resetCatChip(); }
-  else { renderCatResultHeader(); }
 }
 
 function clearCatFilter() { selectedCats.clear(); updateBadge(); resetCatChip(); initCatPanel(); }
 
 function resetCatChip() {
   document.getElementById('categoryChip')?.classList.remove('cat-selected');
-  const header = document.getElementById('catResultHeader');
-  if (header) header.style.display = 'none';
 }
 
 /* ── 슬라이더 ── */
@@ -1054,9 +1021,28 @@ initCatPanel();
 </script>
 <script>
 const subSeeds = ['camera1','camera2','camera3','camera4','camera5','camera6','camera7'];
-document.querySelectorAll('.card-thumb-inner').forEach((el, i) => {
-  el.innerHTML = `<img src="https://picsum.photos/seed/${subSeeds[i] || 'item'+i}/300/300" alt="상품이미지">`;
-});
+let sortPreviewTick = 0;
+function setPreviewImages(seedPrefix = 'camera') {
+  document.querySelectorAll('.card-thumb-inner').forEach((el, i) => {
+    const seed = subSeeds[i] || `${seedPrefix}-${sortPreviewTick}-${i}`;
+    el.innerHTML = `<img src="https://picsum.photos/seed/${seedPrefix}-${seed}-${sortPreviewTick}/300/300" alt="상품이미지">`;
+  });
+}
+function shuffleProductPreview() {
+  const grid = document.getElementById('productGrid');
+  if (!grid) return;
+  sortPreviewTick += 1;
+  grid.classList.add('is-refreshing');
+  setTimeout(() => {
+    Array.from(grid.children)
+      .sort(() => Math.random() - 0.5)
+      .forEach(card => grid.appendChild(card));
+    setPreviewImages('sort');
+    requestAnimationFrame(() => grid.classList.remove('is-refreshing'));
+  }, 160);
+}
+setPreviewImages();
+document.querySelector('.sort-select')?.addEventListener('change', shuffleProductPreview);
 </script>
 <script src="bb-common-mobile.js"></script>
 </body>
