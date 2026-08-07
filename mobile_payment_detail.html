@@ -1570,7 +1570,7 @@
 
       /* ════════ 결제상세 (모바일) ════════ */
     .pay-detail { padding: 14px 14px 24px !important; background: #fff; }
-    .pd-heading { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+    .pd-heading { display: flex; align-items: center; justify-content:center; gap: 8px; margin-bottom: 18px; text-align:center; }
     .pd-heading .pd-back { width: 30px; height: 30px; border: 0; background: transparent; color: #333; font-size: 16px; display: grid; place-items: center; }
     .pd-heading h2 { margin: 0; font-size: 24px; font-weight:700; color: #2b2f37; line-height: 1.3; }
 
@@ -1585,58 +1585,76 @@
     .pd-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 12px; font-size: 18px; font-weight:700; color: #2b2f37; line-height: 1.35; }
     .pd-sub { font-size: 14px; font-weight: 600; color: #666; text-decoration: underline; text-underline-offset: 2px; }
 
-    .pd-item { display: flex; gap: 12px; padding: 14px; border: 1px solid var(--line-soft); border-radius: 12px; background: #fff; }
-    .pd-item__img { width: 64px; height: 64px; flex: 0 0 auto; border-radius: 8px; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 22px; }
+    .pd-item { display: grid; gap: 10px; padding: 14px; border: 1px solid var(--line-soft); border-radius: 12px; background: #fff; }
+    .pd-item__top { display: grid; gap: 7px; min-width: 0; }
+    .pd-item__content-row { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .pd-item__img { width: 72px; height: 72px; flex: 0 0 auto; border-radius: 8px; background: #f5f5f5; display: grid; place-items: center; color: #ccc; font-size: 22px; }
     .pd-item__body { min-width: 0; }
-    .pd-item__platform { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #444; margin-bottom: 5px; }
+    .pd-item__platform { display: flex; align-items: center; justify-content:flex-start; gap: 6px; font-size: 13px; color: #444; text-align:left; }
     .pd-item__platform img { width: 16px; height: 16px; border-radius: 50%; object-fit: cover; }
-    .pd-item__name { display: block; font-size: 14px; color: #000; line-height: 1.55; margin-bottom: 6px; }
+    .pd-item__name { display: block; font-size: 14px; font-weight:700; color: #000; line-height: 1.55; }
+    .pd-item__origin { font-size:12px; color:var(--faint); line-height:1.5; }
     .pd-item__meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; color: #666; }
     .pd-item__meta b { color: #444; font-weight: 700; margin-right: 4px; }
+    .pd-item__meta-list { display:grid; grid-template-columns:64px minmax(0,1fr); gap:7px 8px; margin:0; font-size:13px; line-height:1.45; }
+    .pd-item__meta-list dt { color:#6d7481; font-weight:700; }
+    .pd-item__meta-list dd { margin:0; color:#263142; font-weight:500; word-break:break-word; }
 
     .pd-list { padding: 16px; border: 1px solid var(--line-soft); border-radius: 12px; background: #fff; }
     .pd-row { display: flex; gap: 12px; padding: 7px 0; }
     .pd-row .k { flex: 0 0 78px; font-size: 14px; font-weight: 700; color: #000; }
     .pd-row .v { flex: 1; font-size: 14px; color: #333; line-height: 1.55; }
     .pd-row .v.mono { font-family: Roboto, monospace; }
+    .collapse-toggle { width:100%; height:36px; margin-top:8px; border:1px solid var(--line); border-radius:5px; background:#fff; color:var(--navy); font-size:13px; font-weight:700; font-family:inherit; }
+    .collapsible-list.is-collapsed .pd-bundle:nth-of-type(n+2) { display:none; }
+    .memo-collapse { transition:max-height .2s ease; }
+    .memo-collapse.is-collapsed { position:relative; max-height:78px; overflow:hidden; }
+    .memo-collapse.admin-memo-collapse.is-collapsed { max-height:156px; }
+    .memo-collapse.is-collapsed::after { content:""; position:absolute; left:0; right:0; bottom:0; height:26px; background:linear-gradient(rgba(255,255,255,0), #fff); pointer-events:none; }
 
-    .pay-card { border: 1px solid var(--line-soft); border-radius: 12px; background: #fff; padding: 16px; margin-bottom: 12px; }
+    .pay-2col { display:grid; grid-template-columns:1fr; gap:16px; align-items:stretch; }
+    .pay-card { display:flex; flex-direction:column; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 20px; margin-bottom: 0; }
     .pay-card[hidden] { display: none; }
-    .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .pay-badge { font-size: 12px; font-weight:700; padding: 4px 12px; border-radius: 6px; }
-    .pay-badge.first { background: #e8eef7; color: var(--navy); }
-    .pay-badge.second { background: #fdf1dd; color: #9a6207; }
-    .pay-card__date { font-size: 11px; color: #999; font-family: Roboto, sans-serif; }
+    .pay-secondary-stack { min-width:0; }
+    .pay-secondary-stack .pay-card[hidden] { display:none; }
+    .pay-card__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom:10px; border-bottom:1px solid var(--line); }
+    .pay-badge { font-size: 16px; font-weight:700; padding: 0; border-radius: 0; background: transparent; color:var(--navy); }
+    .pay-badge.first,
+    .pay-badge.second { color: var(--navy); }
+    .pay-card__date { font-size: 12px; color: #444444; font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
+    .pay-card__receipt { border:0; background:none; padding:0; color:#444444; font:inherit; font-size:12px; cursor:pointer; }
     .pay-rows { list-style: none; margin: 0; padding: 0; }
     .pay-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f6f6f6; }
+    .pay-row--spacer { visibility:hidden; pointer-events:none; }
     .pay-row .lbl { font-size: 14px; color: #555; }
-    .pay-row .val { font-size: 14px; color: #000; font-family: Roboto, monospace; }
-    .pay-row .val.muted { color: #c4c4c4; }
+    .pay-row .val { font-size: 14px; color: #000; font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, monospace; }
+    .pay-row .val.muted { color: #000000; }
     .pay-row .val.discount { color: var(--brand); }
     .pay-row .val.fee { color: var(--navy); }
-    .pay-row.is-toggle { padding: 0; }
+    .pay-row.is-toggle { padding: 0; border-bottom:1px solid #f6f6f6; }
     .pay-etc { width: 100%; }
     .pay-etc > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 9px 0; font-size: 14px; color: #555; }
     .pay-etc > summary::-webkit-details-marker { display: none; }
     .pay-etc > summary .chev { font-size: 11px; color: #aaa; transition: transform .2s; }
     .pay-etc[open] > summary .chev { transform: rotate(180deg); }
-    .pay-etc__inner { padding-bottom: 4px; }
-    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fafafa; border-radius: 6px; margin-top: 4px; }
+    .pay-etc__inner { padding: 2px 0 8px; }
+    .pay-etc__inner .pay-row { padding: 7px 12px; border-bottom: 0; background: #fff; border-radius: 6px; margin-top: 4px; }
     .pay-etc__inner .pay-row .lbl { font-size: 14px; color: #777; }
-    .pay-foot { padding-top: 12px; }
+    .pay-foot { margin-top:auto; padding-top: 10px; }
     .pay-meta { font-size: 14px; color: #777; line-height: 1.5; margin-bottom: 10px; }
     .pay-meta b { color: #666; font-weight: 700; }
-    .pay-total { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 8px; background: #f0f4fb; border-top: 2px solid var(--navy); }
-    .pay-total .lbl { font-size: 15px; font-weight:700; color: var(--navy); }
-    .pay-total .val { font-size: 15px; font-weight:700; color: #000; font-family: Roboto, monospace; }
-    .pay-total .val-group { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.3; }
-    .pay-total .calc-sm { font-size: 12px; font-weight: 600; color: #888; font-family: Roboto, monospace; }
-    .pay-rate-note { margin-bottom: 8px; font-size: 12px; font-weight: 600; color: #888; text-align: right; }
-    .pay-grandtotal { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-radius: 12px; background: var(--navy); margin-top: 4px; }
-    .pay-grandtotal .lbl { font-size: 16px; font-weight:700; color: #fff; }
-    .pay-grandtotal .val-group { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.3; }
-    .pay-grandtotal .val { font-size: 18px; font-weight:700; color: #fff; font-family: Roboto, monospace; }
-    .pay-grandtotal .val-sm { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.75); font-family: Roboto, monospace; }
+    .pay-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 0 4px; }
+    .pay-total .lbl { font-size: 16px; font-weight:700; color: var(--navy); }
+    .pay-total .val { font-size: 16px; font-weight:700; color: #000; font-family: Roboto, monospace; }
+    .pay-total .val-group { display: grid; justify-items:end; gap:2px; line-height: 1.3; }
+    .pay-total .calc-sm { font-size: 12px; font-weight: 600; color: rgba(28,28,28,.6); font-family: Roboto, monospace; }
+    .pay-rate-note { color:#555; font-size:13px; font-weight:500; white-space:nowrap; }
+    .pay-grandtotal { display: flex; align-items: center; justify-content: space-between; padding: 11.75px 22px; border-radius: 12px; background: var(--warm); margin-top: 16px; }
+    .pay-grandtotal__label { display:grid; gap:3px; }
+    .pay-grandtotal .lbl { font-size: 16px; font-weight:700; color: #000000; }
+    .pay-grandtotal .val-group { display: grid; justify-items:end; gap:2px; line-height: 1.3; }
+    .pay-grandtotal .val { font-size: 20px; font-weight:700; color: #000; font-family: Roboto, monospace; }
+    .pay-grandtotal .val-sm { font-size: 13px; font-weight: 600; color: rgba(28,28,28,.6); font-family: Roboto, monospace; }
     .pay-tooltip { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; margin-left: 5px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--navy); font-size: 9px; vertical-align: -2px; }
 
     /* 관리자 메모 */
@@ -1651,12 +1669,13 @@
     .admin-memo-content p { margin: 0 0 8px; }
     .admin-memo-content p:last-child { margin-bottom: 0; }
     .admin-memo-highlight { font-weight:700; color: var(--navy); }
-    .payment-title-row { display: flex; align-items: center; gap: 12px; }
-    .payment-switch { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
-    .payment-switch__label { min-width: 60px; text-align: center; color: #555; font-size: 13px; font-weight:700; }
+    .payment-title-row { display: flex; align-items: center; justify-content:space-between; gap: 12px; flex-wrap:wrap; }
+    .payment-title-left { display:inline-flex; align-items:center; gap:8px; }
+    .payment-switch { display: inline-flex; align-items: center; gap: 8px; margin-left: 0; }
+    .payment-switch__label { min-width: 72px; text-align: center; color: #555; font-size: 14px; font-weight:700; }
     .payment-switch__btn {
-      width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%;
-      background: #fff; color: var(--navy); font-size: 15px; font-weight:700;
+      width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%;
+      background: #fff; color: var(--navy); font-size: 16px; font-weight:700; cursor:pointer;
       display: inline-flex; align-items: center; justify-content: center;
     }
 
@@ -1705,7 +1724,7 @@
     .pd-cta-fill { flex: 1 1 0; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: #555; font-size: 14px; font-weight: 700; }
 
   
-    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon { background:#E4E9EF !important; color:#1f477d !important; }
     .member-tier-icon i { line-height:1; }
   </style>
   <style>
@@ -1852,7 +1871,7 @@
       font-weight: 700;
     }
   
-    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon { background:#E4E9EF !important; color:#1f477d !important; }
     .member-tier-icon i { line-height:1; }
   </style>
 </head>
@@ -1940,28 +1959,24 @@
         <main class="main pay-detail">
 
       <div class="pd-heading">
-        <button class="pd-back" type="button" aria-label="뒤로" onclick="history.back()"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
         <h2>주문상세정보</h2>
       </div>
 
-      <div class="pd-order-banner">
-        <div>
-          <span class="pd-order-label">주문번호</span>
-          <span class="pd-order-no">a12345678901</span>
-        </div>
-        <span class="pd-status">현지도착</span>
-      </div>
-      <div class="pd-order-date">주문상품 정보 · 주문일 2025-12-08</div>
-
       <section class="pd-sec">
-        <h3 class="pd-title">경매주문상품정보 <a class="pd-sub" href="#">본 입찰내역 조회</a></h3>
+        <h3 class="pd-title">주문상품 정보 <a class="pd-sub" href="#">본 입찰내역 조회</a></h3>
         <article class="pd-item">
-          <div class="pd-item__img"><i class="far fa-image" aria-hidden="true"></i></div>
-          <div class="pd-item__body">
+          <div class="pd-item__top">
             <div class="pd-item__platform"><img src="https://flagcdn.com/w20/jp.png" alt="jp" onerror="this.style.display='none'"> <b>야후경매</b> <span style="color:var(--faint)">물품아이디 : k12345678901</span></div>
             <a href="#" class="pd-item__name">아버지의 날 선물 스위츠 쿠키 피스타치오 샌드 10종 어소트 랑그드샤 초콜릿</a>
-            <div style="font-size:12px;color:var(--faint);line-height:1.5;margin-bottom:6px">父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ ピスタチオサンド 10 アソート ラングドシャ チョコレート</div>
-            <div class="pd-item__meta"><span><b>낙찰가</b>￥ 46,000</span><span><b>주문수량</b>1개</span><span><b>주문옵션</b>OOOOOOO</span></div>
+            <div class="pd-item__origin">父の日 ギフト スイーツ クッキー プレゼント 2024 ピスタチオ ピスタチオサンド 10 アソート ラングドシャ チョコレート</div>
+          </div>
+          <div class="pd-item__content-row">
+            <div class="pd-item__img"><i class="far fa-image" aria-hidden="true"></i></div>
+            <dl class="pd-item__meta-list">
+              <dt>낙찰가</dt><dd>￥ 46,000</dd>
+              <dt>주문수량</dt><dd>1개</dd>
+              <dt>주문옵션</dt><dd>OOOOOOO</dd>
+            </dl>
           </div>
         </article>
         <article class="pd-list" style="margin-top:10px">
@@ -1974,90 +1989,7 @@
       </section>
 
       <section class="pd-sec">
-        <h3 class="pd-title payment-title-row">
-          <span>주문결제정보</span>
-          <span class="payment-switch" data-payment-switch>
-            <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
-            <span class="payment-switch__label" data-payment-switch-label>현지배송</span>
-            <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
-          </span>
-        </h3>
-
-        <div class="pay-rate-note">¥ 환율 9.3원/엔</div>
-
-        <div class="pay-card" data-payment-card="primary">
-          <div class="pay-card__head"><span class="pay-badge first">1차 결제비용</span><span class="pay-card__date">2025-12-08 결제완료</span></div>
-          <ul class="pay-rows">
-            <li class="pay-row"><span class="lbl">물품가</span><span class="val" data-pay-kind="base">4,300엔</span></li>
-            <li class="pay-row"><span class="lbl">대행수수료</span><span class="val" data-pay-kind="base">860엔</span></li>
-            <li class="pay-row is-toggle">
-              <details class="pay-etc" open>
-                <summary>할인/쿠폰 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
-                <div class="pay-etc__inner">
-                  <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
-                  <div class="pay-row"><span class="lbl">마일리지 할인</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
-                </div>
-              </details>
-            </li>
-          </ul>
-          <div class="pay-foot">
-            <div class="pay-total"><span class="lbl">1차 합계</span><span class="val-group"><span class="val" data-pay-total>35,917원</span><span class="calc-sm" data-pay-total-calc>3,862엔</span></span></div>
-          </div>
-        </div>
-
-        <div class="pay-card" data-payment-card="secondary" data-payment-variant="일본내배송">
-          <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><span class="pay-card__date">2025-12-14 결제완료</span></div>
-          <ul class="pay-rows">
-            <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
-            <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
-            <li class="pay-row is-toggle">
-              <details class="pay-etc" open>
-                <summary>추가 비용 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
-                <div class="pay-etc__inner">
-                  <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
-                  <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
-                </div>
-              </details>
-            </li>
-          </ul>
-          <div class="pay-foot">
-            <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>65,100원</span><span class="calc-sm" data-pay-total-calc>7,000엔</span></span></div>
-          </div>
-        </div>
-
-        <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
-          <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><span class="pay-card__date">2025-12-14 결제완료</span></div>
-          <ul class="pay-rows">
-            <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
-            <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
-            <li class="pay-row"><span class="lbl">국제운송료<span class="pay-tooltip" title="무게 2.5kg · 국제운임 2,600엔"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span></span><span class="val" data-pay-kind="base">2,600엔</span></li>
-            <li class="pay-row is-toggle">
-              <details class="pay-etc" open>
-                <summary>추가 비용 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
-                <div class="pay-etc__inner">
-                  <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
-                  <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
-                  <div class="pay-row"><span class="lbl">사진 촬영 서비스</span><span class="val fee" data-pay-kind="extra">+ 300엔</span></div>
-                </div>
-              </details>
-            </li>
-          </ul>
-          <div class="pay-foot">
-            <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>64,170원</span><span class="calc-sm" data-pay-total-calc>6,900엔</span></span></div>
-          </div>
-        </div>
-
-        <div class="pay-grandtotal">
-          <span class="lbl">총 결제금액 (1차 + 2차)</span>
-          <span class="val-group">
-            <span class="val" data-pay-grand-total>101,017원</span>
-            <span class="val-sm" data-pay-grand-yen>10,862엔</span>
-          </span>
-        </div>
-      </section>
-
-      <section class="pd-sec">
-        <h3 class="pd-title">주문배송정보 <a class="pd-sub" href="#">인보이스 출력</a></h3>
+        <h3 class="pd-title">주문배송정보</h3>
         <article class="pd-list">
           <div class="pd-row"><span class="k">수취인명</span><span class="v">홍길동</span></div>
           <div class="pd-row"><span class="k">개인통관고유부호<br>(사업자번호)</span><span class="v mono">P932150008388</span></div>
@@ -2074,7 +2006,7 @@
 
       <section class="pd-sec">
         <h3 class="pd-title">묶음배송 구성 상품 <span style="color:var(--brand);font-size:13px;font-weight:700">10건</span> <a class="pd-sub" href="mobile_bundle_shipping_management_2.html">묶음배송관리</a></h3>
-        <article class="pd-list">
+        <article class="pd-list collapsible-list is-collapsed" data-collapsible="bundle">
           <div class="pd-bundle">
             <div class="pd-bundle__img"><i class="far fa-image" aria-hidden="true"></i></div>
             <div class="pd-bundle__body">
@@ -2156,11 +2088,102 @@
             <span class="pd-tag done">현지도착</span>
           </div>
         </article>
+        <button class="collapse-toggle" type="button" data-collapse-toggle="bundle" aria-expanded="false">전체보기</button>
+      </section>
+
+      <section class="pd-sec">
+        <h3 class="pd-title payment-title-row">
+          <span class="payment-title-left">
+            <span>주문결제정보</span>
+            <span class="payment-switch" data-payment-switch>
+              <button class="payment-switch__btn" type="button" data-payment-switch-dir="-1" aria-label="이전 2차 결제 카드">&lt;</button>
+              <span class="payment-switch__label" data-payment-switch-label>현지배송</span>
+              <button class="payment-switch__btn" type="button" data-payment-switch-dir="1" aria-label="다음 2차 결제 카드">&gt;</button>
+            </span>
+          </span>
+          <span class="pay-rate-note">¥ 환율 9.3원/엔</span>
+        </h3>
+
+        <div class="pay-2col">
+          <div class="pay-card" data-payment-card="primary">
+            <div class="pay-card__head"><span class="pay-badge first">1차 결제비용</span><button class="pay-card__date pay-card__receipt" type="button">2025-12-08 결제완료</button></div>
+            <ul class="pay-rows">
+              <li class="pay-row"><span class="lbl">물품가</span><span class="val" data-pay-kind="base">4,300엔</span></li>
+              <li class="pay-row"><span class="lbl">대행수수료</span><span class="val" data-pay-kind="base">860엔</span></li>
+              <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
+              <li class="pay-row is-toggle">
+                <details class="pay-etc" open>
+                  <summary>할인/쿠폰 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
+                  <div class="pay-etc__inner">
+                    <div class="pay-row"><span class="lbl">쿠폰 할인</span><span class="val discount" data-pay-kind="discount">- 1,000엔</span></div>
+                    <div class="pay-row"><span class="lbl">마일리지 할인</span><span class="val discount" data-pay-kind="discount">- 298엔</span></div>
+                  </div>
+                </details>
+              </li>
+            </ul>
+            <div class="pay-foot">
+              <div class="pay-total"><span class="lbl">1차 합계</span><span class="val-group"><span class="val" data-pay-total>35,927원</span><span class="calc-sm" data-pay-total-calc>3,862엔</span></span></div>
+            </div>
+          </div>
+
+          <div class="pay-secondary-stack" data-payment-secondary-stack>
+            <div class="pay-card" data-payment-card="secondary" data-payment-variant="일본내배송">
+              <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><button class="pay-card__date pay-card__receipt" type="button">2025-12-14 결제완료</button></div>
+              <ul class="pay-rows">
+                <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
+                <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">2,500엔</span></li>
+                <li class="pay-row pay-row--spacer" aria-hidden="true"><span class="lbl">&nbsp;</span><span class="val">&nbsp;</span></li>
+                <li class="pay-row is-toggle">
+                  <details class="pay-etc" open>
+                    <summary>추가 비용 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <div class="pay-etc__inner">
+                      <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 1,500엔</span></div>
+                      <div class="pay-row"><span class="lbl">일본내배송 수수료</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                    </div>
+                  </details>
+                </li>
+              </ul>
+              <div class="pay-foot">
+                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>63,221원</span><span class="calc-sm" data-pay-total-calc>6,798엔</span></span></div>
+              </div>
+            </div>
+
+            <div class="pay-card" data-payment-card="secondary" data-payment-variant="국제배송" hidden>
+              <div class="pay-card__head"><span class="pay-badge second">2차 결제비용</span><button class="pay-card__date pay-card__receipt" type="button">2025-12-14 결제완료</button></div>
+              <ul class="pay-rows">
+                <li class="pay-row"><span class="lbl">현지세금</span><span class="val muted" data-pay-kind="base">—</span></li>
+                <li class="pay-row"><span class="lbl">현지운송료</span><span class="val" data-pay-kind="base">무료</span></li>
+                <li class="pay-row"><span class="lbl">국제운송료<span class="pay-tooltip" title="무게 2.5kg · 국제운임 2,600엔"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span></span><span class="val" data-pay-kind="base">2,600엔</span></li>
+                <li class="pay-row is-toggle">
+                  <details class="pay-etc" open>
+                    <summary>추가 비용 <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></summary>
+                    <div class="pay-etc__inner">
+                      <div class="pay-row"><span class="lbl">안심케어플러스</span><span class="val fee" data-pay-kind="extra">+ 1,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">튼튼 포장비</span><span class="val fee" data-pay-kind="extra">+ 3,000엔</span></div>
+                      <div class="pay-row"><span class="lbl">사진 촬영 서비스</span><span class="val fee" data-pay-kind="extra">+ 300엔</span></div>
+                    </div>
+                  </details>
+                </li>
+              </ul>
+              <div class="pay-foot">
+                <div class="pay-total"><span class="lbl">2차 합계</span><span class="val-group"><span class="val" data-pay-total>100,421원</span><span class="calc-sm" data-pay-total-calc>10,798엔</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pay-grandtotal">
+          <span class="pay-grandtotal__label"><span class="lbl">총 결제금액 (1차 + 2차)</span></span>
+          <span class="val-group">
+            <span class="val" data-pay-grand-total>99,138원</span>
+            <span class="val-sm" data-pay-grand-yen>10,660엔</span>
+          </span>
+        </div>
       </section>
 
       <section class="pd-sec" id="admin-memo">
         <h3 class="pd-title">관리자 메모</h3>
-        <article class="pd-list">
+        <article class="pd-list memo-collapse admin-memo-collapse is-collapsed" data-collapsible="admin-memo">
           <div class="admin-memo-day">
             <div class="admin-memo-date">2026-06-30</div>
             <div class="admin-memo-entry">
@@ -2205,6 +2228,7 @@
             </div>
           </div>
         </article>
+        <button class="collapse-toggle" type="button" data-collapse-toggle="admin-memo" aria-expanded="false">전체보기</button>
       </section>
 
       <section class="pd-sec">
@@ -2214,7 +2238,7 @@
             <textarea placeholder="메모 또는 문의 내용 입력 (최대 500자)" maxlength="500"></textarea>
             <button type="button" class="pd-memo-btn">등록</button>
           </div>
-          <div class="pd-thread thread">
+          <div class="pd-thread thread memo-collapse is-collapsed" data-collapsible="user-memo">
             <div class="msg agent">
               <div class="msg-head">
                 <span class="msg-label">답변</span>
@@ -2286,14 +2310,15 @@
               </div>
             </div>
           </div>
+          <button class="collapse-toggle" type="button" data-collapse-toggle="user-memo" aria-expanded="false">전체보기</button>
         </article>
       </section>
 
     </main>
 
     <div class="pd-fixed-cta">
-      <button class="pd-cta-line" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> 인쇄하기</button>
-      <a class="pd-cta-fill" href="mobile_mypage.html"><i class="fa-solid fa-list" aria-hidden="true"></i> 주문 목록</a>
+      <button class="pd-cta-line" type="button" onclick="history.back()"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i> 뒤로가기</button>
+      <a class="pd-cta-fill" href="mobile_mypage.html"><i class="fa-solid fa-list" aria-hidden="true"></i> 주문목록</a>
     </div>
   </div><!-- /.stage -->
 
@@ -2579,6 +2604,17 @@
 
     render();
   }
+
+  document.querySelectorAll("[data-collapse-toggle]").forEach(button => {
+    const target = document.querySelector(`[data-collapsible="${button.dataset.collapseToggle}"]`);
+    if (!target) return;
+
+    button.addEventListener("click", () => {
+      const isOpen = target.classList.toggle("is-collapsed") === false;
+      button.textContent = isOpen ? "접기" : "전체보기";
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
 
   updatePaymentTotals();
   setupPaymentSwitch();

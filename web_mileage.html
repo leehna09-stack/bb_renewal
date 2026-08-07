@@ -346,7 +346,7 @@
       place-items: center;
       color: #838793;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .tooltip-dot {
@@ -459,7 +459,7 @@
     .nav-list a:hover,
     .nav-list a.active {
       color: var(--rose);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .drawer-section {
@@ -1070,14 +1070,14 @@
       margin: 0 0 4px;
       color: #33363d;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .stamp-head p {
       margin: 0;
       color: #4b515d;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .stamp-badge {
@@ -1090,7 +1090,7 @@
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .stamp-grid {
@@ -1125,35 +1125,6 @@
       display: grid;
     }
 
-    .stamp-circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #9ba0ae;
-      background: #f4eeee;
-      border: 1px solid #efe4e1;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .stamp.active .stamp-circle {
-      background: var(--green);
-      border-color: var(--green);
-      color: #fff;
-      font-size: 16px;
-    }
-
-    .stamp.special .stamp-circle {
-      background: #fff;
-      border: 2px dashed var(--rose);
-      color: var(--rose);
-      font-size: 10px;
-      font-weight: 900;
-      line-height: 1.1;
-    }
-
     .roulette-button {
       width: 58px;
       height: 58px;
@@ -1183,7 +1154,7 @@
       justify-items: center;
       gap: 1px;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       letter-spacing: 0;
     }
@@ -1247,7 +1218,7 @@
     .roulette-modal h3 {
       margin: 0 0 4px;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 700;
       color: #3a3226;
     }
 
@@ -1306,7 +1277,7 @@
     .roulette-wheel-labels span b {
       display: block;
       font-size: 9.5px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.2;
       color: #3a3226;
       text-align: center;
@@ -1335,7 +1306,7 @@
       background: #3a3226;
       color: #fff;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -1347,7 +1318,7 @@
     .roulette-result {
       margin: 14px 0 0;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 700;
       color: #d94f4f;
     }
 
@@ -1366,6 +1337,190 @@
       display: none;
     }
 
+    /* ===== 혜택 스탬프 v2 ===== */
+    .stamp { position: relative; }
+
+    .stamp-circle {
+      position: relative;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: grid; place-items: center; align-content: center;
+      gap: 1px;
+      background: #f6f2f2;
+      border: 1.5px solid #ece2e2;
+      color: #b6bac4;
+      font-size: 14px; font-weight: 700;
+      transition: background .18s, border-color .18s, color .18s, box-shadow .18s;
+    }
+
+    /* 1차 결제 완료 */
+    .stamp.paid .stamp-circle {
+      background: #8f95a3;
+      border-color: #8f95a3;
+      color: #fff;
+    }
+    .stamp-date {
+      font-family: Roboto, "Noto Sans KR", sans-serif;
+      font-size: 13px; font-weight: 500; letter-spacing: -.4px; line-height: 1;
+    }
+
+    /* 보상 칸 */
+    .stamp.has-reward .stamp-circle {
+      width: 58px; height: 58px;
+      border-width: 2px;
+      border-style: dashed;
+    }
+    .rw-amt {
+      font-family: Roboto, "Noto Sans KR", sans-serif;
+      font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: -.6px;
+    }
+    .rw-amt small { font-size: 9px; font-weight: 500; margin-left: 1px; letter-spacing: 0; }
+    .rw-kind { font-size: 9px; font-weight: 500; line-height: 1; margin-top: 2px; letter-spacing: -.2px; }
+    .rw-ico { font-size: 10px; line-height: 1; margin-bottom: 2px; opacity: .9; }
+    .rw-action,
+    .rw-claimed-text,
+    .rw-roulette-text {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.2px;
+      text-align: center;
+    }
+
+    /* 보상 - 미달성 */
+    .stamp.rw-locked.reward-coupon .stamp-circle { border-color: #f0d3da; color: #d7a6b3; background: #fffafb; }
+    .stamp.rw-locked.reward-roulette .stamp-circle { border-color: #f0e0c2; color: #ceb582; background: #fffdf7; }
+
+    /* 보상 - 수령 가능 */
+    .stamp.rw-ready .stamp-circle { border-style: solid; color: #fff; cursor: pointer; }
+    .stamp.rw-ready.reward-coupon .stamp-circle {
+      background: var(--rose); border-color: var(--rose);
+      box-shadow: 0 0 0 4px rgba(232,56,90,.16);
+    }
+    .stamp.rw-ready.reward-roulette .stamp-circle {
+      background: var(--yellow); border-color: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(245,166,35,.20);
+    }
+    .stamp.rw-ready .stamp-circle::after {
+      content: "";
+      position: absolute; inset: -2px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      opacity: .5;
+      animation: reward-pulse 1.6s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes reward-pulse {
+      0%   { transform: scale(1); opacity: .55; }
+      70%  { transform: scale(1.28); opacity: 0; }
+      100% { transform: scale(1.28); opacity: 0; }
+    }
+
+    /* 보상 - 수령 완료 */
+    .stamp.rw-claimed .stamp-circle {
+      border-style: solid;
+      background: var(--green); border-color: var(--green); color: #fff;
+    }
+    /* 보상 - 소멸 */
+    .stamp.rw-expired .stamp-circle {
+      border-style: solid; background: #eceaea; border-color: #ddd8d8; color: #aaa5a5;
+    }
+    .stamp.rw-expired .rw-amt { text-decoration: line-through; }
+
+    /* 하단 라벨 */
+    .reward-label {
+      margin-top: 6px;
+      font-size: 9.5px; font-weight: 700; line-height: 1.1;
+      letter-spacing: -.3px; white-space: nowrap;
+      color: var(--faint);
+    }
+    .reward-label.type-coupon { color: var(--rose); }
+    .reward-label.type-roulette { color: #c9840d; }
+    .reward-label.is-claimed { color: var(--green); }
+    .reward-label.is-empty { visibility: hidden; }
+    .stamp:not(.has-reward) .reward-label { visibility: hidden; }
+
+    .stamp-grid { row-gap: 16px; }
+
+    /* 헤더 요약 */
+    .stamp-summary-hi { color: #c9840d; }
+    .stamp-summary-sep { color: var(--faint); margin: 0 4px; }
+
+    /* ===== 보상 모달 공통 ===== */
+    .reward-modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; background: rgba(25, 20, 18, .55);
+    }
+    .reward-modal-overlay[hidden] { display: none; }
+    .reward-modal {
+      position: relative; width: 100%; max-width: 330px;
+      padding: 26px 22px 22px; border-radius: 18px;
+      background: #fff; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);
+      animation: reward-pop .22s ease-out;
+    }
+    @keyframes reward-pop {
+      from { transform: translateY(10px) scale(.96); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+    .reward-modal-close {
+      position: absolute; top: 10px; right: 12px;
+      width: 28px; height: 28px; border: 0; background: none;
+      color: #a8a29c; font-size: 22px; line-height: 1; cursor: pointer;
+    }
+    .reward-modal h3 {
+      margin: 0 0 4px; font-size: 17px; font-weight: 700; color: var(--text);
+    }
+    .reward-modal-desc {
+      margin: 0 0 18px; font-size: 12px; font-weight: 700; color: var(--muted);
+    }
+
+    /* 쿠폰 카드 */
+    .coupon-card {
+      position: relative;
+      margin: 0 auto 16px; padding: 20px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fff2f5 0%, #ffe7ee 100%);
+      border: 1.5px dashed var(--rose);
+    }
+    .coupon-card .cc-kind {
+      display: inline-block; margin-bottom: 8px; padding: 3px 10px;
+      border-radius: 999px; background: var(--rose); color: #fff;
+      font-size: 10.5px; font-weight: 700;
+    }
+    .coupon-card .cc-amount {
+      font-family: Roboto, "Noto Sans KR", sans-serif;
+      font-size: 34px; font-weight: 700; color: var(--rose); line-height: 1;
+    }
+    .coupon-card .cc-amount small { font-size: 16px; font-weight: 700; margin-left: 2px; }
+    .coupon-card .cc-cond {
+      margin-top: 8px; font-size: 11px; font-weight: 700; color: #8a6672;
+    }
+    .coupon-card::before, .coupon-card::after {
+      content: ""; position: absolute; top: 50%; width: 14px; height: 14px;
+      margin-top: -7px; border-radius: 50%; background: #fff;
+    }
+    .coupon-card::before { left: -8px; }
+    .coupon-card::after { right: -8px; }
+
+    .reward-meta {
+      margin: 0 0 18px; font-size: 11.5px; font-weight: 700; color: var(--muted); line-height: 1.6;
+    }
+    .reward-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .reward-btn {
+      height: 44px; border-radius: 10px; font-size: 13px; font-weight: 700;
+      font-family: inherit; cursor: pointer; border: 1px solid var(--line);
+    }
+    .reward-btn.ghost { background: #fff; color: var(--muted); }
+    .reward-btn.primary { background: var(--rose); border-color: var(--rose); color: #fff; }
+    .reward-btn.primary:hover { background: var(--rose-h); border-color: var(--rose-h); }
+
+    @media (max-width: 767px) {
+      .stamp-grid { column-gap: 10px; padding: 11px 6px 15px; }
+      .reward-label { font-size: 8.5px; }
+    }
+
     .fold-bar {
       height: 36px;
       border: 1px dashed var(--line);
@@ -1378,7 +1533,7 @@
       gap: 7px;
       color: #9ba0ae;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .fold-bar::before {
@@ -1409,11 +1564,16 @@
       background: #fff;
     }
 
+    .history-title-wrap {
+      display: block;
+      min-width: 0;
+    }
+
     .history-head h2 {
       margin: 0;
       color: #2d3139;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .history-tabs {
@@ -1433,7 +1593,7 @@
       align-items: center;
       justify-content: center;
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       white-space: nowrap;
     }
@@ -1464,7 +1624,7 @@
     .history-table-head,
     .history-row {
       display: grid;
-      grid-template-columns: 108px 72px minmax(0, 1fr) 132px;
+      grid-template-columns: 130px 150px minmax(0, 1fr) 130px;
       align-items: center;
       column-gap: 0;
     }
@@ -1476,13 +1636,14 @@
       border-bottom: 1px solid var(--line-soft);
       background: var(--warm);
       color: #9da2af;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
-      text-align: left;
+      text-align: center;
     }
 
-    .history-table-head div:last-child {
-      text-align: right;
+    .history-table-head div:first-child,
+    .history-table-head div:nth-child(3) {
+      text-align: center;
     }
 
     .history-row {
@@ -1500,13 +1661,13 @@
       color: #9da2af;
       font-size: 12px;
       font-weight: 500;
-      text-align: left;
+      text-align: center;
     }
 
     .history-type {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       min-width: 0;
     }
 
@@ -1527,7 +1688,7 @@
       justify-content: center;
       background: transparent;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1;
     }
 
@@ -1547,7 +1708,7 @@
       display: block;
       color: #1f232b;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.25;
     }
 
@@ -1560,10 +1721,10 @@
     }
 
     .history-amount {
-      text-align: right;
+      text-align: center;
       color: var(--green);
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 700;
       white-space: nowrap;
     }
 
@@ -1590,6 +1751,52 @@
     .history-row[data-detail]:focus-visible {
       outline: 2px solid rgba(232, 56, 90, .38);
       outline-offset: -2px;
+    }
+
+    .coupon-table .history-row {
+      cursor: pointer;
+    }
+    .coupon-table .history-row:hover {
+      background: #fffafb;
+    }
+    .coupon-table .history-row:focus-visible {
+      outline: 2px solid rgba(232, 56, 90, .38);
+      outline-offset: -2px;
+    }
+
+    .coupon-table .history-type {
+      color: #111;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .coupon-table .history-table-head,
+    .coupon-table .history-row {
+      grid-template-columns: 130px 160px minmax(0, 1fr) 130px;
+    }
+
+    .coupon-table .coupon-discount,
+    .coupon-table .coupon-period {
+      text-align: center;
+    }
+
+    .coupon-discount {
+      color: #111;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .coupon-period {
+      color: #4b5260;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    #coupon-history {
+      scroll-margin-top: 80px;
     }
 
     body.mileage-popup-open {
@@ -1999,7 +2206,7 @@
 
       <main class="main">
         <div class="page-title">
-          <h1>마일리지</h1>
+          <h1>마일리지 / 쿠폰</h1>
           <p>적립, 사용, 등급 달성 현황을 한 곳에서 확인하세요.</p>
         </div>
 
@@ -2016,9 +2223,9 @@
                 </span>
                 <strong>25,594<small>원</small></strong>
               </div>
-              <div class="balance-box" role="button" tabindex="0" data-summary-detail="monthly-use" aria-label="이번달 사용 마일리지 상세 보기">
-                <span>이번달 사용 마일리지</span>
-                <strong>9,800<small>원</small></strong>
+              <div class="balance-box" role="button" tabindex="0" data-scroll-target="#coupon-history" aria-label="쿠폰 내역으로 이동">
+                <span>보유중인 쿠폰</span>
+                <strong>10<small>장</small></strong>
               </div>
               <div class="balance-box" role="button" tabindex="0" data-tooltip-position="bottom" data-summary-tooltip="• 적립 마일리지는 적립일로부터 3개월 후 소멸됩니다.&#10;• 유효기간이 빠른 마일리지부터 사용됩니다.&#10;• 월간 마일리지는 지급월 말일 23:59:59에 소멸됩니다." aria-label="다음달 소멸 예정 마일리지 안내 보기">
                 <span>
@@ -2034,48 +2241,21 @@
           <div class="stamp-head">
             <div>
               <h2>혜택 스탬프</h2>
-              <p>이번 달 구매 4건 · 보너스 룰렛 1회 획득</p>
+              <p id="stampSummary">이번 달 구매 0건</p>
             </div>
             <span class="stamp-badge">PREMIUM</span>
           </div>
           <div class="stamp-scroll">
-            <div class="stamp-grid">
-              <div class="stamp active"><div class="stamp-circle">1</div></div>
-              <div class="stamp active"><div class="stamp-circle">2</div></div>
-              <div class="stamp reward">
-                <button class="roulette-button" type="button" data-reward="3" aria-label="3건 달성 보너스"><strong>BONUS</strong></button>
-              </div>
-              <div class="stamp active"><div class="stamp-circle">4</div></div>
-              <div class="stamp"><div class="stamp-circle">5</div></div>
-              <div class="stamp"><div class="stamp-circle">6</div></div>
-              <div class="stamp"><div class="stamp-circle">7</div></div>
-              <div class="stamp reward">
-                <button class="roulette-button" type="button" data-reward="8" aria-label="8건 달성 보너스"><strong>BONUS</strong></button>
-              </div>
-              <div class="stamp"><div class="stamp-circle">9</div></div>
-              <div class="stamp"><div class="stamp-circle">10</div></div>
-              <div class="stamp"><div class="stamp-circle">11</div></div>
-              <div class="stamp"><div class="stamp-circle">12</div></div>
-              <div class="stamp"><div class="stamp-circle">13</div></div>
-              <div class="stamp"><div class="stamp-circle">14</div></div>
-              <div class="stamp reward">
-                <button class="roulette-button" type="button" data-reward="15" aria-label="15건 달성 보너스"><strong>BONUS</strong></button>
-              </div>
-              <div class="stamp"><div class="stamp-circle">16</div></div>
-              <div class="stamp"><div class="stamp-circle">17</div></div>
-              <div class="stamp"><div class="stamp-circle">18</div></div>
-              <div class="stamp"><div class="stamp-circle">19</div></div>
-              <div class="stamp reward">
-                <button class="roulette-button" type="button" data-reward="20" aria-label="20건 달성 보너스"><strong>BONUS</strong></button>
-              </div>
-            </div>
+            <div class="stamp-grid" id="stampGrid"></div>
           </div>
           <button class="fold-bar stamp-toggle" type="button" aria-expanded="false">펼쳐보기</button>
         </section>
 
         <section class="panel history-panel" aria-labelledby="history-title">
           <div class="history-head">
-            <h2 id="history-title">마일리지 내역</h2>
+            <div class="history-title-wrap">
+              <h2 id="history-title">마일리지 내역</h2>
+            </div>
             <div class="history-tabs" role="tablist" aria-label="마일리지 내역 필터">
               <button class="history-tab active" type="button" role="tab" aria-selected="true" data-filter="all">전체</button>
               <button class="history-tab" type="button" role="tab" aria-selected="false" data-filter="earn">적립</button>
@@ -2084,7 +2264,7 @@
             </div>
           </div>
 
-          <div class="history-table" role="table" aria-label="마일리지 내역">
+          <div class="history-table mileage-table" role="table" aria-label="마일리지 내역">
             <div class="history-table-head" role="row">
               <div role="columnheader">일시</div>
               <div role="columnheader">구분</div>
@@ -2144,6 +2324,93 @@
                 <strong class="history-kind">유효기간 만료</strong>
               </div>
               <div class="history-amount expire" role="cell">-20,000원</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel history-panel" id="coupon-history" aria-labelledby="coupon-history-title">
+          <div class="history-head">
+            <div class="history-title-wrap">
+              <h2 id="coupon-history-title">쿠폰 내역</h2>
+            </div>
+          </div>
+
+          <div class="history-table coupon-table" role="table" aria-label="쿠폰 내역">
+            <div class="history-table-head" role="row">
+              <div role="columnheader">일시</div>
+              <div role="columnheader">사용범위</div>
+              <div role="columnheader">쿠폰명</div>
+              <div role="columnheader">할인금액</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-08-31" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-07</div>
+              <div class="history-type" role="cell">비바항공</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">8월 여름의 달 비바항공 국제 운송료 할인 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">1,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-06</div>
+              <div class="history-type" role="cell">비바항공, 선편 특송</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">월말 배송비 지원 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">3,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-05</div>
+              <div class="history-type" role="cell">비바항공</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">프리미엄 회원 감사 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">10,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-08-31" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-04</div>
+              <div class="history-type" role="cell">비바항공, 선편 특송</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">복귀유저 감사  쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">5,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-03</div>
+              <div class="history-type" role="cell">비바항공</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">항공운송 프로모션 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">3,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-02</div>
+              <div class="history-type" role="cell">비바항공, 선편 특송</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">해외배송 정기 혜택 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">1,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-08-31" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-08-01</div>
+              <div class="history-type" role="cell">비바항공</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">8월 웰컴 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">5,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-07-31</div>
+              <div class="history-type" role="cell">비바항공, 선편 특송</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">광복절 스페셜 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">10,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-08-31" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-07-28</div>
+              <div class="history-type" role="cell">비바항공</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">여름 배송비 할인 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">5,000원</div>
+            </div>
+
+            <div class="history-row" role="row" tabindex="0" data-coupon-end="2026-09-30" aria-label="쿠폰 상세 보기">
+              <div class="history-date" role="cell">2026-07-25</div>
+              <div class="history-type" role="cell">비바항공, 선편 특송</div>
+              <div class="history-desc" role="cell"><strong class="history-kind">야후옥션 첫 입찰 쿠폰</strong></div>
+              <div class="coupon-discount" role="cell">3,000원</div>
             </div>
           </div>
         </section>
@@ -2312,6 +2579,27 @@
       </div>
     </div>
 
+    <div class="reward-modal-overlay" id="couponModal" hidden>
+      <div class="reward-modal" role="dialog" aria-modal="true" aria-labelledby="couponModalTitle">
+        <button class="reward-modal-close" type="button" data-coupon-close aria-label="닫기">&times;</button>
+        <h3 id="couponModalTitle">쿠폰이 지급되었습니다</h3>
+        <p class="reward-modal-desc" id="couponModalDesc">이번달 거래 3건 달성 보상</p>
+        <div class="coupon-card">
+          <span class="cc-kind">비바 항공 운송료 할인 쿠폰</span>
+          <div class="cc-amount" id="couponAmount">1,000<small>원</small></div>
+          <p class="cc-cond">등급별 국제 운송료 할인 혜택과 중복 사용 가능합니다.</p>
+        </div>
+        <p class="reward-meta">
+          유효기간 <b id="couponExpiry">2026.10.06</b>까지 (지급일로부터 60일)<br>
+          쿠폰함 &gt; 사용 가능 쿠폰에서 확인하실 수 있습니다.
+        </p>
+        <div class="reward-actions">
+          <button class="reward-btn ghost" type="button" data-coupon-close>닫기</button>
+          <button class="reward-btn primary" type="button" id="couponGoBtn">쿠폰 내역 보기</button>
+        </div>
+      </div>
+    </div>
+
     <div class="roulette-modal-overlay" hidden>
       <div class="roulette-modal" role="dialog" aria-modal="true" aria-labelledby="roulette-modal-title">
         <button class="roulette-modal-close" type="button" aria-label="닫기">×</button>
@@ -2321,18 +2609,22 @@
           <div class="roulette-pointer"></div>
           <div class="roulette-wheel">
             <div class="roulette-wheel-labels">
-              <span style="--i:0"><b>꽝</b></span>
-              <span style="--i:1"><b>항공운임쿠폰<br>2천원</b></span>
-              <span style="--i:2"><b>항공운임쿠폰<br>3천원</b></span>
-              <span style="--i:3"><b>마일리지<br>5천원</b></span>
-              <span style="--i:4"><b>메가<br>더블커피</b></span>
+              <span style="--i:0"><b>항공운임<br>1,000원</b></span>
+              <span style="--i:1"><b>항공운임<br>2,000원</b></span>
+              <span style="--i:2"><b>항공운임<br>3,000원</b></span>
+              <span style="--i:3"><b>항공운임<br>4,000원</b></span>
+              <span style="--i:4"><b>항공운임<br>5,000원</b></span>
             </div>
             <div class="roulette-wheel-center"></div>
           </div>
         </div>
         <button class="roulette-start-btn" type="button">START</button>
         <p class="roulette-result" hidden></p>
-        <p class="roulette-note" hidden>익월 첫째 주에 순차 지급됩니다.</p>
+        <p class="roulette-note" hidden>쿠폰함에서 바로 사용하실 수 있습니다.</p>
+        <div class="reward-actions" id="rouletteActions" hidden style="margin-top:14px">
+          <button class="reward-btn ghost" type="button" id="rouletteCloseBtn">닫기</button>
+          <button class="reward-btn primary" type="button" id="rouletteGoBtn">쿠폰 내역 보기</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2340,7 +2632,6 @@
   <script>
     const stampPanel = document.querySelector(".stamp-panel");
     const stampToggle = document.querySelector(".stamp-toggle");
-    const rouletteButtons = document.querySelectorAll(".roulette-button");
 
     if (stampPanel && stampToggle) {
       stampToggle.addEventListener("click", () => {
@@ -2350,76 +2641,263 @@
       });
     }
 
-    rouletteButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        button.classList.remove("is-spinning");
-        void button.offsetWidth;
-        button.classList.add("is-spinning");
-        openRouletteModal();
+    /* ===== 혜택 스탬프 v2 ===== */
+    const STAMP_TOTAL = 20;
+    const REWARD_MAP = {
+      3:  { type: "coupon",   amount: 1000 },
+      5:  { type: "roulette" },
+      8:  { type: "coupon",   amount: 2000 },
+      10: { type: "roulette" },
+      13: { type: "coupon",   amount: 3000 },
+      15: { type: "roulette" },
+      18: { type: "coupon",   amount: 5000 },
+      20: { type: "roulette" }
+    };
+    const ROULETTE_PRIZES = [1000, 2000, 3000, 4000, 5000];
+
+    /* 데모 상태 — 실제 연동 시 서버 값으로 대체 */
+    const stampState = {
+      count: 12,
+      /* 각 스탬프의 1차 결제 완료일 (index 0 = 1번 스탬프) */
+      paidDates: ["2026-08-01","2026-08-01","2026-08-02","2026-08-03","2026-08-05","2026-08-06","2026-08-07","2026-08-08","2026-08-09","2026-08-10","2026-08-11","2026-08-12"],
+      claimed: { 3: 1000, 5: 3000 },           // { 3: 1000 } 수령 완료 금액
+      expired: {}            // { 3: true } 전월 미수령 소멸
+    };
+
+    const stampGrid = document.getElementById("stampGrid");
+    const stampSummary = document.getElementById("stampSummary");
+
+    const won = (n) => n.toLocaleString("ko-KR");
+    const fmtDate = (iso) => {
+      const d = new Date(iso);
+      return (d.getMonth() + 1) + "." + d.getDate();
+    };
+
+    function rewardStatus(step) {
+      if (stampState.expired[step]) return "expired";
+      if (stampState.claimed[step] !== undefined) return "claimed";
+      if (stampState.count >= step) return "ready";
+      return "locked";
+    }
+
+    function rewardCircleHTML(step, reward, st) {
+      if (st === "claimed") {
+        return '<span class="rw-claimed-text">수령<br>완료</span>';
+      }
+      if (reward.type === "coupon" && st !== "expired") {
+        return '<span class="rw-action">혜택<br>받기</span>';
+      }
+      if (reward.type === "roulette" && st !== "claimed" && st !== "expired") {
+        return '<span class="rw-roulette-text">룰렛</span>';
+      }
+      const amount = st === "claimed" || st === "expired"
+        ? stampState.claimed[step]
+        : (reward.type === "coupon" ? reward.amount : null);
+      const ico = reward.type === "coupon"
+        ? '<i class="fa-solid fa-ticket rw-ico"></i>'
+        : '<i class="fa-solid fa-dharmachakra rw-ico"></i>';
+      const amtText = amount != null
+        ? won(amount) + '<small>원</small>'
+        : '랜덤';
+      return ico + '<span class="rw-amt">' + amtText + '</span><span class="rw-kind">쿠폰</span>';
+    }
+
+    function renderStamps() {
+      if (!stampGrid) return;
+      stampGrid.innerHTML = "";
+      for (let n = 1; n <= STAMP_TOTAL; n++) {
+        const reward = REWARD_MAP[n];
+        const paid = stampState.count >= n;
+        const cell = document.createElement("div");
+        cell.className = "stamp";
+
+        const circle = document.createElement("div");
+        circle.className = "stamp-circle";
+
+        let label = "", labelCls = "reward-label";
+
+        if (reward) {
+          const st = rewardStatus(n);
+          cell.classList.add("has-reward",
+            reward.type === "coupon" ? "reward-coupon" : "reward-roulette",
+            "rw-" + st);
+          circle.innerHTML = rewardCircleHTML(n, reward, st);
+
+          if (st === "ready") {
+            circle.setAttribute("role", "button");
+            circle.setAttribute("tabindex", "0");
+            circle.dataset.step = n;
+            circle.setAttribute("aria-label",
+              n + "건 달성 " + (reward.type === "coupon" ? "쿠폰" : "룰렛") + " 보상 받기");
+            label = "";
+            labelCls += " type-" + reward.type;
+          } else if (st === "claimed") {
+            label = "";
+            labelCls += " is-claimed";
+          } else if (st === "expired") {
+            label = "기간 만료";
+          } else {
+            label = "";
+          }
+        } else if (paid) {
+          cell.classList.add("paid");
+          const iso = stampState.paidDates[n - 1];
+          circle.innerHTML = '<span class="stamp-date">' + (iso ? fmtDate(iso) : n) + '</span>';
+        } else {
+          circle.textContent = n;
+        }
+
+        const labelEl = document.createElement("div");
+        labelEl.className = labelCls;
+        if (!label) labelEl.classList.add("is-empty");
+        labelEl.textContent = label;
+
+        cell.appendChild(circle);
+        cell.appendChild(labelEl);
+        stampGrid.appendChild(cell);
+      }
+      renderSummary();
+    }
+
+    function renderSummary() {
+      if (!stampSummary) return;
+      let claimed = 0, next = null;
+      Object.keys(REWARD_MAP).map(Number).sort((a, b) => a - b).forEach((step) => {
+        const st = rewardStatus(step);
+        if (st === "claimed") claimed++;
+        if (st === "locked" && next === null) next = step;
       });
+      let html = "이번 달 결제 <b>" + stampState.count + "건</b>";
+      if (claimed > 0) {
+        html += '<span class="stamp-summary-sep">·</span><span class="stamp-summary-hi">혜택 ' + claimed + "건 수령</span>";
+      } else if (next !== null) {
+        html += '<span class="stamp-summary-sep">·</span>다음 혜택까지 ' + (next - stampState.count) + "건";
+      } else {
+        html += '<span class="stamp-summary-sep">·</span>이번 달 혜택 전부 획득 🎉';
+      }
+      stampSummary.innerHTML = html;
+    }
+
+    /* ---- 배지 클릭 ---- */
+    function claimReward(step) {
+      const reward = REWARD_MAP[step];
+      if (!reward || rewardStatus(step) !== "ready") return;
+      if (reward.type === "coupon") openCouponModal(step, reward.amount);
+      else openRouletteModal(step);
+    }
+    stampGrid?.addEventListener("click", (e) => {
+      const c = e.target.closest(".stamp.rw-ready .stamp-circle");
+      if (c) claimReward(Number(c.dataset.step));
+    });
+    stampGrid?.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const c = e.target.closest(".stamp.rw-ready .stamp-circle");
+      if (c) { e.preventDefault(); claimReward(Number(c.dataset.step)); }
     });
 
+    /* ---- 확정 쿠폰 모달 ---- */
+    const couponModal = document.getElementById("couponModal");
+    const couponAmountEl = document.getElementById("couponAmount");
+    const couponDescEl = document.getElementById("couponModalDesc");
+    const couponExpiryEl = document.getElementById("couponExpiry");
+
+    function expiryText(days) {
+      const d = new Date();
+      d.setDate(d.getDate() + days);
+      return d.getFullYear() + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0");
+    }
+
+    function openCouponModal(step, amount) {
+      stampState.claimed[step] = amount;      // 확정 지급
+      couponAmountEl.innerHTML = won(amount) + "<small>원</small>";
+      couponDescEl.textContent = "스탬프 " + step + "개 달성 보상";
+      couponExpiryEl.textContent = expiryText(30);
+      couponModal.hidden = false;
+      renderStamps();
+    }
+    function closeCouponModal() { couponModal.hidden = true; }
+    couponModal?.addEventListener("click", (e) => {
+      if (e.target === couponModal || e.target.closest("[data-coupon-close]")) closeCouponModal();
+    });
+    document.getElementById("couponGoBtn")?.addEventListener("click", () => {
+      closeCouponModal();
+      goCouponHistory();
+    });
+
+    function goCouponHistory() {
+      const target = document.getElementById("coupon-history");
+      if (target) { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    }
+
+    /* ---- 룰렛 모달 ---- */
     const rouletteModalOverlay = document.querySelector(".roulette-modal-overlay");
     const rouletteModalClose = document.querySelector(".roulette-modal-close");
     const rouletteWheel = document.querySelector(".roulette-wheel");
     const rouletteStartBtn = document.querySelector(".roulette-start-btn");
     const rouletteResult = document.querySelector(".roulette-result");
     const rouletteNote = document.querySelector(".roulette-note");
-    const roulettePrizes = ["꽝", "항공운임쿠폰 2천원", "항공운임쿠폰 3천원", "마일리지 5천원", "메가 더블커피"];
+    const rouletteActions = document.getElementById("rouletteActions");
+    const rouletteDesc = document.querySelector(".roulette-modal-desc");
     let rouletteRotation = 0;
     let rouletteSpinning = false;
-    let rouletteFinished = false;
+    let rouletteStep = null;
 
-    function openRouletteModal() {
+    function openRouletteModal(step) {
       if (!rouletteModalOverlay) return;
-      rouletteFinished = false;
+      rouletteStep = step;
+      if (rouletteDesc) rouletteDesc.textContent = "스탬프 " + step + "개 달성! START를 눌러 쿠폰을 확인하세요";
       rouletteResult.hidden = true;
       rouletteResult.textContent = "";
       rouletteNote.hidden = true;
+      rouletteActions.hidden = true;
+      rouletteStartBtn.hidden = false;
       rouletteStartBtn.disabled = false;
       rouletteStartBtn.textContent = "START";
       rouletteModalOverlay.hidden = false;
     }
-
     function closeRouletteModal() {
-      if (!rouletteModalOverlay) return;
-      rouletteModalOverlay.hidden = true;
+      if (rouletteModalOverlay) rouletteModalOverlay.hidden = true;
     }
-
     rouletteModalClose?.addEventListener("click", closeRouletteModal);
     rouletteModalOverlay?.addEventListener("click", (event) => {
       if (event.target === rouletteModalOverlay) closeRouletteModal();
     });
+    document.getElementById("rouletteCloseBtn")?.addEventListener("click", closeRouletteModal);
+    document.getElementById("rouletteGoBtn")?.addEventListener("click", () => {
+      closeRouletteModal();
+      goCouponHistory();
+    });
 
     rouletteStartBtn?.addEventListener("click", () => {
-      if (rouletteFinished) {
-        closeRouletteModal();
-        return;
-      }
       if (rouletteSpinning || !rouletteWheel) return;
       rouletteSpinning = true;
       rouletteStartBtn.disabled = true;
       rouletteResult.hidden = true;
       rouletteNote.hidden = true;
 
-      const prizeIndex = Math.floor(Math.random() * roulettePrizes.length);
-      const sliceAngle = 360 / roulettePrizes.length;
+      const prizeIndex = Math.floor(Math.random() * ROULETTE_PRIZES.length);
+      const sliceAngle = 360 / ROULETTE_PRIZES.length;
       const targetCenter = prizeIndex * sliceAngle + sliceAngle / 2;
       const currentMod = ((rouletteRotation % 360) + 360) % 360;
       const delta = ((360 - targetCenter - currentMod) % 360 + 360) % 360;
       rouletteRotation += 360 * 5 + delta;
-      rouletteWheel.style.transform = `rotate(${rouletteRotation}deg)`;
+      rouletteWheel.style.transform = "rotate(" + rouletteRotation + "deg)";
 
       setTimeout(() => {
         rouletteSpinning = false;
-        rouletteFinished = true;
-        rouletteStartBtn.disabled = false;
-        rouletteStartBtn.textContent = "닫기";
+        const amount = ROULETTE_PRIZES[prizeIndex];
+        stampState.claimed[rouletteStep] = amount;   // 확정 지급
+        rouletteStartBtn.hidden = true;
         rouletteResult.hidden = false;
-        rouletteResult.textContent = `🎉 ${roulettePrizes[prizeIndex]} 당첨!`;
-        rouletteNote.hidden = roulettePrizes[prizeIndex] !== "메가 더블커피";
+        rouletteResult.innerHTML = "🎉 항공 운임 쿠폰 <b>" + won(amount) + "원</b> 당첨!";
+        rouletteNote.hidden = false;
+        rouletteNote.textContent = "유효기간 " + expiryText(30) + "까지 · 쿠폰함에서 확인하세요";
+        rouletteActions.hidden = false;
+        renderStamps();
       }, 4000);
     });
+
+    renderStamps();
 
     document.querySelectorAll(".user-menu-trigger").forEach((triggerButton) => {
       triggerButton.addEventListener("click", () => {
@@ -2506,8 +2984,9 @@
     drawerCloseBtn?.addEventListener("click", closeDrawer);
 
     const historyTabs = document.querySelectorAll(".history-tab");
-    const historyRows = document.querySelectorAll(".history-row");
-    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip], .balance-box[data-summary-detail]");
+    const historyRows = document.querySelectorAll(".mileage-table .history-row");
+    const summaryTooltipCards = document.querySelectorAll(".balance-box[data-summary-tooltip]");
+    const summaryScrollCards = document.querySelectorAll(".balance-box[data-scroll-target]");
 
     function closeSummaryTooltips(exceptCard) {
       summaryTooltipCards.forEach((card) => {
@@ -2542,23 +3021,6 @@
               { date: "04.27", name: "BUS123456789", amount: "8,394원" }
             ]
           };
-        } else if (label === "이번달 사용 마일리지") {
-          detail = {
-            title: "마일리지 사용 내역",
-            subtitle: "4월 사용 마일리지 합산",
-            summary: {
-              label: "사용 마일리지",
-              amount: "-9,800원",
-              periodLabel: "사용 기간",
-              period: "2024.04.01~2024.04.30"
-            },
-            list: [
-              { date: "04.05", name: "JP123456789", amount: "-2,000원" },
-              { date: "04.12", name: "BJP123456789", amount: "-3,300원" },
-              { date: "04.18", name: "US123456789", amount: "-1,500원" },
-              { date: "04.25", name: "BUS123456789", amount: "-3,000원" }
-            ]
-          };
         } else {
           // 소멸 예정 마일리지는 groups 형식
           const tooltipText = card.getAttribute("data-summary-tooltip");
@@ -2591,6 +3053,21 @@
             closeMileagePopup();
           }
         }
+      });
+    });
+
+    summaryScrollCards.forEach((card) => {
+      function scrollToTarget() {
+        const target = document.querySelector(card.dataset.scrollTarget);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      card.addEventListener("click", scrollToTarget);
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        scrollToTarget();
       });
     });
 
@@ -2867,6 +3344,37 @@
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         openMileagePopup(row.dataset.detail, row);
+      });
+    });
+
+    /* ---- 쿠폰 내역 상세 팝업 ---- */
+    const slash = (iso) => (iso || "").replace(/-/g, "/");
+
+    document.querySelectorAll(".coupon-table .history-row").forEach((row) => {
+      const open = () => {
+        const name = row.querySelector(".history-kind")?.textContent.trim() || "-";
+        const scope = row.querySelector(".history-type")?.textContent.trim() || "-";
+        const amount = row.querySelector(".coupon-discount")?.textContent.trim() || "-";
+        const start = row.querySelector(".history-date")?.textContent.trim() || "";
+        const end = row.dataset.couponEnd || "";
+
+        mileagePopupData.__coupon = {
+          title: "쿠폰 상세",
+          groups: [[
+            { label: "쿠폰명", value: name },
+            { label: "사용범위", value: scope },
+            { label: "할인금액", value: amount },
+            { label: "유효기간", value: slash(start) + " ~ " + slash(end) }
+          ]]
+        };
+        openMileagePopup("__coupon", row);
+      };
+
+      row.addEventListener("click", open);
+      row.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        open();
       });
     });
 

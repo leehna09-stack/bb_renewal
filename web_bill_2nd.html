@@ -688,6 +688,15 @@
   .fee-row-subtotal { background: #fafbfc; border-top: 1px solid #dde1e7 !important; }
   .fee-row-subtotal .fee-row-label { color: #333; font-weight: 600; }
   .fee-row-subtotal .fee-row-val { color: #333; font-weight: 700; font-size: 14px; }
+  .fee-subtotal-won { margin-left: 4px; color: #666; font-size: 12px; font-weight: 500; }
+  .fee-section-title { padding: 13px 18px 8px; border-top: 1px solid #1A3C6E; border-bottom: 1px solid #f0f2f5; color: #1A3C6E; font-size: 13px; font-weight: 700; background: #fff; }
+  .fee-row-benefit .fee-row-label,
+  .fee-row-discount-total .fee-row-label { color: #333; font-weight: 600; }
+  .fee-benefit-brand { color: #E8385A; }
+  .fee-row-benefit .fee-row-val,
+  .fee-row-discount-total .fee-row-val { color: #E8385A; font-weight: 700; }
+  .fee-coupon-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .fee-row-discount-total { background: #fff8fa; border-top: 1px solid #f2d6dd; }
   .fee-row-rate { background: #f8f9fb; }
   .fee-row-rate .fee-row-label { color: #888; font-size: 12px; }
   .fee-row-rate .fee-row-val { color: #888; font-size: 12px; }
@@ -1057,24 +1066,22 @@
         </div>
       </div>
       
-      <div class="fee-row fee-row-coupon" style="border-top:1px solid #dde1e7;">
-        <span class="fee-row-label">쿠폰</span>
-        <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
-      </div>
-      <div class="fee-row" id="panelDiscRow" style="display:none;">
-        <span class="fee-row-label" style="color:#E8385A;">할인 금액</span>
-        <span class="fee-disc-val" id="panelDiscWrap"></span>
-      </div>
-      <div class="fee-row fee-row-subtotal">
+      <div class="fee-row fee-row-subtotal" style="border-top:1px solid #dde1e7;">
         <span class="fee-row-label">총액</span>
-        <span class="fee-row-val" id="panelSubtotal">10,512 엔</span>
+        <span class="fee-row-val"><span id="panelSubtotal">27,512 엔</span><span class="fee-subtotal-won" id="panelSubtotalWon">(264,115 원)</span></span>
       </div>
-      <div class="fee-row fee-row-total">
-        <span class="fee-row-label">총 결제금액</span>
-        <span class="fee-row-val" id="panelTotal">100,915원</span>
+      <div class="fee-section-title">할인/혜택</div>
+      <div class="fee-row fee-row-benefit">
+        <span class="fee-row-label">VIP 비바항공 10% 상시 할인</span>
+        <span class="fee-row-val" id="panelVipDiscount">-235 엔 (-2,256 원)</span>
       </div>
-
-      <!-- VIP 등급혜택 적용 -->
+      <div class="fee-row fee-row-benefit">
+        <span class="fee-row-label">쿠폰 할인</span>
+        <span class="fee-coupon-action">
+          <span class="fee-row-val" id="panelCouponDiscount" hidden></span>
+          <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
+        </span>
+      </div>
       <div class="panel-earn">
         <div class="panel-earn-head">
           <span class="panel-earn-label">VIP 등급혜택 적용</span>
@@ -1091,6 +1098,15 @@
           </div>
           <p class="benefit-note">※ 등급 혜택은 결제 시 자동 적용됩니다.</p>
         </div>
+      </div>
+      <div class="fee-row fee-row-discount-total">
+        <span class="fee-row-label">총 할인금액</span>
+        <span class="fee-row-val" id="panelDiscountTotal">-2,256 원</span>
+      </div>
+
+      <div class="fee-row fee-row-total">
+        <span class="fee-row-label">총 결제금액</span>
+        <span class="fee-row-val" id="panelTotal">261,859원</span>
       </div>
       <div class="btn-area">
         <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제 취소</button>
@@ -1344,19 +1360,22 @@
     const syncPanelCouponBtn = () => {
       const intlCb = controls.intl.checkbox;
       const discWon = Number(intlCb?.dataset?.discountWon || 0);
-      const panelDiscRow = document.getElementById('panelDiscRow');
-      const panelDiscWrap = document.getElementById('panelDiscWrap');
+      const panelCouponDiscount = document.getElementById('panelCouponDiscount');
       if (panelCouponBtn) {
         if (discWon > 0) {
-          panelCouponBtn.textContent = '적용';
+          panelCouponBtn.textContent = '변경';
           panelCouponBtn.classList.add('is-applied');
-          if (panelDiscWrap) panelDiscWrap.textContent = `-${Number(discWon).toLocaleString('ko-KR')}원`;
-          if (panelDiscRow) panelDiscRow.style.display = 'flex';
+          if (panelCouponDiscount) {
+            panelCouponDiscount.hidden = false;
+            panelCouponDiscount.textContent = `-${Number(discWon).toLocaleString('ko-KR')} 원`;
+          }
         } else {
           panelCouponBtn.textContent = '쿠폰 선택';
           panelCouponBtn.classList.remove('is-applied');
-          if (panelDiscWrap) panelDiscWrap.textContent = '';
-          if (panelDiscRow) panelDiscRow.style.display = 'none';
+          if (panelCouponDiscount) {
+            panelCouponDiscount.hidden = true;
+            panelCouponDiscount.textContent = '';
+          }
         }
       }
       window.renderPaymentSummary?.();
@@ -1385,16 +1404,22 @@
   (() => {
     const renderPaymentSummary = () => {
       const rate = 9.6;
+      const productTotalYen = 17000;
       const taxTotalYen = 1700;
       const localShippingTotalYen = 1962;
       const storageTotalYen = 300;
       const internationalShippingYen = 2350;
       const orderExtraTotalYen = 4200;
-      const totalYen = taxTotalYen + localShippingTotalYen + storageTotalYen + internationalShippingYen + orderExtraTotalYen;
+      const totalYen = productTotalYen + taxTotalYen + localShippingTotalYen + storageTotalYen + internationalShippingYen + orderExtraTotalYen;
+      const vipDiscountYen = Math.floor(internationalShippingYen * 0.1);
+      const vipDiscountWon = Math.round(vipDiscountYen * rate);
+      const couponDiscountWon = Number(document.getElementById('intlCouponUseCheck')?.dataset?.discountWon || 0);
+      const discountTotalWon = vipDiscountWon + couponDiscountWon;
       const fmt = (n) => n.toLocaleString('ko-KR');
       const totalWon = Math.round(totalYen * rate);
-      const depositWon = Math.min(Number(String(document.getElementById('depositInput')?.value || 0).replace(/[^\d]/g, '')) || 0, totalWon);
-      const payWon = Math.max(totalWon - depositWon, 0);
+      const finalWon = Math.max(totalWon - discountTotalWon, 0);
+      const depositWon = Math.min(Number(String(document.getElementById('depositInput')?.value || 0).replace(/[^\d]/g, '')) || 0, finalWon);
+      const payWon = Math.max(finalWon - depositWon, 0);
 
       const elExtraShippingYen = document.getElementById('txtExtraShippingYen');
       const elTotalYen = document.getElementById('txtTotalYen');
@@ -1411,10 +1436,10 @@
         elTotalYen.textContent = `${fmt(totalYen)} 엔`;
         elTotalYen.classList.toggle('fee-added', orderExtraTotalYen > 0);
       }
-      if (elFeeTotalWon) elFeeTotalWon.textContent = `${fmt(totalWon)}원`;
-      if (elTotalWon) elTotalWon.textContent = `${fmt(totalWon)} 원`;
+      if (elFeeTotalWon) elFeeTotalWon.textContent = `${fmt(finalWon)}원`;
+      if (elTotalWon) elTotalWon.textContent = `${fmt(finalWon)} 원`;
       if (elFormula) elFormula.textContent = depositWon > 0
-        ? `${fmt(totalWon)} 원 - 예치금 ${fmt(depositWon)} 원 =`
+        ? `${fmt(finalWon)} 원 - 예치금 ${fmt(depositWon)} 원 =`
         : `${fmt(totalYen)} 엔 × ${rate} 원 =`;
       if (elPayWon) elPayWon.textContent = `${fmt(payWon)} 원`;
 
@@ -1427,8 +1452,19 @@
       }
       const panelSubtotal = document.getElementById('panelSubtotal');
       if (panelSubtotal) panelSubtotal.textContent = `${fmt(totalYen)} 엔`;
+      const panelSubtotalWon = document.getElementById('panelSubtotalWon');
+      if (panelSubtotalWon) panelSubtotalWon.textContent = `(${fmt(totalWon)} 원)`;
+      const panelVipDiscount = document.getElementById('panelVipDiscount');
+      if (panelVipDiscount) panelVipDiscount.textContent = `-${fmt(vipDiscountYen)} 엔 (-${fmt(vipDiscountWon)} 원)`;
+      const panelCouponDiscount = document.getElementById('panelCouponDiscount');
+      if (panelCouponDiscount) {
+        panelCouponDiscount.hidden = couponDiscountWon <= 0;
+        panelCouponDiscount.textContent = couponDiscountWon > 0 ? `-${fmt(couponDiscountWon)} 원` : '';
+      }
+      const panelDiscountTotal = document.getElementById('panelDiscountTotal');
+      if (panelDiscountTotal) panelDiscountTotal.textContent = `-${fmt(discountTotalWon)} 원`;
       const panelTotal = document.getElementById('panelTotal');
-      if (panelTotal) panelTotal.textContent = `${fmt(totalWon)}원`;
+      if (panelTotal) panelTotal.textContent = `${fmt(finalWon)}원`;
 
       // VIP 등급혜택 — 무료 제공 항목 합계
       const gradeCareYen   = 200;

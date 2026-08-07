@@ -10,12 +10,18 @@
   var LOGIN_KEY = 'bb_logged_in';
 
   function isLoggedIn() {
+    if (window.bbForceGuestHeader) return false;
     return localStorage.getItem(LOGIN_KEY) === '1';
   }
 
   function isMainPage() {
     var file = (location.pathname.split('/').pop() || '').toLowerCase();
     return file === 'web_main.html';
+  }
+
+  function isMyPage() {
+    var file = (location.pathname.split('/').pop() || '').toLowerCase();
+    return file === 'web_mypage.html';
   }
 
   function removeNonMainNotice() {
@@ -373,6 +379,10 @@
     localStorage.removeItem(LOGIN_KEY);
     closeUserDrawer();
     closeDrawer();
+    if (isMyPage()) {
+      location.href = 'web_login.html';
+      return;
+    }
     render();
   };
   window.toggleLogin = function () {

@@ -113,31 +113,32 @@
   .dep-apply-btn.is-active { border: none; color: #fff; background: #cfd3d8; }
   /* ── 마일리지 모바일형 UI ── */
   .mob-mile-wrap { display: flex; flex-direction: column; gap: 10px; max-width: 100%; }
-  .mob-mile-top { display: grid; grid-template-columns: 104px minmax(0,1fr) 20px 64px; align-items: center; gap: 8px; position: relative; }
-  .mob-mile-label { font-size: 14px; color: #222; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
-  .mob-mile-max-btn { width: 64px; height: 28px; padding: 0 5px; border: 1px solid #bfc6d4; border-radius: 5px; background: #eef2ff; color: #111; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
+  .mob-mile-top { display: grid; grid-template-columns: 104px minmax(0,1fr) auto; align-items: center; column-gap: 0; position: relative; }
+  .mob-mile-label { grid-column: 1; margin-right: 8px; font-size: 14px; color: #222; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
+  .mob-mile-max-btn { grid-column: 3; margin-left: 5px; width: 64px; height: 28px; padding: 0 5px; border: 1px solid #d8dbe1; border-radius: 5px; background: #fff; color: #555; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
   .mob-mile-max-btn.is-active { background: #d6d9df; border-color: #b6bac2; color: #666; }
   .mob-mile-summary { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: #8a9099; font-size: 14px; line-height: 1.4; }
   .mob-mile-summary strong { font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 800; color: #111; }
   .mob-mile-summary-divider { color: #c3c8d0; font-weight: 700; }
   .mob-mile-note { font-size: 12px; color: #888; line-height: 1.6; text-align: right; }
-  .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 700; line-height: 1; cursor: pointer; flex-shrink: 0; }
+  .mob-mile-clear-btn { display: none; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; border-radius: 50%; background: #E5E7EB; color: #666; font-size: 14px; font-weight: 600; line-height: 1; cursor: pointer; flex-shrink: 0; position: absolute; right: 6px; top: 50%; transform: translateY(-50%);margin-left: 10px; }
   .mob-mile-clear-btn.show { display: inline-flex; }
   .mob-mile-input-wrap { display:flex; align-items:center; gap:1px; }
-  .mob-mile-input-row { display:flex; align-items:center; width:100%; height: 25px; padding: 0 16px; border:1px solid #e1e5eb; border-radius:5px; background:#fff; }
+  .mob-mile-input-row { grid-column: 2; position: relative; display:flex; align-items:center; width:100%; height: 25px; padding: 0 29px 0 16px; border:1px solid #e1e5eb; border-radius:5px; background:#fff; }
   .mob-mile-input-lbl { display:none; }
   .mob-mile-inp { flex:1; min-width:0; border:none; outline:none; font-family:'Roboto',sans-serif; font-size:13px; font-weight:700; color:#111; text-align:right; background:transparent; }
+  .mob-mile-inp::placeholder { color:#a9adb6; font-weight:500; }
   .mob-mile-inp.over { color:#E8385A; }
   .mob-mile-inp-unit { display:none; }
   @media (max-width: 520px) {
-    .mob-mile-top { grid-template-columns: 40px minmax(0,1fr) 20px 60px; gap: 6px; }
-    .mob-mile-label { font-size: 14px; }
-    .mob-mile-max-btn { width: 60px; height: 28px; font-size: 11px; }
-    .mob-mile-input-row { height: 25px; padding: 0 12px; }
+    .mob-mile-top { grid-template-columns: 40px minmax(0,1fr) auto; column-gap: 0; }
+    .mob-mile-label { font-size: 14px; margin-right: 6px; }
+    .mob-mile-max-btn { width: 60px; height: 28px; font-size: 11px; margin-left: 5px; }
+    .mob-mile-input-row { height: 25px; padding: 0 29px 0 12px; }
     .mob-mile-inp { font-size: 13px; }
-    .mob-mile-summary { font-size: 12px; gap: 6px; }
-    .mob-mile-summary strong { font-size: 12px; }
-    .mob-mile-note { font-size: 11px; }
+    .mob-mile-summary { font-size: 13px; gap: 6px; }
+    .mob-mile-summary strong { font-size: 13px; }
+    .mob-mile-note { font-size: 13px; }
   }
   .deposit-ui.is-applied .dep-input-row { background: #f3f4f6; }
   .method-label { display: inline-flex; align-items: center; justify-content: center; min-width: 150px; min-height: 38px; padding: 0 18px; border: 1px solid #d3d8df; border-radius: 4px; background: #fff; color: #333; font-size: 13px; font-weight: 700; cursor: pointer; margin-right: 8px; transition: background 0.15s, border-color 0.15s, color 0.15s; }
@@ -331,10 +332,9 @@
             </tr>
             <tr>
               <th>
-                <span class="paid-option-name">사진 촬영서비스</span>
+                <span class="paid-option-name">사진 촬영서비스(3장)</span>
                 <span class="paid-option-meta">
-                  <span class="paid-option-price">기본 300엔/3달러/3파운드 최대 3장</span>
-                  <span class="paid-option-price">+ 1장 100엔</span>
+                  <span class="paid-option-price">기본 300엔/3달러/3파운드<br> ※추가 1장당 100엔</span>
                 </span>
               </th>
               <td class="paid-option-choice">
@@ -487,10 +487,10 @@
               <span class="mob-mile-label">마일리지</span>
               <div class="mob-mile-input-row">
                 <span class="mob-mile-input-lbl">사용</span>
-                <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="0" inputmode="numeric" autocomplete="off">
+                <input type="text" class="mob-mile-inp" id="mileageDirectInput" value="" placeholder="사용 금액 입력" inputmode="numeric" autocomplete="off">
+                <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
               </div>
               <span class="mob-mile-inp-unit">원</span>
-              <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화">×</button>
               <button class="mob-mile-max-btn" id="mileageMaxBtn" type="button">최대사용</button>
             </div>
             <div class="mob-mile-summary">
@@ -808,7 +808,7 @@
       if(clearBtn) clearBtn.classList.toggle('show', usedWon > 0);
       // 직접 입력 필드 동기화 (포커스 중일 때는 건드리지 않음)
       if(directInp && document.activeElement !== directInp)
-        directInp.value = usedWon > 0 ? formatWon(usedWon) : '0';
+        directInp.value = usedWon > 0 ? formatWon(usedWon) : '';
       const inp = document.getElementById('mileageInput');
       if(inp) inp.value = formatWon(usedWon);
     };
@@ -823,7 +823,7 @@
     };
 
     const applyMax  = () => { if(directInp) directInp.value = formatWon(getLimit()); persist(getLimit()); };
-    const clearMile = () => { if(directInp) directInp.value = '0'; persist(0); };
+    const clearMile = () => { if(directInp) directInp.value = ''; persist(0); };
 
     // 직접 입력 이벤트
     directInp?.addEventListener('input', () => {

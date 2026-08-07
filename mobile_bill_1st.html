@@ -49,8 +49,9 @@
   .order-thumb { width:64px; height:64px; flex-shrink:0; background:#3a4a6b; border-radius:6px; }
   .order-info { flex:1; min-width:0; }
   .order-badge { display:inline-block; font-size:10px; font-weight:600; color:var(--navy); background:#E8EFFF; border-radius:3px; padding:2px 7px; margin-bottom:5px; }
-  .order-id   { font-size:11px; color:var(--text-sub); margin-bottom:3px; }
-  .order-name { font-size:12px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .order-id   { font-size:11px; color:var(--text-sub); margin-top:5px; margin-bottom:5px; }
+  .order-step   { font-size:12px; color:var(--text-sub); font-weight:500; margin-bottom:5px; }
+ .order-name { font-size:12px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .order-price { font-family:'Roboto',sans-serif; font-size:15px; font-weight:700; color:var(--navy); white-space:nowrap; flex-shrink:0; text-align:right; }
   .order-date { font-size:11px; color:var(--text-hint); margin-top:4px; }
 
@@ -249,7 +250,7 @@
   <div class="order-item">
     <div class="order-thumb"></div>
     <div class="order-info">
-      <span class="order-badge">1차 결제대기</span>
+      <span class="order-step">1차 결제대기</span>
       <div class="order-id">[YAHOO] r1229610711</div>
       <div class="order-name">5-96 ARMANI COLLEZIONI アルマーニ コレツィオーニ ムートン ジャケット 上着 ブランド アウター ネイビー 紺色 メンズ 男性</div>
       <div class="order-date">2026.05.18 · 00:14:38</div>
@@ -260,7 +261,7 @@
 
 <!-- 국제배송 -->
 <div class="card">
-  <div class="card-title">국제 배송방법 선택 <span class="req">*필수</span></div>
+  <div class="card-title">국제 배송방법 선택 <span class="req">*</span></div>
   <div class="field-label">배송방법</div>
   <select class="select-full" id="shippingMethodSelect">
    <optgroup label="국제배송">
@@ -285,7 +286,7 @@
 
 <!-- 배송형태 및 포장방법 -->
 <div class="card">
-  <div class="card-title">배송형태 및 포장 방법 선택 <span class="req">*필수</span></div>
+  <div class="card-title">배송형태 및 포장 방법 선택 <span class="req">*</span></div>
   <div class="field-label">배송형태</div>
   <table class="method-select-table">
     <tbody>
@@ -341,14 +342,14 @@
 
 <!-- 수취인 정보 -->
 <div class="card recipient-card" id="recipientCard">
-  <div class="card-title">수취인 정보 <span id="recipientTitleNote" style="display:none; font-size:11px; font-weight:400; color:#E8385A;">※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
+  <div class="card-title">수취인 정보 <span class="req">*</span> <span id="recipientTitleNote" style="display:none; font-size:11px; font-weight:400; color:#E8385A;">※영문 또는 일본어로만 기재 부탁드립니다.</span></div>
   <div class="recvr-top">
     <button class="btn-saved-addr">저장된 배송지 선택</button>
   </div>
   <div class="form-group">
     <div class="form-label" id="receiverNameLabel">수취인명 (회사명)</div>
     <input type="text" class="form-input" id="receiverName" placeholder="수취인명 입력">
-    <div class="form-hint domestic-only">+5자리 이내만 가능합니다.</div>
+    <div class="form-hint domestic-only">* 5자리 이내만 가능합니다.</div>
     <div class="form-hint japan-only">현지 배송 받을 이름을 입력해주세요.</div>
   </div>
   <div class="form-group">

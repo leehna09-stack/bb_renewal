@@ -45,7 +45,8 @@
       padding: 28px 0 80px;
     }
 
-    .page-head { margin: 0 0 18px; }
+    .page-head { display: flex; align-items: center; gap: 8px; margin: 0 0 18px; }
+    .page-back { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid var(--line); background: #fff; color: var(--navy); font-size: 14px; border-radius: 50%; }
     .page-head h2 { margin: 0; color: #111; font-size: 20px; font-weight: 900; }
 
     /* ── 단계 표시 ── */
@@ -274,12 +275,13 @@
 
 <div class="stage">
   <div class="page-head">
+    <button class="page-back" type="button" onclick="location.href='web_auction.html'" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
     <h2>예약 입찰하기</h2>
   </div>
 
   <!-- 단계 표시 -->
   <div class="steps" aria-label="입찰 진행 단계">
-    <div class="step" id="step1"><span class="step-num">1</span><span class="step-label">예약입찰내용 확인</span></div>
+    <div class="step active" id="step1"><span class="step-num">1</span><span class="step-label">예약입찰내용 확인</span></div>
     <i class="fas fa-chevron-right step-arrow"></i>
     <div class="step" id="step2"><span class="step-num">2</span><span class="step-label">예약입찰 완료</span></div>
   </div>
@@ -393,10 +395,6 @@ function updateConfirmedValues() {
 
 function updateState() {
   const agreed = document.getElementById('agreeChk').checked;
-
-  // 단계 표시
-  document.getElementById('step1').className = 'step ' + (agreed ? 'active' : '');
-  document.getElementById('step2').className = 'step';
 
   document.getElementById('submitBtn').disabled = !agreed;
 }

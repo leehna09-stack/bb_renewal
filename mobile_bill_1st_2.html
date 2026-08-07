@@ -199,7 +199,7 @@
   .earn-rate-total { font-size:10px; font-weight:700; color:var(--navy); background:#e8eef8; padding:1px 6px; border-radius:3px; margin-left:4px; }
   .earn-badge { display:inline-flex; align-items:center; height:16px; padding:0 5px; border-radius:3px; font-size:10px; font-weight:700; }
   .earn-badge-base { background:#e8eef8; color:var(--navy); }
-  .earn-badge-vip  { background:#fff0f3; color:var(--red); }
+  .earn-badge-vip  { background:#E7F5EA; color:#3AAD4E; }
 
     /* 카드 */
   .card { background:var(--card); margin-bottom:8px; padding:16px; }
@@ -279,16 +279,29 @@
   .disc-pay-item { display:flex; align-items:center; gap:6px; }
   .disc-pay-note { font-size:11px; color:var(--text-hint); margin-top:6px; }
 
-  .fee-mileage-row { display:block; }
-  .fee-mileage-main { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .mileage-top-left { display:inline-flex; align-items:center; gap:10px; min-width:0; }
-  .mileage-max-btn { height:30px; padding:0 12px; border:1px solid #bfc6d4; border-radius:8px; background:#eef2ff; color:#43506a; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s,border-color .15s,color .15s; }
-  .mileage-max-btn.is-active { background:#d6d9df; border-color:#b6bac2; color:#666; }
-  .mileage-clear-btn { display:none; align-items:center; justify-content:center; width:20px; height:20px; border:0; border-radius:50%; background:#E5E7EB; color:#666; font-family:'Roboto',sans-serif; font-size:14px; font-weight:700; line-height:1; cursor:pointer; }
-  .mileage-clear-btn.show { display:inline-flex; }
-  .mileage-inline-wrap { display:flex; align-items:center; gap:1px; }
-  .mileage-inline-input { display:flex; align-items:center; width:122px; height:30px; padding:0 8px; border:1px solid #d8dce2; border-radius:8px; background:#fff; }
-  .mileage-inline-input .mileage-inp { width:100%; min-width:0; font-size:16px; }
+  .fee-mileage-row { display:block; padding:14px 16px 0; background:#fff; overflow:hidden;}
+  .mob-mile-wrap { display:flex; flex-direction:column; gap:10px; width:100%; }
+  .mob-mile-state { width:max-content; height:20px; display:inline-flex; align-items:center; padding:0 10px; border-radius:999px; background:#eaf2ff; color:#006bff; font-size:10px; font-weight:700; }
+  .mob-mile-top { display:grid; grid-template-columns:48px minmax(0,1fr) 18px 64px; align-items:center; gap:6px; }
+  .mob-mile-label { font-size:13px; color:#222; font-weight:700; display:inline-flex; align-items:center; white-space:nowrap; }
+  .mob-mile-input-row { position:relative; justify-self:end; width:150px; min-width:86px; height:32px; display:flex; align-items:center; gap:7px; padding:0 25px 0 9px; border:1px solid #d8dce2; border-radius:5px; background:#fff; }
+  .mob-mile-input-lbl { flex:0 0 auto; color:#7b8494; font-size:13px; font-weight:700; }
+  .mob-mile-inp { width:100%; min-width:0; border:0; outline:0; background:transparent; color:#222; font-family:'Roboto',monospace; font-size:13px; font-weight:700; text-align:right; }
+  .mob-mile-inp.is-empty { text-align:center; }
+  .mob-mile-inp::placeholder { color:#9aa3b2; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:13px; font-weight:500; }
+  .mob-mile-inp.over { color:var(--red); }
+  .mob-mile-inp-unit { color:#555; font-size:13px; white-space:nowrap; }
+  .mob-mile-max-btn { width:64px; height:28px; padding:0 5px; border:1px solid #d8dbe1; border-radius:5px; background:#fff; color:#555; font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:11px; font-weight:800; cursor:pointer; white-space:nowrap; transition:background .15s,border-color .15s,color .15s; }
+  .mob-mile-max-btn.is-active { background:#d6d9df; border-color:#b6bac2; color:#666; }
+  .mob-mile-clear-btn { position:absolute; right:7px; top:50%; transform:translateY(-50%); display:none; align-items:center; justify-content:center; width:14px; height:14px; border:0; border-radius:50%; background:#E5E7EB; color:#666; font-family:'Roboto',sans-serif; font-size:10px; font-weight:700; line-height:1; cursor:pointer; }
+  .mob-mile-clear-btn.show { display:inline-flex; }
+  .mob-mile-summary { display:flex; align-items:center; justify-content:flex-end; gap:8px; color:#8a9099; font-size:13px; line-height:1.4; text-align:right; }
+  .mob-mile-summary strong { font-family:'Roboto',sans-serif; font-size:13px; font-weight:800; color:#111; }
+  .mob-mile-summary-divider { color:#c3c8d0; font-weight:700; }
+  .mob-mile-note { margin:0; color:#888; font-size:14px; line-height:1.5; text-align:right; }
+  .mob-mile-subtotal { display:flex; align-items:center; justify-content:space-between; margin:4px -8px 0; padding:14px 12px 13px; border-top:1px solid #e9eef5; border-bottom:1.5px solid #1A3C6E; background:#fff; }
+  .mob-mile-subtotal span { color:#111; font-size:13px; font-weight:700; }
+  .mob-mile-subtotal strong { color:#111; font-family:'Roboto',sans-serif; font-size:16px; font-weight:700; }
 
   /* ? 단 CTA */
   .modal-overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:20px 14px; background:rgba(0,0,0,.45); opacity:0; visibility:hidden; transition:opacity .2s ease,visibility .2s ease; z-index:1000; }
@@ -418,8 +431,8 @@
   <div class="option-item">
     <div class="option-header">
       <div class="option-header-left">
-        <div class="option-name">사진 촬영서비스</div>
-        <div class="option-price">기본 300엔/3달러/3파운드 최대 3장<br>+ 1장 100엔</div>
+        <div class="option-name">사진 촬영서비스(3장)</div>
+        <div class="option-price">기본 300엔/3달러/3파운드<br> ※추가 1장당 100엔</div>
       </div>
       <select class="photo-option-select" id="photoOptionSelect" aria-label="사진 촬영서비스 신청 수량">
         <option value="0">신청안함</option>
@@ -484,22 +497,22 @@
   </div>
   <div class="fee-row"><span class="fee-row-label"> 일본배송비</span><span class="fee-row-val">0 엔</span></div>
   <div class="fee-row fee-mileage-row">
-    <div class="fee-mileage-main">
-      <div class="mileage-top-left">
-        <span class="fee-row-label fee-row-label-control"> 마일리지</span>
-        <button class="mileage-max-btn" id="mileageMaxBtn" type="button" onclick="applyMaxMileage()">최대 사용</button>
-      </div>
-      <div class="mileage-inline-wrap">
-        <div class="mileage-inline-input">
-          <input type="text" class="mileage-inp" id="mileageInput" value="0" inputmode="numeric" autocomplete="off">
+    <div class="mob-mile-wrap">
+      <div class="mob-mile-top">
+        <span class="mob-mile-label">마일리지</span>
+        <div class="mob-mile-input-row">
+          <input type="text" class="mob-mile-inp" id="mileageInput" value="" placeholder="사용 금액 입력" inputmode="numeric" autocomplete="off">
+          <button class="mob-mile-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화" onclick="clearAllMileage()">×</button>
         </div>
-        <span class="mileage-unit">원</span>
-        <button class="mileage-clear-btn" id="mileageClearBtn" type="button" aria-label="마일리지 초기화" onclick="clearAllMileage()">×</button>
+        <span class="mob-mile-inp-unit">원</span>
+        <button class="mob-mile-max-btn" id="mileageMaxBtn" type="button" onclick="applyMaxMileage()">최대사용</button>
       </div>
-    </div>
-    <div class="mileage-hold-row">
-      <span class="mileage-hold-label">보유 마일리지</span>
-      <span class="mileage-hold-value"><strong id="mileageAvailAmount">58,961</strong> 원</span>
+      <div class="mob-mile-summary">
+        <span>사용 한도 <strong id="usableMileage">3,840</strong>원</span>
+        <span class="mob-mile-summary-divider">/</span>
+        <span>보유 <strong id="availableMileage">58,961</strong>원</span>
+      </div>
+      <p class="mob-mile-note">마일리지는 구매수수료의 50%까지 사용 가능합니다.</p>
     </div>
   </div>
   <div class="fee-row" id="feeDepositRow" style="display:none;">
@@ -729,6 +742,21 @@ function getMileageLimit() {
   return Math.min(Math.floor(halfAgency * RATE), MILE_AVAIL); /* ? 으 ?변??*/
 }
 
+function getMileageFeeCap() {
+  return Math.floor(AGENCY_BASE * 0.5 * RATE);
+}
+
+function updateMileageSummary(appliedWon) {
+  const availableMileage = document.getElementById('availableMileage');
+  const usableMileage = document.getElementById('usableMileage');
+  if (availableMileage) availableMileage.textContent = fmt(Math.max(MILE_AVAIL - appliedWon, 0));
+  if (usableMileage) usableMileage.textContent = fmt(getMileageFeeCap());
+}
+
+function syncMileageInputAlign(input) {
+  input?.classList.toggle('is-empty', !String(input.value || '').trim());
+}
+
 /* ? ?  ? 약 ? 더 ? ?  */
 function render() {
   const totalDisc = mileageDiscYen;
@@ -750,6 +778,7 @@ function render() {
   const isMaxMileage = currentMileageWon === mileageLimitWon && mileageLimitWon > 0;
   document.getElementById('mileageMaxBtn')?.classList.toggle('is-active', mileageMaxSelected && isMaxMileage);
   document.getElementById('mileageClearBtn')?.classList.toggle('show', currentMileageWon > 0);
+  updateMileageSummary(currentMileageWon);
 
   const feeDiscRow = document.getElementById('feeDiscRow');
   const feeDiscDetail = document.getElementById('feeDiscDetail');
@@ -776,8 +805,7 @@ function render() {
   elM('mobEarnEventWon',  fmt(vipEarn));    // VIP +8%
   elM('mobEarnFeeTotal',  fmt(feeTotal));   // 합계 10%
   elM('mobEarnGrandTotal',fmt(feeTotal));
-  const mileageAvailAmount = document.getElementById('mileageAvailAmount');
-  if (mileageAvailAmount) mileageAvailAmount.textContent = fmt(Math.max(MILE_AVAIL - Math.round(mileageDiscYen * RATE), 0));
+  updateMileageSummary(Math.round(mileageDiscYen * RATE));
 
   // 1차 결제 비용 패널 예치금 행
   const feeDepositRow = document.getElementById('feeDepositRow');
@@ -818,16 +846,21 @@ function render() {
 /* ? ?  마일리 ? ? 력 ? ?  */
 const mileageInputEl = document.getElementById('mileageInput');
 if (mileageInputEl) {
+  syncMileageInputAlign(mileageInputEl);
   mileageInputEl.addEventListener('input', function() {
     mileageMaxSelected = false;
     document.getElementById('mileageMaxBtn')?.classList.remove('is-active');
+    syncMileageInputAlign(this);
     const raw = Number(this.value.replace(/[^\d]/g,'')) || 0;
     const limit = getMileageLimit();
     const warn = document.getElementById('mileageWarn');
+    this.classList.toggle('over', raw > limit);
     if (raw > limit) {
       warn?.classList.add('show');
       setTimeout(() => {
         this.value = fmt(limit);
+        syncMileageInputAlign(this);
+        this.classList.remove('over');
         warn?.classList.remove('show');
         applyMileage(limit);
       }, 700);
@@ -850,11 +883,11 @@ function applyMileage(won) {
   const appliedWon = Math.min(Math.max(Number(won) || 0, 0), getMileageLimit(), MILE_AVAIL);
   mileageDiscYen = Math.floor(appliedWon / RATE);
   const mileageInput    = document.getElementById('mileageInput');
-  const mileageAvailAmount = document.getElementById('mileageAvailAmount');
   // 입력 필드 동기화 (포커스 중 제외)
   if (mileageInput && document.activeElement !== mileageInput)
-    mileageInput.value = appliedWon > 0 ? fmt(appliedWon) : '0';
-  if (mileageAvailAmount) mileageAvailAmount.textContent = fmt(Math.max(MILE_AVAIL - appliedWon, 0));
+    mileageInput.value = appliedWon > 0 ? fmt(appliedWon) : '';
+  syncMileageInputAlign(mileageInput);
+  updateMileageSummary(appliedWon);
   const limit = getMileageLimit();
   const isFull = appliedWon === limit && limit > 0;
   document.getElementById('mileageMaxBtn')?.classList.toggle('is-active', mileageMaxSelected && isFull);
@@ -869,13 +902,15 @@ function applyMaxMileage() {
   const limit = getMileageLimit();
   const mileageInput = document.getElementById('mileageInput');
   if (mileageInput) mileageInput.value = fmt(limit);
+  syncMileageInputAlign(mileageInput);
   applyMileage(limit);
 }
 
 function clearAllMileage() {
   mileageMaxSelected = false;
   const mileageInput = document.getElementById('mileageInput');
-  if (mileageInput) mileageInput.value = '0';
+  if (mileageInput) mileageInput.value = '';
+  syncMileageInputAlign(mileageInput);
   applyMileage(0);
 }
 
