@@ -674,58 +674,53 @@
   /* ── 우측 결제 비용 패널 ── */
   .bill-panel { position: sticky; top: 80px; background: #fff; border: 1px solid #dde1e7; border-radius: 8px; overflow: hidden; }
   .bill-panel-head { background: #fff; padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #eee; }
-  .bill-panel-title { color: #1A3C6E; font-size: 14px; font-weight: 700; }
+  .bill-panel-title { color: #1A3C6E; font-size: 14px; line-height: 1.25; font-weight: 700; letter-spacing: 0; }
   .bill-panel-sub { color: #666; font-size: 12px; font-weight: 500; white-space: nowrap; }
-  .fee-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 18px; border-bottom: 1px solid #f0f2f5; gap: 8px; }
+  .bill-panel-body { padding: 12px 14px 16px; }
+  .fee-cost-card { border: 0; border-radius: 0; overflow: visible; background: #fff; }
+  .fee-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 46px; padding: 11px 14px; border-bottom: 1px solid #f0f2f5; background: #fff; }
   .fee-row:last-child { border-bottom: none; }
-  .fee-row-label { font-size: 13px; color: #555; white-space: nowrap; }
-  .fee-row-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; color: #222; text-align: right; }
-  .fee-row.is-discount .fee-row-label { color: #E8385A; }
-  .fee-disc-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
-  .fee-disc-line { display: flex; align-items: center; gap: 5px; }
-  .fee-disc-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; }
-  .fee-disc-badge { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: #FCEBEB; color: #A32D2D; }
-  .fee-row-subtotal { background: #fafbfc; border-top: 1px solid #dde1e7 !important; }
-  .fee-row-subtotal .fee-row-label { color: #333; font-weight: 600; }
-  .fee-row-subtotal .fee-row-val { color: #333; font-weight: 700; font-size: 14px; }
-  .fee-subtotal-won { margin-left: 4px; color: #666; font-size: 12px; font-weight: 500; }
-  .fee-section-title { padding: 13px 18px 8px; border-top: 1px solid #1A3C6E; border-bottom: 1px solid #f0f2f5; color: #1A3C6E; font-size: 13px; font-weight: 700; background: #fff; }
-  .fee-row-benefit .fee-row-label,
-  .fee-row-discount-total .fee-row-label { color: #333; font-weight: 600; }
-  .fee-benefit-brand { color: #E8385A; }
-  .fee-row-benefit .fee-row-val,
-  .fee-row-discount-total .fee-row-val { color: #E8385A; font-weight: 700; }
-  .fee-coupon-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 8px; }
-  .fee-row-discount-total { background: #fff8fa; border-top: 1px solid #f2d6dd; }
-  .fee-row-rate { background: #f8f9fb; }
-  .fee-row-rate .fee-row-label { color: #888; font-size: 12px; }
-  .fee-row-rate .fee-row-val { color: #888; font-size: 12px; }
-  .fee-row-total { background: #f0f4fb; border-top: 2px solid #1A3C6E !important; padding: 16px 18px; }
-  .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
-  .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
-  /* VIP 등급혜택 적용 */
-  .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
-  .panel-earn-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 10px; border-bottom: 1px solid #eef0f4; }
-  .panel-earn-label { font-size: 13px; font-weight: 700; color: #555; }
-  .panel-earn-max { font-size: 12px; font-weight: 700; color: #1A3C6E; }
-  .panel-earn-body { padding: 10px 18px 12px; }
-  .benefit-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 0; font-size: 12px; }
-  .benefit-row-lbl { display: flex; align-items: center; gap: 6px; color: #3AAD4E; font-weight: 600; }
-  .benefit-row-val { font-family: 'Roboto', sans-serif; color: #a9aeb8; font-weight: 500; white-space: nowrap; text-decoration: line-through; }
-  .grade-badge-free { display: inline-flex; align-items: center; height: 16px; padding: 0 6px; border-radius: 3px; background: #eaf7ed; color: #3AAD4E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 10px; font-weight: 700; }
-  .benefit-note { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.65; }
-  .fee-row-toggle { cursor: pointer; }
-  .fee-row-toggle .fee-row-label { display: inline-flex; align-items: center; gap: 6px; }
-  .fee-toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 0; background: transparent; color: #7b8490; cursor: pointer; padding: 0; }
+  .fee-row-left { display: flex; align-items: center; min-width: 0; }
+  .fee-row-label { font-size: 13px; color: #333; font-weight: 600; white-space: nowrap; }
+  .fee-row-val { font-family: 'Roboto', Pretendard, sans-serif; font-size: 13px; font-weight: 700; color: #222; text-align: right; white-space: nowrap; }
+  .fee-row-val.is-red { color: #E8385A; }
+  .fee-toggle-btn { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 20px; width: 20px; height: 20px; border: 0; background: transparent; color: #1A3C6E; cursor: pointer; padding: 0; }
   .fee-toggle-btn i { font-size: 12px; transition: transform .18s ease; }
   .fee-toggle-btn[aria-expanded="true"] i { transform: rotate(180deg); }
-  .fee-extra-detail { display: none; padding: 10px 18px 12px 34px; border-bottom: 1px solid #f0f2f5; background: #fbfcfe; }
-  .fee-extra-detail.is-open { display: block; }
-  .fee-extra-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: #666; }
-  .fee-extra-item strong { font-family: 'Roboto', sans-serif; font-size: 12px; color: #222; }
-  .fee-extra-item strong.is-active { color: #E8385A; }
+  .fee-row-toggle { cursor: pointer; }
+  .fee-row-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; }
+  .fee-detail { display: none; padding: 2px 14px 12px 14px; border-bottom: 1px solid #f0f2f5; background: #fbfcfe; }
+  .fee-detail.is-open { display: block; }
+  .fee-detail-list { border-left: 0; padding: 4px 0 0 8px; }
+  .fee-extra-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 28px; font-size: 12px; color: #666; border-bottom: 1px dashed #d6dce6; }
+  .fee-extra-item:last-child { border-bottom: none; }
+  .fee-extra-item strong { font-family: 'Roboto', Pretendard, sans-serif; font-size: 12px; color: #222; font-weight: 500; white-space: nowrap; }
+  .fee-extra-item strong.is-active { color: #222; }
   .fee-extra-item strong.is-free { color: #3AAD4E; }
-  .panel-coupon-btn { height: 28px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .fee-section-title { padding: 14px 0 8px; margin-top: 14px; border-top: 1px solid #1A3C6E; color: #1A3C6E; font-size: 13px; line-height: 1.2; font-weight: 700; background: #fff; }
+  .fee-row-benefit { min-height: 44px; padding: 10px 14px; border-bottom: 1px solid #f0f2f5; }
+  .fee-row-benefit .fee-row-label { font-size: 13px; font-weight: 600; }
+  .fee-row-benefit .fee-row-val { color: #E8385A; }
+  .fee-coupon-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .panel-earn { background: #fff; }
+  .panel-earn .fee-row { border-bottom: none; }
+  .panel-earn-body { display: none; padding: 0 14px 12px 26px; border-bottom: 1px solid #f0f2f5; background: #fbfcfe; }
+  .panel-earn-body.is-open { display: block; }
+  .benefit-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 0; font-size: 12px; }
+  .benefit-row-lbl { display: flex; align-items: center; gap: 6px; color: #333; font-weight: 500; }
+  .benefit-row-val { font-family: 'Roboto', sans-serif; color: #9aa0aa; font-weight: 500; white-space: nowrap; text-decoration: line-through; }
+  .benefit-row-val.is-discount { color: #E8385A; font-weight: 700; text-decoration: none; }
+  .grade-badge-free { display: inline-flex; align-items: center; height: 16px; padding: 0 6px; border-radius: 3px; background: #eaf7ed; color: #3AAD4E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 10px; font-weight: 700; }
+  .fee-badge-rate { display: inline-flex; align-items: center; height: 16px; margin-left: 6px; padding: 0 6px; border-radius: 3px; background: #FCEBEB; color: #E8385A; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 10px; font-weight: 700; vertical-align: middle; }
+  .benefit-note { display: none; }
+  .fee-summary-box { margin-top: 14px; padding: 14px 14px 16px; border: 1px solid #cfd8e6; border-radius: 6px; background: #f8fafd; }
+  .fee-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 13px; color: #333; font-weight: 600; }
+  .fee-summary-row.is-discount .fee-summary-val { color: #E8385A; }
+  .fee-summary-divider { border-top: 1px dashed #bfc9d8; margin: 8px 0 8px; }
+  .fee-summary-total { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 2px; color: #1A3C6E; font-size: 15px; font-weight: 700; }
+  .fee-summary-total .fee-summary-val { font-family: 'Roboto', Pretendard, sans-serif; color: #E8385A; font-size: 20px; font-weight: 700; white-space: nowrap; }
+  .fee-disc-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; }
+  .panel-coupon-btn { height: 28px; min-width: 86px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-coupon-btn:hover { background: #1A3C6E; color: #fff; }
   .panel-coupon-btn.is-applied { background: #e9eaec; border-color: #bbb; color: #888; }
   .panel-coupon-btn.is-applied:hover { background: #ddd; color: #555; }
@@ -1009,85 +1004,107 @@
       <span class="bill-panel-sub">적용 환율 <span id="panelRate">9.6</span>원</span>
     </div>
     <div class="bill-panel-body">
-      <div class="fee-row">
-        <span class="fee-row-label">물품가</span>
-        <span class="fee-row-val">17,000 엔</span>
-      </div>
-      <div class="fee-row">
-        <span class="fee-row-label">소비세</span>
-        <span class="fee-row-val">1,700 엔</span>
-      </div>
-      <div class="fee-row">
-        <span class="fee-row-label">현지배송료</span>
-        <span class="fee-row-val">1,962 엔</span>
-      </div>
-      <div class="fee-row">
-        <span class="fee-row-label">
-          창고보관료
-          <span class="tooltip-wrap" tabindex="0">
-            <span class="tooltip-icon" aria-label="창고보관료 안내">!</span>
-            <span class="tooltip-box">D-3 / 소형</span>
+      <div class="fee-cost-card">
+        <div class="fee-row fee-row-toggle" id="panelProductToggleRow" data-panel-toggle="panelProductDetail">
+          <span class="fee-row-left">
+            <span class="fee-row-label">상품 및 현지비용</span>
           </span>
-        </span>
-        <span class="fee-row-val">300 엔</span>
+          <span class="fee-row-action">
+            <span class="fee-row-val">20,662 엔</span>
+            <button class="fee-toggle-btn" type="button" aria-expanded="false" aria-controls="panelProductDetail">
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+        <div class="fee-detail" id="panelProductDetail">
+          <div class="fee-detail-list">
+            <div class="fee-extra-item">
+              <span>물품가</span>
+              <strong>17,000 엔</strong>
+            </div>
+            <div class="fee-extra-item">
+              <span>소비세</span>
+              <strong>1,700 엔</strong>
+            </div>
+            <div class="fee-extra-item">
+              <span>현지배송료</span>
+              <strong>1,962 엔</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="fee-row" id="panelIntlRow">
+          <span class="fee-row-left">
+            <span class="fee-row-label">
+              국제 운송료
+              <span class="tooltip-wrap" tabindex="0">
+                <span class="tooltip-icon" aria-label="국제배송료 상세 안내"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+                <span class="tooltip-box">비바항공 특송 / 2kg</span>
+              </span>
+            </span>
+          </span>
+          <span class="fee-row-action">
+            <span class="fee-row-val">2,350 엔</span>
+          </span>
+        </div>
+
+        <div class="fee-row fee-row-toggle" id="panelExtraToggleRow" data-panel-toggle="panelExtraDetail">
+          <span class="fee-row-left">
+            <span class="fee-row-label">추가비용</span>
+          </span>
+          <span class="fee-row-action">
+            <span class="fee-row-val is-red" id="panelExtraYen">+4,500 엔</span>
+            <button class="fee-toggle-btn" type="button" id="panelExtraToggleBtn" aria-expanded="false" aria-controls="panelExtraDetail">
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+        <div class="fee-detail" id="panelExtraDetail">
+          <div class="fee-detail-list">
+            <div class="fee-extra-item">
+              <span>유료사진서비스</span>
+              <strong class="is-active">1,400 엔</strong>
+            </div>
+            <div class="fee-extra-item">
+              <span>추가포장비</span>
+              <strong class="is-active">2,200 엔</strong>
+            </div>
+            <div class="fee-extra-item">
+              <span>검수 수수료</span>
+              <strong class="is-active">600 엔</strong>
+            </div>
+            <div class="fee-extra-item">
+              <span>창고보관료</span>
+              <strong class="is-active">300 엔</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="fee-row">
-        <span class="fee-row-label">
-          국제운송료
-          <span class="tooltip-wrap" tabindex="0">
-            <span class="tooltip-icon" aria-label="국제운송료 안내">!</span>
-            <span class="tooltip-box">비바항공 특송 / 2kg</span>
-          </span>
-        </span>
-        <span class="fee-row-val">2,350 엔</span>
-      </div>
-      <div class="fee-row fee-row-toggle" id="panelExtraToggleRow">
-        <span class="fee-row-label">추가비용</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;">
-          <span class="fee-row-val" id="panelExtraYen">4,200 엔</span>
-          <button class="fee-toggle-btn" type="button" id="panelExtraToggleBtn" aria-expanded="false" aria-controls="panelExtraDetail">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-          </button>
-        </span>
-      </div>
-      <div class="fee-extra-detail" id="panelExtraDetail">
-        <div class="fee-extra-item">
-          <span>유료사진서비스</span>
-          <strong class="is-active">1,400 엔</strong>
-        </div>
-        <div class="fee-extra-item">
-          <span>추가포장비</span>
-          <strong class="is-active">2,200 엔</strong>
-        </div>
-        <div class="fee-extra-item">
-          <span>검수 수수료</span>
-          <strong class="is-active">600 엔</strong>
-        </div>
-      </div>
-      
-      <div class="fee-row fee-row-subtotal" style="border-top:1px solid #dde1e7;">
-        <span class="fee-row-label">총액</span>
-        <span class="fee-row-val"><span id="panelSubtotal">27,512 엔</span><span class="fee-subtotal-won" id="panelSubtotalWon">(264,115 원)</span></span>
-      </div>
       <div class="fee-section-title">할인/혜택</div>
       <div class="fee-row fee-row-benefit">
-        <span class="fee-row-label">VIP 비바항공 10% 상시 할인</span>
-        <span class="fee-row-val" id="panelVipDiscount">-235 엔 (-2,256 원)</span>
-      </div>
-      <div class="fee-row fee-row-benefit">
-        <span class="fee-row-label">쿠폰 할인</span>
+        <span class="fee-row-left">
+          <span class="fee-row-label">쿠폰</span>
+        </span>
         <span class="fee-coupon-action">
           <span class="fee-row-val" id="panelCouponDiscount" hidden></span>
           <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
         </span>
       </div>
-      <div class="panel-earn">
-        <div class="panel-earn-head">
-          <span class="panel-earn-label">VIP 등급혜택 적용</span>
-          <span class="panel-earn-max">최대 <span id="gradeBenefitTotal">700</span>엔</span>
+      <div class="panel-earn" id="panelBenefitToggleRow" data-panel-toggle="panelBenefitDetail">
+        <div class="fee-row fee-row-toggle">
+          <span class="fee-row-left">
+            <span class="fee-row-label">VIP 혜택 자동 적용중</span>
+          </span>
+          <button class="fee-toggle-btn" type="button" aria-expanded="false" aria-controls="panelBenefitDetail">
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
         </div>
-        <div class="panel-earn-body">
+        <div class="panel-earn-body" id="panelBenefitDetail">
+          <div class="benefit-row">
+            <span class="benefit-row-lbl">국제 운임 상시할인 <span class="fee-badge-rate">10%</span></span>
+            <span class="benefit-row-val is-discount" id="panelVipDiscount">-235엔</span>
+          </div>
           <div class="benefit-row">
             <span class="benefit-row-lbl">안심케어 <span class="grade-badge-free">무료</span></span>
             <span class="benefit-row-val" id="gradeBenefitCare">200엔</span>
@@ -1096,17 +1113,25 @@
             <span class="benefit-row-lbl">묶음배송 10건 <span class="grade-badge-free">무료</span></span>
             <span class="benefit-row-val" id="gradeBenefitBundle">500엔</span>
           </div>
-          <p class="benefit-note">※ 등급 혜택은 결제 시 자동 적용됩니다.</p>
+          <span id="gradeBenefitTotal" hidden>700</span>
         </div>
       </div>
-      <div class="fee-row fee-row-discount-total">
-        <span class="fee-row-label">총 할인금액</span>
-        <span class="fee-row-val" id="panelDiscountTotal">-2,256 원</span>
-      </div>
 
-      <div class="fee-row fee-row-total">
-        <span class="fee-row-label">총 결제금액</span>
-        <span class="fee-row-val" id="panelTotal">261,859원</span>
+      <div class="fee-summary-box">
+        <div class="fee-summary-row">
+          <span>결제비용</span>
+          <span class="fee-summary-val" id="panelSubtotalWon">27,512엔</span>
+          <span id="panelSubtotal" hidden>27,512 엔</span>
+        </div>
+        <div class="fee-summary-row is-discount">
+          <span>할인</span>
+          <span class="fee-summary-val" id="panelDiscountTotal">-235엔</span>
+        </div>
+        <div class="fee-summary-divider"></div>
+        <div class="fee-summary-total">
+          <span>총 결제금액</span>
+          <span class="fee-summary-val" id="panelTotal">27,277엔(261,859원)</span>
+        </div>
       </div>
       <div class="btn-area">
         <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제 취소</button>
@@ -1241,27 +1266,29 @@
   });
 
   (() => {
-    const toggleRow = document.getElementById('panelExtraToggleRow');
-    const toggleBtn = document.getElementById('panelExtraToggleBtn');
-    const detail = document.getElementById('panelExtraDetail');
-    if (!toggleRow || !toggleBtn || !detail) return;
+    const toggleRows = Array.from(document.querySelectorAll('[data-panel-toggle]'));
+    toggleRows.forEach((toggleRow) => {
+      const detail = document.getElementById(toggleRow.dataset.panelToggle);
+      const toggleBtn = toggleRow.querySelector('.fee-toggle-btn');
+      if (!detail || !toggleBtn) return;
 
-    const syncOpen = (isOpen) => {
-      toggleBtn.setAttribute('aria-expanded', String(isOpen));
-      detail.classList.toggle('is-open', isOpen);
-    };
+      const syncOpen = (isOpen) => {
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        detail.classList.toggle('is-open', isOpen);
+      };
 
-    const onToggle = () => {
-      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
-      syncOpen(!isOpen);
-    };
+      const onToggle = () => {
+        const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+        syncOpen(!isOpen);
+      };
 
-    toggleBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      onToggle();
+      toggleBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        onToggle();
+      });
+      toggleRow.addEventListener('click', onToggle);
+      syncOpen(false);
     });
-    toggleRow.addEventListener('click', onToggle);
-    syncOpen(false);
   })();
 
   (() => {
@@ -1360,6 +1387,7 @@
     const syncPanelCouponBtn = () => {
       const intlCb = controls.intl.checkbox;
       const discWon = Number(intlCb?.dataset?.discountWon || 0);
+      const discYen = Math.floor(discWon / 9.6);
       const panelCouponDiscount = document.getElementById('panelCouponDiscount');
       if (panelCouponBtn) {
         if (discWon > 0) {
@@ -1367,7 +1395,7 @@
           panelCouponBtn.classList.add('is-applied');
           if (panelCouponDiscount) {
             panelCouponDiscount.hidden = false;
-            panelCouponDiscount.textContent = `-${Number(discWon).toLocaleString('ko-KR')} 원`;
+            panelCouponDiscount.textContent = `-${Number(discYen).toLocaleString('ko-KR')}엔`;
           }
         } else {
           panelCouponBtn.textContent = '쿠폰 선택';
@@ -1412,12 +1440,13 @@
       const orderExtraTotalYen = 4200;
       const totalYen = productTotalYen + taxTotalYen + localShippingTotalYen + storageTotalYen + internationalShippingYen + orderExtraTotalYen;
       const vipDiscountYen = Math.floor(internationalShippingYen * 0.1);
-      const vipDiscountWon = Math.round(vipDiscountYen * rate);
       const couponDiscountWon = Number(document.getElementById('intlCouponUseCheck')?.dataset?.discountWon || 0);
-      const discountTotalWon = vipDiscountWon + couponDiscountWon;
+      const couponDiscountYen = Math.floor(couponDiscountWon / rate);
+      const discountTotalYen = vipDiscountYen + couponDiscountYen;
       const fmt = (n) => n.toLocaleString('ko-KR');
       const totalWon = Math.round(totalYen * rate);
-      const finalWon = Math.max(totalWon - discountTotalWon, 0);
+      const finalYen = Math.max(totalYen - discountTotalYen, 0);
+      const finalWon = Math.round(finalYen * rate);
       const depositWon = Math.min(Number(String(document.getElementById('depositInput')?.value || 0).replace(/[^\d]/g, '')) || 0, finalWon);
       const payWon = Math.max(finalWon - depositWon, 0);
 
@@ -1446,25 +1475,26 @@
       // 우측 패널 업데이트
       const panelExtra = document.getElementById('panelExtraYen');
       if (panelExtra) {
-        panelExtra.textContent = orderExtraTotalYen > 0 ? `${fmt(orderExtraTotalYen)} 엔` : '0 엔';
-        panelExtra.style.color = orderExtraTotalYen > 0 ? '#E8385A' : '';
-        panelExtra.style.fontWeight = orderExtraTotalYen > 0 ? '700' : '';
+        const panelExtraTotalYen = orderExtraTotalYen + storageTotalYen;
+        panelExtra.textContent = panelExtraTotalYen > 0 ? `+${fmt(panelExtraTotalYen)} 엔` : '0 엔';
+        panelExtra.style.color = panelExtraTotalYen > 0 ? '#E8385A' : '';
+        panelExtra.style.fontWeight = panelExtraTotalYen > 0 ? '700' : '';
       }
       const panelSubtotal = document.getElementById('panelSubtotal');
       if (panelSubtotal) panelSubtotal.textContent = `${fmt(totalYen)} 엔`;
       const panelSubtotalWon = document.getElementById('panelSubtotalWon');
-      if (panelSubtotalWon) panelSubtotalWon.textContent = `(${fmt(totalWon)} 원)`;
+      if (panelSubtotalWon) panelSubtotalWon.textContent = `${fmt(totalYen)}엔`;
       const panelVipDiscount = document.getElementById('panelVipDiscount');
-      if (panelVipDiscount) panelVipDiscount.textContent = `-${fmt(vipDiscountYen)} 엔 (-${fmt(vipDiscountWon)} 원)`;
+      if (panelVipDiscount) panelVipDiscount.textContent = `-${fmt(vipDiscountYen)}엔`;
       const panelCouponDiscount = document.getElementById('panelCouponDiscount');
       if (panelCouponDiscount) {
         panelCouponDiscount.hidden = couponDiscountWon <= 0;
-        panelCouponDiscount.textContent = couponDiscountWon > 0 ? `-${fmt(couponDiscountWon)} 원` : '';
+        panelCouponDiscount.textContent = couponDiscountYen > 0 ? `-${fmt(couponDiscountYen)}엔` : '';
       }
       const panelDiscountTotal = document.getElementById('panelDiscountTotal');
-      if (panelDiscountTotal) panelDiscountTotal.textContent = `-${fmt(discountTotalWon)} 원`;
+      if (panelDiscountTotal) panelDiscountTotal.textContent = `-${fmt(discountTotalYen)}엔`;
       const panelTotal = document.getElementById('panelTotal');
-      if (panelTotal) panelTotal.textContent = `${fmt(finalWon)}원`;
+      if (panelTotal) panelTotal.textContent = `${fmt(finalYen)}엔(${fmt(finalWon)}원)`;
 
       // VIP 등급혜택 — 무료 제공 항목 합계
       const gradeCareYen   = 200;

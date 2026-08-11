@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -192,6 +192,7 @@
   .benefit-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 0; font-size:12px; }
   .benefit-row-lbl { display:flex; align-items:center; gap:6px; color:var(--green); font-weight:600; }
   .benefit-row-val { font-family:'Roboto',sans-serif; color:#a9aeb8; font-weight:500; white-space:nowrap; text-decoration:line-through; }
+  .benefit-row-val.is-discount { color:var(--red); font-weight:700; text-decoration:none; }
   .grade-badge-free { display:inline-flex; align-items:center; height:16px; padding:0 6px; border-radius:3px; background:#eaf7ed; color:var(--green); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:10px; font-weight:700; }
   .benefit-note { font-size:11px; color:#888; margin-top:8px; line-height:1.65; }
 
@@ -242,6 +243,7 @@
   .extra-detail-panel.open { display:block; }
   .extra-detail-item { display:flex; justify-content:space-between; font-size:12px; color:#666; padding:3px 0; }
   .extra-detail-item .extra-detail-val { font-family:'Roboto',sans-serif; color:var(--red); font-weight:600; }
+  .extra-detail-item .local-detail-val { font-family:'Roboto',sans-serif; color:var(--text-main); font-weight:600; }
 
   /* 결제하실 금액 */
   .pay-amount-row { padding:14px 16px; border-bottom:1px solid var(--border); }
@@ -477,27 +479,17 @@
 <div class="fee-summary">
   <div class="fee-summary-title"><span>2차 결제 비용</span><span class="fee-rate">적용 환율 9.6원</span></div>
 
-  <div class="fee-row">
-    <span class="fee-row-label">물품가</span>
-    <span class="fee-row-val">17,000 엔</span>
-  </div>
-  <div class="fee-row">
-    <span class="fee-row-label">소비세</span>
-    <span class="fee-row-val">1,700 엔</span>
-  </div>
-  <div class="fee-row">
-    <span class="fee-row-label">현지배송료</span>
-    <span class="fee-row-val">1,962 엔</span>
-  </div>
-  <div class="fee-row">
-    <span class="fee-row-label">
-      창고보관료
-      <span class="tooltip-wrap">
-        <button class="info-badge" type="button" aria-label="창고보관료 안내">!</button>
-        <span class="tooltip-box">D-3 / 소형</span>
-      </span>
+  <div class="fee-row extra-toggle-row" onclick="toggleLocalCostDetail()">
+    <span class="fee-row-label">상품 및 현지비용</span>
+    <span class="extra-cost-right">
+      <span class="fee-row-val">20,662 엔</span>
+      <i class="fa-solid fa-chevron-down extra-arrow" id="localCostArrow"></i>
     </span>
-    <span class="fee-row-val">300 엔</span>
+  </div>
+  <div class="extra-detail-panel" id="localCostDetailPanel">
+    <div class="extra-detail-item"><span>물품가</span><span class="local-detail-val">17,000 엔</span></div>
+    <div class="extra-detail-item"><span>소비세</span><span class="local-detail-val">1,700 엔</span></div>
+    <div class="extra-detail-item"><span>현지배송료</span><span class="local-detail-val">1,962 엔</span></div>
   </div>
 
   <div class="extra-detail-panel" id="extraDetailPanel">
@@ -526,14 +518,10 @@
   </div>
 
   <div class="fee-row fee-row-subtotal">
-    <span class="fee-row-label">총액</span>
-    <span class="fee-row-val"><span id="totalYenVal">27,512 엔</span><span class="fee-subtotal-won" id="totalWonHint">(264,115 원)</span></span>
+    <span class="fee-row-label">결제비용</span>
+    <span class="fee-row-val"><span id="totalYenVal">27,512엔</span><span class="fee-subtotal-won" id="totalWonHint"></span></span>
   </div>
   <div class="fee-section-title">할인/혜택</div>
-  <div class="fee-row fee-row-benefit">
-    <span class="fee-row-label">VIP 비바항공 10% <span class="fee-benefit-brand">상시</span> 할인</span>
-    <span class="fee-row-val" id="vipDiscountVal">-235 엔 (-2,256 원)</span>
-  </div>
   <div class="fee-row fee-row-benefit">
     <span class="fee-row-label">쿠폰 할인</span>
     <span class="fee-coupon-action">
@@ -545,10 +533,14 @@
   <!-- VIP 등급혜택 적용 -->
   <div class="panel-earn">
     <div class="panel-earn-head">
-      <span class="panel-earn-label">VIP 등급혜택 적용</span>
+      <span class="panel-earn-label">VIP 혜택 자동 적용중</span>
       <span class="panel-earn-max">최대 <span id="gradeBenefitTotal">700</span>엔</span>
     </div>
     <div class="panel-earn-body">
+      <div class="benefit-row">
+        <span class="benefit-row-lbl">국제 운임 상시할인 <span class="fee-benefit-brand">10%</span></span>
+        <span class="benefit-row-val is-discount" id="vipDiscountVal">-235엔</span>
+      </div>
       <div class="benefit-row">
         <span class="benefit-row-lbl">안심케어 <span class="grade-badge-free">무료</span></span>
         <span class="benefit-row-val" id="gradeBenefitCare">200엔</span>
@@ -562,11 +554,11 @@
   </div>
   <div class="fee-row fee-row-discount-total">
     <span class="fee-row-label">총 할인금액</span>
-    <span class="fee-row-val" id="discountTotalVal">-2,256 원</span>
+    <span class="fee-row-val" id="discountTotalVal">-235엔</span>
   </div>
   <div class="fee-row total-row">
     <span class="fee-row-label">총 결제금액</span>
-    <span class="fee-row-val" id="mobCellTotal">261,859원</span>
+    <span class="fee-row-val" id="mobCellTotal">27,277엔(261,859원)</span>
   </div>
 </div>
 
@@ -737,11 +729,12 @@ function syncCouponBtn() {
   const couponVal = document.getElementById('panelCouponDiscount');
   if (!btn) return;
   if (couponDiscWon > 0) {
+    const couponDiscYen = Math.floor(couponDiscWon / RATE);
     btn.textContent = '변경';
     btn.classList.add('is-applied');
     if (couponVal) {
       couponVal.hidden = false;
-      couponVal.textContent = `-${fmt(couponDiscWon)} 원`;
+      couponVal.textContent = `-${fmt(couponDiscYen)}엔`;
     }
   } else {
     btn.textContent = '쿠폰 선택';
@@ -761,15 +754,23 @@ function toggleExtraDetail() {
   const isOpen = panel.classList.toggle('open');
   if (arrow) arrow.classList.toggle('open', isOpen);
 }
+function toggleLocalCostDetail() {
+  const panel = document.getElementById('localCostDetailPanel');
+  const arrow = document.getElementById('localCostArrow');
+  if (!panel) return;
+  const isOpen = panel.classList.toggle('open');
+  if (arrow) arrow.classList.toggle('open', isOpen);
+}
 
 /* ── 금액 렌더 ── */
 function render() {
   const totalYen  = BASE_YEN;
   const totalWon  = Math.round(totalYen * RATE);
   const vipDiscountYen = Math.floor(INTL_SHIP_YEN * 0.1);
-  const vipDiscountWon = Math.round(vipDiscountYen * RATE);
-  const discountTotalWon = vipDiscountWon + couponDiscWon;
-  const finalWon  = Math.max(totalWon - discountTotalWon, 0);
+  const couponDiscYen = Math.floor(couponDiscWon / RATE);
+  const discountTotalYen = vipDiscountYen + couponDiscYen;
+  const finalYen  = Math.max(totalYen - discountTotalYen, 0);
+  const finalWon  = Math.round(finalYen * RATE);
   const depWon    = Number(String(document.getElementById('depInp').value).replace(/[^\d]/g,'')) || 0;
   const netWon    = Math.max(finalWon - depWon, 0);
 
@@ -781,20 +782,20 @@ function render() {
   }
 
   /* 총액 */
-  document.getElementById('totalYenVal').textContent  = `${fmt(totalYen)} 엔`;
+  document.getElementById('totalYenVal').textContent  = `${fmt(totalYen)}엔`;
   const totalWonHint = document.getElementById('totalWonHint');
-  if (totalWonHint) totalWonHint.textContent = `(${fmt(totalWon)} 원)`;
+  if (totalWonHint) totalWonHint.textContent = '';
   const vipDiscountVal = document.getElementById('vipDiscountVal');
-  if (vipDiscountVal) vipDiscountVal.textContent = `-${fmt(vipDiscountYen)} 엔 (-${fmt(vipDiscountWon)} 원)`;
+  if (vipDiscountVal) vipDiscountVal.textContent = `-${fmt(vipDiscountYen)}엔`;
   const panelCouponDiscount = document.getElementById('panelCouponDiscount');
   if (panelCouponDiscount) {
     panelCouponDiscount.hidden = couponDiscWon <= 0;
-    panelCouponDiscount.textContent = couponDiscWon > 0 ? `-${fmt(couponDiscWon)} 원` : '';
+    panelCouponDiscount.textContent = couponDiscYen > 0 ? `-${fmt(couponDiscYen)}엔` : '';
   }
   const discountTotalVal = document.getElementById('discountTotalVal');
-  if (discountTotalVal) discountTotalVal.textContent = `-${fmt(discountTotalWon)} 원`;
+  if (discountTotalVal) discountTotalVal.textContent = `-${fmt(discountTotalYen)}엔`;
   /* 총 결제금액 */
-  document.getElementById('mobCellTotal').textContent = `${fmt(finalWon)}원`;
+  document.getElementById('mobCellTotal').textContent = `${fmt(finalYen)}엔(${fmt(finalWon)}원)`;
   /* 결제정보 */
   document.getElementById('mobTotalWon').textContent  = `${fmt(finalWon)} 원`;
 
