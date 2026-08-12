@@ -14,15 +14,15 @@
   --bg:#F5F7FA;--white:#fff;--border:#E0E4EB;
   --tp:#1A1A2E;--ts:#666680;--tm:#999BAA;
   --alert:#FFF8E6;
-  --notice-h:38px;
-  --header-h:1px;
+  --notice-h:32px;
+  --header-h:0px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Pretendard,'Apple SD Gothic Neo','Helvetica Neue','Malgun Gothic','맑은 고딕',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;padding-top:calc(var(--notice-h) + var(--header-h))}
 a{text-decoration:none;color:inherit}
 
 /* ? ═ 공 ? ?? ═ */
-.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;}
+.notice-bar{background:#F1F3F5;color:#111;text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;white-space:pre-wrap;}
 .notice-bar b{color:#E8385A}
 
 /* ?먥븧 ?ㅻ뜑 ?먥븧 */
@@ -64,9 +64,9 @@ header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4p
 .hb-btn:hover{background:var(--bg)}
 .hb-btn span{display:block;width:17px;height:2px;background:var(--tp);border-radius:1px}
 /* ???형 채널 ?이?그리??*/
-.channel-icons{display:grid;grid-template-columns:repeat(8,1fr);gap:16px;width:min(calc(100vw - 60px),900px);margin:0 auto}
+.channel-icons{display:flex;gap:16px;width:min(calc(100vw - 60px),640px);margin:0 auto;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;touch-action:pan-x;padding:0 8px 2px}
 .channel-icons::-webkit-scrollbar{display:none}
-.ch-icon-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 14px;cursor:pointer;min-width:80px;flex-shrink:0;transition:opacity .15s}
+.ch-icon-item{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 14px;cursor:pointer;min-width:80px;flex:0 0 auto;scroll-snap-align:start;transition:opacity .15s}
 .ch-icon-item:hover{opacity:.8}
 /* ??? 심 변 ? ? 형 배경 ? 에 로고 */
 .ch-circle{
@@ -626,7 +626,7 @@ button.user-menu-item{
 
 <!-- 공지+헤더 고정 래퍼 -->
 <div class="sticky-top">
-<div class="notice-bar">누적 거래 2백만건 거래금액 2200억 <b>비드바이의 25년 기록</b>으로 증명합니다</div>
+<div class="notice-bar">누적 거래 <b>2백만건</b>, 고객님과 함께 쌓아온 <b>25년</b>, 변함없는 믿음으로 이어갑니다</div>
 
 <!-- 헤더 -->
 <header>
