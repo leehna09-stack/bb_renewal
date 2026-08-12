@@ -53,6 +53,23 @@
   .fee-row-total { background: #f0f4fb; border-top: 2px solid #1A3C6E !important; padding: 16px 18px; }
   .fee-row-total .fee-row-label { font-size: 14px; font-weight: 700; color: #1A3C6E; }
   .fee-row-total .fee-row-val { font-size: 18px; font-weight: 700; color: #E8385A; }
+  .fee-row-toggle { cursor: pointer; }
+  .fee-row-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; }
+  .fee-toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; background: transparent; color: #1A3C6E; cursor: pointer; padding: 0; }
+  .fee-toggle-btn i { font-size: 12px; transition: transform .18s ease; }
+  .fee-toggle-btn[aria-expanded="true"] i { transform: rotate(180deg); }
+  .fee-detail { display: none; padding: 2px 18px 12px 26px; border-bottom: 1px solid #f0f2f5; background: #fbfcfe; }
+  .fee-detail.is-open { display: block; }
+  .fee-extra-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 28px; font-size: 12px; color: #666; border-bottom: 1px dashed #d6dce6; }
+  .fee-extra-item:last-child { border-bottom: none; }
+  .fee-extra-item strong { font-family: 'Roboto', Pretendard, sans-serif; font-size: 12px; color: #222; font-weight: 600; white-space: nowrap; }
+  .fee-section-title { padding: 14px 18px 8px; border-top: 1px solid #1A3C6E; border-bottom: 1px solid #f0f2f5; color: #1A3C6E; font-size: 13px; font-weight: 700; background: #fff; }
+  .fee-summary-box { margin: 0; padding: 14px 18px 16px; border: 0; border-radius: 0; background: #f8fafd; }
+  .fee-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 13px; color: #333; font-weight: 600; }
+  .fee-summary-row.is-discount .fee-summary-val { color: #E8385A; }
+  .fee-summary-divider { border-top: 1px dashed #bfc9d8; margin: 8px 0; }
+  .fee-summary-total { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 2px; color: #1A3C6E; font-size: 15px; font-weight: 700; }
+  .fee-summary-total .fee-summary-val { font-family: 'Roboto', Pretendard, sans-serif; color: #E8385A; font-size: 20px; font-weight: 700; white-space: nowrap; }
   .val-undecided { color: #aaa; font-size: 12px; }
   .tax-toggle { display: inline-flex; border: 1px solid #dde1e7; border-radius: 4px; overflow: hidden; }
   .tax-toggle-btn { border: none; background: #fff; color: #888; font-size: 11px; font-weight: 600; padding: 3px 7px; cursor: pointer; font-family: Pretendard, 'Noto Sans KR', sans-serif; }
@@ -228,14 +245,21 @@
   .packing-note { margin: 10px 0 0; color: #888; font-size: 12px; line-height: 1.6; }
 
   /* ── 우측 패널 하단 적립 예정 블록 ── */
-  .panel-earn { border-top: 1px solid #dde1e7; background: #f8fafd; }
-  .panel-earn-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px 8px; border-bottom: 1px solid #eef0f4; }
+  .panel-earn { border-top: 1px solid #dde1e7; background: #fff; }
+  .panel-earn-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 18px; cursor: pointer; }
   .panel-earn-label { font-size: 12px; font-weight: 700; color: #555; }
+  .panel-earn-action { display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; margin-left: auto; min-width: 120px; }
   .panel-earn-max { font-size: 12px; font-weight: 700; color: #1A3C6E; }
   .panel-earn-max em { font-style: normal; color: #E8385A; }
-  .panel-earn-body { padding: 8px 18px 12px; }
-  .panel-earn-body .benefit-row { padding: 3px 0; }
-  .panel-earn-body .benefit-sub { padding: 2px 0 2px 12px; }
+  .panel-earn-toggle { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border: 0; background: transparent; color: #7b8490; padding: 0; cursor: pointer; }
+  .panel-earn-toggle i { font-size: 12px; transition: transform .18s ease; }
+  .panel-earn.is-open .panel-earn-toggle i { transform: rotate(180deg); }
+  .panel-earn-body { display: none; padding: 8px 18px 12px; border-top: 1px solid #eef0f4; }
+  .panel-earn.is-open .panel-earn-body { display: block; }
+  .panel-earn-body .benefit-row { padding: 5px 0 6px; font-weight: 700; }
+  .panel-earn-body .benefit-sub { position: relative; padding: 5px 0 5px 20px; margin-left: 6px; border-left: 2px solid #e4e9f1; }
+  .panel-earn-body .benefit-sub::before { content: ""; position: absolute; left: -5px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #fff; border: 2px solid #b8c6d8; transform: translateY(-50%); }
+  .panel-earn-body .benefit-sub + .benefit-sub { margin-top: 1px; }
   /* 적립률 뱃지 */
   .earn-rate-total { font-size: 10px; font-weight: 700; color: #1A3C6E; background: #e8eef8; padding: 1px 6px; border-radius: 3px; margin-left: 4px; }
   .earn-badge { display: inline-flex; align-items: center; height: 16px; padding: 0 5px; border-radius: 3px; font-size: 10px; font-weight: 700; }
@@ -451,27 +475,32 @@
         <span class="bill-panel-sub">적용 환율 <span id="panelRate">9.6</span>원</span>
       </div>
       <div class="bill-panel-body">
-        <div class="fee-row">
-          <span class="fee-row-label">상품가</span>
-          <span class="fee-row-val">1,200 엔</span>
+        <div class="fee-row fee-row-toggle" data-panel-toggle="panelLocalDetail">
+          <span class="fee-row-label">상품 및 현지비용</span>
+          <span class="fee-row-action">
+            <span class="fee-row-val" id="panelLocalTotal">1,320 엔</span>
+            <button class="fee-toggle-btn" type="button" aria-expanded="false" aria-controls="panelLocalDetail">
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </span>
         </div>
+        <div class="fee-detail" id="panelLocalDetail">
+          <div class="fee-extra-item"><span>상품가</span><strong>1,200 엔</strong></div>
+          <div class="fee-extra-item">
+            <span>소비세</span>
+            <strong style="display:flex; align-items:center; gap:6px;">
+              <span class="tax-toggle" id="panelTaxToggle" role="group" aria-label="소비세 기준 전환">
+                <button type="button" class="tax-toggle-btn is-active" data-tax-mode="taxed">상품가 10%</button>
+                <button type="button" class="tax-toggle-btn" data-tax-mode="exempt">0엔</button>
+              </span>
+              <span id="panelTaxVal">120 엔</span>
+            </strong>
+          </div>
+        </div>
+
         <div class="fee-row">
           <span class="fee-row-label">구매수수료</span>
           <span class="fee-row-val">800 엔</span>
-        </div>
-        <div class="fee-row">
-          <span class="fee-row-label">소비세</span>
-          <span style="display:flex; align-items:center; gap:6px;">
-            <span class="tax-toggle" id="panelTaxToggle" role="group" aria-label="소비세 기준 전환">
-              <button type="button" class="tax-toggle-btn is-active" data-tax-mode="taxed">상품가 10%</button>
-              <button type="button" class="tax-toggle-btn" data-tax-mode="exempt">0엔</button>
-            </span>
-            <span class="fee-row-val" id="panelTaxVal">120 엔</span>
-          </span>
-        </div>
-        <div class="fee-row">
-          <span class="fee-row-label">현지배송료</span>
-          <span class="fee-row-val">0 엔</span>
         </div>
 
         <!-- 예치금 차감 (사용 시에만 노출) -->
@@ -479,6 +508,8 @@
           <span class="fee-row-label" style="color:#E8385A;">예치금 사용</span>
           <span class="fee-row-val" style="color:#E8385A; font-weight:700;">− <span id="panelDepositWon">0</span>원</span>
         </div>
+
+        <div class="fee-section-title">할인/혜택</div>
 
         <!-- 마일리지 (패널 내 모바일형 UI) -->
         <div style="padding:10px 18px; border-top:1px solid #dde1e7; border-bottom:1px solid #f0f2f5;">
@@ -507,20 +538,14 @@
           <button type="button" id="mileageReset" hidden>취소</button>
         </div>
 
-        <div class="fee-row fee-row-subtotal">
-          <span class="fee-row-label">소계</span>
-          <span class="fee-row-val" id="panelSubtotal">2,000 엔</span>
-        </div>
-        <div class="fee-row fee-row-total">
-          <span class="fee-row-label">총 결제금액</span>
-          <span class="fee-row-val" id="panelTotal">19,200원</span>
-        </div>
-
         <!-- 구매 혜택: 마일리지 적립 예정 -->
         <div class="panel-earn">
-          <div class="panel-earn-head">
+          <div class="panel-earn-head" onclick="toggleEarnPanel(this)">
             <span class="panel-earn-label">마일리지 적립 예정</span>
-            <span class="panel-earn-max">최대 <em><span id="earnGrandTotal">1,056</span>원</em></span>
+            <span class="panel-earn-action">
+              <span class="panel-earn-max">최대 <em><span id="earnGrandTotal">768</span>원</em></span>
+              <button class="panel-earn-toggle" type="button" aria-expanded="false" aria-label="마일리지 적립 예정 펼치기"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+            </span>
           </div>
           <div class="panel-earn-body">
             <div class="benefit-row">
@@ -538,6 +563,23 @@
             <p class="benefit-note" style="margin-top:8px;">※ 적립 마일리지는 물품 현지 도착일 기준 익월 1일 지급됩니다.</p>
           </div>
         </div>
+
+        <div class="fee-summary-box">
+          <div class="fee-summary-row">
+            <span>전체 금액</span>
+            <span class="fee-summary-val" id="panelWholeAmount">2,120 엔</span>
+          </div>
+          <div class="fee-summary-row is-discount">
+            <span>할인/혜택</span>
+            <span class="fee-summary-val" id="panelMileageDiscount">-0 엔</span>
+          </div>
+          <div class="fee-summary-divider"></div>
+          <div class="fee-summary-total">
+            <span>총 결제 금액</span>
+            <span class="fee-summary-val" id="panelTotal">20,352원</span>
+          </div>
+        </div>
+
         <div class="btn-area">
           <button class="btn btn-cancel" type="button" onclick="window.location.href='web_totalsearch.html'">결제 취소</button>
           <button class="btn btn-primary" type="button" id="btnApproveFinal">결제 승인</button>
@@ -673,6 +715,23 @@
   const PRODUCT_YEN=1200;
   let taxMode='taxed'; // 'taxed'(상품가 10%) | 'exempt'(0엔)
   const taxYen=()=>taxMode==='taxed'?Math.round(PRODUCT_YEN*0.1):0;
+  document.querySelectorAll('[data-panel-toggle]').forEach(row=>{
+    row.addEventListener('click',(event)=>{
+      if(event.target.closest('button.tax-toggle-btn')) return;
+      const detail=document.getElementById(row.dataset.panelToggle);
+      const btn=row.querySelector('.fee-toggle-btn');
+      if(!detail) return;
+      const isOpen=detail.classList.toggle('is-open');
+      if(btn) btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+  function toggleEarnPanel(head){
+    const panel=head.closest('.panel-earn');
+    if(!panel) return;
+    const isOpen=panel.classList.toggle('is-open');
+    const btn=head.querySelector('.panel-earn-toggle');
+    if(btn) btn.setAttribute('aria-expanded', String(isOpen));
+  }
 
   document.querySelectorAll('#panelTaxToggle .tax-toggle-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -689,9 +748,11 @@
     const r=rate();
     const totalWon=Math.floor(subtotalYen*r);
 
-    document.getElementById('panelSubtotal').textContent=formatWon(subtotalYen)+' 엔';
+    const wholeAmountEl=document.getElementById('panelWholeAmount');if(wholeAmountEl)wholeAmountEl.textContent=formatWon(baseYen)+' 엔';
+    const mileageDiscountEl=document.getElementById('panelMileageDiscount');if(mileageDiscountEl)mileageDiscountEl.textContent='-'+formatWon(mileageDisc)+' 엔';
     document.getElementById('panelRate').textContent=r;
     const taxValEl=document.getElementById('panelTaxVal');if(taxValEl)taxValEl.textContent=formatWon(taxYen())+' 엔';
+    const localTotalEl=document.getElementById('panelLocalTotal');if(localTotalEl)localTotalEl.textContent=formatWon(PRODUCT_YEN+taxYen())+' 엔';
 
     const baseWon=Math.floor(baseYen*r);
     const depWon=parseWon(document.getElementById('depositInput')?.value||0);

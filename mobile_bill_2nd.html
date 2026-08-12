@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -82,6 +82,7 @@
   .fee-row.total-row { background:#F0F4FB; border-top:2px solid var(--navy); border-bottom:2px solid var(--navy); padding:14px 16px; }
   .fee-row.total-row .fee-row-label { font-size:14px; font-weight:700; color:var(--navy); }
   .fee-row.total-row .fee-row-val { font-size:18px; font-weight:700; color:var(--red); }
+  .amount-won-sub { margin-left:3px; color:#8b929c; font-size:12px; font-weight:600; vertical-align:baseline; }
 
   /* 국제운송료 상세 */
   .intl-detail { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
@@ -191,6 +192,7 @@
   .panel-earn-body { padding:10px 16px 12px; }
   .benefit-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 0; font-size:12px; }
   .benefit-row-lbl { display:flex; align-items:center; gap:6px; color:var(--green); font-weight:600; }
+  .benefit-row-ship { display:flex; align-items:center; gap:6px; color:#222; font-weight:600; }
   .benefit-row-val { font-family:'Roboto',sans-serif; color:#a9aeb8; font-weight:500; white-space:nowrap; text-decoration:line-through; }
   .benefit-row-val.is-discount { color:var(--red); font-weight:700; text-decoration:none; }
   .grade-badge-free { display:inline-flex; align-items:center; height:16px; padding:0 6px; border-radius:3px; background:#eaf7ed; color:var(--green); font-family:Pretendard,'Noto Sans KR',sans-serif; font-size:10px; font-weight:700; }
@@ -482,12 +484,11 @@
   <div class="fee-row extra-toggle-row" onclick="toggleLocalCostDetail()">
     <span class="fee-row-label">상품 및 현지비용</span>
     <span class="extra-cost-right">
-      <span class="fee-row-val">20,662 엔</span>
+      <span class="fee-row-val">3,662 엔</span>
       <i class="fa-solid fa-chevron-down extra-arrow" id="localCostArrow"></i>
     </span>
   </div>
   <div class="extra-detail-panel" id="localCostDetailPanel">
-    <div class="extra-detail-item"><span>물품가</span><span class="local-detail-val">17,000 엔</span></div>
     <div class="extra-detail-item"><span>소비세</span><span class="local-detail-val">1,700 엔</span></div>
     <div class="extra-detail-item"><span>현지배송료</span><span class="local-detail-val">1,962 엔</span></div>
   </div>
@@ -519,14 +520,14 @@
 
   <div class="fee-row fee-row-subtotal">
     <span class="fee-row-label">결제비용</span>
-    <span class="fee-row-val"><span id="totalYenVal">27,512엔</span><span class="fee-subtotal-won" id="totalWonHint"></span></span>
+    <span class="fee-row-val"><span id="totalYenVal">10,512엔</span><span class="fee-subtotal-won" id="totalWonHint"></span></span>
   </div>
   <div class="fee-section-title">할인/혜택</div>
   <div class="fee-row fee-row-benefit">
     <span class="fee-row-label">쿠폰 할인</span>
     <span class="fee-coupon-action">
-      <span class="fee-row-val" id="panelCouponDiscount" hidden></span>
-      <button class="panel-coupon-btn" id="panelCouponBtn" type="button">쿠폰 선택</button>
+      <span class="fee-row-val" id="panelCouponDiscount">-1,041엔</span>
+      <button class="panel-coupon-btn is-applied" id="panelCouponBtn" type="button">변경</button>
     </span>
   </div>
 
@@ -538,7 +539,7 @@
     </div>
     <div class="panel-earn-body">
       <div class="benefit-row">
-        <span class="benefit-row-lbl">국제 운임 상시할인 <span class="fee-benefit-brand">10%</span></span>
+        <span class="benefit-row-ship">국제 운임 상시할인 <span class="fee-benefit-brand">10%</span></span>
         <span class="benefit-row-val is-discount" id="vipDiscountVal">-235엔</span>
       </div>
       <div class="benefit-row">
@@ -554,11 +555,11 @@
   </div>
   <div class="fee-row fee-row-discount-total">
     <span class="fee-row-label">총 할인금액</span>
-    <span class="fee-row-val" id="discountTotalVal">-235엔</span>
+    <span class="fee-row-val" id="discountTotalVal">-1,276엔</span>
   </div>
   <div class="fee-row total-row">
     <span class="fee-row-label">총 결제금액</span>
-    <span class="fee-row-val" id="mobCellTotal">27,277엔(261,859원)</span>
+    <span class="fee-row-val" id="mobCellTotal">9,236엔<span class="amount-won-sub">(88,666원)</span></span>
   </div>
 </div>
 
@@ -713,14 +714,14 @@ const LOCAL_SHIP_YEN     = 1962;   // 현지배송료
 const STORAGE_YEN        = 300;    // 창고보관료
 const INTL_SHIP_YEN      = 2350;   // 국제운송료
 const ORDER_EXTRA_YEN    = 4200;   // 추가비용 (유료사진서비스+추가포장비+검수수수료)
-const PRODUCT_YEN        = 17000;  // 물품가
+const PRODUCT_YEN        = 0;      // 2차 결제에서는 물품가 제외
 const BASE_YEN  = PRODUCT_YEN + TAX_YEN + LOCAL_SHIP_YEN + STORAGE_YEN + INTL_SHIP_YEN + ORDER_EXTRA_YEN;
 const RATE      = 9.6;
 /* VIP 등급혜택 무료 제공 항목 */
 const GRADE_CARE_YEN   = 200;
 const GRADE_BUNDLE_YEN = 500;
 const DEP_AVAIL = 25840;
-let couponDiscWon   = 0;
+let couponDiscWon   = 10000;
 let selectedPayMethod = '';
 
 /* ── 쿠폰 버튼 상태 동기화 ── */
@@ -795,7 +796,7 @@ function render() {
   const discountTotalVal = document.getElementById('discountTotalVal');
   if (discountTotalVal) discountTotalVal.textContent = `-${fmt(discountTotalYen)}엔`;
   /* 총 결제금액 */
-  document.getElementById('mobCellTotal').textContent = `${fmt(finalYen)}엔(${fmt(finalWon)}원)`;
+  document.getElementById('mobCellTotal').innerHTML = `${fmt(finalYen)}엔<span class="amount-won-sub">(${fmt(finalWon)}원)</span>`;
   /* 결제정보 */
   document.getElementById('mobTotalWon').textContent  = `${fmt(finalWon)} 원`;
 

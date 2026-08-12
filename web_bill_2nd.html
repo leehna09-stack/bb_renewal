@@ -719,6 +719,7 @@
   .fee-summary-divider { border-top: 1px dashed #bfc9d8; margin: 8px 0 8px; }
   .fee-summary-total { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 2px; color: #1A3C6E; font-size: 15px; font-weight: 700; }
   .fee-summary-total .fee-summary-val { font-family: 'Roboto', Pretendard, sans-serif; color: #E8385A; font-size: 20px; font-weight: 700; white-space: nowrap; }
+  .amount-won-sub { margin-left: 3px; color: #8b929c; font-size: 13px; font-weight: 600; vertical-align: baseline; }
   .fee-disc-val { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 700; color: #E8385A; }
   .panel-coupon-btn { height: 28px; min-width: 86px; padding: 0 12px; border: 1px solid #1A3C6E; border-radius: 5px; background: #fff; color: #1A3C6E; font-family: Pretendard, 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .panel-coupon-btn:hover { background: #1A3C6E; color: #fff; }
@@ -913,7 +914,7 @@
   </div>
 
   <!-- hidden coupon state holders (패널 쿠폰 버튼에서 사용) -->
-  <input type="checkbox" id="intlCouponUseCheck" data-coupon-group="intl" style="display:none">
+  <input type="checkbox" id="intlCouponUseCheck" data-coupon-group="intl" data-discount-won="10000" data-coupon-code="2015" data-coupon-name="국제운송료 프리미엄 쿠폰" checked style="display:none">
   <span id="intlCouponSummary" style="display:none"><strong id="intlCouponText"></strong></span>
 
   <!-- ── 결제 정보 확인 ── -->
@@ -926,7 +927,7 @@
           <td><span class="amount-neutral" id="txtTotalWon">100,915 원</span></td>
         </tr>
         <tr>
-          <th>결제할 예치금</th>
+          <th>예치금</th>
           <td>
             <div class="deposit-ui" id="depositUi">
               <div class="deposit-panel">
@@ -949,7 +950,7 @@
           </td>
         </tr>
         <tr>
-          <th>결제하실 금액</th>
+          <th>총 결제금액</th>
           <td>
             <span class="formula" id="txtFormula">10,512 엔 × 9.6 원 =</span>
             <span class="amount-display" id="txtPayWon">100,915 원</span>
@@ -1010,7 +1011,7 @@
             <span class="fee-row-label">상품 및 현지비용</span>
           </span>
           <span class="fee-row-action">
-            <span class="fee-row-val">20,662 엔</span>
+            <span class="fee-row-val">3,662 엔</span>
             <button class="fee-toggle-btn" type="button" aria-expanded="false" aria-controls="panelProductDetail">
               <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
             </button>
@@ -1018,10 +1019,6 @@
         </div>
         <div class="fee-detail" id="panelProductDetail">
           <div class="fee-detail-list">
-            <div class="fee-extra-item">
-              <span>물품가</span>
-              <strong>17,000 엔</strong>
-            </div>
             <div class="fee-extra-item">
               <span>소비세</span>
               <strong>1,700 엔</strong>
@@ -1087,8 +1084,8 @@
           <span class="fee-row-label">쿠폰</span>
         </span>
         <span class="fee-coupon-action">
-          <span class="fee-row-val" id="panelCouponDiscount" hidden></span>
-          <button class="panel-coupon-btn" type="button" id="panelCouponBtn">쿠폰 선택</button>
+          <span class="fee-row-val" id="panelCouponDiscount">-1,041엔</span>
+          <button class="panel-coupon-btn is-applied" type="button" id="panelCouponBtn">변경</button>
         </span>
       </div>
       <div class="panel-earn" id="panelBenefitToggleRow" data-panel-toggle="panelBenefitDetail">
@@ -1119,18 +1116,18 @@
 
       <div class="fee-summary-box">
         <div class="fee-summary-row">
-          <span>결제비용</span>
-          <span class="fee-summary-val" id="panelSubtotalWon">27,512엔</span>
-          <span id="panelSubtotal" hidden>27,512 엔</span>
+          <span>전체 금액</span>
+          <span class="fee-summary-val" id="panelSubtotalWon">10,512엔</span>
+          <span id="panelSubtotal" hidden>10,512 엔</span>
         </div>
         <div class="fee-summary-row is-discount">
-          <span>할인</span>
-          <span class="fee-summary-val" id="panelDiscountTotal">-235엔</span>
+          <span>할인/혜택</span>
+          <span class="fee-summary-val" id="panelDiscountTotal">-1,276엔</span>
         </div>
         <div class="fee-summary-divider"></div>
         <div class="fee-summary-total">
           <span>총 결제금액</span>
-          <span class="fee-summary-val" id="panelTotal">27,277엔(261,859원)</span>
+          <span class="fee-summary-val" id="panelTotal">9,236엔<span class="amount-won-sub">(88,666원)</span></span>
         </div>
       </div>
       <div class="btn-area">
@@ -1427,12 +1424,13 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
+    syncPanelCouponBtn();
   })();
 
   (() => {
     const renderPaymentSummary = () => {
       const rate = 9.6;
-      const productTotalYen = 17000;
+      const productTotalYen = 0;
       const taxTotalYen = 1700;
       const localShippingTotalYen = 1962;
       const storageTotalYen = 300;
@@ -1494,7 +1492,7 @@
       const panelDiscountTotal = document.getElementById('panelDiscountTotal');
       if (panelDiscountTotal) panelDiscountTotal.textContent = `-${fmt(discountTotalYen)}엔`;
       const panelTotal = document.getElementById('panelTotal');
-      if (panelTotal) panelTotal.textContent = `${fmt(finalYen)}엔(${fmt(finalWon)}원)`;
+      if (panelTotal) panelTotal.innerHTML = `${fmt(finalYen)}엔<span class="amount-won-sub">(${fmt(finalWon)}원)</span>`;
 
       // VIP 등급혜택 — 무료 제공 항목 합계
       const gradeCareYen   = 200;
