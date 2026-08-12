@@ -33,6 +33,11 @@
   .i-badge { position:absolute; top:3px; right:2px; background:var(--red); color:#fff; font-size:7px; font-weight:700; min-width:13px; height:13px; border-radius:7px; display:flex; align-items:center; justify-content:center; padding:0 2px; }
   .user-avatar-sm { width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--amber)); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700; cursor:pointer; border:0; font-family:inherit; }
 
+  /* 페이지 헤더 */
+  .page-header { display:flex; align-items:center; gap:10px; background:#fff; padding:14px 16px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+  .page-back-link { width:28px; height:28px; border:1px solid #D8DCE3; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-size:13px; text-decoration:none; flex-shrink:0; }
+  .page-header h1 { font-size:16px; font-weight:700; color:#111; }
+
   /* 카드 */
   .card { background:var(--card); margin-bottom:8px; padding:16px; }
   .card-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:14px; }
@@ -386,6 +391,10 @@
   </div>
 </div>
 
+<div class="page-header">
+  <a class="page-back-link" href="mobile_bill_1st.html" aria-label="1차 결제 이전 화면으로 이동"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+  <h1>1차 결제</h1>
+</div>
 
 <!-- 유료 옵션 선택 -->
 <div class="card">
@@ -651,17 +660,17 @@
     </div>
     <div class="modal-body">
       <ul>
-        <li>턴테이블 및 턴테이블 부품류(암, 카트리지, 디스크 커버 등)</li>
-        <li>휨이 발생한 LP</li>
-        <li>전용 하드케이스가 동봉되지 않은 악기류</li>
-        <li>의자류, 유리, 아크릴, 대리석 등으로 만들어진 물품<br>(브라운관 모니터, 조명, 진공관, 앰프, 차량 유리 등)</li>
-        <li>탱크 단위로 등록된 상품</li>
+        <li>주류포함 유리병 파손은 보상 가능하나, 코르크 손상 또는 누액은 보상 불가합니다.</li>
+        <li>턴테이블 및 턴테이블 부품(톤암, 카트리지, 더스트 커버 등)</li>
+        <li>열변형된 LP</li>
+        <li>전용 하드케이스에 포장되지 않은 악기류</li>
+        <li>도자기, 사기, 유리, 크리스탈 등으로 만들었거나 주재료인 물품<br>(브라운관 모니터, 조명, 진공관, 램프, 차량 유리 등)</li>
+        <li>정크 품위로 등록된 상품</li>
         <li>앤틱, 빈티지, 골동품으로 표기된 상품</li>
-        <li>균열 및 스크래치 등 사용감이 있는 상태로 등록된 상품(추가 파손 및 다른 부위 파손은 보상불가)</li>
-        <li>미술 및 작업용으로 제작된 조각품, 프라모델, 피규어</li>
-        <li>접착제를 사용한 부위가 떨어져 나온 경우</li>
-        <li>본품 내부에서 충격이 확인되지 않는 외부 부품의 파손</li>
-        <li>주류, 음료 및 내용물 파손 또는 코르크 손상으로 인한 전액 환불</li>
+        <li>균열이 있거나 파손된 상태로 등록된 상품(추가파손 및 다른부위 파손도 보상불가)</li>
+        <li>미술 및 상업용으로 제작된 조각상, 프라모델 및 피규어</li>
+        <li>접착제가 사용된 부위가 떨어져 나왔을 때</li>
+        <li>본품 외부에서 충격이 확인되지 않는 내부 부품 등의 파손</li>
       </ul>
     </div>
   </div>

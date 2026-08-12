@@ -146,8 +146,9 @@ body{
 }
 .app-search button i{font-size:14px;color:#fff}
 .channel-tabs{
-  display:flex;overflow:hidden;scrollbar-width:none;
-  touch-action:pan-y;
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  scroll-snap-type:x proximity;
+  touch-action:pan-x;
 }
 .channel-tabs::-webkit-scrollbar{display:none}
 .ch-tab{
@@ -301,13 +302,13 @@ body{
 .slide-fade-wrap.light::after{
   background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.9) 55%,rgba(255,255,255,1));
 }
-.brand-scroll{display:flex;gap:10px;overflow:hidden;scrollbar-width:none;padding:0 22px 2px 0}
-.brand-scroll{touch-action:pan-y}
+.brand-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;padding:0 14px 2px 0}
+.brand-scroll{touch-action:pan-x}
 .brand-scroll::-webkit-scrollbar{display:none}
 .brand-chip{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:58px;cursor:pointer;flex-shrink:0;scroll-snap-align:start}
 .brand-img{
   width:52px;height:52px;border-radius:14px;
-  background:var(--bg);border:1px solid var(--border);
+  background:#FFFFFF;border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
   font-size:9px;font-weight:700;color:var(--ts);overflow:hidden;
 }
@@ -663,8 +664,8 @@ button.user-menu-item{
           <button class="user-avatar-sm premium" type="button" aria-label="PREMIUM 등급 회원 메뉴" onclick="openUserDrawer()"><i class="fas fa-gem" aria-hidden="true"></i></button>
         </div>
 
-        <form class="app-search" role="search" action="mobile_sub totalsearch.html" method="get">
-          <input type="text" placeholder="키워드 또는 구매신청을 원하시는 URL을 입력해주세요" aria-label="검색어 입력">
+        <form class="app-search" role="search" action="mobile_totalsearch.html" method="get">
+          <input type="text" name="q" placeholder="키워드 또는 구매신청을 원하시는 URL을 입력해주세요" aria-label="검색어 입력">
           <button type="submit" aria-label="검색"><i class="fas fa-search"></i>검색</button>
         </form>
       </div>
@@ -675,6 +676,8 @@ button.user-menu-item{
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('메루카리')">메루카리</button>
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('라쿠텐')">라쿠텐</button>
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('라쿠마')">라쿠마</button>
+          <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('야후 쇼핑')">야후쇼핑</button>
+          <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('일본 아마존')">일본아마존</button>
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('미국 이베이')">미국이베이</button>
           <button class="ch-tab" type="button" onclick="location.href='mobile_sub_main.html?store=' + encodeURIComponent('영국 이베이')">영국이베이</button>
         </nav>
@@ -724,9 +727,9 @@ button.user-menu-item{
         </div>
       </div>
       <div class="mb-dots">
-        <div class="mb-dot active"></div>
-        <div class="mb-dot"></div>
-        <div class="mb-dot"></div>
+        <div class="mb-dot active" onclick="goMbSlide(0)"></div>
+        <div class="mb-dot" onclick="goMbSlide(1)"></div>
+        <div class="mb-dot" onclick="goMbSlide(2)"></div>
       </div>
     </div>
 
@@ -748,21 +751,18 @@ button.user-menu-item{
     <div class="section">
       <div class="sec-hd">
         <span class="sec-title">인기 브랜드</span>
-        <span class="sec-more">더보기 ›</span>
       </div>
-      <div class="slide-fade-wrap">
-        <div class="brand-scroll">
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/louisvuitton.com" alt="LV" onerror="this.parentElement.textContent='LV'"></div><span class="brand-name">L.VUITTON</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/nike.com" alt="Nike" onerror="this.parentElement.textContent='NIKE'"></div><span class="brand-name">NIKE</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/chanel.com" alt="Chanel" onerror="this.parentElement.textContent='CHANEL'"></div><span class="brand-name">CHANEL</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/gucci.com" alt="Gucci" onerror="this.parentElement.textContent='GUCCI'"></div><span class="brand-name">GUCCI</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/adidas.com" alt="Adidas" onerror="this.parentElement.textContent='ADIDAS'"></div><span class="brand-name">ADIDAS</span></div>
-          <div class="brand-chip"><div class="brand-img" style="font-size:8px;font-weight:700">SUPREME</div><span class="brand-name">SUPREME</span></div>
-          <div class="brand-chip"><div class="brand-img" style="font-size:10px;font-weight:700">GU</div><span class="brand-name">GU</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/prada.com" alt="Prada" onerror="this.parentElement.textContent='PRADA'"></div><span class="brand-name">PRADA</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/hermes.com" alt="Hermes" onerror="this.parentElement.textContent='HERMES'"></div><span class="brand-name">HERMES</span></div>
-          <div class="brand-chip"><div class="brand-img"><img src="https://logo.clearbit.com/burberry.com" alt="Burberry" onerror="this.parentElement.textContent='BURBERRY'"></div><span class="brand-name">BURBERRY</span></div>
-        </div>
+      <div class="brand-scroll">
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('NIKE')"><div class="brand-img"><img src="favorite logo/3.png" alt="NIKE" onerror="this.parentElement.textContent='NIKE'"></div><span class="brand-name">NIKE</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('CHANEL')"><div class="brand-img"><img src="favorite logo/2.png" alt="CHANEL" onerror="this.parentElement.textContent='CHANEL'"></div><span class="brand-name">CHANEL</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('HERMES')"><div class="brand-img"><img src="favorite logo/1.png" alt="HERMES" onerror="this.parentElement.textContent='HERMES'"></div><span class="brand-name">HERMES</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('POLO RALPH LAUREN')"><div class="brand-img"><img src="favorite logo/4.png" alt="POLO" onerror="this.parentElement.textContent='POLO'"></div><span class="brand-name">POLO</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('LEVI\'S')"><div class="brand-img"><img src="favorite logo/8.png" alt="LEVI'S" onerror="this.parentElement.textContent='LEVI\'S'"></div><span class="brand-name">LEVI'S</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('BANDAI')"><div class="brand-img"><img src="favorite logo/10.png" alt="BANDAI" onerror="this.parentElement.textContent='BANDAI'"></div><span class="brand-name">BANDAI</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('COMME des GARÇONS')"><div class="brand-img"><img src="favorite logo/7.png" alt="COMME des" onerror="this.parentElement.textContent='COMME des'"></div><span class="brand-name">COMME des</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('SHIMANO')"><div class="brand-img"><img src="favorite logo/5.png" alt="SHIMANO" onerror="this.parentElement.textContent='SHIMANO'"></div><span class="brand-name">SHIMANO</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('COACH')"><div class="brand-img"><img src="favorite logo/6.png" alt="COACH" onerror="this.parentElement.textContent='COACH'"></div><span class="brand-name">COACH</span></div>
+        <div class="brand-chip" onclick="location.href='mobile_totalsearch.html?q=' + encodeURIComponent('GUCCI')"><div class="brand-img"><img src="favorite logo/9.png" alt="GUCCI" onerror="this.parentElement.textContent='GUCCI'"></div><span class="brand-name">GUCCI</span></div>
       </div>
     </div>
 
@@ -1051,11 +1051,6 @@ function renderLoginState() {
     const el = document.getElementById(id);
     if (el) el.style.display = display;
   });
-
-  const loginLabel = document.getElementById('loginLabel');
-  if (loginLabel) {
-    loginLabel.textContent = loggedIn ? '비로그인으로 보기' : '로그인 상태로 보기';
-  }
 }
 
 document.addEventListener('bb:mobile-login', renderLoginState);
@@ -1078,15 +1073,20 @@ function bindBestCards() {
 }
 
 function goMbSlide(n) {
-  mbCur = 0;
-  document.getElementById('mbSlides')?.style.setProperty('transform', 'translateX(0)');
+  mbCur = ((n % mbTotal) + mbTotal) % mbTotal;
+  document.getElementById('mbSlides')?.style.setProperty('transform', `translateX(-${mbCur * 100}%)`);
   document.querySelectorAll('.mb-dot').forEach((d, i) => {
-    d.classList.toggle('active', i === 0);
+    d.classList.toggle('active', i === mbCur);
   });
+}
+
+function changeMbSlide(delta) {
+  goMbSlide(mbCur + delta);
 }
 
 function bindMainBanner() {
   document.getElementById('mainBanner')?.style.setProperty('touch-action', 'pan-y');
+  setInterval(() => changeMbSlide(1), 4000);
 }
 
 function openCustomsTaxPopup() {

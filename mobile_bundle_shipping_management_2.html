@@ -37,7 +37,7 @@ a{text-decoration:none;color:inherit}
 .user-avatar-sm{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0;font-size:13px}
 
 /* ── 페이지 헤더 ── */
-.m-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:81px;z-index:200;display:flex;align-items:center;padding:0 16px;height:52px;gap:8px}
+.page-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:107px;z-index:200;display:flex;align-items:center;padding:0 16px;height:52px;gap:8px}
 .m-back-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:none;border-radius:5px;background:none;color:var(--tp);font-size:18px;cursor:pointer;margin-left:-8px}
 .m-hdr-title{flex:1;min-width:0;font-size:16px;font-weight:700;color:var(--tp);display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}
 .m-hdr-sub{font-size:11px;font-weight:700;color:#9da2af;margin-top:2px}
@@ -45,7 +45,7 @@ a{text-decoration:none;color:inherit}
 .m-hdr-link i{font-size:10px}
 
 /* ── 국가 탭 (1/3 균등) ── */
-.country-tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-bottom:1px solid var(--border);position:sticky;top:133px;z-index:190}
+.country-tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-bottom:1px solid var(--border);position:sticky;top:159px;z-index:190}
 .country-tab{position:relative;height:44px;border:none;background:none;color:var(--tm);display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;line-height:1.2}
 .country-tab .ct-name{display:inline-flex;align-items:center;gap:5px}
 .country-tab small{font-size:10px;font-weight:700;color:inherit;opacity:.75;font-family:'Roboto',sans-serif}
@@ -165,11 +165,11 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <!-- ── 헤더 ── -->
-<header class="m-header">
+<div class="page-header">
   <button class="m-back-btn" onclick="history.back()" aria-label="뒤로가기"><i class="fa-solid fa-arrow-left"></i></button>
   <div class="m-hdr-title">배송 신청 관리 <span class="m-hdr-sub">배송 신청 완료 목록</span></div>
   <a class="m-hdr-link" href="mobile_bundle_shipping_management.html">배송 신청 가능 목록 <i class="fa-solid fa-chevron-right"></i></a>
-</header>
+</div>
 
 <!-- ── 국가 탭 ── -->
 <div class="country-tabs" role="tablist" aria-label="국가별 신청목록">

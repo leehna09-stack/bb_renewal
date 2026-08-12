@@ -457,6 +457,15 @@ button,select{cursor:pointer}
 </div>
 
 <script>
+/* ── URL의 q 파라미터를 결과 타이틀에 반영 ── */
+/* 검색창은 bb-common-mobile.js가 공용 헤더로 교체하며 값이 초기화되므로 건드리지 않음 */
+(function () {
+  const q = new URLSearchParams(window.location.search).get('q');
+  if (!q) return;
+  const resultTitleB = document.querySelector('.result-title b');
+  if (resultTitleB) resultTitleB.textContent = q;
+})();
+
 /* ── 좋아요 토글 ── */
 function toggleWish(btn) {
   const on = btn.classList.toggle('wished');

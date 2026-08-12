@@ -493,11 +493,6 @@
     <div class="extra-detail-item"><span>현지배송료</span><span class="local-detail-val">1,962 엔</span></div>
   </div>
 
-  <div class="extra-detail-panel" id="extraDetailPanel">
-    <div class="extra-detail-item"><span>유료사진서비스</span><span class="extra-detail-val">1,400 엔</span></div>
-    <div class="extra-detail-item"><span>추가포장비</span><span class="extra-detail-val">2,200 엔</span></div>
-    <div class="extra-detail-item"><span>검수 수수료</span><span class="extra-detail-val">600 엔</span></div>
-  </div>
   <div class="fee-row">
     <span class="fee-row-label">
       국제운송료
@@ -516,6 +511,11 @@
       <span class="fee-row-val is-care-added" id="extraCostVal">4,200 엔</span>
       <i class="fa-solid fa-chevron-down extra-arrow" id="extraArrow"></i>
     </span>
+  </div>
+  <div class="extra-detail-panel" id="extraDetailPanel">
+    <div class="extra-detail-item"><span>유료사진서비스</span><span class="extra-detail-val">1,400 엔</span></div>
+    <div class="extra-detail-item"><span>추가포장비</span><span class="extra-detail-val">2,200 엔</span></div>
+    <div class="extra-detail-item"><span>검수 수수료</span><span class="extra-detail-val">600 엔</span></div>
   </div>
 
   <div class="fee-row fee-row-subtotal">
@@ -641,7 +641,7 @@
     </div>
     <div class="coupon-modal-body">
       <ul class="coupon-list">
-        <li class="coupon-item" data-coupon-won="1000" data-coupon-name="국제운송료 5월 감사쿠폰">
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-won="1000" data-coupon-name="국제운송료 5월 감사쿠폰">
           <label class="coupon-item-label">
             <input type="radio" name="couponSelect" class="coupon-radio" value="1000">
             <span class="coupon-item-info">
@@ -651,7 +651,7 @@
             <span class="coupon-item-discount">-1,000원</span>
           </label>
         </li>
-        <li class="coupon-item" data-coupon-won="3000" data-coupon-name="국제운송료 베스트 후기 쿠폰">
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-won="3000" data-coupon-name="국제운송료 베스트 후기 쿠폰">
           <label class="coupon-item-label">
             <input type="radio" name="couponSelect" class="coupon-radio" value="3000">
             <span class="coupon-item-info">
@@ -661,7 +661,7 @@
             <span class="coupon-item-discount">-3,000원</span>
           </label>
         </li>
-        <li class="coupon-item" data-coupon-won="5000" data-coupon-name="국제운송료 재구매 쿠폰">
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-won="5000" data-coupon-name="국제운송료 재구매 쿠폰">
           <label class="coupon-item-label">
             <input type="radio" name="couponSelect" class="coupon-radio" value="5000">
             <span class="coupon-item-info">
@@ -669,6 +669,56 @@
               <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
             </span>
             <span class="coupon-item-discount">-5,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="intl" data-coupon-won="10000" data-coupon-name="국제운송료 프리미엄 쿠폰">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="10000">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">국제운송료 프리미엄 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-10,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-won="1000" data-coupon-name="보관료 5월 감사쿠폰">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="1000">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 5월 감사쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-1,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-won="3000" data-coupon-name="보관료 베스트 후기 쿠폰">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="3000">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 베스트 후기 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-3,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-won="5000" data-coupon-name="보관료 장기보관 쿠폰">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="5000">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 장기보관 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-5,000원</span>
+          </label>
+        </li>
+        <li class="coupon-item" data-coupon-group="storage" data-coupon-won="10000" data-coupon-name="보관료 프리미엄 쿠폰">
+          <label class="coupon-item-label">
+            <input type="radio" name="couponSelect" class="coupon-radio" value="10000">
+            <span class="coupon-item-info">
+              <span class="coupon-item-name">보관료 프리미엄 쿠폰</span>
+              <span class="coupon-item-period">2026.05.01 ~ 2026.05.31</span>
+            </span>
+            <span class="coupon-item-discount">-10,000원</span>
           </label>
         </li>
       </ul>
@@ -890,7 +940,11 @@ function selectPayMethod(method) {
     });
   };
   const openModal  = () => {
-    rows.forEach(r => r.classList.toggle('is-selected', Number(r.dataset.couponWon) === couponDiscWon && couponDiscWon > 0));
+    rows.forEach(r => {
+      const visible = r.dataset.couponGroup === 'intl';
+      r.style.display = visible ? '' : 'none';
+      r.classList.toggle('is-selected', visible && Number(r.dataset.couponWon) === couponDiscWon && couponDiscWon > 0);
+    });
     syncRadios();
     modal.classList.add('is-open');
   };
