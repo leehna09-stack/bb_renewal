@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구매대행 시작하기 | BidBuy Korea</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* 폰트 토큰 (DESIGN.md 기준) */
+  :root{--font-sans:'Pretendard','Malgun Gothic','돋움','Dotum',Arial,sans-serif;--font-num:Roboto,var(--font-sans);--tp:#1A1A2E;--ts:#666680;--tm:#999BAA}
+:root{
+  --rose:#E8385A;--rose-h:#C42F4C;--amber:#F5A623;
+  --navy:#1A3C6E;--green:#3AAD4E;
+  --bg:#F5F7FA;--white:#fff;--border:#E0E4EB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#fff}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--tp);font-size:14px;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.roboto{font-family:var(--font-num)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+/* ── 상단: 안내 문구 ── */
+.start-search{background:#fff;padding:44px 0 20px}
+.start-search h1{font-size:26px;font-weight:700;text-align:center;line-height:1.4}
+.start-search .lead{margin-top:8px;text-align:center;font-size:14px;color:var(--ts)}
+/* ── 밑: 히어로 배너 ── */
+.hero{padding:0 0 44px}
+.hero-card{overflow:hidden;border-radius:12px;background:#fff;height:360px}
+.hero-banner{display:block;width:100%;height:100%;object-fit:cover}
+/* ── 진행 안내 ── */
+.steps{padding:8px 0 48px}
+.steps h2{font-size:20px;font-weight:700;text-align:center;margin-bottom:24px}
+.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:26px 22px;text-align:center}
+.step-no{width:36px;height:36px;margin:0 auto 12px;border-radius:50%;background:#FFF1F4;color:var(--rose);font-weight:800;font-family:var(--font-num);display:flex;align-items:center;justify-content:center}
+.step-t{font-size:15px;font-weight:700;margin-bottom:6px}
+.step-d{font-size:13px;color:var(--ts);line-height:1.6}
+@media(max-width:900px){.step-grid{grid-template-columns:1fr}}
+/* ── 지원 스토어 ── */
+.stores{padding:0 0 56px}
+.stores h2{font-size:16px;font-weight:700;text-align:center;color:var(--ts);margin-bottom:18px}
+.store-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.store-row a{display:flex;flex-direction:column;align-items:center;gap:7px;width:96px;font-size:12px;color:var(--ts)}
+.store-row .badge{width:56px;height:56px;border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.store-row .badge img{width:100%;height:100%;object-fit:contain}
+/* ── 푸터 ── */
+footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-size:12px}
+.footer-links a{color:var(--ts)}
+.footer-links a:hover{color:var(--tp)}
+.footer-links a.bold{font-weight:700;color:var(--tp)}
+.footer-biz{font-size:11px;color:var(--tm);line-height:2}
+.footer-copy{font-size:11px;color:var(--tm);margin-top:12px}
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+
+<!-- 상단: 커진 검색창 -->
+<section class="start-search">
+  <div class="wrap">
+    <h1>구매대행, URL 하나로 바로 시작하세요</h1>
+    <p class="lead">키워드로 검색하거나, 구매하고 싶은 상품 페이지 URL을 그대로 붙여넣으면 됩니다.</p>
+  </div>
+</section>
+
+<!-- 밑: 히어로 배너 -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-card">
+      <img class="hero-banner" src="urlbanner.png" width="2022" height="778" alt="원하는 일본 상품 URL을 입력해 주세요. 상품 검색창에 URL을 입력하면 간편하게 구매대행을 시작할 수 있습니다.">
+    </div>
+  </div>
+</section>
+
+<!-- 진행 안내 -->
+<section class="steps">
+  <div class="wrap">
+    <h2>이렇게 진행돼요</h2>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-no roboto">1</div>
+        <div class="step-t">URL 붙여넣기</div>
+        <div class="step-d">아마존·스루가야 등 일본,미국 구매 사이트의<br>상품 URL을 검색창에 입력</div>
+      </div>
+      <div class="step">
+        <div class="step-no roboto">2</div>
+        <div class="step-t">번역된 상품 정보 확인</div>
+        <div class="step-d">입력한 URL의 번역된 창에서<br>상품 정보와 금액 확인</div>
+      </div>
+      <div class="step">
+        <div class="step-no roboto">3</div>
+        <div class="step-t">구매신청 및 결제</div>
+        <div class="step-d">번역된 창에서 구매신청 버튼을 누르면<br>결제창으로 이동</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 푸터 -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a class="bold" href="#">이용약관</a>
+      <a class="bold" href="#">개인정보처리방침</a>
+      <a href="#">회사소개</a>
+      <a href="#">수수료안내</a>
+      <a href="#">배송가이드</a>
+      <a href="#">공지사항</a>
+      <a href="#">자주하는질문</a>
+      <a href="#">1:1 문의</a>
+      <a href="#">블로그</a>
+    </div>
+    <div class="footer-biz">
+      상호: (주)비드바이코리아 | 대표: 홍길동 | 사업자등록번호: 000-00-00000 | 통신판매업신고번호: 제0000-서울-0000호<br>
+      주소: 서울특별시 강남구 테헤란로 000 | 고객센터: <strong>1544-5224</strong> (평일 10:00~18:00, 주말·공휴일 휴무) | 이메일: help@bidbuy.co.kr
+    </div>
+    <div class="footer-copy">© 2025 BidBuy Korea. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="bb-common.js"></script>
+<script src="bb-search-modal.js"></script>
+</body>
+</html>

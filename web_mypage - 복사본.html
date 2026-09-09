@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bidbuy 마이페이지</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* 폰트 토큰 (DESIGN.md 기준) */
+  :root{--font-sans:'Pretendard','Malgun Gothic','돋움','Dotum',Arial,sans-serif;--font-num:Roboto,var(--font-sans);--tp:#1A1A2E;--ts:#666680;--tm:#999BAA}
+    :root {
+      --rose: #E8385A;
+      --rose-h: #C42F4C;
+      --border: #E0E4EB;
+      --navy: #1A3C6E;
+      --green: #2e8b57;
+      --ink: #20242b;
+      --text: #33363d;
+      --muted: #777985;
+      --faint: #9ba0ae;
+      --line: #e5dbd7;
+      --line-soft: #eee6e2;
+      --warm: #fbf7f5;
+      --warm-2: #f7f3f0;
+      --yellow: #f5a623;
+      --stage-left: max(16px, calc((100vw - 1140px) / 2));
+      --sidebar-w: 231px;
+      --main-w: 885px;
+      --gap: 24px;
+      --asset-w: 710px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #fff;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background: #fff;
+      font-family:var(--font-sans);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .top-notice-spacer {
+      height: 34px;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: #fff;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) var(--main-w);
+      gap: var(--gap);
+      width: calc(var(--sidebar-w) + var(--gap) + var(--main-w));
+      margin-left: var(--stage-left);
+      margin-top: 11px;
+      overflow: visible;
+    }
+
+    .sidebar {
+      min-width: 0;
+    }
+
+    .profile-card {
+      height: 120px;
+      padding: 19px 22px 12px;
+      background: var(--warm);
+    }
+
+    .profile-main {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: #ffe7ef;
+      color: var(--rose);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .profile-name {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--tp);
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .profile-tier {
+      color: var(--grade-vip);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .vip-copy {
+      margin: 18px 0 6px;
+      color: var(--ts);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .vip-copy b {
+      color: var(--ts);
+      font-weight: 800;
+    }
+
+    .vip-row {
+      display: grid;
+      grid-template-columns: 1fr 16px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vip-progress {
+      height: 8px;
+      border-radius: 999px;
+      background: #eee2de;
+      overflow: hidden;
+    }
+
+    .vip-progress span {
+      display: block;
+      width: 84%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff8499 0%, var(--rose) 100%);
+    }
+
+    .help-dot {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #9ea1aa;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: var(--tm);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .profile-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 11px;
+    }
+
+    .soft-btn {
+      height: 26px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--ts);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .side-nav {
+      padding-top: 33px;
+    }
+
+    .side-title {
+      margin: 0 0 18px;
+      padding: 0 15px 17px;
+      border-bottom: 1px solid #dcd9d6;
+      color: var(--tp);
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .side-title a, .side-title a:visited { color: inherit; text-decoration: none; }
+
+    .nav-section {
+      padding: 0 20px;
+      margin-bottom: 14px;
+    }
+
+    .nav-section strong {
+      display: block;
+      margin-bottom: 11px;
+      color: var(--tp);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .nav-list a {
+      
+      color: var(--ts);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      color: var(--rose);
+      font-weight: 800;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .main {
+      min-width: 0;
+      padding-top: 0;
+      padding-bottom: 160px;
+    }
+
+    .page-title {
+      margin-bottom: 17px;
+    }
+
+    .page-title h1 {
+      margin: 0 0 6px;
+      color: var(--tp);
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .page-title p {
+      margin: 0;
+      color: var(--tm);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ===== 마이페이지 대시보드 (거래 현황 개요) ===== */
+    .member-card {
+      border: 1px solid var(--line);
+      border-bottom: 0;
+      background: #fff;
+    }
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+    .asset-cell {
+      min-height: 77px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 8px;
+      border-right: 1px solid var(--line);
+      color: var(--tp);
+    }
+    .asset-cell:last-child { border-right: 0; }
+    .asset-label { font-size: 13px; font-weight: 700; }
+    .asset-value { color: #000; font-size: 17px; font-weight: 700; }
+
+    .dash-section { margin-top: 44px; }
+    .dash-section-head {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid var(--rose);
+    }
+    .dash-section-title {
+      margin: 0;
+      color: var(--rose);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .dash-more {
+      min-width: 37px;
+      height: 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #c8cdd5;
+      background: #fff;
+      color: #8b9098;
+      font-size: 10px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .status-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      margin: 0;
+    }
+    .outline-pill {
+      height: 31px;
+      padding: 0 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #8a7f7a;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .status-board {
+      
+      display: grid;
+      grid-template-columns: 1.45fr repeat(6, minmax(0, 1fr));
+      align-items: stretch;
+      column-gap: 20px;
+      row-gap: 12px;
+      width: 100%;
+      margin-left: 0;
+      padding: 22px 0 0;
+    }
+    .status-step {
+      position: relative;
+      display: grid;
+      min-width: 0;
+    }
+    .status-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid #b5bac2;
+      border-right: 1.5px solid #b5bac2;
+      transform: translateY(-50%) rotate(45deg);
+      pointer-events: none;
+    }
+    .status-card {
+      min-height: 151px;
+      display: grid;
+      place-items: center;
+      padding: 10px 8px;
+      border: 1px solid #ded8d5;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--tp);
+      text-align: center;
+      overflow: hidden;
+      text-decoration: none;
+      transition: border-color .18s ease, transform .18s ease;
+    }
+    .status-card > div { width: 100%; }
+    .status-card:hover,
+    .status-card:focus-visible {
+      border-color: var(--rose);
+      transform: translateY(-1px);
+      outline: 0;
+    }
+    .status-stack { gap: 19px; }
+    .status-stack .status-card { min-height: 66px; }
+    .status-card em {
+      display: block;
+      margin-bottom: 5px;
+      color: #3c3f45;
+      font-style: normal;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .status-card em.hot { color: var(--rose); }
+    .status-card strong {
+      display: block;
+      color: #3e4249;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .table-wrap { border-bottom: 1px solid #c9ced7; overflow-x: auto; }
+    .order-table { width: 100%; min-width: 870px; border-collapse: collapse; table-layout: fixed; }
+    .order-table th,
+    .order-table td {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .order-table th {
+      height: 36px;
+      background:#F5F7FA;
+      color: var(--ts);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .order-table th:last-child,
+    .order-table td:last-child { border-right: 0; }
+    .order-table td { min-height: 95px; padding: 10px 12px; color: var(--ts); font-size: 12px; }
+    .dash-flag {
+      width: 29px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+    .dash-flag::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #d50024;
+    }
+    .product-img { width: 72px; height: 72px; object-fit: cover; display: block; margin: 0 auto; background: #e8eef2; }
+    .product-info { text-align: left; vertical-align: top; line-height: 1.55; word-break: break-all; }
+    .product-market { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 4px; color: var(--ts); font-size: 11px; font-weight: 700; }
+    .product-market .dash-flag { display: inline-block; width: 16px; height: 11px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); vertical-align: -1px; margin-right: 0; background: #fff center / cover no-repeat; }
+    .product-market .dash-flag.jp { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23ffffff'/%3E%3Ccircle cx='15' cy='10' r='6' fill='%23bc002d'/%3E%3C/svg%3E"); }
+    .product-market .market-sep { color: #c1c7d0; font-weight: 700; }
+    .product-info .name-ko { display: block; color: var(--tp); font-size: 13px; font-weight: 700; }
+    .product-info .name-origin { display: block; margin-top: 3px; color: var(--tm); font-size: 11px; font-weight: 400; }
+    .order-table td.product-info,
+    .order-table td.memo-product { text-align: left; vertical-align: top; }
+    .pay-btn { min-width: 70px; height: 30px; border: 0; border-radius: 5px; background: var(--rose); color: #fff; font-size: 13px; font-weight: 700; }
+    .pay-btn:hover { background: var(--rose-h); }
+    .memo-btn,
+    .memo-status {
+      min-width: 64px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      background: var(--rose);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .memo-product { text-align: left; line-height: 1.55; word-break: break-all; }
+    .dash-empty {
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid #c9ced7;
+      color: #555b66;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .asset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .asset-cell { min-height: 68px; }
+      .asset-cell:nth-child(2n) { border-right: 0; }
+      .asset-cell:last-child { grid-column: span 2; border-top: 1px solid var(--line); }
+      .status-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .status-step:not(:last-child)::after { display: none; }
+      .status-card,
+      .status-stack .status-card { min-height: 82px; }
+    }
+
+    .member-tier-icon { background:#eef5ff !important; color:#1A3C6E !important; }
+    .member-tier-icon i { line-height:1; }
+  .profile-id { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .profile-id .profile-name { display: inline; margin: 0; }
+  .profile-id .profile-tier { display: inline-flex; align-items: center; margin: 0; padding: 2px 9px; border-radius: 5px; background:#F5F7FA; color: var(--grade-vip); font-size: 12px; font-weight: 700; line-height: 1.4; }
+  .profile-id + .vip-copy { margin: 4px 0 0; padding-right: 0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="top-notice-spacer" aria-hidden="true"></div>
+
+    <div class="stage">
+      <aside class="sidebar">
+        <section class="profile-card" aria-label="회원 정보">
+          <div class="profile-main">
+            <div class="avatar tier-vip member-tier-icon grade-img" aria-label="VIP 등급"><img class="grade-icon" src="gradeicon/grade_vip.png" alt=""></div>
+            <div>
+              <div class="profile-id"><strong class="profile-name">홍길동님</strong><span class="profile-tier">VIP</span></div>
+              <p class="vip-copy">Prestige까지 <b>65%</b> 달성</p>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="soft-btn" type="button">나의 문의 내역</button>
+            <button class="soft-btn" type="button">로그아웃</button>
+          </div>
+        </section>
+
+        <section class="side-nav" aria-label="마이페이지 메뉴">
+        <h2 class="side-title"><a href="web_mypage.html">마이페이지</a></h2>
+        <div class="nav-section">
+          <strong>나의 거래 현황</strong>
+          <div class="nav-list">
+            <a href="web_mainlist.html">거래 전체 목록</a>
+            <a href="web_auction_bid_list.html">경매 입찰/유찰</a>
+            <a href="#">구매 신청 목록</a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <strong>배송관리</strong>
+          <div class="nav-list">
+            <a href="web_bundle_shipping_management.html">배송신청/변경</a>
+            <a href="#">배송지 관리</a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <strong>관심 항목 관리</strong>
+          <div class="nav-list">
+            <a href="web_favorites.html?tab=seller">관심 출품자</a>
+            <a href="web_favorites.html?tab=auction">경매 관심물품</a>
+            <a href="web_favorites.html?tab=purchase">구매 관심물품</a>
+            <a href="web_favorites.html?tab=keyword">관심 키워드</a>
+            <a href="web_favorites.html?tab=shortcut">바로가기</a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <strong>MY 혜택</strong>
+          <div class="nav-list">
+            <a href="web_mileage.html">마일리지 / 쿠폰</a>
+            <a href="web_grade_page.html">MY 등급</a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <strong>나의 정보관리</strong>
+          <div class="nav-list">
+            <a href="#">예치금 관리</a>
+            <a href="#">보증금 관리</a>
+            <a href="#">회원정보 수정</a>
+            <a href="#">비밀번호 변경</a>
+            <a href="#">회원 탈퇴</a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <strong>고객상담</strong>
+          <div class="nav-list">
+            <a href="web_user_memo.html">사용자메모</a>
+            <a href="web_qna.html">1:1 문의내역</a>
+            <a href="web_qna_form.html">1:1 문의하기</a>
+          </div>
+        </div>
+
+        <div class="nav-section biz-convert-section" hidden>
+          <a href="web_biz.html" class="biz-convert-link">
+            <span class="biz-convert-inner">
+              <span class="biz-convert-icon"><i class="fas fa-building"></i></span>
+              <span class="biz-convert-text">
+                <strong>사업자 회원 전환</strong>
+                <span>사업자 전용 혜택을 확인해보세요</span>
+              </span>
+              <i class="fas fa-chevron-right biz-chev"></i>
+            </span>
+          </a>
+        </div>
+      </section>
+      </aside>
+
+      <main class="main">
+        <div class="page-title">
+          <h1>마이페이지</h1>
+          <p>나의 거래 현황과 혜택을 한 곳에서 확인하세요.</p>
+        </div>
+
+        <section class="member-card" aria-label="회원 카드">
+             <div class="asset-grid" aria-label="회원 혜택 요약">
+            <div class="asset-cell"><span class="asset-label">마일리지</span><strong class="asset-value">4,500 원</strong></div>
+            <div class="asset-cell"><span class="asset-label">쿠폰</span><strong class="asset-value">23 장</strong></div>
+            <div class="asset-cell"><span class="asset-label">예치금</span><strong class="asset-value">13,961 원</strong></div>
+            <div class="asset-cell"><span class="asset-label">야후 보증금</span><strong class="asset-value">30,000 원</strong></div>
+            <div class="asset-cell"><span class="asset-label">이베이 보증금</span><strong class="asset-value">0 원</strong></div>
+          </div>
+        </section>
+
+        <section class="dash-section" aria-labelledby="order-status-title">
+          <div class="dash-section-head">
+            <h2 class="dash-section-title" id="order-status-title">나의 거래 현황</h2>
+            <div class="status-links">
+              <a class="outline-pill" href="web_mainlist.html">거래완료</a>
+              <a class="outline-pill" href="web_mainlist.html">취소/반품</a>
+            </div>
+          </div>
+          <div class="status-board">
+            <div class="status-step status-stack">
+              <a class="status-card" href="web_auction_bid_list.html" data-status="auction-bid" data-label="경매입찰">
+                <div><em>5</em><strong>경매 입찰 상품</strong></div>
+              </a>
+              <a class="status-card" href="web_mainlist.html" data-status="purchase-request" data-label="구매 신청">
+                <div><em>5</em><strong>구매 신청 상품</strong></div>
+              </a>
+            </div>
+            <div class="status-step">
+              <a class="status-card" href="web_mainlist.html" data-status="first-payment-wait" data-label="1차 결제대기">
+                <div><em class="hot">5</em><strong>1차<br>결제대기</strong></div>
+              </a>
+            </div>
+            <div class="status-step">
+              <a class="status-card" href="web_mainlist.html" data-status="first-payment-complete" data-label="1차 결제완료">
+                <div><em>5</em><strong>1차<br>결제완료</strong></div>
+              </a>
+            </div>
+            <div class="status-step status-stack">
+              <a class="status-card" href="web_mainlist.html" data-status="local-arrived" data-label="현지도착">
+                <div><em>5</em><strong>현지도착</strong></div>
+              </a>
+              <a class="status-card" href="web_mainlist.html" data-status="shipping-wait" data-label="배송대기">
+                <div><em>3</em><strong>배송대기</strong></div>
+              </a>
+            </div>
+            <div class="status-step">
+              <a class="status-card" href="web_mainlist.html" data-status="second-payment-wait" data-label="2차 결제대기">
+                <div><em class="hot">5</em><strong>2차<br>결제대기</strong></div>
+              </a>
+            </div>
+            <div class="status-step">
+              <a class="status-card" href="web_mainlist.html" data-status="second-payment-complete" data-label="2차 결제 완료">
+                <div><em>5</em><strong>2차<br>결제 완료</strong></div>
+              </a>
+            </div>
+            <div class="status-step">
+              <a class="status-card" href="web_mainlist.html" data-status="international-shipping" data-label="국제배송">
+                <div><em class="hot">5</em><strong>국제배송</strong></div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="dash-section" aria-labelledby="payment-wait-title">
+          <div class="dash-section-head">
+            <h2 class="dash-section-title" id="payment-wait-title">결제 대기 물품 목록</h2>
+            <a class="dash-more" href="web_mainlist.html">+ 더보기</a>
+          </div>
+          <div class="table-wrap">
+            <table class="order-table">
+              <colgroup>
+                <col style="width: 102px">
+                <col style="width: 96px">
+                <col>
+                <col style="width: 92px">
+                <col style="width: 90px">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>주문일자</th>
+                  <th>이미지</th>
+                  <th>상품정보</th>
+                  <th>결제금액</th>
+                  <th>결제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2026.06.25<br>(1차결제대기)</td>
+                  <td><img class="product-img" src="../images/dummy/item_01.jpg" alt="반지 상품 이미지"></td>
+                  <td class="product-info"><div class="product-market"><span class="dash-flag jp" role="img" aria-label="일본"></span><span>라쿠텐</span><span>BJP0220006636</span></div><span class="name-ko">반지 링 여성용 실버 금속 알레르기 방지 액세서리 여름용 심플 메일편 무료배송</span><span class="name-origin">指輪 リング レディース・シルバー 金属アレルギー アクセサリー 夏 普段使い シンプル オシャレ メール便送料無料</span></td>
+                  <td>15,288원</td>
+                  <td><button class="pay-btn" type="button" onclick="location.href='web_bill_1st.html'">결제하기</button></td>
+                </tr>
+                <tr>
+                  <td>2026.06.24<br>(1차결제대기)</td>
+                  <td><img class="product-img" src="../images/dummy/item_02.jpg" alt="피규어 상품 이미지"></td>
+                  <td class="product-info"><div class="product-market"><span class="dash-flag jp" role="img" aria-label="일본"></span><span>야후경매</span><span>BJP0219872210</span></div><span class="name-ko">드래곤볼 피규어 이치방쿠지 세트 미개봉 레어</span><span class="name-origin">ドラゴンボール フィギュア 一番くじ セット 未開封 レア</span></td>
+                  <td>38,420원</td>
+                  <td><button class="pay-btn" type="button" onclick="location.href='web_bill_1st.html'">결제하기</button></td>
+                </tr>
+                <tr>
+                  <td>2026.06.20<br>(2차결제대기)</td>
+                  <td><img class="product-img" src="../images/dummy/item_03.jpg" alt="가방 상품 이미지"></td>
+                  <td class="product-info"><div class="product-market"><span class="dash-flag jp" role="img" aria-label="일본"></span><span>메루카리</span><span>BJP0218830042</span></div><span class="name-ko">코치 숄더백 가죽 빈티지 상태 좋음</span><span class="name-origin">コーチ ショルダーバッグ レザー ヴィンテージ 美品</span></td>
+                  <td>92,150원</td>
+                  <td><button class="pay-btn" type="button" onclick="location.href='web_bill_2nd.html'">결제하기</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dash-section" aria-labelledby="ending-soon-title">
+          <div class="dash-section-head">
+            <h2 class="dash-section-title" id="ending-soon-title">종료 임박 물품 목록</h2>
+            <a class="dash-more" href="web_mainlist.html">+ 더보기</a>
+          </div>
+          <div class="dash-empty">입찰 중인 상품이 없습니다.</div>
+        </section>
+
+        <section class="dash-section" aria-labelledby="memo-service-title">
+          <div class="dash-section-head">
+            <h2 class="dash-section-title" id="memo-service-title">사용자 메모 알림 서비스</h2>
+            <a class="dash-more" href="web_user_memo.html">+ 더보기</a>
+          </div>
+          <div class="table-wrap">
+            <table class="order-table">
+              <colgroup>
+                <col style="width: 64px">
+                <col style="width: 114px">
+                <col style="width: 70px">
+                <col>
+                <col style="width: 85px">
+                <col style="width: 95px">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>국가</th>
+                  <th>주문번호</th>
+                  <th>스토어</th>
+                  <th>상품명</th>
+                  <th>작성일</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dash-flag" aria-label="일본"></span></td>
+                  <td>BJP0220006636</td>
+                  <td>라쿠텐</td>
+                  <td class="memo-product">반지 링 여성용 니켈프리 금속 알레르기 액세서리...</td>
+                  <td>2026.06.26</td>
+                  <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-flag" aria-label="일본"></span></td>
+                  <td>BJP0219728972</td>
+                  <td>메루카리</td>
+                  <td class="memo-product">생물도감 어드밴스 모토이카부토카게</td>
+                  <td>2026.06.18</td>
+                  <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-flag" aria-label="일본"></span></td>
+                  <td>BJP0216069884</td>
+                  <td>야후쇼핑</td>
+                  <td class="memo-product">메달리스트 원데이 플러스 맥시박스 90매 2박스...</td>
+                  <td>2026.03.04</td>
+                  <td><button class="memo-btn" type="button" onclick="location.href='web_payment_detail.html#user-memo'">메모 보기</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+  </div>
+
+<script src="bb-common.js"></script>
+<script src="bb-search-modal.js"></script>
+</body>
+</html>

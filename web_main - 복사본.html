@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BidBuy Korea</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* 폰트 토큰 (DESIGN.md 기준) */
+  :root{--font-sans:'Pretendard','Malgun Gothic','돋움','Dotum',Arial,sans-serif;--font-num:Roboto,var(--font-sans);--tp:#1A1A2E;--ts:#666680;--tm:#999BAA}
+:root{
+  --rose:#E8385A;--rose-h:#C42F4C;--amber:#F5A623;
+  --navy:#1A3C6E;--green:#3AAD4E;
+  --bg:#F5F7FA;--white:#fff;--border:#E0E4EB;
+  --alert:#FFF8E6;
+  --notice-h:32px;
+  --header-h:0px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--tp);font-size:14px;zoom:1;line-height:1.5;padding-top:calc(var(--notice-h) + var(--header-h))}
+a{text-decoration:none;color:inherit}
+
+/* ? ═ 공 ? ?? ═ */
+.notice-bar{background:#F1F3F5;color:var(--tp);text-align:center;font-size:13px;padding:9px 16px;font-weight:500;min-height:var(--notice-h);display:flex;align-items:center;justify-content:center;white-space:pre-wrap;}
+.notice-bar b{color:#E8385A}
+
+/* ?먥븧 ?ㅻ뜑 ?먥븧 */
+.sticky-top{position:fixed;top:0;left:0;right:0;z-index:300}
+header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(32,36,43,.04)}
+/* 비로그인 버튼 */
+/* 로그???  ? ? 리 ?*/
+.user-trig:hover,.user-trig.open{background:var(--bg)}
+.user-trig.open .u-chv{transform:rotate(180deg)}
+
+
+/* ? ═ ????? 안: 배너( ? + ? 원? 널(?? 2컬럼 73:27 ? ═ */
+.main-hero{background:#fff;padding:0}
+.hero-inner{
+  max-width:1140px;margin:0 auto;padding:15px 0 18px;
+  display:grid;
+  grid-template-columns:73fr 27fr;
+  gap:16px;
+  align-items:stretch;
+}
+
+/* 배너 ? 라? 더 - 좌측 73% */
+.banner-wrap{position:relative;overflow:hidden;border-radius:12px;min-width:0}
+.banner-slider{height:300px;position:relative;overflow:hidden;border-radius:12px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .5s;display:flex;align-items:center}
+.slide.active{opacity:1}
+/* 배너 배경: ?림/베이지 */
+.sl-1{background:linear-gradient(135deg,#FFF5EE,#FDEEE4)}
+.sl-2{background:linear-gradient(135deg,#EEF2FF,#DFE8FF)}
+.sl-3{background:linear-gradient(135deg,#EDFAF1,#D8EFE0)}
+.slide-inner{padding:0 40px;width:100%;display:flex;align-items:center;justify-content:space-between}
+.slide-tag{display:inline-block;background:var(--rose);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:5px;margin-bottom:12px}
+.slide-title{font-size:32px;font-weight:700;color:var(--tp);line-height:1.2;margin-bottom:8px}
+.slide-sub{font-size:13px;color:var(--ts);margin-bottom:18px}
+.slide-cta{background:var(--rose);color:#fff;border:none;padding:11px 24px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px;transition:background .15s}
+.slide-cta:hover{background:var(--rose-h)}
+.slide-obj{width:180px;height:180px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:72px}
+.sl-1 .slide-obj{background:radial-gradient(circle,#C8E6C9,#81C784 60%,#4CAF50)}
+.sl-2 .slide-obj{background:radial-gradient(circle,#BBDEFB,#64B5F6 60%,#2196F3)}
+.sl-3 .slide-obj{background:radial-gradient(circle,#F8BBD0,#F06292 60%,#E91E63)}
+.banner-nav{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:12px 16px;pointer-events:none;z-index:3;gap:6px}
+.bnav-btn{pointer-events:all;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;color:var(--tp);box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.bnav-btn:hover{background:#fff}
+.banner-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
+.dot{width:6px;height:6px;border-radius:5px;background:rgba(0,0,0,.2);cursor:pointer;transition:all .3s}
+.dot.active{width:18px;background:var(--rose)}
+
+/* ????? 안: ? 측 ? 원 ? 널 - 27% (grid ?비율 결정) */
+.hero-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+/* 비로그인 ? 널 */
+.panel-guest{
+  padding:32px 20px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;
+}
+.panel-guest-msg{font-size:16px;font-weight:700;color:var(--tp);margin-bottom:6px}
+.panel-guest-sub{font-size:13px;color:var(--ts);margin-bottom:20px;line-height:1.6}
+.panel-login-btn{background:var(--rose);color:#fff;border:none;padding:12px;border-radius:5px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;margin-bottom:8px}
+.panel-login-btn:hover{background:var(--rose-h)}
+.panel-signup-btn{background:#fff;color:var(--ts);border:1.5px solid var(--border);padding:10px;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
+/* 로그??? 널 */
+.panel-user{display:none;flex-direction:column;flex:1;padding:14px}
+.panel-user-top{padding:0 0 10px;border-bottom:1px solid #F0F2F5}
+.panel-user-row{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.pu-crown{width:30px;height:30px;border-radius:50%;background:#FFF4D6;color:#F5A623;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.pu-name{font-size:14px;font-weight:800;color:var(--tp)}
+.pu-grade{display:inline-block;color:var(--tm);font-size:10px;font-weight:700;margin-top:1px}
+.pu-manage-card{background:#FFF7F0;border:1px solid #FFE2C6;border-radius:8px;padding:8px 10px;margin-bottom:10px}
+.pu-manage-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:800;color:#F08A24}
+.pu-grade-progress{height:5px;margin-top:7px;border-radius:999px;background:#FFE2C6;overflow:hidden}
+.pu-grade-progress span{display:block;width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--rose),var(--amber));transition:width .2s ease}
+.pu-manage-sub{display:block;margin-top:6px;padding-top:5px;border-top:1px solid #FFE2C6;color:#B9A18D;font-size:10px;text-align:right;text-decoration:none}
+.pu-manage-sub:hover{color:var(--rose)}
+.pu-status{display:grid;gap:6px;padding:10px 0}
+.pu-st{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:22px}
+.pu-st-label{display:flex;align-items:center;gap:6px;color:var(--ts);font-size:12px;font-weight:700}
+.pu-st-label::before{content:"";width:6px;height:6px;border-radius:50%;background:#22C55E}
+.pu-st:nth-child(2) .pu-st-label::before{background:#E8385A}
+.pu-st:nth-child(3) .pu-st-label::before{background:#22C55E}
+.pu-st-num{font-size:13px;font-weight:900;color:var(--tp);font-family:var(--font-num)}
+.pu-st-num.red{color:var(--rose)}
+.pu-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.pu-btn{height:32px;border:1px solid var(--border);border-radius:5px;background:#fff;font-size:11px;font-weight:800;color:var(--ts);cursor:pointer;font-family:inherit;text-align:center;position:relative}
+.pu-btn:hover{background:var(--bg);color:var(--tp)}
+/* 신규 소식 표시: 오른쪽 위 N (1:1 문의내역과 동일) */
+.new-n{color:var(--rose);font-family:var(--font-num);font-size:9px;font-weight:900;line-height:1;vertical-align:super;margin-left:2px}
+k{margin-left:auto;font-size:12px;color:var(--navy);font-weight:700}
+
+/* ? ═ 멤버??배너 ? ═ */
+.member-bar{background:#fff;padding:16px 0}
+.member-inner{max-width:1140px;margin:0 auto;padding:0;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.mb-lbl{font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
+.mb-sub{font-size:12px;color:var(--ts);flex-shrink:0}
+/* 비로그인 3??*/
+.mb-tiers{display:flex;flex:1;gap:0}
+.mb-tier{flex:1;text-align:center;padding:4px 16px;border-right:1px solid var(--border)}
+.mb-tier:last-child{border-right:none}
+.mb-tier-name{font-size:13px;font-weight:700}
+.mb-tier-desc{font-size:11px;color:var(--tm);line-height:1.5;margin-top:2px}
+.mb-detail-btn{background:var(--rose);color:#fff;border:none;padding:9px 20px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:auto;flex-shrink:0}
+.mb-detail-btn:hover{background:var(--rose-h)}
+
+/* ? ═ 전환 배너(멤버십 ??공지사항) ? ═ */
+.hero-banner{position:relative;background:#fff;border-top:0px solid var(--border);border-bottom:1px solid var(--border);padding-bottom:26px}
+.hb-slide{display:none;height:100px;overflow:hidden;animation:hbFade .35s ease}
+.hb-slide.active{display:block}
+@keyframes hbFade{from{opacity:0}to{opacity:1}}
+.mb-slide .member-bar{height:100px;padding:0;display:flex;align-items:center}
+.notice-slide .notice-banner-inner{position:relative;max-width:1140px;margin:0 auto;padding:10px 10px 0}
+.notice-slide .nb-more{position:absolute;right:10px;top:10px;z-index:2;font-size:12px;color:var(--tm);font-weight:700;display:inline-flex;align-items:center;gap:4px;background:#fff;padding-left:14px}
+.notice-slide .nb-more:hover{color:var(--rose)}
+.nb-viewport{height:78px;overflow-y:auto;scrollbar-width:none;cursor:grab;padding-right:76px}
+.nb-viewport::-webkit-scrollbar{display:none}
+.nb-viewport:active{cursor:grabbing}
+.ntk-row{display:flex;align-items:center;gap:8px;height:26px;padding:0;font-size:13px;cursor:pointer}
+.ntk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ntk-dot.ntk-jp{background:var(--rose)}
+.ntk-dot.ntk-kr{background:#1d74ff}
+.ntk-tag{flex-shrink:0;font-size:11px;font-weight:700;color:#374151;background:#F1F3F5;border-radius:5px;padding:2px 6px}
+.ntk-row .notice-txt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;gap:6px}
+.hb-dot{width:6px;height:6px;padding:0;border:none;border-radius:50%;background:var(--border);cursor:pointer}
+.hb-dot.active{background:var(--rose);width:16px;border-radius:5px}
+.hero-banner.is-tabbed{padding-bottom:0}
+.hero-banner.is-tabbed .hero-banner-inner{max-width:1140px;height:112px;margin:0 auto;display:grid;grid-template-columns:248px minmax(0,1fr)}
+.hero-banner.is-tabbed .hb-tabs{border-right:1px solid var(--border);display:grid;grid-template-rows:1fr 1fr;background:#fff}
+.hero-banner.is-tabbed .hb-tab{display:flex;align-items:center;gap:10px;padding:0 28px;border:0;background:#fff;color:var(--tm);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:left}
+.hero-banner.is-tabbed .hb-tab i{width:14px;text-align:center;font-size:13px;color:currentColor}
+.hero-banner.is-tabbed .hb-tab.active{color:var(--rose)}
+.hero-banner.is-tabbed .hb-panels{position:relative;min-width:0;overflow:hidden}
+.hero-banner.is-tabbed .hb-slide{position:absolute;inset:0;height:112px;display:none;align-items:center;overflow:hidden;animation:hbFade .2s ease}
+.hero-banner.is-tabbed .hb-slide.active{display:flex}
+.hero-banner.is-tabbed .hb-dots{display:none}
+.hero-banner.is-tabbed .mb-slide .member-bar{width:100%;height:112px;padding:0;display:flex;align-items:center}
+.hero-banner.is-tabbed .member-inner{width:100%;max-width:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(250px,1.15fr) 1fr 1fr 1fr auto;align-items:center;gap:0;flex-wrap:nowrap}
+.hero-banner.is-tabbed .mb-lbl{display:none}
+.hero-banner.is-tabbed .mb-sub{padding:0 24px;color:#657084;font-size:13px;line-height:1.5}
+.hero-banner.is-tabbed .mb-tiers{display:contents}
+.hero-banner.is-tabbed .mb-tier{text-align:center;padding:0 24px;border-right:0;border-left:1px solid var(--border)}
+.hero-banner.is-tabbed .mb-tier-name{font-size:13px;font-weight:800;color:var(--tp)}
+.hero-banner.is-tabbed .mb-tier-desc{font-size:11px;color:var(--tm);line-height:1.55;margin-top:2px}
+.hero-banner.is-tabbed .mb-detail-btn{display:inline-flex;align-items:center;justify-content:center;width:92px;height:36px;margin:0 40px 0 26px;padding:0;border-radius:5px;background:var(--rose);color:#fff;font-size:13px;font-weight:800}
+.hero-banner.is-tabbed .notice-slide .notice-banner-inner{position:relative;width:100%;max-width:none;height:100%;margin:0;padding:24px 126px 10px 28px;display:block}
+.hero-banner.is-tabbed .notice-slide .nb-more{position:absolute;right:0;top:0;width:112px;height:100%;margin:0;padding:0;border-left:1px solid #eef1f5;border-radius:0;background:#fff;color:var(--tm);font-size:13px;font-weight:700;justify-content:center;flex:0 0 auto}
+.hero-banner.is-tabbed .notice-slide .nb-more:hover{background:#fff;color:#7b8494}
+.hero-banner.is-tabbed .nb-viewport{height:78px;padding-right:0;min-width:0}
+
+/* ? ═ 바로가 ?? ═ */
+.sc-bar{background:#fff;border-bottom:1px solid var(--border);padding:16px 14px}
+.sc-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;gap:8px;overflow-x:auto;scrollbar-width:none}
+.sc-inner::-webkit-scrollbar{display:none}
+.sc-item{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:opacity .15s;color:inherit;text-decoration:none;flex:0 0 auto}
+.sc-item:hover{opacity:.75}
+.sc-icon{width:54px;height:54px;border-radius:50%;background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07);font-size:20px}
+.sc-icon i{font-size:22px;color:rgb(233,59,95)}
+.si1{background:rgb(255,249,249)}.si2{background:rgb(245,255,246)}.si3{background:rgb(245,248,255)}
+.si4{background:rgb(248,245,255)}.si5{background:rgb(255,245,245)}.si10{background:rgb(255,245,248)}
+.sc-lbl{font-size:10px;color:var(--ts);font-weight:500;white-space:nowrap;text-align:center}
+
+/* 환율/근무시간 팝업 */
+.market-info-overlay.open{display:flex}
+.office-grid{display:grid;grid-template-columns:1fr 1fr;background:#fff;border:0}
+.office-card{min-height:92px;padding:10px 12px 8px 10px;border:0;display:flex;align-items:center;gap:8px}
+.office-card:nth-child(2n){border-right:0}
+.office-card:nth-last-child(-n+2){border-bottom:0}
+.office-status{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:#d9dee6;color:#fff;font-size:12px;font-weight:600}
+.office-status.is-open{background:#E8385A;color:#fff}
+.office-info{min-width:0}
+.office-country{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--tp);margin-bottom:4px}
+.office-country .flag{width:18px;height:13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.office-country .flag img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.office-time{font-family:var(--font-sans);font-size:13px;color:#1d74ff;white-space:nowrap}
+
+@media (max-width:720px){
+  .market-info-body{grid-template-columns:1fr}
+  .office-grid{grid-template-columns:1fr}
+  .office-card,.office-card:nth-child(2n),.office-card:nth-last-child(-n+2){border:0}
+  .office-card:last-child{border-bottom:0}
+}
+
+/* 편의도구 팝업 */
+.convenience-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(17,24,39,.46);z-index:910}
+.convenience-overlay.open{display:flex}
+.convenience-popup{width:min(680px,calc(100vw - 32px));background:#fff;border:1px solid #d9dee6;box-shadow:0 20px 60px rgba(0,0,0,.18);position:relative}
+.convenience-head{height:54px;padding:0 54px 0 20px;border-bottom:1px solid var(--border);display:flex;align-items:center}
+.convenience-title{font-size:16px;font-weight:900;color:var(--tp)}
+.convenience-close{position:absolute;top:12px;right:12px;width:30px;height:30px;border:0;background:#F5F7FA;color:var(--ts);border-radius:5px;display:grid;place-items:center}
+.convenience-close:hover{background:#EEF1F5;color:var(--tp)}
+.convenience-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--border);background:#fbfcfd}
+.convenience-tab{min-height:50px;padding:9px 10px;border:0;border-right:1px solid var(--border);background:transparent;color:var(--ts);font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;word-break:keep-all;line-height:1.25}
+.convenience-tab:last-child{border-right:0}
+.convenience-tab:hover,.convenience-tab.active{background:#fff;color:var(--rose)}
+.convenience-tab.active{box-shadow:inset 0 -3px 0 var(--rose)}
+.convenience-body{padding:22px 24px 26px;min-height:190px;background:#fff}
+.convenience-panel{display:none}
+.convenience-panel.active{display:block}
+.convenience-panel-title{font-size:15px;font-weight:900;color:var(--tp);margin-bottom:8px}
+.convenience-panel-desc{font-size:13px;color:var(--ts);line-height:1.6}
+@media (max-width:720px){
+  .convenience-tabs{grid-template-columns:1fr 1fr}
+  .convenience-tab:nth-child(2){border-right:0}
+  .convenience-tab:nth-child(-n+2){border-bottom:1px solid var(--border)}
+}
+
+/* ? ═ ? 션 공통 ? ═ */
+.section{max-width:1140px;margin:0 auto;padding:30px 0}
+/* 인기 카테고리 ~ 인기 브랜드 사이 여백 20px */
+#popularCategorySec{padding-bottom:8px}
+#popularBrandSec{padding-top:8px}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec-title{font-size:18px;font-weight:700}
+.sec-more{font-size:13px;color:var(--tm);display:flex;align-items:center;gap:4px}
+.sec-more:hover{color:var(--rose)}
+.sec-meta{font-size:12px;color:var(--tm)}
+
+/* ? ═ 브랜??? ═ */
+.brand-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;padding-bottom:4px}
+.br-chip{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;cursor:pointer}
+.br-img{width:65px;height:65px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--tp);overflow:hidden;transition:border-color .15s}
+.br-chip:hover .br-img{border-color:var(--rose)}
+.br-img img{width:100%;height:100%;object-fit:contain;padding:10px}
+.br-name{font-size:11px;color:var(--ts);font-weight:500;text-align:center;line-height:1.35}
+
+/* 실시간 베스트 */
+.live-best-section{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:34px 0}
+.live-best-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.live-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .15s;cursor:pointer}
+.live-card:hover{border-color:var(--rose)}
+.live-thumb{position:relative;width:100%;aspect-ratio:1;background:#F2F3F5;overflow:hidden}
+.live-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.live-actions{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px}
+.live-action,
+.live-fav{width:34px;height:34px;padding:0;border:1px solid #e0e3e8;border-radius:50%;background:rgba(255,255,255,.96);color:#9aa1ad;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;box-shadow:none;transition:border-color .16s,background .16s,color .16s,transform .16s}
+.live-action:hover,
+.live-fav:hover{border-color:#c9ced7;background:#fff;color:var(--rose)}
+.live-fav.active{background:var(--rose);color:#fff;transform:scale(1.04)}
+.live-info{padding:10px 12px 12px}
+.live-source{height:24px;border:1px solid #EEEFF3;border-radius:5px;display:flex;align-items:center;gap:6px;padding:0 8px;color:var(--ts);font-size:10px;margin-bottom:8px}
+.live-source::before{content:"";width:7px;height:7px;border-radius:50%;background:#E60026}
+.live-name{min-height:34px;color:var(--tp);font-size:12px;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.live-price-line{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;min-width:0;margin-top:8px}
+.live-price{margin-top:8px;color:var(--tp);font-size:17px;font-weight:900;font-family:var(--font-num)}
+.live-price-line .live-price{margin-top:0}
+.live-buy-now{flex:0 0 auto;margin:0 0 2px;color:var(--tp);font-size:12px;font-weight:600;white-space:nowrap}
+.live-buy-now strong{font-family:var(--font-num);font-weight:600}
+.live-meta{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:var(--tm);font-size:12px;font-weight:600}
+.live-meta span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ? ═ 카테고리 BEST ? ═ */
+.best-card{background:#fff;overflow:hidden;cursor:pointer}
+
+/* ? ═ 고객? 기 ? ═ */
+.rv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rv-card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:16px;cursor:pointer;transition:border-color .15s}
+.rv-card:hover{border-color:var(--rose)}
+.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.rv-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#FFF5F7;color:var(--rose)}
+.rv-badge.mc{background:#E8F5E9;color:var(--green)}
+.rv-time{font-size:11px;color:var(--tm)}
+.rv-thumb{width:100%;aspect-ratio:1;border-radius:8px;background:var(--bg);margin-bottom:10px;overflow:hidden}
+.rv-thumb img{width:100%;height:100%;object-fit:cover}
+.rv-stars{color:var(--amber);font-size:12px;margin-bottom:5px}
+.rv-title{font-size:13px;font-weight:700;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-text{font-size:12px;color:var(--ts);line-height:1.6}
+.rv-item{font-size:11px;color:var(--tm);margin-top:8px}
+
+/* ? ═ 공 ?+CS ? ═ */
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.info-card{background:#fff;border-radius:12px;border:1px solid var(--border);padding:20px;min-width:0}
+.info-title{font-size:14px;font-weight:700;margin-bottom:14px}
+.notice-txt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rate-title{font-size:16px;font-weight:800;color:var(--tp);margin-bottom:10px}
+.rate-desc{font-size:12px;color:var(--ts);line-height:1.55;margin-bottom:12px}
+.rate-list{display:grid;gap:7px}
+.rate-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;min-height:42px;padding:0 14px;background:#F5F7FA;border-radius:8px;font-size:13px}
+.rate-currency{display:flex;align-items:center;gap:8px;color:var(--tp);font-weight:700}
+.rate-flag{width:20px;height:14px;object-fit:cover;display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.rate-value{font-family:var(--font-num);color:var(--tp);font-weight:800;font-size:14px;white-space:nowrap}
+.cs-num{font-size:30px;font-weight:900;color:var(--rose);font-family:var(--font-num);line-height:1.1;margin-bottom:14px}
+.cs-hours{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;margin-bottom:14px;color:var(--tm);font-size:12px;line-height:1.45}
+.cs-hours strong{color:var(--tm);font-weight:700;white-space:nowrap}
+.cs-shortcuts{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.cs-shortcut{display:inline-flex;align-items:center;gap:6px;color:var(--ts);font-size:12px;font-weight:700;text-decoration:none}
+.cs-shortcut i{width:16px;height:16px;border-radius:50%;background:#1f2530;color:#fff;display:grid;place-items:center;font-size:8px}
+.info-card .office-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px;background:transparent}
+.info-card .office-card{min-height:48px;padding:0;border:0}
+.info-card .office-status{width:42px;height:42px;font-size:11px}
+.info-card .office-country{font-size:12px;margin-bottom:1px}
+.info-card .office-time{font-size:12px}
+
+/* ? ═ 앱 다운로드 ? ═ */
+.app-dl{background:#fff;border-top:1px solid var(--border);padding:16px 0}
+.app-dl-inner{max-width:1140px;margin:0 auto;padding:0;display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.app-dl-btn{display:flex;align-items:center;gap:7px;background:var(--tp);color:#fff;border:none;padding:10px 18px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.app-dl-btn:hover{opacity:.85}
+
+/* ?먥븧 ?명꽣 ?먥븧 */
+footer{background:#1A1A2E;color:rgba(255,255,255,.6);padding:32px 0}
+.ft-inner{max-width:1140px;margin:0 auto;padding:0}
+.ft-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-logo{font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.ft-desc{font-size:12px;line-height:1.8;max-width:340px}
+.ft-links{display:flex;flex-direction:column;gap:8px}
+.ft-links-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:4px}
+.ft-links a{font-size:12px;color:rgba(255,255,255,.5)}
+.ft-links a:hover{color:rgba(255,255,255,.9)}
+.ft-bottom{font-size:11px;line-height:1.8}
+
+/* ?먥븧 ?뚯썝 ?쒕∼?ㅼ슫 ?먥븧 */
+.user-dd.open{display:block}
+.dd-st-num.red{color:var(--rose)}
+
+
+
+@media(max-width:1023px){
+  .hero-inner{grid-template-columns:1fr}
+  .banner-wrap{margin:0}
+  .best-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.rv-grid{grid-template-columns:repeat(2,1fr)}
+  .info-grid{grid-template-columns:1fr}
+  .mb-tiers{flex-wrap:wrap}
+}
+@media(max-width:767px){
+  :root{--header-h:52px}  .hero-inner{padding:0 14px}
+  .banner-slider{height:200px}
+  .slide-inner{padding:0 20px}
+  .slide-title{font-size:20px}
+  .slide-sub,.slide-obj{display:none}
+  .slide-cta{padding:8px 14px;font-size:11px}
+  .section{padding:18px 14px}
+  .sec-title{font-size:15px}
+  .best-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rv-grid{grid-template-columns:repeat(1,1fr)}
+  .info-grid{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+
+<!-- 공지+헤더 고정 래퍼 -->
+<div class="sticky-top">
+<div class="notice-bar">누적 거래 <b>2백만건</b>, 고객님과 함께 쌓아온 <b>25년</b>, 변함없는 믿음으로 이어갑니다</div>
+
+<!-- 헤더 -->
+</div><!-- /sticky-top -->
+
+
+<!-- ????? 안: 배너( ? + ? 원? 널(?? 2컬럼 -->
+<div class="main-hero" style="background:#fff;border-bottom:1px solid var(--border)">
+  <div class="hero-inner">
+    <!-- 배너 ? 라? 더 -->
+    <div class="banner-wrap">
+      <div class="banner-slider" id="slider">
+        <div class="slide sl-1 active">
+          <div class="slide-inner">
+            <div class="slide-text">
+              <span class="slide-tag">야후 옥션 특집</span>
+              <h2 class="slide-title">야후 일본 경매<br>초보 추천 Top10 공개!</h2>
+              <p class="slide-sub">지금 바로 확인하고 원하는 상품을 합리적인 가격에 낙찰받아보세요.</p>
+              <button class="slide-cta">지금 바로가기 <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="slide-obj"><i class="fas fa-gavel"></i></div>
+          </div>
+        </div>
+        <div class="slide sl-2">
+          <div class="slide-inner">
+            <div class="slide-text">
+              <span class="slide-tag">리뉴얼 오픈</span>
+              <h2 class="slide-title">새로워진 비드바이<br>해외쇼핑 핵심 혜택</h2>
+              <p class="slide-sub">Renewal Open EVENT와 함께 달라진 주요 혜택을 한눈에 확인해보세요.</p>
+              <button class="slide-cta">혜택 확인하기 <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="slide-obj"><i class="fas fa-gift"></i></div>
+          </div>
+        </div>
+        <div class="slide sl-3">
+          <div class="slide-inner">
+            <div class="slide-text">
+              <span class="slide-tag">안심 케어 패키지</span>
+              <h2 class="slide-title">최대 50,000원<br>보상 서비스</h2>
+              <p class="slide-sub">업계 최고 수준의 케어 서비스로 최대 5만엔 상당 보상을 지원합니다.</p>
+              <button class="slide-cta">상세보기 <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="slide-obj"><i class="fas fa-shield-heart"></i></div>
+          </div>
+        </div>
+        <div class="banner-nav">
+          <button class="bnav-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="bnav-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="banner-dots">
+          <div class="dot active" onclick="goSlide(0)"></div>
+          <div class="dot" onclick="goSlide(1)"></div>
+          <div class="dot" onclick="goSlide(2)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ?????쒖븞: ?곗륫 ?뚯썝 ?뺣낫 ?⑤꼸 -->
+    <div class="hero-panel" id="heroPanel">
+      <!-- 비로그인 -->
+      <div class="panel-guest" id="panelGuest">
+        <div style="font-size:36px;margin-bottom:12px"><i class="fas fa-user-plus"></i></div>
+        <div class="panel-guest-msg">비드바이 멤버로 시작하세요</div>
+        <div class="panel-guest-sub">해외쇼핑 경험이 달라지는 혜택<br>지금 바로 시작해보세요</div>
+        <button class="panel-login-btn" onclick="doLogin()">로그인</button>
+        <button class="panel-signup-btn">회원가입</button>
+      </div>
+      <!-- 로그??-->
+      <div class="panel-user" id="panelUser">
+        <div class="panel-user-top">
+          <div class="panel-user-row">
+            <div class="pu-crown grade-img"><img class="grade-icon" src="gradeicon/grade_vip.png" alt=""></div>
+            <div><div class="pu-name">홍길동님</div><span class="pu-grade">마일리지 0원 · 예치금 339,119원</span></div>
+          </div>
+          <div class="pu-manage-card">
+            <div class="pu-manage-row"><span><i class="fas fa-star"></i> VIP</span><span class="pu-grade-remaining" data-remaining="80">Prestige까지 <strong style="color: #E8385A;">80%</strong> 남음</span></div>
+            <div class="pu-grade-progress" aria-hidden="true"><span id="puGradeProgressFill"></span></div>
+            <a class="pu-manage-sub" href="web_grade.html">등급 혜택 자세히보기</a>
+          </div>
+        </div>
+        <div class="pu-status">
+          <div class="pu-st"><div class="pu-st-label">입찰 진행 중</div><div class="pu-st-num">3건</div></div>
+          <div class="pu-st"><div class="pu-st-label">1차 결제 대기</div><div class="pu-st-num red">1건</div></div>
+          <div class="pu-st"><div class="pu-st-label">2차 결제 대기</div><div class="pu-st-num">0건</div></div>
+        </div>
+        <div class="pu-btns">
+          <button class="pu-btn" type="button" onclick="openbidbuycsPopup()">고객센터</button>
+          <button class="pu-btn" type="button" onclick="openaccountPopup()">나의 계좌관리</button>
+          <button class="pu-btn" type="button" onclick="openbidbuynoticePopup()">공지사항<sup class="new-n" aria-label="새 소식">N</sup></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 전환 배너: 멤버십 등급 ??공지사항 -->
+<div class="hero-banner" id="heroBanner">
+  <div class="hb-slide mb-slide active">
+    <div class="member-bar">
+      <div class="member-inner">
+        <span class="mb-lbl">등급별 마일리지 제도 오픈!</span>
+        <span class="mb-sub">모든 거래에 자동 적립, 등급이 올라갈수록 혜택도 커집니다</span>
+        <div class="mb-tiers">
+          <div class="mb-tier"><div class="mb-tier-name">Standard</div><div class="mb-tier-desc">마일리지 2% 적립<br>무료보관 30일</div></div>
+          <div class="mb-tier"><div class="mb-tier-name" style="color:var(--amber)">Premium</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 1만원</div></div>
+          <div class="mb-tier"><div class="mb-tier-name" style="color:var(--rose)">VIP</div><div class="mb-tier-desc">마일리지 5% 적립<br>월간 마일리지 2만원</div></div>
+        </div>
+        <a class="mb-detail-btn" href="web_grade_page.html">상세보기</a>
+      </div>
+    </div>
+  </div>
+  <div class="hb-slide notice-slide">
+    <div class="notice-banner-inner">
+      <a href="#" class="nb-more" onclick="openbidbuynoticePopup();return false;">더보기</a>
+      <div class="nb-viewport" id="nbViewport">
+        <div class="nb-track" id="nbTrack">
+          <div class="ntk-row"><span class="ntk-dot ntk-jp"></span><span class="ntk-tag">일본</span><span class="notice-txt">● 일본-8월 출하 및 공휴일 안내 ●</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 관세청 개인통관고유부호 검증 강화 시행 일정 변경 안내 (수정)</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[미국/영국] 관련 특송 공통사항입니다.</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[수입식품안전관리특별법] 사전 수입신고 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 2026년 8월 카드사별 무이자 및 부분무이자 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">개인정보 처리방침 변경 안내 공지입니다.</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 본인인증 완료 이벤트 쿠폰 미지급 관련 공지</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 일시적인 사이트 접속 장애 및 정상화 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 중국 태풍 짱마로 인한 인천세관 작업지연 관련 안내</span></div>
+          <div class="ntk-row"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] NICE 개인통관고유부호 유효성 검증 서비스 도입 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-jp"></span><span class="ntk-tag">일본</span><span class="notice-txt">● 일본-8월 출하 및 공휴일 안내 ●</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 관세청 개인통관고유부호 검증 강화 시행 일정 변경 안내 (수정)</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[미국/영국] 관련 특송 공통사항입니다.</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[수입식품안전관리특별법] 사전 수입신고 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 2026년 8월 카드사별 무이자 및 부분무이자 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">개인정보 처리방침 변경 안내 공지입니다.</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 본인인증 완료 이벤트 쿠폰 미지급 관련 공지</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 일시적인 사이트 접속 장애 및 정상화 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] 중국 태풍 짱마로 인한 인천세관 작업지연 관련 안내</span></div>
+          <div class="ntk-row" aria-hidden="true"><span class="ntk-dot ntk-kr"></span><span class="ntk-tag">한국</span><span class="notice-txt">[한국] NICE 개인통관고유부호 유효성 검증 서비스 도입 안내</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hb-dots">
+    <button class="hb-dot active" type="button" onclick="hbGoTo(0)" aria-label="멤버십 배너 보기"></button>
+    <button class="hb-dot" type="button" onclick="hbGoTo(1)" aria-label="공지사항 배너 보기"></button>
+  </div>
+</div>
+
+<!-- 바로가 ?-->
+<div class="sc-bar">
+  <div class="sc-inner">
+    <div class="sc-item" role="button" tabindex="0" onclick="openCustomsTaxPopup()" onkeydown="handleShortcutKey(event, openCustomsTaxPopup)"><div class="sc-icon si1"><i class="fas fa-table-cells-large"></i></div><span class="sc-lbl">예상 세금계산기</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openWishlistPopup()" onkeydown="handleShortcutKey(event, openWishlistPopup)"><div class="sc-icon si2"><i class="fas fa-heart"></i></div><span class="sc-lbl">관심상품</span></div>
+    <div class="sc-item" onclick="location.href='web_auction_bid_list.html'" style="cursor:pointer"><div class="sc-icon si3"><i class="fas fa-gavel"></i></div><span class="sc-lbl">나의 경매</span></div>
+    <div class="sc-item" onclick="location.href='web_bundle_shipping_management.html'" style="cursor:pointer"><div class="sc-icon si4"><i class="fas fa-box-open"></i></div><span class="sc-lbl">배송 신청 관리</span></div>
+    <div class="sc-item" onclick="location.href='https://www.bidbuy.co.kr/cs'" style="cursor:pointer"><div class="sc-icon si5"><i class="fas fa-thumbs-up"></i></div><span class="sc-lbl">고객센터</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openConvenienceToolsPopup()" onkeydown="handleShortcutKey(event, openConvenienceToolsPopup)"><div class="sc-icon si6"><i class="fas fa-toolbox"></i></div><span class="sc-lbl">편의도구</span></div>
+    <div class="sc-item" onclick="location.href='web_mileage.html'" style="cursor:pointer"><div class="sc-icon si7"><i class="fas fa-ticket"></i></div><span class="sc-lbl">마일리지/쿠폰</span></div>
+    <div class="sc-item" role="button" tabindex="0" onclick="openbidbuycsPopup()" onkeydown="handleShortcutKey(event, openbidbuycsPopup)"><div class="sc-icon si8"><i class="fas fa-clipboard-list"></i></div><span class="sc-lbl">자주하는질문</span></div>
+    <div class="sc-item" onclick="location.href='web_mainlist.html?status=international-shipping'" style="cursor:pointer"><div class="sc-icon si9"><i class="fas fa-plane-departure"></i></div><span class="sc-lbl">배송조회</span></div>
+    <a class="sc-item" href="web_purchase_start.html"><div class="sc-icon si10"><i class="fas fa-bag-shopping"></i></div><span class="sc-lbl">구매신청</span></a>
+  </div>
+</div>
+
+<!-- 인기 카테고리-->
+<div class="section" id="popularCategorySec">
+  <div class="sec-hd"><h2 class="sec-title">인기 카테고리 빠른 검색</h2></div>
+  <div class="brand-grid">
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('낚시용품')"><div class="br-img"><img src="favorite logo/5.png" alt="낚시용품" onerror="this.parentElement.textContent='낚시용품'"></div><span class="br-name">낚시용품</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('피규어')"><div class="br-img"><img src="favorite logo/10.png" alt="피규어" onerror="this.parentElement.textContent='피규어'"></div><span class="br-name">피규어</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('오토바이부품')"><div class="br-img"><img src="favorite logo/2.png" alt="오토바이부품" onerror="this.parentElement.textContent='오토바이부품'"></div><span class="br-name">오토바이부품</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('카메라')"><div class="br-img"><img src="favorite logo/9.png" alt="카메라" onerror="this.parentElement.textContent='카메라'"></div><span class="br-name">카메라</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('골프')"><div class="br-img"><img src="favorite logo/6.png" alt="골프" onerror="this.parentElement.textContent='골프'"></div><span class="br-name">골프</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('음향기기')"><div class="br-img"><img src="favorite logo/1.png" alt="음향기기" onerror="this.parentElement.textContent='음향기기'"></div><span class="br-name">음향기기</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('포켓몬카드')"><div class="br-img"><img src="favorite logo/8.png" alt="포켓몬카드" onerror="this.parentElement.textContent='포켓몬카드'"></div><span class="br-name">포켓몬카드</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('시계')"><div class="br-img"><img src="favorite logo/11.png" alt="시계" onerror="this.parentElement.textContent='시계'"></div><span class="br-name">시계</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('악기')"><div class="br-img"><img src="favorite logo/7.png" alt="악기" onerror="this.parentElement.textContent='악기'"></div><span class="br-name">악기</span></div>
+    <div class="br-chip" onclick="location.href='web_totalsearch.html?q=' + encodeURIComponent('슈즈')"><div class="br-img"><img src="favorite logo/3.png" alt="슈즈" onerror="this.parentElement.textContent='슈즈'"></div><span class="br-name">슈즈</span></div>
+  </div>
+</div>
+
+<!-- 인기 브랜드-->
+<div class="section" id="popularBrandSec">
+  <div class="sec-hd"><h2 class="sec-title">인기 브랜드 빠른 검색</h2></div>
+  <div class="brand-grid">
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Nike"><div class="br-img">NIKE</div><span class="br-name">NIKE</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Chanel"><div class="br-img">CHANEL</div><span class="br-name">CHANEL</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Hermes"><div class="br-img">HERMES</div><span class="br-name">HERMES</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Polo"><div class="br-img">POLO</div><span class="br-name">POLO</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Levi%27s"><div class="br-img">LEVI'S</div><span class="br-name">LEVI'S</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Bandai"><div class="br-img">BANDAI</div><span class="br-name">BANDAI</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=COMME%20des"><div class="br-img">COMME<br>des</div><span class="br-name">COMME des</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=SHIMANO"><div class="br-img">SHIMANO</div><span class="br-name">SHIMANO</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Coach"><div class="br-img">COACH</div><span class="br-name">COACH</span></a>
+    <a class="br-chip" href="https://www.alpha.bidbuy.co.kr/search?q=Gucci"><div class="br-img">GUCCI</div><span class="br-name">GUCCI</span></a>
+  </div>
+</div>
+
+<!-- 실시간 베스트 -->
+<div class="live-best-section">
+  <div class="section" style="padding:0">
+    <div class="sec-hd"><h2 class="sec-title">실시간 베스트</h2><span class="sec-meta">2026-04-30 20:00 업데이트</span></div>
+    <div class="live-best-grid">
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-1/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">シチズン クォーツ 腕時計 メンズ 文字盤</div><div class="live-price">3,030엔</div><div class="live-meta"><span>2026-04-30 19:38:26</span><span>10 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-2/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">TISSOT ティソ PR100 P350/450 クォーツ</div><div class="live-price">1,100엔</div><div class="live-meta"><span>2026-04-30 18:27:54</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-3/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 腕時計 メンズ デジアナ アラーム</div><div class="live-price">5,000엔</div><div class="live-meta"><span>2026-04-30 19:09:09</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-4/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN CLUB LA MER 自動巻き</div><div class="live-price">21엔</div><div class="live-meta"><span>2026-04-30 20:05:22</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-5/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">SEIKO QUARTZ 腕時計 ゴールド 稼働品</div><div class="live-price">2,222엔</div><div class="live-meta"><span>2026-05-01 21:50:44</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-6/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 腕時計 2730-274822 セット</div><div class="live-price">19,800엔</div><div class="live-meta"><span>2026-04-30 21:49:58</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-7/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">美品 シチズン 腕時計 エコドライブ</div><div class="live-price">10,450엔</div><div class="live-meta"><span>2026-04-30 23:58:13</span><span>2 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-8/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">EL2001 CITIZEN ランキング クォーツ</div><div class="live-price">2,610엔</div><div class="live-meta"><span>2026-05-01 21:18:01</span><span>0 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-9/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">腕時計 CITIZEN XC エコドライブ</div><div class="live-price">520엔</div><div class="live-meta"><span>2026-04-30 19:34:24</span><span>3 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-10/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN 7連 ベルト ブレスレット</div><div class="live-price">3,750엔</div><div class="live-meta"><span>2026-05-04 20:20:21</span><span>4 Bids</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-11/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">シチズン A15803 シャルマン 手巻き</div><div class="live-price">4,000엔</div><div class="live-meta"><span>2026-05-03 21:06:23</span><span>1 Bid</span></div></div></div>
+      <div class="live-card"><div class="live-thumb"><img src="https://picsum.photos/seed/watch-best-12/360" alt=""><div class="live-fav"><i class="far fa-heart"></i></div></div><div class="live-info"><div class="live-source">야후 경매</div><div class="live-name">CITIZEN シチズン 自動巻き 腕時計</div><div class="live-price">4,310엔</div><div class="live-meta"><span>2026-04-30 18:50:05</span><span>33 Bids</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 고객? 기 -->
+<div class="section">
+  <div class="sec-hd"><h2 class="sec-title">비드바이 고객후기</h2><a href="web_review_list.html" class="sec-more">더보기 <i class="fas fa-chevron-right"></i></a></div>
+  <div class="rv-grid">
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge">미국 이베이</span><span class="rv-time">24시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv1/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">일본 H&M 구매 체험, 빠르고 편했어요</div><div class="rv-text">처음 이용했는데 과정이 간단해서 원하는 상품을 편하게 구매했어요.</div><div class="rv-item">낙찰가 USD 23.70 · Nike Air Max 90</div></div>
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge">야후 옥션</span><span class="rv-time">14시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv2/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">간단하게 좋은 상품 구매했어요</div><div class="rv-text">담당자님이 꼼꼼하게 처리해 주셔서 정말 만족했습니다.</div><div class="rv-item">낙찰가 45,000엔 · LV 18 네버풀</div></div>
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge mc">메루카리</span><span class="rv-time">2시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv3/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">주문한 상품이 안전하게 도착했어요</div><div class="rv-text">배송 계산 비용도 예상과 거의 맞아서 안심하고 받을 수 있었어요.</div><div class="rv-item">3,200엔 · Supreme 박스로고 티셔츠</div></div>
+    <div class="rv-card"><div class="rv-top"><span class="rv-badge">영국 이베이</span><span class="rv-time">4시간 전</span></div><div class="rv-thumb"><img src="https://picsum.photos/seed/rv4/240" alt=""></div><div class="rv-stars">★★★★★</div><div class="rv-title">배송 매니징까지 만족했습니다</div><div class="rv-text">영국 이베이는 처음이었는데 CS 응대가 빠르고 친절해서 좋았어요.</div><div class="rv-item">£185 · Seiko Prospex 시계</div></div>
+  </div>
+</div>
+
+<!-- 공지+CS -->
+<div class="section" style="padding-top:0">
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="rate-title">비드바이 고시환율</div>
+      <p class="rate-desc">비드바이 결제 금액 계산에 적용되는 기준 환율입니다.</p>
+      <div class="rate-list" aria-label="비드바이 고시환율 목록">
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_usa.png" alt="">USD</span><span class="rate-value">1,450.00</span></div>
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_jp.png" alt="">JPY</span><span class="rate-value">9.10</span></div>
+        <div class="rate-row"><span class="rate-currency"><img class="rate-flag" src="../images/icon/country_uk.png" alt="">GBP</span><span class="rate-value">1,960.00</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3 class="info-title">고객센터</h3>
+      <div class="cs-num">1544 - 5224</div>
+      <div class="cs-hours">
+        <strong>운영시간</strong>
+        <span>평일 10시~17시</span>
+        <strong>점심시간</strong>
+        <span>PM 12:30 - PM 13:30</span>
+        <strong>휴일</strong>
+        <span>주말/공휴일</span>
+      </div>
+      <div class="cs-shortcuts">
+        <a class="cs-shortcut" href="https://www.bidbuy.co.kr/cs">전화문의전 클릭 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+        <a class="cs-shortcut" href="web_qna_form.html">1:1문의 바로가기 <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="info-card" id="marketInfoSection">
+      <h3 class="info-title">국가별 운영정보</h3>
+      <div class="office-grid" aria-label="나라별 근무시간">
+        <div class="office-card" data-office-timezone="Asia/Seoul">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_kor.png" alt="Korea"></span>서울</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Asia/Tokyo">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_jp.png" alt="Japan"></span>오사카</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="America/Los_Angeles">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_usa.png" alt="USA"></span>캘리포니아</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+        <div class="office-card" data-office-timezone="Europe/London">
+          <div class="office-status">업무중</div>
+          <div class="office-info">
+            <div class="office-country"><span class="flag"><img src="../images/icon/country_uk.png" alt="UK"></span>런던</div>
+            <div class="office-time">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 앱 다운로드 -->
+<div class="app-dl">
+  <div class="app-dl-inner">
+    <span style="font-size:13px;font-weight:700;color:var(--ts)">앱 다운로드</span>
+    <button class="app-dl-btn"><i class="fab fa-google-play"></i> 구글 플레이</button>
+    <button class="app-dl-btn"><i class="fab fa-apple"></i> 앱스토어</button>
+  </div>
+</div>
+
+<!-- ?명꽣 -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div><div class="ft-logo">Bidbuy KOREA</div><div class="ft-desc">(주)비드바이코리아 사업자등록번호 107-87-03406<br>통신판매업신고 제015-서울영등포-0315호<br>무역업고유번호 30636624 / 구매대행업 등록번호: B-1-22-00009<br>주소: 서울특별시 영등포구 경인로 775 에이스하이테크시티 1동 1506호<br>대표자: 임창수 | Email: korea@bidbuy.co.kr<br>Copyright© 2000~현재 BIDBUY KOREA ALL RIGHTS RESERVED.</div></div>
+      <div class="ft-links"><div class="ft-links-title">서비스</div><a href="#">야후옥션 경매대행</a><a href="#">메루카리 구매대행</a><a href="#">미국 구매대행</a><a href="#">배송 조회</a></div>
+      <div class="ft-links"><div class="ft-links-title">안내</div><a href="#">직구 가이드</a><a href="#">관부가세 안내</a><a href="#">자주 묻는 질문</a><a href="#">블로그</a></div>
+      <div class="ft-links"><div class="ft-links-title">고객지원</div><a href="#">공지사항</a><a href="#">블로그</a><a href="web_qna_form.html">1:1 문의</a><a href="#">이용약관</a></div>
+    </div>
+    <div class="ft-bottom">비드바이는 해외경매 및 해외구매 상품의 입찰과 구매를 중개하고, 관련 배송 서비스를 제공합니다.</div>
+  </div>
+</footer>
+
+<!-- ?쒕줈???ㅻ쾭?덉씠 -->
+
+<!-- ? 버 ?? 로??-->
+
+<div class="convenience-overlay" id="convenienceToolsPopup" aria-hidden="true" onclick="closeConvenienceToolsPopup(event)">
+  <div class="convenience-popup" role="dialog" aria-modal="true" aria-label="편의도구">
+    <div class="convenience-head">
+      <div class="convenience-title">편의도구</div>
+    </div>
+    <button class="convenience-close" type="button" aria-label="닫기" onclick="closeConvenienceToolsPopup()"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <div class="convenience-tabs" role="tablist" aria-label="편의도구 탭">
+      <button class="convenience-tab" type="button" onclick="goPersonalCustomsCode()">개인통관고유부호</button>
+      <button class="convenience-tab active" type="button" role="tab" aria-selected="true" aria-controls="conveniencePanelUnit" onclick="switchConvenienceTab(this,'conveniencePanelUnit')">단위변환</button>
+      <button class="convenience-tab" type="button" role="tab" aria-selected="false" aria-controls="conveniencePanelSize" onclick="switchConvenienceTab(this,'conveniencePanelSize')">해외 사이즈표</button>
+      <button class="convenience-tab" type="button" role="tab" aria-selected="false" aria-controls="conveniencePanelEms" onclick="switchConvenienceTab(this,'conveniencePanelEms')">EMS 발송 제한 품목</button>
+    </div>
+    <div class="convenience-body">
+      <div class="convenience-panel active" id="conveniencePanelUnit" role="tabpanel">
+        <div class="convenience-panel-title">단위변환</div>
+        <p class="convenience-panel-desc">무게, 길이, 부피 등 해외 상품 정보 확인에 필요한 단위 변환 도구 영역입니다.</p>
+      </div>
+      <div class="convenience-panel" id="conveniencePanelSize" role="tabpanel">
+        <div class="convenience-panel-title">해외 사이즈표</div>
+        <p class="convenience-panel-desc">국가별 의류, 신발 사이즈 비교표를 확인하는 영역입니다.</p>
+      </div>
+      <div class="convenience-panel" id="conveniencePanelEms" role="tabpanel">
+        <div class="convenience-panel-title">EMS 발송 제한 품목</div>
+        <p class="convenience-panel-desc">국제 배송 시 발송이 제한되거나 금지되는 품목 안내 영역입니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// ? ?  배너
+let cur=0;
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+const bannerData=[
+  {tag:'야후 옥션 특집',title:'야후 일본 경매<br>초보 추천 Top10 공개!',sub:'지금 바로 확인하고 원하는 상품을 합리적인 가격에 낙찰받아보세요.',cta:'지금 바로가기',obj:'gavel'},
+  {tag:'리뉴얼 오픈',title:'새로워진 비드바이<br>해외쇼핑 핵심 혜택',sub:'Renewal Open EVENT와 함께 달라진 주요 혜택을 한눈에 확인해보세요.',cta:'혜택 확인하기',obj:'gift'},
+  {tag:'안심 케어 패키지',title:'최대 50,000원<br>보상 서비스',sub:'업계 최고 수준의 케어 서비스로 최대 5만엔 상당 보상을 지원합니다.',cta:'상세 더보기',obj:'shield-heart'},
+];
+function goSlide(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('active');}
+function changeSlide(d){goSlide(cur+d);}
+setInterval(()=>changeSlide(1),4000);
+
+// 로그인 상태: bb-common.js(localStorage)가 단일 소스. bb:login 이벤트로 동기화
+let loggedIn = localStorage.getItem('bb_logged_in') === '1';
+function updateGradeProgress(){
+  const textEl = document.querySelector('.pu-grade-remaining');
+  const fillEl = document.getElementById('puGradeProgressFill');
+  if(!textEl || !fillEl) return;
+  const fromData = Number(textEl.dataset.remaining);
+  const match = textEl.textContent.match(/(\d+(?:\.\d+)?)\s*%/);
+  const remaining = Number.isFinite(fromData) ? fromData : Number(match?.[1] || 0);
+  const progress = Math.max(0, Math.min(100, 100 - remaining));
+  fillEl.style.width = progress + '%';
+  fillEl.setAttribute('aria-label', '등급 진행률 ' + progress + '%');
+}
+function applyState(){
+  const setDisplay = (id, display) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = display;
+  };
+  setDisplay('guestArea', loggedIn ? 'none' : 'flex');
+  setDisplay('userArea', loggedIn ? 'flex' : 'none');
+  setDisplay('alertBar', loggedIn ? 'block' : 'none');
+  setDisplay('panelGuest', loggedIn ? 'none' : 'flex');
+  setDisplay('panelUser', loggedIn ? 'flex' : 'none');
+  setDisplay('drGuestHd', loggedIn ? 'none' : 'flex');
+  setDisplay('drUserHd', loggedIn ? 'flex' : 'none');
+  setDisplay('drGuestPanel', loggedIn ? 'none' : 'block');
+  setDisplay('drUserAssets', loggedIn ? 'grid' : 'none');
+  setDisplay('drMemberPanel', loggedIn ? 'block' : 'none');
+  updateGradeProgress();
+}
+function closeDD(){ const dd=document.getElementById('userDD'); const trig=document.getElementById('userTrig'); if(dd)dd.classList.remove('open'); if(trig)trig.classList.remove('open'); }
+// doLogin/doLogout/toggleLogin은 bb-common.js가 제공. 상태 변경 시 페이지 UI만 갱신
+document.addEventListener('bb:login', e => { loggedIn = e.detail.loggedIn; applyState(); closeDD(); });
+applyState();
+
+// ?? ?쒕∼?ㅼ슫
+function toggleDD(){
+  document.getElementById('userDD').classList.toggle('open');
+  document.getElementById('userTrig').classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  const t=document.getElementById('userTrig');
+  const dd=document.getElementById('userDD');
+  if(t&&!t.contains(e.target)&&dd&&!dd.contains(e.target)){dd.classList.remove('open');t.classList.remove('open');}
+});
+
+function openCustomsTaxPopup(){
+  const url = 'https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do';
+  const win = window.open(url, 'customsTaxCalculation', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+  // 팝업이 차단되면 같은 탭에서 열어 링크가 먹통이 되지 않도록 한다.
+  if (!win) window.location.href = url;
+}
+function openbidbuycsPopup(){
+  const url = 'https://www.bidbuy.co.kr/cs';
+  const win = window.open(url, 'bidbuycs', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+  // 팝업이 차단되면 같은 탭에서 열어 링크가 먹통이 되지 않도록 한다.
+  if (!win) window.location.href = url;
+}
+function openbidbuynoticePopup(){
+  const url = 'https://www.bidbuy.co.kr/cs/notice';
+  const win = window.open(url, 'bidbuynotice', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+  // 팝업이 차단되면 같은 탭에서 열어 링크가 먹통이 되지 않도록 한다.
+  if (!win) window.location.href = url;
+}
+
+/* 전환 배너: 멤버십 등급 / 공지사항 자동 전환 */
+(function(){
+  const banner = document.getElementById('heroBanner');
+  if(!banner) return;
+  const slides = banner.querySelectorAll('.hb-slide');
+  const dots = banner.querySelectorAll('.hb-dot');
+  if(!slides.length) return;
+  banner.classList.add('is-tabbed');
+  if(!banner.querySelector('.hero-banner-inner')){
+    const inner = document.createElement('div');
+    inner.className = 'hero-banner-inner';
+    const tabs = document.createElement('div');
+    tabs.className = 'hb-tabs';
+    tabs.setAttribute('role', 'tablist');
+    tabs.setAttribute('aria-label', '공지 및 마일리지 안내');
+    tabs.innerHTML =
+      '<button class="hb-tab active" type="button" role="tab" aria-selected="true" onclick="hbGoTo(0)"><i class="fas fa-crown" aria-hidden="true"></i><span>등급별 마일리지 제도 오픈!</span></button>' +
+      '<button class="hb-tab" type="button" role="tab" aria-selected="false" onclick="hbGoTo(1)"><i class="fas fa-bullhorn" aria-hidden="true"></i><span>공지사항</span></button>';
+    const panels = document.createElement('div');
+    panels.className = 'hb-panels';
+    slides.forEach(slide => panels.appendChild(slide));
+    inner.append(tabs, panels);
+    dots.forEach(dot => dot.remove());
+    banner.innerHTML = '';
+    banner.appendChild(inner);
+  }
+  const tabs = banner.querySelectorAll('.hb-tab');
+  let current = 0;
+  function goTo(i){
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s,n)=>s.classList.toggle('active', n===current));
+    tabs.forEach((tab,n)=>{
+      tab.classList.toggle('active', n===current);
+      tab.setAttribute('aria-selected', String(n===current));
+    });
+  }
+  window.hbGoTo = function(i){
+    goTo(i);
+  };
+  goTo(0);
+})();
+
+/* 공지사항 리스트: 자동 롤링 + 수동 스크롤(드래그/휠 시 일시정지 후 재개) */
+(function(){
+  const vp = document.getElementById('nbViewport');
+  const track = document.getElementById('nbTrack');
+  if(!vp || !track) return;
+  let paused = false, resumeTimer = null;
+  function pause(){
+    paused = true;
+    clearTimeout(resumeTimer);
+  }
+  function scheduleResume(){
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(()=>{ paused = false; }, 2500);
+  }
+  ['wheel','touchstart','mousedown'].forEach(evt=>vp.addEventListener(evt, pause, {passive:true}));
+  ['wheel','touchend','mouseup','touchmove'].forEach(evt=>vp.addEventListener(evt, scheduleResume, {passive:true}));
+  vp.addEventListener('mouseenter', pause);
+  vp.addEventListener('mouseleave', scheduleResume);
+
+  setInterval(function(){
+    if(paused) return;
+    const half = track.scrollHeight / 2;
+    vp.scrollTop += 1;
+    if(vp.scrollTop >= half) vp.scrollTop -= half;
+  }, 77);
+})();
+function openaccountPopup(){
+  const url = 'https://www.bidbuy.co.kr/mypage/account';
+  const win = window.open(url, 'account', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+  // 팝업이 차단되면 같은 탭에서 열어 링크가 먹통이 되지 않도록 한다.
+  if (!win) window.location.href = url;
+}
+function openWishlistPopup(){
+  const url = 'https://www.bidbuy.co.kr/mypage/order/wishlist';
+  const win = window.open(url, 'wishlist', 'width=1100,height=820,top=80,left=120,scrollbars=yes,resizable=yes');
+  // 팝업이 차단되면 같은 탭에서 열어 링크가 먹통이 되지 않도록 한다.
+  if (!win) window.location.href = url;
+}
+function openMarketInfoPopup(){
+  const section = document.getElementById('marketInfoSection');
+  updateMarketInfo();
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function closeMarketInfoPopup(event){
+  const popup = document.getElementById('marketInfoPopup');
+  if (!popup) return;
+  if (event && event.target !== popup) return;
+  popup.classList.remove('open');
+  popup.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function openConvenienceToolsPopup(){
+  const popup = document.getElementById('convenienceToolsPopup');
+  if (!popup) return;
+  popup.classList.add('open');
+  popup.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeConvenienceToolsPopup(event){
+  const popup = document.getElementById('convenienceToolsPopup');
+  if (!popup) return;
+  if (event && event.target !== popup) return;
+  popup.classList.remove('open');
+  popup.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function switchConvenienceTab(tab, panelId){
+  document.querySelectorAll('.convenience-tab[role="tab"]').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.convenience-panel').forEach(panel => panel.classList.remove('active'));
+  tab.classList.add('active');
+  tab.setAttribute('aria-selected', 'true');
+  document.getElementById(panelId)?.classList.add('active');
+}
+function goPersonalCustomsCode(){
+  window.location.href = 'https://unipass.customs.go.kr/per/persIndex.do';
+}
+function handleShortcutKey(event, callback){
+  if(event.key !== 'Enter' && event.key !== ' ') return;
+  event.preventDefault();
+  callback();
+}
+function getZonedParts(date, timeZone){
+  return Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year:'2-digit',
+    month:'2-digit',
+    day:'2-digit',
+    weekday:'short',
+    hour:'2-digit',
+    minute:'2-digit',
+    second:'2-digit',
+    hour12:true,
+  }).formatToParts(date).map(part => [part.type, part.value]));
+}
+function formatOfficeTime(date, timeZone){
+  const parts = getZonedParts(date, timeZone);
+  return `${parts.year}.${parts.month}.${parts.day} ${parts.dayPeriod.toLowerCase()} ${parts.hour}:${parts.minute}`;
+}
+function isOfficeOpen(date, timeZone){
+  const parts = getZonedParts(date, timeZone);
+  const weekday = parts.weekday;
+  let hour = Number(parts.hour);
+  if (parts.dayPeriod === 'PM' && hour !== 12) hour += 12;
+  if (parts.dayPeriod === 'AM' && hour === 12) hour = 0;
+  const isWeekday = !['Sat','Sun'].includes(weekday);
+  return isWeekday && hour >= 9 && hour < 18;
+}
+function updateMarketInfo(){
+  const now = new Date();
+  document.querySelectorAll('.office-card[data-office-timezone]').forEach(card => {
+    const timeZone = card.dataset.officeTimezone;
+    const open = isOfficeOpen(now, timeZone);
+    const status = card.querySelector('.office-status');
+    const time = card.querySelector('.office-time');
+    if (status) {
+      status.textContent = open ? '업무중' : '종료';
+      status.classList.toggle('is-open', open);
+    }
+    if (time) time.textContent = formatOfficeTime(now, timeZone);
+  });
+}
+setInterval(updateMarketInfo, 1000);
+updateMarketInfo();
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.getElementById('convenienceToolsPopup')?.classList.contains('open')) {
+    closeConvenienceToolsPopup();
+  }
+  if (event.key === 'Escape' && document.getElementById('marketInfoPopup')?.classList.contains('open')) {
+    closeMarketInfoPopup();
+  }
+});
+const mainSearchForm = document.getElementById('mainSearchForm');
+mainSearchForm?.addEventListener('submit', event => {
+  const input = mainSearchForm.querySelector('input[name="q"]');
+  const query = (input?.value || '').trim().replace(/\s+/g, ' ');
+  if (!query) {
+    event.preventDefault();
+    return;
+  }
+
+  // 기본 form submit(action)으로도 이동되지만,
+  // 경로 해석 이슈가 있는 환경을 대비해 JS에서 한 번 더 명시적으로 이동 처리
+  event.preventDefault();
+  const targetUrl = new URL('web_totalsearch.html', window.location.href);
+  targetUrl.searchParams.set('q', query);
+  window.location.assign(targetUrl.toString());
+});
+
+const liveAuctionCloseOffsets = [30, 120, 480, 780, 1440, 2880];
+
+function formatLiveYenText(value) {
+  const numeric = String(value).replace(/[^\d]/g, "");
+  return (Number(numeric) || 0).toLocaleString("ko-KR") + "엔";
+}
+
+function formatLiveRemainingTime(offsetMinutes) {
+  if (offsetMinutes >= 1440) return Math.floor(offsetMinutes / 1440) + "일";
+  if (offsetMinutes >= 60) return Math.floor(offsetMinutes / 60) + "시간";
+  return Math.max(1, Math.round(offsetMinutes)) + "분";
+}
+
+function formatLiveAuctionCloseTime(offsetMinutes) {
+  const d = new Date(Date.now() + offsetMinutes * 60000);
+  const pad = n => String(n).padStart(2, "0");
+  const dateStr = d.getFullYear() + "." + pad(d.getMonth() + 1) + "." + pad(d.getDate());
+  const timeStr = pad(d.getHours()) + ":" + pad(d.getMinutes());
+  return dateStr + " " + timeStr + " (" + formatLiveRemainingTime(offsetMinutes) + ")";
+}
+
+document.querySelectorAll(".live-card").forEach((card, index) => {
+  const price = card.querySelector(".live-price");
+  const basePrice = price ? Number(price.textContent.replace(/[^\d]/g, "")) || 1650 : 1650;
+  if (price) price.textContent = formatLiveYenText(basePrice);
+
+  if (price && !card.querySelector(".live-price-line")) {
+    const priceLine = document.createElement("div");
+    priceLine.className = "live-price-line";
+    price.parentNode.insertBefore(priceLine, price);
+    priceLine.append(price);
+  }
+  const priceLine = card.querySelector(".live-price-line");
+  const showBuyNow = Math.random() < 0.45;
+  if (priceLine && showBuyNow && !priceLine.querySelector(".live-buy-now")) {
+    const buyNow = document.createElement("div");
+    buyNow.className = "live-buy-now";
+    const buyNowPrice = basePrice + 500 + ((index * 370) % 4200);
+    buyNow.innerHTML = '(즉시낙찰 <strong>' + formatLiveYenText(buyNowPrice) + '</strong>)';
+    priceLine.append(buyNow);
+  }
+
+  const meta = card.querySelector(".live-meta");
+  if (meta) {
+    meta.innerHTML = '<span>' + formatLiveAuctionCloseTime(liveAuctionCloseOffsets[index % liveAuctionCloseOffsets.length]) + '</span><span>(' + (((index * 13) % 99) + 1) + 'bids)</span>';
+  }
+
+  const thumb = card.querySelector(".live-thumb");
+  const oldFav = card.querySelector(".live-fav");
+  if (thumb && !thumb.querySelector(".live-actions")) {
+    oldFav?.remove();
+    const actions = document.createElement("div");
+    actions.className = "live-actions";
+    actions.innerHTML =
+      '<button class="live-action" type="button" aria-label="상품 간편 보기" title="상품 간편 보기"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>' +
+      '<button class="live-action" type="button" aria-label="새창으로 보기" title="새창으로 보기"><i class="fa-regular fa-window-restore" aria-hidden="true"></i></button>' +
+      '<button class="live-action" type="button" aria-label="원문페이지보기" title="원문페이지보기"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>' +
+      '<button class="live-fav" type="button" aria-label="관심상품" title="관심상품" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>';
+    thumb.append(actions);
+
+    actions.querySelectorAll(".live-action").forEach((button, actionIndex) => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (actionIndex === 0) window.location.href = "web_auction.html";
+        if (actionIndex === 1) window.open("web_auction.html", "_blank");
+        if (actionIndex === 2) window.open("https://auctions.yahoo.co.jp/", "_blank");
+      });
+    });
+
+    const fav = actions.querySelector(".live-fav");
+    fav?.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      fav.classList.toggle("active");
+      fav.setAttribute("aria-pressed", String(fav.classList.contains("active")));
+    });
+  }
+
+  card.addEventListener("click", event => {
+    if (event.target.closest("button, a")) return;
+    window.location.href = "web_auction.html";
+  });
+});
+</script>
+<script src="bb-common.js"></script>
+<script src="bb-search-modal.js"></script>
+</body>
+</html>
